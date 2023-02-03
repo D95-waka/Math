@@ -1,0 +1,378 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Libertinus Serif}
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+
+% custom operators
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+\getenv[\AUTHOR]{AUTHOR}
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+\def\NN{\mathbb{N}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+
+\title{פתרון ממ''ן 14 – חשבון אינפיניטסימלי 1 (20474)}
+\author{\AUTHOR}
+\date\today
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+יהיו $f$ ו־$g$ פונקציות מ־$\RR$ ל־$\RR$.
+\subsection{סעיף א'}
+נוכיח כי אם הפונקציה $f \circ g$ היא על $\RR$ אז $f$ היא על $\RR$. \\*
+ההוכחה מבוססת על הוכחת משפט 3.22 בספר תורת הקבוצות מעת שמואל ברגר. \\*
+נוכיח כי לכל $c \in (f \circ g)(\RR)$ קיים $b \in \RR$ כך ש־$f(b) = c$.
+יהי $c \in \RR$, הפונקציה $f \circ g$ היא על, לכן קיים $a \in \RR$
+כך ש־$(f \circ g)(a) = c$, כלומר $f(g(a)) = c$. $g(a) \in \RR$.
+נגדיר $b = g(a)$. מצאנו $b$ עבורו $c = f(b)$.
+
+\subsection{סעיף ב'}
+נראה כי אם $f \circ g$ היא על, הפונקציה $g$ איננה בהכרח על. \\*
+נגידר
+\[
+	f(x) = \begin{cases}
+		x & x < 0 \\
+		x - 1 & 0 \le x
+	\end{cases}
+	g(x) = \begin{cases}
+		x & x < 0 \\
+		x + 1 & 0 \le x
+	\end{cases}
+\]
+תמונת הפונקציה $g(\RR)$ איננה כוללת את הקטע $(0, 1)$,
+לעומת זאת הפונקציה $f \circ g$ היא על, בסתירה לטענה.
+
+\subsection{סעיף ג'}
+נוכיח שאם הפונקציה $f \circ g$ היא על ו־$f$
+היא חד־חד ערכית אז $g$ היא על $\RR$. \\*
+נשים לב כי מתקיים $f(g(\RR)) = \RR$ על־פי הנתון כי $f \circ g$ על.
+ידוע כי $f$ היא חד־חד ערכית, ועל־פי סעיף א' גם על, ולכן הפיכה.
+נגדיר $f^{-1}$ הפונקציה ההפוכה ל־$f$,
+לכן $f^{-1}(f(g(\RR))) = g(\RR) = f^{-1}(\RR)$.
+ידוע כי $f^{-1}$ היא על ולכן מתקיים $f^{-1}(\RR) = \RR$,
+ולכן גם $g(\RR) = \RR$, אז הפונקציה $g$ היא על.
+
+\subsection{סכיף ד'}
+הטענה כי אם $f \circ g$ מונוטונית עולה אז $g$ מונוטונית איננה נכונה. \\*
+נראה דוגמה נגדית, נגדיר
+\[
+	f(x) = x,
+	g(x) = x^2
+\]
+הפונקציה $(f \circ g)(x) = x^3$, פונקציה מונוטונית לכל $\RR$ ועולה,
+אבל $g$ היא פרבולה ובהכרח איננה מונוטונית.
+
+\subsection{סעיף ה'}
+נוכיח כי אם $f \circ g$ היא מונוטונית עולה ו־$f$ היא מונוטונית יורדת,
+אז $g$ היא מונוטונית יורדת. \\*
+נראה כי לכל $x_1, x_2 \in \RR, x_1 < x_2$ מתקיים:
+\[
+	f(g(x_1)) < f(g(x_2))
+\]
+אבל ידוע כי $f$ מונוטונית יורדת, לכן גם מתקיים
+\[
+	g(x_1) > g(x_2)
+\]
+דהינו הפונקציה $g$ מונוטונית יורדת.
+
+\section{שאלה 2}
+\subsection{סעיף א'}
+נוכיח כי הגבול הבא מתקיים בלשון $\epsilon, \delta$
+\[
+	\lim_{x \to 4} \sqrt{2x^2 - 7} = 5
+\]
+נוכיח כי לכל $\epsilon > 0$ קיים $\delta > 0$
+כך שלכל $x$ המקיים $0 < |x - 4| < \delta$
+מתקיים $|\sqrt{2x^2 - 7} - 5| < \epsilon$. \\*
+$x$ בסביבה של $4$ ולכן עבור ערך $\delta$ מתאים מתקיים $|x - 4| < 1$.
+לפי אי־שוויון זה גם $-1 < x - 4 < 1$ ולכן $3 < x < 5$.
+אנו רואים כי במקרה זה $x < 5$ ולכן $|x + 4| < |4 + 5| = 9$.
+נראה כי מתקיים:
+\begin{align*}
+	& |x - 4| < \delta \\
+	& |x - 4| |x + 4| < 9\delta \\
+	& |(x - 4)(x + 4)| < 9\delta \\
+	& |x^2 - 16| < 9\delta \\
+	& |2x^2 - 7 - 25| < 18\delta \\
+	& |\sqrt{2x^2 - 7} - 5| |\sqrt{2x^2 - 7} + 5| < 18\delta \\
+\end{align*}
+נשים לב כי הערך $\sqrt{2x^2 - 7} + 5$ חיובי וגדול מ־$1$ בכל תחום הגדרתו,
+לכן
+\begin{align*}
+	& |\sqrt{2x^2 - 7} - 5| 
+	< |\sqrt{2x^2 - 7} - 5| |\sqrt{2x^2 - 7} + 5| < 18\delta \\
+\end{align*}
+נגדיר 
+\[
+	\delta = \max\{1, \frac{\epsilon}{18}\}
+\]
+בשל הגבלת הסביבה, מתקיים
+\[
+	|\sqrt{2x^2 - 7} - 5| < \epsilon
+\]
+ולכן מתקיים הגבול $\lim_{x \to 4} \sqrt{2x^2 - 7} = 5$.
+
+\subsection{סעיף ב'}
+נוכיח כי הגבול מתקיים בלשון $\epsilon, M$:
+\[
+	\lim_{x \to \infty} \frac{x + 1}{\lfloor x \rfloor}
+\]
+הביטוי לא מוגדר כאשר $0 \le x < 1$, לכן נגדיר $M \ge 1$.
+נשים לב כי אי־השוויון
+\[
+	\left| \frac{x-1}{\lfloor x \rfloor} - 1 \right| < \epsilon
+\]
+מתקיים רק כאשר
+\[
+	\left| \frac{x - \lfloor x \rfloor - 1}{\lfloor x \rfloor} \right|
+	< \epsilon
+\]
+על־פי ההגדרה $M \ge 1$ תמיד מתקיים $\lfloor x \rfloor > 0$ לכן
+\[
+	\frac{\left| x - \lfloor x \rfloor - 1\right|}{\lfloor x \rfloor}
+	< \epsilon
+\]
+על־פי חוקי החלק השלם
+$x - 1 \le \lfloor x \rfloor < x$
+לכן $x - 1 - x < \lfloor x \rfloor - x < 0$
+אז $-1 < x - \lfloor x \rfloor - 1 < 0$.
+מכנה אי־השוויון תמיד יהיה ערך בין $0$ ל־$1$, אז מתקיים
+\[
+	\frac{\left| x - \lfloor x \rfloor - 1\right|}{\lfloor x \rfloor}
+	< \frac{1}{\lfloor x \rfloor} < \epsilon
+\]
+אילו נגדיר
+\[
+	M = 1 + \frac{1}{\epsilon}
+\]
+יתקיים
+\[
+	M = 1 + \frac{1}{\epsilon} < x
+\]
+ולכן גם
+\[
+	\frac{1}{x - 1} < \epsilon
+\]
+ועל־פי אי־שוויון החלק השלם גם
+\[
+	\frac{1}{\lfloor x \rfloor} < \epsilon
+\]
+ובמקרה זה ראינו כי גם מתקיים
+\[
+	\left| \frac{x-1}{\lfloor x \rfloor} - 1 \right| < \epsilon
+\]
+ולכן הגבול מתקיים.
+
+\section{שאלה 3}
+\subsection{סעיף א'}
+\textbf{(i)}
+ננסח את הטענה „לא קיים ל־$f$ גבול סופי כש־$x \to \infty$”
+בלשון $\epsilon, M$, על־ידי ניסוח שלילה להגדרה 4.54:
+נאמר כי לא קיים $\lim_{x \to \infty} f(x)$
+אם לא קיים $L \in \RR$ עבורו $\lim_{x \to \infty} f(x) = L$,
+דהינו אם לכל $L \in \RR$ קיים $\epsilon > 0$ כך שלכל $M \in \RR$
+קיים $x > M$ עבורו $\left| f(x) - L\right| \ge \epsilon$. \\
+\textbf{(ii)}
+ננסח את הטענה על־ידי שלילת הגדרת היינה לסדרות כפי שמופיעה בהגדרה 4.54: \\*
+לא קיים $\lim_{x \to \infty}f(x)$ אם ורק אם
+לכל $L \in \RR$
+קיימת סדרה ${(x_n)}_{n = 1}^\infty$
+כך ש־$x_n \underset{n \to \infty}{\rightarrow} \infty$
+ולא מתקיים $f(x_n) \underset{n \to \infty}{\rightarrow} L$
+
+\subsection{סעיף ב'}
+נוכיח כי $L = \frac{1}{2}$ איננו הגבול של $f(x) = \langle x \rangle$
+כאשר $x \rightarrow \infty$ בלשון $\epsilon, M$. \\*
+קודם כל נראה כי לכל $M \in \RR$ שנבחר, לכל $x > M$ כך ש־$\langle x \rangle = 0$ מתקיים
+\[
+	\left| \langle x \rangle - \frac{1}{2} \right| = \left| 0 - \frac{1}{2} \right| = \frac{1}{2}
+\]
+על־פי הגדרת הגבול בלשון $\epsilon, M$ לכל $\epsilon > 0$ קיים $M \in \RR$ כך שלכל $x > M$ מתקיים
+\[
+	\left| \langle x \rangle - \frac{1}{2} \right| < \epsilon
+\]
+אך ראינו כי מתקיים
+\[
+	\left| \langle x \rangle - \frac{1}{2} \right|  = \frac{1}{2} < \epsilon
+\]
+לכן קיימים ערכי $\epsilon > 0$ כך שלא קיים ערך $M$ כזה, ולכן גבול זה איננו מתקיים.
+
+\subsection{סעיף ג'}
+\textbf{(i)}
+נוכיח כי לא קיים גבול לפונקציה $f(x) = \langle x \rangle$ כאשר $x \to \infty$ על־פי הגדרת סעיף א' (i) \\*
+על־פי ההגדרה, נוכיח כי לכל $L \in \RR$ קיים $\epsilon > 0$ עבורו לכל $M \in \RR$ קיים $x > M$ עבורו
+\[
+	\left| f(x) - L \right| \ge \epsilon
+\]
+על־פי הגדרת החלק השברי תמונת $f(x)$ היא $\left[0, 1\right)$, לכן לכל $L$ כך ש־$L > 1$ נגדיר $\epsilon = |L - 1|$. % chktex 9
+עבור $\epsilon$ זה לכל $M$ קיים $x > M$ כך ש־$x = \lfloor x \rfloor + 1$ ומתקיים
+\[
+	\left| f(x) - L \right| = \left| 0 - L \right| > \left| L - 1 \right| = \epsilon
+\]
+באופן דומה כאשר $L < 0$ נגדיר $\epsilon = \left| 1 - L \right|$ ויתקיים אי־השוויון. \\*
+כאשר $0 \le L < 1$ נגדיר $\epsilon = L$ ונראה כי לכל $M \in \RR$ ועבור $x = 1$ מתקיים
+\[
+	\left| f(x) - L \right| = L \ge \epsilon
+\]
+ראינו כי אכן ההגדרה מתקיימת לכל $L \in \RR$ ולכן לא קיים גבול כאשר $x \to \infty$ לפונקציה $f$. \\
+\textbf{(ii)}
+נוכיח כי אין גבול לפונקציה בלשון היינה כפי שהוגדר בסעיף א'. \\*
+עבור $L \ne 0$ נגדיר את הסדרה $x_n = \lfloor x \rfloor$.
+לכל איבר בסדרה זו מתקיים $f(x) = 0$, לכן
+\[
+	\lim_{n \to \infty} f(x_n) = 0 \ne L
+\]
+נגדיר $L = 0$ ו־$x_n = \lfloor x \rfloor + \frac{1}{2}$. אז מתקיים
+\[
+	\lim_{n \to \infty} f(x_n) = \frac{1}{2} \ne 0
+\]
+ראינו כי התנאי מתקיים לכל $L \in \RR$ ולכן על־פי הגדרת היינה אין גבול לפונקציה $f$.
+
+\section{שאלה 4}
+\subsection{סעיף א'}
+על־פי כלל הרכבה לכל $c \in \RR\backslash\{0\}$:
+\[
+	\lim_{x \to 0} \cos(c x) = \lim_{t \to 0} \cos t = 1 \tag{*}
+\]
+\begin{align*}
+	\lim_{x \to 0} \frac{\tan 5x}{\sin 3x}
+	& \overset{\text{כלל לופיטל}}{=} \lim_{x \to 0} \frac{\tan' 5x}{\sin' 3x}\\
+	& = \lim_{x \to 0} \frac{\frac{1}{\cos^2 5x} \cdot 5}{\cos(3x) \cdot 3}\\
+	& = \lim_{x \to 0} \frac{5}{3} \cdot \frac{1}{\cos(3x) \cos^2(5x)}\\
+	& \overset{\text{חוקי גבולות}}{=} \frac{5}{3} \frac{1}{\lim_{x \to 0} \left( \cos(3x) \cos^2(5x)\right)} \\
+	& \overset{\text{(*)}}{=} \frac{5}{3} \frac{1}{1}\\
+	& = \frac{5}{3}
+\end{align*}
+
+\subsection{סעיף ב'}
+\[
+	\lim_{x \to 0} \frac{\sqrt{\cos x} - \cos x}{x^2}
+	= \lim_{x \to 0} \frac{\frac{-\sin x}{2\sqrt{\cos x}} + \sin x}{2x}
+	= \lim_{x \to 0} \frac{\sin x}{4x} \frac{2\sqrt{\cos x} - 1}{\sqrt{\cos x}}
+\]
+על־פי משפט 4.45:
+\[
+	\lim_{x \to 0} \frac{\sin x}{4 x} = \frac{1}{4}
+\]
+הביטוי $\sqrt{\cos x}$ מוגדר וחיובי בסביבה החיובית של $0$, לכן גם
+\[
+	\frac{2\sqrt{\cos x} - 1}{\sqrt{\cos x}} = 2 - \frac{1}{\sqrt{\cos x}}
+\]
+נשים לב כי מתקיים הגבול
+\[
+	\lim_{x \to 1} \frac{1}{x} = 1
+\]
+וניתן להוכיח כי מתקיים הגבול
+\[
+	\lim_{t \to 0} \sqrt{\cos t} = 1
+\]
+לכן משפט 4.39
+\[
+	\lim_{x \to 0} 2 - \frac{1}{\sqrt{\cos x}} = 1
+\]
+ולכן מתקיים
+\[
+	\lim_{x \to 0} \frac{\sqrt{\cos x} - \cos x}{x^2}
+	= \frac{1}{4} \cdot 1 = \frac{1}{4}
+\]
+
+\subsection{סעיף ג'}
+\begin{align*}
+	\lim_{x \to \infty} \frac{3x^5 - 5x^4 + x \cos x}{3x^2 - 5x^3 + x\sqrt{x}}
+	= \lim_{x \to \infty} \frac{\frac{3x^5}{x^5} - 5\frac{x^4}{x^5} + \frac{x \cos x}{x^5}}{3\frac{x^2}{x^5} - 5\frac{x^3}{x^5} + \frac{x\sqrt{x}}{x^5}}
+	= \lim_{x \to \infty} \frac{3 - 5\frac{1}{x} + \frac{\cos x}{x^4}}{3\frac{1}{x^3} - 5\frac{1}{x^2} + \frac{\sqrt{x}}{x^4}}
+	= \lim_{x \to \infty} \frac{3 + \frac{\cos x}{x^4}}{\frac{\sqrt{x}}{x^4}}
+\end{align*}
+נשים לב כי מתקיים
+\[
+	\frac{-1}{x^4} \le \frac{\cos x}{x^4} \le \frac{1}{x^4}
+\]
+לכל $x \ge 0$, לכן לפי משפט 4.43 מתקיים
+\[
+	\lim_{x \to \infty} \frac{-1}{x^4} = \lim_{x \to \infty} \frac{\cos x}{x^4} = \lim_{x \to \infty} \frac{1}{x^4} = 0
+\]
+לכן
+\[
+	\lim_{x \to \infty} \frac{3 + \frac{\cos x}{x^4}}{\frac{\sqrt{x}}{x^4}}
+	= \lim_{x \to \infty} \frac{3 + 0}{\frac{\sqrt{x}}{x^4}}
+	= \lim_{x \to \infty} \frac{3x^4}{\sqrt{x}}
+\]
+קל לראות על־פי הגדרה 4.55
+\[
+	\lim_{x \to \infty} \frac{3x^4}{\sqrt{x}} = \infty
+\]
+
+\subsection{סעיף ד'}
+\[
+	\lim_{x \to 0} \frac{x + \sin x}{x^2 + \sin^2 x}
+	= \lim_{x \to 0} \frac{\frac{x}{x^2} + \frac{\sin x}{x^2}}{\frac{x^2}{x^2} + \frac{\sin^2 x}{x^2}}
+	= \lim_{x \to 0} \frac{\frac{1}{x} + \frac{\sin x}{x}\frac{1}{x}}{{(\frac{\sin x}{x})}^2 + 1}
+\]
+על־פי משפט 4.45:
+\[
+	\lim_{x \to 0} \frac{\frac{1}{x} + \frac{\sin x}{x}\frac{1}{x}}{{(\frac{\sin x}{x})}^2 + 1}
+	= \lim_{x \to 0} \frac{0 + 1 \cdot \frac{1}{x}}
+	{1^2 + 1}
+	= \lim_{x \to 0} \frac{0 + 1 \cdot 0}{2}
+	= 0
+\]
+
+\subsection{סעיף ה'}
+\[
+	\lim_{x \to x_0} \lfloor \tan x \rfloor \cos x, x_0 = 0, \frac{\pi}{2}
+\]
+על־פי הגדרת $\tan x$ מתקיים כאשר $0 \le x < \frac{\sqrt 2}{2}$:
+\[
+	\tan x = \frac{\sin x}{\cos x} < 1
+\]
+ולכן עבור $\delta < 1$ מתקיים
+\[
+	\lfloor \tan x \rfloor = 0
+\]
+ובהתאם
+\[
+	\lim_{x \to 0} \lfloor \tan x \rfloor \cos x
+	= \lim_{x \to 0} 0 \cos x
+	= \lim_{x \to 0} 0
+	= 0
+\]
+נמצא את הגבול
+\[
+	\lim_{x \to \frac{\pi}{2}} \lfloor \tan x \rfloor \cos x
+\]
+נשים לב כי כאשר $\frac{\sqrt{2}}{2} \le x < \frac{\pi}{2}$:
+\[
+	\tan x - 1 \le \lfloor \tan x \rfloor \le \tan x 
+\]
+ולאחר הכפלה
+\[
+	(\tan x - 1) \cos x \le \lfloor \tan x \rfloor \cos x \le \tan x \cos x
+\]
+בתחום $(\frac{\sqrt{2}}{2}, \frac{\pi}{2})$ נוכל לצמצם את הביטוי $\tan x \cos x$ ל־$\sin x$ בלא שינוי לערך, לכן:
+\[
+	\sin x - \cos x \le \lfloor \tan x \rfloor \cos x \le \sin x
+\]
+לכן לפי משפט 4.43
+\[
+	\lim_{x \to \frac{\pi}{2}} \sin x - \cos x = \lim_{x \to \frac{\pi}{2}} \lfloor \tan x \rfloor \cos x = \lim_{x \to \frac{\pi}{2}} \sin x = 1
+\]
+
+\end{document} % chktex 17

@@ -1,0 +1,416 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Libertinus Serif}
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+
+% custom operators
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+\getenv[\AUTHOR]{AUTHOR}
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+\def\NN{\mathbb{N}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+
+% theorems
+\title{פתרון ממ''ן 13 – חשבון אינפיניטסימלי 1 (20474)}
+\author{\AUTHOR}
+\date\today
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+\subsection{סעיף א'}
+נגדיר $a_1 = \sqrt{2}$ ולכל $n$:
+\[
+	a_{n + 1} = 1 - \frac{5}{4a_n + 8}
+\]
+נוכיח כי הסדרה מוגדרת לכל $n$: \\*
+הסדרה איננה מוגדרת במקרה בו קיים $a_n = -2$.
+נוכיח באינדוקציה שמקרה זה לא מתקיים על־ידי ההוכחה כי $a_n > 0$ לכל $n$: \\*
+\textbf{בסיס האינדוקציה:} נתון $a_1 = \sqrt{2} > 0$. \\*
+\textbf{מהלך האינדוקציה:} נניח כי $a_n > 0$ ונראה כי $a_{n + 1} > 0$. \\*
+אם $a_n > 0$ אז גם $4a_n > 0$ ובהתאם $4a_n + 8 > 8 > 5$.
+נחלק את אי־השוויון בביטוי $4a_n + 8$:
+\[
+	1 > \frac{5}{4a_n + 8}
+	\rightarrow
+	1 - \frac{5}{4a_n + 8} > 0
+	\rightarrow
+	a_{n + 1} > 0
+\]
+ובכך השלמנו את מהלך האינדוקציה. \\*
+הסדרה $(a_n)$ חיובית לכל איבר ולכן בהכרח מוגדרת לכל $n$.
+
+\subsection{סעיף ב'}
+נוכיח כי $a_n$ הוא מספר חיובי ואי־רציונלי לכל $n$. \\*
+הראינו בסעיף א' כי $a_n$ חיובי לכל $n$,
+לכן עלינו רק להוכיח כי הוא גם אי־רציונלי.
+נוכיח זאת באינדוקציה: \\*
+\textbf{בסיס האינדוקציה:} נתון $a_1 = \sqrt{2}$ וזהו כמובן מספר אי־רציונלי. \\*
+\textbf{מהלך האינדוקציה:} נניח $a_n$ אי־רציונלי
+ונראה כי גם $a_{n + 1}$ אי־רציונלי. \\*
+על־פי הגדרת המספרים האי־רציונליים,
+חיבור ומכפלת מספר אי־רציונליים אינם רציונליים.
+לכן גם הביטוי $4a_n + 8$ איננו מספר רציונלי.
+בהתאם לפעולות החיבור והכפל,
+גם הפעולות ההפוכות להם משמרות את תכונת אי־הרציונליות,
+לכן גם המספר
+\[
+	1 - \frac{5}{4a_n + 8}
+\]
+איננו רציונלי. זהו כמובן $a_{n + 1}$ והשלמנו את מהלך האינדוקציה.
+לכן $a_n$ הוא מספר חיובי ואי־רציונלי לכל $n$.
+
+\subsection{סעיף ג'}
+נוכיח כי הסדרה $(a_n)$ מתכנסת ונמצא את ערך גבולה. \\*
+תחילה נוכיח באינדוקציה כי לכל $n$ מתקיים $a_{n + 1} < a_n$: \\*
+\textbf{בסיס האינדוקציה:}
+\[
+	a_2 = 1 - \frac{5}{4 \sqrt{2} + 8} = 0.633 \ldots < a_1
+\]
+\textbf{מהלך האינדוקציה:}
+נניח כי $a_n < a_{n - 1}$ ונוכיח כי $a_{n + 1} < a_n$.
+\begin{align*}
+	& a_n < a_{n - 1} \\
+	& 4 a_n < 4 a_{n - 1} \\
+	& 4 a_n + 8 < 4 a_{n - 1} + 8 \\
+	& \frac{1}{4 a_n + 8} > \frac{1}{4 a_{n - 1} + 8} \\
+	& -1 + \frac{5}{4 a_n + 8} > -1 + \frac{5}{4 a_{n - 1} + 8} \\
+	& 1 - \frac{5}{4 a_n + 8} < 1 - \frac{5}{4 a_{n - 1} + 8} \\
+	& a_{n + 1} < a_n
+\end{align*}
+התנאי מתקיים ולכן הסדרה יורדת. \\*
+ידוע כי $a_n > 0$ לכל $n$,
+וראינו כי הסדרה יורדת ולכן $a_n < a_1 = \sqrt{2}$ לכל $n$,
+לכן הסדרה $(a_n)$ חסומה ויורדת, ולכן לפי משפט 3.16 מתכנסת.
+נגדיר $\lim_{n \to \infty} a_n = L$. לכן מתקיים
+\begin{align*}
+	L
+	& = \lim_{n \to \infty} a_{n + 1} \\
+	& = \lim_{n \to \infty} 1 - \frac{5}{4 a_{n - 1} + 8} \\
+	& = \lim_{n \to \infty} 1 - \lim_{n \to \infty} \frac{5}{4 a_{n - 1} + 8} \\
+	& = 1 - \frac{\lim_{n \to \infty} 5}{\lim_{n \to \infty} 4 a_{n - 1} + 8} \\
+	L & = 1 - \frac{5}{4 L + 8} \\
+	L (4L + 8) & = 1(4L + 8) - 5 \\
+	4L^2 + 8L & = 4L + 3 \\
+	4L^2 + 4L - 3 & = 0 \\
+	L & = \frac{-4 \pm \sqrt{4^2 - 4 \cdot 4 \cdot (-3)}}{2 \cdot 4} \\
+	L & = \frac{-1 \pm 2}{2} \\
+	L & = \frac{1}{2}, -\frac{3}{2}
+\end{align*}
+על־פי משפט 3.16 לא יתכן כי $L < 0$, לכן $L = \frac{1}{2}$.
+
+\section{שאלה 2}
+\subsection{סעיף א'}
+נחשב את הגבול
+\[
+	\lim_{n \to \infty}
+	\frac{{(-3)}^{n + 1} - {(-2)}^n + 5}{3^{n + 2} + 2^n - 5}
+\]
+נגדיר שתי תת־סדרות $(a_{n_k})$ ו־$(a_{m_k})$
+המוגדרות כסדרת האיברים הזוגיים והאי־זוגיים בהתאמה של הסדרה.
+סדרות אלה מכסות את הסדרה המקורית, ומתקיים:
+\[
+	(a_{n_k}) = \frac{-3^{n + 1} - 2^n + 5}{3^{n + 2} + 2^n - 5}
+\]
+נחשב את גבולה:
+\begin{align*}
+	& \lim_{n \to \infty} (a_{n_k}) \\
+	& = \lim_{n \to \infty} \frac{-3^{n + 1} - 2^n + 5}{3^{n + 2} + 2^n - 5} \\
+	& = \lim_{n \to \infty}
+	\frac{-\frac{1}{3} - \frac{2^n}{3^{n + 2}} + \frac{5}{3^{n+2}}}
+	{1 + \frac{2^n}{3^{n + 2}} - \frac{5}{3^{n+2}}} \\
+	& = - \frac{1}{3}
+\end{align*}
+באופן דומה נראה כי
+\[
+	(a_{m_k}) = \frac{3^{m + 1} + 2^m + 5}{3^{m + 2} + 2^m - 5}
+\]
+חישוב דומה יוביל אותנו למסקנה
+\[
+	\lim_{m \to \infty} (a_{m_k}) = \frac{1}{3}
+\]
+ראינו כי גבולות תת־הסדרות של הסדרה מתכנסות לערכים שונים,
+לכן לפי משפט 3.31 הסדרה עצמה מתבדרת,
+וגבולותיה החלקיים הם $-\frac{1}{3}, \frac{1}{3}$.
+
+\subsection{סעיף ב'}
+נחשב את הגבול
+\[
+	\lim_{n \to \infty}
+	\frac{{(-3)}^{n + 1} - 4^n + 5}{3^{n + 2} + 2^n - 5}
+\]
+בדומה לסעיף א' נראה כי גבול סדרת האברים הזוגיים הוא:
+\[
+	\lim_{n \to \infty}
+	\frac{-3^{n + 1} - 4^n + 5}{3^{n + 2} + 2^n - 5}
+	= \lim_{n \to \infty}
+	\frac{\frac{-3^{n + 1}}{4^n} - 1 + \frac{5}{4^n}}
+	{\frac{3^{n + 2}}{4^n} + \frac{2^n}{4^n} - \frac{5}{4^n}}
+	-\frac{1}{0^+}
+	= - \infty
+\]
+גבול האברים האי־זוגיים הוא, על־פי חישוב דומה:
+\[
+	\lim_{n \to \infty}
+	\frac{3^{n + 1} - 4^n + 5}{3^{n + 2} + 2^n - 5}
+	= - \infty
+\]
+על־פי משפט 3.31 מתקיים:
+\[
+	\lim_{n \to \infty}
+	\frac{{(-3)}^{n + 1} - 4^n + 5}{3^{n + 2} + 2^n - 5}
+	= - \infty
+\]
+
+\subsection{סעיף ג'}
+נוכיח כי לא מתקיים הגבול
+\[
+	\lim_{n \to \infty} 2 \lfloor \frac{n}{2} \rfloor - n
+\]
+נגדיר שתי תת־סדרות $(a_{n_k})$ ו־$(a_{m_k})$
+המוגדרות כסדרת האברים הזוגיים והאי־זוגיים בהתאמה של הסדרה המקורית. \\*
+כאשר $n$ זוגי $\frac{n}{2}$ הוא מספר שלם, לכן נוכל לכתוב
+\[
+	a_{n_k} = 2 \frac{n}{2} - n = 0
+\]
+לכן
+\[
+	\lim_{n \to \infty}a_{n_k} = 0
+\]
+כאשר $n$ אי־זוגי, חלוקתו ב־$2$ תוביל לערך חצי,
+ערך זה מחוסר בעקבות השמת החלק השלם.
+לכן מתקיים
+\[
+	a_{m_k} = 2 \frac{n - 1}{2} - n = -1
+\]
+ובהתאם
+\[
+	\lim_{m \to \infty}a_{m_k} = -1
+\]
+על־פי משפט 3.31 לא קיים גבול לסדרה המקורית, שכן תת־גבולותיה שונים זה מזה.
+ערכי תת־הגבולות של הסדרה הם $0$ ו־$-1$.
+
+\subsection{סעיף ד'}
+נוכיח כי הגבול הבא קיים
+\[
+	\lim_{n \to \infty} \frac{\sqrt[n]{n!}}{n}
+\]
+תחילה נגדיר את הסדרה $(a_n)$ כך שלכל $n$ מתקיים
+\[
+	a_n = \frac{n!}{n^n}
+\]
+מתקיים
+\[
+	\frac{a_{n + 1}}{a_n}
+	= \frac{\frac{(n + 1)!}{{(n + 1)}^{n + 1}}}{\frac{n!}{n^n}}
+	= \frac{n^n (n + 1)!}{n! {(n + 1)}^{n + 1}}
+	= \frac{n^n (n + 1) n!}{n! (n + 1) {(n + 1)}^n}
+	= \frac{n^n}{{(n + 1)}^n}
+	= {\left( \frac{n}{n + 1} \right)}^n
+\]
+לכל $n$ טבעי מתקיים
+\[
+	0 < n < n + 1
+	\rightarrow
+	0 < \frac{n}{n + 1} < 1
+	\rightarrow 
+	0 < {\left( \frac{n}{n + 1} \right)}^n < 1
+\]
+לכן לפי מבחן המנה לגבולות
+\[
+	\lim_{n \to \infty} a_n = 0
+\]
+כמעט לכל $n$ מתקיים על־פי הגבול
+\[
+	\frac{1}{n^n} < a_n = \frac{n!}{n^n} < 1
+\]
+לאחר שורש
+\[
+	\frac{1}{n} < \frac{\sqrt[n]{n!}}{n} < 1
+\]
+לפי משפט 2.32 מתקיים
+\[
+	\lim_{n \to \infty} \frac{1}{n}
+	= \lim_{n \to \infty} 1
+	= \lim_{n \to \infty} \frac{\sqrt[n]{n!}}{n}
+	= 1
+\]
+
+\section{שאלה 3}
+\subsection{סעיף א'}
+תהי הסדרה
+\[
+	a_n = n - \sqrt{n} \lfloor \sqrt{n} \rfloor
+\]
+נוכיח כי הסדרה חסומה מלרע.
+על־פי תכונות החלק השלם
+\begin{align*}
+	\lfloor \sqrt{n} \rfloor & \le \sqrt{n} \\
+	\lfloor \sqrt{n} \rfloor \sqrt{n} & \le \sqrt{n} \sqrt{n} = n \\
+	0 & \le n - \lfloor \sqrt{n} \rfloor \sqrt{n} \\
+	0 & \le a_n
+\end{align*}
+הסדרה $(a_n)$ חסומה מלרע על־ידי $0$.
+
+\subsection{סעיף ב'}
+נוכיח כי $0$ הוא גבול חלקי של הסדרה $(a_n)$.
+נגדיר $(n_k)$ כך שלכל $k$ מתקיים
+\[
+	n_k = k^2
+\]
+בסדרה החלקית $(a_{n_k})$ השורש של $n$ תמיד יהיה מספר שלם בשל ההגדרת תת־הסדרה,
+לכן מתקיים
+\[
+	a_{n_k} = n - \sqrt{n} \sqrt{n} = n - n = 0
+\]
+זוהי כמובן סדרה קבועה ולכן קיים לה גבול והוא זהה לערך כלל איברי הסדרה:
+\[
+	\lim_{k \to \infty} a_{n_k} = 0
+\]
+
+\subsection{סעיף ג'}
+נמצא את הגבול התחתון של הסדרה. \\*
+תחילה נראה כי $\inf (a_n) = 0$.
+ראינו קודם כי $0$ הוא חסם מלרע של הסדרה,
+עתה נוכיח שהוא חסם מלרע מקסימלי.
+על־פי הגדרת חסם תחתון, זהו האיבר המינימלי בקבוצת ערכי הסדרה.
+ראינו כי האיבר $0$ מוכל בקבוצת האברים, וכי אין איבר קטן ממנו,
+לכן הוא חסם תחתון של הסדרה. \\*
+על־פי הגדרת הגבול התחתון, גבול זה הוא הגבול החלקי הקטן ביותר של סדרה,
+אנו רואים כי $0$ הוא גבול חלקי המתלכד עם החסם התחתון של הסדרה,
+לכן אין גבול קטן ממנו, לכן
+\[
+	\lowlim_{n \to \infty} a_n = 0
+\]
+
+\subsection{סעיף ד'}
+מצאנו בסעיף ג' כי $\inf \{ a_n \mid n \in \NN \} = 0$.
+
+\subsection{סעיף ה'}
+יהי $\ell \in \NN$. נוכיח כי לכמעט כל $n$ טבעי מתקיים
+\[
+	n < \sqrt{n^2 + 2\ell} < n + 1
+\]
+נגדיר $N = \ell$ ונוכיח כי הטענה נכונה ל־$n > N$. \\*
+על־פי השוויון מתקיים כמעט לכל $n$
+\[
+	\ell < n
+\]
+$\ell$ הוא מספר טבעי ולכן מתקיים
+\[
+	n^2 < n^2 + 2\ell
+\]
+אבל ידוע כי $2\ell < 2n$, לכן
+\[
+	n^2 < n^2 + 2\ell < n^2 + 2n < n^2 + 2n + 1
+\]
+נבצע שורש:
+\[
+	n < \sqrt{n^2 + 2\ell} < n + 1
+\]
+
+\subsection{סעיף ו'}
+יהי $\ell \in \NN$, נוכיח כי
+\[
+	\lim_{n \to \infty} n(\sqrt{n^2 + 2\ell} - n) = \ell
+\]
+נראה כי מתקיים
+\begin{align*}
+	n(\sqrt{n^2 + 2\ell} - n)
+	& = n \frac{(\sqrt{n^2 + 2\ell} - n)(\sqrt{n^2 + 2\ell} + n)}
+	{\sqrt{n^2 + 2\ell} + n} \\
+	& = n \frac{n^2 + 2\ell - n^2} {\sqrt{n^2 + 2\ell} + n} \\
+	& = \frac{2\ell n} {\sqrt{n^2 + 2\ell} + n} \\
+\end{align*}
+לכן הגבול קיים רק אם קיים הגבול
+\[
+	\lim_{n \to \infty} \frac{2n} {\sqrt{n^2 + 2\ell} + n}
+\]
+על־פי סעיף ה'
+\begin{align*}
+	& n < \sqrt{n^2 + 2\ell} < n + 1 \\
+	& \frac{1}{2n} > \frac{1}{\sqrt{n^2 + 2\ell} + n} > \frac{1}{2n + 1} &
+	\text{על־פי חוקי אי־שוייונות} \\
+	& \frac{2n}{2n} > \frac{2n}{\sqrt{n^2 + 2\ell} + n} > \frac{2n}{2n + 1} \\
+\end{align*}
+לפי משפט 2.32
+\[
+	\lim_{n \to \infty} \frac{2n} {\sqrt{n^2 + 2\ell} + n} = 1
+\]
+לכן לפי משפט 2.18
+\[
+	\lim_{n \to \infty} n(\sqrt{n^2 + 2\ell} - n) = \ell
+\]
+
+\subsection{סעיף ז'}
+נוכיח כי כל מספר טבעי הוא גבול חלקי של הסדרה $(a_n)$. \\*
+נגדיר $\ell \in \NN$ וסדרת אינדקסים $(n_k)$ המוגדרת
+\[
+	n_k = n^2 + 2\ell
+\]
+לכן מתקיים עבור $(a_{n_k})$
+\[
+	a_{n_k} =
+	n^2 + 2\ell - \sqrt{n^2 + 2\ell} \lfloor \sqrt{n^2 + 2\ell} \rfloor
+\]
+על־פי טענת סעיף ה'
+\[
+	n < \sqrt{n^2 + 2\ell} < n + 1
+	\rightarrow
+	n = \lfloor \sqrt{n^2 + 2\ell} \rfloor < n + 1
+\]
+לכן
+\[
+	a_{n_k} =
+	n^2 + 2\ell - \sqrt{n^2 + 2\ell} n = 2\ell - n(\sqrt{n^2 + 2\ell} - n)
+\]
+על־פי סעיף ו':
+\[
+	\lim_{n \to \infty} \left( 2\ell - n(\sqrt{n^2 + 2\ell} - n) \right)
+	= \lim_{n \to \infty} 2\ell - \lim_{n \to \infty} n(\sqrt{n^2 + 2\ell} - n)
+	= 2\ell - \ell = \ell
+\]
+ראינו כי לכל מספר טבעי $\ell$ קיים גבול חלקי שווה ל־$\ell$ לסדרה $(a_n)$.
+
+\subsection{סעיף ח'}
+הסדרה $(a_n)$ איננה חסומה מלעיל.
+נראה כי לכל מספר $c$ שנבחר, קיימת תת־סדרה של $(a_n)$
+אשר גבולה הוא $c + 1$, ולכן לכמעט כל $n$ מתקיים 
+עבור תת־סדרה זו $c < (a_{n_k})$.
+לכן לסדרה אין חסם מלעיל.
+
+\subsection{סעיף ט'}
+נמצא את הגבול העליון של $(a_n)$. \\*
+בסעיף הקודם ראינו כי לכל מספר $M < 0$ שנבחר,
+קיים גבול חלקי לסדרה הגדול ממנו.
+לכן על־פי הגדרת הגבול במובן הרחב
+\[
+	\uplim_{n \to \infty} a_n = \infty
+\]
+
+\subsection{סעיף י'}
+לא קיים $\sup\{ a_n \mid n \in \NN \}$.
+בסעיף הקודם ראינו כי הגבול העליון של הסדרה $(a_n)$
+הוא אינסוף, לכן בקבוצת האברים שלה לא יהיה מספר גדול ביותר,
+עבור כל מספר שנבחר יהיה איבר גדול ממנו. \\*
+בהתאם גם לא קיים איבר מקסימלי לקבוצה $\{ a_n \mid n \in \NN \}$,
+שכן רליו היה אחד, אז לפי טענה 3.8 היה גם חסם עליון לקבוצה.
+\end{document}

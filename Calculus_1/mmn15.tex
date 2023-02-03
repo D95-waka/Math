@@ -1,0 +1,354 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Libertinus Serif}
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+
+% custom operators
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+\getenv[\AUTHOR]{AUTHOR}
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+\def\NN{\mathbb{N}}
+\def\RR{\mathbb{R}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+
+\title{פתרון ממ''ן 15 – חשבון אינפיניטסימלי 1 (20474)}
+\author{\AUTHOR}
+\date\today
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+נמצא את נקודות הרציפות והאי־רציפות של הפונקציה
+\[
+	f(x) = \lfloor \cos x \rfloor \cos \frac{x}{2}
+\]
+בקטע $(-\pi, \frac{3 \pi}{2})$. \\*
+הפונקציה $\cos \frac{x}{2}$ רציפה בכל תחום הגדרתה על־פי משפט 5.13.
+לפי משפט 5.11 נראה כי הפונקציה $f$ רציפה בכל התחום בו $\lfloor \cos x \rfloor$ רציפה.
+ידוע כי תמונת הפונקציה $\cos x$ היא $[-1, 1]$, ואנו יודעים כי היא שלילית בתחום $(-\pi, -\frac{\pi}{2})$,
+לכן בתחום זה $\lfloor \cos x \rfloor$ ערכה $-1$.
+בהתאם בתחום $(-\frac{\pi}{2}, 0)$ ערכה $0$.
+בנקודה $0$ ערכה הוא $1$.
+בתחום $(0, \frac{\pi}{2})$ ערכה הוא $0$ ובשאר הקטע ערכה $-1$. \\*
+לכן הפונקציה $f$ רציפה בקטעים $(-\pi, -\frac{\pi}{2}), (-\frac{\pi}{2}, 0), (0, \frac{\pi}{2}), (\frac{\pi}{2}, \frac{3\pi}{2})$.
+בהתאם, נקודות האי־רציפות של הפונקציה בתחום קיימות בערכים $x = -\frac{\pi}{2}, 0, \frac{\pi}{2}$.
+נחשב את גבול הפונקציה כאשר $x = -\frac{\pi}{2}$:
+\[
+	\lim_{x \to -\frac{\pi}{2}^-} f(x)
+	= \lim_{x \to -\frac{\pi}{2}^-} \lfloor \cos x \rfloor \cos \frac{x}{2}
+	= \left( \lim_{x \to -\frac{\pi}{2}^-} \lfloor \cos x \rfloor \right) \left( \lim_{x \to -\frac{\pi}{2}^-} \cos \frac{x}{2} \right)
+	= -1 \cdot \frac{\sqrt{2}}{2}
+	= -\frac{\sqrt{2}}{2}
+\]
+\[
+	\lim_{x \to -\frac{\pi}{2}^+} f(x)
+	= \lim_{x \to -\frac{\pi}{2}^+} \lfloor \cos x \rfloor \cos \frac{x}{2}
+	= \left( \lim_{x \to -\frac{\pi}{2}^+} \lfloor \cos x \rfloor \right) \left( \lim_{x \to -\frac{\pi}{2}^+} \cos \frac{x}{2} \right)
+	= 0 \cdot \frac{\sqrt{2}}{2}
+	= 0
+\]
+לכן $-\frac{\pi}{2}$ נקודת אי־רציפות מסדר ראשון של הפונקציה $f$.
+חישוב דומה יניב כי גם הנקודה $x = \frac{\pi}{2}$ היא נקודת אי־רציפות מסדר ראשון של הפונקציה. \\*
+עתה נחשב את ערך הגבול בנקודה $x = 0$:
+\[
+	\lim{_x \to 0^-} f(x)
+	= \lim_{x \to 0^-} \lfloor \cos x \rfloor \cos \frac{x}{2}
+	= \left( \lim_{x \to 0^-} \lfloor \cos x \rfloor \right) \left( \lim_{x \to 0^-} \cos \frac{x}{2} \right)
+	= 0 \cdot 1
+	= 0
+\]
+\[
+	\lim{_x \to 0^+} f(x)
+	= \lim_{x \to 0^+} \lfloor \cos x \rfloor \cos \frac{x}{2}
+	= \left( \lim_{x \to 0^+} \lfloor \cos x \rfloor \right) \left( \lim_{x \to 0^+} \cos \frac{x}{2} \right)
+	= 0 \cdot 1
+	= 0
+\]
+אך על־פי חישוב $f(0) = 1$, לכן בנקודה $x = 0$ יש לפונקציה נקודת אי־רציפות סליקה.
+
+\section{שאלה 2}
+\subsection{סעיף א'}
+תהי $f$ פונקציה המוגדרת בסביבת $x_0$. \\*
+\textbf{(i)}
+ננסח את הטענה כי $f$ איננה רציפה ב־$x_0$ בלשון $\epsilon, \delta$: \\*
+הפונקציה $f$ לא רציפה ב־$x_0$ אם ורק אם קיים $\epsilon > 0$ כך שלכל $\delta > 0$ קיים $x$ כך ש־$|x - x_0| < \delta$ וגם $|f(x) - f(x_0)| \ge \epsilon$. \\
+\textbf{(ii)}
+ננסח את הטענה כי $f$ איננה רציפה ב־$x_0$ בלשון סדרות: \\*
+הפונקציה $f$ איננה רציפה ב־$x_0$ אם ורק אם קיימת סדרה ${(x_n)}_{n = 1}^\infty$ המקיימת $x \underset{n \to \infty}{\rightarrow} x_0$
+כך שלא מתקיים $f(x_n) \underset{n \to \infty}{\rightarrow} f(x_0)$.
+
+\subsection{סעיף ב'}
+תהי הפונקציה $f$ המוגדרת
+\[
+	f(x) = \begin{cases}
+		x & x \in \QQ \\
+		1 & x \notin \QQ
+	\end{cases}
+\]
+נוכיח שהפונקציה $f$ רציפה כאשר $x_0 = 1$ בלשון $\epsilon, \delta$. \\*
+לכל $\epsilon > 0$ נמצא $\delta$ כך שלכל $x$ שמתקיים $|x - 1| < \delta$ מתקיים גם $|f(x) - 1| < \epsilon$.
+נשים לב כי עבור כל $x \notin \QQ$ מתקיים $f(x) = 1$ ובהתאם $|f(x) - 1| = 0 < \epsilon$ והתנאי מתקיים לכל $\epsilon$ ו־$\delta$.
+עבור ערכי $x$ רציונליים מתקיים $|f(x) - 1| = |x - 1| < \delta$, לכן נגדיר $\delta = \epsilon$, אז מתקיים $|f(x) - 1| < \epsilon$,
+ובסך־הכול התנאי מתקיים לכל $|x - 1| < \delta$. \\*
+מצאנו ערך $\delta$ אשר מקיים את אי־השוויון לכל $\epsilon$ ולכן הפונקציה רציפה בנקודה $x_0 = 1$.
+
+\subsection{סעיף ג'}
+\textbf{(i)}
+נוכיח כי הפונקציה $f$ איננה רציפה על־פי ההגדרה מסעיף א' (i) \\*
+נמצא $\epsilon > 0$ כך שלכל $\delta > 0$ קיים ערך $x$ כך ש־$|x| < \delta$ וגם $|f(x)| \ge \epsilon$. \\*
+נגדיר $\epsilon = \frac{1}{2}$.
+על־פי אקסיומת הרציפות קיים מספר ממשי שאיננו רציונלי $x_1$ כך ש־$0 < x_1 < \delta$.
+בשל היותו לא רציונלי מתקיים $f(x_1) = 1$ ולכן גם $f(x_1) = 1 \ge \frac{1}{2} = \epsilon$.
+כמובן שאם מתקיים $0 < x_1 < \delta$ אז גם $|x_1| < \delta$. \\*
+מצאנו $\epsilon$ העומד בתנאי ולכן על־פי הגדרת סעיף א' (i) הפונקציה $f$ איננה רציפה כאשר $x_0 = 0$. \\
+\textbf{(ii)}
+נוכיח כי הפונקציה $f$ איננה רציפה על־פי ההגדרה מסעיף א' (ii) \\*
+נמצא סדרה ${(x_n)}_{n = 1}^\infty$ המקיימת $x \underset{n \to \infty}{\rightarrow} 0$ כך שלא מתקיים $f(x_n) \underset{n \to \infty}{\rightarrow} 0$. \\*
+נגדיר $x_n = \frac{\pi}{n}$. הסדרה מוגדרת לכל $n \in \NN$, ומתקיים
+\[
+	\lim_{n \to \infty} \frac{\pi}{n} = 0
+\]
+הסדרה ${(x_n)}$ אי־רציונלית לכל איבריה, לכן מתקיים $f(x_n) = 1$ לכל $n$.
+לכן $f(x_n) \underset{n \to \infty}{\rightarrow} 1$, אבל $f(0) = 0$ ולכן הפונקציה $f$ איננה רציפה ב־$x_0 = 0$.
+
+\subsection{סעיף ד'}
+נוכיח כי לכל $x \in \RR$ מתקיים $f(x) = 1 + (x - 1)D(x)$ כאשר $D(x)$ היא פונקציית דיריכלה. \\*
+לכל $x \in \QQ$ מתקיים $f(x) = x, D(x) = 1$. לכן
+\[
+	f(x) = x = 1 + (x - 1) \cdot 1 = 1 + (x - 1) D(x)
+\]
+לכל $x \notin \QQ$ מתקיים $f(x) = 1, D(x) = 0$, לכן מתקיים
+\[
+	f(x) = 1 = 1 + (x - 1) \cdot 0 = 1 + (x - 1) D(x)
+\]
+ראינו כי מתקיים $f(x) = 1 + (x - 1)D(x)$ לכל $x \in \RR$.
+
+\subsection{סעיף ה'}
+תהי $x_0 \ne 1$ נוכיח כי $f$ איננה רציפה ב־$x_0$: \\*
+נניח בשלילה כי $f$ רציפה בנקודה $x = x_0$.
+לכן על־פי משפט 5.11 הפונקציה $1$ והפונקציה $(x - 1) D(x)$ רציפות.
+באותה השיטה נראה כי $x - 1$ היא רציפה וכי $D(x)$ רציפה,
+אבל לפי משפט 5.10 $D(x)$ איננה רציפה, בסתירה לטענה, ולכן גם $f(x)$ איננה רציפה.
+
+\section{שאלה 3}
+תהי $f$ פונקציה רציפה בקטע $[0, \infty)$ המקיימת % chktex 9
+\[
+	\lim_{x \to \infty} f(x) = f(0)
+\]
+נוכיח כי $f$ איננה חד־חד ערכית בקטע $[0, \infty)$. \\* % chktex 9
+על־פי שלילת הגדרת החד־חד ערכיות, נצטרך להוכיח כי קיימים שני ערכים $a, b \in \RR$ כך ש־$a \ne b$ אבל $f(a) = f(b)$ $(*)$. \\*
+אילו הפונקציה $f$ היא פונקציה קבועה, אז כמובן שאיננה חד־חד ערכית. \\*
+נוכיח כי הפונקציה מקיימת את תנאי $(*)$ כאשר היא איננה קבועה. \\*
+נגדיר מספר ממשי $\epsilon > 0$.
+על־פי הגדרת הגבול 4.54 קיים $M \in \RR$ כך שלכל $x > M$ מתקיים $|f(x) - f(0)| < \epsilon$. נגדיר $b$ מספר כלשהו שמקיים $b > M$. \\*
+על־פי הגדרת הרציפות 5.3 קיים $\delta > 0$ כך שלכל $x$ שמקיים $|x - 0| < \delta$ מתקיים גם $|f(x) - f(0)| < \epsilon$.
+נגדיר $a$ מספר כלשהו המקיים $0 < x < \delta$.
+כשם שהגדרנו את הערכים $a, b$ עבור $\epsilon$ כך נוכל להגדיר אותם גם עבור $\frac{\epsilon}{4}$, נגדירם $a_0, b_0$.
+על־פי משפט ערך הביניים של קושי לקטע $[a_1, a]$ קיים $c_0$ המקיים $f(c_0) = \frac{\epsilon}{2}$.
+באותה הדרך נוכל להגדיר ערך $c_1$ המקיים $f(c_1) = \frac{\epsilon}{2}$ מהקטע $[b, b_1]$. \\*
+הקטעים הללו אינם חופפים, לכן כמובן $c_0 \ne c_1$, אך $f(c_0) = f(c_1)$, והוכחנו את טענה $(*)$.
+
+\section{שאלה 4}
+נגדיר:
+\[
+	f(x) = \frac{(x + 1) \sin x}{x},
+	g(x) = \frac{x \sin x}{x + 1}
+\]
+
+\subsection{סעיף א'}
+נוכיח כי $f$ חסומה בקטע $(0, \infty)$: \\*
+נבחן תחילה את התחום $(1, \infty)$. בקטע זה מתקיים:
+\[
+	0 < 1 < x \rightarrow
+	x < 1 + x < 2x \rightarrow
+	1 < \frac{1 + x}{x} < 2 \tag{\#}
+\]
+תמונת פונקציית $\sin x$ היא $[-1, 1]$, לכןמתקיים לכל $x$ בקטע
+\[
+	-2 < \sin x < 2 \rightarrow -2 < \frac{(1 + x) \sin x}{x} < 4
+\]
+לכן על־פי הגדרה 4.8 הפונקציה חסומה בקטע $(1, \infty)$. \\
+נוכיח כי הפונקציה חסומה גם בקטע $(0, 1]$: \\* % chktex 9
+קל לראות כי הפונקציה $f$ מוגדרת ורציפה בקטע $(0, \infty)$. 
+נשים לב כי מתקיים:
+\[
+	f(x) = \frac{x \sin x}{x} + \frac{\sin x}{x} = \sin x + \frac{\sin x}{x}
+\]
+לכן
+\[
+	\lim_{x \to 0} f(x) = \lim_{x \to 0} \sin x + \lim_{x \to 0} \frac{\sin x}{x} = 0 + 1 = 1
+\]
+מצאנו כי הפונקציה $f$ רציפה כאשר $x_0 = 0$, לכן היא רציפה בקטע $[0, 1]$ ולכן לפי המשפט הראשון של ויירשטראס גם חסומה בקטע זה,
+לכן הפונקציה $f$ חסומה גם בקטע $(0, \infty)$.
+
+\subsection{סעיף ב'}
+נוכיח כי הפונקציה $f$ מקבלת מקסימום בקטע $(0, \infty)$. \\*
+נשים לב כל לכל $0 < x < y$ מתקיים:
+\[
+	x < y \rightarrow
+	x + xy < y + xy \rightarrow
+	x (y + 1) < y (x + 1) \rightarrow
+	\frac{y + 1}{y} < \frac{x + 1}{x} \tag{*}
+\]
+עוד ידוע לנו כי $\sin(\frac{\pi}{2} + 2\pi k) = 1$ לכל $k \in \NN$.
+אלו הן נקודות מקסימום אזוריות של הפונקציה $\sin x$ ובשל המכפלה גם של $f$.
+בשל $(*)$ כל נקודת מקסימום כזו בפונקציה $f$ קטנה מקודמתה, ולכן איננה נקודת מקסימום.
+בשל תחומה של $f$, כאשר $k = 0$ ישנה נקודת מקסימום כזו שאין נקודת מקסימום לפניה, ובשל כך אין נקודה גדולה ממנה ב־$f$.
+נקודה זו היא $x_0 = \frac{\pi}{2}$.
+
+\subsection{סעיף ג'}
+נוכיח כי $\sup g\left( (0, \infty) \right) = 1$ על־פי טענה 3.9. \\*
+נוכיח כי $1$ הוא חסם מלעיל של $g((0, \infty))$:
+\begin{align*}
+	& 1 < \frac{x + 1}{x} \tag{\#} \\
+	& \sin x \le 1 < \frac{x + 1}{x} \\
+	& \sin x < \frac{x + 1}{x} \\
+	& \frac{x \sin x}{x + 1} = g(x) < 1 \\
+\end{align*}
+מצאנו כי $1$ אכן חסם מלעיל של הפונקציה. עתה נשאר להוכיח כי לכל $\epsilon > 0$ קיים $x \in g((0, \infty))$ כך ש־$x > 1 - \epsilon$. \\*
+לפני־כן נראה כי מתקיים הגבול
+\[
+	\lim_{x \to \infty} \frac{x}{x + 1}
+	= \lim_{x \to \infty} \frac{1}{1 + \frac{1}{x}}
+	= \frac{1}{1 + 0}
+	= 1
+\]
+על־פי הגבול שמצאנו לכל $\epsilon > 0$ קיים $M > 0$ כך שלכל $x > M$ מתקיים
+\[
+	\left| \frac{x}{x + 1} - 1 \right| < \epsilon
+\]
+על־פי הופכיות אי־שוויון$(\#)$ מתקיים לכל $x > 0$:
+\[
+	\frac{x}{x + 1} < 1 \rightarrow
+	-\frac{x}{x + 1} > -1 \rightarrow
+	1 - \frac{x}{x + 1} > 0
+\]
+לכן
+\[
+	\left| \frac{x}{x + 1} - 1 \right| = 1 - \frac{x}{x + 1} < \epsilon
+	\rightarrow 1 - \epsilon < \frac{x}{x + 1}
+\]
+נגדיר $x = \frac{\pi}{2} + 2\pi k$ כאשר $k \in \NN$.
+אז $\sin x = 1$ ולכן
+\begin{align*}
+	& (1 - \epsilon) \sin x < \frac{x}{x + 1} \sin \\
+	& 1 - \epsilon < \frac{x \sin x}{x + 1} \\
+\end{align*}
+מצאנו כי שני התנאים לטענה 3.9 מתקיימים ולכן $\sup g((0, \infty)) = 1$.
+
+\subsection{סעיף ד'}
+נוכיח כי $g$ איננה מקבלת מקסימום בקטע $(0, \infty)$: \\*
+נניח בשלילה כי לפונקציה $g$ יש נקודת מקסימום ב־$x_0$.
+מתקיים $x_0 < x_0 + 2\pi$ וגם $\sin x_0 = \sin(x_0 + 2\pi)$.
+על־פי ההופכי של $(\#)$ מתקיים:
+\[
+	\frac{x_0}{x_0 + 1} < \frac{x_0 + 2\pi}{x_0 + 2\pi + 1}
+	\rightarrow
+	\frac{x_0 \sin x_0}{x_0 + 1} < \frac{(x_0 + 2\pi) \sin(x_0 + 2\pi)}{x_0 + 2\pi + 1}
+	\rightarrow
+	g(x_0) < g(x_0 + 2\pi)
+\]
+אנו רואים כי הנקודה $x_0$ איננה נקודת מקסימום בסתירה לטענה,
+ולכן אין נקודת מקסימום ל־$g$ בקטע $(0, \infty)$.
+
+\section{שאלה 5}
+\subsection{סעיף א'}
+נוכיח כי הפונקציה $f(x) = \sqrt{1 + x^2}$ רציפה במידה שווה בקטע $[0, \infty)$: % chktex 9
+\begin{align*}
+	\epsilon & > \left| \sqrt{1 + x_0^2} - \sqrt{1 + x_1^2} \right| \\
+	& = \frac{\left| \left( \sqrt{1 + x_0^2} - \sqrt{1 + x_1^2} \right) \left( \sqrt{1 + x_0^2} + \sqrt{1 + x_1^2} \right) \right|}
+	{\left| \sqrt{1 + x_0^2} + \sqrt{1 + x_1^2} \right|} \\
+	& = \frac{\left|  1 + x_0^2 - 1 - x_1^2 \right|} {\left| \sqrt{1 + x_0^2} + \sqrt{1 + x_1^2} \right|} \\
+	& = \frac{\left|  (x_0 + x_1)(x_0 - x_1) \right|} {\left| \sqrt{1 + x_0^2} + \sqrt{1 + x_1^2} \right|} \\
+	& = \frac{\left|  x_0 + x_1 \right|} {\left| \sqrt{1 + x_0^2} + \sqrt{1 + x_1^2} \right|} |x_0 - x_1| \\
+\end{align*}
+בקטע הנתון $x_0, x_1 > 0$ ולכן $x_0 + x_1 > 0$, כמו־כן שורשים אלה מוגדרים בכל הקטע וחיוביים בו:
+\[
+	\frac{x_0 + x_1} {\sqrt{1 + x_0^2} + \sqrt{1 + x_1^2}} |x_0 - x_1| < \epsilon
+\]
+לכל $x > 0$ מתקיים $\sqrt{x^2 + 1} > x$.
+נגדיר את $\delta$:
+\[
+	\frac{x_0 + x_1} {\sqrt{1 + x_0^2} + \sqrt{1 + x_1^2}} |x_0 - x_1| < 
+	\frac{\sqrt{1 + x_0^2} + \sqrt{1 + x_1^2}}{\sqrt{1 + x_0^2} + \sqrt{1 + x_1^2}} |x_0 - x_1| < \delta
+\]
+ולכן
+\[
+	|x_0 - x_1| < \delta
+\]
+כמו קראינו, במצב זה גם מתקיים
+\[
+	|f(x_0) - f(x_1)| < \epsilon
+\]
+ולכן הפונקציה $f$ רציפה במידה שווה בקטע $[0, \infty)$. % chktex 9
+
+\subsection{סעיף ב'}
+נוכיח כי הפונקציה המוגדרת רציפה במידה שווה בקטע $(0, \infty)$:
+\[
+	f(x) = (1 - \cos x) \sin \frac{1}{x}
+\]
+הפונקציה $f$ מוגדרת בכל הקטע הנתון ומורכבת ממכפלת והרכבת פונקציות רציפות ולכן רציפה גם (למצוא תירוץ יותר טוב).
+נראה כי מתקיים:
+\[
+	\lim_{x_0 \to 0^+} 1 - \cos x_0 = 0
+\]
+הפונקציה $\sin \frac{1}{x}$ אומנם איננה מתכנסת ב־$x_0 = 0$, אבל חסומה ב־$[-1, 1]$ ולכן על־פי הגדרת היינה לגבול חד־צדדי ומשפט 2.22 מתקיים:
+\[
+	\lim_{x_0 \to 0^+} (1 - \cos x_0) \sin \frac{1}{x_0} = 0
+\]
+נמצא את הגבול
+\[
+	\lim_{x_0 \to \infty^-} (1 - \cos x_0) \sin \frac{1}{x_0}
+\]
+במקרה זה $\lim_{x \to \infty} \sin \frac{1}{x} = 0$ על־פי גבול $\sin x \underset{x \to 0}{\to} 0$ והרכבת פונקציה עם $\frac{1}{x}$.
+הפונקציה $1 - \cos x$ חסומה בקטע $[-1, 1]$ ובאופן דומה:
+\[
+	\lim_{x_0 \to \infty^-} (1 - \cos x_0) \sin \frac{1}{x_0} = 0
+\]
+יש בספר משפט שמרחיב את משפט 5.49 לקטעים אינסופיים, תשתמש בזה.
+
+\subsection{סעיף ג'}
+נוכיח כי לכל $y \ge x \ge 1$ מתקיים
+\begin{align*}
+	y^2 \arctan y - x^2 \arctan x & \ge (y^2 - x^2) \arctan x \\
+	y^2 \arctan y & \ge y^2 \arctan x \\
+	\arctan y & \ge \arctan x \\
+\end{align*}
+על־פי טענה 5.44 ומשפט 5.43 מתקיים $\arctan y \ge \arctan x$ אם $y \ge x$ ולכן אי־השוויון מתקיים. \\
+נוכיח כי הפונקציה $f$, המוגדרת:
+\[
+	f(x) = x^2 \arctan x
+\]
+איננה רציפה במידה שווה בקטע $[1, \infty)$: \\* %chktex 9
+נניח בשלילה כי הפונקציה $f$ רציפה במידה שווה לכל $\epsilon > 0$, לכן לכל $x, y \in \RR$ שעבורם מתקיים $|x - y| < \delta$, מתקיים
+\[
+	\left| y^2 \arctan y - x^2 \arctan x \right| < \epsilon
+\]
+לכן גם מתקיים:
+\[
+	\left| (x^2 - y^2) \arctan x \right| < \epsilon
+\]
+הפונקציה $\arctan x$ חיובית לכל $x \ge 0$ ולכן
+\[
+	\left| (x - y)(x + y) \right| \arctan x = \left| x - y \right| (x + y) \arctan x < \epsilon
+\]
+
+\end{document} % chktex 17
