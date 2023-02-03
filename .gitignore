@@ -4,4 +4,5 @@
 !.gitignore
 !**/*.tex
 !**/bin/*.pdf
+!Discrete_mathematics/פתרון ממ"ן *.odt
 
