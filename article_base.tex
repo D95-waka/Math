@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+\setmainfont{Libertinus Serif}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+
+% operators
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+
+% commands
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\getenv}[2][] {
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi
+}
+\newcommand{\explain}[2] {
+	\begin{flalign*}
+		 && \text{#2} && \text{#1}
+	\end{flalign*}
+}
+
+% headers
+\getenv[\AUTHOR]{AUTHOR}
+\author{\AUTHOR}
+\date\today
