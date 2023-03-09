@@ -1,185 +1,86 @@
-\documentclass[a4paper]{article}
-
-% packages
-\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
-\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
-
-% style
-\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
-\setmainfont{Libertinus Serif}
-\linespread{1.5}
-\setcounter{secnumdepth}{0}		% Remove default number tags from sections
-
-% custom operators
-\newcommand{\getenv}[2][]{%
-  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
-  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
-\getenv[\AUTHOR]{AUTHOR}
-\DeclareMathOperator\cis{cis}
-\DeclareMathOperator\Sp{Sp}
-\DeclareMathOperator\tr{tr}
-\DeclareMathOperator\im{Im}
-\DeclareMathOperator\diag{diag}
-\DeclareMathOperator*\lowlim{\underline{lim}}
-\DeclareMathOperator*\uplim{\overline{lim}}
-\def\NN{\mathbb{N}}
-\def\RR{\mathbb{R}}
-\def\CC{\mathbb{C}}
-
+\input{../article_base.tex}
 \title{פתרון ממ''ן 14 – חשבון אינפיניטסימלי 1 (20474)}
-\author{\AUTHOR}
-\date\today
 
 \begin{document}
 \maketitle
 \section{שאלה 1}
-יהיו $f$ ו־$g$ פונקציות מ־$\RR$ ל־$\RR$.
+יהיו $f, g: \RR \to \RR$ פונקציות אשר מקיימות $(1) (f \circ g)(x) = x$ לכל $x \in \RR$.
 \subsection{סעיף א'}
-נוכיח כי אם הפונקציה $f \circ g$ היא על $\RR$ אז $f$ היא על $\RR$. \\*
-ההוכחה מבוססת על הוכחת משפט 3.22 בספר תורת הקבוצות מעת שמואל ברגר. \\*
-נוכיח כי לכל $c \in (f \circ g)(\RR)$ קיים $b \in \RR$ כך ש־$f(b) = c$.
-יהי $c \in \RR$, הפונקציה $f \circ g$ היא על, לכן קיים $a \in \RR$
-כך ש־$(f \circ g)(a) = c$, כלומר $f(g(a)) = c$. $g(a) \in \RR$.
-נגדיר $b = g(a)$. מצאנו $b$ עבורו $c = f(b)$.
+נפריך את הטענה כי $f$ חד־חד ערכית על־ידי דוגמה נגדית. נגדיר
+\[
+	g(x) = \begin{cases}
+		x + 1 & x \ge 0 \\
+		x & x < 0
+	\end{cases},
+	f(x) = \begin{cases}
+		x - 1 & x \ge 1 \\
+		1 & 0 \le x < 1 \\
+		x & x < 0
+	\end{cases}
+\]
+במצב זה אנו רואים כי מתקיים $(1)$, אך $f(2) = f(0)$ בסתירה לטענת החד־חד ערכיות.
 
 \subsection{סעיף ב'}
-נראה כי אם $f \circ g$ היא על, הפונקציה $g$ איננה בהכרח על. \\*
-נגידר
+נוכיח כי $g$ היא חד־חד ערכית. \\*
+יהיו $x, y \in \RR$ כך שמתקיים $g(x) = g(y)$.
+על שוויון זה נבצע את הפונקציה $f$:
 \[
-	f(x) = \begin{cases}
-		x & x < 0 \\
-		x - 1 & 0 \le x
-	\end{cases}
-	g(x) = \begin{cases}
-		x & x < 0 \\
-		x + 1 & 0 \le x
-	\end{cases}
+	f(g(x)) = f(g(y))
+	\rightarrow
+	(f \circ g)(x) = (f \circ g)(y)
 \]
-תמונת הפונקציה $g(\RR)$ איננה כוללת את הקטע $(0, 1)$,
-לעומת זאת הפונקציה $f \circ g$ היא על, בסתירה לטענה.
+אז גם מתקיים $x = y$ אם ורק אם $g(x) = g(y)$, ולכן על־פי בגדרה 4.5 $g$ היא חד־חד ערכית.
 
 \subsection{סעיף ג'}
-נוכיח שאם הפונקציה $f \circ g$ היא על ו־$f$
-היא חד־חד ערכית אז $g$ היא על $\RR$. \\*
-נשים לב כי מתקיים $f(g(\RR)) = \RR$ על־פי הנתון כי $f \circ g$ על.
-ידוע כי $f$ היא חד־חד ערכית, ועל־פי סעיף א' גם על, ולכן הפיכה.
-נגדיר $f^{-1}$ הפונקציה ההפוכה ל־$f$,
-לכן $f^{-1}(f(g(\RR))) = g(\RR) = f^{-1}(\RR)$.
-ידוע כי $f^{-1}$ היא על ולכן מתקיים $f^{-1}(\RR) = \RR$,
-ולכן גם $g(\RR) = \RR$, אז הפונקציה $g$ היא על.
+נוכיח כי $f$ היא על. \\*
+יהי $x \in \RR$ מספר, בהתאם ל־$(1)$ הוא מקיים $(f \circ g)(x) = x$.
+נגדיר $x' = g(x)$, אז כמובן $f(x') = x$.
+נראה כי מצאנו לכל $x$ מספר $x'$ כך ש־$f(x') = x$ ולכן $\im f = \RR$, דהינו, $f$ היא על.
 
-\subsection{סכיף ד'}
-הטענה כי אם $f \circ g$ מונוטונית עולה אז $g$ מונוטונית איננה נכונה. \\*
-נראה דוגמה נגדית, נגדיר
-\[
-	f(x) = x,
-	g(x) = x^2
-\]
-הפונקציה $(f \circ g)(x) = x^3$, פונקציה מונוטונית לכל $\RR$ ועולה,
-אבל $g$ היא פרבולה ובהכרח איננה מונוטונית.
+\subsection{סעיף ד'}
+נפריך את הטענה כי $g$ היא על על־ידי דוגמה נגדית. \\*
+למעשה, הפונקציה $g$ אשר הוגדרה בסעיף א' מקיימת את $(1)$ ואיננה על.
 
 \subsection{סעיף ה'}
-נוכיח כי אם $f \circ g$ היא מונוטונית עולה ו־$f$ היא מונוטונית יורדת,
-אז $g$ היא מונוטונית יורדת. \\*
-נראה כי לכל $x_1, x_2 \in \RR, x_1 < x_2$ מתקיים:
-\[
-	f(g(x_1)) < f(g(x_2))
-\]
-אבל ידוע כי $f$ מונוטונית יורדת, לכן גם מתקיים
-\[
-	g(x_1) > g(x_2)
-\]
-דהינו הפונקציה $g$ מונוטונית יורדת.
+נפריך את הטענה כי לכל $x \in \RR$ מתקיים $(g \circ f)(x) = x$ על־ידי דוגמה נגדית. \\*
+נגדיר את הפונקציות $f, g$ כשם שהוגדרו בסעיף א', אז $(g \circ f)(0) = 2 \ne 0$ בסתירה לטענה.
+
+\subsection{סעיף ו'}
+נוכיח כי אם $g$ היא על, אז $(g \circ f)(x) = x$ לכל $x \in \RR$. \\*
+אנו יודעים כי $g$ על ולכן קיים $y \in \RR$ כך ש־$g(x) = y$.
+ידוע כי $f(g(y)) = f(x) = y$, נפעיל את $g$ על השוויון האחרון: $g(f(x)) = g(y) = x$,
+דהינו $(g \circ f)(x) = x$.
 
 \section{שאלה 2}
 \subsection{סעיף א'}
 נוכיח כי הגבול הבא מתקיים בלשון $\epsilon, \delta$
 \[
-	\lim_{x \to 4} \sqrt{2x^2 - 7} = 5
+	\lim_{x \to \frac{2}{\pi}} \left\lfloor \sin \frac{1}{x} \right\rfloor = 0
 \]
-נוכיח כי לכל $\epsilon > 0$ קיים $\delta > 0$
-כך שלכל $x$ המקיים $0 < |x - 4| < \delta$
-מתקיים $|\sqrt{2x^2 - 7} - 5| < \epsilon$. \\*
-$x$ בסביבה של $4$ ולכן עבור ערך $\delta$ מתאים מתקיים $|x - 4| < 1$.
-לפי אי־שוויון זה גם $-1 < x - 4 < 1$ ולכן $3 < x < 5$.
-אנו רואים כי במקרה זה $x < 5$ ולכן $|x + 4| < |4 + 5| = 9$.
-נראה כי מתקיים:
-\begin{align*}
-	& |x - 4| < \delta \\
-	& |x - 4| |x + 4| < 9\delta \\
-	& |(x - 4)(x + 4)| < 9\delta \\
-	& |x^2 - 16| < 9\delta \\
-	& |2x^2 - 7 - 25| < 18\delta \\
-	& |\sqrt{2x^2 - 7} - 5| |\sqrt{2x^2 - 7} + 5| < 18\delta \\
-\end{align*}
-נשים לב כי הערך $\sqrt{2x^2 - 7} + 5$ חיובי וגדול מ־$1$ בכל תחום הגדרתו,
-לכן
-\begin{align*}
-	& |\sqrt{2x^2 - 7} - 5| 
-	< |\sqrt{2x^2 - 7} - 5| |\sqrt{2x^2 - 7} + 5| < 18\delta \\
-\end{align*}
-נגדיר 
+נשים לב כי $0 < \sin \frac{1}{x} < 1$ עבור הערכים $\frac{2}{\pi} - \frac{1}{\pi} < x < \frac{2}{\pi}$ על־פי הגדרת $\sin$ וחישוב ישיר.
+לכן בתחום זה
 \[
-	\delta = \max\{1, \frac{\epsilon}{18}\}
+	\left\lfloor \sin \frac{1}{x} \right\rfloor = 0
 \]
-בשל הגבלת הסביבה, מתקיים
+יהי $\epsilon > 0$ ונגדיר $\delta = \min\{ \frac{1}{\pi}, \epsilon \}$.
+אז לכל $x$ המקיים $0 < | x - \frac{2}{\pi} | < \delta$ מתקיים
 \[
-	|\sqrt{2x^2 - 7} - 5| < \epsilon
+	\left| \left\lfloor \sin \frac{1}{x} \right\rfloor - 0 \right| = 0 < \epsilon
 \]
-ולכן מתקיים הגבול $\lim_{x \to 4} \sqrt{2x^2 - 7} = 5$.
+לכן הגבול מתקיים.
 
 \subsection{סעיף ב'}
-נוכיח כי הגבול מתקיים בלשון $\epsilon, M$:
+נוכיח כי הגבול מתקיים בלשון $M_1, M_2$:
 \[
-	\lim_{x \to \infty} \frac{x + 1}{\lfloor x \rfloor}
+	\lim_{x \to \infty} \sqrt{2x - \sin 3x} = \infty
 \]
-הביטוי לא מוגדר כאשר $0 \le x < 1$, לכן נגדיר $M \ge 1$.
-נשים לב כי אי־השוויון
-\[
-	\left| \frac{x-1}{\lfloor x \rfloor} - 1 \right| < \epsilon
-\]
-מתקיים רק כאשר
-\[
-	\left| \frac{x - \lfloor x \rfloor - 1}{\lfloor x \rfloor} \right|
-	< \epsilon
-\]
-על־פי ההגדרה $M \ge 1$ תמיד מתקיים $\lfloor x \rfloor > 0$ לכן
-\[
-	\frac{\left| x - \lfloor x \rfloor - 1\right|}{\lfloor x \rfloor}
-	< \epsilon
-\]
-על־פי חוקי החלק השלם
-$x - 1 \le \lfloor x \rfloor < x$
-לכן $x - 1 - x < \lfloor x \rfloor - x < 0$
-אז $-1 < x - \lfloor x \rfloor - 1 < 0$.
-מכנה אי־השוויון תמיד יהיה ערך בין $0$ ל־$1$, אז מתקיים
-\[
-	\frac{\left| x - \lfloor x \rfloor - 1\right|}{\lfloor x \rfloor}
-	< \frac{1}{\lfloor x \rfloor} < \epsilon
-\]
-אילו נגדיר
-\[
-	M = 1 + \frac{1}{\epsilon}
-\]
-יתקיים
-\[
-	M = 1 + \frac{1}{\epsilon} < x
-\]
-ולכן גם
-\[
-	\frac{1}{x - 1} < \epsilon
-\]
-ועל־פי אי־שוויון החלק השלם גם
-\[
-	\frac{1}{\lfloor x \rfloor} < \epsilon
-\]
-ובמקרה זה ראינו כי גם מתקיים
-\[
-	\left| \frac{x-1}{\lfloor x \rfloor} - 1 \right| < \epsilon
-\]
-ולכן הגבול מתקיים.
+נגדיר $f(x) = \sqrt{2x - \sin 3x} = \infty$. יהי $M_1 \in \RR$. \\*
+נגדיר $M_2 = \min\{ 0, M_1^2 + 20 \}$.
+נשים לב כי עבור תחום ההגדרה של $f$, היא תמיד חיובית, שכן פעולת השורש לא מחזירה מספרים שליליים בממשיים.
+כאשר $M_1 < 0$ לכל $x > M_2$ הפונקציה $f(x) \ge 0 > M_1$.
+עוד נראה כי עבור כל $M_1 \ge 0$ כל $x > M_2 = M_1^2 + 20$ מקיים $f(x) > M_1$,
+שכן תמונת $\sin$ היא $[-1, 1]$ ולכן $2x - \sin 3x \ge 2x - 1 \ge 2M_1^2 + 19$.
+בהתאם $\sqrt{2M_1^2 + 19} > M_1$ וההוכחה נשלמה.
 
 \section{שאלה 3}
 \subsection{סעיף א'}
@@ -199,180 +100,123 @@ $x - 1 \le \lfloor x \rfloor < x$
 ולא מתקיים $f(x_n) \underset{n \to \infty}{\rightarrow} L$
 
 \subsection{סעיף ב'}
-נוכיח כי $L = \frac{1}{2}$ איננו הגבול של $f(x) = \langle x \rangle$
-כאשר $x \rightarrow \infty$ בלשון $\epsilon, M$. \\*
-קודם כל נראה כי לכל $M \in \RR$ שנבחר, לכל $x > M$ כך ש־$\langle x \rangle = 0$ מתקיים
+תהי הפונקציה $f: \RR \to \RR$ המוגדרת
 \[
-	\left| \langle x \rangle - \frac{1}{2} \right| = \left| 0 - \frac{1}{2} \right| = \frac{1}{2}
+	f(x) = \frac{4}{5 + \cos x}
 \]
-על־פי הגדרת הגבול בלשון $\epsilon, M$ לכל $\epsilon > 0$ קיים $M \in \RR$ כך שלכל $x > M$ מתקיים
-\[
-	\left| \langle x \rangle - \frac{1}{2} \right| < \epsilon
-\]
-אך ראינו כי מתקיים
-\[
-	\left| \langle x \rangle - \frac{1}{2} \right|  = \frac{1}{2} < \epsilon
-\]
-לכן קיימים ערכי $\epsilon > 0$ כך שלא קיים ערך $M$ כזה, ולכן גבול זה איננו מתקיים.
-
-\subsection{סעיף ג'}
 \textbf{(i)}
-נוכיח כי לא קיים גבול לפונקציה $f(x) = \langle x \rangle$ כאשר $x \to \infty$ על־פי הגדרת סעיף א' (i) \\*
-על־פי ההגדרה, נוכיח כי לכל $L \in \RR$ קיים $\epsilon > 0$ עבורו לכל $M \in \RR$ קיים $x > M$ עבורו
-\[
-	\left| f(x) - L \right| \ge \epsilon
-\]
-על־פי הגדרת החלק השברי תמונת $f(x)$ היא $\left[0, 1\right)$, לכן לכל $L$ כך ש־$L > 1$ נגדיר $\epsilon = |L - 1|$. % chktex 9
-עבור $\epsilon$ זה לכל $M$ קיים $x > M$ כך ש־$x = \lfloor x \rfloor + 1$ ומתקיים
-\[
-	\left| f(x) - L \right| = \left| 0 - L \right| > \left| L - 1 \right| = \epsilon
-\]
-באופן דומה כאשר $L < 0$ נגדיר $\epsilon = \left| 1 - L \right|$ ויתקיים אי־השוויון. \\*
-כאשר $0 \le L < 1$ נגדיר $\epsilon = L$ ונראה כי לכל $M \in \RR$ ועבור $x = 1$ מתקיים
-\[
-	\left| f(x) - L \right| = L \ge \epsilon
-\]
-ראינו כי אכן ההגדרה מתקיימת לכל $L \in \RR$ ולכן לא קיים גבול כאשר $x \to \infty$ לפונקציה $f$. \\
+נוכיח כי ל־$f$ אין גבול סופי כאשר $x \to \infty$ על־פי הגדרת סעיף א'(i). \\*
+יהי $L \in \RR$.
+תמונת $\cos$ היא $[-1, 1]$, ולכן בהתאם תמונת $f$ היא $[\frac{2}{3}, 1]$.
+אנו יודעים כי $\cos$ פונקציה מחזורית ולכן גם $f$ בהתאם ולכן לכל $M \in \RR$ שנבחר קיימים ערכי $x > M$ שמגיעים לכל חלקי תמונת $f$. \\*
+נוכל למצוא $x > M$ לכל $M \in \RR$ אשר עבורו $|f(x) - L|$ הוא מספר שונה מאפס, נגדיר $\epsilon = |f(x) - L|/2$. \\*
+אז לפי הגדרת סעיף א'(i) לפונקציה $f$ אין גבול סופי כאשר $x \to \infty$. \\*
 \textbf{(ii)}
-נוכיח כי אין גבול לפונקציה בלשון היינה כפי שהוגדר בסעיף א'. \\*
-עבור $L \ne 0$ נגדיר את הסדרה $x_n = \lfloor x \rfloor$.
-לכל איבר בסדרה זו מתקיים $f(x) = 0$, לכן
-\[
-	\lim_{n \to \infty} f(x_n) = 0 \ne L
-\]
-נגדיר $L = 0$ ו־$x_n = \lfloor x \rfloor + \frac{1}{2}$. אז מתקיים
-\[
-	\lim_{n \to \infty} f(x_n) = \frac{1}{2} \ne 0
-\]
-ראינו כי התנאי מתקיים לכל $L \in \RR$ ולכן על־פי הגדרת היינה אין גבול לפונקציה $f$.
+נוכיח כי ל־$f$ אין גבול סופי כאשר $x \to \infty$ על־פי הגדרת סעיף א'(ii). \\*
+יהי $L \in \RR$. כפי שראינו בתת־סעיף הקודם, קיים $x$ כך ש־$f(x) \ne L$. \\*
+נגדיר $x_n = x + 2 \pi n$, לכן $f(x_n)$ ערך קבוע ושונה מ־$L$.
+אז לפי הגדרת סעיף א'(ii) הפונקציה $f$ לא מתכנסת לערך סופי כאשר $x \to \infty$.
 
 \section{שאלה 4}
 \subsection{סעיף א'}
-על־פי כלל הרכבה לכל $c \in \RR\backslash\{0\}$:
 \[
-	\lim_{x \to 0} \cos(c x) = \lim_{t \to 0} \cos t = 1 \tag{*}
+	\lim_{x \to 0} \frac{1 - \cos x}{x^2}
+	= \lim_{x \to 0} \frac{1}{x^2} - \frac{\cos x}{x^2}
+	= 0 + 0 = 0
 \]
-\begin{align*}
-	\lim_{x \to 0} \frac{\tan 5x}{\sin 3x}
-	& \overset{\text{כלל לופיטל}}{=} \lim_{x \to 0} \frac{\tan' 5x}{\sin' 3x}\\
-	& = \lim_{x \to 0} \frac{\frac{1}{\cos^2 5x} \cdot 5}{\cos(3x) \cdot 3}\\
-	& = \lim_{x \to 0} \frac{5}{3} \cdot \frac{1}{\cos(3x) \cos^2(5x)}\\
-	& \overset{\text{חוקי גבולות}}{=} \frac{5}{3} \frac{1}{\lim_{x \to 0} \left( \cos(3x) \cos^2(5x)\right)} \\
-	& \overset{\text{(*)}}{=} \frac{5}{3} \frac{1}{1}\\
-	& = \frac{5}{3}
-\end{align*}
 
 \subsection{סעיף ב'}
 \[
-	\lim_{x \to 0} \frac{\sqrt{\cos x} - \cos x}{x^2}
-	= \lim_{x \to 0} \frac{\frac{-\sin x}{2\sqrt{\cos x}} + \sin x}{2x}
-	= \lim_{x \to 0} \frac{\sin x}{4x} \frac{2\sqrt{\cos x} - 1}{\sqrt{\cos x}}
-\]
-על־פי משפט 4.45:
-\[
-	\lim_{x \to 0} \frac{\sin x}{4 x} = \frac{1}{4}
-\]
-הביטוי $\sqrt{\cos x}$ מוגדר וחיובי בסביבה החיובית של $0$, לכן גם
-\[
-	\frac{2\sqrt{\cos x} - 1}{\sqrt{\cos x}} = 2 - \frac{1}{\sqrt{\cos x}}
-\]
-נשים לב כי מתקיים הגבול
-\[
-	\lim_{x \to 1} \frac{1}{x} = 1
-\]
-וניתן להוכיח כי מתקיים הגבול
-\[
-	\lim_{t \to 0} \sqrt{\cos t} = 1
-\]
-לכן משפט 4.39
-\[
-	\lim_{x \to 0} 2 - \frac{1}{\sqrt{\cos x}} = 1
-\]
-ולכן מתקיים
-\[
-	\lim_{x \to 0} \frac{\sqrt{\cos x} - \cos x}{x^2}
-	= \frac{1}{4} \cdot 1 = \frac{1}{4}
+	\lim_{x \to 0} \frac{\sin^4 x}{x^7}
+	= \lim_{x \to 0} \frac{1}{x^3} \left( \frac{\sin x}{x} \right)^4
+	= 0 \cdot 1^4
+	= 0
 \]
 
 \subsection{סעיף ג'}
-\begin{align*}
-	\lim_{x \to \infty} \frac{3x^5 - 5x^4 + x \cos x}{3x^2 - 5x^3 + x\sqrt{x}}
-	= \lim_{x \to \infty} \frac{\frac{3x^5}{x^5} - 5\frac{x^4}{x^5} + \frac{x \cos x}{x^5}}{3\frac{x^2}{x^5} - 5\frac{x^3}{x^5} + \frac{x\sqrt{x}}{x^5}}
-	= \lim_{x \to \infty} \frac{3 - 5\frac{1}{x} + \frac{\cos x}{x^4}}{3\frac{1}{x^3} - 5\frac{1}{x^2} + \frac{\sqrt{x}}{x^4}}
-	= \lim_{x \to \infty} \frac{3 + \frac{\cos x}{x^4}}{\frac{\sqrt{x}}{x^4}}
-\end{align*}
-נשים לב כי מתקיים
 \[
-	\frac{-1}{x^4} \le \frac{\cos x}{x^4} \le \frac{1}{x^4}
-\]
-לכל $x \ge 0$, לכן לפי משפט 4.43 מתקיים
-\[
-	\lim_{x \to \infty} \frac{-1}{x^4} = \lim_{x \to \infty} \frac{\cos x}{x^4} = \lim_{x \to \infty} \frac{1}{x^4} = 0
-\]
-לכן
-\[
-	\lim_{x \to \infty} \frac{3 + \frac{\cos x}{x^4}}{\frac{\sqrt{x}}{x^4}}
-	= \lim_{x \to \infty} \frac{3 + 0}{\frac{\sqrt{x}}{x^4}}
-	= \lim_{x \to \infty} \frac{3x^4}{\sqrt{x}}
-\]
-קל לראות על־פי הגדרה 4.55
-\[
-	\lim_{x \to \infty} \frac{3x^4}{\sqrt{x}} = \infty
+	\lim_{x \to \infty} \frac{-3x^5 + 5x^3 + 1}{5x^5 + 3x^3 - 1}
+	= \lim_{x \to \infty} \frac{-3x^5/x^5 + 5x^3/x^5 + 1/x^5}{5x^5/x^5 + 3x^3/x^5 - 1/x^5}
+	= \lim_{x \to \infty} \frac{-3 + 5/x^2 + 1/x^5}{5 + 3/x^2 - 1/x^5}
+	= \frac{-3}{5}
 \]
 
 \subsection{סעיף ד'}
 \[
-	\lim_{x \to 0} \frac{x + \sin x}{x^2 + \sin^2 x}
-	= \lim_{x \to 0} \frac{\frac{x}{x^2} + \frac{\sin x}{x^2}}{\frac{x^2}{x^2} + \frac{\sin^2 x}{x^2}}
-	= \lim_{x \to 0} \frac{\frac{1}{x} + \frac{\sin x}{x}\frac{1}{x}}{{(\frac{\sin x}{x})}^2 + 1}
+	\lim_{x \to -\infty} \sqrt{x^2 - \sin x} + x
 \]
-על־פי משפט 4.45:
+נשים לב כי $x^2 = (-x)^2, \sin x = - \sin x$, ואילו את $+x$ נוכל לציין כ־$-x$, לכן
 \[
-	\lim_{x \to 0} \frac{\frac{1}{x} + \frac{\sin x}{x}\frac{1}{x}}{{(\frac{\sin x}{x})}^2 + 1}
-	= \lim_{x \to 0} \frac{0 + 1 \cdot \frac{1}{x}}
-	{1^2 + 1}
-	= \lim_{x \to 0} \frac{0 + 1 \cdot 0}{2}
+	\lim_{x \to -\infty} \sqrt{x^2 - \sin x} + x
+	= \lim_{x \to \infty} \sqrt{x^2 - \sin x} - x
+\]
+מתקיים
+\[
+	\sqrt{x^2 - \sin x} - x
+	= \frac{\left(\sqrt{x^2 - \sin x} + x\right) \left(\sqrt{x^2 - \sin x} - x\right)}{\sqrt{x^2 - \sin x} + x}
+	= \frac{ \sqrt{x^2 - \sin x}^2 - x^2}{\sqrt{x^2 - \sin x} + x}
+	= \frac{ -\sin x}{\sqrt{x^2 - \sin x} + x}
+\]
+נשים לב כי מתקיים לכל $x \ge 1$ על־פי תחומי $\sin x$
+\[
+	0 \le x^2 - \sin x \le x^2 + 1 \le 4x^2
+	\rightarrow
+	0 \le \sqrt{x^2 - \sin x} \le \sqrt{4x^2}
+	\rightarrow
+	x \le \sqrt{x^2 - \sin x} + x \le 2x + x
+\]
+לכן על־פי הביטוי האלגברי ואי־השוויון שמצאנו, ועל־פי חוקי אי־שוויונות.
+\[
+	\frac{ -\sin x}{x}
+	\le
+	\frac{ -\sin x}{\sqrt{x^2 - \sin x} + x}
+	\le
+	\frac{ -\sin x}{3x}
+\]
+על־פי כלל הסנדויץ'
+\[
+	\lim_{x \to \infty} \frac{ -\sin x}{x}
+	= \lim_{x \to \infty} \frac{ -\sin x}{\sqrt{x^2 - \sin x} + x}
+	= \lim_{x \to \infty} \frac{ -\sin x}{3x}
 	= 0
+\]
+לכן קיים הגבול
+\[
+	\lim_{x \to -\infty} \sqrt{x^2 - \sin x} + x = 0
 \]
 
 \subsection{סעיף ה'}
 \[
-	\lim_{x \to x_0} \lfloor \tan x \rfloor \cos x, x_0 = 0, \frac{\pi}{2}
+	\lim_{x \to x_0} \sin \left( \frac{x}{2} \right) \left\lfloor \sin x \right\rfloor
 \]
-על־פי הגדרת $\tan x$ מתקיים כאשר $0 \le x < \frac{\sqrt 2}{2}$:
+כאשר $x_0 = 0, \frac{\pi}{2}, \pi$. \\*
+נשים לב כי בשל הגדרת $\sin$:
+\begin{align*}
+	& -\pi \le x < 0 \rightarrow & \lfloor \sin x \rfloor = -1 \\
+	& 0 < x < \pi \rightarrow & \lfloor \sin x \rfloor = 0 \\
+	& \pi < x < 2\pi \rightarrow & \lfloor \sin x \rfloor = -1
+\end{align*}
+כאשר $x_0 = \frac{\pi}{2}$ אנו רואים כי
 \[
-	\tan x = \frac{\sin x}{\cos x} < 1
+	\lim_{x \to \frac{\pi}{2}} \sin \left( \frac{x}{2} \right) \left\lfloor \sin x \right\rfloor = 0
 \]
-ולכן עבור $\delta < 1$ מתקיים
+כאשר $x_0 = 0$ אנו רואים כי עבור סביבת $x_0$ נגדיר פונקציה חדשה:
 \[
-	\lfloor \tan x \rfloor = 0
+	h(x) = \begin{cases}
+		-\sin{\frac{x}{2}} & x < 0 \\
+		0 & x \ge 0
+	\end{cases}
 \]
-ובהתאם
+ניתן לראות כי בסביבת $x_0$ ערך הפונקציה $h$ שווה לערך הפונקציה המקורית, ובהתאם הגבול בנקודה זהה (אם מתקיים).
+על־פי גבול פונקציית $\sin$ ופונקציות קבועות מתקיים
 \[
-	\lim_{x \to 0} \lfloor \tan x \rfloor \cos x
-	= \lim_{x \to 0} 0 \cos x
-	= \lim_{x \to 0} 0
-	= 0
+	\lim_{x \to 0} h(x) = 0
 \]
-נמצא את הגבול
+ולכן מתקיים גם
 \[
-	\lim_{x \to \frac{\pi}{2}} \lfloor \tan x \rfloor \cos x
+	\lim_{x \to 0} \sin \left( \frac{x}{2} \right) \left\lfloor \sin x \right\rfloor = 0
 \]
-נשים לב כי כאשר $\frac{\sqrt{2}}{2} \le x < \frac{\pi}{2}$:
-\[
-	\tan x - 1 \le \lfloor \tan x \rfloor \le \tan x 
-\]
-ולאחר הכפלה
-\[
-	(\tan x - 1) \cos x \le \lfloor \tan x \rfloor \cos x \le \tan x \cos x
-\]
-בתחום $(\frac{\sqrt{2}}{2}, \frac{\pi}{2})$ נוכל לצמצם את הביטוי $\tan x \cos x$ ל־$\sin x$ בלא שינוי לערך, לכן:
-\[
-	\sin x - \cos x \le \lfloor \tan x \rfloor \cos x \le \sin x
-\]
-לכן לפי משפט 4.43
-\[
-	\lim_{x \to \frac{\pi}{2}} \sin x - \cos x = \lim_{x \to \frac{\pi}{2}} \lfloor \tan x \rfloor \cos x = \lim_{x \to \frac{\pi}{2}} \sin x = 1
-\]
+נתבונן עתה במקרה $x_0 = \pi$. \\*
+\textbf{תעשה את זה}.
 
 \end{document} % chktex 17
