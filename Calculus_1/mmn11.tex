@@ -7,7 +7,7 @@
 \subsection{סעיף א'}
 נוכיח כי $a = k + m \sqrt{2}$ כאשר $k, m \in \NN$ הוא מספר אי־רציונלי. \\*
 משפט 1.21 גורס כי $\sqrt{2}$ איננו רציונלי, לכן לא קיימים מספרים $p, q \in \ZZ$ כך ש־$\sqrt{2} = \frac{p}{q}$.
-אליו היה המספר $m \sqrt{2}$ מספר רציונלי אז היה מתקיים $m \sqrt{2} = \frac{mp}{q}$ בניגוד לאי־רציונליות $\sqrt{2}$,
+אילו היה המספר $m \sqrt{2}$ מספר רציונלי אז היה מתקיים $m \sqrt{2} = \frac{mp}{q}$ בניגוד לאי־רציונליות $\sqrt{2}$,
 לכן $m\sqrt{2}$ מספר אי־רציונלי.
 נגדיר $p', q' \in \ZZ$, מתקיים:
 \[
@@ -37,7 +37,7 @@
 \[
 	\left| \sqrt{\left| a \right| + 1} - \sqrt{\left| b \right| + 1} \right| \le \frac{|a - b|}{2}
 \]
-מתקיים לכל $x, y \in \RR$:
+מתקיים לכל $x, y \ge 0$ כאשר $x, y \in \RR$:
 \[
 	\sqrt{x} - \sqrt{y}
 	= (\sqrt{x} - \sqrt{y}) \frac{(\sqrt{x} + \sqrt{y})}{(\sqrt{x} + \sqrt{y})}
@@ -48,13 +48,13 @@
 \[
 	x = |a| + 1, y = |b| + 1
 \]
-אז
+אז בשל חיוביות הערך המוחלט מתקיים לכל $a, b \in \RR$:
 \[
 	\left| \sqrt{\left| a \right| + 1} - \sqrt{\left| b \right| + 1} \right|
 	= \frac{|a| + 1 - |b| - 1}{\sqrt{\left| a \right| + 1} + \sqrt{\left| b \right| + 1}}
 	= \frac{|a| - |b|}{\sqrt{\left| a \right| + 1} + \sqrt{\left| b \right| + 1}}
 \]
-בשל הגדרת הערך המוחלט מתקיים
+מהגדרת הערך המוחלט נובע כי לכל $a \in \RR$:
 \[
 	0 \le |a| \rightarrow 1 \le |a| + 1 \rightarrow \sqrt{1} = 1 \le \sqrt{|a| + 1}
 \]
@@ -62,13 +62,13 @@
 \[
 	2 \le \sqrt{\left| a \right| + 1} + \sqrt{\left| b \right| + 1}
 \]
-בשל הופעת הביטוי במכנה מתקיים:
+בשל הופעת הביטוי במכנה נוכל להניח כי:
 \[
 	\left| \sqrt{\left| a \right| + 1} - \sqrt{\left| b \right| + 1} \right| = 
 	\frac{|a| - |b|}{\sqrt{\left| a \right| + 1} + \sqrt{\left| b \right| + 1}}
 	\ge \frac{|a| - |b|}{2}
 \]
-לפי טענה 1.51:
+ועל־פי טענה 1.51:
 \[
 	\left| \sqrt{\left| a \right| + 1} - \sqrt{\left| b \right| + 1} \right|
 	\ge \frac{|a - b|}{2}
@@ -110,9 +110,9 @@
 \textbf{(i)}
 נפתור את המשוואה
 \begin{align*}
-	& \lfloor x - \frac{1}{2} \rfloor^2 = 25 \\
-	& (\lfloor x - \frac{1}{2} \rfloor^2 + 5)(\lfloor x - \frac{1}{2} \rfloor^2 - 5) = 0 \\
-	& \lfloor x - \frac{1}{2} \rfloor = \pm 5
+	& \left\lfloor x - \frac{1}{2} \right\rfloor^2 = 25 \\
+	& \left(\left\lfloor x - \frac{1}{2} \right\rfloor^2 + 5\right)\left(\left\lfloor x - \frac{1}{2} \right\rfloor^2 - 5\right) = 0 \\
+	& \left\lfloor x - \frac{1}{2} \right\rfloor = \pm 5
 \end{align*}
 
 על־פי טענה 1.64(1)
