@@ -1,0 +1,314 @@
+\input{../article_base.tex}
+
+\title{פתרון ממ"ן 12 – אלגברה לינארית 2 (20229)}
+
+\begin{document}
+\maketitle
+
+\section{שאלה 1}
+\subsection{סעיף א'}
+נגדיר
+\[
+	A_1 = \begin{pmatrix}
+		0 & i \\
+		-i & 0
+	\end{pmatrix},
+	A_2 = \begin{pmatrix}
+		i & 2i \\
+		0 & 1
+	\end{pmatrix},
+	A_3 = \begin{pmatrix}
+		1 & i \\
+		1 & 2 + i
+	\end{pmatrix}
+\]
+נבדוק אם כל אחת מן המטריצות נורמליות ואם כן נמצא מטריצה אוניטרית המלכסנת אותן. \\*
+נבדוק אם $A_1$ נורמלית:
+\[
+	A_1^* = \begin{pmatrix}
+		0 & i \\
+		-i & 0
+	\end{pmatrix} = A_1
+\]
+לכן בהכרח $A_1 A_1^* = A_1^* A_1$ וכן $A_1$ נורמלית.
+נחשב את הפולינום האופייני של $A_1$:
+\[
+	p(t) = \begin{vmatrix}
+		t & -i \\
+		i & t
+	\end{vmatrix}
+	= t^2 - (-i)i = t^2 - 1 = (t - 1)(t + 1)
+\]
+אז למטריצה שני ערכים עצמיים $-1, 1$.
+נמצא את $V_{-1}$ על־ידי פתרון המערכת:
+\[
+	A_1 u = -u \rightarrow (A_1 + I) u = 0 \rightarrow \begin{pmatrix}
+		1 & i \\
+		-i & 1
+	\end{pmatrix}
+	\xrightarrow{R_2 \to R_2 + iR_1}
+	\begin{pmatrix}
+		1 & i \\
+		0 & 0
+	\end{pmatrix}
+	\rightarrow
+	V_{-1} = \Sp\left\{ \begin{pmatrix} -i \\ 1 \end{pmatrix} \right\}
+\]
+לכן בבסיס האורתוגונלי של $V_{-1}$ ישנו רק הווקטור $\begin{pmatrix} \frac{-i}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix}$. \\*
+נמצא את המרחב $V_1$ באופן דומה:
+\[
+	(A_1 - I) = 0
+	\rightarrow
+	\begin{pmatrix}
+		-1 & i \\
+		-i & -1
+	\end{pmatrix}
+	\xrightarrow[R_2 \to i R_2, R_2 \to R_2 - R_1]{R_1 \to -R_1}
+	\begin{pmatrix}
+		1 & -i \\
+		0 & 0
+	\end{pmatrix}
+	\rightarrow
+	V_1 = \Sp\left\{ \begin{pmatrix} i \\ 1 \end{pmatrix}\right\}
+\]
+בבסיס האורתוגונלי של $V_{-1}$ ישנו הווקטור $\begin{pmatrix} \frac{i}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix}$. \\*
+בשל כך המטריצה $P$ המוגדרת להלן מלכסנת אוניטרית את $A_1$:
+\[
+	P = \begin{pmatrix}
+		\frac{-i}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\
+		\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+	\end{pmatrix}
+\]
+נחשב את $A_2^*$:
+\[
+	A_2^* = \begin{pmatrix}
+		-i & 0 \\
+		-2i & 1
+	\end{pmatrix}
+\]
+נבדוק אם $A_2$ נורמלית:
+\begin{align*}
+	A_2 A_2^* = 
+	\begin{pmatrix}
+		i & 2i \\
+		0 & 1
+	\end{pmatrix} \begin{pmatrix}
+		-i & 0 \\
+		-2i & 1
+	\end{pmatrix}
+	= \begin{pmatrix}
+		3 & 2i \\
+		-2i & 1
+	\end{pmatrix} \\
+	A_2^* A_2 = 
+	\begin{pmatrix}
+		-i & 0 \\
+		-2i & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		i & 2i \\
+		0 & 1
+	\end{pmatrix}
+	= \begin{pmatrix}
+		1 & 2 \\
+		2 & 5
+	\end{pmatrix} \\
+\end{align*}
+אנו רואים כי $A_2 A_2^* \ne A_2^* A_2$ ולכן $A_2$ איננה נורמלית. \\*
+נבדוק אם $A_3$ נורמלית, תחילה נבחין כי
+\[
+	A_3^* = \begin{pmatrix}
+		1 & 1 \\
+		-i & 2 - i
+	\end{pmatrix}
+\]
+נבדוק אם היא נורמלית:
+\begin{align*}
+	A_3 A_3^* = 
+	\begin{pmatrix}
+		1 & i \\
+		1 & 2 + i
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 1 \\
+		-i & 2 - i
+	\end{pmatrix}
+	= \begin{pmatrix}
+		2 & 2 + 2i \\
+		2 - 2i & 6
+	\end{pmatrix} \\
+	A_3^* A_3 = 
+	\begin{pmatrix}
+		1 & 1 \\
+		-i & 2 - i
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & i \\
+		1 & 2 + i
+	\end{pmatrix}
+	= \begin{pmatrix}
+		2 & 2 + 2i \\
+		2 - 2i & 6
+	\end{pmatrix}
+\end{align*}
+אנו רואים כי המטריצה $A_3$ אכן נורמלית. \\*
+נחשב את הפולינום האופייני של $A_3$:
+\[
+	p(t) = \begin{vmatrix}
+		t - 1 & -i \\
+		-1 & t - 2 - i
+	\end{vmatrix}
+	= (t - 1)(t - 2 - i) + i
+	= t^2 + (-3 - i)t + 2
+	\rightarrow
+	t = \frac{3 + i \pm \sqrt{8 + 6i - 8}}{2}
+	= \frac{3 + i \pm (\sqrt{3} + \sqrt{3}i)}{2}
+\]
+נשתמש בחישוב שמבוצע בתשובה 3.2.2 עבור המטריצה ולכן המטריצה האוניטרית היא
+\[
+	\begin{pmatrix}
+		\frac{1}{\sqrt{3 + \sqrt{3}}} & \frac{1}{\sqrt{3 - \sqrt{3}}} \\
+		\frac{1 + \sqrt{3}}{2\sqrt{3 + \sqrt{3}}}(1 - i) & \frac{1 - \sqrt{3}}{2\sqrt{3 - \sqrt{3}}}(1 - i)
+	\end{pmatrix}
+\]
+
+\subsection{סעיף ב'}
+נמצא אילו מבין המטריצות המוגדרות להלן חיוביות. \\*
+נגדיר
+\[
+	C_1 = \begin{pmatrix}
+		1 & 1 \\
+		1 & 1
+	\end{pmatrix}
+\]
+המטריצה ממשית וסימטרית, ולכן גם נורמלית. נחשב את ערכיה העצמיים:
+\[
+	p(t) = (t - 1)^2 - 1 = t^2 - 2t = t(t - 2)
+\]
+לכן ערכיה העצמיים הם $0, 2$ והיא חיובית אך לא חיובית לחלוטין. \\*
+נגדיר
+\[
+	C_2 = \begin{pmatrix}
+		0 & i \\
+		-i & 0
+	\end{pmatrix}
+\]
+קל לראות כי המטריצה צמודה לעצמה, נחשב את ערכיה העצמיים:
+\[
+	p(t) = t^2 - 1 = (t - 1)(t + 1)
+\]
+למטריצה ערך עצמי שלילי ולכן היא לא חיובית כלל לפי משפט 3.2.2.
+נגדיר
+\[
+	C_3 = \begin{pmatrix}
+		0 & 1 \\
+		-1 & 0
+	\end{pmatrix}
+\]
+מטריצה זו לא צמודה לעצמה, ולכן לא יכולה להיות מטריצה חיובית כלל. \\*
+נגדיר
+\[
+	C_4 = \begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+	\end{pmatrix}
+\]
+גם מטריצה זו לא סימטרית ולכן לא עומדת בהגדרה 1.2.5 כלל. \\*
+נגדיר
+\[
+	C_5 = \begin{pmatrix}
+		2 & 1 \\
+		1 & 2
+	\end{pmatrix}
+\]
+מטריצה זו סימטרית, נחשב את ערכיה העצמיים:
+\[
+	p(t) = (t - 2)^2 - 1 = t^2 - 4t + 4 - 1 = t^2 - 4t + 3 = (t - 3)(t - 1)
+\]
+לכן לפי משפט 3.2.2 המטריצה חיובית לחלוטין. \\*
+נגדיר
+\[
+	C_6 = \begin{pmatrix}
+		1 & 2 \\
+		3 & 1
+	\end{pmatrix}
+\]
+גם מטריצה זו לא סימטרית ולכן לא חיובית.
+
+\section{שאלה 2}
+יהי $V$ מרחב מכפלה פנימית מממד סופי ותהי $T: V \to V$ העתקה לינארית נורמלית.
+\subsection{i}
+נוכיח כי $\ker T = \ker T^*$. \\*
+יהי $u \in \ker T$, אז מתקיים $T u = 0$ ובשל כך גם $\lVert u \rVert = 0$. \\*
+על־פי הגדרת הנורמה מתקיים גם $(T u, T u) = 0$. אז
+\[
+	0 = (T u, T u) = (u, T^* T u) = (u, T T^* u) = (T^* u, T^* u) = \lVert T^* u \rVert = 0
+\]
+בשל הגדרת המכפלה הפנימית נובע כי $T^* u = 0$. \\*
+נשים לב כי בשל סימטריות המטריצות הנורמליות נוכל להוכיח באופן דומה גם כי אם $T^* u = 0$ אז $T u = 0$,
+ולכן מתקיים $\ker T = \ker T^*$.
+
+\subsection{ii}
+נוכיח כי $\im T = (\ker T)^\perp$. \\*
+על־פי משפט 3.2.1 ההעתקה $T$ היא לכסינה אוניטרית בפרט ולכן לכסינה בכלל.
+מסיבה זו כל וקטור ב־$V$ הוא וקטור עצמי לאיזשהו ערך עצמי ב־$T$. \\*
+יהיו $u \in \im T, v \in \ker T$. נשים לב כי $v$ הוא וקטור עצמי של $0$, ואילו $u$ וקטור עצמי לערך עצמי $\lambda \ne 0$. \\*
+בשל היותם ערכים עצמיים שונים, לפי משפט 3.2.6 הוקטורים אורתוגונליים זה לזה. \\*
+נכליל את הטענה הזו ונראה שלכל $u$ כזה התנאי מתקיים לכל $v$, לכן $u \in (\ker T)^\perp$. \\*
+באופן דומה נוכל להכליל את הטענה על התמונה, ולכן $\im T = (\ker T)^\perp$.
+
+\subsection{iii}
+נוכיח כי $\im T = \im T^*$. \\*
+על־פי סעיף ii מתקיים
+\[
+	\im T^* = (\ker T^*)^\perp
+\]
+וידוע כי $\ker T = \ker T^*$ על־פי סעיף i, לכן
+\[
+	\im T^* = (\ker T)^\perp = \im T
+\]
+
+\section{שאלה 3}
+יהי $V$ מרחב מכפלה עצמית מממד סופי ו־$T: V \to V$ העתקה לינארית המקיימת
+\[
+	T^2 = \frac{1}{2}(T + T^*)
+\]
+נוכיח כי $T$ נורמלית ומתקיים $T^2 = T$.
+\[
+	T T^* = T (2T^2 - T) = T (2T - I) T = (2T^2 - T) T = T^* T
+\]
+אנו רואים כי $T$ נורמלית. \\*
+נוכיח גם כי $T^2 = T$. \\*
+יהי $\lambda$ ערך עצמי של $T$ ו־$u$ וקטור עצמי שלו. \\*
+לפי למה 3.2.5 $\overline{\lambda}$ ערך עצמי של $T^*$ ו־$u$ וקטור עצמי שלו,
+דהינו $T u = \lambda u, T^* u = \overline{\lambda} u$. \\*
+עוד אנו יודעים כי $T^2 u = T \lambda u = \lambda^2 u$. מתקיים
+\[
+	T^2 u = \lambda^2 u = \frac{1}{2}(\lambda u + \overline{\lambda} u) = \frac{1}{2}(T u + T^* u)
+\]
+אז נוכל להניח גם כי
+\[
+	2 \lambda^2 = \lambda + \overline{\lambda}
+\]
+נניח כי המרחב מוגדר מעל $\CC$, כך שכל מרחב מכפלה פנימית הלכה למעשה מוכל בו.
+נגדיר $\lambda = a + bi$, אז
+\[
+	2a^2 + 4abi - 2b^2 = a + bi + a - bi
+\]
+דהינו מתקיים
+\[
+	\begin{cases}
+		2ab = 0 \\
+		2a^2 - 2b^2 = 2a
+	\end{cases}
+\]
+אילו $b \ne 0$, אז נובע מהמשוואה הראשונה כי $a = 0$ ומהשמוואה השנייה כי $b = 0$ בסתירה לטענה, אז מהמשוואה הראשונה אנו למדים כי $a \ne 0$.
+לכן גם $b = 0$ ומהמשוואה השנייה נובע ש־$a(a - 1) = 0$, ידוע כי $a \ne 0$ ולכן $a = 1$.
+מצאנו כי כלל הערכים העצמיים של $T, T^2, T^*$ הם $1$ בלבד, לכן לכל $v \in V$ מתקיים $T v = T^2 v = v$ ובהתאם $T^2 = T$.
+
+\section{שאלה 4}
+תהי $H$ מטריצה סימטרית ממשית מסדר $n \times n$ ויהי $\lambda$ הערך העצמי המקסימלי של $H$. \\*
+נוכיח כי לכל $v \in \RR^n, \lVert v \rVert = 1$ מתקיים $v^t H v \le \lambda$. \\*
+לא יודע
+
+\end{document}
