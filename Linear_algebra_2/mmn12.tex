@@ -308,7 +308,45 @@
 
 \section{שאלה 4}
 תהי $H$ מטריצה סימטרית ממשית מסדר $n \times n$ ויהי $\lambda$ הערך העצמי המקסימלי של $H$. \\*
-נוכיח כי לכל $v \in \RR^n, \lVert v \rVert = 1$ מתקיים $v^t H v \le \lambda$. \\*
-לא יודע
+נוכיח כי לכל $v \in \RR^n$ כאשר $\lVert v \rVert = 1$ מתקיים $v^t H v \le \lambda$. \\*
+על־פי משפט 3.2.1 המטריצה $H$ לכסינה, ולכן בכלל כל וקטור הוא ערך עצמי לערך עצמי כלשהו. \\*
+יהי $\mu$ ערך עצמי של $H$ כך ש־$v \in V_\mu$ , אז מתקיים $\lambda \ge \mu$ ובנוסף $H v = \mu v$.
+\[
+	v^t H v = \mu v^t v = \mu \lVert v \rVert^2 \mu = \mu \le \lambda \rightarrow v^t H v \le \lambda
+\]
 
+\section{שאלה 5}
+נוכיח כי המטריצה $A$ המוגדרת להלן היא נורמלית.
+\[
+	A = \begin{pmatrix}
+		2 - i & -1 & 0 \\
+		-1 & 1 - i & 1 \\
+		0 & 1 & 2 - i
+	\end{pmatrix}
+\]
+לפי הגדרת המשלים
+\[
+	A^* = \begin{pmatrix}
+		2 + i & -1 & 0 \\
+		-1 & 1 + i & 1 \\
+		0 & 1 & 2 + i
+	\end{pmatrix}
+\]
+נחשב
+\[
+	A A^* = 
+	\begin{pmatrix}
+		2 - i & -1 & 0 \\
+		-1 & 1 - i & 1 \\
+		0 & 1 & 2 - i
+	\end{pmatrix}
+	\begin{pmatrix}
+		2 + i & -1 & 0 \\
+		-1 & 1 + i & 1 \\
+		0 & 1 & 2 + i
+	\end{pmatrix}
+	= \begin{pmatrix}
+		6 & ...
+	\end{pmatrix}
+\]
 \end{document}
