@@ -188,5 +188,79 @@ $$
 \]
 
 \subsection{סעיף ג'}
-נמצא את $\{ a_n \mid n \in \NN \}$.
+נגדיר $A = \{ a_n \mid n \in \NN \}$. נמצא את $\inf A$. \\*
+כפי שראינו בסעיף הקודם, $0 \in A$ מקיים $\forall a \in A, 0 \le a$ ולכן לפי הגדרה 3.12 $\inf A = 0$. \\*
+לקבוצה כמובן יש מינימום לפי טענה 3.13, הוא $0$.
+
+\subsection{סעיף ד'}
+נוכיח כי לכל $n \in \NN$ מתקיים
+\[
+	\left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
+\]
+%נשים לב כי מתקיים $\langle \sqrt{n^2 - 1} \rangle = \sqrt{n^2 - 1} - \lfloor \sqrt{n^2 - 1} \rfloor$.
+מתקיים
+\begin{align*}
+	& -n \le -1 \\
+	& -2n \le -2 \\
+	& -2n + 1 \le -1 \\
+	& n^2 - 2n + 1 \le n^2 - 1 \le n^2 & \text{מתקיים גם} \\
+	& (n - 1)^2 \le n^2 - 1 \le n^2 \\
+	& n - 1 \le \sqrt{n^2 - 1} \le n \\
+	& \left\lfloor \sqrt{n^2 - 1} \right\rfloor = n - 1 & \text{לפי טענה 1.64 3.} \\
+	& \sqrt{n^2 - 1} - \left\lfloor \sqrt{n^2 - 1} \right\rfloor = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
+\end{align*}
+
+\subsection{סעיף ה'}
+נגדיר $(b_n)$ סדרה כך שמתקיים
+\[
+	b_n = \sqrt{n^2 - 1} - n + 1
+\]
+נוכיח כי יש גבול לסדרה:
+\begin{align*}
+	\lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1
+	& = \lim_{n \to \infty}\sqrt{n + 1} \sqrt{n - 1} - \sqrt{n - 1} \sqrt{n - 1} \\
+	& = \lim_{n \to \infty}\sqrt{n - 1} \left( \sqrt{n + 1} - \sqrt{n - 1} \right) \\
+	& = \lim_{n \to \infty}\sqrt{n - 1} \frac{\left( \sqrt{n + 1} - \sqrt{n - 1} \right)\left( \sqrt{n + 1} + \sqrt{n - 1} \right)}
+		{\left( \sqrt{n + 1} + \sqrt{n - 1} \right)} \\
+	& = \lim_{n \to \infty}\sqrt{n - 1} \frac{n + 1 - n + 1}{\left( \sqrt{n + 1} + \sqrt{n - 1} \right)} \\
+	& = \lim_{n \to \infty}\frac{2 \sqrt{n - 1}}{ \sqrt{n + 1} + \sqrt{n - 1} }
+	= \lim_{n \to \infty}\frac{2 \frac{\sqrt{n - 1}}{\sqrt{n + 1}}}{ \frac{\sqrt{n + 1}}{\sqrt{n + 1}} + \frac{\sqrt{n - 1}}{\sqrt{n + 1}} } \\
+	\lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1
+	& = \frac{2 \cdot 1}{1 + 1} = 1
+\end{align*}
+
+\subsection{סעיף ו'}
+נוכיח כי $L = 1$ הוא גבול חלקי של $(a_n)$. \\*
+נגדיר סדרת אינדקסים
+\[
+	n_k = \sqrt{n^2 - 1}
+\]
+על־פי סעיף ד' מתקיים
+\[
+	a_{n_k} = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
+\]
+ולכן על־פי סעיף ה'
+\[
+	\lim_{k \to \infty} a_{n_k} = \lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1 = 1
+\]
+לכן $L = 1$ גבול חלקי של $(a_n)$.
+
+\subsection{סעיף ז'}
+נחשב את $L = \displaystyle\uplim_{n \to \infty} a_n$. \\*
+נניח בשלילה כי $L > 1$, לכן קיימת תת־סדרה $a_{n_k}$ אשר מקיימת $\lim_{k \to \infty} a_{n_k} > 1$. \\*
+על־פי הגדרת הגבול במצב זה לפי הגדרה 2.9 קיים $n \in \NN$ כך שמתקיים $a_n = 1$ בסתירה למסקנת סעיף א', לכן $L \le 1$.
+בסעיף הקודם מצאנו כי $L = 1$ הוא גבול חלקי של הסדרה, וידוע כי $1 \ge L$ לכל גבול חלקי $L$ ולכן בהתאם הוא הגבול החלקי הגדול ביותר של $(a_n)$, דהינו
+\[
+	\displaystyle\uplim_{n \to \infty} a_n = 1
+\]
+
+\subsection{סעיף ח'}
+נגדיר $A = \left\{ a_n \mid n \in \NN \right\}$ ונמצא את $\sup A$. \\*
+אנו יודעים כי $1 \notin A$, אך על־פי הסעיף הקודם אנו יודעים כי לכל $n < 1$ בסביבה של $1$ מתקיים $n \in A$. \\*
+מסיבה זו $l = 1$ הוא חסם מלעיל של $A$, ולכל $k < l$ שנבחר קיים $a \in A$ כך ש־$a > k$ \footnotemark, לכן $l$ חסם עליון, נסמן
+\[
+	\sup A = 1
+\]
+כאמור, לקבוצה $A$ אין מקסימום, על־פי טענה $(1)$.
+
 \end{document}
