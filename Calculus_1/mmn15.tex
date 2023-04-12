@@ -1,88 +1,38 @@
-\documentclass[a4paper]{article}
-
-% packages
-\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
-\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
-
-% style
-\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
-\setmainfont{Libertinus Serif}
-\linespread{1.5}
-\setcounter{secnumdepth}{0}		% Remove default number tags from sections
-
-% custom operators
-\newcommand{\getenv}[2][]{%
-  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
-  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
-\getenv[\AUTHOR]{AUTHOR}
-\DeclareMathOperator\cis{cis}
-\DeclareMathOperator\Sp{Sp}
-\DeclareMathOperator\tr{tr}
-\DeclareMathOperator\im{Im}
-\DeclareMathOperator\diag{diag}
-\DeclareMathOperator*\lowlim{\underline{lim}}
-\DeclareMathOperator*\uplim{\overline{lim}}
-\def\NN{\mathbb{N}}
-\def\RR{\mathbb{R}}
-\def\QQ{\mathbb{Q}}
-\def\CC{\mathbb{C}}
+\input{../article_base.tex}
 
 \title{פתרון ממ''ן 15 – חשבון אינפיניטסימלי 1 (20474)}
-\author{\AUTHOR}
-\date\today
 
 \begin{document}
 \maketitle
 \section{שאלה 1}
-נמצא את נקודות הרציפות והאי־רציפות של הפונקציה
+נמצא את נקודות הרציפות והאי־רציפות של הפונקציה $f$ המוגדרת:
 \[
-	f(x) = \lfloor \cos x \rfloor \cos \frac{x}{2}
+	f(x) = \lfloor x \rfloor \tan \frac{\pi x}{2}
 \]
-בקטע $(-\pi, \frac{3 \pi}{2})$. \\*
-הפונקציה $\cos \frac{x}{2}$ רציפה בכל תחום הגדרתה על־פי משפט 5.13.
-לפי משפט 5.11 נראה כי הפונקציה $f$ רציפה בכל התחום בו $\lfloor \cos x \rfloor$ רציפה.
-ידוע כי תמונת הפונקציה $\cos x$ היא $[-1, 1]$, ואנו יודעים כי היא שלילית בתחום $(-\pi, -\frac{\pi}{2})$,
-לכן בתחום זה $\lfloor \cos x \rfloor$ ערכה $-1$.
-בהתאם בתחום $(-\frac{\pi}{2}, 0)$ ערכה $0$.
-בנקודה $0$ ערכה הוא $1$.
-בתחום $(0, \frac{\pi}{2})$ ערכה הוא $0$ ובשאר הקטע ערכה $-1$. \\*
-לכן הפונקציה $f$ רציפה בקטעים $(-\pi, -\frac{\pi}{2}), (-\frac{\pi}{2}, 0), (0, \frac{\pi}{2}), (\frac{\pi}{2}, \frac{3\pi}{2})$.
-בהתאם, נקודות האי־רציפות של הפונקציה בתחום קיימות בערכים $x = -\frac{\pi}{2}, 0, \frac{\pi}{2}$.
-נחשב את גבול הפונקציה כאשר $x = -\frac{\pi}{2}$:
+בתחום $\RR$ ונמיינן. \\*
+על־פי משפט 5.13 הפונקציה $\tan \frac{\pi x}{2}$ רציפה בכל תחום הגדרתה, ועל־פי הגדרת הפונקציה אנו יודעים כי היא איננה מוגדרת בערכים
 \[
-	\lim_{x \to -\frac{\pi}{2}^-} f(x)
-	= \lim_{x \to -\frac{\pi}{2}^-} \lfloor \cos x \rfloor \cos \frac{x}{2}
-	= \left( \lim_{x \to -\frac{\pi}{2}^-} \lfloor \cos x \rfloor \right) \left( \lim_{x \to -\frac{\pi}{2}^-} \cos \frac{x}{2} \right)
-	= -1 \cdot \frac{\sqrt{2}}{2}
-	= -\frac{\sqrt{2}}{2}
+	\left\{ 1 + 2k \mid k \in \ZZ \right\}
 \]
+מהגדרת החלק השלם והפוקנציה $x$ אנו יודעים כי $\lfloor x \rfloor$ רציפה בכל תחום הגדרתה, ולא מוגדרת בנקודות $x \in \ZZ$.
+על־פי משפט 5.11 גם $f$ רציפה בכל תחום הגדרתה, והיא כמובן לא מוגדרת ב־$x \in \ZZ$.
+אז כלל הנקודות החשודות באי־רציפות הן $x \in \ZZ$. \\*
+נגדיר מעתה $k \in \ZZ$. אנו יודעים כי כאשר $x = 1 + 2k$ אז הפונקציה $f(k)$ איננה מוגדרת, וכי $\lim_{x \to k^\pm} f(x) = \pm \infty$,
+לכן בנקודות אלה ל־$f$ נקודות אי־רציפות ממין שני. \\*
+כאשר $x = 2k$ אנו וידעים כי $\tan{\pi x}{2}$ רציפה, ואילו $\lfloor x \rfloor$ מקיימת
 \[
-	\lim_{x \to -\frac{\pi}{2}^+} f(x)
-	= \lim_{x \to -\frac{\pi}{2}^+} \lfloor \cos x \rfloor \cos \frac{x}{2}
-	= \left( \lim_{x \to -\frac{\pi}{2}^+} \lfloor \cos x \rfloor \right) \left( \lim_{x \to -\frac{\pi}{2}^+} \cos \frac{x}{2} \right)
-	= 0 \cdot \frac{\sqrt{2}}{2}
-	= 0
+	\lim_{x \to k^+} f(x) = k - 1
+	= \left( \lim_{x \to k^+} \lfloor x \rfloor \right) + \left( \lim_{x \to k^+} \tan \frac{\pi x}{2} \right)
+	= k - 1 + 0
+	= k - 1
 \]
-לכן $-\frac{\pi}{2}$ נקודת אי־רציפות מסדר ראשון של הפונקציה $f$.
-חישוב דומה יניב כי גם הנקודה $x = \frac{\pi}{2}$ היא נקודת אי־רציפות מסדר ראשון של הפונקציה. \\*
-עתה נחשב את ערך הגבול בנקודה $x = 0$:
+וגם
 \[
-	\lim{_x \to 0^-} f(x)
-	= \lim_{x \to 0^-} \lfloor \cos x \rfloor \cos \frac{x}{2}
-	= \left( \lim_{x \to 0^-} \lfloor \cos x \rfloor \right) \left( \lim_{x \to 0^-} \cos \frac{x}{2} \right)
-	= 0 \cdot 1
-	= 0
+	\lim_{x \to k^-} f(x) = k - 1
+	= k + 0
+	= k
 \]
-\[
-	\lim{_x \to 0^+} f(x)
-	= \lim_{x \to 0^+} \lfloor \cos x \rfloor \cos \frac{x}{2}
-	= \left( \lim_{x \to 0^+} \lfloor \cos x \rfloor \right) \left( \lim_{x \to 0^+} \cos \frac{x}{2} \right)
-	= 0 \cdot 1
-	= 0
-\]
-אך על־פי חישוב $f(0) = 1$, לכן בנקודה $x = 0$ יש לפונקציה נקודת אי־רציפות סליקה.
+לכן על־פי הגדרה 5.22 הנקודות $x = 2k$ הן נקודות אי־רציפות ממין ראשון ב־$f$.
 
 \section{שאלה 2}
 \subsection{סעיף א'}
@@ -96,19 +46,9 @@
 כך שלא מתקיים $f(x_n) \underset{n \to \infty}{\rightarrow} f(x_0)$.
 
 \subsection{סעיף ב'}
-תהי הפונקציה $f$ המוגדרת
-\[
-	f(x) = \begin{cases}
-		x & x \in \QQ \\
-		1 & x \notin \QQ
-	\end{cases}
-\]
-נוכיח שהפונקציה $f$ רציפה כאשר $x_0 = 1$ בלשון $\epsilon, \delta$. \\*
-לכל $\epsilon > 0$ נמצא $\delta$ כך שלכל $x$ שמתקיים $|x - 1| < \delta$ מתקיים גם $|f(x) - 1| < \epsilon$.
-נשים לב כי עבור כל $x \notin \QQ$ מתקיים $f(x) = 1$ ובהתאם $|f(x) - 1| = 0 < \epsilon$ והתנאי מתקיים לכל $\epsilon$ ו־$\delta$.
-עבור ערכי $x$ רציונליים מתקיים $|f(x) - 1| = |x - 1| < \delta$, לכן נגדיר $\delta = \epsilon$, אז מתקיים $|f(x) - 1| < \epsilon$,
-ובסך־הכול התנאי מתקיים לכל $|x - 1| < \delta$. \\*
-מצאנו ערך $\delta$ אשר מקיים את אי־השוויון לכל $\epsilon$ ולכן הפונקציה רציפה בנקודה $x_0 = 1$.
+נגדיר $g$ פונקציה הרציפה ב־$x_0$ ופונקציה $f$ המוגדרת $f(x) = g(x) D(x)$. \\*
+נוכיח כי אם $g(x_0) = 0$ אז $f$ רציפה ב־$x_0$. \\*
+Do that!
 
 \subsection{סעיף ג'}
 \textbf{(i)}
