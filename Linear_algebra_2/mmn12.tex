@@ -333,7 +333,7 @@
 	\end{pmatrix}
 \]
 נחשב
-\[
+\begin{align*}
 	A A^* = 
 	\begin{pmatrix}
 		2 - i & -1 & 0 \\
@@ -346,7 +346,217 @@
 		0 & 1 & 2 + i
 	\end{pmatrix}
 	= \begin{pmatrix}
-		6 & ...
+		6 & -3 & -1 \\
+		-3 & 4 & 3 \\
+		-1 & 3 & 6
+	\end{pmatrix} \\
+	A^* A = 
+	\begin{pmatrix}
+		2 + i & -1 & 0 \\
+		-1 & 1 + i & 1 \\
+		0 & 1 & 2 + i
+	\end{pmatrix}
+	\begin{pmatrix}
+		2 - i & -1 & 0 \\
+		-1 & 1 - i & 1 \\
+		0 & 1 & 2 - i
+	\end{pmatrix}
+	= \begin{pmatrix}
+		6 & -3 & -1 \\
+		-3 & 4 & 3 \\
+		-1 & 3 & 6
+	\end{pmatrix}
+\end{align*}
+על־פי החיושב $A A^* = A^* A$ ולכן המטריצה נורמלית. \\*
+נמצא את הפירוק
+\[
+	A = \sum_{i} \lambda_i P_i
+\]
+כאשר $P_i$ הן מטריצות של ההטלות האורתוגונליות שמופיעות בפירוק הספקטראלי של $T_A$. \\*
+נחשב את הפולינום האופייני של $A$:
+\begin{align*}
+	p(t) 
+	& = 
+	\begin{vmatrix}
+		t - 2 + i & 1 & 0 \\
+		1 & t - 1 + i & -1 \\
+		0 & -1 & t - 2 + i
+	\end{vmatrix}
+	\xrightarrow{R_3 \to R_3 + R_1} 
+	\begin{vmatrix}
+		t - 2 + i & 1 & 0 \\
+		1 & t - 1 + i & -1 \\
+		t - 2 + i & 0 & t - 2 + i
+	\end{vmatrix} \\
+	& = 
+	(t - 2 + i)
+	\begin{vmatrix}
+		t - 2 + i & 1 & 0 \\
+		1 & t - 1 + i & -1 \\
+		1 & 0 & 1
+	\end{vmatrix}
+	\xrightarrow{R_2 \to R_2 + R_3}
+	(t - 2 + i)
+	\begin{vmatrix}
+		t - 2 + i & 1 & 0 \\
+		2 & t - 1 + i & 0 \\
+		1 & 0 & 1
+	\end{vmatrix} \\
+	& =
+	(t - 2 + i)
+	\begin{vmatrix}
+		t - 2 + i & 1 \\
+		2 & t - 1 + i \\
+	\end{vmatrix}
+	= (t - 2 + i) ((t - 2 + i) (t - 1 + i) - 2) \\
+	& = (t - 2 + i)(t^2 + (-3 + 2i) t + (-1 - 3i))
+	= (t - 2 + i)(t^2 + (-1 + 2i) t + 1 - 3i) \\
+	& = (t - 2 + i)(t + i)(t - 3 + i)
+\end{align*}
+אז הערכים העצמיים של $T_A$ הם $2 - i, -i, 3 - i$. נחשב את המרחב העצמי שלהם על־ידי פתרון מערכת המשוואות $(A - \lambda I)u = 0$:
+\begin{align*}
+	& (A - (2 - i) I) u = 0
+	\rightarrow
+	\begin{pmatrix}
+		0 & -1 & 0 \\
+		-1 & -1 & 1 \\
+		0 & 1 & 0
+	\end{pmatrix}
+	\xrightarrow[R_3 \to R_3 + R_1]{R_2 \to -R_2 + R_1}
+	\begin{pmatrix}
+		0 & -1 & 0 \\
+		1 & 0 & -1 \\
+		0 & 0 & 0
+	\end{pmatrix} \\
+	& \rightarrow
+	V_{2 -i} = \Sp \{ (1, 0, 1) \}, v_1 = (1, 0, 1) \\
+	& (A + i I) u = 0
+	\rightarrow
+	\begin{pmatrix}
+		2 & -1 & 0 \\
+		-1 & 1 & 1 \\
+		0 & 1 & 2
+	\end{pmatrix}
+	\xrightarrow[R_1 \to -R_1]{R_2 \leftrightarrow R_1}
+	\begin{pmatrix}
+		1 & -1 & -1 \\
+		2 & -1 & 0 \\
+		0 & 1 & 2
+	\end{pmatrix}
+	\xrightarrow[R_3 \to R_3 - R_2 + 2R_1]{R_2 \to R_2 - 2R_1}
+	\begin{pmatrix}
+		1 & -1 & -1 \\
+		0 & 1 & 2 \\
+		0 & 0 & 0
+	\end{pmatrix} \\
+	& \rightarrow
+	V_{-i} = \Sp\{ (1, 2, -1)^t \}, v_2 = (1, 2, -1) \\
+	& (A - (3 - i) I) u = 0
+	\rightarrow
+	\begin{pmatrix}
+		-1 & -1 & 0 \\
+		-1 & -2 & 1 \\
+		0 & 1 & -1
+	\end{pmatrix}
+	\xrightarrow[R_2 \to R_2 + R_1]{R_1 \to - R_1}
+	\begin{pmatrix}
+		1 & 1 & 0 \\
+		0 & -1 & 1 \\
+		0 & 1 & -1
+	\end{pmatrix}
+	\rightarrow
+	\begin{pmatrix}
+		1 & 1 & 0 \\
+		0 & 1 & -1 \\
+		0 & 0 & 0
+	\end{pmatrix} \\
+	& \rightarrow V_{3 - i} = \Sp\{ (1, -1, -1)^t \}, v_3 = (1, -1, -1)
+\end{align*}
+נגדיר $B = (v_1, v_2, v_3)$ בסיס אורתוגונלי ו־$E$ הבסיס הסטנדרטי, אז מטריצת המעבר מ־$E$ ל־$B$ היא
+\[
+	M = \begin{pmatrix}
+		1 & 1 & 1 \\
+		0 & 2 & -1 \\
+		1 & -1 & -1
 	\end{pmatrix}
 \]
+לפי חישוב גם
+\[
+	M^{-1} = \begin{pmatrix}
+		\frac{1}{2} & 0 & \frac{1}{2} \\
+		-\frac{1}{2} & 1 & \frac{1}{2} \\
+		1 & -1 & -1
+	\end{pmatrix}
+\]
+נגדיר $P_i$ ההטלה האורתוגונלית על האיבר ה־$i$, אז לפי הקורס הקודם
+\[
+	[P_i]_E = M [P_i]_B M^{-1}
+\]
+\begin{align*}
+	& [P_1]_E = 
+	\begin{pmatrix}
+		1 & 1 & 1 \\
+		0 & 2 & -1 \\
+		1 & -1 & -1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 0 & 0 \\ 
+		0 & 0 & 0 \\ 
+		0 & 0 & 0
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{1}{2} & 0 & \frac{1}{2} \\
+		-\frac{1}{2} & 1 & \frac{1}{2} \\
+		1 & -1 & -1
+	\end{pmatrix}
+	= \begin{pmatrix}
+		\frac{1}{2} & 0 & 0 \\
+		0 & 0 & 0 \\
+		1 & 0 & 0
+	\end{pmatrix} \\
+	& [P_2]_E = 
+	\begin{pmatrix}
+		1 & 1 & 1 \\
+		0 & 2 & -1 \\
+		1 & -1 & -1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0 & 0 & 0 \\ 
+		0 & 1 & 0 \\ 
+		0 & 0 & 0
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{1}{2} & 0 & \frac{1}{2} \\
+		-\frac{1}{2} & 1 & \frac{1}{2} \\
+		1 & -1 & -1
+	\end{pmatrix}
+	= \begin{pmatrix}
+		0 & 0 & 0 \\
+		0 & 2 & 0 \\
+		0 & 1 & 0
+	\end{pmatrix} \\
+	& [P_3]_E = 
+	\begin{pmatrix}
+		1 & 1 & 1 \\
+		0 & 2 & -1 \\
+		1 & -1 & -1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0 & 0 & 0 \\ 
+		0 & 0 & 0 \\ 
+		0 & 0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{1}{2} & 0 & \frac{1}{2} \\
+		-\frac{1}{2} & 1 & \frac{1}{2} \\
+		1 & -1 & -1
+	\end{pmatrix}
+	= \begin{pmatrix}
+		0 & 0 & \frac{1}{2} \\
+		0 & 0 & \frac{1}{2} \\
+		0 & 0 & 1
+	\end{pmatrix} \\
+\end{align*}
+ולכן $A = (2 - i) [P_1]_E - i [P_2]_E + (3 - i) [P_3]_E$
+
 \end{document}
