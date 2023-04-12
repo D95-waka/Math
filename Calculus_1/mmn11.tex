@@ -1,36 +1,5 @@
-\documentclass[a4paper]{article}
-
-% packages
-\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
-\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
-
-% style
-\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
-\setmainfont{Libertinus Serif}
-\linespread{1.5}
-\setcounter{secnumdepth}{0}		% Remove default number tags from sections
-
-% custom operators
-\newcommand{\getenv}[2][]{%
-  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
-  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
-\getenv[\AUTHOR]{AUTHOR}
-\DeclareMathOperator\cis{cis}
-\DeclareMathOperator\Sp{Sp}
-\DeclareMathOperator\tr{tr}
-\DeclareMathOperator\im{Im}
-\DeclareMathOperator\diag{diag}
-\def\NN{\mathbb{N}}
-\def\ZZ{\mathbb{Z}}
-\def\QQ{\mathbb{Q}}
-\def\RR{\mathbb{R}}
-\def\CC{\mathbb{C}}
-
+\input{../article_base.tex}
 \title{פתרון ממ''ן 11 – חשבון אינפיניטסימלי 1 (20474)}
-\author{\AUTHOR}
-\date\today
 
 \begin{document}
 \maketitle

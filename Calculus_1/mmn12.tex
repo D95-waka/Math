@@ -1,95 +1,58 @@
-\documentclass[a4paper]{article}
-
-% packages
-\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
-\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
-
-% style
-\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
-\setmainfont{Libertinus Serif}
-\linespread{1.5}
-\setcounter{secnumdepth}{0}		% Remove default number tags from sections
-
-% custom operators
-\newcommand{\getenv}[2][]{%
-  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
-  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
-\getenv[\AUTHOR]{AUTHOR}
-\DeclareMathOperator\cis{cis}
-\DeclareMathOperator\Sp{Sp}
-\DeclareMathOperator\tr{tr}
-\DeclareMathOperator\im{Im}
-\DeclareMathOperator\diag{diag}
-\def\NN{\mathbb{N}}
-\def\RR{\mathbb{R}}
-\def\CC{\mathbb{C}}
-
+\input{../article_base.tex}
 \title{פתרון ממ''ן 12 – חשבון אינפיניטסימלי 1 (20474)}
-\author{\AUTHOR}
-\date\today
 
 \begin{document}
 \maketitle
 \section{שאלה 1}
 \subsection{סעיף א'}
-נוכיח בלשון $\epsilon, N$ כי מתקיים:
-\begin{align}
-	\lim_{n \to \infty} \sqrt{\frac{4n + 1}{n}} = 2
-\end{align}
-נשים לב תחילה כי מתקיים
-\[
+\explain{נוכיח בלשון $\epsilon, N$ כי מתקיים}{$\lim_{n \to \infty} \sqrt{\frac{4n + 1}{n}} = 2$}
+\explain{נשים לב תחילה כי מתקיים}{
+$
 	\frac{4n + 1}{n}
 	= \frac{\frac{4n}{n} + \frac{1}{n}}{\frac{n}{n}}
 	= \frac{4 + \frac{1}{n}}{1}
 	= 4 + \frac{1}{n}
-\]
+$}
 לכל $n \ne 0$. לכן נוכל להוכיח את קיום הגבול
-\[
+$$
 	\lim_{n \to \infty} \sqrt{4 + \frac{1}{n}} = 2
-\]
+$$
 נגדיר $\epsilon > 0$ מספר ממשי. על־פי הגדרת הגבול צריך להתקיים:
-\[
+$$
 	\left| \sqrt{4 + \frac{1}{n}} - 2 \right| < \epsilon
-\]
+$$
 תוכן השורש הוא תמיד לפחות 4, ולכן תוצאתו תמיד גדולה מ־2, בהתאם תוכן הערך המוחלט חיובי תמיד ומתקיים:
-\[
+$$
 	\left| \sqrt{4 + \frac{1}{n}} - 2 \right|
 	= \sqrt{4 + \frac{1}{n}} - 2 < \epsilon
-\]
+$$
 לכל $n > N$ כאשר $N \in \NN$. נשים לב כי
-\[
+$$
 	{\left(2 + \sqrt{\frac{1}{n}}\right)}^2 = 4 + 2\sqrt{\frac{1}{n}} + \frac{1}{n} > 4 + \frac{1}{n} = {\left(\sqrt{4 + \frac{1}{n}}\right)}^2
 	\rightarrow \sqrt{4 + \frac{1}{n}} < 2 + \sqrt{\frac{1}{n}}
-\]
-נקבע
-\[
-	\sqrt{4 + \frac{1}{n}} - 2 < 2 + \sqrt{\frac{1}{n}} - 2 = \frac{1}{\sqrt{n}} < \epsilon
-\]
-נגדיר \[
-	N = \left\lceil \frac{1}{\epsilon^2} \right\rceil
-\]
+$$
+\explain{נקבע} {$\sqrt{4 + \frac{1}{n}} - 2 < 2 + \sqrt{\frac{1}{n}} - 2 = \frac{1}{\sqrt{n}} < \epsilon$ }
+\explain{נגדיר}{ $N = \left\lceil \frac{1}{\epsilon^2} \right\rceil$ }
 במצב זה הגבול $(1)$ מתקיים לכל $\epsilon > 0$.
 
 \subsection{סעיף ב'}
 \textbf{(i)}
 יהיו $(a_n)$ סדרה ו־$L$ מספר ממשי. ננסח בלשון $\epsilon, N$ את הטענה
-\[
+$$
 	\lim_{n \to \infty} a_n \ne L
-\]
+$$
 תחילה נצרין את הטענה:
-\[
+$$
 	\lnot \forall \epsilon > 0 (
 	\exists N \in \NN (
 	\forall n > N (\left| a_n - L \right| < \epsilon)))
-\]
+$$
 נפשט את הפסוק:
-\[
+$$
 	\exists \epsilon > 0 (
 	\forall N \in \NN (
 	\exists n > N (\left| a_n - L \right| \ge \epsilon)))
-\]
+$$
 ננסח פסוק זה במילים: \\*
 הטענה $\lim_{n \to \infty} a_n \ne L$ מתקיימת אם ורק אם
 קיים $\epsilon > 0$ עבורו לכל $N$ טבעי קיים $n > N$
@@ -104,9 +67,9 @@
 
 \subsection{סעיף ג'}
 נוכיח שהסדרה $(a_n)$ מתבדרת בלשון $\epsilon, N$, כאשר
-\[
+$$
 	a_n = \frac{{(-1)}^n n + 1}{n + 2}
-\]
+$$
 נוכיח כי לכל $L$ ממשי שנבחר קיים $\epsilon > 0$ שעבורו לכל $N$ טבעי קיים $n > N$ שעבורו $\left| a_n - L \right| \ge \epsilon$. \\*
 מתקיים על־פי חישוב ישיר
 \begin{align*}
@@ -132,9 +95,9 @@
 \end{align*}
 נוכל לראות כי מכנה הגבול חיובי וגדול מ־$2n - 1$ כמעט לכל $n$ ולכן המכנה שואף ל־$\infty$, כאשר המונה חסום ב־$1$,
 לכן לפי משפט 2.22 והאריתמטיקה של הגבולות לקבוע כי
-\[
+$$
 	\lim_{n \to \infty} \sqrt{n^2 + {(-1)}^n} - n = 0
-\]
+$$
 
 \subsection{סעיף ב'}
 \begin{align*}
@@ -152,20 +115,20 @@
 	& \frac{\sqrt{3}/n^2 - 1/n^4}{1} \le \frac{\lfloor \sqrt{3} n^2 \rfloor}{n^4} \le \frac{\sqrt{3}}{n^2} \\
 \end{align*}
 נראה כי גם
-\[
+$$
 	\lim_{n \to \infty} \left(\frac{\sqrt{3}}{n^2} - \frac{1}{n^4} \right)
 	=
 	\lim_{n \to \infty} \frac{\sqrt{3}}{n^2}
 	= 0
-\]
+$$
 לכן לפי כלל הסנדוויץ' מתקיים גם
-\[
+$$
 	\lim_{n \to \infty} \frac{\lfloor \sqrt{3} n^2 \rfloor}{n^4} = 0
-\]
+$$
 
 \subsection{סעיף ד'}
 לפי אי־שוויון הממוצעים
-\[
+$$
 	(1) \sqrt[n]{\frac{\displaystyle \prod_{i = 1}^{n} 2n - 1}{\displaystyle \prod_{i = 1}^{n} 2n }}
 	= \sqrt[n]{\displaystyle \prod_{i = 1}^{n} \frac{2n - 1}{2n}}
 	\le \frac{\displaystyle \sum_{i = 1}^{n} \frac{2n - 1}{2n}}{n}
@@ -174,12 +137,12 @@
 	= \frac{2n - 1}{2n} 
 	= 1 - \frac{1}{2n} 
 לפי אי־שוויון הממוצעים
-\]
+$$
 נשים לב כי $(1)$ הוא שורש של מספר גדול מ־1 ולכן נוכל להניח כי הוא גדול שווה ל־1.
 עוד נראה כי
-\[
+$$
 	\lim_{n \to \infty} 1 = \lim_{n \to \infty} \left( 1 - \frac{1}{2n} \right) = 1
-\]
+$$
 לכן לפי כלל הסנדוויץ' סדרה $(1)$ מתכנסת ל־1.
 
 \section{שאלה 3}
@@ -188,7 +151,7 @@
 \subsection{סעיף א'}
 נפריך את הטענה כי אם כמעט כל אברי $(a_n)$ ו־$(b_n)$ חיוביים אז אחת משתי הסדרות מתכנסת לאינסוף לפחות על־ידי דוגמה נגדית. \\*
 נגדיר
-\[
+$$
 	a_n = \begin{cases}
 		1 & \text{ זוגי} n \\
 		n & \text{ אי־זוגי} n \\
@@ -197,7 +160,7 @@
 		n & \text{ זוגי} n \\
 		1 & \text{ אי־זוגי} n \\
 	\end{cases}
-\]
+$$
 ניתן לראות כי מכפלת הסדרות היא הסדרה $c_n = n$ אשר מקיימת את תנאי $(1)$, אך שתי הסדרות מתבדרות.
 
 \subsection{סעיף ב'}
@@ -210,14 +173,14 @@
 \subsection{סעיף ג'}
 נפריך את הטענה כי $\lim_{n \to \infty} b_n \ne 0$ בעזרת דוגמה נגדית. \\*
 נגדיר
-\[
+$$
 	a_n = n^3,
 	b_n = \frac{1}{n}
-\]
+$$
 לכן
-\[
+$$
 	a_n b_n = n^2
-\]
+$$
 ובהתאם תנאי $(1)$ מתקיים. למרות זאת, לפי טענה 2.10 מתקיים $\lim_{n \to \infty} b_n = 0$ בסתירה לטענה.
 
 \subsection{סעיף ד'}
@@ -235,9 +198,9 @@
 \subsection{סעיף ו'}
 נפריך את הטענה כי אם $b_n < a_n$ כמעט לכל $n$ אז $\lim_{n \to \infty} a_n = \infty$ בעזרת דוגמה נגדית: \\*
 נגדיר
-\[
+$$
 	a_n = -n, b_n = -n - 1, a_n b_n = n (n + 1)
-\]
+$$
 במקרה זה גבול $(1)$ מתקיים ואף $b_n < a_n$ לכל $n$ אך $\lim_{n \to \infty} a_n = -\infty$ בסתירה לטענה.
 
 \subsection{סעיף ז'}
@@ -245,7 +208,7 @@
 על־פי הגדרת שאיפה לאינסוף, לכל $M \in \RR$ קיים $N \in \NN$ כך שלכל $n > N$ מתקיים $a_n b_n > M$.
 לכן מתקיים גם $a_n a_n > a_n b_n > M$, אז $a_n > \sqrt{M}$. נגדיר $M' = \sqrt{M}$ ואנו רואים כי הגדרת השאיפה חלה על $(a_n)$.
 לכן
-\[
+$$
 	\lim_{n \to \infty} a_n = \infty
-\]
+$$
 \end{document}
