@@ -1,0 +1,425 @@
+\documentclass[a4paper]{article}
+
+% packages
+\usepackage{inputenc, fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Libertinus Serif}
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+
+% custom operators
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+\getenv[\AUTHOR]{AUTHOR}
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+\def\NN{\mathbb{N}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+
+% theorems
+\title{פתרון ממ''ן 12 – חשבון אינפיניטסימלי 1 (20474)}
+\author{\AUTHOR}
+\date\today
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+\subsection{סעיף א'}
+נוכיח כי מתקיים הגבול:
+\[
+	\lim_{n \to \infty} \frac{3n^2 - 4}{n^2 - 4} = 3
+\]
+נוכיח כי הגבול מתקיים על־פי הגדרת הגבול בלשון $\epsilon, N$.
+על־פי ההגדרה, לכל $\epsilon > 0$ עלינו למצוא ערך $N$ עבורו לכל $N < n$
+מתקיים אי־השוויון
+\[
+	\left| \frac{3n^2 - 4}{n^2 - 4} - 3 \right| =
+	\left| \frac{3n^2 - 4 - 3n^3 + 12}{n^2 - 4} \right| =
+	\left| \frac{8}{n^2 - 4} \right|
+	< \epsilon \tag{1}
+\]
+נשים לב כי לכל $2 < n$ ערך המונה והמכנה באגף השמאלי הוא חיובי,
+לכן בוודאי גם הערך הפנימי לערך המוחלט חיובי, ונוכל להשמיט את הערך המוחלט:
+\begin{align*}
+	& \frac{8}{n^2 - 4} < \epsilon \\
+	& \frac{8}{\epsilon} < n^2 - 4 \\
+	& \frac{8}{\epsilon} + 4 < n^2 \\
+	& 2 \sqrt{\frac{2}{\epsilon} + 1} < n \\
+\end{align*}
+נגדיר
+\[
+	N = \max\left(3, 2 \sqrt{\frac{2}{\epsilon} + 1}\right)
+\]
+הראינו כי לכל $\epsilon > 0$ קיים $N$
+כך שעבור כל $N < n$ מתקיים אי־שוויון $(1)$ ולכן מתקיים
+\[
+	\lim_{n \to \infty} \frac{3n^2 - 4}{n^2 - 4} = 3
+\]
+
+\subsection{סעיף ב'}
+\textbf{(i)}
+יהיו $(a_n)$ סדרה ו־$L$ מספר ממשי. ננסח בלשון $\epsilon, N$ את הטענה
+\[
+	\lim_{n \to \infty} a_n \ne L
+\]
+תחילה נצרין את הטענה:
+\[
+	\lnot \forall \epsilon > 0 (
+	\exists N \in \NN (
+	\forall n > N (\left| a_n - L \right| < \epsilon)))
+\]
+נפשט את הפסוק:
+\[
+	\exists \epsilon > 0 (
+	\forall N \in \NN (
+	\exists n > N (\left| a_n - L \right| \ge \epsilon)))
+\]
+ננסח פסוק זה במילים: \\*
+הטענה $\lim_{n \to \infty} a_n \ne L$ מתקיימת אם ורק אם
+קיים $\epsilon > 0$ עבורו לכל $N$ טבעי קיים $n > N$
+כך שמתקיים $\left| a_n - L \right| \ge \epsilon$. \\
+\textbf{(ii)}
+על־פי הגדרת התבדרות (2.13) סדרה נקראת מתבדרת כאשר אין מספר $L$
+שעבורו מתקיים הגבול $\lim_{n \to \infty} a_n = L$.
+ננסח את הטענה בעזרת הגדרת התכנסות בלשון $\epsilon, N$: \\*
+סדרה $(a_n)$ היא מתבדרת אם ורק אם
+לכל $L$ ממשי קיים $\epsilon > 0$ עבורו לכל $N$ טבעי קיים $n > N$
+כך שמתקיים $\left| a_n - L \right| \ge \epsilon$.
+
+\subsection{סעיף ג'}
+נוכיח שהסדרה $a_n = \langle \sqrt{n} \rangle$ מתבדרת בלשון $\epsilon, N$. \\*
+נוכיח כי לכל $L$ ממשי שנבחר קיים $\epsilon > 0$ שעבורו לכל $N$
+טבעי קיים $n > N$ שעבורו $\left| a_n - L \right| \ge \epsilon$. \\*
+תחילה נבחין כי לכל $n$ מתקיים $0 \le a_n \le 1$, על־פי הגדרת החלק השברי.
+לכן לכל $L$ שאיננו בתחום $[-1, 1]$ ו־$\epsilon = 1$
+קיים $n$ שהוא שורש שלם של מספר טבעי וגדול מ־$N$ כלשהו. \\*
+הראינו כי התנאי נכון מלבד בתחום $[-1, 1]$, נותר עתה לראות את נכונותו אף בתחום.
+נגדיר $\epsilon = \left| L \right|$ ו־$n$ להיות ריבוע מספר טבעי הגדול מ־$N$.
+במקרה זה $a_n = 0$ ובהתאם אי־השוויון $\left| a_n - L \right| \ge \epsilon$
+מתאפס ל־$\left| L \right| \ge \epsilon = \left| L \right|$ והתנאי מתקיים,
+לכן הסדרה $(a_n)$ מתבדרת.
+
+\section{שאלה 2}
+נחשב את הגבולות הבאים, או נוכיח שאינם קיימים:
+
+\subsection{למה א'}
+לכל $k \in \NN$ ו־$h \in \RR$ מתקיים
+\[
+	\lim_{n \to \infty} \frac{h}{n^k} = 0
+\]
+על־פי אריתמטיקה של גבולות וטענה 2.10:
+\[
+	\lim_{n \to \infty} \frac{h}{n^k} = 0
+	= \lim_{n \to \infty} h \cdot
+	{\left(\lim_{n \to \infty} \frac{1}{n}\right)}^k
+	= h {0}^k
+	= 0
+\]
+
+\subsection{סעיף א'}
+\begin{align*}
+	\lim_{n \to \infty} \frac{2n^3 - 5n^5 + 9}{2n^4 - 4n^7 - \pi}
+	& = \lim_{n \to \infty} \frac{2n^3/n^7 - 5n^5/n^7 + 9/n^7}
+	{2n^4/n^7 - 4n^7/n^7 - \pi/n^7} \\
+	& = \lim_{n \to \infty} \frac{2/n^4 - 5/n^2 + 9/n^7}
+	{2/n^3 - 4 - \pi/n^7} \\
+	& = \lim_{n \to \infty} \frac{0}
+	{-4} & \text{על־פי למה א'} \\
+	& = 0
+\end{align*}
+
+\subsection{סעיף ב'}
+\begin{align*}
+	\lim_{n \to \infty} \frac{2n^3 - 5n^5 + 9}{2n^4 - 4n^5 - \pi}
+	& = \lim_{n \to \infty} \frac{2n^3/n^5 - 5n^5/n^5 + 9/n^5}
+	{2n^4/n^5 - 4n^5/n^5 - \pi/n^5} \\
+	& = \lim_{n \to \infty} \frac{2/n^2 - 5 + 9/n^5}
+	{2/n - 4 - \pi/n^5} \\
+	& = \lim_{n \to \infty} \frac{-5}
+	{-4} & \text{על־פי למה א'} \\
+	& = \frac{5}{4}
+\end{align*}
+
+\subsection{סעיף ג'}
+\begin{align*}
+	\lim_{n \to \infty} \sqrt{n^2 + 2n} - \sqrt{n^2 - 2n}
+	& = \lim_{n \to \infty} \frac
+		{(\sqrt{n^2 + 2n} - \sqrt{n^2 - 2n})
+		(\sqrt{n^2 + 2n} + \sqrt{n^2 - 2n})}
+		{\sqrt{n^2 + 2n} + \sqrt{n^2 - 2n}} \\
+	& = \lim_{n \to \infty} \frac
+		{n^2 + 2n - n^2 - 2n}
+		{\sqrt{n^2 + 2n} + \sqrt{n^2 - 2n}} \\
+	& = \lim_{n \to \infty} \frac
+		{4n}
+		{n \sqrt{1 + \frac{2}{n}} + n \sqrt{1 - \frac{2}{n}}} \\
+	& = \lim_{n \to \infty} \frac
+		{4}
+		{\sqrt{1 + \frac{2}{n}} + \sqrt{1 - \frac{2}{n}}}
+	& \tag{1} \\
+\end{align*}
+נוכיח כי מתקיים:
+\[
+	\lim_{n \to \infty} \sqrt{1 \pm \frac{2}{n}} = 1
+\]
+לכל $n$ מתקיים:
+\[
+	1 < 1 \pm \frac{2}{n} < {(1 \pm \frac{2}{n})}^2
+\]
+נפעיל שורש:
+\[
+	1 < \sqrt{1 \pm \frac{2}{n}} < 1 \pm \frac{2}{n}
+\]
+על־פי משפט 2.32:
+\[
+	\lim_{n \to \infty} 1
+	= \lim_{n \to \infty} \sqrt{1 \pm \frac{2}{n}} 
+	= \lim_{n \to \infty} 1 \pm \frac{2}{n} = 1
+\]
+נציב ב־$(1)$:
+\[
+	\frac {4} {1 + 1} = 2
+\]
+
+\subsection{סעיף ד'}
+\[
+	\lim_{n \to \infty} \sqrt[n]{ 2^n - n^2 }
+	= \lim_{n \to \infty} \sqrt[n]{ 2^n (1 - \frac{n^2}{2^n}) }
+	= \lim_{n \to \infty} 2 \sqrt[n]{ 1 - \frac{n^2}{2^n} }
+\]
+אילו מוגדר הגבול
+\[
+	\lim_{n \to \infty} \sqrt[n]{ 1 - \frac{n^2}{2^n} } = L \tag{1}
+\]
+אז על־פי האריתמטיקה של הגבולות ערך הגבול המבוקש $2L$.
+נוכיח כי גבול זה מתקיים ונמצאהו.
+הביטוי $\frac{n^2}{2^n}$ מוגדר וחיובי לכל $n$ ולכן
+\[
+	1 - \frac{n^2}{2^n} < 1
+\]
+נבצע שורש:
+\[
+	\sqrt[n]{1 - \frac{n^2}{2^n}} < \sqrt[n]{1} = 1 \tag{2}
+\]
+אנו רואים כי לסדרה בגבול $(1)$ מתקיים שכמעט כל איבר שלה קטן מ־$1$. \\*
+על־פי מסקנה 2.49 מתקיים
+\[
+	\lim_{n \to \infty} \frac{n^2}{2^n} = 0
+\]
+לכן לכמעט לכ $n$ מתקיים
+\[
+	\frac{n^2}{2^n} < \frac{1}{2}
+	\rightarrow
+	1 - \frac{1}{2} = \frac{1}{2} < 1 - \frac{n^2}{2^n}
+\]
+לאחר הפעלת שורש:
+\[
+	\frac{1}{\sqrt[n]{2}} < \sqrt[n]{1 - \frac{n^2}{2^n}}
+\]
+על־פי טענה 2.35 ואריתמטיקה של הגבולות:
+\[
+	\lim_{n \to \infty} \frac{1}{\sqrt[n]{2}} = 1 \tag{3}
+\]
+
+משילוב טענות $(2)$ ו־$(3)$ ועל־פי משפט 2.32 מתקיים:
+\[
+	\lim_{n \to \infty} \sqrt[n]{1 - \frac{n^2}{2^n}} = 1
+\]
+משילוב בטענה $(1)$ אנו מקבלים:
+\[
+	\lim_{n \to \infty} \sqrt[n]{ 2^n - n^2 } = 2
+\]
+
+\subsection{סעיף ה'}
+\[
+	\lim_{n \to \infty} \frac{n}{n + 2} \sum_{k = 1}^n \frac{k}{k + 3}
+\]
+נכתוב מחדש את ערך הסדרה:
+\[
+	\frac{n}{n + 2} \sum_{k = 1}^n \frac{k}{k + 3}
+	= \frac{n}{n + 2} n \frac{1}{n} \sum_{k = 1}^n \frac{k}{k + 3}
+\]
+מתקיים:
+\[
+	\lim_{n \to \infty} \frac{n}{n + 2} \sum_{k = 1}^n \frac{k}{k + 3}
+	=
+	\left( \lim_{n \to \infty} \frac{n^2}{n + 2} \right)
+	\left( \lim_{n \to \infty} \frac{1}{n}
+	\sum_{k = 1}^n \frac{k}{k + 3} \right)
+\]
+אם ורק אם שני הגבולות מתקיימים על־פי האריתמטיקה של הגבולות,
+לכן נוכיח ששני הגבולות קיימים ונמצא את ערכם. \\*
+תחילה נוכיח את התכנסות הגבול
+\[
+	\lim_{n \to \infty} \frac{n^2}{n + 2}
+\]
+מתקיים:
+\[
+	\frac{n^2}{n + 2} = \frac{1}{\frac{1}{n} + \frac{2}{n^2}}
+\]
+לכן
+\[
+	\lim_{n \to \infty} \frac{n^2}{n + 2}
+	= \lim_{n \to \infty} \frac{1}{\frac{1}{n} + \frac{2}{n^2}}
+	= \frac{\lim_{n \to \infty} 1}{\lim_{n \to \infty}
+	\frac{1}{n} + \frac{2}{n^2}}
+	= \frac{1}{0^+}
+	= \infty
+\]
+על־פי האריתמטיקה של גבולות אינסופיים. \\*
+נוכיח כי הגבול
+\[
+	\lim_{n \to \infty} \frac{1}{n} \sum_{k = 1}^n \frac{k}{k + 3}
+\]
+מתקיים אף הוא. \\*
+על־פי משפט 2.51 אם הגבול קיים אז מתקיים גם
+\[
+	\lim_{n \to \infty} \frac{1}{n} \sum_{k = 1}^n \frac{k}{k + 3}
+	= \lim_{n \to \infty} \frac{n}{n + 3}
+	= \lim_{n \to \infty} \frac{1}{1 + \frac{3}{n}}
+	= \frac{1}{1 + \lim_{n \to \infty} \frac{3}{n}}
+	= \frac{1}{1 + 0}
+	= 1
+\]
+ראינו כי הגבול מתקיים ושווה ל־$0$,
+לכן מתקיים:
+\[
+	\lim_{n \to \infty} \frac{n}{n + 2} \sum_{k = 1}^n \frac{k}{k + 3}
+	= \infty \cdot 1
+	= \infty
+\]
+דהינו, על־פי האריתמטיקה של גבולות אינסופיים הגבול שואף לאינסוף,
+וכמובן מתכנס במובן הרחב.
+
+\section{שאלה 3}
+יהיו $(a_n)$ ו־$(b_n)$ סדרות כך שמתקיים $(1) \lim_{n \to \infty} a_n b_n = 1$.
+
+\subsection{סעיף א'}
+נוכיח כי אם כמעט כל אברי $(a_n)$ חיוביים, אז כמעט כל אברי $(b_n)$ חיוביים.
+נניח בשלילה כי כמעט כל אברי $(b_n)$ הם שליליים. קיים $N \in \NN$
+כך שלכל $n > N$ מתקיים $a_n > 0$ ו־$b_n < 0$, לכן $a_n b_n < 0$,
+אבל ידוע כי לכל $n > N$ גם מתקיים $a_n b_n > 0$ על־פי $(1)$.
+זוהי סתירה ולכןכמעט כל אברי $(b_n)$ מקיימים $b_n > 0$.
+נראה באופן דומה כי לא יתכן ש־$b_n = 0$ כמעט לכל $n$.
+במצב זה הסדרה תתכנס ל־$0$, ונתון כי זהו לא המצב,
+לכן אם כמעט כל איבר ב־$(a_n)$ חיובי, אז גם כמעט כל איבר ב־$(b_n)$ חיובי.
+
+\subsection{סעיף ב'}
+נראה כי אם הסדרות $(a_n)$ ו־$(b_n)$ חיוביות,
+אז לא בהכרח לפחות אחת מהן מתכנסת. \\*
+נגדיר
+\[
+	a_n = \begin{cases}
+		1 & \text{ אי־זוגי} n \\
+		3 & \text{ זוגי} n
+	\end{cases}, b_n = \frac{1}{a_n}
+\]
+ניתן לראות כי לכל $n$ מתקיים $a_n b_n = 1$,
+ולכן מכפלת הסדרות מתכנסת ל־$1$.
+לעומת זאת, הסדרות $(a_n)$ ו־$(b_n)$ שתיהן מתבדרות: \\*
+לכל $n$ מתקיים $a_n = {(-1)}^n + 2$,
+ועל־פי טענה 2.14 סדרה זו היא הזזה של סדרה מתבדרת, ומתבדרת בעצמה.
+הסדרה $(b_n)$ מוגדרת לפי $a_n$ לכל $n$, ומתבדרת גם היא.
+
+\subsection{סעיף ג'}
+נוכיח כי אם $\lim_{n \to \infty} b_n = \infty$ אז $\lim_{n \to \infty} = 0$.
+על־פי הגדרת שאיפה לאינסוף, כמעט לכל $n$ מתקיים $b_n > 0$,
+לכן בגבול
+\[
+	\lim_{n \to \infty} \frac{a_n b_n}{b_n}
+	= \lim_{n \to \infty} a_n
+\]
+מוגדר וערכו לפי האריתמטיקה של הגבולות האינסופיים היא $0$.
+
+\subsection{סעיף ד'}
+נראה כי אם $\lim_{n \to \infty} a_n = 0$ אז לא תמיד
+$\lim_{n \to \infty} b_n = \infty$.
+נגדיר
+\[
+	a_n = \frac{1}{-n}, b_n = -n
+\]
+לכן $a_n b_n = 1$ לכל $n$
+ו־$\lim_{n \to \infty} a_n = 0$
+אבל $\lim_{n \to \infty} b_n = -\infty$.
+
+\subsection{סעיף ה'}
+נוכיח כי אם $(a_n)$ סדרה חיובית, אז קיים $N \in \NN$ כך שלכל $n > N$
+מתקיים $b_n > \frac{1}{2a_n}$. \\*
+על־פי הגבול $(1)$ כמעט לכל $n$ מתקיים
+\[
+	\left| a_n b_n - 1 \right| < \frac{1}{2}
+\]
+לכן גם
+\[
+	-\frac{1}{2} < a_n b_n - 1 < \frac{1}{2}
+	\rightarrow
+	1 - \frac{1}{2} < a_n b_n < 1 + \frac{1}{2}
+\]
+לכן בפרט
+\[
+	a_n b_n > \frac{1}{2}
+\]
+ידוע כי $(a_n)$ חיובית ולכן נחלק בערכה:
+\[
+	b_n > \frac{1}{2 a_n}
+\]
+
+\subsection{סעיף ו'}
+נוכיח כי אם $(a_n)$ חיובית ואפסה אז $\lim_{n \to \infty} b_n = \infty$. \\*
+בדומה לסעיף ג' מתקיים
+\[
+	\lim_{n \to \infty} b_n
+	= \lim_{n \to \infty} \frac{a_n b_n}{a_n}
+	= \frac{\lim_{n \to \infty} a_n b_n}{\lim_{n \to \infty} a_n}
+	= \frac{1}{0^+}
+	= \infty
+\]
+על־פי האריתמטיקה של הגבולות האינסופיים.
+
+\subsection{סעיף ז'}
+נוכיח כי אם $\lim_{n \to \infty} |a_n| = 1$
+אז $\lim_{n \to \infty} |b_n| = 1$. \\*
+בהכפלת הגבול $(1)$ בעצמו נקבל
+\[
+	\lim_{n \to \infty} a_n^2 b_n^2 = 1^2 = 1
+\]
+ידוע כי $\lim_{n \to \infty} a_n^2 = 1$, לכן
+\[
+	\lim_{n \to \infty} \frac{a_n^2 b_n^2}{a_n^2} = \frac{1}{1}
+	\rightarrow
+	\lim_{n \to \infty} b_n^2 = 1
+\]
+לכן לכל $\epsilon > 0$ כמעט לכל $n$ מתקיים
+\[
+	|b_n^2 - 1| < \epsilon
+\]
+לפי נוסחת הכפל המקוצר מתקיים
+\[
+	\left| \left| b_n \right| - 1 \right|
+	\left| \left| b_n \right| + 1 \right| < \epsilon
+\]
+הביטוי $\left| \left| b_n \right| + 1 \right| > 1$ לכל $n$, לכן
+\[
+	\left| \left| b_n \right| - 1 \right| <
+	\left| \left| b_n \right| - 1 \right|
+	\left| \left| b_n \right| + 1 \right| < \epsilon
+\]
+לכן בפרט
+\[
+	\left| \left| b_n \right| - 1 \right| < \epsilon
+\]
+לכן
+\[
+	\lim_{n \to \infty} |b_n| = 1
+\]
+\end{document}

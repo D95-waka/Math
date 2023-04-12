@@ -1,0 +1,429 @@
+\documentclass[a4paper,10pt]{article}
+
+% packages
+\usepackage{inputenc}
+\usepackage{fontspec, amsmath, amsfonts, polyglossia, catchfile}
+\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+
+% style
+\AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Libertinus Serif}
+\linespread{1.5}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections
+
+% custom operators
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+\getenv[\AUTHOR]{AUTHOR}
+\DeclareMathOperator\cis{cis}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\diag{diag}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+
+\title{פתרון ממ''ן 13 – אלגברה לינארית 1 (20109)}
+\author{\AUTHOR}
+\date\today
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+יהיו $a, b, c, d, e, f$ איברים בשדה $F$. נוכיח כי:
+	\[ \begin{vmatrix}
+		a & b & b \\
+		c & d & e \\
+		f & g & g
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+		a & b & b \\
+		e & c & d \\
+		f & g & g
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+		a & b & b \\
+		d & e & c \\
+		f & g & g
+	\end{vmatrix}
+	= 0
+	\]
+	לפי משפט 4.3.5 אם מטריצה בעלת שתי עמודות זהות אז ערך הדטרמיננטה שלה הוא 0.
+	נגדיר מטריצה $A$ כך שמתקיים:
+	\[ A =
+	\begin{bmatrix}
+		a & b & b \\
+		c + d + e & c + d + e & c + d + e \\
+		f & g & g
+	\end{bmatrix}
+	\]
+	העמודה השנייה והשלישית של $A$ זהות, לכן $\vert A \vert = 0$.
+	על־פי משפט 4.3.4 נוכל לפרק את $A$ ללא שינוי לערך הדטרמיננטה של המטריצות החדשות.
+	\[
+	\begin{vmatrix}
+		a & b & b \\
+		c + d + e & c + d + e & c + d + e \\
+		f & g & g
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		a & b & b \\
+		d + e & c + e & c + d \\
+		f & g & g
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+		a & b & b \\
+		c & d & e \\
+		f & g & g
+	\end{vmatrix} \]\[
+	= 
+	\begin{vmatrix}
+		a & b & b \\
+		e & c & d \\
+		f & g & g
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+		a & b & b \\
+		d & e & c \\
+		f & g & g
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+		a & b & b \\
+		c & d & e \\
+		f & g & g
+	\end{vmatrix}
+	= 0
+	\]
+	\section{שאלה 2}
+	נחשב את ערך הדטרמיננטות $D_1, D_2$: \\
+	תחילה נחשב את ערך $D_1$.
+	נשתמש במשפט הפיתוח (4.2.1) על השורה האחרונה ב־$D_1$:
+	\[
+		D_1 = 
+		b {(-1)}^{n + 1} \begin{vmatrix}
+			b & 0 & \cdots & \cdots & & 0 \\
+			a & b & 0 & \cdots & \cdots & 0 \\
+			0 & a & b & 0 & \cdots & 0 \\
+			\vdots & & \ddots & \ddots & & \vdots \\
+			0 & \cdots & \cdots & & a & b
+		\end{vmatrix}
+		+
+		a {(-1)}^{n + n} \begin{vmatrix}
+			a & b & 0 & \cdots & \cdots & 0 \\
+			0 & a & b & 0 & \cdots & 0 \\
+			\vdots & & \ddots & \ddots & & \vdots \\
+			0 & \cdots & \cdots & & a & b \\
+			0 & \cdots & \cdots & & 0 & a
+		\end{vmatrix}
+	\]
+	שתי הדטרמיננטות הנותרות הן של מטריצה משולשית עילית ותחתית.
+	לפי משפט 4.3.8 ערך הדטרמיננטות הללו ערכו כמכפלת האלכסון הראשי בהן, לכן:
+	\[
+		D_1 = 
+		b{(-1)}^{n + 1} b^{n - 1} + a {(-1)}^{2n} a^{n - 1}
+	\] \[
+		D_1 = {(-1)}^{n + 1} b^n + a^n
+	\]
+	נחשב את ערכה של $D_2$.
+	לפי משפט 4.3.6 ערך הדטרמיננטה לא ישתנה לאחר חיסור שורה משורה אחרת,
+	עבור $0 < i \le n$ עבור כל שורה $i$ נחסרה בשורה $i - 1$, בסדר יורד,
+	דהינו כל שורה במטריצה נחסר במטריצה שלפניה, מלמעלה למטה:
+	\[
+		D_2 =
+		\begin{vmatrix}
+			1 & 2 & 3 & \cdots & n - 1 & n \\
+			1 & 1 & \cdots & \cdots & 1 & 0 \\
+			1 & 1 & \cdots & 1 & 0 & 0 \\
+			\vdots & & & \ddots & & 0 \\
+			1 & 0 & \cdots & \cdots & 0 & 0 \\
+		\end{vmatrix}
+	\]
+על־פי משפט 4.3.2 החלפת שתי עמודות במטרציה משנה את סימן הדטרמיננטה שלה.
+עבור $0 \le i < n / 2$ נחליף כל שתי עמודות $i$ ו־$n - i$.
+סימן הדטרמיננטה יהיה ${(-1)}^{n / 2}$ במקרה בו $n$ הוא מספר זוגי,
+ו־${(-1)}^{(n - 1) / 2}$ אחרת. נסמן מספר זה ב־$k$.
+\[
+		D_2 = k
+		\begin{vmatrix}
+			n & n - 1 & \cdots & 3 & 2 & 1 \\
+			0 & 1 & \cdots & \cdots & 1 & 1 \\
+			0 & 0 & 1 & \cdots & 0 & 0 \\
+			\vdots & & & \ddots & & 0 \\
+			0 & 0 & \cdots & \cdots & 0 & 1 \\
+		\end{vmatrix}
+	\]
+	מטריצה זו היא מטריצה משולשית עילית ולכן נוכל לחשב את ערך הדטרמיננטה בעזרת משפט 4.3.8:
+	\[
+		D_2 = k n
+	\]
+
+	\section{שאלה 3}
+	נגדיר מעתה:
+	\[
+		\cis(\alpha) \overset{\text{def}}{=} \cos(\alpha) + i \sin(\alpha)
+	\]
+	\subsection{למה א'}
+	לכל שני מספרים $\alpha, \beta$ המייצגים זווית מתקיים:
+	\[
+		\frac{ \cis(\alpha)}{\cis(\beta) } =
+		\cis(\alpha - \beta)
+	\]
+	\textbf{הוכחה} \\*
+	תחילה, נכפול את המנה במשלים $\overline{\cis(\beta)}$:
+	\[
+		\frac{ \cis(\alpha)}{\cis(\beta) } =
+		\frac{ \cis(\alpha) \overline{\cis(\beta)}}{\cis(\beta) \overline{\cis(\beta)} }
+	\]
+	נפרק את הביטוי:
+	\begin{align*}
+		\frac{ \cis(\alpha) \overline{\cis(\beta)}}{\cis(\beta) \overline{\cis(\beta)} }
+		& =
+		\frac
+		{(\cos(\alpha) + i \sin(\alpha))(\cos(\beta) - i \sin(\beta))}
+		{(\cos(\beta) + i \sin(\beta))(\cos(\beta) - i \sin(\beta))} \\
+		& =
+		\frac
+		{\cos(\alpha)\cos(\beta) + \sin(\alpha)\sin(\beta)
+		+ i(\sin(\alpha) \cos(\beta) - \cos(\alpha) \sin(\beta))}
+		{\cos^2(\beta) + \sin^2(\beta)} \\
+		& =
+		\frac{ \cos(\alpha - \beta) + i \sin(\alpha - \beta)}{1}
+		& \text{נציב זהויות טריגונומטריות:} \\
+		& = \cis(\alpha - \beta)
+	\end{align*}
+	\textbf{מש''ל}
+
+	\subsection{סעיף א'}
+	נתונים $t = \cis \frac{ 3\pi}{4}$ ו־$w = 1 - i$.
+	נפתור את המשוואה $z^3 = \frac{w}{\overline{t}}$.
+	נמיר את $w$ להצגה פולרית,
+	על־פי ערכו אנו יודעים שהוא ממוקם ברביע הרביעי$(*)$
+	\begin{align*}
+		& r = \sqrt{1 + 1} = \sqrt{2} \\
+		& \theta = \tan(\frac{1}{-1}) = -\frac{\pi}{4} (*)
+	\end{align*}
+	נשים לב כי הזווית $-\frac{\pi}{4}$ שקולה לזווית $\frac{7\pi}{4}$,
+	ולכן נכתוב:
+	\[
+		w = \sqrt{2} \cis(\frac{7\pi}{4})
+	\]
+	נחשב את $\frac{w}{t}$ בעזרת נוסחת החילוק וערך צמוד משאלה 6.5.5 ולמה א':
+	\[
+		\frac{w}{\overline{t}} =
+		\frac{\sqrt{2} \cis(\frac{7 \pi}{4})}{1 \cis(-\frac{3 \pi}{4})} =
+		\sqrt{2} \cis(\frac{10 \pi}{4}) =
+		\sqrt{2} \cis(\frac{\pi}{2})
+	\]
+	נחשב את ערך השורשים המהווים פתרון למשוואה בעזרת דרך החישוב המוצגת בספר אלגברה לינארית 1 – כרך ב', עמוד 85:
+	\begin{align*}
+		& r = \sqrt[3]{\sqrt{2}} = \sqrt[6]{2} \\
+		& \theta = \frac{\pi + 4\pi k}{6} (0 \le k \le 2) \\
+		& z = \sqrt[6]{2} \cis(\frac{\pi + 4\pi k}{6}) \\
+		& z =   \sqrt[6]{2} \cis(\frac{5\pi}{6}),
+				\sqrt[6]{2} \cis(\frac{9\pi}{6}),
+				\sqrt[6]{2} \cis(\frac{13\pi}{6})
+	\end{align*}
+	\subsection{סעיף ב'}
+	יהי $n$ מספר טבעי אי־זוגי,
+	$z_1, z_2, \ldots, z_n$ כל הפתרונות ב־$\CC$ של המשוואה $z^n = 1$.
+	נוכיח כי $z_1 z_2 \ldots z_n = 1$. \\*
+	לפי שאלה 6.6.1 ידוע לנו כי $z_k = \cis(\frac{2k \pi}{n})$, לכן:
+	\[
+		\prod_{k = 1}^n z_k =
+		\prod_{k = 1}^n \cis(\frac{2k \pi}{n})
+	\]
+	על־פי כלל המכפלה:
+	\[
+		\prod_{k = 1}^n \cis(\frac{2k \pi}{n}) =
+		\cis(\sum_{k = 1}^n \frac{2k \pi}{n}) = 
+		\cis(\frac{2 \pi}{n} \cdot \sum_{k = 1}^n {k})
+	\]
+	על־ידי שימוש בנוסחת סכום סדרה חשבונית נראה כי:
+	\[
+		\sum_{k = 1}^n {k} = \frac{n}{2} (1 + n)
+	\]
+	ידוע לנו כי $n$ אי־זוגי, לכן $n + 1$ זוגי, ולכן גם $n(n + 1)$.
+	הביטוי $\frac{2 \pi}{n} \frac{n}{2}(n + 1) = \pi (n + 1)$
+	מורכב ממכפלה זוגית של $\pi$.
+	מהגדרת $\cis$ נובע כי $\cis(2 \pi k) = \cis(0) = 1$ לכל $k$ זוגי,
+	ובפרט $n + 1$. לכן $z_1 z_2 \ldots z_n = 1$.
+
+	\section{שאלה 4}
+	נוכיח כי הקבוצה $V$ היא לא מרחב לינארי מעל $\RR$.
+	יהיו $\lambda, \mu \in \RR$ ו־$v \in V$.
+	נגדיר $v = (x_v, y_v)$.
+	הקבוצה $V$ ופעולת הכפל לא עומדות בסעיף ג' של הגדרה 7.1.1.
+	נראה כי עבור כל $\lambda, \mu, v$ מתקיים:
+	\begin{align*}
+		\lambda v + \mu v
+		& = \lambda (x_v, y_v) + \mu (x_v, y_v) \\
+		& = (x_v, \lambda y_v) + (x_v, \mu y_v) \\
+		& = (x_v + x_v, \lambda y_v + \mu y_v) \\
+		& = (2 x_v, (\lambda + \mu) y_v) \\
+		& = (\lambda + \mu) (2 x_v, y_v) \\
+		\lambda v + \mu v
+		& \ne (\lambda + \mu) v \\
+	\end{align*}
+	ראינו כי עבור כל איבר ב־$V$ שאיננו מהצורה $(0, n)$ לא מתקיים חוק הפילוג הכפל בסקלר מעל $F$ ולכן $V$ יחד עם פעולות החיבור והכפל המוגדרות איננה מרחב לינארי.
+
+	\section{שאלה 5}
+	\subsection{סעיף א'}
+	הקבוצה $W$ היא תת־קבוצה של מרחב הפונקציות מהממשיים לממשיים,
+	אך איננה מקיימת את סעיף ב' במשפט 7.3.2.
+	דוגמה נגדית היא הפונקציה $f(x) = x$. ניתן לראות כי $f(x + 1) = x + 1$,
+	אך $(f + f)(x) = 2x$, וכן $(f+f)(x + 1) = 2x + 2 \ne 2x + 1$,
+	ולכן $W$ איננה מרחב. \\
+	נוכיח כי $M$ הוא תת־מרחב של $\RR_4[x]$ על־ידי משפט 7.3.2. \\*
+	א. על הקבוצה להיות לא ריקה, ובכן כלל הפולינומים מהצורה $nx^0$ מקיימים $p(x) = p(x - 1) = n$. \\*
+	ב. לכל שני פולינומים $X, Y \in \RR_4[x]$ מתקיים $X + Y \in M$, שכן
+	\[
+		X(x) + Y(x) = X(x - 1) + Y(x - 1)
+	\]
+	ג. לכל $\lambda \in \RR, X \in \RR_4[x]$ מתקיים:
+	\[
+		X(x) = X(x - 1) \rightarrow
+		\lambda X(x) = \lambda X(x - 1)
+	\]
+	נוכיח כי $S$ הוא לא מרחב מעל $\RR$.
+	נראה דוגמה נגדית לסעיף ב' של משפט 7.3.2:
+	\[
+		\begin{bmatrix}
+			0 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & 0
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+	\]
+	עבור שתי המטריצות הראשונות מתקיים $0 \cdot 1 = 1 \cdot 0 = 0$,
+	עבור תוצאת החיבור שלהן מתקיים $1 \cdot 1 \ne 0$ בסתירה לטענת סעיף ב'.\\
+	הקבוצה $L$ היא מרחב לינארי מעל $\RR$.
+	נוכיח זאת בעזרת משפט 7.3.2':\\*
+	א. הקבוצה איינה ריקה, שכן כל וקטור $v \in \RR^3$ עומד בתנאי הקבוצה. \\
+	ב. נראה כי עבור כל $w_1, w_2 \in L$ ו־$\lambda_1, \lambda_2 \in \RR$
+	גם $\lambda_1 w_1 + \lambda_2 w_2 \in L$: \\*
+	נגדיר $w_1 = (z_1, \overline{z_1}, z_2)$.
+	ו־$w_2 = (z_3, \overline{z_3}, z_4)$.
+	\begin{align*}
+		\lambda_1 w_1 + \lambda_2 w_2
+		& = \lambda_1 (z_1, \overline{z_1}, z_2)
+		+ \lambda_2 (z_3, \overline{z_3}, z_4) \\
+		& = (\lambda_1 z_1 + \lambda_2 z_3,
+		\lambda_1 \overline{z_1} + \lambda_2 \overline{z_2},
+		z_2 + z_4) \\
+		& = (\lambda_1 z_1 + \lambda_2 z_3,
+		\overline{\lambda_1 z_1 + \lambda_2 z_2},
+		z_2 + z_4) \in L
+		& \text{על־פי חוקי המשלים} \\
+	\end{align*}
+	ראינו כי שני התנאים מתקיימים ולכן $L$ הוא מרחב מעל $\RR$.
+
+	\subsection{סעיף ב'}
+	נמצא קבוצה פורשת סופית עבור $M$.
+	תחילה נוכיח כי הפולינומים היחידים ב־$M$ הם מהצורה $nx^0$.
+	יהי $P(x)$ פולינום כך ש־$P \in \RR_4[x]$.
+	נגדיר $P(x) = ax^0 + bx^1 + cx^2 + dx^3$.
+	ידוע כי:
+	\begin{align*}
+		& P(x) = P(x - 1) \\
+		& a + bx + cx^2 + dx^3
+		= a + b(x - 1) + c{(x - 1)}^2 + d{(x - 1)}^3 \\
+		& cx^2 + dx^3
+		= -b + c(x^2 - 2x + 1) + d(x^3 - 3x^2 + 3x - 1) \\
+		& -b + c(-2x + 1) + d(-3x^2 + 3x - 1) = 0 \\
+		& (-b + c - d) + (-2c + 3d)x + (-3d)x^2 = 0 \\
+	\end{align*}
+	ניתן לראות כי כל אחד מהמקדמים במשוואה צריך להתאפס.
+	בהמרה למערכת משוואות והצבה לאחור מתקבל $b = c = d = 0$,
+	לכן ישנו משתנה חופשי יחיד, הוא $a$.
+	לכן הקבוצה $\{1\}$ פורשת את $M$. \\*
+	נמצא קבוצה פורשת סופית עבור $L$.
+	על־פי הגדרת המרחב ועל־פי הגדרת הערך הצמוד:
+	\begin{align*}
+		L & = \{(a + bi, a - bi, z) \mid a, b \in \RR, z \in \CC \} \\
+		& = \{(a + bi, a - bi, c + di) \mid a, b, c, d \in \RR \} \\
+		& = \{a(1, 1, 0) + b(i, -i, 0) + c(0, 0, 1) + d(0, 0, i)
+		\mid a, b, c, d \in \RR \} \\
+		& = \Sp\{(1, 1, 0), (i, -i, 0), (0, 0, 1), (0, 0, i)\}
+	\end{align*}
+	מצאנו כי הקבוצה $\{(1, 1, 0), (i, -i, 0), (0, 0, 1), (0, 0, i)\}$
+	פורשת את המרחב $L$.
+
+	\section{שאלה 6}
+	\subsection{סעיף א'}
+	יהיו וקטורים $u, v, w \in V$ כאשר $V$ מרחב לינארי מעל השדה $R$.
+	נוכיח כי מתקיים:
+	\[
+		\Sp\{u - v + 2w, -2u + v - w, -u + 2v + w\}
+		= \Sp\{u, v, w\}
+	\]
+	לפי שאלה 7.5.11 אנו רואים כי עבור קבוצת וקטורים ב־$\Sp$
+	ניתן לבצע הכפלה בסקלר לכל וקטור בקבוצה,
+	כמו גם הוספת כפולה בסקלר של וקטור אחד לאחר.
+	כמו־כן ניתן להחליף את סדר הווקטורים בקבוצה זו בשל חוסר הסדר בקבוצה. \\*
+	לשם הפשטות נתייחס לווקטורים בקבוצה לפי סדר כתיבתם.
+	נראה כי ה־$\Sp$ הנתון שווה ערך למרחב $\Sp\{u, v, w\}$.
+	\[
+			\Sp\{u - v + 2w, -2u + v - w, -u + 2v + w\}
+	\]
+	נוסיף את האיבר הראשון פעמיים לאיבר השני ופעם אחת לאיבר השלישי:
+	\[
+			\Sp\{u - v + 2w, -v + 3w, v + 3w\}
+	\]
+	נוסיף את האיבר השלישי לאיבר השני ונחלק את התוצאה ב־6:
+	\[
+			\Sp\{u - v + 2w, w, v + 3w\}
+	\]
+	נחסר את האיבר השני שלוש פעמים מהאיבר השלישי ופעמיים מהאיבר הראשון:
+	\[
+			\Sp\{u - v, w, v \}
+	\]
+	נחסר את האיבר השלישי מהראשון:
+	\[
+			\Sp\{u, w, v \} = 
+			\Sp\{u, v, w \}
+	\]
+	
+	\subsection{סעיף ב'}
+	יהיו $U = \Sp\{(1, 2, 5), (1, 1, 3)\}$
+	ו־$W = \Sp\{(1, 0, 1), (0, 1, 1)\}$
+	תת־מרחבים של $\RR^3$.
+	נוכיח כי $U \ne W$. \\
+	נוכיח כי קיים וקטור ב־$U$ שאיננו קיים ב־$W$.
+	נגדיר $v = (1, 1, 3)$,
+	הווקטור $v$ מוכל בקבוצת היוצרים של $U$, לכן בוודאי $v \in U$.
+	כדי להיות מוכל ב־$W$ על הווקטור $v$ להיות צירוף לינארי של קבוצת היוצרים
+	של $W$.
+	ננסה למצוא צירוף כזה בעזרת בניית מערכת משוואות מיוצגת במטריצת מקדמים ודירוגה:
+	\[
+		\begin{bmatrix}
+			1 & 0 & \vline & 1 \\
+			0 & 1 & \vline & 1 \\
+			1 & 1 & \vline & 3
+		\end{bmatrix}
+		\xrightarrow[R_3 \to R_3 - R_1]{R_3 \to R_3 - R_2}
+		\begin{bmatrix}
+			1 & 0 & \vline & 1 \\
+			0 & 1 & \vline & 1 \\
+			0 & 0 & \vline & 1
+		\end{bmatrix}
+	\]
+	הגענו לשורת סתירה, לכן אין פתרון למערכת המשוואות ובהתאם לזאת $v \notin W$.
+	ישנו וקטור ב־$U$ שלא קיים ב־$W$, לכן בהכרח $U \ne W$.
+
+\end{document}
