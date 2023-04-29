@@ -9,62 +9,68 @@
 \[
 	a_{n + 1} = \frac{1}{4(1 - a_n)}
 \]
-נוכיח כי הסדרה מוגדרת לכל $n$: \\*
-הסדרה איננה מוגדרת במקרה בו קיים $a_n = 1$.
-נוכיח באינדוקציה שמקרה זה לא מתקיים על־ידי ההוכחה כי $0 < a_n < \frac{1}{2}$ לכל $n > 1$: \\*
-\textbf{בסיס האינדוקציה:} על־פי חישוב $a_2 = \frac{1}{4(1 - 0)} = \frac{1}{4}$ ולכן $0 < a_2 < \frac{1}{2}$. \\*
-\textbf{מהלך האינדוקציה:} נניח כי $0 < a_n < 1$ ונראה כי $0 < a_{n + 1} < \frac{1}{2}$. \\*
-מתקיים
-\begin{align*}
-	& 0 < a_n < \frac{1}{2} \\
-	& 1 - 0 = 1 > 1 - a_n > \frac{1}{2} = 1 - \frac{1}{2} \\
-	& 4 > 4(1 - a_n) > 2 \\
-	& 0 < \frac{1}{4} < \frac{1}{4(1 - a_n)} < \frac{1}{2} \\
-	& 0 < a_{n + 1} < \frac{1}{2} \\
-\end{align*}
-מהלך האינדוקציה הושלם ולכן לכל $n > 1$ מתקיים
-$$
-	0 < a_n < \frac{1}{2}
-$$
-לפיכך אנו יודעים כי לכל $n > 1$ מתקיים $a_n \ne 1$ ולכן $a_n$ מוגדר לכל $n$.
+נוכיח כי הסדרה מוגדרת לכל $n$
+\begin{proof}
+	איבר איננו מוגדר כאשר $a_n = 1$, במקרה זה האיבר שלאחריו $a_{n + 1}$ לא מוגדר ולכן גם הסדרה לא תהיה מוגדרת לכל $n \in \NN$. \\*
+	נוכיח באינדוקציה שמקרה זה לא מתקיים על־ידי ההוכחה כי $0 < a_n < \frac{1}{2}$ לכל $n > 1$. \\*
+	\textbf{בסיס האינדוקציה:} על־פי חישוב $a_2 = \frac{1}{4(1 - 0)} = \frac{1}{4}$ ולכן $0 < a_2 < \frac{1}{2}$. \\*
+	\textbf{מהלך האינדוקציה:} נניח כי $0 < a_n < \frac{1}{2}$ ונראה כי $0 < a_{n + 1} < \frac{1}{2}$. \\*
+	מתקיים
+	\begin{align*}
+		& 0 < a_n < \frac{1}{2} \\
+		& 1 - 0 = 1 > 1 - a_n > \frac{1}{2} = 1 - \frac{1}{2} \\
+		& 4 > 4(1 - a_n) > 2 \\
+		& 0 < \frac{1}{4} < \frac{1}{4(1 - a_n)} < \frac{1}{2} \\
+		& 0 < a_{n + 1} < \frac{1}{2} \\
+	\end{align*}
+	מהלך האינדוקציה הושלם ולכן לכל $n > 1$ מתקיים
+	\[
+		0 < a_n < \frac{1}{2}
+	\]
+	לפיכך אנו יודעים גם כי לכל $n > 1$ מתקיים $a_n \ne 1$ ולכן $a_n$ מוגדר לכל $n$.
+\end{proof}
 
 \subsection{סעיף ב'}
-נוכיח כי הסדרה $(a_n)$ מתכנסת ונמצא את ערך גבולה. \\*
-תחילה נוכיח באינדוקציה כי לכל $n > 1$ מתקיים $a_{n + 1} > a_n$: \\*
-\textbf{בסיס האינדוקציה:}
-\[
-	a_3 = \frac{1}{4(1 - a_2)} = \frac{1}{4 - 1} = \frac{1}{3} > \frac{1}{4} = a_2
-\]
-\textbf{מהלך האינדוקציה:}
-נניח כי $a_n > a_{n - 1}$ ונוכיח כי $a_{n + 1} > a_n$.
-\begin{align*}
-	& a_n > a_{n - 1} \\
-	& 1 - a_n < 1 - a_{n - 1} \\
-	& 4(1 - a_n) < 4(1 - a_{n - 1}) \\
-	& \frac{1}{4(1 - a_n)} > \frac{1}{4(1 - a_{n - 1})} \\
-	& a_{n + 1} > a_n
-\end{align*}
-התנאי מתקיים ולכן הסדרה עולה לכל $n > 1$. \\*
-ידוע כי $a_n < \frac{1}{2}$ לכל $n$, וראינו כי הסדרה עולה ולכן הסדרה $(a_n)$ חסומה ועולה, ולכן לפי משפט 3.16 מתכנסת.
-נגדיר $\lim_{n \to \infty} a_n = L$. לכן מתקיים
-\begin{align*}
-	L & = \lim_{n \to \infty} a_{n + 1} \\
-	  & = \lim_{n \to \infty} \frac{1}{4(1 - a_n)}
-	  & = \frac{1}{\displaystyle\lim_{n \to \infty} 4(1 - a_n)} \\
-	  & = \frac{1}{4 \displaystyle\lim_{n \to \infty} (1 - a_n)}
-	  & = \frac{1}{4 (1 - \displaystyle\lim_{n \to \infty} a_n)} \\
-	L & = \frac{1}{4 (1 - L)}
-	  & \rightarrow 4L(1 - L) = 1
-\end{align*}
-\begin{align*}
-	& 4L - 4L^2 - 1 = 0 \\
-	& 4L^2 - 4L + 1 = 0 \\
-	& L = \frac{4 \pm \sqrt{4^2 - 4 \cdot 4}}{2 \cdot 4} = \frac{4 \pm 0}{8} = \frac{1}{2}
-\end{align*}
-לכן מתקיים
-\[
-	\lim_{n \to \infty} a_n = \frac{1}{2}
-\]
+נוכיח כי הסדרה $(a_n)$ מתכנסת ונמצא את ערך גבולה.
+\begin{proof}
+	תחילה נוכיח באינדוקציה כי לכל $n > 1$ מתקיים $a_{n + 1} > a_n$: \\*
+	\textbf{בסיס האינדוקציה:}
+	\[
+		a_3 = \frac{1}{4(1 - a_2)} = \frac{1}{4 - 1} = \frac{1}{3} > \frac{1}{4} = a_2
+	\]
+	\textbf{מהלך האינדוקציה:}
+	נניח כי $a_n > a_{n - 1}$ ונוכיח כי $a_{n + 1} > a_n$.
+	\begin{align*}
+		& a_n > a_{n - 1} \\
+		& 1 - a_n < 1 - a_{n - 1} \\
+		& 4(1 - a_n) < 4(1 - a_{n - 1}) \\
+		& \frac{1}{4(1 - a_n)} > \frac{1}{4(1 - a_{n - 1})} \\
+		& a_{n + 1} > a_n
+	\end{align*}
+	התנאי מתקיים ולכן הסדרה עולה לכל $n > 1$. \\*
+	ידוע כי $a_n < \frac{1}{2}$ לכל $n$, וראינו כי הסדרה עולה ולכן הסדרה $(a_n)$ חסומה ועולה, ולכן לפי משפט 3.16 מתכנסת.
+	נגדיר $\lim_{n \to \infty} a_n = L$. \\*
+	על־פי אריתמטיקה של הגבולות:
+	\begin{align*}
+		L & = \lim_{n \to \infty} a_{n + 1} \\
+		  & = \lim_{n \to \infty} \frac{1}{4(1 - a_n)}
+		  & = \frac{1}{\displaystyle\lim_{n \to \infty} 4(1 - a_n)} \\
+		  & = \frac{1}{4 \displaystyle\lim_{n \to \infty} (1 - a_n)}
+		  & = \frac{1}{4 (1 - \displaystyle\lim_{n \to \infty} a_n)} \\
+		L & = \frac{1}{4 (1 - L)}
+		  & \rightarrow 4L(1 - L) = 1
+	\end{align*}
+	נחשב את ערכו של $L$:
+	\begin{align*}
+		& 4L - 4L^2 - 1 = 0 \\
+		& 4L^2 - 4L + 1 = 0 \\
+		& L = \frac{4 \pm \sqrt{4^2 - 4 \cdot 4}}{2 \cdot 4} = \frac{4 \pm 0}{8} = \frac{1}{2}
+	\end{align*}
+	לכן לסדרה $(a_n)$ יש גבול והוא
+	\[
+		\lim_{n \to \infty} a_n = \frac{1}{2}
+	\]
+\end{proof}
 
 \section{שאלה 2}
 \subsection{סעיף א'}
@@ -102,7 +108,7 @@ $$
 \subsection{סעיף ב'}
 נחשב את הגבול
 \[
-	\lim_{n \to \infty} \frac{{(-5)}^n + 4^{n + 1} + 3}{({-4})^n + 2{(-2)}^n + 3}
+	\lim_{n \to \infty} \frac{{(-5)}^n + 4^{n + 1} + 3}{{({-4})}^n + 2{(-2)}^n + 3}
 \]
 נגדיר סדרות זוגיות ואי־זוגיות כבסעיף א' ונחשב את גבולן:
 \[
@@ -119,39 +125,39 @@ $$
 \]
 על־פי משפט 3.31 מתקיים:
 \[
-	\lim_{n \to \infty} \frac{{(-5)}^n + 4^{n + 1} + 3}{({-4})^n + 2{(-2)}^n + 3} = \infty
+	\lim_{n \to \infty} \frac{{(-5)}^n + 4^{n + 1} + 3}{{({-4})}^n + 2{(-2)}^n + 3} = \infty
 \]
 
 \subsection{סעיף ג'}
 נוכיח כי לא מתקיים הגבול
 \[
-	\lim_{n \to \infty} \left( \frac{1}{n} - 1 \right)^n
+	\lim_{n \to \infty} {\left( \frac{1}{n} - 1 \right)}^n
 \]
 נגדיר $(a_{n_k})$ סדרת האיברים הזוגיים של $(a_n)$, $(a_{m_k})$ סדרת האיברים האי־זוגיים של $(a_n)$. \\*
 נשים לב כי בסדרה $(a_{n_k})$ מתקיים
 \[
-	\left( \frac{1}{n} - 1 \right)^n
-	= (-1)^n \left( 1 - \frac{1}{n} \right)^n
-	= \left( 1 - \frac{1}{n} \right)^n
+	{\left( \frac{1}{n} - 1 \right)}^n
+	= {(-1)}^n {\left( 1 - \frac{1}{n} \right)}^n
+	= {\left( 1 - \frac{1}{n} \right)}^n
 	\tag{1}
 \]
 כמו־כן מתקיים
 \[
-	\left( 1 - \frac{1}{n} \right)^n
-	= \left( \frac{n - 1}{n} \right)^n
-	= \left( \frac{n - 1 + 1}{n - 1} \right)^{-n}
-	= \left( 1 + \frac{1}{n - 1} \right)^{-n}
+	{\left( 1 - \frac{1}{n} \right)}^n
+	= {\left( \frac{n - 1}{n} \right)}^n
+	= {\left( \frac{n - 1 + 1}{n - 1} \right)}^{-n}
+	= {\left( 1 + \frac{1}{n - 1} \right)}^{-n}
 \]
 על־פי דוגמה 3.5 ושאלה 20 סעיף א' מתקיים:
 \[
 	\lim_{n \to \infty} a_{n_k}
-	= \lim_{n \to \infty} \left( 1 + \frac{1}{n - 1} \right)^{-n}
+	= \lim_{n \to \infty} {\left( 1 + \frac{1}{n - 1} \right)}^{-n}
 	= e^{-1}
 \]
 באופן דומה עבור $(a_{m_k})$ ו־$(1)$ מתקיים
 \[
-	\left( \frac{1}{n} - 1 \right)^n
-	= -\left( 1 - \frac{1}{n} \right)^n
+	{\left( \frac{1}{n} - 1 \right)}^n
+	= -{\left( 1 - \frac{1}{n} \right)}^n
 \]
 ולכן על־פי אריתמטיקה של גבולות
 \[
@@ -162,21 +168,23 @@ $$
 \subsection{סעיף ד'}
 תהי $(a_n)$ סדרה עולה ממש של מספרים שלמים, נוכיח כי מתקיים הגבול
 \[
-	\lim_{n \to \infty} \left( 1 + \frac{1}{a_n} \right)^{a_n}
+	\lim_{n \to \infty} {\left( 1 + \frac{1}{a_n} \right)}^{a_n}
 \]
 על־פי הגדרה 3.24 ומשפט 3.25 מתקיים
 \[
-	\lim_{n \to \infty} \left( 1 + \frac{1}{a_n} \right)^{a_n}
-	= \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^{n}
+	\lim_{n \to \infty} {\left( 1 + \frac{1}{a_n} \right)}^{a_n}
+	= \lim_{n \to \infty} {\left( 1 + \frac{1}{n} \right)}^{n}
 \]
 ולכן על־פי דוגמה 3.5 הגבול מתקיים וערכו הוא $e$.
 
 \section{שאלה 3}
 תהי $a_n = \langle \sqrt{n} \rangle$.
 \subsection{סעיף א'}
-נוכיח כי הסדרה $(a_n)$ חסומה. \\*
-נגדיר $l = \sqrt{n}$, אז מתקיים $a_n = \langle l \rangle$. על־פי הגדרת החלק השברי מתקיים $0 \le l < 1$, לכן מתקיים גם $0 \le \sqrt{n} < 1$. \\*
-נעלה בריבוע ונקבל $0^2 = 0 \le n < 1^2 = 1$. אנו רואים כי לכל $n \in \NN$ מתקיים $0 \le a_n < 1$ ולכן הסדרה $(a_n)$ חסומה ב־1.
+נוכיח כי הסדרה $(a_n)$ חסומה.
+\begin{proof}
+	נגדיר $l = \sqrt{n}$, אז מתקיים $a_n = \langle l \rangle$. על־פי הגדרת החלק השברי מתקיים $0 \le l < 1$, לכן מתקיים גם $0 \le \sqrt{n} < 1$. \\*
+	נעלה בריבוע ונקבל $0^2 = 0 \le n < 1^2 = 1$. אנו רואים כי לכל $n \in \NN$ מתקיים $0 \le a_n < 1$ ולכן הסדרה $(a_n)$ חסומה ב־1.
+\end{proof}
 
 \subsection{סעיף ב'}
 נחשב את $\displaystyle\lowlim_{n \to \infty} a_n$. \\*
@@ -189,7 +197,7 @@ $$
 
 \subsection{סעיף ג'}
 נגדיר $A = \{ a_n \mid n \in \NN \}$. נמצא את $\inf A$. \\*
-כפי שראינו בסעיף הקודם, $0 \in A$ מקיים $\forall a \in A, 0 \le a$ ולכן לפי הגדרה 3.12 $\inf A = 0$. \\*
+כפי שראינו בסעיף הקודם, $0 \in A$ מקיים $\forall a \in A, 0 \le a$ ולכן מהגדרה 3.12 נובע ש־$\inf A = 0$. \\*
 לקבוצה כמובן יש מינימום לפי טענה 3.13, הוא $0$.
 
 \subsection{סעיף ד'}
@@ -197,25 +205,26 @@ $$
 \[
 	\left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
 \]
-%נשים לב כי מתקיים $\langle \sqrt{n^2 - 1} \rangle = \sqrt{n^2 - 1} - \lfloor \sqrt{n^2 - 1} \rfloor$.
-מתקיים
-\begin{align*}
-	& -n \le -1 \\
-	& -2n \le -2 \\
-	& -2n + 1 \le -1 \\
-	& n^2 - 2n + 1 \le n^2 - 1 \le n^2 & \text{מתקיים גם} \\
-	& (n - 1)^2 \le n^2 - 1 \le n^2 \\
-	& n - 1 \le \sqrt{n^2 - 1} \le n \\
-	& \left\lfloor \sqrt{n^2 - 1} \right\rfloor = n - 1 & \text{לפי טענה 1.64 3.} \\
-	& \sqrt{n^2 - 1} - \left\lfloor \sqrt{n^2 - 1} \right\rfloor = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
-\end{align*}
+\begin{proof}
+	נראה כי
+	\begin{align*}
+		& -n \le -1 \\
+		& -2n \le -2 \\
+		& -2n + 1 \le -1 \\
+		& n^2 - 2n + 1 \le n^2 - 1 \le n^2 & \text{מתקיים גם} \\
+		& {(n - 1)}^2 \le n^2 - 1 \le n^2 \\
+		& n - 1 \le \sqrt{n^2 - 1} \le n \\
+		& \left\lfloor \sqrt{n^2 - 1} \right\rfloor = n - 1 & \text{לפי טענה 1.64 3.} \\
+		& \sqrt{n^2 - 1} - \left\lfloor \sqrt{n^2 - 1} \right\rfloor = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
+	\end{align*}
+\end{proof}
 
 \subsection{סעיף ה'}
 נגדיר $(b_n)$ סדרה כך שמתקיים
 \[
 	b_n = \sqrt{n^2 - 1} - n + 1
 \]
-נוכיח כי יש גבול לסדרה:
+נוכיח כי יש גבול לסדרה, נשתמש באריתמטיקה של הגבולות, אילו קיים גבול אז יוצדקו מעברים אלה.
 \begin{align*}
 	\lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1
 	& = \lim_{n \to \infty}\sqrt{n + 1} \sqrt{n - 1} - \sqrt{n - 1} \sqrt{n - 1} \\
@@ -230,20 +239,22 @@ $$
 \end{align*}
 
 \subsection{סעיף ו'}
-נוכיח כי $L = 1$ הוא גבול חלקי של $(a_n)$. \\*
-נגדיר סדרת אינדקסים
-\[
-	n_k = \sqrt{n^2 - 1}
-\]
-על־פי סעיף ד' מתקיים
-\[
-	a_{n_k} = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
-\]
-ולכן על־פי סעיף ה'
-\[
-	\lim_{k \to \infty} a_{n_k} = \lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1 = 1
-\]
-לכן $L = 1$ גבול חלקי של $(a_n)$.
+נוכיח כי $L = 1$ הוא גבול חלקי של $(a_n)$.
+\begin{proof}
+	נגדיר סדרת אינדקסים
+	\[
+		n_k = \sqrt{n^2 - 1}
+	\]
+	על־פי סעיף ד' מתקיים
+	\[
+		a_{n_k} = \left\langle \sqrt{n^2 - 1} \right\rangle = \sqrt{n^2 - 1} - n + 1
+	\]
+	ולכן על־פי סעיף ה'
+	\[
+		\lim_{k \to \infty} a_{n_k} = \lim_{n \to \infty} \sqrt{n^2 - 1} - n + 1 = 1
+	\]
+	לכן $L = 1$ גבול חלקי של $(a_n)$.
+\end{proof}
 
 \subsection{סעיף ז'}
 נחשב את $L = \displaystyle\uplim_{n \to \infty} a_n$. \\*
@@ -257,7 +268,7 @@ $$
 \subsection{סעיף ח'}
 נגדיר $A = \left\{ a_n \mid n \in \NN \right\}$ ונמצא את $\sup A$. \\*
 אנו יודעים כי $1 \notin A$, אך על־פי הסעיף הקודם אנו יודעים כי לכל $n < 1$ בסביבה של $1$ מתקיים $n \in A$. \\*
-מסיבה זו $l = 1$ הוא חסם מלעיל של $A$, ולכל $k < l$ שנבחר קיים $a \in A$ כך ש־$a > k$ \footnotemark, לכן $l$ חסם עליון, נסמן
+מסיבה זו $l = 1$ הוא חסם מלעיל של $A$, ולכל $k < l$ שנבחר קיים $a \in A$ כך ש־$a > k$, לכן $l$ חסם עליון, נסמן
 \[
 	\sup A = 1
 \]
