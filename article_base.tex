@@ -1,19 +1,22 @@
 \documentclass[a4paper]{article}
 
 % packages
-\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, polyglossia, catchfile}
+\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, catchfile}
 \usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
 \usepackage[shortlabels]{enumitem}
+
+% language
+\usepackage[bidi=default, layout=tabular]{babel}
+\babelprovide[main, import]{hebrew}
+\babelprovide{rl}
+\babelfont{rm}{Libertinus Serif}
+\babelfont{sf}{Libertinus Sans}
+\babelfont{tt}{Libertinus Mono}
 
 % style
 \AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
 \linespread{1.5}
 \setcounter{secnumdepth}{0}		% Remove default number tags from sections
-\setmainfont{Libertinus Serif}
-\setsansfont{Libertinus Sans}
-\setmonofont{Libertinus Mono}
-\setdefaultlanguage{hebrew}
-\setotherlanguage{english}
 
 % operators
 \DeclareMathOperator\cis{cis}
@@ -25,7 +28,7 @@
 \DeclareMathOperator*\uplim{\overline{lim}}
 
 % commands
-\renewcommand\qedsymbol{\textbf{מש"ל}}
+\renewcommand\qedsymbol{\textbf{מש''ל}}
 \newcommand{\NN}[0]{\mathbb{N}}
 \newcommand{\ZZ}[0]{\mathbb{Z}}
 \newcommand{\QQ}[0]{\mathbb{Q}}
