@@ -167,12 +167,72 @@
 \]
 רציפה במידה שווה בקטע $[0, \infty)$. % chktex 9
 \begin{proof}
+	נראה כי לכל $a \ge 1$ מתקיים
+	\[
+		0 \le a
+		\rightarrow a^2 \le a^2 + a
+		\rightarrow a \le \sqrt{a^2 + a}
+		\rightarrow a + \frac{1}{2} \le \sqrt{a^2 + a} + \frac{1}{2} \le 2 \sqrt{a^2 + a}
+	\]
+	לכן לכל $x_1, x_2 \ge 1$ מתקיים גם
+	\begin{align*}
+		& x_1 + x_2 + 1 \le 2 \sqrt{x_1^2 + x_1} + 2 \sqrt{x_2^2 + x_2} \\
+		& \frac{x_1 + x_2 + 1}{ \sqrt{x_1^2 + x_1} + 2 \sqrt{x_2^2 + x_2}} \le 2
+	\end{align*}
+	יהי $\delta > 0$ ו־$x_1, x_2$ כך ש־$|x_1 - x_2| < \delta$.
 	\begin{align*}
 		\left\lvert \sqrt{x_1^2 + x_1} - \sqrt{x_2^2 + x_2} \right\rvert
-		= \left\lvert \frac{\left( \sqrt{x_1^2 + x_1} - \sqrt{x_2^2 + x_2} \right)\left( \sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2} \right)}
-			{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert
-		= \left\lvert \frac{ x_1^2 + x_1 - x_2^2 - x_2 }
-			{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert
+		& = \left\lvert \frac{\left( \sqrt{x_1^2 + x_1} - \sqrt{x_2^2 + x_2} \right)\left( \sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2} \right)}
+			{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert \\
+		& = \left\lvert \frac{ x_1^2 + x_1 - x_2^2 - x_2 }{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert \\
+		& = \left\lvert \frac{ (x_1 + x_2 + 1)(x_1 - x_2) }{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert \\
+		& = \left\lvert \frac{ x_1 + x_2 + 1 }{\sqrt{x_1^2 + x_1} + \sqrt{x_2^2 + x_2}} \right\rvert |x_1 - x_2|
 	\end{align*}
+	נניח כי גם $x_1, x_2 \ge 1$ ולכן
+	\[
+		\left\lvert \sqrt{x_1^2 + x_1} - \sqrt{x_2^2 + x_2} \right\rvert = 2 |x_1 - x_2| < 2 \delta
+	\]
+	יהי $\epsilon > 0$, אם נגדיר $\delta = \frac{1}{2} \epsilon$ אז לכל $x_1, x_2 \in [1, \infty)$, % chktex 9
+	אשר עבורם $|x_1 - x_2| < \delta$ מתקיים $|f(x_1) - f(x_2)| < \epsilon$,
+	אז מהגדרה 5.46 נובע כי $f(x)$ רציפה במידה שווה בקטע. \\*
+	ממשפט קנטור אנו יכולים להסיק כי $f(x)$ רציפה במידה שווה גם ב־$[0, \infty)$ % chktex 9
 \end{proof}
+
+\subsection{סעיף ב'}
+נוכיח כי הפונקציה
+\[
+	f(x) = \sqrt{x} \sin \frac{1}{x}
+\]
+רציפה במידה שווה בקטע $(0, \infty)$.
+\begin{proof}
+	\begin{align*}
+		\lim_{x \to \infty} f(x) & = \lim_{x \to \infty} \sqrt{x} \sin \frac{1}{x} \\
+								 & = \lim_{x \to 0} \sqrt{\frac{1}{x}} \sin x && \text{על־פי 5.14} \\
+								 & = \lim_{x \to 0} \sqrt{x} \frac{\sin x}{x} \\
+		\lim_{x \to \infty} f(x) & = 0 \cdot 1 = 0 && \text{על־פי משפט 4.45}
+	\end{align*}
+	אנו יודעים כי $\sin x$ היא פונקציה חסומה, ולכן גם $\sin \frac{1}{x}$ חסומה, לכן ממשפט 4.53 נובע כי
+	\[
+		\lim_{x \to 0^+} f(x) = 0
+	\]
+	משני הגבולות האלה ומשפט 5.49 נובע כי $f(x)$ רציפה במידה שווה בקטע $(0, \infty)$.
+\end{proof}
+
+\subsection{סעיף ג'}
+נפריך את הטענה כי הפונקציה
+\[
+	f(x) = \sin \frac{1}{x}
+\]
+רציפה במידה שווה בקטע $(0, 1)$.
+\begin{proof}
+	נניח בשלילה כי $f(x)$ רציפה במידה שווה, ויהיו $\epsilon, \delta$ אשר מקיימים את הגדרה 5.46. \\*
+	נקבע
+	\[
+		x_1 = \frac{1}{\frac{1}{2} \pi + 2 \pi k},
+		x_2 = \frac{1}{-\frac{1}{2} \pi + 2 \pi k}
+	\]
+	כאשר $k \in \NN$. בשל הקשר בין $k$ לבין גודל המכנה, קיים $k$ כך ש־$|x_1 - x_2| < \delta$. \\*
+	אך כמובן ש־$|f(x_1) - f(x_2)| = |1 - (-1)| = 2$, בסתירה לטענה כי קיים ערך $\delta$ לכל $\epsilon$.
+\end{proof}
+
 \end{document} % chktex 17
