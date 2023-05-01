@@ -1,0 +1,56 @@
+\input{../article_base.tex}
+\title{פתרון ממ''ן 15 – חשבון אינפיניטסימלי 1 (20474)}
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+\subsection{סעיף א'}
+נחשב את הגבול הבא
+\[
+	\lim_{n \to \infty} {\left( 1 + \sin \frac{1}{n^2} \right)}^{n^2}
+\]
+מהגדרת $\sin x$ אנו יכולים להסיק כי למשוואה $\sin x = x$ ישנו רק פתרון אחד כאשר $x = 0$,
+מהרציפות של שתי הפונקציות והעובדה כי $\sin 1 < 1$ (על־פי חישוב ישיר) נובע כי $\sin x < x$ לכל $0 < x$. \\*
+ניתן באופן דומה לראות כי $\alpha x < \sin x$ בסביבה חיובית של $0$
+\begin{align*}
+	& \alpha x < \sin x < x \\
+	& \frac{1}{\alpha n^2} < \sin \frac{1}{n^2} < \frac{1}{n^2} \\
+	& 1 + \frac{1}{n^4} < 1 + \sin \frac{1}{n^2} < 1 + \frac{1}{n^2} \\
+	& {\left( 1 + \frac{1}{\alpha n^2} \right)}^{\alpha n^2} < {\left( 1 + \sin \frac{1}{n^2} \right)}^{n^2} < {\left(1 + \frac{1}{n^2} \right)}^{n^2} \\
+	& e^\alpha \le \lim_{n \to 0} {\left( 1 + \sin \frac{1}{n^2} \right)}^{n^2} \le e
+\end{align*}
+וכאשר $\alpha \to 1$ נקבל
+\[
+	\lim_{n \to 0} {\left( 1 + \sin \frac{1}{n^2} \right)}^{n^2} = e
+\]
+
+\subsection{סעיף ב'}
+נמצא את ערך הגבול
+\[
+	\lim_{x \to 0} |x|^{\frac{1}{x^2}}
+\]
+על־פי הרכבת הפונקציה $\frac{1}{x}$:
+\begin{align*}
+	\lim_{x \to 0} |x|^{\frac{1}{x^2}}
+	& = \lim_{t \to \infty} {\left\lvert \frac{1}{t} \right\rvert}^{t^2} \\
+	& = \lim_{t \to \infty} \frac{1}{|t|^{t^2} } \\
+	& = \infty
+\end{align*}
+הגבול מתקיים במובן הרחב.
+
+\section{שאלה 2}
+תהי פונקציה
+\[
+	f(x) = e^{-x} + \sin^2 x
+\]
+
+\subsection{סעיף א'}
+נוכיח כי מתקיים הגבול הבא עבור סדרה
+\[
+	\lim_{n \to \infty} f(\pi n) = 0
+\]
+\begin{proof}
+	קליל, הסינוס מתאפס תמיד, והאקספוננט הולך וקטן אז משפט 6.8
+\end{proof}
+
+\end{document}
