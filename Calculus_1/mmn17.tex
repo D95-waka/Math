@@ -43,9 +43,216 @@
 	\[
 		g'(x) = \frac{6x}{2\sqrt{3x^2 + 6}}
 	\]
-	נשים לב כי $g'(0) = 0$ וכי $g'(1) = 1$. \\*
-	ל־$g'(x)$ יש פונקציה קדומה, ולכן ממשפט דארבו נובע כי אני ארנבת מדבר.
+	נשים לב כי $g'(0) = 0$, $g'(1) = 1$ וכי $f'(x) = g'(x)$. \\*
+	ממשפט דארבו נובע כי לכל $x \in [0, 1]$ קיים $x_0$ כך ש־$f'(x_0) = x$.
 \end{proof}
 
-\end{document}
+\section{שאלה 4}
+נוכיח כי הפונקציה
+\[
+	f(x) = \sqrt{x} \sin \sqrt{x}
+\]
+רציפה במידה שווה בקטע $[0, \infty)$ % chktex 9
+\begin{proof}
+	יהי $\delta > 0$, לכל $x, y \in [0, \infty)$ אשר מקיימים $\lvert x - y \rvert < \delta$ מתקיים: % chktex 9
+	\begin{align*}
+		\lvert f(x) - f(y) \rvert
+		& = \lvert \sqrt{x} \sin \sqrt{x} - \sqrt{y} \sin \sqrt{y} \rvert \\
+		& = \frac{\lvert\sqrt{x} \sin \sqrt{x} - \sqrt{y} \sin \sqrt{y}\rvert \cdot \lvert\sqrt{x} \sin \sqrt{x} + \sqrt{y} \sin \sqrt{y}\rvert}
+			{\lvert\sqrt{x} \sin \sqrt{x} + \sqrt{y} \sin \sqrt{y} \rvert} \\
+		& = \frac{\lvert x \sin^2 \sqrt{x} - y \sin^2 \sqrt{y}\rvert}{\lvert \sqrt{x} \sin \sqrt{x} + \sqrt{y} \sin \sqrt{y}\rvert} \\
+		& \le \frac{\lvert x - y \rvert } {\lvert \sqrt{x} \sin \sqrt{x} + \sqrt{y} \sin \sqrt{y}\rvert}
+	\end{align*}
+	נגדיר גם $x, y \ge 1$ ולכן
+	\[
+		\lvert f(x) - f(y) \rvert
+		\le \frac{\lvert x - y \rvert } {1}
+		< \delta
+	\]
+	לכל $\epsilon > 0$ נגדיר $\delta = \epsilon$ ולכן בהתאם להגדרה 5.46 $f$ רציפה במידה שווה בתחום $[1, \infty)$. \\* % chktex 9
+	ממשפט קנטור עבור התחום $[0, 1]$ נובע כי $f$ רציפה במידה שווה בתחום $[0, \infty)$ % chktex 9
+\end{proof}
 
+\section{שאלה 5}
+\subsection{סעיף א'}
+תהי $f$ פונקציה גזירה ב־$\RR_{\ge a} = [a, \infty)$. % chktex 9
+
+\textbf{(i)}
+נוכיח כי אם קיים קבוע $m > 0$ כך ש־$f'(x) \ge m$ לכל $x \in \RR_{\ge a}$ אז $\lim_{x \to \infty} f(x) = \infty$.
+\begin{proof}
+	ממשפט 8.18 נובע ישירות כי $f$ עולה ב־$\RR_{\ge a}$, ולכן מהגדרת גבול פונקציות באינסוף מתקיים
+	\[
+		\lim_{x \to \infty} f(x) = \infty
+	\]
+\end{proof}
+
+\textbf{(ii)}
+נוכיח כי אם קיים קבוע $m > 0$ כך ש־$f'(x) \le -m$ לכל $x \in \RR_{\ge a}$ אז $\lim_{x \to \infty} f(x) = - \infty$.
+\begin{proof}
+	נובע באופן דומה ממשפט 8.18.
+\end{proof}
+
+\subsection{סעיף ב'}
+תהי $f$ פונקציה גזירה פעמיים ב־$(0, \infty)$ כך ש־$f''(x) > 0$ לכל $x \in (0, \infty)$. \\*
+נתון כי
+\[
+	\lim_{x \to \infty} f(x) = L
+\]
+
+\textbf{(i)}
+נוכיח כי $f'(x) < 0$ לכל $x \in (0, \infty)$.
+\begin{proof}
+	ידוע כי $f''(x) > 0$ לכל $x$ בתחום, ולכן משפט 8.18 נובע כי $f'(x)$ עולה לכל $x \in (0, \infty)$. \\*
+	נניח בשלילה כי ישנה נקודה $x_0$ אשר בה $f'(x_0) = 0$. \\*
+	בשל עלייתה בכל נקודה, בהכרח מתקיים לכל $x < x_0$ $f'(x) < 0$ ובאופן דומה לכל $x > x_0$ גם $f'(x) > 0$. \\*
+	בקטע $(x_0, \infty)$ ממשפט 8.18 נובע כי $f(x)$ עולה לכל נקודה, ולכן על־פי הגדרת הגבול לאינסוף
+	\[
+		\lim_{x \to \infty} f(x) = \infty
+	\]
+	בסתירה לטענה כי $f(x)$ מתכנסת לערך ממשי $L$. \\*
+	בשל כך לא קיימת נקודה $x_0$ עבורה $f'(x) = 0$ ולכל $x \in (0, \infty)$ מתקיים $f'(x) < 0$.
+\end{proof}
+
+\textbf{(ii)}
+נוכיח כי $\sup f'((0, \infty)) = 0$
+\begin{proof}
+	ממשפט לופיטל נובע כי
+	\[
+		0 = \lim_{x \to \infty} \frac{f(x)}{x} = \lim_{x \to \infty} \frac{f'(x)}{1}
+	\]
+	דהינו
+	\[
+		\lim_{x \to \infty} f'(x) = 0
+	\]
+	אנו גם יודעים כי $f'(x) < 0$ לכל $x \in (0, \infty)$. \\*
+	משילוב טענות אלה אנו מקבלים כי לכל $\epsilon > 0$ קיים $M$ כך שלכל $x > M$ מתקיים $f'(x) > -\epsilon$.
+	מצאנו כי לכל $a < 0$ קיים $b \in (0, \infty)$ כך ש־$f'(b) \ge a$ ולכן נובע כי
+	\[
+		\sup f'((0, \infty)) = 0
+	\]
+\end{proof}
+
+\textbf{(iii)}
+נוכיח כי
+\[
+	\lim_{x \to \infty} f'(x) = 0
+\]
+\begin{proof}
+	למעשה כבר הוכחנו זאת בתת־סעיף הקודם.
+\end{proof}
+
+\section{שאלה 6}
+נחשב את הגבולות הבאים או נוכיח כי אינם קיימים.
+
+\subsection{סעיף א'}
+\[
+	\lim_{x \to 1} \frac{x^x - x}{\ln x - x + 1}
+\]
+מחישוב ישיר מתקבל
+\[
+	1^1 - 1 = 0, \ln 1 - 1 + 1 = 0
+\]
+נשים לב כי
+\[
+	(x^x)' = (e^{x \ln x})' = (1 \cdot \ln x + x \frac{1}{x}) e^{x \ln x} = (\ln x + 1) x^x
+\]
+ולכן על־פי משפט לופיטל
+\begin{align*}
+	\lim_{x \to 1} \frac{x^x - x}{\ln x - x + 1}
+	& = \lim_{x \to 1} \frac{(x^x - x)'}{(\ln x - x + 1)'} \\
+	& = \lim_{x \to 1} \frac{(\ln x + 1) x^x - 1}{\frac{1}{x} - 1} \\
+	& = \lim_{x \to 1} \frac{\frac{1}{x} x^x + \ln x (\ln x + 1) x^x + (\ln x + 1) x^x}{\frac{-1}{x^2}} && \text{על־פי משפט לופיטל} \\
+	& = \frac{\frac{1}{1} 1^1 + \ln 1 (\ln 1 + 1) 1^1 + (\ln 1 + 1) 1^1}{\frac{-1}{1^2}} \\
+	& = \frac{1 + 1}{-1} = -2
+\end{align*}
+ולכן
+\[
+	\lim_{x \to 1} \frac{x^x - x}{\ln x - x + 1} = -2
+\]
+
+\subsection{סעיף ב'}
+\[
+	\lim_{x \to 0} x (e^\frac{1}{x} - 1)
+\]
+נחשב את שני הגבולות החד־צדדיים.
+\[
+	\lim_{x \to 0^+} x (e^\frac{1}{x} - 1)
+	= \lim_{t \to \infty} \frac{e^t - 1}{t}
+	= \lim_{t \to \infty} \frac{e^t}{1}
+	= \infty
+\]
+על־פי משפט הרכבה עבור $t = \frac{1}{x}$ ומשפט לופיטל.
+\[
+	\lim_{x \to 0^-} x (e^\frac{1}{x} - 1)
+	= \lim_{t \to -\infty} \frac{e^t - 1}{t}
+	= \lim_{t \to -\infty} \frac{e^t}{1}
+	= 0
+\]
+על־פי חישוב דומה. \\*
+מצאנו כי הגבולות החד־צדדיים שונים ולכן בהתאם הגבול לא מתקיים.
+
+\subsection{סעיף ג'}
+\[
+	\lim_{x \to \infty} {\left( \frac{2}{\pi} \arctan x \right)}^x
+\]
+\[
+	{\left( \frac{2}{\pi} \arctan x \right)}^x
+	= e^{x \ln \left( \frac{2}{\pi} \arctan x \right)}
+\]
+נבדוק את גבול המעריך:
+\begin{align*}
+	\lim_{x \to \infty} x \ln \left( \frac{2}{\pi} \arctan x \right)
+	& = \lim_{x \to \infty} \frac{\ln \left( \frac{2}{\pi} \arctan x \right)}{\frac{1}{x}} \\
+	& = \lim_{x \to \infty} \frac{\frac{\frac{2}{\pi} \frac{1}{1 + x^2}}{\frac{2}{\pi} \arctan x}}{\frac{-1}{x^2}} && \text{לופיטל} \\
+	& = \lim_{x \to \infty} \frac{x^2}{-\arctan x (1 + x^2)} \\
+	& = \lim_{x \to \infty} \frac{1}{-\arctan x } \lim_{x \to \infty} \frac{x^2}{1 + x^2} \\*
+	& = \frac{-2}{\pi}
+\end{align*}
+ולכן ממשפט פונקציית הרכבה נובע
+\[
+	\lim_{x \to 0} x (e^\frac{1}{x} - 1) = e^{-\frac{2}{\pi}}
+\]
+
+\section{שאלה 7}
+\subsection{סעיף א'}
+נוכיח כי הפונקציה
+\[
+	f(x) = \frac{1}{x} + \ln x
+\]
+מקבלת בקטע $(0, \infty)$ מינימום בנקודה $x = 1$.
+\begin{proof}
+	ממשפט 8.4 נובע כי בנקודת קיצון של $f(x)$ ערך הנגזרת $f'(x)$ הוא $0$, לכן נחשב את הנגזרת ונשווה ל־$0$:
+	\[
+		f'(x) = \frac{-1}{x^2} + \frac{1}{x}
+	\]
+	נשווה ונפתור
+	\begin{align*}
+		& f'(x) = 0 \\
+		& \frac{-1}{x^2} + \frac{1}{x} = 0 \\
+		& -1 + x = 0 \\
+		& x = 1
+	\end{align*}
+	אנו יודעים כי ל־$f'(x)$ נקודת איפוס אחת בלבד, ומהגדרתה אנו גם יודעים כי היא רציפה,
+	לכן ממשפט ערך הביניים נובע ישירות כי $f'(x) < 0$ לכל $x < 1$, ובאופן דומה גם $f'(x) > 0$ לכל $x > 1$. \\*
+	ממשפט 8.18 מתקבל כי $f(x)$ יורדת כאשר $x < 1$, ועולה כאשר $x > 1$, לכן בכל סביבה שנבחר $x = 1$ היא מינימום מקומי של $f(x)$,
+	דהינו היא נקודת מינימום של הפונקציה
+\end{proof}
+
+\subsection{סעיף ב'}
+נגדיר
+\[
+	g(x) = e^x \ln x
+\]
+נוכיח כי הפונקציה מקבלת כל ערך ממשי בדיוק פעם אחת.
+\begin{proof}
+	תחילה נראה כי מהגדרות רכיבי $g(x)$ ומאריתמטיקה של הגבולות נובע:
+	\[
+		\lim_{x \to 0^+} g(x) = -\infty
+	\]
+	מגבול זה אנו יכולים להסיק כי בסביבה החיובית של $0$ $g(x)$ פונקציה עולה. \\*
+	עוד אנו יכולים להסיק מרכיביה את עלייתה גם בתחום $(1, \infty)$. \\*
+	ניתן לקבוע כי $g(x)$ עולה לכל $x \in (0, \infty)$ ובהתאם לכל $x_1 < x_2$ מתקיים $g(x_1) < g(x_2)$,
+	לכן היא מקבלת כל ערך ממשי פעם אחת בלבד.
+\end{proof}
+
+\end{document} % chktex 17
