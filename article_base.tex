@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 % packages
-\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, catchfile}
+\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, catchfile, tikzducks}
 \usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
 \usepackage[shortlabels]{enumitem}
 
@@ -35,13 +35,19 @@
 \newcommand{\RR}[0]{\mathbb{R}}
 \newcommand{\CC}[0]{\mathbb{C}}
 \newcommand{\getenv}[2][] {
-  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1} % chktex 18
   \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi
 }
 \newcommand{\explain}[2] {
 	\begin{flalign*}
 		 && \text{#2} && \text{#1}
 	\end{flalign*}
+}
+\newcommand{\maketitleprint}[0]{ \begin{center}
+	\begin{tikzpicture}[scale=3]
+		\duck[graduate=gray!20!black, tassel=red!70!black]
+	\end{tikzpicture}	
+\end{center}
 }
 
 % headers
