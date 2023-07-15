@@ -1,0 +1,86 @@
+\input{../article_base.tex}
+\title{פתרון ממ''ן 11 – חשבון אינפיניטסימלי 2 (20475)}
+
+\begin{document}
+\maketitle
+\section{שאלה 1}
+\subsection{סעיף א'}
+נוכיח כי
+\[
+	\frac{2}{3\pi} \le \int_{2\pi}^{3\pi} \frac{\sin x}{x} dx \le \frac{1}{\pi}
+\]
+\begin{proof}
+	תחילה נגדיר
+	\[
+		f(x) = \frac{\sin x}{x}
+	\]
+	זוהי כמובן פונקציה רציפה ולכן אינטגרבילית.
+	נגדיר גם $g(x) = \frac{x^2}{2\pi}$ ונראה כי מתקיים $g(x) \ge f(x)$ לכל $x \ge 2\pi$.
+	ממשפט 1.26 נובע כי
+	\[
+		\int_{2\pi}^{3\pi} f(x) dx \le \int_{2\pi}^{3\pi} g(x) dx = \frac{x}{\pi} \Big|_{2\pi}^{3\pi} = \frac{1}{\pi}
+	\]
+	נגדיר גם
+	\[
+		h(x) = \frac{\sin x}{3 \pi}
+	\]
+	כמובן שבתחום האינטגרל המונה של $f$ ו־$h$ זהים, אך $x \le 3\pi$ בתחום, ולכן גם $h(x) \le f(x)$ לכל התחום, ומתקיים
+	\[
+		\int_{2\pi}^{3\pi} f(x) dx \ge \int_{2\pi}^{3\pi} h(x) dx = \frac{-\cos x}{3\pi} \Big|_{2\pi}^{3\pi} = \frac{2}{3\pi}
+	\]
+	אז מצאנו כי
+	\[
+		\frac{2}{3\pi} \le \int_{2\pi}^{3\pi} \frac{\sin x}{x} dx \le \frac{1}{\pi}
+	\]
+\end{proof}
+
+\subsection{סעיף ב'}
+תהי $f(x)$ פונקציה רציפה בקטע $[0, 2]$. לכל $n \in \NN$ נגדיר
+\[
+	a_n = \int_{1/n}^{2/n} f(x) dx
+\]
+נוכיח כי $\lim_{n \to \infty} n a_n = f(0)$
+\begin{proof}
+	נגדיר $F(x)$ הפונקציה הקדומה של $f(x)$, לכן על־פי הנוסחה היסודית של החשבון האינפיניטסמלי מתקיים
+	\[
+		\int_{1/n}^{2/n} f(x) dx = a_n = F(2/n) - F(1/n)
+	\]
+	מהגדרת הגבול לפי היינה ועל־פי משפט הרכבת פונקציות בגבול מאינפי 1 נקבל עבור הרכבת הפונקציה $g(t) = \frac{1}{t}$
+	\begin{align*}
+		\lim_{n \to \infty} n a_n
+		& = \lim_{t \to 0} \frac{F(2t) - F(t)}{t} \\
+		& = \lim_{t \to 0} \frac{F(2t) - F(2 \cdot 0) - F(t) + F(0)}{t} \\
+		& = \lim_{t \to 0} 2\frac{F(2t) - F(2 \cdot 0)}{2t} - \lim_{t \to 0} \frac{F(t) - F(0)}{t} \\
+		& = 2 f(0) - f(0) \\ 
+		\lim_{n \to \infty} n a_n
+		& = f(0)
+	\end{align*}
+\end{proof}
+
+\subsection{סעיף ג'}
+נגדיר
+\[
+	f(x) = \int_{x}^{x + 1} \sqrt{\arctan t} \, dt
+\]
+נוכיח כי $f(x) < \sqrt{\arctan(x + 1)}$ לכל $x \ge 0$.
+\begin{proof}
+	ידוע כי $g(x) = \sqrt{\arctan x}$ היא פונקציה עולה וחסומה, לכן $g(x) < g(x + 1)$ \\*
+	להסביר למה המשיק לפונקציה $g$ תמיד מעל הפונקציה עצמה.
+	\begin{align*}
+		\int_{x}^{x + 1} g(t) \, dt
+		& \le
+		\int_{x}^{x + 1} g'(x + 1)(t - x - 1) + g(x + 1) \, dt && \text{נשים לב כי $x$ ערך קבוע באינטגרל} \\
+		& = g'(x + 1) \frac{t^2}{2} - g'(x + 1)(x + 1)t + g(x + 1) t \Big|_x^{x + 1} \\
+		& = g'(x + 1) (2x + 1)/2 - g'(x + 1) (x + 1) + g(x + 1) \\
+		& = \frac{-g'(x + 1)}{2} + g(x + 1) \\
+		& < g(x + 1)
+	\end{align*}
+	מצאנו כי $f(x) < g(x + 1)$.
+\end{proof}
+
+\section{שאלה 2}
+נחשב את
+\[
+	\lim_{x \to \infty} \frac{\displaystyle\int_0^{\sqrt{x}} t^2 \arctan(e^t) dt}{\sqrt{x^3}}
+\]
+\end{document}
