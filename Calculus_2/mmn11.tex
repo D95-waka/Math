@@ -27,9 +27,9 @@
 	\]
 	כמובן שבתחום האינטגרל המונה של $f$ ו־$h$ זהים, אך $x \le 3\pi$ בתחום, ולכן גם $h(x) \le f(x)$ לכל התחום, ומתקיים
 	\[
-		\int_{2\pi}^{3\pi} f(x) dx \ge \int_{2\pi}^{3\pi} h(x) dx = \frac{-\cos x}{3\pi} \Big|_{2\pi}^{3\pi} = \frac{2}{3\pi}
+		\int_{2\pi}^{3\pi} f(x) dx \ge \int_{2\pi}^{3\pi} h(x) dx = \left. \frac{-\cos x}{3\pi} \right|_{2\pi}^{3\pi} = \frac{2}{3\pi}
 	\]
-	אז מצאנו כי
+	מצאנו כי
 	\[
 		\frac{2}{3\pi} \le \int_{2\pi}^{3\pi} \frac{\sin x}{x} dx \le \frac{1}{\pi}
 	\]
@@ -169,7 +169,7 @@
 \]
 בתחום $[2, 3]$ ידוע כי $f(x) = x - 2$ ולכן
 \[
-	F(x) = \int_0^x f(x) dx = F(2) + \int_2^x (x - 2) dx = \frac{x^2}{2} - 2x \Big|_2^x + F(2) = \frac{x^2}{2} - 2x + 4
+	F(x) = \int_0^x f(x) dx = F(2) + \int_2^x (x - 2) dx = \frac{x^2}{2} - 2x \Big|_2^x + F(2) = \frac{x^2}{2} - 2x + 2
 \]
 
 \section{שאלה 5}
@@ -228,7 +228,7 @@
 \[
 	G(x) = \int_0^x g(x) = \begin{cases}
 		\frac{x^2}{2} & 0 \le x < \frac{\pi}{2} \\
-		\pi x - \frac{x^2}{x} & \frac{\pi}{2} \le x < \frac{3 \pi}{2} \\
+		\pi x - \frac{x^2}{2} & \frac{\pi}{2} \le x < \frac{3 \pi}{2} \\
 		\frac{x^2}{2} - 2\pi x & \frac{3 \pi}{2} \le x \le 2 \pi
 	\end{cases}
 \]
@@ -259,7 +259,8 @@
 	& + G(\frac{3\pi}{2}) - F(\frac{3\pi}{2}) - G(\pi) + F(\pi)
 	+ F(2\pi) - G(2\pi) - F(\frac{3\pi}{2}) + G(\frac{3\pi}{2})
 		\\
-	& = 2G(\frac{\pi}{2}) - 2F(\frac{\pi}{2}) - G(0) + F(0) + 2F(\pi) - 2G(\pi) + 2G(\frac{3\pi}{2}) - 2F(\frac{3\pi}{2}) + F(2\pi) - G(2\pi)
+	& = 2G(\frac{\pi}{2}) - 2F(\frac{\pi}{2}) - G(0) + F(0) + 2F(\pi) - 2G(\pi) + 2G(\frac{3\pi}{2}) - 2F(\frac{3\pi}{2}) + F(2\pi) - G(2\pi) \\
+	& = \frac{1}{2}\pi^2 - 4
 \end{align*}
 
 \end{document} % chktex 17
