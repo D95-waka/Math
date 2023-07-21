@@ -169,5 +169,59 @@
 \[
 	f(x) = \frac{\sqrt[4]{x} + 1}{x}, g(x) = \sin\left(2\sqrt{x}\right)
 \]
+בתחום $[1, \infty)$ הפונקציה $f$ מונוטונית יורדת וחיובית בכל התחום, ו־$|g|$ חסומה על־ידי $[0, 1]$. \\* % chktex 9
+כמו־כן גם $\lim_{x \to \infty} f(x) = 0$ ולכן ממבחן דיריכלה האינטגרל
+\[
+	\int_1^\infty |f(x) g(x)| dx
+\] 
+מתכנס. ידוע מאדיטיביות האינטגרל כי
+\[
+	\int_0^\infty f(x) g(x) dx = \int_0^1 f(x) g(x) dx + \int_1^\infty f(x) g(x) dx
+\]
+נראה כי
+\[
+	f(x) g(x) = 2\frac{\frac{1}{\sqrt[4]{x}} + \frac{1}{\sqrt{x}}}{1} \frac{\sin(2\sqrt{x})}{2\sqrt{x}}
+\]
+ידוע כי בתחום $0 < x < \frac{\pi}{2}$ מתקיים $0 < \sin t < t$ ולכן גם בהכרח $0 < \frac{\sin(2 \sqrt{x})}{2 \sqrt{x}} < 1$. \\*
+אז מצאנו כי
+\[
+	f(x) g(x)
+	< \frac{2}{\sqrt[4]{x}} + \frac{2}{\sqrt{x}}
+	= \frac{2(x^{1/2} + x^{1/4})}{x^{3/4}}
+	= \frac{4x^{1/4}}{x^{3/4}}
+	< \frac{4}{x^{1/4}}
+\]
+מלמה 3.2 נובע כי האינטגרל
+\[
+	\int_0^1 \frac{4}{x^{1/4}} dx
+\]
+הוא אינטגרל מתכנס ולכן ממשפט ההשוואה נובע שמתכנס גם
+\[
+	\int_0^1 f(x) g(x) dx
+\]
+ולכן האינטגרל
+\[
+	\int_0^\infty f(x) g(x) dx
+\]
+מתכנס בהחלט.
+
+\section{שאלה 3}
+תהי פונקציה $f$ אינטגרבילית בקטע $[0, a]$ לכל $a > 0$ ומתקיים $\lvert f(x) \rvert \le \sqrt{x}$ לכל $x \ge 0$. \\*
+נגדיר $F(x) = \int_0^x f(t) dt$, ונוכיח כי האינטגרל המוגדר על־ידי
+\[
+	\int_0^\infty \frac{F(x)}{\pi + x^3} dx \tag{1}
+\]
+מתכנס.
+\begin{proof}
+	ידוע כי $\lvert f(x) \rvert \le \sqrt{x}$ לכל $x \ge 0$ ולכן מהמונוטוניות של האינטגרל המסוים (1.26) נובע
+	\[
+		F(x) = \int_0^x \lvert f(t) \rvert dt \le \int_0^x \sqrt{t} dt = \left. \frac{2}{3} \sqrt{t^3} \right|_0^x = \frac{2}{3} \sqrt{x^3}
+	\]
+	מאי־השוויון נובע כי לכל $x \ge 0$ גם
+	\[
+		\frac{F(x)}{\pi + x^3} \le \frac{2 \sqrt{x^3}}{3 \pi + 3 x^3}
+	\]
+	להשתמש במבחן דיריכלה כמו בסעיף הקודם ולסיים עניין.
+\end{proof}
 
 \end{document} % chktex 17
