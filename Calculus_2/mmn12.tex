@@ -361,27 +361,31 @@ $g(x)$ חסומה ובעלת נגזרת רציפה ב־$[0, \infty)$ כך ש־$g
 \section{שאלת רשות}
 יהיו $0 < a < b$. נוכיח את התכנסות האינטגרל
 \[
-	\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx \tag{1}
+	\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx
 \]
 \begin{proof}
 	נראה כי
-	\begin{align*}
+	\begin{flalign*}
 		\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx
-		& = \int_0^\infty \frac{e^{-ax}}{x}dx - \int_0^\infty \frac{e^{-bx}}{x}dx \\
+		& = \int_0^\infty \frac{e^{-ax}}{x}dx - \int_0^\infty \frac{e^{-bx}}{x}dx && & \text{מהגדרת האינטגרל המורחב} \\
 		& = \lim_{k \to 0} \int_k^\infty \frac{e^{-ax}}{x}dx - \int_k^\infty \frac{e^{-bx}}{x}dx \\
 		\begin{vmatrix}
 			t_1 = x/a & dt_1 = dx/a \\
 			t_2 = x/b & dt_2 = dx/b \\
 		\end{vmatrix}
-		& = \lim_{k \to 0} \int_{ak}^\infty \frac{e^{-t_1}}{t_1}dt_1 - \int_{bk}^\infty \frac{e^{-t_2}}{t_2}dt_2 \\
-		& = \lim_{k \to 0} \int_{ak}^{bk} \frac{e^{-t}}{t}dt \\
+		& = \lim_{k \to 0} \int_{ak}^\infty \frac{e^{-t_1}}{t_1}dt_1 - \int_{bk}^\infty \frac{e^{-t_2}}{t_2}dt_2 && & \text{נשים לב כי הביטויים שקולים}\\
+		& = \lim_{k \to 0} \int_{ak}^{bk} \frac{e^{-t}}{t}dt && & \text{על־פי גבול אינטגרל מוכלל ניתן לראות כי} \\
 		\begin{vmatrix}
 			t = ku \\
 			dt = k du
 		\end{vmatrix}
-		& = \lim_{k \to 0} \int_{a}^{b} \frac{e^{-k u}}{k u}k \, du \\
-		& = \int_{a}^{b} \lim_{k \to 0} \frac{e^{-k u}}{u} du \\
-		& = \int_{a}^{b} \frac{1}{u} du = \frac{1}{b} - \frac{1}{a}
-	\end{align*}
+		& = \lim_{k \to 0} \int_{a}^{b} \frac{e^{-k u}}{k u}k \, du && & \text{נשים לב כי $k$ קבוע באיטגרל} \\
+		& = \int_{a}^{b} \lim_{k \to 0} \frac{e^{-k u}}{u} du && & \text{קיבלנו ביטוי עבורו הפונקציה הפנימית בלבד תלויה ב־$k$} \\
+		& = \int_{a}^{b} \frac{1}{u} du = \left. \ln u \right|_a^b = \ln a - \ln b = \ln \frac{a}{b}
+	\end{flalign*}
+	מצאנו כי האינטגרל מוגדר וכי
+	\[
+		\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx = \ln \frac{a}{b}
+	\]
 \end{proof}
 \end{document} % chktex 17
