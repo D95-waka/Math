@@ -356,8 +356,32 @@ $g(x)$ חסומה ובעלת נגזרת רציפה ב־$[0, \infty)$ כך ש־$g
 	\[
 		\int_0^\infty f(x) g(x) dx
 	\]
-
 \end{proof}
 
-
+\section{שאלת רשות}
+יהיו $0 < a < b$. נוכיח את התכנסות האינטגרל
+\[
+	\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx \tag{1}
+\]
+\begin{proof}
+	נראה כי
+	\begin{align*}
+		\int_0^\infty \frac{e^{-ax} - e^{-bx}}{x}dx
+		& = \int_0^\infty \frac{e^{-ax}}{x}dx - \int_0^\infty \frac{e^{-bx}}{x}dx \\
+		& = \lim_{k \to 0} \int_k^\infty \frac{e^{-ax}}{x}dx - \int_k^\infty \frac{e^{-bx}}{x}dx \\
+		\begin{vmatrix}
+			t_1 = x/a & dt_1 = dx/a \\
+			t_2 = x/b & dt_2 = dx/b \\
+		\end{vmatrix}
+		& = \lim_{k \to 0} \int_{ak}^\infty \frac{e^{-t_1}}{t_1}dt_1 - \int_{bk}^\infty \frac{e^{-t_2}}{t_2}dt_2 \\
+		& = \lim_{k \to 0} \int_{ak}^{bk} \frac{e^{-t}}{t}dt \\
+		\begin{vmatrix}
+			t = ku \\
+			dt = k du
+		\end{vmatrix}
+		& = \lim_{k \to 0} \int_{a}^{b} \frac{e^{-k u}}{k u}k \, du \\
+		& = \int_{a}^{b} \lim_{k \to 0} \frac{e^{-k u}}{u} du \\
+		& = \int_{a}^{b} \frac{1}{u} du = \frac{1}{b} - \frac{1}{a}
+	\end{align*}
+\end{proof}
 \end{document} % chktex 17
