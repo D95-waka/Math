@@ -282,14 +282,31 @@
 \]
 על־פי כרך ב' של הספר אנו למדים כי
 \[
-	\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} + R_3(x)
+	\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + R_4(x)
 \]
 ולכן
 \[
-	f(x) = e^{\frac{1}{x} (x - \frac{x^2}{2} + \frac{x^3}{3} + R_3(x))}
-	= e^{1 - \frac{x}{2} + \frac{x^2}{3} + \frac{R_3(x)}{x}}
-	= e^{1 - \frac{x}{2} + \frac{x^2}{3} + R_3(x)}
-	= e(e^\frac{x}{2})(e^\frac{x^2}{3}) + R_3(x)
+	f(x) = e^{\frac{1}{x} (x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + R_4(x))}
+	= e^{1 - \frac{x}{2} + \frac{x^2}{3} - \frac{x^3}{4} + \frac{R_4(x)}{x}}
+	= e^{1 - \frac{x}{2} + \frac{x^2}{3} - \frac{x^3}{4} + R_3(x)}
+	= e(e^\frac{-x}{2})(e^\frac{x^2}{3})(e^{\frac{-x^3}{4}}) + R_3(x)
+\]
+מפיתוח מקלורן עולה כי
+\begin{align*}
+	& e^{-x/2} = 1 - \frac{1}{2} x + \frac{1}{8}x^2 - \frac{1}{48}x^3 + R_3(x) \\
+	& e^{x^2/3} = 1 + 0x + \frac{1}{3}x^2 + 0 x^3 + R_3(x) \\
+	& e^{-x^3/4} = 1 + 0x + 0x^2 - \frac{1}{4}x^3 + R_3(x)
+\end{align*}
+ולכן
+\begin{align*}
+	e(e^\frac{-x}{2})(e^\frac{x^2}{3})(e^{\frac{-x^3}{4}}) + R_3(x)
+	& = e( 1 - \frac{1}{2} x + \frac{1}{8} x^2 - \frac{1}{48}x^3 )( 1 + \frac{1}{3} x^2 )(1 - \frac{1}{4}x^3) + R_3(x) \\
+	& = e( 1 - \frac{1}{2} x + \frac{1}{8} x^2 + \frac{1}{3} x^2 - \frac{1}{48}x^3 - \frac{1}{6}x^3 - \frac{1}{4}x^3 ) + R_3(x) \\
+	& = e( 1 - \frac{1}{2} x + \frac{11}{24} x^2 - \frac{21}{48}x^3 ) + R_3(x) \\
+\end{align*}
+ולכן מצאנו כי
+\[
+	f(x) = e - \frac{e}{2} x + \frac{11e}{24} x^2 - \frac{7e}{16}x^3 + R_3(x)
 \]
 
 \end{document}
