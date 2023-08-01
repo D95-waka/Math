@@ -171,45 +171,69 @@
 \[
 	\int_0^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
 \]
+בתחום $x \in (0, 1]$ מהזהות $t \ge \sin t$ והזהות על הגבול $\lim_{t \to 0} \sin t / t$ נובע כי $0 < \sin(2 \sqrt{x}) / \sqrt{x} \le 1$ לכל $x$ בתחום, % chktex 9
+ולכן
+\[
+	0 < 
+	\frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right)
+	\le \frac{1}{\sqrt{x}} (\sqrt[4]{x} + 1) \cdot 1
+	= \frac{1}{x^{3/4}} + \frac{1}{\sqrt{x}}
+\]
+מלמה 3.2 נובעת התכנסות האינטגרל
+\[
+	\int_{0}^{1} \frac{1}{x^{3/4}} + \frac{1}{\sqrt{x}} dx
+\]
+נשים לב כי כלל תנאי מבחן ההשוואה חלים ונובעת התכנסות האינטגרל
+\[
+	\int_0^1 \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
+\]
 נגדיר
 \[
-	f(x) = \frac{\sqrt[4]{x} + 1}{x}, g(x) = \sin\left(2\sqrt{x}\right)
+	f(x) = \frac{1}{x^{3/4}} + \frac{1}{x^{1/4}}, g(x) = \frac{1}{\sqrt{x}} \sin(2 \sqrt{x})
 \]
-בתחום $[1, \infty)$ הפונקציה $f$ מונוטונית יורדת וחיובית בכל התחום, ו־$|g|$ חסומה על־ידי $[0, 1]$. \\* % chktex 9
-כמו־כן גם $\lim_{x \to \infty} f(x) = 0$ ולכן ממבחן דיריכלה האינטגרל
+מאינפי 1 אנו למדים כי הפונקציה $f(x)$ היא מונוטונית יורדת, ומחישוב עולה כי מתקיים הגבול $\lim_{x \to \infty} f(x) = 0$. \\*
+נחשב את האינטגרל
 \[
-	\int_1^\infty |f(x) g(x)| dx
-\] 
-מתכנס. ידוע מאדיטיביות האינטגרל כי
-\[
-	\int_0^\infty f(x) g(x) dx = \int_0^1 f(x) g(x) dx + \int_1^\infty f(x) g(x) dx
+	\int_{1}^{x} g(t) dt
 \]
-נראה כי
+נשתמש בכלל ההצבה עבור $t = u^2, dt = 2u \, du$ ונקבל כי
 \[
-	f(x) g(x) = 2\frac{\frac{1}{\sqrt[4]{x}} + \frac{1}{\sqrt{x}}}{1} \frac{\sin(2\sqrt{x})}{2\sqrt{x}}
+	\int_{1}^{x} g(t) dt
+	= \int_{1}^{\sqrt{x}} \frac{1}{u} \sin(2u) \cdot 2u \, du
+	= \int_{1}^{\sqrt{x}} 2 \sin(2u) \, du
+	= \left. -\cos(2u) \right|_1^{\sqrt{x}}
+	= -\cos(2 \sqrt{x}) + \cos(2)
 \]
-ידוע כי בתחום $0 < x < \frac{\pi}{2}$ מתקיים $0 < \sin t < t$ ולכן גם בהכרח $0 < \frac{\sin(2 \sqrt{x})}{2 \sqrt{x}} < 1$. \\*
-אז מצאנו כי
+מצאנו כי האינטגרל חסום לכל $x \ge 1$, ולכן הפונקציות $f(x)$ ו־$g(x)$ מקיימות את תנאי מבחן דיריכלה ונובעת התכנסות האינטגרל
 \[
-	f(x) g(x)
-	< \frac{2}{\sqrt[4]{x}} + \frac{2}{\sqrt{x}}
-	= \frac{2(x^{1/2} + x^{1/4})}{x^{3/4}}
-	= \frac{4x^{1/4}}{x^{3/4}}
-	< \frac{4}{x^{1/4}}
+	\int_1^\infty f(x) g(x) \, dx
+	= \int_1^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
 \]
-מלמה 3.2 נובע כי האינטגרל
+מאדיטיביות האינטגרל נובע כי שני האינטגרלים המתכנסים מקיימים
 \[
-	\int_0^1 \frac{4}{x^{1/4}} dx
+	\int_0^1 \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
+	+ \int_1^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
+	= \int_0^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) dx
 \]
-הוא אינטגרל מתכנס ולכן ממשפט ההשוואה נובע שמתכנס גם
+נשים לב כי
 \[
-	\int_0^1 f(x) g(x) dx
+	\int_1^\infty \left\lvert \frac{1}{x} (\sqrt[4]{x} + 1) \sin \left( 2 \sqrt{x} \right) \right\rvert dx
+	= \int_1^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \left\lvert \sin \left( 2 \sqrt{x} \right) \right\rvert dx
 \]
-ולכן האינטגרל
+נבחין כי מתקיים בתחום
 \[
-	\int_0^\infty f(x) g(x) dx
+	\frac{1}{x} (\sqrt[4]{x} + 1) \left\lvert \sin \left( 2 \sqrt{x} \right) \right\rvert
+	\ge \frac{1}{\sqrt{x}} \left\lvert \sin \left( 2 \sqrt{x} \right) \right\rvert
 \]
-מתכנס בהחלט.
+ומדוגמה 3.12 נוכל להסיק את התבדרות האינטגרל
+\[
+	\int_{1}^{\infty} \frac{1}{\sqrt{x}} \left\lvert \sin \left( 2 \sqrt{x} \right) \right\rvert dx
+\]
+ולכן ממבחן השוואה נובע כי האינטגרל
+\[
+	\int_1^\infty \frac{1}{x} (\sqrt[4]{x} + 1) \left\lvert \sin \left( 2 \sqrt{x} \right) \right\rvert dx
+\]
+מתכנס בתנאי.
 
 \section{שאלה 3}
 תהי פונקציה $f$ אינטגרבילית בקטע $[0, a]$ לכל $a > 0$ ומתקיים $\lvert f(x) \rvert \le \sqrt{x}$ לכל $x \ge 0$. \\*
