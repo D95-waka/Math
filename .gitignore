@@ -3,6 +3,7 @@
 
 !.gitignore
 !**/*.tex
+!**/*.lua
 !**/bin/*.pdf
 !Discrete_mathematics/פתרון ממ"ן *.odt
 
