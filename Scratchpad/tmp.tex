@@ -3,10 +3,25 @@
 
 \begin{document}
 
+יש לנו שני וקטורים: $3u - v$ ו־$v$, ועל־פי חיסור וקטורים נקבל שהוקטור השלישי במשלוש שמורכב מהם הוא $3u - 2v$. \\
+עכשיו משפט הקוסינוסים עבור שלוש צלעות $A, B, C$ הוא
 \[
-	\int_{0}^{\infty} \frac{1}{x} dx
-	= \infty
+	A^2 = B^2 + C^2 - 2 BC \cos \theta
 \]
+נציב ונקבל
+\[
+	{(3u - 2v)}^2 = {(3u - v)}^2 + v^2 - 2 (3u - v) \cdot v \cdot \cos \theta
+\]
+על־פי פיתוח
+\begin{align*}
+	& 9u^2 - 12uv + 4v^2 = 9u^2 - 6uv + v^2 + v^2 - 2(3uv - v^2) \cos \theta \\
+	& 9 - 12 \frac{-1}{4} + 4 = 9 - 6 \frac{-1}{4} + 1 + 1 - 2(3 \frac{-1}{4} - 1) \cos \theta \\
+	& 9 + 3 + 4 = 9 + \frac{3}{2} + 2 - 2\frac{-3 - 4}{4} \cos \theta \\
+	& 9 + 3 + 4 = 9 + \frac{3}{2} + 2 - 2\frac{-3 - 4}{4} \cos \theta \\
+	& 16 = 11 + \frac{3}{2} + 2\frac{7}{2} \cos \theta \\
+	& 5 - \frac{3}{2} = \frac{7}{2} = 2\frac{7}{2} \cos \theta \\
+	& 1 = 2 \cos \theta
+\end{align*}
 
 \end{document}
 
