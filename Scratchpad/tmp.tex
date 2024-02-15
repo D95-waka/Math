@@ -3,25 +3,29 @@
 
 \begin{document}
 
-יש לנו שני וקטורים: $3u - v$ ו־$v$, ועל־פי חיסור וקטורים נקבל שהוקטור השלישי במשלוש שמורכב מהם הוא $3u - 2v$. \\
-עכשיו משפט הקוסינוסים עבור שלוש צלעות $A, B, C$ הוא
+נתונה הפונקציה
 \[
-	A^2 = B^2 + C^2 - 2 BC \cos \theta
+	h(x) = \begin{cases}
+		\sin(x^2) \tan^{-1}(\frac{1}{x}) & x \ne 0 \\
+		0 & x = 0
+	\end{cases}
 \]
-נציב ונקבל
+נבדוק אם הפונקציה גזירה בנקודה $x = 0$:
 \[
-	{(3u - 2v)}^2 = {(3u - v)}^2 + v^2 - 2 (3u - v) \cdot v \cdot \cos \theta
+	h'(0)
+	= \lim_{x \to 0} \frac{h(x) - h(0)}{x - 0}
+	= \lim_{x \to 0} \frac{h(x)}{x}
+	= \lim_{x \to 0} \frac{\sin(x^2)}{x} \cdot \tan^{-1}(\frac{1}{x})
+	= \lim_{x \to 0} \frac{\sin(x^2)}{x^2} \cdot x \tan^{-1}(\frac{1}{x})
 \]
-על־פי פיתוח
-\begin{align*}
-	& 9u^2 - 12uv + 4v^2 = 9u^2 - 6uv + v^2 + v^2 - 2(3uv - v^2) \cos \theta \\
-	& 9 - 12 \frac{-1}{4} + 4 = 9 - 6 \frac{-1}{4} + 1 + 1 - 2(3 \frac{-1}{4} - 1) \cos \theta \\
-	& 9 + 3 + 4 = 9 + \frac{3}{2} + 2 - 2\frac{-3 - 4}{4} \cos \theta \\
-	& 9 + 3 + 4 = 9 + \frac{3}{2} + 2 - 2\frac{-3 - 4}{4} \cos \theta \\
-	& 16 = 11 + \frac{3}{2} + 2\frac{7}{2} \cos \theta \\
-	& 5 - \frac{3}{2} = \frac{7}{2} = 2\frac{7}{2} \cos \theta \\
-	& 1 = 2 \cos \theta
-\end{align*}
+אנו כמובן יודעים כי $\lim_{x \to 0} \frac{\sin(x^2)}{x^2} = 1$ על־פי הרכבת הגבול, לכן מתקיים:
+\[
+	\lim_{x \to 0} \frac{\sin(x^2)}{x^2} \cdot x \tan^{-1}(\frac{1}{x})
+	= \lim_{x \to 0} 1 \cdot x \tan^{-1}(\frac{1}{x})
+	= 0
+\]
+שכן קיבלנו גבול חסומה ואפסה. \\*
+ובסך הכול הפונקציה גזירה ב־$x = 0$ ומתקיים $h'(0) = 0$.
 
 \end{document}
 
