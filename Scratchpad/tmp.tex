@@ -5,26 +5,8 @@
 \begin{document}
 
 \[
-	\int \frac{\cos x dx}{1 + \sqrt{\sin x}}
+	\int_{0}^{\infty} \frac{1}{x} \ne 0
 \]
-נגדיר $\sin x = t^2$ ובהתאם $\cos x \, dx = 2t \, dt$.
-\begin{align*}
-	\int \frac{\cos x \, dx}{1 + \sqrt{\sin x}}
-	& = \int \frac{2t \, dt}{1 + t} \\
-	& = 2 \int 1 - \frac{1}{1 + t} dt \\
-	& = 2t - 2\ln|1 + t| + C \\
-	& = 2\sqrt{\sin x} - 2\ln|1 + \sqrt{\sin x}| + C \\
-\end{align*}
-נגזור את הביטוי כדי לוודא את עצמנו
-\begin{align*}
-	\left( 2\sqrt{\sin x} - 2\ln|1 + \sqrt{\sin x}| \right)'
-	& = \left( 2\sqrt{\sin x} - 2\ln|1 + \sqrt{\sin x}| \right)' \\
-	& = 2 \frac{\cos x}{2 \sqrt{\sin x}} - 2 \frac{\frac{\cos x}{2 \sqrt{\sin x}}}{1 + \sqrt{\sin x}} \\
-	& = \frac{\cos x}{\sqrt{\sin x}} - \frac{\frac{\cos x}{\sqrt{\sin x}}}{1 + \sqrt{\sin x}} \\
-	& = \frac{\cos x (\sin x + \sqrt{\sin x})- \cos x \sqrt{\sin x}}{\sin x \sqrt{\sin x} + \sin x} \\
-	& = \frac{\cos x \color{red}\cancel{\color{black}\sin x}}{\cancel{\sin x} \sqrt{\sin x} + \cancel{\sin x}} \\
-	& = \frac{\cos x}{\sqrt{\sin x} + 1} \\
-\end{align*}
 
 \end{document}
 
