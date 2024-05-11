@@ -1,0 +1,148 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+נקבע לכל ביטוי האם הוא מגדיר נורמה מעל $\RR^2$:
+\begin{enumerate}
+	\item $\lVert (x, y) \rVert = 2|x| + 3|y|$: לא משמרת כפל בסקלר: $2|\lambda x| + 3|\lambda y| \ne \lambda(2|x| + 3|y|)$, ולכן לא מהווה נורמה.
+	\item $\lVert (x, y) \rVert = x^2 + y^2$ לא משמרת כפל בסקלר באותו אופן ולכן איננה נורמה.
+	\item $\lVert (x, y) \rVert = {(\sqrt{|x|} + \sqrt{|y|})}^2$ זוהי אכן נורמה, נראה:
+		\begin{itemize}
+			\item הפעולה חיובית לכל ערך בשל חיוביות הריבוע, ומתאפסת רק כאשר $x = y = 0$.
+			\item $\lVert \lambda(x, y) \rVert = {(\sqrt{|\lambda x|} + \sqrt{|\lambda y|})}^2 = {\sqrt{|\lambda|}}^2{(\sqrt{|x|} + \sqrt{|y|})}^2 = |\lambda| \lVert (x, y) \rVert$.
+			\item $\lVert (x_1, y_1) + (x_2, y_2) \rVert = {(\sqrt{|x_1 + x_2|} + \sqrt{|y_1 + y_2|})}^2 = |x_1 + x_2| + |y_1 + y_2| + 2\sqrt{|x_1 + x_2|} \sqrt{|y_1 + y_2|}$ \\*
+				$\le |x_1| + |x_2| + |y_1| + |y_2| + 2\sqrt{|x_1 + x_2|} \sqrt{|y_1 + y_2|} = \lVert (x_1, y_1)\rVert + \lVert (x_2, y_2)\rVert + 2\sqrt{|x_1 + x_2|} \sqrt{|y_1 + y_2|} - 2 \sqrt{|x_1y_1|} - 2 \sqrt{|x_2y_2|}
+				 \le \lVert (x_1, y_1)\rVert + \lVert (x_2, y_2)\rVert$
+		\end{itemize}
+	\item $\lVert (x, y) \rVert = |x| + |y| + \sqrt{x^2 + y^2}$ היא אכן נורמה, ניתן להסיק זאת ישירות מהרכבה כחיבור של שתי פונקציות נורמה.
+\end{enumerate}
+
+\Subquestion{}
+תהי $A$ קבוצה ויהי $X$ אוסף תתי־הקבוצות הסופיות של $A$. \\*
+לכל $x, y \in X$ נסמן $\rho(x, y) = |x \triangle y|$. נוכיח ש־$\rho$ מטריקה על $X$.
+\begin{proof}
+	נוכיח שתכונות המטריקה מתקיימות:
+	\begin{enumerate}
+		\item $x = y \iff \rho(x, y) = 0$ נובע ישירות מהגדרת ההפרש הסימטרי.
+		\item סימטריה נובעת מסימטריית ההפרש הסימטרי.
+		\item אי־שוויון המשולש: $x \triangle z = (x \cup z) \setminus (x \cap z)
+		\subseteq (x \cup z \cup y) \setminus (x \cap y \cap z)
+		= (x \cup y) \setminus (x \cap y \cap z) \cup (z \cup y) \setminus (x \cap y \cap z)
+		\subseteq (x \cup y) \setminus (x \cap y) \cup (z \cup y) \setminus (y \cap z)
+		= x \triangle y \cup y \triangle z$
+		ולכן נוכל להסיק את אי־שוויון המשולש.
+	\end{enumerate}
+	מצאנו כי כלל התכונות למטריקה חלות על הפונקציה $\rho$ ולכן היא מהווה מטריקה על קבוצה זו.
+\end{proof}
+
+\Question{}
+יהיו $d \in \NN, 1 \le p \le \infty$, נוכיח כי קיים $C > 0$ כך שלכל $x \in \RR^d$ מתקיים
+\[
+	\lVert x \rVert_\infty \le \lVert x \rVert_p \le C\lVert x \rVert_\infty
+\]
+\begin{proof}
+	נגדיר $x_m = \max_{i \in d} |x_i|$ ונשים לב כי
+	\[
+		{|x_m|}^p
+		\le \sum_{i = 1}^{d} {|x_i|}^p
+		\le \sum_{i = 1}^{d} {|x_m|}^p
+		= d {|x_m|}^p
+	\]
+	דהינו
+	\[
+		\lVert x \rVert_\infty^p \le \lVert x \rVert_p^p \le d \lVert x \rVert_\infty^p
+	\]
+	ולכן גם נובע
+	\[
+		\lVert x \rVert_\infty \le \lVert x \rVert_p \le \sqrt[p]{d} \lVert x \rVert_\infty
+	\]
+	ומצאנו מספר $C = \sqrt[p]{d}$ אשר מקיים את אי־השוויון.
+\end{proof}
+
+\Question{}
+יהיו ${\{(X_i, \rho_i)\}}_{i = 1}^d$ מרחבים מטריים ותהיה $f : \RR_+^d \to \RR$ פונקציה חיובית, מקיימת את אי־שוויון המשולש ומונוטונית לכל רכיב. \\*
+נסמן $X = X_1 \times \cdots \times X_d$ ונגדיר $\rho_f : X \to \RR$ על־ידי
+\[
+	\rho_f(\{x_1, \hdots, x_d\}, \{y_1, \hdots, y_d\}) = f(\rho_1(x_1, y_1, \hdots, \rho_d(x_d, y_d)))
+\]
+
+\Subquestion{}
+נוכיח כי $\rho_f$ היא מטריקה על $X$.
+\begin{proof}
+	נבדוק את תכונות המטריקה:
+	\begin{enumerate}
+		\item חיוביות: נתון לנו כי לכל רכיב הוא מתאפס אם ורק אם $x_i = y_i$, ונתונה לנו חיוביות ב־$f$, לכן $\rho_f$ יתאפס אם ורק אם $x = y = 0$.
+		\item סימטריה: נראה כי
+			\[
+				\rho_f(x, y)
+				= f(\rho_1(x_1, y_1, \hdots, \rho_d(x_d, y_d)))
+				= f(\rho_1(y_1, x_1, \hdots, \rho_d(y_d, x_d)))
+				= \rho_f(y, x)
+			\]
+		\item אי שוויון המשולש: נתון כי $f$ מקיימת את אי־שוויון המשולש וכלל הרכיבים הם מטריקות ולכן מקיימים את אי־שוויון המשולש ולכן נובע.
+	\end{enumerate}
+\end{proof}
+
+\Subquestion{}
+נראה כי הפונקציה $f(x) = x_1 + \hdots + x_d$ מקיימת את תנאי השאלה. \\*
+חיוביות: נתון $x_i \ge 0$ לכל $i \in [d]$ ולכן גם חיבור כלל הרכיבים הוא חיובי. \\*
+תת־חיבוריות: $f(x + y) = \sum_{i = 1}^{d} x_i + y_i = f(x) + f(y)$. \\*
+מונוטוניות בכל רכיב נובעת מהמעבר האחרון.
+
+\Subquestion{}
+נראה שעבור $f$ הנתונה התכנסות ב־$\rho_f$ שקולה להתכנסות איבר־איבר.
+\begin{proof}
+	\begin{align*}
+		& \lim_{n \to \infty} x_n = y \\
+		& \iff \forall \epsilon > 0 \exists N > 0 \forall n > N, x \in X \implies \rho_f(x, x_n) < \epsilon \\
+		& \iff \forall \epsilon > 0 \exists N > 0 \forall n > N, x \in X \implies \sum_{i = 1}^{d} x_i < \epsilon \\
+		& \iff \forall \epsilon > 0 \exists N > 0 \forall n > N, x \in X, i \in [d] \implies x_i < \frac{\epsilon}{i} \\
+		& \iff \forall i \in [d] \forall \epsilon > 0 \exists N > 0 \forall n > N, x \in X \implies x_i < \epsilon \\
+		& \iff \forall i \in [d] \lim_{n \to \infty} x_i = y_i, \sum_{i = 1}^{d} y_i = d
+	\end{align*}
+	ומצאנו כי ההגדרות שקולות מחיוביות החיבור.
+\end{proof}
+
+\Question{}
+נבדוק לכל אחת מהקבוצות הבאות אם היא פתוחה ואם היא סגורה:
+
+\Subquestion{}
+נבחן את $C^1([0, 1])$ כתת־קבוצה של $C([0, 1])$. \\*
+נראה כי הקבוצה איננה פתוחה, שכן לכל $f \in C^1([0, 1])$ נוכל לבנות פונקציה חדשה בהינתן $h \in (0, 1)$ על־ידי
+\[
+	f^*(x) = \begin{cases}
+		f(x), & 0 \le x \le h \\
+		f(h) - f(x), & h < x \le 1
+	\end{cases}
+\]
+פונקציה זו רציפה ונראה כי $\lim_{h \to 1} f^*(x) = f(x)$ ולכן גם $\lim_{h \to 1} \rho(f, f^*) = 0$. \\*
+לעומת זאת הפונקציה $f^* \not\in C^1([0, 1])$ ו־$f^* \in C([0, 1])$ כל עוד $f$ איננה פונקציה קבועה, ולכל כדור סביב $f$ נוכל לבחור $h$ כך ש־$f^*$ תהיה בכדור. \\*
+נסיק שהקבוצה איננה פתוחה. \\*
+נניח בשלילה שהקבוצה הנתונה סגורה, לכן כל סדרה ${(f_n)}_{n = 1}^\infty \in C^1([0, 1])$ מקיימת $\lim_{n \to \infty} f_n \in C^1([0, 1])$. \\*
+נגדיר
+\[
+	f_n(x) = \sqrt{{(x - \frac{1}{2})}^2 + \frac{1}{n}}
+\]
+פונקציה זו היא רציפה וגזירה בתחום $[0, 1]$ ולכן מקיימת את התנאים אבל
+\[
+	\lim_{n \to \infty} f_n = \sqrt{{(x - \frac{1}{2})}^2 + 0} = |x - \frac{1}{2}| = f
+\]
+וידוע כי $f \not\in C^1([0, 1])$, בסתירה להנחה, לכן הקבוצה איננה סגורה. \\*
+מצאנו כי הקבוצה הנתונה איננה פתוחה ואיננה סגורה.
+
+\Subquestion{}
+נבדוק את הקבוצה $A = \{ (x, y, z) \in \RR^3 \mid x + y + z \le 1\}$ כתת־קבוצה של $\RR^3$. \\*
+נבחר $a = (1, 0, 0)$ ונראה שלכל $r > 0$ מתקיים $B(a, r) = \{(x, y, z) \mid {(x - 1)}^2 + y^2 + z^2 < r^2 \} \not\subseteq A$. \\*
+אם נבחר $x = 1, y = 0, z = r / 2$ אז כמובן הנקודה המוגדרת מוכלת בכדור, אבל $(x, y, z) \not\in A$. \\*
+לכן הקבוצה איננה פתוחה. \\*
+נבדוק אם הקבוצה סגורה. נגדיר ${(a_n)}_{n = 1}^\infty \in A$ סדרת נקודות מתכנסת ל־$a$. \\*
+משאלה 3 נובע כי הגבול מתכנס אם ורק אם כל סדרת נקודות $(a_n^i)$ כאשר $1 \le i \le 3$ מתכנסת אף היא, ולכן $\lim_{n \to \infty} a_n^1 + a_n^2 + a_n^3 = a_1 + a_2 + a_3$. \\*
+ואנו יודעים כי לכל $n$ מתקיים $a_n^1 + a_n^2 + a_n^3 \le 1$ ולכן ממשפט הפרוסה נקבל גם $a_1 + a_2 + a_3 \le 1$ ומצאנו כי $A$ מכילה את כל הנקודות הגבוליות שלה. \\*
+לסיכום הקבוצה $A$ היא סגורה ואיננה פתוחה.
+
+\end{document}
