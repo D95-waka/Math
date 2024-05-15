@@ -1,9 +1,13 @@
 \input{../article_base.tex}
+\usepackage{hyperref}
+\hypersetup{}
 \title{תורת הקבוצות}
 
 \begin{document}
 \maketitle
 \maketitleprint{}
+
+\tableofcontents
 
 \section{שיעור 1 --- 8.5.2024}
 
@@ -79,6 +83,156 @@
 
 צריך להשלים את הסוף של ההאצאה.
 
+\section{שיעור 2 --- 15.5.2024}
+\subsection{תוצאות ראשונות בשוויון עוצמות}
+\subsubsection{הקדמה למשפט קנטור}
+לכל מספר $x \in \RR$ יש חלק שלם וחלק שברי כך שמתקיים $x = \lfloor x \rfloor + \langle x \rangle$. \\*
+במקרה זה $\lfloor x \rfloor = n \in \ZZ$, כאשר $n \le x$. \\*
+נובע כי $0 \le x - \lfloor x \rfloor < 1$. נגדיר $\langle x \rangle = x - \lfloor x \rfloor$. \\*
+כל מספר $\langle x \rangle$ ניתן להצגה כהצגה בצור
+\[
+	\langle x \rangle = 0.x_1x_2 \hdots x_k \hdots
+\]
+נשים לב כי צורת הצגה זו היא יחידה פרט למקרה בודד בו ''הזנב'' של הספרות נגמר ב־$x_k = 0$ או כאשר הזנב נגמר ב־$x_k = 9$. \\*
+לדוגמה $0.359999\hdots = 0.360000\hdots$.
+
+\subsubsection{מונח: פיתוח סטנדרטי}
+לכל מספר $x$ עבורו ל־$\langle x \rangle$ יש פיתוח יחיד נקרא לו פיתוח \textbf{סטנדרטי}. \\*
+אחרת אם ל־$\langle x \rangle$ יש שני פיתוחים, אז נבחר את זה המסתיים ב־$x_k = 0$ להיות הסטנדרטי.
+
+\subsubsection{משפט קנטור}
+\begin{proof}
+	נראה כי לכל פונקציה $f : \NN \to \RR$ אז $f$ איננה על $\RR$. \\*
+	לכל $n \in \NN$ נרשום את הפיתוח הסטנדרטי של $\langle f(n) \rangle$:
+	\[
+		\langle f(n) \rangle = 0.x_0^n x_1^n x_2^n \hdots
+	\]
+	\[
+		\begin{matrix}
+			\langle f(0) \rangle & 0.x_0^0 & x_1^0 & x_2^0 & \hdots \\
+			\langle f(1) \rangle & 0.x_0^1 & x_1^1 & x_2^1 & \hdots \\
+			\langle f(2) \rangle & 0.x_0^2 & x_1^2 & x_2^2 & \hdots \\
+		\end{matrix}
+	\]
+	ונבחן את האלכסונים, ונבנה מספר כך שלכל ערך אלכסוני נבחר ספרה שונה מהערך האלכסוני. לכן נוכל לבנות מספר שלא מופיע בכלל ברשימה הזו. \\*
+	נתבונן כעת במספר $y \in \RR$ המוגדר על־ידי הפיתוח $y = 0.y_1 y_2 \hdots$ כאשר לכל $n \in \NN$ אנו מגדירים
+	\[
+		y_n = \begin{cases}
+			2, & x_n^n \ne 2 \\
+			7, & x_n^n = 2
+		\end{cases}
+	\]
+	מכיוון שכל הספרות בפיתוח הנתון הן 2 או 7 אז פיתוח זה הוא הפיתוח הסטנדרטי של $y$. \\*
+	לכל $n \in \NN$ לא יתכן ש־$y = f(n)$ שכן אחרת $\langle y \rangle = \langle f(n) \rangle$ ומכאן של־$\langle y \rangle$ ול־$\langle f(n) \rangle$ אותו פיתוח סטנדרטי בסתירה לכך ש־$y_n \le x_n^n$. \\*
+	מסיקים $\forall n \in \NN : y \ne f(n)$ ולכן $y \not\in rng(f)$ ובהתאם $f$ איננה על $\RR$.
+\end{proof}
+
+הגדרות נוספות:
+\subsubsection{אי־שוויון עוצמות}
+עבור קבוצות $A, B$ נאמר שעוצמת $A$ קטנה מעוצמת $B$ או $|A| \le |B|$ כאשר יש פונקציה חד־חד ערכית $f : A \to B$. \\*
+נאמר שעוצמת $A$ קטנה ממש מעוצמת $B$ אם $|A| \le |B| \land |A| \ne |B|$.
+
+\textbf{מסקנה:} $|\NN| < |\RR|$ \\*
+זאת משום ש־$\NN \subseteq \RR$ ולכן $|\NN| \le |\RR|$ והוכחנו במשפט קנטור ש־$|\NN| \ne |\RR|$.
+
+\subsection{שאלות המשך}
+\subsubsection{שאלה 1}
+\[
+	\NN \subseteq \ZZ \subseteq \QQ \subseteq \text{Alg}_\RR \subseteq \RR
+\]
+מהן עוצמות קבוצות הביניים בין $\NN$ ל־$\RR$?
+
+\subsubsection{שאלה 2}
+האם יש גודל אינסופי מירבי?
+
+\subsubsection{קבוצה בת־מנייה}
+קבוצה $A$ ששוות עוצמה ל־$\NN$ תיקרא \textbf{בת־מנייה}.
+
+\subsubsection{קבוצה מעוצמת הרצף}
+קבוצה $A$ ששוות עוצמה ל־$\RR$ תיקרא בעוצמת הרצף.
+
+\subsubsection{משפט קנטור־שרדר־ברנשטיין}
+תהינה שתי קבוצות $A, B$, אם $|A| \le |B|$ וגם $|B| \le |A|$ אז $|A| = |B|$.
+\begin{proof}
+	נדחה לסוף הפרק, יושלם בהמשך
+\end{proof}
+
+\subsubsection{טענה: עוצמת הטבעיים ומכפלת הטבעיים בעצמם}
+\[
+	|\NN| = |\NN \times \NN|
+\]
+נתאהר שתי הוכחות שונות למשפט.
+\begin{proof}[בניית הנחש]
+	\[
+		\begin{matrix}
+			(0, 0) & (0, 1) & (0, 2) & \hdots & (0, n) & \hdots \\
+			(1, 0) & (1, 1) & (1, 2) & \hdots & (1, n) & \hdots \\
+			(2, 0) & (2, 1) & (2, 2) & \hdots & (2, n) & \hdots \\
+			\vdots \\
+			(m, 0) & (m, 1) & (m, 2) & \hdots & (m, n) & \hdots
+		\end{matrix}
+	\]
+	ונעבור על המטריצה הזאת באופן אלכסוני. \\*
+	נגדיר $f : \NN \times \NN \to \NN$ על־ידי
+	\[
+		f(i, j) = \frac{(i + j)(i + j + 1)}{2} + i
+	\]
+\end{proof}
+\begin{proof}[שימוש במשפט קנטור־שרדר־ברנשטיין]
+	נמצא שתי פונקציות
+	\[
+		f : \NN \times \NN \to \NN,
+		g : \NN \to \NN \times
+	\]
+	את $f$ נגדיר על־ידי $f(n) = (0, n)$. \\*
+	ונגדיר $g(i, j) = 2^i 3^j$. שתי הפונקציות כמובן חד־חד ערכיות. \\*
+	נובע מיחידות הצגת מספרים טבעיים כמכפלת ראשוניים.
+\end{proof}
+
+\subsubsection{טענה: מכפלת קבוצות בנות מנייה}
+אם $A, B$ קבוצות בנות מנייה, אז גם $A \times B$ בת מנייה.
+\begin{proof}
+	נתון $A, B$ בנות מנייה אז ניקח פונקציה $h_B : \NN \to B$ חד־חד ערכית על $B$, \\*
+	וניקח $h_A : \NN \to A$
+	נקבע פונקציה חד־חד ערכית ועל $f : \NN \to \NN \times \NN$ (מטענה קודמת), $f(n) = (i_n, j_n)$, ונגדיר
+	\[
+		H : \NN \to A \times B, H(n) = (h_A(i_n), h_B(j_n)) \in A \times B
+	\]
+	נראה כי $H$ חד־חד ערכית, נניח $n \ne m$ אז $f(n) \ne f(m)$ (כי $f$ חד־חד ערכית). \\*
+	אז או $i_n \ne i_m$ או $j_n \ne j_m$ ונקבל $H(n) \ne H(m)$. \\*
+	$H$ גם על: $a \in A, b \in B$ וקיימים $i, j \in \NN$ כך ש־$a = h_A(i), b = h_B(j)$, נובע מזה שהן על. \\*
+	ידוע כי יש $n \in \NN$ כך ש־$f(n) = (i, j)$ ולכן מחיבור הטענות נקבל כי $H(n) = (a, b)$.
+\end{proof}
+
+\subsubsection{הגדרה: חזקה קרטזית}
+לכל קבוצה $A$ ו־$k \in \NN$ נגדיר $A^k$ באופן הבא: \\*
+אילו $k = 1$ אז $A^k = A$ ובמקרה ש־$k > 1$ אז $A^{k + 1} = A^k \times A$. \\*
+סימון: נסמן את אברי $A^k$ על־ידי $(a_1, a_2, \hdots, a_k)$, זאת למרות שבמציאות הקבוצה מוגדרת כ־$(((a_1, a_2), \hdots), a_k)$
+
+\subsubsection{טענה: חזקה קרטזית בת מנייה}
+לכל קבוצה $A$ בת־מנייה ו־$k \ge 1$ טבעי נובע $A^k$ בת־מנייה.
+\begin{proof}
+	באינדוקציה על $k$ ושימוש בטענה האחרונה.
+\end{proof}
+
+\subsubsection{קבוצת הרציונליים היא בת־מנייה}
+$\QQ$ היא בת־מנייה.
+\begin{proof}
+	נשתמש במשפט קנטור־שרדר־ברנשטיין
+	\[
+		\NN \subseteq \QQ \implies |\NN| \le |\QQ|
+	\]
+	כדי להראות ש־$|\QQ| \le |\NN|$ מספיק לבנות פונקציה חד־חד ערכית לקבוצה בת מנייה כלשהי. \\*
+	נגדיר $f : \QQ \to A$. לכל מספר רציונלי $z \ne 0$ יש הצגה יחידה בצורה $z = \pm \frac{p}{q}$ כאשר $p, q > 0$ טבעיים וזרים. \\*
+	נגדיר $f : \QQ \to \NN \times \NN \times \NN$ על־ידי
+	\[
+		f(z) = \begin{cases}
+			(0, 0, 0), & z = 0 \\
+			(1, p, q), & z > 0 \\
+			(2, p, q), & z < 0
+		\end{cases}
+	\]
+	נובע מהגדרתה כי $f$ היא חד־חד ערכית ולכן $|\QQ| \le |\NN \times \NN \times \NN| = |\NN^3| = |\NN|$.
+\end{proof}
+
 \end{document}
-
-
