@@ -1,0 +1,150 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- תורת הקבוצות (80200)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+נוכיח שאם $A$ קבוצה סופית וגם $|A| = n$ אז $|\mathcal{P}(A)| = 2^n$.
+\begin{proof}
+	נקבע ללא פגיעה בכלליות ההוכחה כי הקבוצה $A = [n]$. \\*
+	נגדיר פונקציה $f : \mathcal{P}(A) \to [2^n]$ על־ידי
+	\[
+		f(X) = \sum_{i = 0}^{n} \begin{cases}
+			2^i, & i \in X \\
+			0, & i \not\in X
+		\end{cases}
+	\]
+	פונקציה זו מתאימה מספר אי־שלילי לכל קבוצה $X \subset A$ על־ידי שימוש בבסיס בינארי, בדומה לייצוג עשרוני, לכן. \\*
+	לכן נניח שהפונקציה חד־חד ערכית. לכל מספר $r \in [2^n]$ נוכל למצוא יצוג בינארי מהצורה $r_0 2^0 + r_1 2^1 + \hdots + r_n 2^n$ כאשר $r_i \in \{0, 1\}$ לכל $i \in [n]$. \\*
+	אילו נבנה קבוצה $X = \{i \mid r_i = 1\}$ אז נקבל $f(X) = r$ ולכן הפונקציה גם על. \\*
+	לכן נובע $|\mathcal{P}(A)| = |[2^n]| = 2^n$
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $|A| = |B|$ אז גם $|\mathcal{P}(A)| = |\mathcal{P}(B)|$.
+\begin{proof}
+	אילו הקבוצות $A, B$ סופיות אז הטענה נובעת ישירות מהסעיף הקודם. \\*
+	נניח כי $A, B$ אינן סופיות. משוויון העוצמות נובע שקיימת $f : A \to B$ הפיכה. \\*
+	נגדיר $g : \mathcal{P}(A) \to \mathcal{P}(B)$ על־ידי
+	\[
+		g(X) = \{ f(x) \mid x \in A \}, \qquad
+		g^{-1}(X) = \{ f^{-1}(x) \mid x \in B \}
+	\]
+	הראינו פונקציה שמוכיחה כי הפונקציה היא על, ומהחד־חד ערכיות של $f$ נובעת חד־חד ערכיות של $g$, לכן $|\mathcal{P}(A)| = |\mathcal{P}(B)|$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי מתקיים השוויון
+\[
+	\mathcal{P}(A) \cap \mathcal{P}(B) = \mathcal{P}(A \cap B)
+\]
+\begin{proof}
+	\[
+		\forall X \subseteq A \cap B
+		\iff X \subseteq A \land X \subseteq B
+		\iff X \in \mathcal{P}(A) \land X \in \mathcal{P}(B)
+		\iff X \in \mathcal{P}(A \cap B)
+	\]
+	ולכן $\mathcal{P}(A) \cap \mathcal{P}(B) = \mathcal{P}(A \cap B)$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי
+\[
+	\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)
+\]
+\begin{proof}
+	\[
+		\forall X \in \mathcal{P}(A) \cup \mathcal{P}(B)
+		\iff X \subseteq A \lor X \subseteq B
+		\implies X \subseteq A \cup B
+		\iff X \in \mathcal{P}(A \cup B)
+	\]
+\end{proof}
+נראה דוגמה שבה זו הכלה ממש:
+\[
+	A = \{0\}, B = \{1\}, 
+	\mathcal{P}(A) \cup \mathcal{P}(B) = \{\emptyset, \{0\}, \{1\}\} \subset \mathcal{P}(A \cup B)
+	= \{\emptyset, \{0\}, \{1\}, \{0, 1\} \}
+\]
+
+\Subquestion{}
+נמצא קבוצה אינסופית $A$ כך ש־$A \subseteq \mathcal{P}(A)$. \\*
+נגדיר איבר $\emptyset_0 = \emptyset$ ולכל $n \in \NN$ נגדיר $\emptyset_{n + 1} = \{\emptyset_n\}$. \\*
+עתה נגדיר $A = \{\emptyset_i \mid i \in \NN \}$. \\*
+נובע כי לכל $n$ גם $\emptyset_n \in A \land \emptyset_n \subseteq A$ ולכן גם $\emptyset_n \in \mathcal{P}(A)$ ובמסתכם $A \subseteq \mathcal{P}(A)$.
+
+\Question{}
+נבדוק את הרפלקסיביות, הסימטריה והטרנזיטיביות של היחסים הבאים:
+
+\Subquestion{}
+\[
+	R_1 = \{ \langle x, y \rangle \in \QQ^2 \mid x - y \in \ZZ \}
+\]
+היחס רפלקסיבי שכן לכל $\langle x, x \rangle$ מתקיים $x - x = 0 \in \ZZ$. \\*
+היחס סימטרי שכן $\forall \langle x, y \rangle \in R_1 : x - y \in \ZZ \iff y - x \in \ZZ$. \\*
+היחס גם טרנזיטיבי שכן $\forall x, y, z \in R_1 : x R_1 y \land y R_1 z \implies x - y + y - z \in \ZZ, x - z \in \ZZ \implies \langle x, z \rangle \in R_1$.
+
+\Subquestion{}
+\[
+	R_2 = \{ \langle A, B \rangle \in {(\mathcal{P}(X))}^2 \mid A \cap B \text{ אינסופי} \}
+\]
+היחס רפלקסיבי שכן $A \cap A = A$ לכל קבוצה, וסימטרי כנביעה ישירה מסימטריית חיתוך הקבוצות. \\*
+היחס לא טרנזיטיבי. נגדיר $X = \NN, A = 2\NN, B = \NN, C = 2\NN + 1$ אז $A \cap B = A$ ולכן אינסופית, וגם $B \cap C = C$ אינסופית, אבל $A \cap C = \emptyset$.
+
+\Subquestion{}
+\[
+	R_2 = \{ \langle A, B \rangle \in {(\mathcal{P}(X))}^2 \mid A \triangle B \text{ אינסופי} \}
+\]
+היחס לא רפלקסיבי, לדוגמה $\NN \triangle \NN = \emptyset$ והיא איננה אינסופית. \\*
+היחס סימטרי כנביעה מסימטריית ההפרש הסימטרי. \\*
+היחס גם לא טרנזיטיבי, נראה כי אם $A = C = \NN, B = \emptyset$ אז $A \triangle B = C \triangle B = \NN$ אינסופי אבל $A \triangle C = \emptyset$.
+
+\Question{}
+\Subquestion{}
+תהי $A$ קבוצה ו־$E \subseteq A \times A$ יחס שקילות. \\*
+נוכיח ש־$A / E$ היא חלוקה של $A$.
+\begin{proof}
+	יהיו $a, b \in A$ ונגדיר $A_a, A_b$ מחלקות השקילות של $a, b$ בהתאמה. \\*
+	נשים לב ש־$A_a = A_b \iff aEb$, ולכן נניח מעתה כי $\langle a, b \rangle \not\in E$. \\*
+	נקבל בהתאם כי $A_a \ne A_b$, ונראה שגם $A_a \cap A_b = \emptyset$, שאם לא כן קיים איבר $c \in A$ שמקיים $\langle a, c \rangle, \langle b, c \rangle \in E$ ויחד עם טרנזיטיביות $A$ נקבל סתירה. \\*
+	כל $a \in A$ מגדיר איזושהי מחלקת שקילות, דהינו אין איבר כך שהוא לא נמצא באף מחלקת שקילות, ולכן איחודן הוא $A$ עצמה. \\*
+	מצאנו כי $A/E$ היא חלוקה של $A$.
+\end{proof}
+
+\Subquestion{}
+תהי $A$ קבוצה ו־$Q \subseteq \mathcal{P}(A)$ חלוקה של $A$, נגדיר
+\[
+	E_Q = \{ \langle a, b \rangle \in A^2 \mid \exists X \in Q : a \in X \land b \in X \}
+\]
+נוכיח כי $E_Q$ הוא יחס שקילות.
+\begin{proof}
+	נבדוק את כל התנאים ליחס שקילות:
+	\begin{itemize}
+		\item רפלקסיביות: $\forall a \in A \exists X \in Q : a \in X \land a \in X \implies \langle a, a \rangle \in E_Q$.
+		\item סימטריה: $\forall \langle a, b \rangle \in E_Q \exists X : b \in X \land a \in X \implies \langle b, a \rangle \in E_Q$.
+		\item טרנזיטיביות: $\forall \langle a, b \rangle, \langle b, c \rangle \exists X_1, X_2 : a \in X_1, b \in X_2, b \in X_2, c \in X_2 \implies X_1 = X_2 \implies c \in X_1, \langle a, c \rangle \in E_Q$.
+	\end{itemize}
+\end{proof}
+
+\Subquestion{}
+\subsubsection{i.}
+נוכיח כי לכל יחס שקילות $A \subseteq A \times A$ מתקיים $E_{A/E} = E$.
+\begin{proof}
+	מצאנו בסעיף א' כי $A/E$ היא חלוקה של $A$, ובסעיף ב' מצאנו כי היחס המושרה על־ידי חלוקה מהווה יחס שקילות בין רכיבי החלוקה, ולכן נובע
+	\[
+		\forall \langle a, b \rangle \in E \iff \langle a, b \rangle \in A_{A/E}
+	\]
+	ומצאנו כי הטענה נכונה.
+\end{proof}
+
+\subsubsection{ii.}
+נוכיח כי לכל חלוקה $Q \subseteq \mathcal{P}(A)$ מתקיים $A/E_Q = Q$.
+\begin{proof}
+	לא יודע
+\end{proof}
+
+\end{document}
