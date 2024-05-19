@@ -144,7 +144,80 @@
 \subsubsection{ii.}
 נוכיח כי לכל חלוקה $Q \subseteq \mathcal{P}(A)$ מתקיים $A/E_Q = Q$.
 \begin{proof}
-	לא יודע
+	תהי $Q$ חלוקה, מסעיף א' וב' נקבל כי $E_Q$ הוא יחס שקילות וכי $A/E_Q$ חלוקה, נותר להוכיח שהחלוקות אכן זהות. \\*
+	יהי $q_1, q_2 \in A$ ונניח כי עבור מחלקת שקילות $Q_1 \in Q$ מתקיים $q_1, q_2 \in Q_1$, לכן מהסעיפים הקודמים נקבל $\langle q_1, q_2 \rangle \in Q_1$ ובהתאם $q_1, q_2$ באותה מחלקת שקילות ב־$A/E_Q$. \\*
+	מצאנו כי החלוקות זהות.
+\end{proof}
+
+\Question{}
+יהי $R \subseteq A \times A$. נוכיח ש־$R$ יחס שקילות אם ורק אם קיימת קבוצה $W$ ופונקציה $f : A \to W$ כך שמתקיים
+\[
+	R = \{ \langle a, b \rangle \in A^2 \mid f(a) = f(b) \}
+\]
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח כי $R$ הוא יחס שקילות ונגדיר $Q_R$ החלוקה המושרית על־ידי $R$. \\*
+	נגדיר $W = Q_R$ ו־$f(a)$ מחזיר את מחלקת השקילות $E \in W$ אשר $a \in E$. \\*
+	מהגדרה זו נובע כי אם $a R b$ אז גם $f(a) = f(b) = E$ כפי שרצינו.
+
+	\textbf{כיוון שני:}
+	נניח כי קיימת קבוצה $W$ ופונקציה $f$ המקיימות את הטענה. \\*
+	נראה כי ההגדרה של יחס שקילות מתקיימת:
+	\begin{itemize}
+		\item רפלקסיביות: $\forall a \in A : f(a) = f(a) \implies \langle a, a \rangle \in R$.
+		\item סימטריה: $\forall a, b \in A, \langle a, b \rangle \in R \implies f(a) = f(b) = f(a) \implies \langle b, a \rangle \in R$.
+		\item טרנזיטיביות: $\forall \langle a, b \rangle, \langle b, c \rangle \in R: f(a) = f(b), f(b) = f(c) \implies f(a) = f(c) \implies \langle a, c \rangle \in R$
+	\end{itemize}
+	ומצאנו כי $R$ אכן יחס שקילות.
+\end{proof}
+
+\Question{}
+תהינה $A, B, C$ קבוצות כך שמתקיים
+\[
+	|A| < |B|, \qquad |B| < |C|
+\]
+נוכיח כי $|A| < |C|$.
+\begin{proof}
+	תהינה פונקציות חד־חד ערכיות
+	\[
+		f : A \to B, g : B \to C
+	\]
+	אלה כמובן קיימות על־פי אי־שוויון העוצמות. \\*
+	הוכחנו במטלה 1 שהרכבת פונקציות חד־חד ערכיות היא חד־חד ערכית, דהינו $g \circ f : A \to C$ חד־חד ערכית ומתקיים
+	\[
+		|A| \le |C|
+	\]
+	ידוע כי $|B| \ne |C|$ ולכן הפונקציה $g$ איננה על, לכן ישנו $x \in C$ כך ש־$\forall b in B, g(b) \ne x$, ולכן גם $\forall a \in A : g(f(a)) \ne x$, זאת אומרת שההרכבה איננה על, ולכן נסיק $|A| \ne |C|$, ומחיבור הטענות:
+	\[
+		|A| < |C|
+	\]
+\end{proof}
+
+\Question{}
+יהיו $A_1, \hdots, A_k$ קבוצות בנות־מניה.
+
+\Subquestion{}
+נניח שהקבוצות זרות בזוגות, ונוכיח כי $\bigcup_{i = 1}^k A_i$ היא בת־מניה.
+\begin{proof}
+	בתרגול ראינו כי
+	\[
+		|\NN| = |\overbrace{\NN \times \cdots \times \NN}^k |
+	\]
+	ולכן יש פונקציה חד־חד ערכית ועל מהטבעיים ל־$k$־יה הסדורה של מספרים טבעיים $f : \NN^k \to \NN$. \\*
+	הקבוצה $U = \bigcup_{i = 1}^k A_i$ היא איחוד זר ולכן לכל איבר $u \in U$ קיים $i$ יחיד כך ש־$u \in A_i$, וכי קיימת פונקציה הפיכה $g_i : A_i \to \NN$. \\*
+	נגדיר פונקציה $g : U \to \NN^k$ על־ידי $g(a \in A_i) = g_i(a) \cdot e_i$, כאשר $e_i = \langle \overbrace{0, \hdots, 0}^{i - 1}, 1, 0, \hdots \rangle$. \\*
+	נקבל כי $f \circ g : U \to \NN$ היא פונקציה הפיכה ולכן $U$ בת־מנייה.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $U$ בת־מניה גם כאשר $A_i$ לא זרות.
+\begin{proof}
+	נגדיר לכל קבוצה $A_i$ קבוצה חדשה $A_i' = \{ \langle i, a \rangle \mid a \in A_i \}$. \\*
+	על־פי ההגדרה החדשה $U' = \bigcup_{i = 1}^k A_i'$ הן קבוצות זרות בזוגות, ולכן הקבוצה $U'$ בת־מניה. \\*
+	ניצור פונקציה $f : U \to U'$ על־ידי בחירת האינדקס המינימלי אשר מקיים $\langle i, a \rangle \in A_i'$ והגדרת $f(a) = \langle i, a \rangle$. \\*
+	הפונקציה המתקבלת היא חד־חד ערכית ולא על, ונסיק $|U| \le |\NN|$. \\*
+	נבחר קבוצה ספציפית $A_j \subseteq U$, זוהי קבוצה בת־מניה, ולכן קיימת פונקציה חד־חד ערכית כלשהי $g : \NN \to A_j$, ולכן היא גם חד־חד ערכית $g : \NN \to U$ ככלל, ונסיק $|\NN| \le U$. \\*
+	קיבלנו אם כן ש־$|U| = |\NN|$.
 \end{proof}
 
 \end{document}
