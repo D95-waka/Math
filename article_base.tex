@@ -1,10 +1,10 @@
 \documentclass[a4paper]{article}
 
 % packages
-\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, luacode, catchfile, tikzducks}
+\usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, mathabx, luacode, catchfile, tikzducks}
 \usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
 \usepackage[shortlabels]{enumitem}
-\usepackage[skip=0pt, indent=0pt]{parskip}
+\usepackage[skip=6pt, indent=0pt]{parskip}
 
 % language
 \usepackage[bidi=basic, layout=tabular, provide=*]{babel}
@@ -18,6 +18,7 @@
 \AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
 \linespread{1.5}
 \setcounter{secnumdepth}{0}		% Remove default number tags from sections
+\AtBeginDocument{\setlength{\belowdisplayskip}{4pt}}
 
 % operators
 \DeclareMathOperator\cis{cis}
@@ -36,6 +37,7 @@
 \newcommand{\RR}[0]{\mathbb{R}}
 \newcommand{\CC}[0]{\mathbb{C}}
 \newcommand{\FF}[0]{\mathbb{F}}
+\newcommand{\acts}[0]{\circlearrowright}
 \newcommand{\explain}[2] {
 	\begin{flalign*}
 		 && \text{#2} && \text{#1}
