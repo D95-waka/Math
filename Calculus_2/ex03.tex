@@ -134,12 +134,132 @@
 נוכיח ש־$\arcsinh$ הפיכה.
 \begin{proof}
 	ניזכר כי
+	\begin{align*}
+		& \sinh(x) = \frac{e^x - e^{-x}}{2} = y \\
+		& \implies 2y = e^x - e^{-x}
+		= e^x - \frac{1}{e^x} \\
+		& \implies e^{2x} - 2ye^x - 1 = 0 \\
+		& \implies e^x = \frac{2y \pm \sqrt{4y^2 + 4}}{2}
+		= y \pm \sqrt{y^2 + 1}
+	\end{align*}
+	נפסול את התשובה השלילית ונקבל $\sinh^{-1}(x) = \ln(x + \sqrt{x^2 + 1})$. \\*
+	ידוע לנונ כי $\ln$ פונקציה מונוטונית עולה ממש, וכך גם $x$ והביטוי $\sqrt{x^2 + 1}$ ולכן נסיק מההרכבה כי $\sinh^{-1}(x)$ היא פונקציה עולה. \\*
+	ולכן נסיק
+	עוד נבחין כי על פי כלל ההצבה עבור $t = x + \sqrt{x^2 + 1}$:
 	\[
-		\sinh(x) = \frac{e^x - e^{-x}}{2} = y
-		\implies 2y = e^x - e^{-x}
-		= e^{\ln t} - e^{- \ln t}
-		= t - \frac{1}{t}
+		\lim_{x \to \infty} \arcsinh(x + \sqrt{x^2 + 1})
+		= \lim_{t \to \infty} \ln(t) = \infty
 	\]
+	באופן דומה נראה כי
+	\[
+		\lim_{x \to -\infty} x - \sqrt{x^2 + 1} 
+		= \lim_{x \to -\infty}  \frac{x^2 - x^2 + 1}{x + \sqrt{x^2 + 1}}
+		= 0
+	\]
+	ולכן נסיק
+	\[
+		\lim_{x \to -\infty} \arcsinh(x) = -\infty
+	\]
+	דהינו תמונת הפונקציה היא $(-\infty, \infty)$, והיא עולה ממש, ולכן נסיק שהיא חד־חד ערכית ועל.
 \end{proof}
+
+\Subquestion{}
+\subsubsection{i.}
+נוכיח כי הפונקציה גזירה בעזרת נוסחת נגזרת הפוכה. \\*
+נראה
+\[
+	x = \sinh y,
+	\arcsinh'(x)
+	= \frac{1}{\sinh'(y)}
+	= \frac{1}{\cosh(y)}
+	= \frac{1}{\cosh(\arcsinh(x))}
+\]
+במטלה הקודמת מצאנו כי $\cosh^2(\theta) - \sinh^2(\theta) = 1$, נציב $\theta = \arcsinh(x)$ ונקבל ${(\cosh(\arcsinh(x)))}^2 - x^2 = 1$, נשתמש בשוויון זה ונקבל
+\[
+	\arcsinh'(x) = \frac{1}{\sqrt{x^2 + 1}}
+\]
+
+\subsubsection{ii.}
+נוכיח כי הפונקציה גזירה ישירות מביטויה האלגברי. \\*
+מצאנו כי $\sinh^{-1}(x) = \ln(x + \sqrt{x^2 + 1})$ ולכן נגזור על־פי חוקי גזירה:
+\[
+	\arcsinh'(x)
+	= \frac{1 + \frac{2x}{2 \sqrt{x^2 + 1}}}{x + \sqrt{x^2 + 1}}
+	= \frac{\frac{\sqrt{x^2 + 1} + x}{\sqrt{x^2 + 1}}}{x + \sqrt{x^2 + 1}}
+	= \frac{1}{\sqrt{x^2 + 1}}
+\]
+וקיבלנו נוסחה מפורשת.
+
+\Question{}
+תהי $f$ פונקציה גזירה פעמיים בנקודה $x \in \RR$.
+
+\Subquestion{}
+נראה שקיים $0 < \delta$ כך ש־$f$ גזירה בסביבה $(c - \delta, c + \delta)$. \\*
+כאמור הפונקציה גזירה פעמיים בנקודה $x = c$, ולכן הפונקציה $f'$ עצמה גזירה ב־$x = c$. \\*
+מהגדרת הנגזרת נובע שעל הפונקציה להיות מוגדרת בסביבה של $c$ כדי שהיא תהיה גזירה, שאם לא כן הגבול המגדיר את הנגזרת לא מתקיים, ובהתאם קיבלנו שקיים $\delta > 0$ עבורו $f'$ מוגדרת ב־$(c - \delta, c + \delta)$.
+
+\Subquestion{}
+נתון $f'(c) = 0, f''(c) > 0$ ונוכיח ש־$c$ מינימום מקומי של $f$.
+\begin{proof}
+	נבחן את $f'$, פונקציה זו נגזרתה חיובית בסביבה של $c$ ולכן היא עומדת בתנאי שאלה 5 סעיף ב' ממטלה 1, ונוכל להסיק ש־$c$ מינימום מקומי של $f'$. \\*
+	לכן קיימת סביבה של $c$ בה לכל $x$ מתקיים $f'(x) > f'(c) = 0$, דהינו הנגזרת חיובית בסביבה נקובה זו. \\*
+	נסיק אם כן שבסביבה הנקודה הפונקציה עולה, ולכן $x = c$ הוא מינימום מקומי של $f$.
+\end{proof}
+\textbf{הערה:} לא השתמשתי בהגדרה ל־$g$ שכן $g(x) = f(x) + C$ כאשר $C$ קבוע, ולכן ניתן להוכיח גם ללא ההגדרה.
+
+\Question{}
+\Subquestion{}
+תהי $h : (b, \infty) \to \RR$, נבחין כי $\lim_{u \to 0^+} h(\frac{1}{u})$ מוגדר אם ורק אם $\lim_{x \to \infty} h(x)$ מוגדר. \\*
+הסיבה לכך נעוצה בכלל ההצבה, $\lim_{t \to 0^+} \frac{1}{t} = \infty$ ולכן נוכל להציב בגבול אחד ולקבל את השני.
+
+תהינה $f, g : (b, \infty) \to \RR$ המקיימות
+\begin{enumerate}
+	\item $\lim_{x \to \infty} f(x) = \lim_{x \to \infty} g(x) = 0$
+	\item $\forall x \in (b, \infty) g'(x) \ne 0$
+	\item $\lim_{x \to \infty} \frac{f'(x)}{g'(x)}$ קיים במובן הרחב.
+\end{enumerate}
+
+\Subquestion{}
+נגדיר את הפונקציות $\overline{f}, \overline{g} : (0, \frac{1}{b}) \to \RR$ על־ידי
+\[
+	\overline{f}(u) = f(\frac{1}{u})
+	\overline{g}(u) = g(\frac{1}{u})
+\]
+נשים לב שמכלל ההצבה כמו בסעיף א' נובע גם
+\[
+	\lim_{u \to 0^+} \overline{f}(u)
+	= \lim_{u \to 0^+} \overline{g}(u)
+	= 0
+\]
+
+\Subquestion{}
+נבחין כי נוכל להשתמש בנגזרת הרכבה עבור $f(x), u(x) = \frac{1}{x}$ ונקבל
+\[
+	\overline{f}'(u) = f(u(x))' = f'(u(x)) \cdot u'(x) = \frac{-f'(u(x))}{x^2} = - u^2 f'(u)
+\]
+בפרט מצאנו כי הפונקציה אכן גזירה, ונוכל באותה הדרך למצוא כי גם $\overline{g}$ גזירה בתחום. \\*
+נבחין כי
+\[
+	\lim_{u \to 0^+} \frac{\overline{f}'(u)}{\overline{g}'(u)}
+	= \lim_{u \to 0^+} \frac{-u^2 f'(u)}{-u^2 g'(u)}
+	= \lim_{u \to 0^+} \frac{f'(u)}{g'(u)}
+	\overset{(1)}{=} \lim_{x \to \infty} \frac{f'(x)}{g'(x)}
+\]
+$(1)$ על־פי כלל הצבה עבור $x = \frac{1}{u}$. \\*
+נבחין גם כי הגבול הימני מוגדר מנתון $(3)$.
+
+\Subquestion{}
+נבחין כי כלל התנאים עבור כלל לופיטל מתקיימים ונובע
+\[
+	\lim_{x \to \infty} \frac{f(x)}{g(x)}
+	= \lim_{u \to 0^+} \frac{\overline{f}(u)}{\overline{g}(u)}
+	= \lim_{u \to 0^+} \frac{\overline{f}'(u)}{\overline{g}'(u)}
+	= \lim_{x \to \infty} \frac{f'(x)}{g'(x)}
+\]
+ולכן כלל לופיטל מתקיים עבור $x \to \infty$ ונקבל
+\[
+	\lim_{x \to \infty} \frac{f(x)}{g(x)}
+	= \lim_{x \to \infty} \frac{f'(x)}{g'(x)}
+\]
 
 \end{document}
