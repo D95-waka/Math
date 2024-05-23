@@ -1,0 +1,99 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נמצא שתי קבוצות סגורות ולא ריקות $A, B \subseteq \RR^2$ כך שהמרחק ביניהן לא מתקבל. \\*
+נבחר את הקבוצות $A = \{ (x, y) \in \RR^2 \mid y = 0\}, B = \{ (x, y) \in \RR^2 \mid x y = 1 \}$. \\*
+שתי הקבוצות ניתנות לתיאור על־ידי פונקציות $\RR \to \RR$ רציפות בכל תחומן ולכן הקבוצות מכילות את כל הנקודות הגבוליות שלהן, ובהתאם סגורות. \\*
+לעומת זאת, הקבוצות זרות, ונראה כי לכל $x \in \RR$ מתקיים $\rho((x, 0), (x, \frac{1}{x})) = \sqrt{0^2 + \frac{1}{x^2}} = \frac{1}{|x|}$ ולכן $\inf \text{dist}(A, B) = 0$
+
+\Question{}
+יהי $V$ מרחב וקטורי ו־$\lVert \cdot \rVert, \lVert \cdot \rVert'$ שתי נורמות עליו. \\*
+תהי $S_1 = \{ v \in V \mid \lVert v \rVert = 1 \}$ ונגדיר $A = \{ \lVert v\rVert' \mid v \in S_1\}$. \\*
+נוכיח כי הנורמות שקולות אם ורק אם $\inf A > 0, \sup A < \infty$.
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח כי הנורמות שקולות. \\*
+	לכן קיימים $0 < C_1 \le C_2$ כך ש־$\forall v \in V : C_1 \lVert v \rVert \le \lVert v \rVert' \le C_2 \lVert v \rVert$. \\*
+	בפרט
+	\[
+		\forall v \in S_1 : C_1 \le \lVert v \rVert' \le C_2
+		\implies \forall a \in A : C_1 \le a \le C_2
+	\]
+	ובהתאם $\inf A \ge C_1 \ge 0$ וגם $\sup A \le C_2 < \infty$.
+
+	\textbf{כיוון שני:}
+	נניח כי $\inf A = a > 0$ ו־$\sup A = b < \infty$. \\*
+	לכן נובע ישירות $\forall x \in A : a \le x \le b$ ובהתאם $\forall v \in S_1 : a \lVert v \rVert \le \lVert v \rVert' \le b \lVert v \rVert$. \\*
+	יהי $u \in V$, אז אנו יודעים כי קיים $u^* \in V$ כך ש־$\lVert u^* \rVert = 1$ ו־$\lambda \in \RR^+$ כך ש־$u = \lambda u^*$ ולכן גם $\lVert u \rVert = \lambda \lVert u^* \rVert = \lambda$. \\*
+	נשים לב עתה כי $u^* \in S_1$ ולכן $a \lVert u^* \rVert \le \lVert u^* \rVert' \le b \lVert u^* \rVert$, נכפיל את שלושת האגפים ב־$\lambda$ ונקבל
+	\[
+		a \lVert u \rVert \le \lVert u \rVert' \le b \lVert u \rVert
+	\]
+	ולכן הנורמות שקולות.
+\end{proof}
+
+\Question{}
+יהי $(V, \lVert \cdot \rVert)$ מרחב נורמי ממימד $d$ מעל $\RR$.
+
+\Subquestion{}
+תהי $T : \RR^d \to V$ העתקה לינארית חד־חד ערכית ועל. \\*
+נוכיח שהפונקציה $f : \RR^d \to \RR$ המוגדרת על־ידי $f(u) = \lVert T(u) \rVert$ משרה נורמה על $\RR^d$.
+\begin{proof}
+	נראה כי שלוש התכונות של נורמה מתקיימות.
+	\begin{enumerate}
+		\item חיוביות: ידוע כי $T$ הפיכה ולכן גרעינה הוא וקטור האפס בלבד, ובהתאם $f(u) = \lVert Tu \rVert = 0 \iff \lVert u \rVert = 0$.
+		\item כפל בסקלר: $\forall u \in \RR^2, \lambda \in \RR, f(\lambda u) = \lVert T (\lambda u) \rVert  = \lVert \lambda \cdot Tu \rVert = |\lambda| \lVert Tu \rVert = |\lambda| f(u)$.
+		\item אי־שוויון המשולש: $\forall u, v \in \RR^2, f(u + v) = \lVert T(u + v) \rVert = \lVert Tu + Tv \rVert \le \lVert T u \rVert + \lVert T v \rVert = f(u) + f(v)$.
+	\end{enumerate}
+	ומצאנו כי $f$ מקיימת את התנאים לנורמה ולכן מהווה נורמה ל־$\RR^d$.
+\end{proof}
+יהי $B = (v_1, \dots, v_d)$ בסיס ל־$V$, ונגדיר נורמה על־ידי
+\[
+	\lVert \alpha v_1 + \cdots + \alpha_d v_d \rVert_1 = \sum_{i = 1}^{d} |\alpha_1| = d |\alpha_1|
+\]
+נוכיח שהנורמות $\lVert \cdot \rVert, \lVert \cdot \rVert_1$ שקולות.
+\begin{proof}
+	בסעיף הקודם הוכחנו ששימוש ב־$T$ מאפשר להשרות נורמה מ־$V$ ל־$\RR^2$, ולכן אפשר להגדיר פונצקיה משרה לנורמה לשתי הנורמות הנתונות. \\*
+	נשתמש בטענה כי כל הנורמות ב־$\RR^d$ הן שקולות ונקבל כי גם $\lVert \cdot \rVert$ שקולה ל־$\lVert \cdot \rVert_1$.
+\end{proof}
+
+\Question{}
+יהיו $X, Y$ מרחביים מטריים ו־$f : X \to Y$ פונקציה חד־חד ערכית ועל. \\*
+נוכיח כי שלושת התנאים הבאים שקולים:
+\begin{enumerate}
+	\item $f$ היא הומיאומורפיזם.
+	\item כל קבוצה $U \subseteq X$ היא פתוחה אם ורק אם $f(U)$ פתוחה.
+	\item כל קבוצה $U \subseteq X$ היא סגורה אם ורק אם $f(U)$ סגורה.
+\end{enumerate}
+
+\begin{proof}
+	\textbf{1 \leftarrow{} 2:}
+	נניח כי $f$ היא הומיאומורפיזם. \\*
+	לכן $f$ רציפה וגם $f^{-1}$ רציפה. לכן נסיק מהתנאי המספיק לרציפות כי $U \subseteq X$ פתוחה אז $f(U)$ פתוחה ולכל $U \subseteq Y$ גם $f^{-1}(U) \subseteq X$ פתוחה. \\*
+	במסתכם $U \subseteq X$ פתוחה אם ורק אם $f(U) \subseteq Y$ פתוחה.
+
+	\textbf{2 \leftarrow{} 3:}
+	נניח כי $U \subseteq X$ פתוחה אם ורק אם $f(U) \subseteq Y$ פתוחה. \\*
+	תהי קבוצה סגורה $A \subseteq X$, אז $A^C$ קבוצה פתוחה ולכן $f(A^C)$ קבוצה פתוחה ב־$Y$. \\*
+	באופן דומה $f(U)$ קבוצה פתוחה. אילו נניח בשלילה כי $f(U) \cap f(U^C) \ne \emptyset$ נקבל כי ישנם $x \ne y \in X$ כך ש־$f(x) = f(y)$ בסתירה לחד־חד ערכיות, ולכן $f(U) \cap f(U^C) = \emptyset$. \\*
+	נראה גם $f(U) \cup f(U^C) = Y$ אחרת תכונת העל נסתרת עבור $f$, ולכן נסיק $f(U^C) = {(f(U))}^C$. \\*
+	מטענה זו נוכל להסיק ישירות ש־$U \subseteq X$ סגורה אם ורק אם $f(U) \subseteq Y$ סגורה.
+
+	\textbf{2 \leftarrow{} 3:}
+	נניח כי כל קבוצה $U \subseteq X$ סגורה אם ורק אם $f(U) \subseteq Y$ סגורה אף היא. \\*
+	נוכל להשתמש בחד־חד ערכיות באופן זהה לסעיף הקודם וכך גם בעל ונקבל כי $f(U^C) = {(f(U))}^C$ לכל $U \subseteq X$. \\*
+	נשים לב כי התנאי המספיק לרציפות, שמקור כל קבוצה פתוחה הוא קבוצה פתוחה מתקיים לשני הכיוונים, לכן $f, f^{-1}$ רציפות ובהתאם $f$ הומיאומורפיזם.
+\end{proof}
+
+\Question{}
+יהיו $X, Y$ מרחבים מטריים ו־$f : X \to Y$ פונקציה חד־חד ערכית, על ורציפה.
+
+\Subquestion{}
+נוכיח שאם $X$ קומפקטי אז $f$ היא הומיאומורפיזם.
+
+\end{document}
