@@ -990,18 +990,19 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 \begin{proof}
 	נגדיר פעולה של החבורה $\ZZ_{/p}$ על הקבוצה $X = \{ (g_1, \dots, g_p) \in G^p \mid g_1g_2 \cdots g_p = e\}$. \\*
 	הפעולה פועלת על־ידי שיפט ציקלי: $u \in \{0, 1, \dots, p - 1\}$ אז $k \cdot (g_1, \dots, g_p) = (g_{k + 1}, g_{k + 2}, \dots, g_{p \mod p}, g_{1}, \dots, g_k)$.\\*
-	% TODO: From this line please read & fix, as it has some mistakes.
-	אז $(g_1, \dots, g_k)(g_{k + 1}, \dots, g_p) = e$ וגם $(g_{k + 1}, \dots, g_p)(g_1, \dots, g_k) = e$. \\*
-	נתבונן במסלולים של הפעולה.
+	אז $k (g_{k + 1}, \dots, g_p) = e$ וגם $(g_{k + 1}, \dots, g_p)(g_1, \dots, g_k) = e$. \\*
+	נבחין כי כלל המסלולים בפעולה הם אחד משני סוגים:
 	\begin{itemize}
-		\item מסלולים בגודל $p$.
-		\item מסלולים בגודל $1$.
+		\item מסלולים בגודל $p$. אם לא כל האיברים זהים, מעגל שלם יקח ככמות האיברים והיא מוגדרת להיות $p$.
+		\item מסלולים בגודל $1$. אם כל האיברים זהים אז שיפט יחזיר את האיבר עצמו.
 	\end{itemize}
 	ממשפט מסלול־מייצב $|O(x)| \Big| p \iff |O(x)| = 1, p$.\\*
-	מה זה מסלול בגודל 1? $(g_1, \dots, g_p) = (g_2, \dots, g_p, g_1)$ כלומר $x = (g_1, \dots, g)$, $g^p = e$.\\*
-	$X = \bigcup_{O \in \ZZ/p \backslash X} O$, אז $|X| = \sum_{O \in \ZZ/p\backslash X} |O|$. \\*
-	אם $(e, \dots, e)$ היה הנקודת שבת היחידה אז $\sum_{O \in \ZZ/p\backslash X} |O| = 1 (\mod p)$. \\*
+	עתה נבחין כי אם ישנו מסלול בגודל $p$ אז הוא כמובן ממלא את טענת ההוכחה ולכן נניח שאין כזה. \\*
+	נראה כי מסלול בגודל $1$ הוא מסלול שמקיים $(g_1, \dots, g_p) = (g_2, \dots, g_p, g_1)$ כלומר $x = (g, \dots, g)$, $g^p = e$.\\*
+	נשים לב כי נוכל לחלק את הקבוצה המקורית ומתקיים $X = \displaystyle \bigcup_{O \in \ZZ_{/p} \backslash X} O$, ובהתאם מהאיחוד הזר נקבל גם $|X| = \displaystyle \sum_{O \in \ZZ_{/p} \backslash X} |O|$. \\*
+	אם $(e, \dots, e)$ היה נקודת השבת היחידה אז $\displaystyle \sum_{O \in \ZZ_{/p} \backslash X} |O| = 1 (\mod p)$, שכן כל מסלול כולל $p$ חילופים ונקודת השבת היחידה הייתה תורמת $1$ בלבד. \\*
 	לכן מצד אחד $p \Big| |G|^{p - 1}$ ומצד שני $|G|^{p - 1} \cong 1 (\mod p)$ ולכן קיים $x \ne e$ עם $x^n = e$.
 \end{proof}
+ההוכחה מוויקיפדיה הרבה יותר ברורה.
 
 \end{document}
