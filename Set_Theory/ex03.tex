@@ -1,0 +1,156 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- תורת הקבוצות (80200)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+תהי $A = \{ X \in \mathcal{P}(\NN) \mid X \text{ אינסופית}\}$. נוכיח כי היא איננה בת־מניה.
+\begin{proof}
+	נניח בשלילה ש־$A$ בת־מניה ולכן קיימת פונקציה $f : \NN \to A$ חד־חד ערכית ועל. \\*
+	נוכיח באופן דומה להוכחה של קנטור, נגדיר קבוצה $B$. לכל $n \in \NN$, אם $n \notin f(n)$ אז נגדיר $n \in B$. \\*
+	ידוע כי $f$ על ולכן קיים $a \in \NN$ כך ש־$f(a) = B$, ולכן על־פי הגדרתנו $a \notin B$. אבל לפי הגדרתנו $a \notin f(n) = B \implies n \in B$ וזו סתירה.\\*
+	לכן $A$ לא בת־מניה.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח שקבוצת כל הפונקציות $f : \NN \to \NN$ שהן מונוטוניות יורדות היא בת־מניה.
+\begin{proof}
+	תהי פונקציה $f$ כזו, על־פי הנתון יהי $k = f(0)$, אז $\forall n \in \NN : 0 \le f(n) \le k$. \\*
+	הפונקציה $f$ אם כן ''יכולה'' לרדת $k$ פעמים, ולאחר מכן היא תהיה הפונקציה הקבועה $f(n) = 0$. נוכל לבנות סדרה סופית באורך לכל היותר $k$ שמתארת את המספרים בתחום עבורם הפונקציה האכן יורדת. \\*
+	כדי להגדיר את הסדרה בצורה פורמלית תהי הסדרה $(a_n)$ כך ש־$a_1 = f(0)$, ומתקיים $f(a_n) = f(a_{n + 1}) + 1$, נשים לב כי הגדרה זו מכסה גם את המקרים בהם הירידה היא ביותר מיחידה. \\*
+	לכל פונקציה כזו מתאימה סדרה כמתואר יחידה בלבד, ואם שתי פונקציות מתוארות על־ידי אותה הסדרה אז על־פי הגדרתה הפונקציות עצמן זהות. \\*
+	תהי $A$ קבוצת הפונקציות המדוברות ו־$B$ סדרת הסדרות הסופיות מעל הטבעיים, אז $g : A \to B$ היא חד־חד ערכית ולכן גם $|A| \le |B| \le |\NN|$ כפי שהוכח בהרצאה. \\*
+	לכיוון ההפוך $h : B \to A$ נגדיר על־ידי $h(n)(0) = n, h(n)(x > 0) = 0$, זוהי כמובן פונקציה חד־חד ערכית והפונקציות בטווח הן אכן מונוטוניות יורדות, ולכן $|\NN| \le |A|$.\\*
+	מצאנו כי $A$ בת־מניה.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי עוצמת קבוצת הפונקציות מהשלמים לשלמים היורדות ממש היא $0$.
+\begin{proof}
+	נניח כי קיימת פונקציה $f : \NN \to \NN$ מונוטונית יורדת ממש, ונניח $f(0) = k \in \NN$. \\*
+	נראה כי $f(1) \le f(0) - 1 = k - 1$ וכי אם נניח ש־$f(n) \le k - n$ אז $\forall n \in \NN : f(n + 1) \le f(n) - 1 = k - n - 1$ וזוהי הוכחה באינדוקציה, לכן
+	\[
+		\forall n \in \NN\setminus\{0\} f(n) \le k - n
+	\]
+	ובפרט עבור $n = k$ מתקיים $0 \le f(n) \le n - n = 0$ ולכן $f(n) = 0$. \\*
+	ידוע כי $0 \le f(n + 1) < f(n) = 0$ ולכן $0 < 0$ וזוהי כמובן סתירה, לכן לא קיימת פונקציה $f$ שעומדת בהגדרה. \\*
+	בהתאם קבוצת הפונקציות האלה היא ריקה ועוצמתה $0$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שקבוצת הפונקציות המונוטויות העולות ממש $C$ מהטבעיים לעצמם היא איננה בת־מניה.
+\begin{proof}
+	נגדיר פונקציה מהקבוצה משאלה 1 $A$ ל־$C$, $f : A \to C$. \\*
+	תהי קבוצת טבעיים אינסופית כלשהי $D$, אז נוכל נבחר את סדרת המספרים אשר מתקבלת מסידור הקבוצה על־פי גודל המספרים המרכיבים אותה, נקרא לסדרה זו ${(a_n)}_{n = 1}^\infty$. 
+	סדרה זו כמובן מוגדרת ישירות מההגדרה של הקבוצה, ולכל $n$ מתקיים $a_{n + 1} > a_n$ מיחידות ההכלה של הקבוצה המקורית והסידור לפי סדר עולה. \\*
+	עתה נגדיר $f(D) = \{ \langle n, a_n \rangle \mid n \in \NN \}$, מיחידות האינדקס בסדרה נובע כי הפונקציה אכן מוגדרת ונובע $\forall n > m \in \NN : f(n) > f(m)$ כפי שרצינו.
+	נבחין כי הפונקציה אכן חד־חד ערכית, אם $\forall D, E \in A : f(D) = f(E) \overset{(1)}{\implies} f(D)(\NN) = f(E)(\NN) \implies D = E$. \\*
+	$(1)$ נובע ישירות מהגדרת הסדרה לשלוח לאיברי הקבוצה המקורית. \\*
+	קיבלנו כי $f$ חד־חד ערכית ולכן בהתאם $|\NN| < |A| \le |C|$ ולכן בהתאם $C$ לא בת־מניה.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח ישירות מטיעון האלכסון כי $\QQ^\NN = \{ f : \NN \to \QQ\}$ איננה בת־מניה.
+\begin{proof}
+	נניח בשלילה כי $\QQ^\NN$ בת־מניה ובהתאם קיימת פונקציה חד־חד ערכית ועל $f : \NN \to \QQ^\NN$. \\*
+	נגדיר פונקציה $g : \NN \to \QQ$ על־ידי $\forall n \in \NN : f(n)(0) \ne 2 \iff g(n) = 2$. \\*
+	ידוע כי $g \in \QQ^\NN$ ולכן קיים $k \in \NN$ כך ש־$f(k) = g$ ולכן $f(k)(0) = g(0) = 2$ אם ורק אם $g(0) \ne 2$ וזוהי סתירה, ולכן $\QQ^\NN$ לא בת־מניה.
+\end{proof}
+
+\Subquestion{}
+נוכיח ישירות על־ידי טיעון האלכסון כי $A = \{ f \in \NN^\NN \mid f : \NN \to \NN \text{ חד־חד ערכית} \}$ איננה בת־מניה.
+\begin{proof}
+	נניח בשלילה כי $A$ בת־מניה ולכן קיימת פונקציה $f : \NN \to A$. חד־חד ערכית ועל. \\*
+	נגדיר פונקציה חד־חד ערכית $g : \NN \to \NN \in A$ כך ש־$\forall n \in \NN f(n)(n) = n \iff g(2n) = 2n + 1 \land g(2n + 1) = 2n$. \\*
+	 כדי לשמור על החד־חד ערכיות נגדיר שאם $f(n)(2n) \ne n$ אז $g(2n + 1) = 2n + 1, g(2n) = 2n$. \\*
+	 הגדרה זו אכן שומרת על חד־חד ערכיות, שכן לכל $n \in \NN$ מתקיים $g(2n) = 2n, g(2n + 1) = 2n + 1$ או $g(2n) = 2n + 1, g(2n + 1) = 2n$ ובכל מקרה אין עוד ערך $m \ne n$ כך ש־$f(m) = 2n + 1$ או $f(m) = 2n$. \\*
+	 עתה נראה כי $g \in A \implies \exists k \in \NN : f(k) = g$, ו־$f(k)(2k) = k$ אם ורק אם $g(2k) = 2k + 1$ וזוהי כמובן סתירה, ולכן נסיק ש־$A$ לא בת־מניה.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח כי
+\[
+	\rng \varphi^+ \cup \rng \varphi^- = (\NN \times \NN) / \sim_\ZZ,
+	\qquad
+	\rng \varphi^+ \cap \rng \varphi^- = \{ {[\langle 0, 0 \rangle]}_{\sim_\ZZ} \}
+\]
+\begin{proof}
+	יהי $\langle n, m \rangle \in \NN \times \NN$. אם $n \ge m$ אז נוכל להגדיר $n = n' + m$ ומתקיים $\langle n, m \rangle \sim_\ZZ \langle n', 0 \rangle$,
+	ובהתאם ${[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^+$. \\*
+	אם $m \ge n$ אז בהתאם קיים $m' \in \NN$ כך ש־$m = n + m'$ ולכן ${[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^-$. \\*
+	מצאנו כי לכל $\langle n, m \rangle \in \NN^2$ קיימת מחלקת שקילות כך ש־${[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^+ \cup \rng \varphi^-$.
+	בהתאם נובע
+	\[
+		\rng \varphi^+ \cup \rng \varphi^- = (\NN \times \NN) / \sim_\ZZ,
+	\]
+	ראינו כי עבור $\langle n, m \rangle$ אז $n \ge m \iff {[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^+$ וגם כי
+	$n \le m \iff {[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^-$.
+	לכן
+	\[
+		n = m \iff n \le m \land n \ge m \iff {[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^+ \land {[\langle n, m \rangle]}_{\sim_\ZZ} \in \rng \varphi^-
+	\]
+	ואנו יודעים כי $\langle n, n \rangle \sim_\ZZ \langle 0, 0 \rangle$ ולכן $\rng \varphi^+ \cap \rng \varphi^- = \{ {[\langle 0, 0 \rangle]}_{\sim_\ZZ} \}$
+\end{proof}
+
+\Subquestion{}
+נוכיח כי הפעולה
+\[
+	\langle a, b \rangle * \langle c, d \rangle := \langle a \cdot c, b \cdot d \rangle
+\]
+לא משרה פעולה מוגדרת היטב על $(\NN \times \NN) / \sim_\ZZ$.
+\begin{proof}
+	נראה כי $\langle 1, 2 \rangle \sim_\ZZ \langle 0, 1 \rangle$. נראה כי
+	\[
+		\langle 1, 2\rangle * \langle 1, 3 \rangle = \langle 1, 6\rangle, 
+		\qquad
+		\langle 0, 1 \rangle * \langle 1, 3 \rangle = \langle 0, 3 \rangle
+	\]
+	לעומת זאת $\langle 1, 6 \rangle \not\sim_\ZZ \langle 1, 5 \rangle$ בסתירה להגדרת הסגירות של פעולה על מחלקות שקילות, ולכן הפונקציה $*$ לא משרה פעולה על $(\NN \times \NN) / \sim_\ZZ$.
+\end{proof}
+
+\Subquestion{}
+נגדיר את הפונקציה $\cdot$ על־ידי
+\[
+	\langle a, b \rangle \cdot \langle c, d \rangle := \langle ac + bd, ad + bc \rangle
+\]
+נוכיח כי פונקציה זו משרה פעולה על $(\NN \times \NN) / \sim_\ZZ$.
+\begin{proof}
+	נראה שבחירת נציגים ממחלקת השקילות אינם משפיעים על תוצאת הפונקציה. \\*
+	יהיו $\langle a, b \rangle \sim_\ZZ \langle a', b' \rangle, \langle c, d \rangle \sim_\ZZ \langle c', d' \rangle$ 
+	ולכן $a + b' = b + a', c + d' = d + c'$, מכפל שוויונות אלה נקבל
+	\[
+		(a + b')(c + d') = (b + a')(d + c')
+		\iff ac + ad' + b'c + b'd' = bd + bc' + a'd + a'c' \tag{1}
+	\]
+	אז:
+	\begin{align*}
+		& \langle a, b \rangle \cdot \langle c, d \rangle = \langle ac + bd, ad + bc \rangle,
+		& & \langle a', b' \rangle \cdot \langle c', d' \rangle = \langle a'c' + b'd', a'd' + b'c' \rangle, \\
+		& \langle a, b \rangle \cdot \langle c, d \rangle \sim_\ZZ \langle a', b' \rangle \cdot \langle c', d' \rangle
+		& \iff  & \langle ac + bd, ad + bc \rangle \sim_\ZZ \langle a'c' + b'd', a'd' + b'c' \rangle \\
+		& \iff ac + bd + a'd' + b'c' = ad + bc + a'c' + b'd'
+	\end{align*}
+	\begin{align*}
+		& \iff ac + bd + ad + bc + 2a'd' + 2b'c' = 2ad + 2bc + a'c' + b'd' + a'd' + b'c' \\
+		& \overset{(1)}{\iff} 2a'd' + 2b'c' = 2ad + 2bc \\
+		& \iff a'd' + b'c' = ad + bc \\
+		& \overset{(1)}{\iff} 0 = 0
+	\end{align*}
+	ומצאנו כי הפעולה אכן סגורה לבחירת איברים ממחלקות השקילות.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+על $\ZZ \times (\NN \setminus \{0\})$ יחס $\sim_\QQ$ על־ידי
+\[
+	\langle p, q \rangle \sim_\QQ \langle r, s \rangle \iff p \cdot s = r \cdot q
+\]
+נוכיח כי זהו יחס שקילות.
+
+\end{document}

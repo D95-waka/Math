@@ -1,0 +1,196 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- מבנים אלגבריים 1 (80445)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+תהי $G$ חבורה ועבור $g \in G$ נגדיר $\varphi_g : G \to G$ על־ידי $\varphi_g(h) = g h g^{-1}$. \\*
+נוכיח ש־$\varphi_g$ הוא אוטומורפיזם וש־$\phi : G \to Aut(G)$ המוגדר על־ידי $\phi(g) = \varphi_g$ הוא הומומורפיזם.
+\begin{proof}
+	נוכיח תחילה ש־$\varphi_g$ היא הומומורפיזם. \\*
+	נראה כי
+	\[
+		\forall x, y \in G, \varphi_g(x y)
+		= g x y g^{-1}
+		= g x \overset{=e_G}{(g^{-1} g)} y g^{-1}
+		= \varphi_g(x) \cdot \varphi_g(y)
+	\]
+	ומצאנו כי התנאי ההכרחי להומומורפיזם מתקיים. \\*
+	באותו אופן גם $\varphi_{g^-1}$ הוא הומומורפיזם ונשים לב שמתקיים
+	\[
+		\forall x \in G, (\varphi_{g^-1} \circ \varphi_g)(x) = g^{-1}g x g^{-1} g = x, \qquad
+		(\varphi_g \circ \varphi_{g^-1})(x) = g g^{-1} x g g^{-1} = x
+	\]
+	ומצאנו כי התנאי ההכרחי לאיזומורפיה מתקיים ובהתאם $\varphi_g : G \xrightarrow{\sim} G$.
+
+	מצאנו כי $\varphi_g$ הוא אוטומורפיזם לכל $g \in G$, וכן כי $\varphi_{g^{-1}}$ אוטומורפיזם הופכי לה. \\*
+	נראה כי גם
+	\[
+		\forall x \in G : \phi(g h)(x)
+		= \varphi_{gh}(x)
+		= gh x h^{-1} g^{-1}
+		= g (h x h^{-1}) g^{-1}
+		= (\varphi_g \circ \varphi_h)(x)
+	\]
+	ומצאנו כי התנאי להומומורפיזם מתקיים ובהתאם $\phi : G \xrightarrow{\sim} Aut(G)$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שלכל $g \in G$ וכל תת־חבורה $H \le G$ מתקיים $g H g^{-1} \le G$.
+\begin{proof}
+	ראינו כי $\varphi_g$ היא אוטומורפיזם ולכן מתקיימות התכונות:
+	\begin{enumerate}
+		\item קיום נייטרלי: $e \in H \implies g e g^{-1} = e \in gHg^{-1}$.
+		\item סגירות לכפל: הוכחנו בסעיף הקודם.
+		\item קיום הופכי: $\forall x \in G: \varphi_g(x) \varphi_g(x^{-1}) = \varphi_g(x^{-1}) \varphi_g(x) = \varphi_g(e) = e$
+	\end{enumerate}
+	ומצאנו כי זוהי תת־חבורה.
+\end{proof}
+
+\Subquestion{}
+תהי קבוצה $X$ ופעולה $\cdot : G \times X \to X$ ונוכיח שלכל $x, y \in X$, אם קיים $g \in G$ כך ש־$y = gx$ אז $G_y = g G_x g^{-1}$.
+\begin{proof}
+	נניח כי התנאים מתקיימים, נבחין כי $G_x = \{ h \in G \mid h x = x \}$. \\*
+	נבחר $h \in G_x$ ונקבל
+	\[
+		y = g(hx) = (gh) x \iff h^{-1} g^{-1} y = x \iff g h^{-1} g^{-1} y = gx = y \iff h^{-1} \in G_y \iff h \in G_y
+	\]
+	ומצאנו כי $G_y = g G_x g^{-1}$
+\end{proof}
+
+\Question{}
+\Subquestion{}
+יהי $\tau = (a_1\ a_2 \dots a_k) \in S_n$ מחזור ו־$\sigma \in S_n$. נוכיח כי
+\[
+	\sigma (a_1\ a_2 \dots a_k) \sigma^{-1} = (\sigma(a_1)\ \sigma(a_2) \dots \sigma(a_k))
+\]
+\begin{proof}
+	יהי $a_m$ כך ש־$1 \le m < k$. \\*
+	אז $(\sigma \circ \tau \circ \sigma^{-1})(\sigma(a_m)) = \sigma(\tau(a_m)) = \sigma(a_{m + 1})$. \\*
+	עוד נראה כי $(\sigma \circ \tau \circ \sigma^{-1})(\sigma(a_k)) = \sigma(a_1)$. \\*
+	עבור $a_m$ כאשר $k < m \le n$ נקבל $(\sigma \circ \tau \circ \sigma^{-1})(\sigma(a_m)) = \sigma(a_m)$. \\*
+	לסיכום מצאנו כי $(\sigma \circ \tau \circ \sigma^{-1})(\sigma(a_m)) = \sigma(a_{m + 1})$ עבור $m \le k$ ו־$(\sigma \circ \tau \circ \sigma^{-1})(\sigma(a_m)) = \sigma(a_m)$ עבור שאר ערכי $m$ ובהתאם מתקיים
+	\[
+		\sigma (a_1\ a_2 \dots a_k) \sigma^{-1} = (\sigma(a_1)\ \sigma(a_2) \dots \sigma(a_k))
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח ששתי תמורות הן צמודות אם ורק אם הפירוק שלהן למחזורים מכיל מספר זהה של מחזורים מכל אורך.
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח ששתי חבורות $\tau, \phi$ צמודות, לכן קיים $\sigma \in S_n$ כך ש־$\tau = \sigma \phi \sigma^{-1}$. \\*
+	נוכל לפרק את $\phi = \phi_1\circ\cdots \circ \phi_k$ ל־$k$ מחזורים שונים. \\*
+	נבחין כי $Id = \sigma \sigma^{-1} = \sigma^{-1} \sigma$ וננצל עובדה זאת כדי לראות שמתקיים
+	\[
+		\tau
+		= \sigma \circ \phi \circ \sigma^{-1}
+		= \sigma \circ \phi_1 \circ \phi_2 \circ \cdots \circ \phi_k \circ \sigma^{-1}
+		= \sigma \circ \phi_1 \sigma^{-1} \sigma \circ \phi_2\sigma^{-1} \sigma \circ \cdots \circ \sigma^{-1} \sigma\phi_k \circ \sigma^{-1}
+	\]
+	לכן $\tau$ הוא הרכבה של אוסף תמורות מהצורה $\sigma \phi_i \sigma^{-1}$ ובסעיף הקודם הראינו כי אלו מחזורים משמרי אורך, ומצאנו כי לשתי התמורות $\tau$ ו־$\phi$ פירוק למחזורים זהה.
+
+	\textbf{כיוון שני:}
+	נניח כי לשתי חבורות $\tau, \phi$ יש פירוק למחזורים זהה, $\tau = \tau_1 \circ \cdots \circ \tau_l, \phi = \phi_1 \circ \cdots \circ \phi_l$ \\*
+	נגדיר כי $\tau_i, \phi_i$ כאשר $1 \le i \le l$ מחזורים באורך זהה בין שתי התמורות. לכן
+	\[
+		\phi_i = (a_1\ a_2 \dots a_k), \qquad
+		\tau_i = (b_1\ b_2 \dots b_k)
+	\]
+	נגדיר תמורה חדשה $\sigma_i \in S_n$ על־ידי $\sigma(a_j) = b_j$ לכל $1 \le j \le k$. \\*
+	מסעיף א' נקבל מיידית
+	\[
+		\sigma_i \phi_i \sigma_i^{-1} = \tau_i
+	\]
+	נגדיר $\sigma = \sigma_1 \circ \cdots \circ \sigma_l$. נבחין כי המחזורים הם זרים אחד לשני, שכן מקורותיהם מוגדרים על־ידי מחזורים זרים של $\tau$. \\*
+	נראה כי
+	\[
+		\sigma \phi_1 \sigma^{-1} \circ
+		\sigma \phi_2 \sigma^{-1} \circ
+		\cdots
+		\sigma \phi_l \sigma^{-1}
+		= \tau
+		= \sigma \phi_1 \cdots \phi_l \sigma^{-1}
+		= \sigma \phi \sigma^{-1}
+	\]
+	וקיבלנו כי הטענה נכונה.
+\end{proof}
+
+\Question{}
+יהי $\sigma = (1\ 2\ 3\ 4), \tau = (2\ 3)(4\ 1) \in D_4 \le S_4$.
+
+\Subquestion{}
+נחשב את המרכז של $\sigma, \tau$ ב־$D_4$.
+
+נתחיל בחישוב $C_{D_4}(\sigma)$. בשאלה 2 מצאנו כי עבור $\phi$ תמורה אז $\phi \sigma \phi^{-1} = \sigma \iff (\phi(1)\ \phi(2)\ \phi(3)\ \phi(4)) = (1\ 2\ 3\ 4)$. \\*
+דהינו על $\phi$ לשמר את סדר המחזור, לכן נוכל לבחור רק $\phi = \sigma^k$ עבור $0 \le k < 4$. \\*
+לכן $C_{D_4}(\sigma) = \{ Id, \sigma, (1\ 3)(2\ 4), (1\ 4)(2\ 3) \}$. \\*
+נחשב עתה את $C_{D_4}(\tau)$. במטלה הקודמת מצאנו כי $\sigma^k \tau \sigma^{-k} = \tau \sigma^{-2k}$ ולכן רק עבור $k = 2$ נקבל $\sigma^2 \tau \sigma^{-2} = \tau$. \\*
+נקבל גם $\tau \sigma^k \tau {(\tau \sigma^k)}^{-1} = \tau \sigma^k \tau \tau \sigma^{n - k} = \tau$.
+וקיבלנו כי $C_{D_4}(\tau) = \{ Id, \tau, \tau \sigma, \tau \sigma^2, \tau \sigma^3, \sigma^2\}$.
+
+\Subquestion{}
+נחשב את מחלקות הצמידות של $D_4$.
+
+בסעיף הקודם למעשה מצאנו שיוך של כל איבר ב־$D_4$ למרכז כלשהו, ולכן מחלקות הצמידות הן
+\[
+	\{ \{ Id, \sigma, \sigma^2, \sigma^3 \},
+	\{ Id, \tau, \tau \sigma, \tau \sigma^2, \tau \sigma^3, \sigma^2\}
+	\}
+\]
+
+\Subquestion{}
+נמצא שני איברים שאינם צמודים ב־$D_4$ אבל כן ב־$S_4$.
+
+נבחר את $\tau, \sigma^2$:
+\[
+	\sigma^2 = (1 3)(2 4), \tau = (1 4)(2 3)
+\]
+נגדיר $\phi = (3 4)$ על־פי שאלה 2 ונקבל $\phi \sigma^2 \phi^{-1} = \tau$, אבל $\phi \not\in D_4$.
+
+\Question{}
+נגדיר את הפעולה הבאה של $S_n$ על ${[n]}^2$: לכל $\sigma \in S_n$ ו־$(i, j) \in {[n]}^2$ נגדיר $\sigma . (i, j) = (\sigma(i), \sigma(j))$. \\*
+נחשב את המסלולים של הפעולה של $S_n$ על ${[n]}^2$.
+
+בהרצאה מצאנו כי הפעולה של $S_n$ מעל $[n]$ היא טרנזיטיבית, דהינו קיים רק מסלול אחד בין כלל האיברים. \\*
+נטען כי בפעולה שהגדרנו זה עתה ישנם שני מסלולים בלבד:
+\begin{enumerate}
+	\item $O((1, 1)) = \{ (i, i) \in {[n]}^2 \mid i \in [n]\}$. \\*
+		יהי $i, j \in [n]$ כך ש־$i \ne j$. ונגדיר $\sigma = (i\ j)$, לכן $\sigma . (i, i) = (j, j)$ ומצאנו כי מסלול זה נכון.
+	\item $O((i, j)) = \{ (a, b) \in {[n]}^2 \mid a \ne b, 0 \le a, b < n \}$. \\*
+		יהי $i, j$ כך ש־$i \ne j$, ויהיו $a, b$ כך שגם $a \ne b$, ו$i, j, a, b \in [n]$, אז נגדיר $\sigma = (i\ a)(j\ b)$, ומצאנו כי גם זה אכן מסלול.
+\end{enumerate}
+נשים לב שכל תמורה היא חד־חד ערכית, ולכן לא יתכן ש־$a = b$ ולכן אין מסלול בין $(i, j) \to (a, a)$, ובאופן דומה כמובן אין תמורה $(a, a) \to (i, j)$ כאשר $i \ne j$. \\*
+לסיכום ישנם שני מסלולים שונים לפעולה, $O(0, 0), O(0, 1)$ בלבד.
+
+\Question{}
+\Subquestion{}
+תהי $G$ חבורה אבלית ו־$H, K \le G$ תת־חבורות, כך ש־$H \cap K = \{ e \}$ ו־$H \cdot K = G$. \\*
+נוכיח ש־$H \times K \xrightarrow{\sim} G$.
+\begin{proof}
+	נגדיר פונקציה $\phi : H \times K \to G$ על־ידי $\phi(h, k) = h \cdot k$. אז
+	\[
+		\phi(h_1 h_2, k_1 k_2)
+		= (h_1 h_2)(k_1 k_2)
+		\overset{\text{אבליות}}{=} h_1 (h_2k_1) k_2
+		= (h_1 k_1) (h_2 k_2)
+		= \phi(h_1, k_1) \phi(h_2, k_2)
+	\]
+	ומצאנו כי $\phi$ הומומורפיזם. \\*
+	נגדיר $\varphi : G \to H \times K$ על־ידי שימוש בנתון $HK = G$, ידוע כי $\forall G \in G \exists h \in H, k \in K : g = hk$ ולכן נגדיר $\varphi(g) = hk$. 
+	לכן גם $\forall g_1, g_2 \in G \exists h_1, h_2 \in H, k_1, k_2 \in K : g_1 = h_1 k_1, g_2 = h_2 k_2, \varphi(g_1 g_2) = \varphi(h_1 (k_1 h_2) k_2) = \varphi((h_1 h_2) e \cdot (k_1 k_2) e) = \varphi(h_1h_2) \varphi(k_1k_2)$.
+	ונסיק כי $\varphi$ הומומורפיזם, ונשים לב ש־$\phi \circ \varphi = Id, \varphi \circ \phi = Id$ ולכן $\varphi^{-1} = \phi$ ונובע ש־$G$ איזומורפית ל־$H \times K$.
+\end{proof}
+
+\Subquestion{}
+נמצא חבורה $G$ ושתי תת־חבורות שלה $H, K \le G$ כך ש־$H \cdot K$ היא לא תת־חבורה.
+
+נגדיר $G = S_3, H = \{e, (1\ 2) \}, K = \{e, (2\ 3)\}$. 
+נשים לב ששתי תת־החבורות מוגדרות היטב, שכן לכל איבר יש הופכי, ושתי תת־החבורות אכן סגורות (באופן ריק) לכפל.
+נחשב ונקבל $H \cdot K = \{ e, (1\ 2), (2\ 3), (1\ 3\ 2)\}$. \\*
+אנו רואים כי $(1\ 3\ 2) \in H \cdot K$ אבל ${(1\ 3\ 2)}^{-1} = (2\ 3\ 1) \notin H \cdot K$, דהינו הסגירות להופכי לא מתקיימת ב־$H \cdot K$ ולכן זוהי לא תת־חבורה.
+
+\end{document}
