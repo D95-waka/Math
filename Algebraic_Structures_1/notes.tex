@@ -1141,7 +1141,7 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 \subsubsection{טענה: נוסחת המחלקות}
 תהי חבורה סופית $G$, אז מתקיים
 \[
-	|G| = |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|C(h)|}
+	|G| = |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|G_h|}
 \]
 \begin{proof}
 	תחילה נבחין כי נוכל לפרק את $G$:
@@ -1161,13 +1161,14 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 		G = Z(G) \sqcup \bigsqcup_{[h] \in cent(G), h \notin Z(G)} C(h)
 	\]
 	ומכאן נסיק
-	TODO כאן משהו לא נכון, תבדוק ותפתור את זה, המסקנה לא אמורה להיות כזאת סותרת
 	\[
 		|G|
-		= |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} |G_h|
-		= |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|C(h)|}
+		= |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} |C(h)|
+		\overset{\text{מסלול־מייצב}}{=} |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|G_h|}
 	\]
 \end{proof}
+
+\subsubsection{מה זה?}
 \[
 	|X| = \sum_{O \in cent(X)} |O(X)| = \sum_{O(x) \in ???} \frac{|G|}{|G_x|}
 \]
@@ -1176,14 +1177,14 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 	|G| = |Z(G)| + \sum_{[n] \in cent(C), n \notin Z(G)} \frac{|G|}{|C(n)|}
 \]
 
-\subsubsection{מסקנה: }
-נאמר ש־$G$ היא חבורת $p$ אם $p$ ראשוני ו־$|G| = p^n$.
+\subsubsection{הגדרה: חבורת p}
+תהי חבורה סופית $G$, אז נקרא ל־$G$ חבורת $p$ אם קיים $p$ ראשוני ו־$n \in \NN$ כך שמתקיים $|G| = p^n$.
 
-\subsubsection{טענה}
-אם $G$ חבורת $p$ ו־$|G| \ne 1$ ($G$ לא טריוויאלית) אז $|Z(G)| > 1$. ה־$Z$ הזה הוא מרכז של $G$.
+\subsubsection{טענה: מרכז של חבורת p}
+אם $G$ חבורת $p$ ו־$|G| \ne 1$ ($G$ לא טריוויאלית) אז $|Z(G)| > 1$.
 \begin{proof}
 	למעשה נוכיח ש־$p \Big| |Z(G)|$ ולכן $|Z(G)| \ge p$. \\*
-	נשתממש בנוסחת המחלקות
+	נשתמש בנוסחת המחלקות
 	\[
 		|G| = |Z(G)| + \sum \frac{|G|}{|G_x|}
 	\]
