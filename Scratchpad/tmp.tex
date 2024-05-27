@@ -1,11 +1,98 @@
 \input{../article_base.tex}
 \title{tmp}
 \usepackage{cancel}
+% chktex-file 8
+% chktex-file 36
+% chktex-file 12
+% chktex-file 26
+% chktex-file 38
 
 \begin{document}
+\directlua{
+	function map(tbl, f)
+		local t = {}
+		for k,v in pairs(tbl) do
+			t[k] = f(v)
+		end
+		return t
+	end
+
+	function point_text(point)
+		return '(' .. point.x .. ',' .. point.y .. ')'
+	end
+
+	points = {
+		{x = 0, y = 0},
+		{x = 1, y = 0},
+		{x = 1, y = 1},
+		{x = 0, y = 1}
+	}
+
+	group = {
+		function(point)
+			return {x = point.y, y = point.x}
+		end,
+		function(point)
+			if point.x == 1 then
+				return {x = 1, y = 1 - point.y}
+			end
+
+			return point
+		end
+	}
+
+	text = table.concat(map(points, function(point) return point_text(point) end), ', ')
+}
+
 \[
-	D_4 \subseteq S_n. g \in D_4, \varphi = (1\ 4)
+	X = \{
+		\directlua{tex.print(text)}
+	\}
 \]
+
+\begin{center}
+	\begin{tikzpicture}[scale=3]
+		\draw \directlua{
+			c_points = points
+			tex.print(table.concat(map(map(c_points, function(p) return {x = p.x - 1, y = p.y} end), point_text), ' -- '))
+		} -- cycle;
+
+		\directlua{ for key, point in ipairs(c_points) do
+			tex.print('\\node at ' .. point_text(point) .. ' [above] {' .. point_text(point) .. '};' )
+			end
+		}
+	\end{tikzpicture}
+\end{center}
+
+אחרי הפעלת פעולה על הקבוצה:
+\begin{center}
+	\begin{tikzpicture}[scale=3]
+		\draw \directlua{
+			c_points = map(points, group[1])
+			tex.print(table.concat(map(map(c_points, function(p) return {x = p.x - 1, y = p.y} end), point_text), ' -- '))
+		} -- cycle;
+
+		\directlua{ for key, point in ipairs(c_points) do
+			tex.print('\\node at ' .. point_text(point) .. ' [above] {' .. point_text(point) .. '};' )
+			end
+		}
+	\end{tikzpicture}
+\end{center}
+
+דוגמה לסימטריה שלא שומרת על סימטריה, זה לא יכול להיות חלק מחבורה:
+\begin{center}
+	\begin{tikzpicture}[scale=3]
+		\draw \directlua{
+			c_points = map(points, group[2])
+			tex.print(table.concat(map(map(c_points, function(p) return {x = p.x - 1, y = p.y} end), point_text), ' -- '))
+		} -- cycle;
+
+		\directlua{ for key, point in ipairs(c_points) do
+			tex.print('\\node at ' .. point_text(point) .. ' [above] {' .. point_text(point) .. '};' )
+			end
+		}
+	\end{tikzpicture}
+\end{center}
 
 \end{document}
 
