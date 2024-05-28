@@ -16,6 +16,30 @@
 
 כלל הגדרות סביבת העבודה נמצאות [כאן](https://github.com/D95-waka/DotFiles/tree/master/nvim).
 
+בנייה
+-----
+
+תהליך הבנייה צריך להיעשות מהתיקייה בה הקובץ נמצא.
+
+כדי לבנות קובץ כלשהו נוכל להריץ את הפקודה הבאה
+```console
+lualatex -halt-on-error -output-directory=./bin/ <filename>.tex
+```
+אפשר להשתמש גם ב־latexmk על־ידי הפקודה הבאה
+```console
+latexmk -lualatex -interaction=nonstopmode -output-directory=./bin/ <filename>.tex
+```
+
+כדי להוסיף כותב ל־pdf יש להריץ את הפקודה הבאה לפני הבנייה:
+```bash
+export AUTHOR='<author name>'
+```
+או לחילופין ב־fish:
+```fish
+set -lx AUTHOR '<author name>'
+```
+
+
 קורסים
 ------
 
