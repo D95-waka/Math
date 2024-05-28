@@ -7,4 +7,4 @@
 ------
 
 רשימת הקורסים שמרכיבים את התואר
-1.  [AAA](./Discrete_mathematics) – 2022ג'
+1.  [מתמטיקה דיסקרטית](./Discrete_mathematics) – 2022ג'
