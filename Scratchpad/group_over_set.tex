@@ -1,0 +1,146 @@
+\input{../article_base.tex}
+\title{tmp}
+\usepackage{cancel}
+% chktex-file 8
+% chktex-file 36
+% chktex-file 12
+% chktex-file 26
+% chktex-file 38
+
+\begin{document}
+\directlua{
+	function map(tbl, f)
+		local t = {}
+		for k,v in pairs(tbl) do
+			t[k] = f(v)
+		end
+		return t
+	end
+
+	function equals(o1, o2, ignore_mt)
+		if o1 == o2 then return true end
+		local o1Type = type(o1)
+		local o2Type = type(o2)
+		if not (o1Type == o2Type) then return false end
+		if not (o1Type == 'table') then return false end
+
+		if not ignore_mt then
+			local mt1 = getmetatable(o1)
+			if mt1 and mt1.__eq then
+				return o1 == o2
+			end
+		end
+
+		local keySet = {}
+
+		for key1, value1 in pairs(o1) do
+			local value2 = o2[key1]
+			if value2 == nil or equals(value1, value2, ignore_mt) == false then
+				return false
+			end
+			keySet[key1] = true
+		end
+
+		for key2, _ in pairs(o2) do
+			if not keySet[key2] then return false end
+		end
+		return true
+	end
+
+	function indexOf(array, value)
+		for i, v in ipairs(array) do
+			if equals(v, value, false) then
+				return i
+			end
+		end
+
+		return nil
+	end
+
+	function point_text(point)
+		return '(' .. point.x .. ',' .. point.y .. ')'
+	end
+
+	function compile_permutation(ord)
+		return function(set, item)
+			local id = indexOf(set, item)
+			if id == nil then
+				return nil
+			end
+
+			return set[ord[id]]
+		end
+	end
+
+	points = {
+		{x = 0, y = 0},
+		{x = 1, y = 0},
+		{x = 1, y = 1},
+		{x = 0, y = 1}
+	}
+
+	group_definitions = {
+		{1, 2, 3, 4},
+		{2, 3, 4, 1},
+		{1, 3, 2, 4},
+	}
+
+	group = map(group_definitions, function(def)
+		local compiled = compile_permutation(def)
+		return function(point)
+			return compiled(points, point)
+		end
+	end)
+
+	%text = table.concat(map(map(points, function(p) return group[3](points, p) end), point_text), " ")
+	%text = table.concat(map(points, function(p) return indexOf(points, p) end), " ")
+}
+
+\newcommand{\drawRect}[1] {
+	\begin{center}
+		\begin{tikzpicture}[scale=3]
+			\draw \directlua{
+				c_points = map(points, group[#1])
+				tex.print(table.concat(map(map(c_points, function(p) return {x = p.x - 1, y = p.y} end), point_text), ' -- '))
+			} -- cycle;
+
+			\directlua{ for key, point in ipairs(c_points) do
+				tex.print('\\node at ' .. point_text(point) .. ' [above] {' .. key .. ': ' .. point_text(point) .. '};' )
+				end
+			}
+		\end{tikzpicture}
+	\end{center}
+}
+
+נתחיל בהסבר.
+המסמך הזה מדגים את הקונספט של ההבדל בין קבוצה, חבורה, והפעולה של החבורה על הקבוצה. 
+נגדיר את $X$ להיות קבוצה כלשהי, ואת $G$ להיות ''חבורת'' תמורות. היא לא באמת חבורה כי לא הוספנו אליה את כלל האיברים כדי שהיא תקיים את תכונות החבורה, ולכן היא לא חבורה אמיתית. 
+החבורה עצמה, כפי שאפשר לראות בקוד של המסמך, היא מערך של פונקציות (מטעמי נוחות הן מקבלות רק ארגומנט אחד ולא שניים) ו־$G$ עצמה היא בסך הכול הסימון שמהם הפונקציות נוצרות.
+הרעיון הוא שהקבוצה מכילה נקודות, משהו שאפשר לצייר, והחבורה מכילה פונקציות שמשנות את הסדר של רשימה. 
+לכן בכל פעם ניתן את רשימת הנקודות לפונקציה מסוימת שמייצגת תמורה, ונקבל רשימה חדשה של נקודות.
+לאחר מכן נדפיס את הנקודות האלה באופן גאומטרי, כאשר ליד כל נקודה מופיע מספור של הסדר שלה במערך זה.
+
+נשים לב כי $D_4$ בהגדרה אמור לשמר את המבנה של ריבוע גאומטרי, ואכן כאשר מפעילים $g \in D_4$ על $X$ נקבל ריבוע שוב, גם אם הנקודות לא הודפסו בסדר המקורי שלהן.
+לעומת זאת, כאשר ניקח $g \in S_4$ כך ש־$g \notin D_4$ רשימת הנקודות לא בהכרח תשמר את המבנה של ריבוע, כפי שנראה במקרה $g_3$.
+
+ועתה להדגמה, כל מה שמופיע מכאן והלאה מבוסס על חישוב מעל הגדרות הקבוצה והחבורה המופיעות למעלה:
+\[
+	X = \{
+		\directlua{tex.print(table.concat(map(points, function(point) return point_text(point) end), ', '))}
+	\},
+	G = \{
+		\directlua{tex.print(table.concat(map(group_definitions, function(a) return "(" .. table.concat(a, ", ") .. ")" end), ', '))}
+	\}
+\]
+
+\directlua{tex.print(text)}
+
+\directlua{
+	for key, value in pairs(group_definitions) do
+		tex.print('עבור התמורה $g_' .. key .. ' = (' .. table.concat(value, ", ") .. ')$ נקבל:')
+		tex.print('\\drawRect{' .. key .. '}')
+	end
+}
+
+\end{document}
+
