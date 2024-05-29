@@ -372,4 +372,209 @@ $| \mathcal{P}(\{1, 2, \dots, n \})| = |[2^n]|$
 הקושי הוא שכדי לקבל פעולה מוגדרת היטב על מחלקות יש לבדוק כי ההגדרה איננה תלויה בבחירת נציגים.
 כלומר לכל $x_1, x_1' \in C_1, x_2, x_2' \in C_2$ יתקיים ${[x_1 + x_2]}_E = {[x_1' + x_2']}_E$ ובמקרה כזה נאמר כי הפעולה $*$ על $X$ מוגדרת היטב על קבוצת המנה $X/E$.
 
+\section{שיעור 4}
+\subsection{מושג העוצמה}
+\subsubsection{תזכורת}
+בהינתן יחס שקילות $E$ על קבוצה $X$ נסמן $X/E = \{ {[x]}_E \mid x \in X\}$ קבומצ מחלקות השקילות. \\*
+בהינתן פעולה (יחס) $*$ על $X$. \\*
+$*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת התכונה הבאה:
+\[
+	\forall (x_1, x_2) \in E, \forall (y_1, y_2) \in E : (x_1 * y_1, x_2 * y_2) \in E
+\]
+אי־תלות בנציגים $E$ ביחס לפעולה $*$.
+
+נגדיר את $*$ על $X/E$ על־ידי
+\[
+	{[x_1]}_E * {[y_1]}_E = {[x_1 * y_1]}_E
+\]
+
+נתבונן ביחס
+\[
+	E = \{ (A, B) \mid \exists f : A \to B \text{ הפיכה} \}
+\]
+ראינו כי $E$:
+
+\begin{itemize}
+	\item רפלקסיבי
+	\item סימטרי
+	\item טרנזיטיבי
+\end{itemize}
+ולכן $E$ מקיים את התכונות של יחס שקילות.
+
+\subsubsection{הגדרה (זמנית): עוצמה}
+עוצמה היא מחלקת שקילות לפי $E$. \\*
+נסמן ב־$|A|$ את מחלקת השקילות של $A$.
+סימונים מקובלים נוספים:
+\begin{itemize}
+	\item $|\NN| = \aleph_0$
+	\item $|\RR| = \aleph$ או גם מסמנים ב־$\mathfrak{C}$ גותית שאני לא יודע לעשות בלאטך.
+	\item באופן כללי משתמשים באותיות גותעות כדי לסמן את העוצמות של קבוצות, לדוגמה $|A| = \mathfrak{a}, |B| = \mathfrak{b}$.
+	\item לקבוצה סופית $[n]$ נסמן גם $|[n]| = n$.
+\end{itemize}
+
+\subsubsection{דוגמות}
+\begin{enumerate}
+	\item $\{1, 2, 3\} \in |[3]|$, $\{\pi, e, \frac{1}{7}\}$.
+	\item $|\ZZ| = |\QQ| = \aleph_0$.
+	\item באופן דומה נקבל גם $\mathfrak{C} = |\RR| = |\mathbb{C}| = |\RR\backslash a| = |[0, 1]|$.
+	\item $0 = |\emptyset|$.
+\end{enumerate}
+
+\subsection{פעולות חשבון על עוצמות}
+נבקש להגדיר לכל זוג עוצמותת $\mathfrak{a}, \mathfrak{b}$ עוצמות נוספות. \\*
+חיבור $\mathfrak{a} + \mathfrak{b}$, כפל $\mathfrak{a} \cdot \mathfrak{b}$ וחזקה $\mathfrak{a}^\mathfrak{b}$.
+
+\subsubsection{כפל}
+נתבונן בפעולת המכפלה הקרטזית $\times$ על קבוצה $A \times B$. \\*
+נרצה להראות שהיא מגדירה פעולה מוגדרת היטב למחלקות עוצמה.
+\begin{proof}
+	צריך להוכיח כי בהינתן $A_1, A_2$ שוות עוצמה ו־$B_1, B_2$ שוות עוצמה, אז שמתקיים $|A_1 \times B_1| = |A_2 \times B_2|$.
+	נבחר $f : A_1 \to A_2$ הפיכה וגם $g : A_2 \to B_2$ הפיכה שאנו יודעים שקיימות ונבחן את
+	\[
+		(f \times g) : A_1 \times B_1 \to A_2 \times B_2
+	\]
+	המוגדרת על־ידי
+	\[
+		(f \times g)(a, b) = (f(a), g(b))
+	\]
+	ולכן $f \times g$ היא חד־חד ערכית ועל $A_2 \times B_2$ שכן $f, g$ הן חד־חד ערכיות ועל בנפרד. \\*
+	מסקנה: $|A_1 \times B_1| = |A_2 \times B_2|$.
+\end{proof}
+
+\subsubsection{הגדרה: כפל עוצמות}
+בהינתן עוצמות $\mathfrak{a}, \mathfrak{b}$ נגדיר $\mathfrak{a} \cdot \mathfrak{b}$ באופן הבא: \\*
+תהינה $A, B$ קבוצות, $|A| = \mathfrak{a}, |B| = \mathfrak{b}$ אז נגדיר $\mathfrak{a} \cdot \mathfrak{b} = |A \times B|$.
+
+\subsubsection{דוגמה}
+\begin{enumerate}
+	\item לכל $n, m$ סופיים נראה כי
+		\[
+			|[n]| \cdot |[m]| = |[n] \times [m]| = |[n \cdot m]|
+		\]
+	\item $\aleph_0 \cdot \aleph_0 = | \NN \times \NN| = |\NN| = \aleph_0$.
+	\item באינדוקציה על $1 \le k$ נגדיר $\overbrace{\aleph_0 \cdot \cdots \aleph_0}^k = \aleph_0$
+\end{enumerate}
+
+\subsubsection{פעולת החזקה}
+בהינתן קבוצות $A$ ו־$B$ נתבונן בקבוצה $A^B = \{ f : B \to A \}$. \\*
+נבקש ללבדוק כי הפעולה הזו לא תלויה בבחירת נציגים ולכן מוגדרת היטב.
+\begin{proof}
+	צריך להוכיח:
+	אם $|A_1| = |A_2|, |B_1| = |B_2|$ אז נראה כי $|A_1^{B_1}| = |A_2^{B_2}|$. \\*
+	דהינו
+	\[
+		|\{ f : B_1 \to A_1 \}| = |\{ f : B_2 \to A_2 \}|
+	\]
+	נקבע פונקציות הפיכות $f : A_1 \to A_2$ ו־$g : B_1 \to B_2$ הפיכות. \\*
+	נגדיר $\varphi : A_1^{B_1} \to A_2^{B_2}$ על־ידי
+	\[
+		h_1 : B_1 \to A_1,
+		\varphi(h_1) = f \circ h_1 \circ g^{-1} : B_2 \to A_2
+	\]
+	נרצה להראות כי $\varphi$ הפיכה על־ידי מציגת פונקציה הופכית:
+	\[
+		\psi(h_2) : A_2^{B_2} \to A_1^{B_1},
+		\qquad
+		\psi(h_2) = f^{-1} \circ h_2 \circ g
+	\]
+	נבדוק את הרכבת הפונקציות:
+	\begin{align*}
+		& \psi \circ \varphi = id_{A_1^{B_1}} \\
+		& \varphi \circ \psi = id_{A_2^{B_2}}
+	\end{align*}
+	ונסיק מהקריטריון השקול להפיכות כי $\varphi$ הפיכה ומתקיים $\varphi^{-1} = \psi$. \\*
+	נבדוק את ההרכבה הראשונה:
+	\[
+		\forall h_1 \in A_1^{B_1}, (\psi \circ \varphi)(h_1)
+		= \psi(f \circ h_1 \circ g^{-1})
+		= f^{-1} \circ f \circ h_1 \circ g^{-1} \circ g
+		= (f^{-1} \circ f) \circ h_1 \circ (g^{-1} \circ g)
+		= (id_{A_1}) \circ h_1 \circ (id_{B_1})
+		= h_1
+	\]
+	והצד השני דומה.
+\end{proof}
+
+\subsubsection{הגדרה: פעולת חזקה על עוצמות}
+בהינתן עוצמות $\mathfrak{a}, \mathfrak{b}$ נגדיר עוצמה $\mathfrak{a}^\mathfrak{b}$ באופן הבא: \\*
+נבחר קבוצות המקיימות $|A| = \mathfrak{a}, |B| = \mathfrak{b}$ ונגדיר $\mathfrak{a}^\mathfrak{b} = |A^B|$.
+
+\subsubsection{דוגמות}
+\begin{enumerate}
+	\item יהיו $n, m$ סופיים, מתקיים $|{[n]}^{[m]}| = |[n^m]|$
+	\item תהי $\mathfrak{a} = |A|$ ו־$\mathfrak{b} = 0 = |\emptyset|$.
+		נשים לב כי $f : \emptyset \to A$ היא פונקציה שכן $\emptyset \subseteq \emptyset \times A$ הוא יחס באופן ריק. הפונקציה היא אכן פונקציה באופן ריק. \\*
+		נסיק מכך כי מתקיים $A^\emptyset = \{ \emptyset \}$ ולכן $\mathfrak{a}^\mathfrak{b} = |\{ \emptyset \} = 1$.
+\end{enumerate}
+
+\subsubsection{טענה: }
+לכל קבוצה $A$ מתקיים $2^{|A|} = |\mathcal{P}(A)|$.
+\begin{proof}
+	על־פי ההגדרה העוצמה $2^|A|$ שווה למחלקת העוצמה של ${\{0, 1\}}^A = \{ h : A \to \{0, \}\}$. \\*
+	לכן כדי להוכיח את הטענה די להראות קיום פונקציה הפיכה בין ${\{0, 1\}}^A$ לבין $\mathcal{P}(A)$. \\*
+	נגדיר $\varphi : {\{0, 1\}}^A \to \mathcal{P}(A)$ על־ידי
+	\[
+		\varphi(h) = h^{-1}(\{1\}) = \{ a \in A \mid h(a) = 1\}
+	\]
+	נוכיח כי $\varphi$ חד־חד ערכית ועל $\mathcal{P}(A)$:
+	\[
+		\forall h_1, h_2 : A \to \{0, 1\}, h_1 \ne h_2,
+		\exists a \in A : h_1(a) \ne h_2(a)
+		\implies
+		a \in h_1^{-1}(\{1\}) \triangle h_2^{-1}(\{1\})
+	\]
+	בפרט הקבוצות $\varphi(h_1), \varphi(h_2)$ הן שונות. \\*
+	נוכיח על: יהי $B \subseteq A$, דהינו $B \in \mathcal{P}(A)$. ניקח
+	\[
+		l_B : A \to \{0, 1\}, l_B(a) = \begin{cases}
+			0, & a \notin B \\
+			1, & a \in B
+		\end{cases}
+	\]
+	נובע מהגדרת $\varphi$ ש־$\varphi(l_b) = B$ והיא על. \\*
+	הראינו כי קיימת פונקציה הפיכה $\varphi : {\{0, 1\}}^A \to \mathcal{P}(A)$ ולכן מתקיים $2^{|A|} = |\mathcal{P}(A)|$.
+\end{proof}
+
+\subsubsection{מסקנה}
+נובע ממשפט קנטור כי לכל עוצמה $\mathfrak{a}$ מתקיים $\mathfrak{a} < 2^\mathfrak{a}$.
+
+\subsubsection{טענה: שקילות חיבור עוצמות}
+יהיו $|A_1| = |A_2|, |B_1| = |B_2|$, אם $\emptyset = A_1 \cap B_1$ וגם $\emptyset = A_2 \cap B_2$. \\*
+אז $|A_1 \cup B_1| = |A_2 \cup B_2|$. \\*
+הוכחה בתרגיל.
+
+\subsubsection{הגדרה: חיבור עוצמות}
+תהינה עוצמות $\mathfrak{a}, \mathfrak{b}$ אז נגדיר את $\mathfrak{a} + \mathfrak{b}$ באופן הבא: \\*
+ניקח קבוצות זרות $A, B$ כך ש־$|A| = \mathfrak{a}, |B| = \mathfrak{b}$. \\*
+נגדיר את $\mathfrak{a} + \mathfrak{b}$ להיות העוצמה $A \cup B$.
+
+\subsubsection{הגדרה שקולה}
+הערה: לכל קבוצה $A$ מתקיים $|\{0\} \times A| = |A| = |\{1\} \times A|$. \\*
+לכל זוג $A, B$ קבוצות נראה כי
+\[
+	\emptyset = (\{ 0 \} \times A) \cap (\{ 1 \} \times B)
+\]
+ולכן נגדיר
+\[
+	|A| + |B| = |(\{ 0 \} \times A) \cup (\{ 1 \} \times B)|
+\]
+
+\subsubsection{הגדרה: אי־שוויון בין עוצמות}
+בהינתן עוצמות $\mathfrak{a}, \mathfrak{b}$ נגדיר כי $\mathfrak{a} \le \mathfrak{b}$ ($\mathfrak{a} < \mathfrak{b}$) \\*
+אם יש נציגים $|A| = \mathfrak{a}, |B| = \mathfrak{b}$ כך שקיימת פונקציה חד־חד ערכית $f : A \to B$ (וגם לא קיימת $f$ כזו שהיא גם על).
+
+נבחין כי ההגדרה איננה תלויה בבחירת נציגים $A, B$.
+
+\subsubsection{הערה: ניסוח שקול למשפט קנטור־שרדר ברנשטיין}
+ניסוח שקול למשפט הוא שלכל $\mathfrak{a}, \mathfrak{b}$ עוצמות אם גם $\mathfrak{a} \le \mathfrak{b}$ וגם $\mathfrak{b} \le \mathfrak{a}$ אז $\mathfrak{a} = \mathfrak{b}$.
+
+\subsubsection{משפט: כללי חשבון בסיסיים}
+\begin{enumerate}
+	\item לכל $\mathfrak{a}, \mathfrak{b}$ עוצמות מתקיים $\mathfrak{a} + \mathfrak{b} = \mathfrak{b} + \mathfrak{a}$ וגם $\mathfrak{a} \cdot \mathfrak{b} = \mathfrak{b} \cdot \mathfrak{a}$.
+	\item לכל שלוש עוצמות $\mathfrak{a}, \mathfrak{b}_1, \mathfrak{b}_2$ מתקיים $\mathfrak{a} \cdot \mathfrak{b}_1 + \mathfrak{a} \cdot \mathfrak{b}_2 = \mathfrak{a}(\mathfrak{b}_1 + \mathfrak{b}_2)$
+	\item לכל שלוש עוצמות $\mathfrak{a}, \mathfrak{b}_1, \mathfrak{b}_2$ מתקיים $\mathfrak{a}^{\mathfrak{b}_1 + \mathfrak{b}_2} = \mathfrak{a}^{\mathfrak{b}_1} \cdot \mathfrak{a}^{\mathfrak{b}_2}$
+		וגם ${{(\mathfrak{a}^{\mathfrak{b}_1})}^{\mathfrak{b}_2}} = \mathfrak{a}^{\mathfrak{b}_1 \mathfrak{b}_2}$.
+\end{enumerate}
+
+
 \end{document}
