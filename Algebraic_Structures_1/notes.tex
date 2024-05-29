@@ -1128,25 +1128,29 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 \subsubsection{סימון: מחלקות צמידות}
 תהי חבורה $G$, אז נסמן את אוסף מחלקות הצמידות שלה:
 \[
-	cent(G) := \{ X \subseteq G \mid \forall x, y \in X \exists g \in G : x = g y g^{-1} \}
+	cong(G) := \{ X \subseteq G \mid \forall x, y \in X \exists g \in G : x = g y g^{-1} \}
 \]
 נשים לב שמרכז עבור צמידות מסומן באופן מיוחד, וגם כאן זהו סימון מיוחד עבור $G \backslash G$ עם פעולת ההצמדה. \\*
-כל איבר ב־$cent(G)$ הוא קבוצה שכלל האיברים בה צמודים זה לזה.
+כל איבר ב־$cong(G)$ הוא קבוצה שכלל האיברים בה צמודים זה לזה.
 נשתמש בהגדרת המרכז ונכתוב גם
 \[
-	cent(G) = \{ X \subseteq G \mid \forall x, y \in X : y \in C(x) \}
+	cong(G) = \{ X \subseteq G \mid \forall x, y \in X : y \in C(x) \}
 \]
-ונסמן $[g] \in cent(G)$ איבר כלשהו מייצג מכל מחלקת צמידות.
+ונסמן $[g] \in cong(G)$ איבר כלשהו מייצג מכל מחלקת צמידות. \\*
+נסמן גם $C_h$ מחלקת הצמידות של $h$ ומתקיים
+\[
+	C_h = \{ g \in G \mid \exists k \in G : k h k^{-1} = g \}
+\]
 
 \subsubsection{טענה: נוסחת המחלקות}
 תהי חבורה סופית $G$, אז מתקיים
 \[
-	|G| = |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|G_h|}
+	|G| = |Z(G)| + \sum_{[h] \in cong(G), h \notin Z(G)} \frac{|G|}{|G_h|}
 \]
 \begin{proof}
 	תחילה נבחין כי נוכל לפרק את $G$:
 	\[
-		G = \bigsqcup_{[h] \in cent(G)} C(h)
+		G = \bigsqcup_{[h] \in cong(G)} C(h)
 	\]
 	ונבחין כי לכל $h \in G$ מתקיים
 	\[
@@ -1158,13 +1162,13 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 	\]
 	אז נוכל לראות כי
 	\[
-		G = Z(G) \sqcup \bigsqcup_{[h] \in cent(G), h \notin Z(G)} C(h)
+		G = Z(G) \sqcup \bigsqcup_{[h] \in cong(G), h \notin Z(G)} C(h)
 	\]
 	ומכאן נסיק
 	\[
 		|G|
-		= |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} |C(h)|
-		\overset{\text{מסלול־מייצב}}{=} |Z(G)| + \sum_{[h] \in cent(G), h \notin Z(G)} \frac{|G|}{|G_h|}
+		= |Z(G)| + \sum_{[h] \in cong(G), h \notin Z(G)} |C(h)|
+		\overset{\text{מסלול־מייצב}}{=} |Z(G)| + \sum_{[h] \in cong(G), h \notin Z(G)} \frac{|G|}{|G_h|}
 	\]
 \end{proof}
 
@@ -1297,5 +1301,253 @@ $G \acts X$ ו־$x \in X$. $|O(x)| = [G : G_x]$. וזה נכון גם כשהחב
 
 \subsubsection{הערה: צביעה של פאות}
 נשים לב כי ישנן ארבע פאות ולכן נוכל לקשר כל פאה לקודקוד ונקבל כי מספר הצביעות של פאות שקול למספר הצביעות של הקודקודים.
+
+\section{שיעור 7 --- 29.5.2024}
+\subsection{חבורות p}
+\subsubsection{תזכורת: מרכז של חבורה}
+המרכז של חבורה $Z(G)$ הוא תת־חבורה נורמלית של איברים שמתחלפים עם כלל האיברים בחבורה המקורית.
+\[
+	Z(G) = \{ g \in G \mid \forall h \in, g h = hg \}
+\]
+
+\subsubsection{הגדרה: חבורת p}
+תהי חבורה סופית $G$, אז נקרא ל־$G$ חבורת $p$ אם קיים $p$ ראשוני ו־$n \in \NN$ כך שמתקיים $|G| = p^n$.
+
+\subsubsection{טענה: מרכז של חבורת p}
+אם $G$ חבורת $p$ ו־$|G| \ne 1$ ($G$ לא טריוויאלית) אז $|Z(G)| > 1$.
+\begin{proof}
+	למעשה נוכיח ש־$p \Big| |Z(G)|$ ולכן $|Z(G)| \ge p$. \\*
+	נשתמש בנוסחת המחלקות
+	\[
+		|G| = |Z(G)| + \sum_{[h] \in cong(G), n \notin Z(G)} \frac{|G|}{|C_G(h)|}
+	\]
+	TODO צריך להבין אם זה מרכז או מייצב --- מישהו שאל וזה קטע, מרכז הוא סוג פרטי של מייצב \\*
+	ידוע כבר כי $|G|$ מתחלק ב־$p$ ומספיק לבדוק את שני המחוברים האחרים. \\*
+	אם $|C(h)| = |G|$ אז $C(h) = G$ ולכן $h \in Z(G)$. תבין למה זה אומר שהם מתחלקים וסיים עם זה.
+
+\end{proof}
+
+\subsubsection{דוגמה}
+עבור $S_3$, נקבל $|S_3| = 6$, והמרכז כולל רק את האיבר הטריוויאלי ולכן $|Z(S_n) = 1|$,
+מחלקות הצמידות בתמורות הן תמורות שקולות מחזור ולכן ישנן שלוש מחלקות צמידות, מתוכן שתיים לא במרכז.
+אז נקבל
+\[
+	6 = 1 + \frac{6}{3} + \frac{6}{2}
+\]
+
+\subsection{הומומורפיזמים}
+\subsubsection{תזכורת: הומומורפיזם}
+תהינה $G, H$ חבורות אז הומומורפיזם $\varphi : G \to H$ היא העתקה שמקיימת
+\[
+	\varphi(g_1 g_2) = \varphi(g_1) \varphi(g_2)
+\]
+ומכאן נובע גם $\varphi(e_G) = e_H$ וגם $\varphi(g^{-1}) = \varphi^{-1}(g)$.
+
+אם $\varphi$ חד־חד ערכית אז נאמר שהיא מונומורפיזם,
+אם היא על היא תיקרא אפימורפיזם,
+אם היא חד־חד ערכית ועל אז היא תיקרא איזומורפיזם.
+
+\subsubsection{הגדרה: }
+יהי $\varphi$ הומומורפיזם $\varphi : G \to H$.
+ה\textbf{גרעין של $\varphi$} ושמסומן $\ker(\varphi)$ מוגדר להיות
+\[
+	\ker(\varphi) = \{ g \in G \mid \varphi(g) = e_H \}
+\]
+
+\subsubsection{הגדרה: }
+יהי $\varphi : G \to H$ המומורפיזם, ה\textbf{תמונה} של $\varphi$ המסומנת $\im(\varphi)$ מוגדרת על־ידי
+\[
+	\im(\varphi) = \{ h \in H \mid \exists y \in G : \varphi(y) = h \}
+\]
+
+\subsubsection{טענה: גרעין ותמונה הם תת־חבורות}
+\begin{enumerate}
+	\item $\im(\varphi)$ תת־חבורה של $H$.
+	\item $\ker(\varphi)$ תת־חבורה של $G$.
+\end{enumerate}
+\begin{proof}
+	\begin{enumerate}
+		\item $e_h = \varphi(e_G) \implies e_H \in \im(\varphi)$ ובנוסף $h_1, h_2 \in \im(\varphi) \implies \exists g_1, g_2 : \varphi(g_1) = h_1, \varphi(g_2) = h_2$
+			ואחרון
+			$h \in \im(G) \implies \exists g \in \varphi(G) = h \implies \varphi(g) = h^{-1} \implies h^{-1} \in \im(\varphi)$
+		\item הפעם לגרעין נקבל
+			$e_G \in \ker(\varphi)$ נובע מ־$\varphi(e_G) = e_H$
+			$ g_1, g_2 \in \ker(\varphi) \implies \varphi(g_1) = e_H, \varphi(g_2) = e_H \implies \varphi(g_1g_2) = e_H e_H \implies g_1g_2 \in \ker(\varphi)$.
+			$g \in \ker(\varphi) \implies\ \varphi(g) = e_H \implies \varphi(g^{-1}) = \varphi^{-1}(g) = e_H$
+	\end{enumerate}
+\end{proof}
+
+\subsubsection{טענות נוספות}
+\begin{enumerate}
+	\item $\im(\varphi) = H$ אם $\varphi$ על (אפימורפיזם).
+	\item $\ker(\varphi) = \{e\}$ אם ורק אם $\varphi$ חד־חד ערכית (מונומורפיזם).
+\end{enumerate}
+\begin{proof}
+	נוכיח את 2. \\*
+	אם $\varphi$ חד־חד ערכית אז הטענהה ברורה. \\*
+	נניח כעת כי $\ker(\varphi)$ הוא טריוויאלי ונוכיח כי $\varphi$ חד־חד ערכית. \\*
+	נניח בשלילה כי $\exists g_1, g_2 \in G : g_1 \ne g_2, \varphi(g_1) = \varphi(g_2)$. \\*
+	נסתכל על $g_2 g_1^{-1} \ne e_G$
+	אבל $\varphi(g_2g_1^{-1}) = \varphi(g_2) \varphi(g_1^{-1}) = \varphi(g_2)\varphi^{-1}(g_1) = e_H$.
+\end{proof}
+
+\subsubsection{דוגמות}
+נראה כי הדטרמיננטה היא $\det : GL_n(\RR) \to \RR^\times$ שכן $|AB| = |A| \cdot |B|$. \\*
+נראה גם כי $\im(|\cdot|) = \RR^\times$ וגם $\ker(| \cdot|) = SL_n(\RR)$.
+
+יהי הומומורפיזם $C^\times \to GL_2(\RR)$ על־ידי $a + bi \mapsto \begin{pmatrix}
+	a & b \\
+	-b & a
+\end{pmatrix}$.
+נוכיח כי זהו הומומורפיזם:
+\[
+	\varphi(a + ib)\varphi(c + id) = 
+	\begin{pmatrix}
+		a & b \\
+		-b & a
+	\end{pmatrix}
+	\begin{pmatrix}
+		c & d \\
+		-d & c
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		ac - bd & ad + bc \\
+		-ad + bc & ac - bd
+	\end{pmatrix}
+	= \varphi(ac - bd + i(ad + bc))
+	= \varphi((a + ib)(c + id))
+\]
+
+נבחן את ההומומורפיזם $\varphi : \RR^m \to \RR^n$ העתקה לינארית וזה מתקיים גם תשלים הכול.
+
+גם
+\[
+	\varphi : \RR \to GL_2(\RR), a \mapsto \begin{pmatrix}
+		1 & a \\
+		0 & 1
+	\end{pmatrix}
+\]
+אז נראה כי
+\[
+	\varphi(a)\varphi(b)
+	=
+	\begin{pmatrix}
+		1 & a \\
+		0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & b \\
+		0 & 1
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1 & a + b \\
+		0 & 1
+	\end{pmatrix}
+	= \varphi(a + b)
+\]
+זה קשור לבלוקי ז'ורדן.
+
+עוד דוגמה
+\[
+	\varphi : S_n \to GL_n(\RR),
+	\tau \mapsto P_\tau, {(P_\tau)}_{ij} = \delta_{i\ \tau(j)}
+\]
+מטריצה שהיא או אפס או אחת כתלות במיקום לפי התמורה עד כמה שהבנתי.
+% https://en.wikipedia.org/wiki/Kronecker_delta
+\[
+	\varphi(\tau)\varphi(\sigma)
+	P_\tau P_\sigma
+	=
+	\sum_{k = 1}^{n} {(P_\tau)}_{ik} {(P_\sigma)}_{kj}
+	= \delta_{i\ \tau(\sigma(j))}
+\]
+ולכן $P_\tau P_\sigma = P_{\tau \circ \sigma}$.
+זה גם איזומורפיזם.
+
+אם $\varphi : G \to H$ הומומורפיזם, אז עבור $\im(\varphi) \subseteq H' \subseteq H$ היא תת־חבורה ומתקיים
+\[
+	\varphi' : G \to H',
+	\qquad
+	\varphi'(g) = \varphi(g)
+\]
+
+אם $\varphi : G \to H$ וגם $\phi : H \to K$ שני הומומורפיזמים, אז גם $\phi \circ \varphi : G \to K$ הומומורפיזם.
+\[
+	\phi \circ \varphi(g_1 g_2) = \phi(\varphi(g_1 g_2)) = \phi(\varphi(g_1) \varphi(g_2)) = (\phi \circ \varphi)(g_1) (\phi \circ \varphi)(g_2)
+\]
+
+גם
+\[
+	sign : S_n \xrightarrow{P} GL_n(\RR) \xrightarrow{\det} \RR^\times
+\]
+התמונה של זה היא $\{ \pm 1\}$. זה מגדיר סימן לתמורה. \\*
+לתמורות עם סימן חיובי נקרא תמורות זוגיות ולשליליות נקרא אי־זוגיות.
+\[
+	sign : S_n \to \{1, -1\} \cong \RR_{/2}
+\]
+ונראה כי
+\[
+	\ker(sign) = A_n
+\]
+אוסף התמורות הזוגיות.
+כך לדוגמה $|A_3| = 3 = |\{e, (1\ 2\ 3), (3\ 2\ 1)\}|$.
+
+תהי קבוצה $X$ ותהי פעולה $G \acts X$ ולכן הפעולה היא $\varphi : G \to \Sym(X)$. כאשר $\varphi(g_1 g_2) = \varphi(g_1) \varphi(g_2)$.
+לכן פעולות על קבוצות שקולות להומומורפיזמים מחבורות לסימטריות של $X$.
+\begin{proof}
+	נגדיר
+	\[
+		\varphi(g) \in \Sym(X), \varphi(g) = fx
+	\]
+	נבחן את $\varphi(g_1g_2)$ על־ידי הצבה:
+	\[
+		\varphi(g_1g_2)(x)
+		= (g_1 g_2)(x)
+		= g_2(g_1(x))
+		= \varphi(g)(g_2(x))
+		= \varphi(g_1)(\varphi(g_2)(x))
+		= (\varphi(g_1) \circ \varphi(g_2))(x)
+	\]
+\end{proof}
+חשוב להבין כמה משמעותי העניין הזה שפעולות והומומורפיזמים על־ידי הדבר המקסים הזה.
+
+\[
+	H \subseteq G
+\]
+אז אפשר לבנות את העתקת השיכון ונקבל $\varphi(g) = g \in G$ ולכן כל תת־חבורה יכולה להיות תמונה של הומומורפיזם.
+
+\subsubsection{טענה: משהו עם גרעין}
+יהי $\varphi : G \to H$ הומומורפיזם. \\*
+לכל $g \in G$
+\[
+	g \ker(\varphi) g^{-1} = \ker(\varphi)
+\]
+\begin{proof}
+	ניקח $h \in \ker(\varphi)$ ו־$g \in G$ אז
+	\[
+		\varphi(g h g^{-1}) = \varphi(g) \varphi(h) \varphi(g^{-1}) = \varphi(g) \varphi^{-1}(g) = e_H
+	\]
+\end{proof}
+
+\subsubsection{הגדרה: תת־חבורה נורמלית}
+$N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית} אם לכל $g \in G$ מתקיים $g N g^{-1} = N$. \\*
+הראינו כי $\ker(\varphi)$ תמיד נורמלית. \\*
+נסמן $N \trianglelefteq G$.
+
+\subsubsection{טענה: כל תת־חבורה נורמלית היא גרעין}
+לא ברור אם נכנס למבגרת השיעור.
+
+\subsubsection{טענה: }
+אם $\varphi : G \to H$ המומורפיזם אז ישנה התאמה חד־חד ערכית ועל בין $\im(\varphi)$ לבין $G / \ker(\varphi)$.
+נסמן $N = \ker(\varphi)$ אז
+\[
+	g N \mapsto \varphi(g) \in \im(g)
+\]
+וזה מוגדר בכלל כי:
+\[
+	g_1 N = g_2 N \implies g_1 g_2^{-1} \in N \implies \varphi(g g_2^{-1}) = e_h \iff \varphi(g_1) = \varphi(g_2)
+\]
 
 \end{document}
