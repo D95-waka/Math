@@ -1,0 +1,70 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- מבנים אלגבריים 1 (80445)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+הכוונה ברורה לי אבל עוד לפני שקראתי את שאר השאלה אני רוצה אינטואיטיבית להשתמש ב־$D_n$ וצביעה מעל קבוצה.
+
+\Subquestion{}
+נגדיר $X_{n, q} = {[q]}^{[n]}$.
+נוכיח שהחבורה $D_n$ משרה פעולה על הקבוצה $X_{n, q}$ על־ידי
+\[
+	\forall f \in X_{n, q} \forall \sigma \cdot f(k) = f(\sigma^{-1}(k))
+\]
+\begin{proof}
+	אנו כבר יודעים כי החבורה $D_n$ היא פעולה מעל $[n]$ על־ידי $\forall g \in D_n, x \in [n] : g \cdot x = g(x)$. \\*
+	בתרגול הוכחנו כי בהינתן קבוצה ופעולה עליה, ניתן להרחיב את הפעולה לצביעה של הקבוצה על־ידי
+	\[
+		\forall g \in D_4, f \in {[q]}^{[n]} : \forall x \in [n], g \cdot f(x) = f(g^{-1} \cdot x)
+	\]
+	ומצאנו כי הטענה נכונה.
+\end{proof}
+
+\Subquestion{}
+נחשב את מספר המסלולים של $D_n$ על $X_{n, q}$.
+
+נגדיר $\Xi \subseteq \NN$ קבוצת הראשוניים, דהינו מתקיים 
+\[
+	\Xi = \left\{ n \in \NN \mid \forall k \in \NN\setminus\{1, n\} : k \nmid n\right\}
+\]
+נגדיר $\xi : \NN \to \Xi$ על־ידי $\xi(n) = \{ k \in \Xi \mid k | n \}$, פונקציה אשר מחזירה את הראשוניים אשר המספר מתחלק בהם. \\*
+עתה נגדיר גם $r = (1 \dots n)$ תמורת סיבוב ו־$s(k) = n - k + 1$ פונקציית ההיפוך, לכן $D_n = \langle r, s \rangle$. \\*
+תהי צביעה $f \in {[q]}^{[n]}$ כלשהי, אז נבחין כי אילו היא מורכבת מיותר צבע אחד, דהינו $\lnot \exists c : \forall k \in [n] : f(k) = c$, אז מתחייב כי $\exists n : f(n) \ne f(n + 1)$ ונוכל להסיק
+\[
+	Fix(f) = \{ f\} \implies |Fix(f)| = 1
+\]
+יהי $m \in \NN$ כך ש־$1 < m \le n$, ונבחן את $r^m$, סיבוב ב־$m$ איברים.
+אילו $m \big| n$ אז קל לראות כי ישנן $q^m$ צביעות אפשריות, אילו לעומת זאת $m \nmid n$ אז נוכל להוכיח בדומה למקרה $m = 1$ שמספר הצביעות האפשרי הוא צביעה אחידה, דהינו $q$ אפשרויות.
+נגדיר פונצקיה $\mu : \NN \to \NN$ המשקפת את מספר הצביעות המושרה על־ידי $r^m$ כזה, נגדירה להיות
+\[
+	\mu(m) = \begin{cases}
+		q^m & m \mid n \\
+		q & m \nmid n
+	\end{cases}
+\]
+ואף מתקיים $Fix(r^m) = \mu(m)$ ישירות על־פי הגדרה. \\*
+נבחן את המקרה השני והוא $s r^m \in D_n$ כשאר $0 \le m < n$. \\*
+נשים לב כי $sr^m = {(sr^m)}^{-1}$ ולכן נובע כי $\forall k \in [n] : f(k) = f(sr^m k)$ ולמעשה נוכל להשתמש בהצמדה זו לקבוע כי ישנן $\lfloor \frac{n}{2} \rfloor q$ צביעות. \\*
+נסכם:
+ב־$\langle r, s \rangle$ ישנם $2n$ איברים בדיוק, כולם מהצורה $r^m$ או $s r^m$ עבור $0 \le m < n$. נבנה פונקציה $\nu : D_n \to \NN$ המייצגת את כמות הצביעות על־פי פעולה מהחבורה:
+\[
+	Fix(s^l r^m) = \nu(s^l r^m) = \begin{cases}
+		q \lfloor \frac{n}{2} \rfloor & l = 1 \\
+		\mu(m) & l = 0
+	\end{cases}
+\]
+ונשתמש בלמה של ברנסייד לקבל כי מספר המסלולים מוגדר על־ידי
+\[
+	|X_{n, q} / D_n| = \frac{1}{|D_n|} \sum_{s^l r^m \in D_n, l \in \{0, 1\}, 0 \le m < n} \nu(s^l r^m)
+	= \frac{1}{|D_n|} \sum_{s^l r^m \in D_n, l \in \{0, 1\}, 0 \le m < n} \begin{cases}
+		q \lfloor \frac{n}{2} \rfloor & l = 1 \\
+		q^m & l = 0, m \mid n \\
+		q & l = 0, m \nmid n
+	\end{cases}
+\]
+
+\end{document}
