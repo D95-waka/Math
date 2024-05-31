@@ -1,0 +1,228 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נוכיח מהגדרה כי הפונקציות הבאות הן דיפרנציאביליות ונמצא את הדיפרנציאל שלהן.
+
+\Subquestion{}
+תהי $T : \RR^k \to \RR^m$ העתקה לינארית ו־$b \in \RR^m$, ונבדוק את הפונקציה $f : \RR^k \to \RR^m$ המוגדרת על־ידי
+\[
+	f(x) = Tx + b
+\]
+
+נבחין כי
+\[
+	\lim_{v \to 0} \frac{f(x + v) - f(x) - Sv}{\lVert v \rVert}
+	= \lim_{v \to 0} \frac{T(x + v) + b - Tx - b - Sv}{\lVert v \rVert}
+	= \lim_{v \to 0} \frac{Tv - Sv}{\lVert v \rVert}
+\]
+ונבחין כי עבור $S = T$ גבול זה אכן מתקיים, ולכן $f$ דיפרנציאבילית בכל נקודה ונגזרתה $T$.
+
+\Subquestion{}
+תהי $g : \RR^k \to \RR$ המוגדרת על־ידי
+\[
+	g(x) = \lVert x \rVert^2 = \langle x, x \rangle
+\]
+
+נבדוק את הגבול כאשר נגדיר את הנורמה להיות מכפלה פנימית:
+\begin{align*}
+	\lim_{v \to 0} \frac{g(x + v) - g(x) - Tv}{\lVert v \rVert}
+	& = \lim_{v \to 0} \frac{\langle x + v, x + v \rangle - \lVert x \rVert^2 - Tv}{\lVert v \rVert} \\
+	& = \lim_{v \to 0} \frac{\lVert x \rVert^2 + \lVert v \rVert^2 + 2\langle x, v \rangle - \lVert x \rVert^2 - Tv}{\lVert v \rVert} \\
+	& = \lim_{v \to 0} \frac{\lVert v \rVert^2 + 2\langle x, v \rangle - Tv}{\lVert v \rVert} \\
+	& = \lim_{v \to 0} \lVert v \rVert + \frac{2\langle x, v \rangle - Tv}{\lVert v \rVert} \\
+\end{align*}
+ונקבל כי הגבול מתקיים אילו $T = 2x$ ובהתאם $Tv = \langle x, v \rangle$.
+
+\Question{}
+תהי פונקציה $f : \RR^n \to \RR^m$ ונסמן ב־$f_1, \dots, f_m$ את רכיביה.
+תהי $p \in \RR^n$.
+נוכיח ש־$f$ גזירה אם ורק אם כל הרכיבים שלה גזירים ב־$p$.
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח כי $f$ גזירה ב־$p$ ותהי $T$ נגזרת שלה, לכן מתקיים
+	\[
+		\lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert} = 0
+	\]
+	אנו יודעים כי העתקות לינאריות משרות נורמות מהמטלה הקודמת ולכן נוכל לקבוע כי עבור העתקה לינארית $S : \RR^m \to \RR$ כי
+	\[
+		\lim_{v \to 0} S(\frac{f(p + v) - f(p) - Tv}{\lVert v \rVert}) = 0
+		\implies
+		\lim_{v \to 0} \frac{S f(p + v) - S f(p) - STv}{\lVert v \rVert} = 0
+	\]
+	עתה נגדיר $S = \pi_i$ עבור $1 \le i \le m$ ונקבל
+	\[
+		\lim_{v \to 0} \frac{f_i(p + v) - f_i(p) - {(Tv)}_i}{\lVert v \rVert} = 0
+	\]
+	בפרט עבור $t \in \RR$ מתקיים
+	\[
+		\lim_{t \to 0} \frac{f_i(p + te_i) - f_i(p) - |t| {(Te_i)}_i}{|t|} = 0
+	\]
+	והגדרת הנגזרת מתקיימת ונקבל $f_i'(t) = {(Te_i)}_i$.
+
+	\textbf{כיוון שני:}
+	נניח כי $f_i$ גזירה לכל $1 \le i \le m$ ונסמן $T_i : \RR^n \to \RR$ נגזרת זו. \\*
+	נגדיר $T : \RR^n \to \RR^m$ התעתקה לינארית המוגדרת על־ידי $T v = {(T_1 v, T_2 v, \dots, T_m v)}^t$.
+	עתה נבחן את הגבול
+	\begin{align*}
+		\lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert}
+		& = \lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert} \\
+		& = \lim_{v \to 0} \frac{{(f_1(p + v) - f_1(p) - T_1 v, \dots, f_m(p + v) - f_m(p) - T_m v)}^t}{\lVert v \rVert} \\
+		& = \lim_{v \to 0} {\left( \frac{f_1(p + v) - f_1(p) - T_1 v}{\lVert v\rVert}, \dots, \frac{f_m(p + v) - f_m(p) - T_m v}{\lVert v\rVert}\right)}^t
+		& = {(0, \dots, 0)}^t
+	\end{align*}
+	התכנסות בנפרד בכלל האגפים על־פי הגדרות הנגזרות $T_i$ וקיבלנו כי $T$ דיפרנציאל של $f$ ב־$p$.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח שאם $f : \RR^n \to \RR^m$ גזירה בנקודה $p \in \RR^n$ אז היא רציפה ב־$p$.
+\begin{proof}
+	נניח כי $f$ גזירה ב־$p$ ונגזרתה $T$, לכן
+	\[
+		\lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert} = 0
+	\]
+	ואנו יודעים כי $\lVert v \rVert \xrightarrow{v \to 0} 0$ ולכן גם
+	\[
+		\lim_{v \to 0} \lVert v \rVert \cdot \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert}
+		= \lim_{v \to 0} \cdot f(p + v) - f(p) - Tv
+		= 0
+	\]
+	אבל אנחנו יודעים השיעור כי $Tv \xrightarrow{v \to 0} 0$ ולכן בהכרח
+	\[
+		\lim_{v \to 0} \cdot f(p + v) - f(p) - Tv
+		\lim_{v \to 0} \cdot f(p + v) - f(p)
+		= 0
+	\]
+	ונקבל בהתאם גם כי
+	\[
+		\lim_{v \to p} \cdot f(v) = f(p)
+	\]
+	דהינו הפונקציה רציפה ב־$p$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $f, g : \RR^n \to \RR^m$ גזירות בנקודה $p$ אז גם $f + g$ גזירה בנקודה זו ומתקיים $D(f + g)\mid_p = Df\mid_p + Dg\mid_p$.
+\begin{proof}
+	נגדיר $T, S$ נגזרות $f, g$ בהתאמה בנקודה $p$, לכן מתקיים
+	\[
+		\lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert},
+		\lim_{v \to 0} \frac{g(p + v) - g(p) - Sv}{\lVert v \rVert}
+	\]
+	ולכן נוכל לחבר את הגבולות ונקבל
+	\begin{align*}
+		& \lim_{v \to 0} \frac{f(p + v) - f(p) - Tv}{\lVert v \rVert} + \frac{g(p + v) - g(p) - Sv}{\lVert v \rVert}
+		& & = \lim_{v \to 0} \frac{f(p + v) - f(p) - Tv + g(p + v) - g(p) - Sv}{\lVert v \rVert} \\
+		& = \lim_{v \to 0} \frac{(f + g)(p + v) - (f(p) + g(p)) - (T + S)v}{\lVert v \rVert}
+		& & = D(f + g)\mid_p = Df\mid_p + Dg\mid_p
+	\end{align*}
+\end{proof}
+
+\Question{}
+\Subquestion{}
+תהי $f : \RR^3 \to \RR^2$ המוגדרת על־ידי
+\[
+	f(x, y, z) = (x^2 y^3 z^4, x^8 - \cos(xy))
+\]
+
+נמצא את נגזרתה של $f$.
+\[
+	Df = \begin{pmatrix}
+		2 x y^3 z^4 & 8x^7 + y \sin(xy) \\
+		3 x^2 y^2 z^4 & x \sin(xy) \\
+		4 x^2 y^3 z^3 & 0
+	\end{pmatrix}
+\]
+נשים לב כי $f$ מוגדרת על־ידי פונקציות רציפות וגזירות ולכן גם היא רציפה וגזירה בכל תחומה.
+
+\Subquestion{}
+נגדיר $f : \RR^2 \to \RR$ על־ידי
+\[
+	f(x, y) = \begin{cases}
+		x^\frac{n}{5} \sin(\frac{y}{x}) & x \ne 0 \\
+		0 & x = 0
+	\end{cases}
+\]
+נמצא את הערכים של $n \in \NN$ עבורם הפונקציה גזירה ב־$(0, 0)$.
+
+נתחיל במציאת $Df$ ב־$\RR^2 \setminus\{(0, 0)\}$:
+\begin{align*}
+	Df & = \left( \frac{n}{5}x^{\frac{n}{5} - 1} \sin(\frac{y}{x}) + x^\frac{n}{5} \cos(\frac{y}{x}) \cdot \frac{-y}{x^2}, x^\frac{n}{5} \cos(\frac{y}{x}) \cdot \frac{1}{x} \right) \\
+	   & = \left( \frac{n}{5}x^{\frac{n}{5} - 1} \sin(\frac{y}{x}) - x^{\frac{n}{5} - 1} y \cos(\frac{y}{x}), x^{\frac{n}{5} - 1} \cos(\frac{y}{x}) \right)
+\end{align*}
+ועלינו למצוא ערכי $n$ כך שהפונקציה רציפה באפס.
+נשים לב כי כלל איברי שני הביטויים הם מכפלה של $x^{\frac{n}{5} - 1}$ והם ביטויים חסומים או אפסות ($y$), ולכן מספיק שיתקיים $x^{\frac{n - 5}{5}} \xrightarrow{x \to 0} 0$. \\*
+גבול זה כמובן מתקיים כל תנאי ש־$n \ne 5$, ולכן התנאי ההכרחי לגזירות $f$ ב־$(0, 0)$ הוא $n \ne 5$.
+
+\Question{}
+\Subquestion{}
+זבוב נמצא בנקודה $p = (0, 0, 5)$ בחדר שהטמפרטורה בו נתונה על־ידי הפונקציה
+\[
+	T(x, y, z) = e^x + 2y + z^2 - 7z
+\]
+נמצא את הווקטור אליו יעוף הזבוב כדי להתחמם.
+
+נחשב תחילה את הגרדיאנט של $T$ בנקודה.
+\[
+	DT = (e^x, 2, 2z - 7)
+\]
+ובהתאם נציב ונקבל כי $\nabla p = (1, 2, 3)$. \\*
+לכן עלינו למצוא $v \in \RR^3$ כך ש־$\langle \nabla p, v \rangle > 0$, ונקבל $\{ \frac{1}{\sqrt{5t^2 + 2ts + 10s^2}}(-2t - 3s, t, s) \mid s, t > 0 \}$. \\*
+כדי להתחמם במהירות הגבוהה ביותר הזבוב יבחר את הכיוון $(0, 0, 1)$.
+
+\Subquestion{}
+תהי נמלה המוכלת בשולחן המוגדר על־ידי $z = 5$, נחשב את הכיוון אליו היא צריכה ללכת כדי להתחמם.
+
+נשים לב כי נוכל להשתמש בקבוצת הפתרונות מהסעיף הקודם ולהציב $s = 0$ ולקבל כי עליה ללכת בכיוון $(0, 1, 0)$ (כך היא אכן לא תצטרך לעוף, ואין סתירה לנתון כי היא איננה מעופפת). \\*
+נוכל כמובן גם להגדיר פונצקיה חדשה על־ידי $\tilde{T}(x, y) = T(x, y, 5) = e^x + 2y + 3$ ונקבל עבורה $\nabla \tilde{T} p = (4, 5)$ ומכאן נסיק ישירות כי עליה ללכת בכיוון $(1, 0)$ או $(0, 1)$ או כל שילוב חיובי שלהם.
+
+\Question{}
+נגדיר
+\[
+	f(x, y) = \begin{cases}
+		\frac{x^3}{x^2 + y^2} & (x, y) \ne (0, 0) \\
+		0 & (x, y) = (0, 0)
+	\end{cases}
+\]
+
+\Subquestion{}
+עבור כל $v = (a, b) \in \RR^2$ נראה שהנגזרת המכוונת $\partial_v f \mid_{(0, 0)}$ קיימת ונחשב אותה.
+
+\[
+	\partial_v f \mid_{(0, 0)}
+	= \lim_{t \to 0} \frac{f(t v) - t(0)}{\lVert t v \rVert}
+	= \lim_{t \to 0} \frac{\frac{t^3 a^3}{t^2 (a^2 + b^2)} - 0}{t}
+	= \lim_{t \to 0} \frac{t^3 a^3 - 0}{t^3 (a^2 + b^2)}
+	= \frac{a^3}{a^2 + b^2}
+\]
+ומצאנו כי הנגזרת המכוונת לכל כיוון ב־$(0, 0)$ מוגדרת.
+
+\Subquestion{}
+נוכיח ש־$f$ לא גזירה ב־$(0, 0)$.
+\begin{proof}
+	נניח בשלילה כי היא גזירה ונשתמש באפיון היינה לגבולות, נגדיר שתי סדרות נקודות ${(p_n)}_{n = 1}^\infty, {(q_n)}_{n = 1}^\infty$, על־ידי
+	\[
+		p_n = (\frac{1}{n}, 0),
+		\qquad
+		q_n = (0, \frac{1}{n})
+	\]
+	נבחין כי
+	\[
+		f(p_n) = \frac{\frac{1}{n^3}}{\frac{1}{n^2} + 0} = \frac{1}{n},
+		\qquad
+		f(q_n) = \frac{0}{0 + \frac{1}{n^2}} = 0
+	\]
+	ולכן
+	\[
+		\lim_{n \to \infty} f(p_n) = \infty,
+		\qquad
+		\lim_{n \to \infty} f(q_n) = 0
+	\]
+	הגבול של $f$ בנקודה הוא לא יחיד ולכן הגבול כלל לא מתקיים, דהינו היא לא רציפה ולכן גם לא גזירה בנקודה זו.
+\end{proof}
+
+\end{document}
