@@ -152,5 +152,62 @@
 	\langle p, q \rangle \sim_\QQ \langle r, s \rangle \iff p \cdot s = r \cdot q
 \]
 נוכיח כי זהו יחס שקילות.
+\begin{proof}
+	נבדוק את התנאים המגדירים יחס שקילות:
+	\begin{enumerate}
+		\item רפלקסיביות: $\langle p, q \rangle \sim_\QQ \langle p, q \rangle \iff p \cdot q = p \cdot q$ ואכן התכונה מתקיימת.
+		\item סימטריה: $\langle p, q \rangle \sim_\QQ \langle r, s \rangle \iff ps = rq \iff rq = ps \iff \langle r, s \rangle \sim_\QQ \langle p, q \rangle$
+		\item טרנזיטיביות: $\langle p, q \rangle \sim_\QQ \langle r, s \rangle, \langle r, s \rangle \sim_\QQ \langle t, u \rangle
+			\iff ps = rq, ru = ts \iff psu = ruq = tsq \iff pu = tq \iff \langle p, q \rangle \sim_\QQ \langle t, u \rangle$
+	\end{enumerate}
+	ומצאנו כי זהו אכן יחס שקילות.
+\end{proof}
+
+\Subquestion{}
+נגדיר $\QQ := (\ZZ \times (\NN \setminus\{0\}))/\sim_{\QQ}$. \\*
+עוד נגדיר
+\[
+	\langle a, b \rangle + \langle c, d\rangle := \langle ad + bc, bd \rangle,
+	\qquad
+	\langle a, b \rangle \cdot \langle c, d\rangle := \langle ac, bd \rangle
+\]
+ונוכיח כי פעולות אלה משרות פעולות מוגדרות היטב ב־$\QQ$.
+\begin{proof}
+	נבדוק את סגירות פעולת החיבור שהגדרנו זה עתה:
+	\begin{align*}
+		& \langle a, b \rangle + \langle c, d\rangle = \langle ad + bc, bd \rangle, \langle a', b' \rangle + \langle c', d'\rangle = \langle a' d' + b' c', b' d' \rangle, \\
+		& a d = b c, a' d' = b' c' \\
+		\iff &
+		\langle a, b \rangle \sim_\QQ \langle a', b' \rangle, \langle c, d\rangle \sim_\QQ \langle c', d'\rangle \\
+		\iff &
+		\langle a, b \rangle + \langle c, d\rangle \sim_\QQ \langle a', b' \rangle + \langle c', d'\rangle \\
+		\iff &
+		\langle ad + bc, bd \rangle \sim_\QQ \langle a' d' + b' c', b' d' \rangle \\
+		\iff &
+		(ad + bc)(b' d') = (a' d' + b' c')(bd) \\
+		\iff &
+		ad b' d'+ bc b' d' = a' d' b d + b' c' bd \\
+	\end{align*}
+	וקיבלנו כי הטענה אכן מתקיימת והפעולה אכן ממוגדרת היטב ב־$\QQ$. נבחין כי הפעולה $\cdot$ כמעט זהה והתהליך האלגברי לבדיקתה דומה.
+\end{proof}
+
+\Subquestion{}
+נגדיר את הפונקציה $\varphi : \ZZ \to \QQ$ על־ידי
+\[
+	\varphi({[\langle n, m \rangle]}_{\sim_\ZZ}) = {[{[\langle n, m \rangle]}_{\sim_\ZZ}, 1]}_{\sim_\QQ}
+\]
+נוכיח כי היא חד־חד ערכית
+\begin{proof}
+	נשתמש בסימון למספרים אלה על־פי הגדרות המחלקות ונקבל
+	\[
+		\varphi(n - m) = \frac{n - m}{1}
+	\]
+	נשים לב כי זהו סימון בלבד ואלו הן מחלקות שקילות יחד עם הפעולות שהגדרנו.
+	נראה כי
+	\[
+		\forall n, m, n', m' : \varphi(n - m) = \varphi(n' - m') \iff \frac{n - m}{1} = \frac{n' - m'}{1} \iff 1(n - m) = 1(n' - m') \iff n - m = n' - m'
+	\]
+	וקיבלנו כי היא אכן חד־חד ערכית.
+\end{proof}
 
 \end{document}
