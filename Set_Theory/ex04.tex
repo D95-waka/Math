@@ -1,0 +1,132 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- תורת הקבוצות (80200)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+יהיו $A, B$ קבוצות כך ש־$|A| = n, |B| = m$ כאשר $n, m \in \NN$. \\*
+נוכיח כי $|A^B| = n^m$.
+\begin{proof}
+	נניח ללא הגבלת הכלליות כי $A = [n], B = [m]$.
+	נגדיר פונקציה $f : A^B \to [n^m]$ על־ידי
+	\[
+		f(g) = \sum_{k = 0}^{m} n^k g(k)
+	\]
+	פונקציה המתבססת על הקונספט של יצוג מספר לפי בסיס $n$. \\*
+	נבחין כי $0 \le g(k) < n$ ולכן $0 \le n^k g(k) < n^{k + 1}$. \\*
+	נוכל להשתמש בטענה זו כדי להראות שפונקציה זו היא חד־חד ערכית. נבחר שתי פונקציות שונות ולכן קיים
+	\[
+		\max_{k \in [m]} g(k) \ne h(k)
+	\]
+	ומשימוש במספר זה יחד עם אי־השוויון שמצאנו נקבל כי $\forall g, h \in A^B, g \ne h : f(g) \ne f(h)$. \\*
+	נבחר מספר $l \in [n^m]$, מספר זה ניתן לייצוג על־ידי טור יחיד מהצורה $\sum_{k = 0}^{m} n^k g(k)$ ולכן גם נוכל להגדיר פונקציה $g \in A^B$ כך ש־$f(g) = l$, ולכן פונקציה זו היא על. \\*
+	נסיק ש־$|A^B| = n^m$.
+\end{proof}
+
+\Question{}
+יהיו $\mathfrak{a}, \mathfrak{b}, \mathfrak{c}$ עוצמות. \\*
+תהינה גם $A, B, C$ קבוצות כך ש־$|A| = \mathfrak{a}, |B| = \mathfrak{b}, |C| = \mathfrak{c}$ ונניח גם ללא הגבלת הכלליות כי הקבוצות זרות.
+
+\Subquestion{}
+נוכיח כי $\mathfrak{a} \cdot (\mathfrak{b} + \mathfrak{c}) = (\mathfrak{a} \cdot \mathfrak{b}) + (\mathfrak{a} \cdot \mathfrak{c})$.
+\begin{proof}
+	נגדיר פונקציה $g : A \times (B \cup C) \to (A \times B) \cup (A \times C)$.
+	על־ידי $g(\langle a, b \rangle) = \langle a, b \rangle$. \\*
+	אם $b \in B$ אז $g(\langle a, b \rangle) \in (A \times B)$ ובאופן דומה אם $c \in C$ אז $g(\langle a, c \rangle) \in (A \times C)$, ובכל מקרה הפונקציה חד־חד ערכית עבור בחירות $a, b, c$.
+	היא כמובן גם על שכן לכל $\langle a, b \rangle \in (A \times B) \cup (A \times C)$ נראה כי $g(\langle a, b \rangle) = \langle a, b \rangle$ ומצאנו כי היא גם על, והשוויון מתקיים.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $\mathfrak{a}^\mathfrak{c} \cdot \mathfrak{b}^\mathfrak{c} = {(\mathfrak{a} \cdot \mathfrak{b})}^\mathfrak{c}$.
+\begin{proof}
+	נגדיר $g : A^C \times B^C \to {(A \times B)}^C$ על־ידי
+	\[
+		\forall c \in C : g(\langle f_1, f_2 \rangle)(c) = \langle f_1(c), f_2(c) \rangle
+	\]
+	זוהי פונקציה חד־חד ערכית באופן ישיר מהשמת הערכים, ולכל $h : C \to (A \times B)$ נוכל ליצור פונקציות $\langle f_1, f_2 \rangle \in (A^C, B^C)$ כך ש־$g(f_1, f_2) = h$ ולכן $g$ גם על. \\*
+	קיבלנו כי השוויון מתקיים.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $\mathfrak{a}^\mathfrak{b} \cdot \mathfrak{a}^\mathfrak{c} = \mathfrak{a}^{\mathfrak{b} + \mathfrak{c}}$.
+\begin{proof}
+	נגדיר פונקציה $g : A^B \times A^C \to A^{B \cup C}$ על־ידי
+	\[
+		g(\langle h_b, h_c \rangle)(x) = \begin{cases}
+			h_b(x) & x \in B \\
+			h_c(x) & x \in C
+		\end{cases}
+	\]
+	נשים לב כי $B \cap C = \emptyset$ ולכן פונקציה זו מוגדרת. \\*
+	נשים לב שניתן להגדיר עבור כל פונקציה $B \cup C \to A$ שתי פונקציות ש־$g$ תרכיב לפונקציה המקורית, ולכן $g$ על. \\*
+	נראה גם שמתקיים
+	\begin{align*}
+		& \forall u, v \in A^B \times A^C : g(u) = g(v) \\
+		\iff & \forall x \in B \cup C : g(u)(x) = g(v)(x) \\
+		\iff & \forall b \in B, c \in C : g(u)(b) = u_b(b) = v_b(b) = g(v)(b), g(u)(c) = u_b(c) = v_b(c) = g(v)(c) \\
+		\iff & u = v
+	\end{align*}
+	ולכן הפונקציה גם חד־חד ערכית ונקבל כי השוויון נכון.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי ${(\mathfrak{a}^\mathfrak{b})}^\mathfrak{c} = \mathfrak{a}^{\mathfrak{b} \cdot \mathfrak{c}}$.
+\begin{proof}
+	נגדיר פונקציה $g : {(A^B)}^C \to A^{B \times C}$ על־ידי
+	\[
+		g(f(c)(b)) = (g(f))(\langle b, c \rangle)
+	\]
+	משיקולים דומים לסעיפים הקודמים נוכל לראות כי פונקציה זו חד־חד ערכית ועל.
+\end{proof}
+
+\Question{}
+תהינה $\mathfrak{a}, \mathfrak{a}^*, \mathfrak{b}, \mathfrak{b}^*$ עוצמות.
+
+\Subquestion{}
+נוכיח שאם $\mathfrak{a} \le \mathfrak{a}^*$ וגם $\mathfrak{b} \le \mathfrak{b}^*$ אז $\mathfrak{a} + \mathfrak{b} \le \mathfrak{a}^* + \mathfrak{b}^*$.
+\begin{proof}
+	תהינה $A, A^*, B, B^*$ קבוצות בעלות העוצמות הנתונות בהתאמה, ונניח ללא הגבלת הכלליות כי הקבוצות זרות. \\*
+	נתון כי $f : A \to A^*, g : B \to B^*$ קיימות והן חד־חד ערכיות.
+	נגדיר $h : A \cup B \to A^* \cup B^*$ על־ידי
+	\[
+		h(x) = \begin{cases}
+			f(x) & x \in A \\
+			g(x) & x \in B
+		\end{cases}
+	\]
+	מהחד־חד ערכיות ובדומה להוכחת סעיף 1ג' נוכל להסיק כי $h$ היא חד־חד ערכית ולכן נסיק שמתקיים $\mathfrak{a} + \mathfrak{b} \le \mathfrak{a}^* + \mathfrak{b}^*$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $\mathfrak{a} \cdot \aleph_0 = \mathfrak{a}$ אז $\mathfrak{a} + \mathfrak{a} = \mathfrak{a}$.
+\begin{proof}
+	אילו נניח בשלילה ש־$\mathfrak{a} < \aleph_0$ אז נקבל $\mathfrak{a} \cdot \aleph_0 = \aleph_0$ בסתירה לטענה ולכן $\mathfrak{a} \ge \aleph_0$. \\*
+	אם $\mathfrak{a} = \aleph_0$ אז הטענה נכונה על־פי הוכחת $|\ZZ| = \aleph_0$ והטענה נכונה, ולכן נניח $\mathfrak{a} > \aleph_0$. \\*
+	מההוכחה ש־$|[0, 1]| = |[1, 2]|$ נוכל להסיק שמתקיים $\mathfrak{a} + \mathfrak{a} = \mathfrak{a}$ עבור $\mathfrak{a} \ge \aleph$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $\mathfrak{a} \ge 2$ וגם $\mathfrak{a} \cdot \mathfrak{a} = \mathfrak{a}$ אז $2^\mathfrak{a} = \mathfrak{a}^\mathfrak{a}$.
+\begin{proof}
+	אילו נניח ש־$\mathfrak{a}$ סופית אז נקבל ש־$\mathfrak{a} = 1$ בסתירה לטענה ולכן נניח $\mathfrak{a} \ge \aleph_0$. \\*
+	על־ידי בחינת הפונקציות $2^\mathfrak{a}$ והרחבת טווחן נקבל $2^\mathfrak{a} \le \mathfrak{a}^\mathfrak{a}$. \\*
+	תהי $A$ קבוצה כך ש־$|A| = \mathfrak{a}$, בתרגול ראינו כי $A^A \subseteq \mathcal{P}(A)$ ומכאן נסיק $\mathfrak{a}^\mathfrak{a} \le 2^\mathfrak{a}$. \\*
+	ממשפט קנטור־שרדר־ברנשטיין נסיק ש־$\mathfrak{a}^\mathfrak{a} = 2^\mathfrak{a}$.
+\end{proof}
+
+\Question{}
+תהי $\mathfrak{a}$ עוצמה, נוכיח ש־$\mathfrak{a} + 1 = \mathfrak{a}$ אם ורק אם $\aleph_0 \le \mathfrak{a}$.
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח כי $\mathfrak{a} + 1 = \mathfrak{a}$ ונניח בשלילה כי $\mathfrak{a} < \aleph_0$, דהינו קיים $n \in \NN$ כך ש־$\mathfrak{a} = n$. \\*
+	במטלה קודמת הראינו כי לא קיימת פונקציה חד־חד ערכית מ־$[n + 1]$ ל־$[n]$ ולכן גם נסיק $\mathfrak{a} + 1 \ne \mathfrak{a}$ בסתירה להנחה, ולכן $\aleph_0 \le \mathfrak{a}$.
+
+	\textbf{כיוון שני:}
+	נניח ש־$\aleph_0 \le \mathfrak{a}$.
+	למעשה הוכחנו כבר את הטענה הן עבור $|\NN|$ ובתרגיל 2 גם עבור $|[0, 1]|$ ולכן היא נכונה עבור $\aleph_0, \aleph$. \\*
+	לשאר המקרים נשתמש בעובדה ש־$\mathfrak{a} \le \mathfrak{a} + 1$ ובסעיף 3ב' כדי להראות ש־$\mathfrak{a} + \mathfrak{a} = \mathfrak{a}$ ולכן בפרט $\mathfrak{a} + 1 = \mathfrak{a}$.
+\end{proof}
+
+\end{document}
