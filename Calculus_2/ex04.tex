@@ -11,14 +11,14 @@
 \subsection{i.}
 \begin{align*}
 	\lim_{x \to 0} \frac{x^2 \cdot \sin(\displaystyle\frac{1}{x})}{\sin x}
-	& \overset{(1)}{=} \lim_{x \to 0} \frac{2x \cdot \sin(\displaystyle\frac{1}{x}) + x^2 \cdot \cos(\frac{1}{x}) \cdot (\frac{-1}{x^2})}{\cos x} \\
-	& = \lim_{x \to 0} \frac{2x \cdot \sin(\displaystyle\frac{1}{x}) - x \cdot \cos(\frac{1}{x}) }{\cos x} \\
-	& \overset{(2)}{=} \frac{2x \cdot \sin(\displaystyle\frac{1}{x}) - x \cdot \cos(\frac{1}{x}) }{\cos x} \Big|_{x = 0} \\
-	& = \frac{0 - 0}{1} = 0
+	& = \lim_{x \to 0} \frac{x}{\sin x} \cdot x \sin \frac{1}{x} \\
+	& \overset{(1)}{=} \lim_{x \to 0} \frac{x}{\sin x} \lim_{x \to 0}  x \sin \frac{1}{x} \\
+	& \overset{(2)}{=} 1 \cdot \lim_{x \to \infty}  \frac{\sin x}{x} \\
+	& = 1
 \end{align*}
 \begin{enumerate}
-	\item כלל לופיטל, נובע מאיפוס $\sin$ באפס ומאיפוס $x^2$ באפס.
-	\item פונקציה רציפה
+	\item אם הגבול קיים אז תהיה לנו הצדקה לפרק את הגבול למכפלת גבולות, נבדוק
+	\item גבול ידוע, והרכבת פונקציות על $t = \frac{1}{x}$.
 \end{enumerate}
 
 \subsection{ii.}
@@ -32,8 +32,8 @@
 \subsection{iii.}
 \begin{align*}
 	\lim_{x \to \infty} \frac{x + \frac{1}{2} \cos x}{x - \frac{1}{2} \sin x}
-	& = \lim_{x \to \infty} \frac{x^2 + x\frac{1}{2} \cos x}{x^2 - x\frac{1}{2} \sin x} \\
-	& = \frac{x^2 + 0}{x^2 - 0} = 1
+	& = \lim_{x \to \infty} \frac{1 + \frac{\frac{1}{2} \cos x}{x}}{1 - \frac{\frac{1}{2} \sin x}{x}} \\
+	& = \frac{1 - 0}{1 - 0} = 1
 \end{align*}
 
 \subsubsection{iv.}
