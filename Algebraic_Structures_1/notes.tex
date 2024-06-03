@@ -1619,26 +1619,28 @@ $D_n \hookrightarrow S_n$ על־פי הגדרה. \\*
 	\item $\forall g \in G : g g N g^{-1} = N$.
 	\item $\forall g \in G : g N = N g$.
 \end{enumerate}
+ההוכחה בתרגיל.
 
 \subsubsection{מסקנה}
 לא קיים הומומורפיזם $f : S_3 \to H$ כך שמתקיים $\ker(f) = \{ Id, (1\ 2) \}$.
 \begin{proof}
 	נבחיו כי $\{ Id, (1\ 2)\}$ היא לא תת־חבורה נורמלית של $S_3$ כי $(1\ 3)(1\ 2)(3\ 1) = (1)(2\ 3)$.
 \end{proof}
+דהינו לא כל תת־חבורה יכולה לשמש כגרעין, נשאל את עצמנו האם כל תת־חבורה נורמלית היא גרעין של הומומורפיזם כלשהו, על שאלה זו נענה עתה.
 
-\subsubsection{טענה}
-כאשר $f : G \to H$ הומומורפיזם ו־$N = \ker(f)$ אז $f^{-1}(f(x)) = x N$. \\*
-הפונקציה $\im(f) \to G/N$ המוגדרת על־ידי $h \mapsto f^{-1}(h)$ היא חד־חד ערכית ועל.
+\subsubsection{טענה: תמונת תת־חבורה נורמלית}
+כאשר $f : G \to H$ הומומורפיזם ו־$N = \ker(f)$ אז $f^{-1}(f(x)) = x N$, התמונה ההפוכה של תמונת $x$ היא המחלקה $x N$. \\*
+יתרה מכך הפונקציה $\im(f) \to G/N$ המוגדרת על־ידי $h \mapsto f^{-1}(h)$ היא חד־חד ערכית ועל.
 \begin{proof}
 	תחילה נבחין כי מתקיים
 	\[
-		{f(x)}^{-1} f(y) = x^{-1} y = N \iff xN = yN
+		{f(x)}^{-1} f(y) = x^{-1} y \in N \iff xN = yN
 	\]
-	על:
+	נראה כי ההעתקה היא על:
 	\[
 		f^{-1}(f(x)) = xN
 	\]
-	חד־חד ערכיות:
+	נראה כי ההעתקה היא גם חד־חד ערכית,
 	עבור $f(x), f(y) \in \im(f)$ מתקיים
 	\[
 		f^{-1}(f(x)) = f^{-1}(f(y)) = yN
@@ -1653,9 +1655,9 @@ $D_n \hookrightarrow S_n$ על־פי הגדרה. \\*
 תהינה $N \triangleleft G$ ונגדיר $G/N$ מבנה של חבורה.
 
 \subsubsection{טענה: מכפלת מחלקות}
-$N$ נורמלית אם ורק אם $(xN) \cdot (yN) = (xy)N$.
+$N$ נורמלית אם ורק אם $\forall x, y \in G : (xN) \cdot (yN) = (xy)N$.
 \begin{proof}
-	$(nX)(nY) = x (Ny) N \overset{\text{נורמליות}}{=} x (yN) N = (xy)(NN) = (xy)N$
+	$(x N)(y N) = x (Ny) N \overset{\text{נורמליות}}{=} x (yN) N = (xy)(NN) = (xy)N$
 \end{proof}
 
 \subsubsection{טענה: חבורת כפל מחלקות}
@@ -1670,8 +1672,8 @@ $G/N$ עם הכפל של מחלקות היא חבורה עם האיבר הניי
 \end{proof}
 
 \subsubsection{טענה}
-קיימת פונצקיה $\pi : G \twoheadrightarrow G/N$ המקיימת $x \mapsto xN$. \\*
-היא הומומורפיזם עם גרעין $N$.
+תהי הפונקציה $\pi : G \to G/N$ המוגדרת על־ידי $x \mapsto x N$. \\*
+הפונקציה $\pi$ היא הומומורפיזם כך שגם $\ker(\pi) = N$.
 \begin{proof}
 	$\pi(x) \cdot \pi(y) = (xN)(yN) = (xy)N = \pi(xy)$. \\*
 	עוד נבחין כי $x N = \pi(x) = N \iff x \in N$.
