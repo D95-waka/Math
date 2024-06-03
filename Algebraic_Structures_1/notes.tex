@@ -1574,6 +1574,116 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 \end{proof}
 
 \section{שיעור 8 --- 3.6.2024}
+\subsection{הומומורפיזמים}
+\subsubsection{טענה: תנאי התמונה לאיזומורפיזם}
+העתקה $f : G \to H$ היא חד־חד ערכית אם ורק אם $G \xrightarrow{\sim} \im(f)$.
 
+\subsubsection{עוד דוגמות להומומורפיזמים}
+$D_n \hookrightarrow S_n$ על־פי הגדרה. \\*
+גם $P \cdot S_n \hookrightarrow GL_n(\FF)$ מטריצות הפרמוטציה היא שיכון ואף אחד מאוד חשוב. \\*
+ראינו כי $P : S_n \hookrightarrow GL_n(\FF) \xrightarrow{\det} \RR^\times$ שמייצג סימן עבור תמורות. \\*
+ראינו גם את $\CC^\times \hookrightarrow GL_2(\RR)$ על־ידי $a + bi \mapsto \begin{pmatrix} a & -b \\ b & a \end{pmatrix}$.
+
+\subsubsection{תזכורת: הומומורפיזם ופעולה}
+הומומורפיזם $G \xrightarrow{f} \Sym(X)$ היא זהה לפעולה $G \acts X$  כך שמתקיים
+\[
+	\forall g \in G, \pi_g \in \Sym(X) : \pi_g(x) = g \cdot x, \pi_g \circ \pi_h = \pi_{gh}
+\]
+ונסיק $f(g) = \pi_g$ הומומורפיזם. \\*
+עוד נבחין כי $\ker(f) = \{ g \in G \mid \pi_g = Id_X \}$
+ונסיק כי $g \in \ker(G) \iff gx = x \forall x \in X$
+ולכן $\ker(f) = \bigcap_{x \in X} G_x$.
+
+\subsubsection{משפט קיילי}
+לכל חבורה $G$ קיימת קבוצה $X$ ושיכון $G \hookrightarrow \Sym(X)$. \\*
+אם $|G| = n$ אז יש שיכון $G \hookrightarrow S_n$.
+\begin{proof}
+	$G$ פועלת רגולרית (משמאל) על $G$.
+	כלומר $\forall x \in G : G_x = \{e\}$ שכן $gx = x \iff g = e$. \\*
+	בפרט אם $f : G \to \Sym(G)$ ההומומורפיזם המתאים אז $\ker(f) = \cap_{x \in G} G_x = \{ e \}$
+	וקיבלנו כי $f$ חד־חד ערכית.
+\end{proof}
+
+\subsubsection{דוגמות}
+נקבל כי $D_n \hookrightarrow S_{2n}$, עוד נקבל מהמשפט שאפשר ליצור את השיכון $S_n \hookrightarrow S_{n!}$.
+זה לא הכי עוזר לנו אבל זה כן אפשרי, אנו רואים כי המשפט מבטיח שיכון אבל הוא עלול להיות די חסר תועלת ומהיכרות עם החבורה נוכל לבנות שיכון מוצלח יותר.
+
+\subsubsection{הערה על סימון}
+העתקה חד־חד ערכית מסומנת $\hookrightarrow$,
+העתקה על מסומנת $\twoheadrightarrow$.
+
+\subsubsection{טענה: תנאי לתת־חבורה נורמלית}
+התנאים הבאים הם שקולים ואם אחד מהם מתקיים אז $N$ תת־חבורה נורמלית.
+\begin{enumerate}
+	\item $\forall g \in G : g N g^{-1} \subseteq N$.
+	\item $\forall g \in G : g g N g^{-1} = N$.
+	\item $\forall g \in G : g N = N g$.
+\end{enumerate}
+
+\subsubsection{מסקנה}
+לא קיים הומומורפיזם $f : S_3 \to H$ כך שמתקיים $\ker(f) = \{ Id, (1\ 2) \}$.
+\begin{proof}
+	נבחיו כי $\{ Id, (1\ 2)\}$ היא לא תת־חבורה נורמלית של $S_3$ כי $(1\ 3)(1\ 2)(3\ 1) = (1)(2\ 3)$.
+\end{proof}
+
+\subsubsection{טענה}
+כאשר $f : G \to H$ הומומורפיזם ו־$N = \ker(f)$ אז $f^{-1}(f(x)) = x N$. \\*
+הפונקציה $\im(f) \to G/N$ המוגדרת על־ידי $h \mapsto f^{-1}(h)$ היא חד־חד ערכית ועל.
+\begin{proof}
+	תחילה נבחין כי מתקיים
+	\[
+		{f(x)}^{-1} f(y) = x^{-1} y = N \iff xN = yN
+	\]
+	על:
+	\[
+		f^{-1}(f(x)) = xN
+	\]
+	חד־חד ערכיות:
+	עבור $f(x), f(y) \in \im(f)$ מתקיים
+	\[
+		f^{-1}(f(x)) = f^{-1}(f(y)) = yN
+		\iff
+		x^{-1} y \in N
+		\iff
+		f(x^{-1} y) = e
+	\]
+\end{proof}
+
+\subsection{חבורת המנה}
+תהינה $N \triangleleft G$ ונגדיר $G/N$ מבנה של חבורה.
+
+\subsubsection{טענה: מכפלת מחלקות}
+$N$ נורמלית אם ורק אם $(xN) \cdot (yN) = (xy)N$.
+\begin{proof}
+	$(nX)(nY) = x (Ny) N \overset{\text{נורמליות}}{=} x (yN) N = (xy)(NN) = (xy)N$
+\end{proof}
+
+\subsubsection{טענה: חבורת כפל מחלקות}
+$G/N$ עם הכפל של מחלקות היא חבורה עם האיבר הנייטרלי $eN$.
+\begin{proof}
+	נבדוק את התנאים לחבורה:
+	\begin{enumerate}
+		\item איבר נייטרלי: $\forall x \in N: (eN)(xN) = xN = (xN)(eN)$.
+		\item אסוציאטיביות: $((xN)(yN))(zN) = ((xy)z)N = (xyz)N = (xN)(yN)(zN)$.
+		\item סגירות להופכי: $(xN)(x^{-1}N) = (xx^{-1})N = eN$.
+	\end{enumerate}
+\end{proof}
+
+\subsubsection{טענה}
+קיימת פונצקיה $\pi : G \twoheadrightarrow G/N$ המקיימת $x \mapsto xN$. \\*
+היא הומומורפיזם עם גרעין $N$.
+\begin{proof}
+	$\pi(x) \cdot \pi(y) = (xN)(yN) = (xy)N = \pi(xy)$. \\*
+	עוד נבחין כי $x N = \pi(x) = N \iff x \in N$.
+\end{proof}
+ 
+\subsubsection{דוגמות}
+\begin{enumerate}
+	\item עבור החבורה $\ZZ$. זוהי חבורה אבלית ולכן כל תת־חבורה שלה היא נורמלית ומתקיים $n \ZZ \triangleleft \ZZ$. \\*
+		בהתאם $\ZZ/n \cong \ZZ / n \ZZ = \{ n \ZZ, 1 + n \ZZ, \dots, (n - 1) + n \ZZ \}$. \\*
+		ונראה גם $(a + n \ZZ) + (b + n \ZZ) = ((a + b) + n \ZZ) = (a + b \mod n) + n \ZZ$.
+	\item ראינו בתרגול כי $GL_n(\FF) / SL_n(\FF) \cong \FF^\times, A \cdot SL_n(\FF) \mapsto \det(A)$. \\*
+		ואנחנו רואים כי $\det : GL_n(\FF) \twoheadrightarrow \FF^\times$ וגם כי $SL_n(\FF) = \ker(\det)$.
+\end{enumerate}
 
 \end{document}
