@@ -4,7 +4,7 @@
 \usepackage{inputenc, fontspec, amsmath, amsthm, amsfonts, amssymb, luacode, catchfile, tikzducks}
 \usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
 \usepackage[shortlabels]{enumitem}
-\usepackage[skip=6pt, indent=0pt]{parskip}
+\usepackage[skip=3pt, indent=0pt]{parskip}
 
 % language
 \usepackage[bidi=basic, layout=tabular, provide=*]{babel}
@@ -16,10 +16,10 @@
 
 % style
 \AddToHook{cmd/section/before}{\clearpage}	% Add line break before section
-\linespread{1.5}
-\setcounter{secnumdepth}{0}		% Remove default number tags from sections
-\AtBeginDocument{\setlength{\belowdisplayskip}{4pt}}
-\AtBeginDocument{\setlength{\abovedisplayskip}{4pt}}
+\linespread{1.3}
+\setcounter{secnumdepth}{0}		% Remove default number tags from sections, this won't do well with theorems
+\AtBeginDocument{\setlength{\belowdisplayskip}{3pt}}
+\AtBeginDocument{\setlength{\abovedisplayskip}{3pt}}
 
 % operators
 \DeclareMathOperator\cis{cis}
@@ -53,6 +53,52 @@
 	\end{tikzpicture}	
 \end{center}
 }
+
+% theorem commands
+\newtheoremstyle{c_remark}
+	{}	% Space above
+	{}	% Space below
+	{}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont{\text{(#3)}}}}	% head content
+\newtheoremstyle{c_definition}
+	{3pt}	% Space above
+	{3pt}	% Space below
+	{}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont{\text{(#3)}}}}	% head content
+\newtheoremstyle{c_plain}
+	{3pt}	% Space above
+	{3pt}	% Space below
+	{\itshape}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}	% head content
+
+\theoremstyle{c_plain}
+\newtheorem{theorem}{משפט}[section]
+\newtheorem{lemma}[theorem]{למה}
+\newtheorem{proposition}[theorem]{טענה}
+%\newtheorem{corollary}[theorem]{אין חלופה עברית}
+
+\theoremstyle{c_definition}
+\newtheorem{definition}[theorem]{הגדרה}
+\newtheorem{example}{דוגמה}[section]
+
+\theoremstyle{c_remark}
+\newtheorem*{remark}{הערה}
+\newtheorem{conclusion}[theorem]{מסקנה}
+\newtheorem{notation}[theorem]{סימון}
+
+%\ifthenelse{\equal{\directlua{tex.print(document_type)}}{notes}} { }{ }
 
 \directlua{common = require ('../common')}
 

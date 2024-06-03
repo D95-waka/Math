@@ -1,44 +1,30 @@
 \input{../article_base.tex}
 \title{tmp}
-\setcounter{secnumdepth}{2}		% Remove default number tags from sections
-\usepackage{amsthm}
+\setcounter{secnumdepth}{2}
 
-\newtheoremstyle{mystyle}% name
-{3pt}% Space above
-{3pt}% Space below
-{\itshape}% Body font
-{}% Indent amount
-{\bfseries}% Theorem head font
-{}% Punctuation after theorem head
-{.5em}% Space after theorem head
-{\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}
-
-\newtheorem{theorem}{משפט}[subsection]
-\theoremstyle{mystyle}
-\newtheorem{lemma}[subsection]{למה}
-
-\renewcommand{\thmnote}[1]{\text{#1}}
 \begin{document}
 
 \section{כותרת רמה 1}
 \subsection{כותרת רמה 2}
-\subsection{כותרת רמה 2}
-\meaning\textbf
 
-טקסט חופשי לדוגמה
-
-\show\itemize
-
-\show\theorem
-
-\show\th@plain
-\begin{theorem}[משפט 1]
-	הסבר על המשפט
-\end{theorem}
-\begin{lemma}[למה ב']
-	הסבר על הלמה
+\begin{notation}
+	נסמן ציפור על־ידי $\mathfrak{B}$.
+\end{notation}
+\begin{definition}[תרנגולת]
+	תרנגולת תיקרא ציפור
+\end{definition}
+\begin{lemma}[למה ראשונה]
+	למה 1
 \end{lemma}
-\subsection{כותרת רמה 2}
-asd
+\begin{theorem}[משפט האחד]
+	משפט 1
+	נובע מלמה 1
+\end{theorem}
+\begin{conclusion}
+	תרנגולת היא אכן ציפור
+\end{conclusion}
+\begin{example}
+	פינגווין הוא גם ציפור
+\end{example}
 
 \end{document}
