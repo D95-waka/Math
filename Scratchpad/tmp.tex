@@ -1,24 +1,44 @@
 \input{../article_base.tex}
 \title{tmp}
+\setcounter{secnumdepth}{2}		% Remove default number tags from sections
+\usepackage{amsthm}
 
+\newtheoremstyle{mystyle}% name
+{3pt}% Space above
+{3pt}% Space below
+{\itshape}% Body font
+{}% Indent amount
+{\bfseries}% Theorem head font
+{}% Punctuation after theorem head
+{.5em}% Space after theorem head
+{\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}
+
+\newtheorem{theorem}{משפט}[subsection]
+\theoremstyle{remark}
+\newtheorem{lemma}[subsection]{למה}
+
+\renewcommand{\thmnote}[1]{\text{#1}}
 \begin{document}
 
-סעיף ב':
-\begin{enumerate}
-	\item רפלקסיביות: $\forall x \in A : (x, x) \in R \land (x, x) \in S \implies (x, x) \in (R \cap S)$.
-	\item סימטריה: $\forall x, y \in A : (x, y) \in R \iff (y, x) \in R, (x, y) \in S \iff (y, x) \in S \implies 
-	(x, y) \in (R \cap S) \iff (y, x) \in (R \cap S)$.
-	\item טרנזיטיביות: $\forall x, y, z : (x, y) \in (R \cap S) \land (y, z) \in (R \cap S)
-	\implies (x, y), (y, z) \in R, (x, y), (y, z) \in S \implies
-	(x, z) \in R, (x, z) \in S \implies (x, z) \in (R \cap S)$
-\end{enumerate}
+\section{כותרת רמה 1}
+\subsection{כותרת רמה 2}
+\subsection{כותרת רמה 2}
+\meaning\textbf
 
-סעיף ג': \\*
-נבחר $R = \{ (x, x) \in \NN^2 \} \cup \{ (0, 1), (1, 0) \}$
-ואת $S = \{ (x, x) \in \NN^2 \} \cup \{ (1, 2), (2, 1) \}$ \\*
-שניהם יחסי שקילות (בדקי!) אבל נראה כי
-\[
-	(0, 1), (1, 2) \in R \cup S, (0, 2) \notin T \cup S
-\]
+טקסט חופשי לדוגמה
+
+\show\itemize
+
+\show\theorem
+
+\show\th@plain
+\begin{theorem}[משפט 1]
+	הסבר על המשפט
+\end{theorem}
+\begin{lemma}[הלמה של דארבו]
+	הסבר על הלמה
+\end{lemma}
+\subsection{כותרת רמה 2}
+asd
 
 \end{document}
