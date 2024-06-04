@@ -1689,4 +1689,56 @@ $G/N$ עם הכפל של מחלקות היא חבורה עם האיבר הניי
 		ואנחנו רואים כי $\det : GL_n(\FF) \twoheadrightarrow \FF^\times$ וגם כי $SL_n(\FF) = \ker(\det)$.
 \end{enumerate}
 
+\section{תרגול 5 --- 4.6.2024}
+\subsection{תת־חבורות נורמליות}
+\begin{example}
+	תהי $H \subseteq GL_n(\FF)$ חבורת הייזנברג, המוגדרת על־ידי
+	\[
+		H = \left\{
+			\begin{pmatrix}
+				1 & a & c \\
+				0 & 1 & b \\
+				0 & 0 & 1
+			\end{pmatrix}
+			\middle|
+			a, b, c \in \FF
+		\right\}
+	\]
+	נבחין כי זו אכן חבורה שכן מטריצות מולשיות סגורות לפעולת הכפל ומכילות הופכי. \\*
+	נגדיר גם
+	\[
+		H = \left\{
+			\begin{pmatrix}
+				1 & 0 & c \\
+				0 & 1 & 0 \\
+				0 & 0 & 1
+			\end{pmatrix}
+			\middle|
+			c \in \FF
+		\right\}
+	\]
+	נבחין כי $Z \trianglelefteq H$ ואף מתקיים $H/Z \cong \FF^2$.
+\end{example}
+\begin{lemma}
+	תזכורת: אם $|G| = p$ אז $G$ היא ציקלית.
+\end{lemma}
+\begin{lemma}
+	אם $|G| = p^2$ כאשר $p$ ראשוני, אז $G$ אבלית.
+\end{lemma}
+\begin{proof}
+	ידוע כי $Z(G)$ לא טריוואלית, ולפי משפט לגרנז' מתקיים $|Z(G)| \Big| |G|$ אז נקבל כי $|Z(G)| \in \{ p, p^2 \}$. \\*
+	נקבל כי $G/Z(G)$ היא מגודל $1$ או מגודל $p$. לכן נקבל כי החלוקה הזו היא ציקלית ואז נובע כי היא אבלית.
+\end{proof}
+נבחין כי לא בהכרח כל $G$ ציקלית היא מגודל $p^2$, לדוגמה ${(\ZZ_{/p})}^2$ היא לא ציקלית כלל שכן לא כל האיברים הם מסדר $p$ ועל־כן אי־אפשר ליצור את החבורה מאיבר בודד. נשים לב לכן גם ש־${(\ZZ/p)}^2 \not\cong \ZZ_{/p^2}$.
+\begin{proposition}
+	יהי $p$ ראשוני ו־$G$ חבורה. אם $|G| = p^2$ אז $G$ איזומורפית לאחת החבורות
+	\[
+		\ZZ_{/p^2}, \ZZ_{/p} \times \ZZ_{/p}
+	\]
+	אם $|G| = p^3$ בהתאם היא איזומורפית לאחת החבורות
+	\[
+		\ZZ_{/p^3}, \ZZ_{/p^2} \times \ZZ_{/p}, \ZZ_{/p} \times \ZZ_{/p} \times \ZZ_{/p}
+	\]
+\end{proposition}
+
 \end{document}
