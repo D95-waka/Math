@@ -1,13 +1,18 @@
 \input{../article_base.tex}
+\usepackage{thmtools}
+\declaretheorem{thm}
 \title{tmp}
 \setcounter{secnumdepth}{2}
 
 \begin{document}
 
-\[
-	|2| \le |5|
-	\iff -5 \le |2| \le 5
-	\iff |5| \le -2 \land 2 \le |5|
-\]
+\begin{thm}
+	אם ברווז נושם אז הוא חיי
+\end{thm}
+\begin{proof}
+	טריוויאלי
+\end{proof}
+
+\listoftheorems[ignoreall,show={thm},title=a]
 
 \end{document}

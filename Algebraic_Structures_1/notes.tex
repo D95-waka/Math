@@ -1814,4 +1814,150 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	\]
 \end{proposition}
 
+\section{שיעור 9 --- 5.6.2024}
+בשבוע הבא השיעור בשני יועבר על ידי יונתן והשיעור ברביעי לא יתקיים בעקבות שבועות.
+
+\subsection{משפטי האיזומורפיזם}
+בשיעור הקודם דיברנו על זה שאם יש לנו הומומורפיזם $f : G \to H$ אז $\ker(f) \trianglelefteq G$.
+מצד שני אם $N \trianglelefteq G$ אז קיים $\pi : G \to G/N$ העתקה מהחבורה למחלקות השמאליות של $N$ על־ידי כפל תת־חבורות וזוהי חבורה.
+מה שאמרנו זה ששתי הטענות הן כמעט הופכיות אחת לשנייה. מצאנו כי $\ker(\pi) = N$.
+נבחין כי $N \subseteq G, N \in G/N$.
+הדבר היחיד שאפשר לשחזר הוא התמונה, ולא את ההעתקה המקורית, שכן יכול להיות שההעתקה מאוד מורכבת אבל אין דרך לגלות את זה.
+
+\begin{theorem}[משפט האיזומורפיזם הראשון]
+	אם $f : G \to H$ הומומורפיזם אז קיים $G/\ker(f) \xrightarrow{\sim} \im(f)$. \\*
+	קיים איזומורפיזם יחיד $\alpha$ כך ש־$\alpha \circ \pi = f$.
+\end{theorem}
+\begin{proof}
+	בנינו פונקציה חד־חד ערכית ועל $\alpha : G/\ker(f) \to \im(f)$ על־ידי $\alpha(x \ker(f)) = f(x)$. \\*
+	נראה ש־$\alpha$ הומומורפיזם.
+	\[
+		\alpha(x \ker(f)) \alpha(y \ker(f)) = f(x) f(y) = f(xy) = \alpha((xy) \ker(f))
+	\]
+	נותר להוכיח את היחידות של $\alpha$. \\*
+	לכל $y \in G/\ker(f)$ קיים $x \in G$ כך ש־$y = x \ker(f)$ ולכן
+	\[
+		\alpha(y) = \alpha(x \ker(f)) = \alpha(\pi(x)) = f(x)
+	\]
+	וקיבלנו כי $f = \alpha \circ \pi$ וזהו אכן איזומורפיזם יחיד.
+\end{proof}
+מתברר שכל הומומורפיזם בעולם הם הרכבה של חלוקה למחלקות גרעין, הליכה לתמונה ואז הפעלת אוטומורפיזם כלשהו.
+\begin{example}
+	יהי $\ZZ \xrightarrow{\mod n} \ZZ_{/n}$ וראינו כי $n\ZZ \trianglelefteq \ZZ$ ונקבל $\ZZ / n\ZZ \xrightarrow{\sim} \ZZ_{/n}$ ממשפט האיזומורפיזם הראשון.
+\end{example}
+\begin{example}
+	תהי $GL_n(\RR) \xrightarrow{\det} \RR^\times$ הומומורפיזם שהוא על. הגרעין הוא הדטרמיננטות עם גודל 1, דהינו $SL_n(\RR) \trianglelefteq GL_n(\RR)$.
+	לכן גם $GL_n(\RR) / SL_n(\RR) \cong \RR^\times$.
+\end{example}
+\begin{example}
+	$GL_n(\RR)$, ונראה את המרכז $Z(GL_n(\RR)) = \{ a I_n \mid a \in \RR^\times \}$. \\*
+	 נחלק אעתה את חבורה במרכזה ונקבל
+	 \[
+		 GL_n(\RR) / Z(GL_n(\RR)) := PGL_n(\RR)
+	 \]
+\end{example}
+\begin{example}
+	אם יש שתי חבורות $G, H$, נבחן את $H \xleftarrow{\pi_H} G \times H \xrightarrow{\pi_G} G$, כאשר $\pi_G(gh) = g$ ו־$\pi_H(gh) = h$. \\*
+	$\ker(\pi_G) = \{(e, h) \mid h \in H \} = \{e\} \times H$ ובאופן דומה $\ker(\pi_H) = G \times \{e \}$. \\*
+	ממשפט האיזומורפיזם הראשון אנו מקבלים כי $(G \times H) / (G \times \{e\}) \cong H$, גם אינטואיטיבית זה מאוד הגיוני שכן אנו מקבצים לפי איברי $G$.
+\end{example}
+אם יש לי שתי חבורות $G, H$ אז תמדי אפשר ליצור תת־חבורה נורמלית $E \trianglelefteq G$ כך ש־$H \cong E/G$.
+לדוגמה $\ZZ_{/2}$ ואת $\ZZ_{/2}$ אז נוכל לקחת את $\ZZ_{/2} \triangleleft \ZZ_{/2} \times \ZZ_{/2} \to \ZZ_{/2}$, ולכן מההערה נובע כי $\ZZ_{/4}$ מגדירה את ההומומורפיזמים הללו.
+\begin{remark}
+	אם $G$ סופית ו־$N \trianglelefteq G$ אז $|G| = |N| \cdot |G/N|$ כנביעה ממשפט לגרנז'.
+\end{remark}
+אם יש לנו $K \xrightarrow{\alpha} G, K \xrightarrow{\beta} H$ אז נוכל לבנות גם $K \xrightarrow{(\alpha, \beta)} G \times H$ על־ידי $(\alpha, \beta)(x) = (\alpha(x), \beta(x))$. \\*
+הגרעין מקיים $\ker(\alpha, \beta) = \ker(\alpha) \cap \ker(\beta)$.
+
+בהינתן $\ZZ_{/b} \xleftarrow{\pi_b} \ZZ \xrightarrow{\pi_a} \ZZ_{/a}$ ונקבל $\ZZ \xrightarrow{\pi} \ZZ_{/a} \times \ZZ_{/b}$ ונקבל $\ker(\pi) = a\ZZ \cap b\ZZ = lcm(a, b)$.
+\begin{conclusion}
+	$\ZZ_{/lcm(a, b)} \cong \im(\pi) \le \ZZ_{/a} \times \ZZ_{/b}$ ואם $\gcd(a, b) = 1$ אז $lcm(a, b) = ab$ ונקבל את משפט השאריות הסיני:
+	\[
+		\ZZ_{/ab} \xrightarrow{\sim} \ZZ_{/a} \times \ZZ_{/b}
+	\]
+\end{conclusion}
+
+נדבר עתה על $G, G/N$ בלבד, ומה המבנה שלה. נבחין כי $G \xrightarrow{\pi} G/N$. אם $K \le G$ אז בהתאם $\pi(K) \le G/N$. \\*
+אם $L \le G/N$ אז $\pi^{-1}(L) \ge N$.
+אכתוב גם $\overline{\pi}(K) = \{ \pi(x) \mid x \in K\}$.
+\begin{theorem}
+	$G$ חבורה ו־$N \trianglelefteq G$ אז $\{ K \le G \mid N \le K \} \xrightarrow[\pi^{-1}]{\overline{\pi}} \{ L \le G/N\}$.
+\end{theorem}
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	יהי $L \le G/N$ ונקבל מהגדרת $\pi$ כי
+	\[
+		\overline{\pi}(\pi^{-1}(L)) \subseteq L
+	\]
+	מצד שני נטען כי $L \subseteq \overline{\pi}$ שכן $y \in L \implies y = \pi(x)$ לאיזשהו $x \in \pi^{-1}(L)$.
+	לכן $y = \pi(x) \in \overline{\pi}(\pi^{-1}(L))$.
+
+	\textbf{כיוון שני:}
+	תהי $N \le K \le G$ ונחשב
+	\[
+		K \overset{\text{לפי הגדרה}}{\subseteq} \pi^{-1}(\overline{\pi}(K)) \overset{(1)}{\subseteq} K
+	\]
+	ונסביר את $(1)$:
+	\[
+		\overline{\pi} = \{ \pi(x) \mid x \in K \} = \{ xN \mid x \in K \}
+	\]
+	ולכן
+	\[
+		\pi^{-1}(\overline{\pi}(K)) = \bigcup_{x \in K} \pi^{-1}(x N) = \bigcup_{x \in K} x N \subseteq K
+	\]
+\end{proof}
+\begin{remark}
+	שתי הפונקציות $\pi^{-1}, \overline{\pi}$ משמרות הכלה.
+\end{remark}
+\begin{notation}
+	אם $N \subseteq K \le G$ אז נסמן $\overline{\pi}(K) = K / N$.
+\end{notation}
+\begin{theorem}[משפט האיזומורפיזם השלישי]
+	תהי $N \trianglelefteq G$ אז לכל $N \trianglelefteq K \le G$ מתקיים
+	\[
+		K \trianglelefteq G \iff K/N \trianglelefteq G/N
+	\]
+	ובמקרה זה
+	\[
+		G/K \cong (G/N)/(K/N)
+	\]
+\end{theorem}
+\begin{proof}
+	נניח $K/N \trianglelefteq G/N$ ונסתכל על ההומומורפיזם
+	\[
+		G \overset{\pi}{\twoheadrightarrow} G/N \overset{\varphi}{\twoheadrightarrow} (G/N)(K/N)
+	\]
+	אז
+	\[
+		\ker(\varphi \circ \pi) = \pi^{-1}(\ker(\varphi)) = \pi^{-1}(K/N) = K
+	\]
+	ממשפט האיזומורפיזם הראשון נקבל $G/K \cong (G/N)/(K/N)$. \\*
+	קיבלנו כי $G/\ker(\varphi \circ \pi) \cong \im(\varphi \circ \pi)$.
+
+	כיוון שני:
+	נניח כי $N \trianglelefteq K \trianglelefteq G$ ונסתכל על הפונקציה
+	\[
+		\alpha : G/N \to G/K,
+		\qquad
+		xN \mapsto (xN)K = x(NK) = xK
+	\]
+	ונראה ש־$\alpha$ הומומורפיזם. \\*
+	פונקציה זו בבירור היא בבירור הומומורפיזם שכן מדובר על כפל חבורות.
+	\[
+		\ker(\alpha) = \{ xN \mid xK = K \}
+		= \{ nX \mid x \in K \}
+		= K/N
+	\]
+	ולכן ממשפט האיזומורפיזם הראשון נקבל
+	\[
+		(G/N)/(K/N) \xrightarrow{\sim} G/K
+	\]
+\end{proof}
+\begin{example}
+	נבחן את $\ZZ \to \ZZ/n\ZZ$, מהן תת־החבורות שמכילות את $n\ZZ$ והן $n\ZZ \le d\ZZ \le \ZZ$ כך ש־$d \big| n$ ולכן
+	\[
+		(\ZZ/n\ZZ)/(d\ZZ/n\ZZ) \xrightarrow{\sim} \ZZ_{/d}
+	\]
+\end{example}
+
 \end{document}
