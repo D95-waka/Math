@@ -1822,11 +1822,11 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 מצד שני אם $N \trianglelefteq G$ אז קיים $\pi : G \to G/N$ העתקה מהחבורה למחלקות השמאליות של $N$ על־ידי כפל תת־חבורות וזוהי חבורה.
 מה שאמרנו זה ששתי הטענות הן כמעט הופכיות אחת לשנייה. מצאנו כי $\ker(\pi) = N$.
 נבחין כי $N \subseteq G, N \in G/N$.
-הדבר היחיד שאפשר לשחזר הוא התמונה, ולא את ההעתקה המקורית, שכן יכול להיות שההעתקה מאוד מורכבת אבל אין דרך לגלות את זה.
+בזמן שאי־אפשר לשחזר את הפונקציה המקורית, אנחנו כן יכולים להסיק על התמונה שלה על־פי הגרעין.
 
 \begin{theorem}[משפט האיזומורפיזם הראשון]
-	אם $f : G \to H$ הומומורפיזם אז קיים $G/\ker(f) \xrightarrow{\sim} \im(f)$. \\*
-	קיים איזומורפיזם יחיד $\alpha$ כך ש־$\alpha \circ \pi = f$.
+	תהינה $G, H$ חבורות, ו־$f : G \to H$ הומומורפיזם אז נובע $G/\ker(f) \xrightarrow{\sim} \im(f)$. \\*
+	אף קיים איזומורפיזם יחיד $\alpha$ כך ש־$\alpha \circ \pi = f$.
 \end{theorem}
 \begin{proof}
 	בנינו פונקציה חד־חד ערכית ועל $\alpha : G/\ker(f) \to \im(f)$ על־ידי $\alpha(x \ker(f)) = f(x)$. \\*
@@ -1846,12 +1846,12 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	יהי $\ZZ \xrightarrow{\mod n} \ZZ_{/n}$ וראינו כי $n\ZZ \trianglelefteq \ZZ$ ונקבל $\ZZ / n\ZZ \xrightarrow{\sim} \ZZ_{/n}$ ממשפט האיזומורפיזם הראשון.
 \end{example}
 \begin{example}
-	תהי $GL_n(\RR) \xrightarrow{\det} \RR^\times$ הומומורפיזם שהוא על. הגרעין הוא הדטרמיננטות עם גודל 1, דהינו $SL_n(\RR) \trianglelefteq GL_n(\RR)$.
+	יהי $GL_n(\RR) \xrightarrow{\det} \RR^\times$ הומומורפיזם שהוא על. הגרעין הוא הדטרמיננטות עם גודל 1, דהינו $SL_n(\RR) \trianglelefteq GL_n(\RR)$.
 	לכן גם $GL_n(\RR) / SL_n(\RR) \cong \RR^\times$.
 \end{example}
 \begin{example}
-	$GL_n(\RR)$, ונראה את המרכז $Z(GL_n(\RR)) = \{ a I_n \mid a \in \RR^\times \}$. \\*
-	 נחלק אעתה את חבורה במרכזה ונקבל
+	$GL_n(\RR)$, ונראה את המרכז $Z(GL_n(\RR)) = \{ a I_n \mid a \in \RR^\times \}$, המטריצות הסקלריות. \\*
+	 נחלק עתה את חבורה במרכזה ונקבל
 	 \[
 		 GL_n(\RR) / Z(GL_n(\RR)) := PGL_n(\RR)
 	 \]
@@ -1861,15 +1861,17 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	$\ker(\pi_G) = \{(e, h) \mid h \in H \} = \{e\} \times H$ ובאופן דומה $\ker(\pi_H) = G \times \{e \}$. \\*
 	ממשפט האיזומורפיזם הראשון אנו מקבלים כי $(G \times H) / (G \times \{e\}) \cong H$, גם אינטואיטיבית זה מאוד הגיוני שכן אנו מקבצים לפי איברי $G$.
 \end{example}
-אם יש לי שתי חבורות $G, H$ אז תמדי אפשר ליצור תת־חבורה נורמלית $E \trianglelefteq G$ כך ש־$H \cong E/G$.
-לדוגמה $\ZZ_{/2}$ ואת $\ZZ_{/2}$ אז נוכל לקחת את $\ZZ_{/2} \triangleleft \ZZ_{/2} \times \ZZ_{/2} \to \ZZ_{/2}$, ולכן מההערה נובע כי $\ZZ_{/4}$ מגדירה את ההומומורפיזמים הללו.
 \begin{remark}
 	אם $G$ סופית ו־$N \trianglelefteq G$ אז $|G| = |N| \cdot |G/N|$ כנביעה ממשפט לגרנז'.
 \end{remark}
-אם יש לנו $K \xrightarrow{\alpha} G, K \xrightarrow{\beta} H$ אז נוכל לבנות גם $K \xrightarrow{(\alpha, \beta)} G \times H$ על־ידי $(\alpha, \beta)(x) = (\alpha(x), \beta(x))$. \\*
-הגרעין מקיים $\ker(\alpha, \beta) = \ker(\alpha) \cap \ker(\beta)$.
+בהינתן שתי חבורות $G, H$, אז נוכלי לבנות חבורה $E$ כך ש־$G \trianglelefteq E$ כך ש־$H \xrightarrow{\sim} E/G$.
+כך לדוגמה אם נבחן את $\ZZ_{/2} = G = H$ אז נוכל להגדיר $E = \ZZ_{/2} \times \ZZ_{/2}$ או גם $E = \ZZ_{/4}$, ולכן נקבל $\ZZ_{/2} \times \ZZ_{/2} \xrightarrow{\sim} \ZZ_{/2}$ אשר מקיימת את הטענה.
 
-בהינתן $\ZZ_{/b} \xleftarrow{\pi_b} \ZZ \xrightarrow{\pi_a} \ZZ_{/a}$ ונקבל $\ZZ \xrightarrow{\pi} \ZZ_{/a} \times \ZZ_{/b}$ ונקבל $\ker(\pi) = a\ZZ \cap b\ZZ = lcm(a, b)$.
+בהינתן חבורות $G, H, K$ והומומורפיזמים $K \xrightarrow{\alpha} G, K \xrightarrow{\beta} H$
+אז נוכל לבנות גם $K \xrightarrow{(\alpha, \beta)} G \times H$ על־ידי $(\alpha, \beta)(x) = (\alpha(x), \beta(x))$. \\*
+הגרעין מקיים במקרה זה $\ker(\alpha, \beta) = \ker(\alpha) \cap \ker(\beta)$.
+
+בהינתן $\ZZ_{/b} \xleftarrow{\pi_b} \ZZ \xrightarrow{\pi_a} \ZZ_{/a}$ נוכל להגדיר $\ZZ \xrightarrow{\pi} \ZZ_{/a} \times \ZZ_{/b}$ ונקבל $\ker(\pi) = a\ZZ \cap b\ZZ = lcm(a, b) \ZZ$.
 \begin{conclusion}
 	$\ZZ_{/lcm(a, b)} \cong \im(\pi) \le \ZZ_{/a} \times \ZZ_{/b}$ ואם $\gcd(a, b) = 1$ אז $lcm(a, b) = ab$ ונקבל את משפט השאריות הסיני:
 	\[
@@ -1877,11 +1879,16 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	\]
 \end{conclusion}
 
-נדבר עתה על $G, G/N$ בלבד, ומה המבנה שלה. נבחין כי $G \xrightarrow{\pi} G/N$. אם $K \le G$ אז בהתאם $\pi(K) \le G/N$. \\*
-אם $L \le G/N$ אז $\pi^{-1}(L) \ge N$.
-אכתוב גם $\overline{\pi}(K) = \{ \pi(x) \mid x \in K\}$.
+נבחן עתה על $G, G/N$ בלבד, ומה המבנה שלה. נגדיר כי $G \xrightarrow{\pi} G/N$. אם $K \le G$ אז בהתאם $\pi(K) \le G/N$ כנביעה ישירה מהעובדה ש־$\pi$ הומומורפיזם. \\*
+אם $L \le G/N$ אז $\pi^{-1}(L) \ge N$, שכן כל איבר בחבורת המנה מיתרגם למספר איברים (למעשה מחלקות שקילות שלמות) בחבורה המקורית, וכל תת־חבורה מכילה איבר נייטרלי שמיתרגם לחבורה $N$ עצמה במקור.
+נסמן את התמונה על־ידי $\overline{\pi}(K) = \{ \pi(x) \mid x \in K\}$ מטעמי נוחות.
 \begin{theorem}
-	$G$ חבורה ו־$N \trianglelefteq G$ אז $\{ K \le G \mid N \le K \} \xrightarrow[\pi^{-1}]{\overline{\pi}} \{ L \le G/N\}$.
+	תהי $G$ חבורה ו־$N \trianglelefteq G$ תת־חבורה נורמלית שלה, אז
+	\[
+		\{ K \le G \mid N \le K \} \xrightarrow{\overline{\pi}} \{ L \le G/N \}
+		\qquad
+		\{ L \le G/N \} \xrightarrow{\pi^{-1}} \{ K \le G \mid N \le K \} 
+	\]
 \end{theorem}
 \begin{proof}
 	\textbf{כיוון ראשון:}
@@ -1889,7 +1896,7 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	\[
 		\overline{\pi}(\pi^{-1}(L)) \subseteq L
 	\]
-	מצד שני נטען כי $L \subseteq \overline{\pi}$ שכן $y \in L \implies y = \pi(x)$ לאיזשהו $x \in \pi^{-1}(L)$.
+	מצד שני נטען כי $L \subseteq \overline{\pi}(\pi^{-1}(L))$ שכן $y \in L \implies y = \pi(x)$ לאיזשהו $x \in \pi^{-1}(L)$.
 	לכן $y = \pi(x) \in \overline{\pi}(\pi^{-1}(L))$.
 
 	\textbf{כיוון שני:}
@@ -1899,7 +1906,7 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	\]
 	ונסביר את $(1)$:
 	\[
-		\overline{\pi} = \{ \pi(x) \mid x \in K \} = \{ xN \mid x \in K \}
+		\overline{\pi}(K) = \{ \pi(x) \mid x \in K \} = \{ xN \mid x \in K \}
 	\]
 	ולכן
 	\[
@@ -1925,14 +1932,14 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 \begin{proof}
 	נניח $K/N \trianglelefteq G/N$ ונסתכל על ההומומורפיזם
 	\[
-		G \overset{\pi}{\twoheadrightarrow} G/N \overset{\varphi}{\twoheadrightarrow} (G/N)(K/N)
+		G \overset{\pi}{\twoheadrightarrow} G/N \overset{\varphi}{\twoheadrightarrow} (G/N)/(K/N)
 	\]
 	אז
 	\[
 		\ker(\varphi \circ \pi) = \pi^{-1}(\ker(\varphi)) = \pi^{-1}(K/N) = K
 	\]
-	ממשפט האיזומורפיזם הראשון נקבל $G/K \cong (G/N)/(K/N)$. \\*
-	קיבלנו כי $G/\ker(\varphi \circ \pi) \cong \im(\varphi \circ \pi)$.
+	ממשפט האיזומורפיזם הראשון נקבל $G/K \xrightarrow{\sim} (G/N)/(K/N)$. \\*
+	שכן קיבלנו כי $G/\ker(\varphi \circ \pi) \xrightarrow{\sim} \im(\varphi \circ \pi)$.
 
 	כיוון שני:
 	נניח כי $N \trianglelefteq K \trianglelefteq G$ ונסתכל על הפונקציה
@@ -1942,22 +1949,24 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 		xN \mapsto (xN)K = x(NK) = xK
 	\]
 	ונראה ש־$\alpha$ הומומורפיזם. \\*
-	פונקציה זו בבירור היא בבירור הומומורפיזם שכן מדובר על כפל חבורות.
+	פונקציה זו היא בבירור הומומורפיזם שכן מדובר על כפל חבורות.
+	נבחין כי
 	\[
 		\ker(\alpha) = \{ xN \mid xK = K \}
-		= \{ nX \mid x \in K \}
+		= \{ xN \mid x \in K \}
 		= K/N
 	\]
-	ולכן ממשפט האיזומורפיזם הראשון נקבל
+	ונוכל להסיק ממשפט האיזומורפיזם הראשון כי
 	\[
 		(G/N)/(K/N) \xrightarrow{\sim} G/K
 	\]
 \end{proof}
 \begin{example}
-	נבחן את $\ZZ \to \ZZ/n\ZZ$, מהן תת־החבורות שמכילות את $n\ZZ$ והן $n\ZZ \le d\ZZ \le \ZZ$ כך ש־$d \big| n$ ולכן
+	נגדיר את ההומומורפיזם $\ZZ \to \ZZ / n\ZZ$. אנו יודעים כי $n \ZZ \le d \ZZ \le \ZZ$ לכל $d \big| n$, ולכן נוכל להשתמש במשפט האיזומורפיזם השלישי ונקבל
 	\[
 		(\ZZ/n\ZZ)/(d\ZZ/n\ZZ) \xrightarrow{\sim} \ZZ_{/d}
 	\]
+	ולמעשה הצלחנו לפשט משמעותית את חבורת המנה הזו.
 \end{example}
 
 \end{document}
