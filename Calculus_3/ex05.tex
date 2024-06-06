@@ -120,30 +120,37 @@
 תהי $f : \RR^n \to \RR^m$ פונקציה $L$־ליפשיצית. \\*
 נוכיח כי אם $f$ גזירה ב־$p \in \RR^n$ אז $\lVert Df |_p \rVert \le L$.
 \begin{proof}
-	נשים לב כי הפונקציה גזירה ב־$p$ ולכן מתקיים
+	אנו יודעים כי
 	\[
-		Tv = f(p + v) - f(p) + o(\lVert v \rVert)
+		\forall p, v \in \RR^n \lVert f(p + v) - f(p) \rVert \le L \lVert p + v - p \rVert = L \lVert v \rVert
 	\]
-	עוד נבחין כי
+	אם נבחר $v = e_i$ כאשר $e_i$ הבסיס ל־$\RR^n$ ($1 \le i \le n$) נקבל מהגזירות של $f$ גם כי
 	\[
-		\lVert f(p + v) - f(p) \rVert \le L \lVert v \rVert
+		\frac{\lVert f(p + te_i) - f(p) \rVert}{\lVert te_i \rVert}
+		= \left\lVert \frac{f(p + te_i) - f(p)}{|t|} \right\rVert
+		\xrightarrow[t \to 0]{}
+		\left\lVert \sum_{j = 1}^{m} \frac{\partial f_j}{\partial x_i}|_p \right\rVert
+		\le L
 	\]
-	ולכן
+	אנו יודעים כי $(Df|_p)$ היא מטריצה כך שמתקיים
 	\[
-		\lVert Tv \rVert
-		= \lVert f(p + v) - f(p) + o(\lVert v \rVert) \rVert
-		\le \lVert f(p + v) - f(p) \rVert + \lVert o(\lVert v \rVert) \rVert
-		\le L \lVert v \rVert + \lVert o(\lVert v \rVert) \rVert
+		Df|_p \cdot e_i = {(\frac{\partial f_1}{\partial x_i}, \dots, \frac{\partial f_m}{\partial x_i})}^t
 	\]
-	לכן בפרט עבור $\lVert v \rVert = 1$ נקבל
+	ולכן נוכל להסיק לכל $1 \le i \le n$:
 	\[
-		\lVert Tv \rVert
-		\le L + \lVert o(\lVert v \rVert) \rVert
+		\lVert Df|_p e_i \rVert \le L
 	\]
-	ואם נבחר $v$ עבורו $\lVert Tv \rVert$ מקסימלי נקבל גם
+	נבחר $\lVert v \rVert = 1$ עבורו $\lVert Df |_p \cdot v \rVert$ מקסימלי ונקבל
 	\[
-		\lVert T \rVert
-		\le L + \lVert o(\lVert v \rVert) \rVert
+		\lVert Df |_p \rVert = \lVert Df|_p \cdot v \rVert
+	\]
+	נקבע $v = \sum_{k = 1}^{n} e_k v_k$ ולכן
+	\[
+		\lVert Df |_p \rVert
+		= \lVert \sum_{k = 1}^{n} Df|_p \cdot e_k v_k \rVert
+		= \lVert \sum_{k = 1}^{n} v_k Df|_p \cdot e_k \rVert
+		\le \sum_{k = 1}^{n} v_k L
+		= L
 	\]
 \end{proof}
 
