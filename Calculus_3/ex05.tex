@@ -1,0 +1,150 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $\gamma : \RR \to \RR^d$ מסילה גזירה.
+
+\Subquestion{}
+נחשב את הנגזרת של $f : \RR \to \RR$ המוגדרת על־ידי $f(t) = {\lVert \gamma(t)\rVert}^2$.
+
+נגדיר $g : \RR^d \to \RR$ על־ידי $g(v) = \lVert v \rVert^2$.
+נשים לב כי מתקיים $f = g \circ \gamma$ ונחשב את נגזרתה של $f$ על־ידי שימוש בכלל הנגזרת, ונקבל
+\[
+	f'(t) = Dg\mid_{\gamma(t)} \circ \gamma'(t)
+\]
+ולכן גם
+\[
+	f'(t) = \langle \nabla g \mid_{\gamma(t)}, \gamma'(t) \rangle
+\]
+ומחישוב על־ידי הגדרת הנורמה האוקלידית ונגדיר $v = (v_1, \dots, v_d)$ פירוק לקורדינטה ונקבל
+\[
+	\nabla g_v = (2v_1, \dots, 2v_d)
+\]
+ולכן גם
+\[
+	f'(t) = \langle (2 \gamma_1(t), \dots, 2 \gamma_d(t)), (\gamma_1'(t), \dots, \gamma_d'(t)) \rangle
+\]
+ולכן
+\[
+	f'(t) = 2\gamma_1(t) \cdot \gamma_1'(t) + \cdots + 2\gamma_d(t) \cdot \gamma_d'(t)
+\]
+
+\Subquestion{}
+נניח כי קיימים $a < b$ כך ש־$\gamma(a) = \gamma(b)$.
+נוכיח שקיים $t_0 \in \RR$ כך ש־$\gamma(t_0)$ מאונך ל־$\gamma'(t_0)$.
+\begin{proof}
+	נבחין כי $\gamma(t_0)$ מאונך ל־$\gamma'(t_0)$ על־פי הגדרה כאשר $<\langle \gamma(t_0), \gamma'(g_0) \rangle = 0$, דהינו כאשר $f'(t_0) = 0$, ולכן מספיק להוכיח כי קיים $t_0$ המאפס את $f'$. \\*
+	עתה נשים לב גם ש־$f(a) = \lVert \gamma(a) \rangle^2 = \lVert \gamma(b) \rangle^2 = f(b)$. \\*
+	הפונקציה $f$ גזירה בכל תחומה ולכן גם רציפה ומצאנו כי $f(a) = f(b)$ בעוד $a < b$ ולכן ממשפט רול נקבל כי קיים $t_0 \in (a, b)$ עבורו $f'(t_0) = 0$.
+\end{proof}
+
+\Question{}
+נגדיר את $k : \RR^+ \times \RR \to \RR$ על־ידי $k(x, y) = x^y$. \\*
+נוכיח כי $k$ גזירה בכל התחום ונחשב את הגרדיאנט שלה.
+\begin{proof}
+	נבדוק את כלל נגזרותיה החלקיות של $k$:
+	\[
+		\frac{\partial k}{\partial x} = y x^{y - 1},
+		\quad
+		\frac{\partial k}{\partial y} = x^y \ln(x)
+	\]
+	שתי הפונקציות שקיבלנו מוגדרות עבור כל $(x, y)$ בתחום של $k$ ולכן נסיק ממשפט הנלמד בהרצאה כי $k$ גזירה בכל תחום הגדרתה. \\*
+	נשתמש בנגזרות החלקיות ונקבע גם שמתקיים
+	\[
+		\nabla k(x, y) = (yx^{y - 1}, x^y \ln(x))
+	\]
+\end{proof}
+
+\Subquestion{}
+תהניה $f : \RR \to \RR^+$ ו־$g : \RR \to \RR$ פונקציות גזירות בנקודה $t_0$, ונחשב את נגזרת הפונקציה $h(t) = {(f(t))}^{f(t)}$ ב־$t_0$.
+
+נראה כי $h(t) = k(f(t), g(t))$, ולכן נגדיר $m : \RR \to \RR^+ \times \RR$ על־ידי $m(t) = (f(t), g(t))$ ולכן $h(t) = (k \circ m)(t)$ ועלינו לגזור את ההרכבה $k \circ m$.
+נקבל מגזירה אגף אגף כי $m'(t) = (f'(t), g'(t))$ ולכן מתקיים
+\begin{align*}
+	h'(t_0) = \nabla k(m(t_0)) \circ m'(t_0)
+	& = \langle (g(t_0) {(f(t_0))}^{g(t_0) - 1}, {(f(t_0))}^{g(t_0)} \ln(f(t_0))), (f'(t_0), g'(t_0)) \rangle \\
+	& =  (g(t_0) {(f(t_0))}^{g(t_0) - 1} f'(t_0) + {(f(t_0))}^{g(t_0)} \ln(f(t_0))) g'(t_0)
+\end{align*}
+
+\Question{}
+\Subquestion{}
+תהי $f : \RR^d \to \RR$ פונקציה גזירה ב־$p \in \RR^d$. \\*
+נסמן $A = f^{-1}(\{f(p)\})$ \\*
+נוכיח כי אם וקטור $v \in \RR^d$ משיק ל־$A$ בנקודה $p$ או הוא מאונך ל־$\nabla f |_p$.
+\begin{proof}
+	נגדיר $\gamma : (-\epsilon, \epsilon) \to A$ כך ש־$\gamma(0) = p$ ו־$\gamma'(0) = v$. \\*
+	נגדיר $y = f(p)$ ולכן מהגדרת $A$ נובע $f(\gamma(t)) = y$ לכל $t$ בתחום של העקומה. \\*
+	נגזור את שני צדדי הביטוי ונקבל
+	\[
+		\langle \nabla f |_{\gamma(0)}, \gamma'(0) \rangle = \langle \nabla f |_p, v \rangle = 0
+	\]
+	דהינו, $v$ מאונך ל־$\nabla f |_p$.
+\end{proof}
+
+\Subquestion{}
+נמצא את אוסף הווקטורים המשיקים לאליפסואיד
+\[
+	\left\{ (x, y, z) \in \RR^3 \middle| \frac{x^2}{3} + \frac{y^2}{12} + \frac{z^2}{27} = 1 \right\}
+\]
+בנקודה $(1, 2, 3)$.
+
+נגדיר פונקציה $f : \RR^2 \to \RR$ על־ידי
+\[
+	f(x, y) = 3 \sqrt{3 - \frac{y^2}{4} - x^2}
+\]
+נשים לב כי אכן $f(1, 2) = 3$ והנקודה מוכלת בגרף הפונקציה.
+נמצא את הגרדיאנט של $f$:
+\[
+	\nabla f = \left( \frac{-3x}{\sqrt{3 - \frac{y^2}{4} - x^2}}, \frac{-3y}{2\sqrt{3 - \frac{y^2}{4} - x^2}} \right)
+\]
+ולכן נציב ונקבל
+\[
+	\nabla f |_{(1, 2)}
+	= \left( \frac{-3}{\sqrt{3 - \frac{2^2}{4} - 1^2}}, \frac{-3 \cdot 2}{4\sqrt{3 - \frac{2^2}{4} - 1^2}} \right)
+	= (-3, -\frac{3}{2})
+\]
+אנו יודעים כי כל נגזרת כיוונית היא מכפלת וקטור כיוון בגרדיאנט ולכן נקבל כי קבוצת כל הווקטורים היא $(-3, \frac{-3}{2}) u$.
+
+\Subquestion{}
+נגדיר $f(x, y) = x^2 - y^2$. נראה כי יש וקטור המאונך ל־$\nabla f|_{(0, 0)}$ אבל לא משיק ל־$f^{-1}(\{0\})$ בנקודה $(0, 0)$.
+
+נחשב את הגרדיאנט ונקבל $\nabla f = (2x, -2y)$ ולכן גם $\nabla f |_{(0, 0)} = (0, 0)$, לכן נוכל להסיק שכל וקטור מאונך לגרדיאנט. \\*
+עתה נבחין כי $f^{-1}(\{0\}) = (t, t, 0) \cup (t, -t, 0)$, דהינו קבוצה זו ניתנת לפירוק לשני ישרים ומהגדרת המשיק נקבל כי משיקיהם ב־$(0, 0)$ הם וטורים מהצורה $(1, 1), (1, -1)$.
+לכן נבחר בווקטור $(1, 0)$ ונראה שהוא מקיים את כלל התנאים לשאלה.
+
+\Question{}
+תהי $f : \RR^n \to \RR^m$ פונקציה $L$־ליפשיצית. \\*
+נוכיח כי אם $f$ גזירה ב־$p \in \RR^n$ אז $\lVert Df |_p \rVert \le L$.
+\begin{proof}
+	נשים לב כי הפונקציה גזירה ב־$p$ ולכן מתקיים
+	\[
+		Tv = f(p + v) - f(p) + o(\lVert v \rVert)
+	\]
+	עוד נבחין כי
+	\[
+		\lVert f(p + v) - f(p) \rVert \le L \lVert v \rVert
+	\]
+	ולכן
+	\[
+		\lVert Tv \rVert
+		= \lVert f(p + v) - f(p) + o(\lVert v \rVert) \rVert
+		\le \lVert f(p + v) - f(p) \rVert + \lVert o(\lVert v \rVert) \rVert
+		\le L \lVert v \rVert + \lVert o(\lVert v \rVert) \rVert
+	\]
+	לכן בפרט עבור $\lVert v \rVert = 1$ נקבל
+	\[
+		\lVert Tv \rVert
+		\le L + \lVert o(\lVert v \rVert) \rVert
+	\]
+	ואם נבחר $v$ עבורו $\lVert Tv \rVert$ מקסימלי נקבל גם
+	\[
+		\lVert T \rVert
+		\le L + \lVert o(\lVert v \rVert) \rVert
+	\]
+\end{proof}
+
+\end{document}
