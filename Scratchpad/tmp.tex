@@ -1,9 +1,22 @@
 \input{../article_base.tex}
-\usepackage{tcolorbox}
+\setcounter{secnumdepth}{2}
 
 \begin{document}
 
-\[
-\]
+\section{A}
+
+\directlua{require ('./tmp')}
+\begin{theorem}
+	משפט לדוגמה
+\end{theorem}
+\begin{theorem}
+	משפט לדוגמה 2
+\end{theorem}
+
+\directlua{ generate_end() }
+
+\begin{theorem}
+	משפט בסוף כדי לבדוק מונים
+\end{theorem}
 
 \end{document}
