@@ -1,0 +1,183 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- מבנים אלגבריים 1 (80445)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי חבורה $G$ ויהי הומומורפיזם $\phi : G \to Aut(G)$ המוגדר על־ידי $\forall g \in G : \forall x \in G, \phi(g)(x) = \varphi_g(x) = g x g^{-1}$ \\*
+עוד נגדיר כי תת־החבורה $\im(\phi) \le Aut(G)$ תסומן על־ידי $\text{Inn}(G)$.
+
+\Subquestion{}
+נוכיח כי $\ker(\phi) = Z(G)$ וכי $G/Z(G) \xrightarrow{\sim} \text{Inn}(G)$.
+\begin{proof}
+	אנו יודעים כי $Id$ היא האיבר הנייטרלי עבור $Aut(G)$.
+	יהי $\varphi_g \in \ker(\phi)$ כלשהו, נבחין כי $\varphi_g(x) id(x) = x$, דהינו $g x g^{-1} = x$ או $gx = xg$ לכל $x \in G$.
+	לכן נוכל להסיק ש־$g \in Z(G)$. \\*
+	באופן דומה אם $g \in Z(G)$ אז $\forall x \in G : gx = xg \iff g x g^{-1} = x$ ולכן $\varphi_g(x) = x$, דהינו $\varphi_g = id$ ובהתאם $g \in \ker(\phi)$. \\*
+	מצאנו כי $\ker(\phi) = Z(G)$ ולכן נוכל להסיק ממשפט האיזומורפיזם הראשון גם ש־$G/Z(G) \xrightarrow{\sim} \im(\phi) = \text{Inn}(G)$.
+\end{proof}
+
+\Subquestion{}
+נוכיח ש־$\text{Inn}(G)$ היא תת־חבורה נורמלית של $Aut(G)$.
+\begin{proof}
+	יהי $\varphi_g \in Aut(G)$, אז
+	\[
+		\varphi_g \text{Inn}(G) \varphi_{g^{-1}}
+		= \{ \varphi_g \circ \psi \circ \varphi_{g^{-1}} \mid \psi \in \text{Inn}(G) \}
+	\]
+	אבל נבחין כי $\forall x \in G : \psi(x) = x$ כפי שמצאנו בסעיף הקודם ולכן נקבל
+	\[
+		\varphi_g \text{Inn}(G) \varphi_{g^{-1}}
+		= \{ \varphi_g \circ \varphi_{g^{-1}} \mid \psi \in \text{Inn}(G) \}
+		= \{ \psi \mid \psi \in \text{Inn}(G) \}
+		= \text{Inn}(G)
+	\]
+	ולכן $\text{Inn}(G) \trianglelefteq Aut(G)$.
+\end{proof}
+נסמן עתה גם $Out(G) = Aut(G) / \text{Inn}(G)$.
+
+\Subquestion{}
+נוכיח כי ההעתקה $f : GL_n(\RR) \to GL_n(\RR)$ המוגדרת על־ידי $f(A) = {(A^t)}^{-1}$ היא אוטומורפיזם לא פנימי, ולכן גם $Out(GL_n(\RR)) \ne \{ Id\}$.
+\begin{proof}
+	נוכיח ש־$f$ היא אכן אוטומורפיזם, לשם כך נראה כי
+	\[
+		\forall A, b \in GL_n(\RR) : f(AB) = {({(AB)}^t)}^{-1} = {(B^t A^t)}^{-1} = {(A^t)}^{-1} \cdot {(B^t)}^{-1} = f(A) \cdot f(B)
+	\]
+	ומצאנו כי ההעתקה היא הומומורפיזם.
+	נוכל להראות באופן דומה כי $f^{-1}(A) = {(A^{-1})}^y$ אף היא הומומורפיזם וגם
+	\[
+		f(f^{-1}(A)) = f^{-1}(f(A)) = A
+	\]
+	לכל $A \in GL_n(\RR)$ ולכן נסיק כי $f$ איזומורפיזם, ולכן אוטומורפיזם.
+
+	עתה נניח כי קיימת מטריצה $M \in GL_n(\RR)$ עבורה ${(A^t)}^{-1} = f(A) = M A M^{-1}$ לכל $A$. \\*
+	מספיק שנבחר שתי מטריצות סקלריות שונות עבור $A$ ונקבל ש־$M$ תלוי ב־$A$ ולכן $f$ היא לא פנימית. \\*
+	מכאן נסיק גם כי $f \in Out(GL_n(\RR))$ ולכן גם $Out(GL_n(\RR)) \ne \{ Id\}$.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+יהיה הומומורפיזם $f : G \to H$ עבור חבורות $G, H$, ותהי תת־חבורה נורמלית $N \triangleleft G$ כך ש־$N \subseteq \ker(f)$. \\*
+נוכיח שקיים הומומורפיזם יחיד $\overline{f} : G/N \to H$ כך ש־$f = \overline{f} \circ \pi$.
+\begin{proof}
+	נגדיר $\overline{f}(xN) = f(x)$. עבור $x \notin \ker(f)$ נובע גם $x \notin N$ ולכן $xN$ מוגדר ביחידות ובחירת הנציג לא משפיעה. \\*
+	עבור $x \in N$ נקבל $x N = N$ ונגדיר $\overline{f}(N) = e_H$.
+	נבחן עתה $x \notin N, x \in \ker(f)$, עבור $x$ זה נקבל כי $xN$ היא מחלקה יחודית ונוכל להגדיר ללא תלות בבחירת נציג $\overline{f}(xN) = f(x) = e_H$. \\*
+	עבור כל $x \in G$ האיבר $\pi(x) = x N$ מקיים בדיוק אחת מהטענות, ובכל מקרה מההגדרה נקבל $\overline{f}(\pi(x)) = x$. \\*
+	מצאנו הומומורפיזם אשר מקיים את הטענה, ועתה נקבע גם כי הוא יחיד, שכן לכל מחלקה מצאנו ערך יחיד אשר כל הומומורפיזם המקיים את הטענה צריך להכיל, וכך קיבענו את כלל איברי ההומומורפיזם, נסיק אם כן כי הוא יחיד.
+\end{proof}
+
+\Subquestion{}
+נוכיח גם כי
+\[
+	\ker(\overline{f}) = \ker(f)/N \triangleleft G/N
+\]
+\begin{proof}
+	יהי $xN \in \ker(\overline{f})$, לכן $f(x) = e_H \implies x \in \ker(f)$, ומצאנו כי $\ker(\overline{f}) \subseteq \ker(f)/N$. \\*
+	יהי $xN \in \ker(f)/N$, לכן כפי שהגדרנו בסעיף הקודם $\overline{f}(xN) = e_H$ ובהתאם $\ker(\overline{f}) \supseteq \ker(f)/N$. \\*
+	נסיק אם כן כי $\ker(\overline{f}) = \ker(f)/N \triangleleft G/N$.
+
+	עוד נבחין כי $\overline{f} : G/N \to H$ ולכן נוכל להסיק כי $\ker(\overline{f}) \trianglelefteq G/N$.
+\end{proof}
+
+\Question{}
+יהי $V$ מרחב וקטורי מעל $\FF$ ויהי $U \le V$ תת־מרחב שלו.
+
+\Subquestion{}
+נוכיח כי החבורה $V/U$ היא מרחב וקטורי עבור סקלר $a \in \FF$ ועבור מחלקות $v + U \in V/U$ על־ידי
+\[
+	a(v + U) := av + U \in V/U
+\]
+\begin{proof}
+	יהיו $u + U, v + U \in V/U$ ויהיו $\alpha, \beta \in \FF$, אז נראה כי
+	\begin{align*}
+		\alpha(u + U) + \beta(v + U)
+		& = (\alpha a + U) + (\beta v + U) \\
+		& = \{ u_0 + v_0 \mid u_0 \in (\alpha a + U), v_0 \in (\beta v + U) \} \\
+		& = \{ \alpha u_0 + \beta v_0 + w \mid u_0 \in w \in U \} \\
+		& = \alpha u + \beta v + U
+	\end{align*}
+	ומצאנו כי החבורה משמרת צירוף לינארי ולכן מהווה מרחב וקטורי.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $V$ מרחב מממד סופי אז
+\[
+	\dim(V/U) = \dim(V) - \dim(U)
+\]
+\begin{proof}
+	ללא פגיעה בהגבלת הכלליות נניח כי $V = \FF^k$ עבור $k \in \NN$ כלשהו. \\*
+	לכן כמובן $\dim(V) = k$, ואף נגדיר $E = (e_1, \dots, e_k)$ בסיס ל־$V$. \\*
+	$U \le V$ וידוע כי הוא תת־מרחב ולכן $\dim(U) = m$ עבור $k \ge m \in \NN$ כלשהו, ונגדיר מחדש את $E$ להיות בסיס ל־$V$ כך שגם $(e_1, \dots, e_m)$ בסיס ל־$U$. \\*
+	עתה נבחן את הבסיס הנתון עבור $V/U$. לכל $i$ נקבל $e_i + U \in V/U$, ונשים לב כי אם $1 \le i \le m$ אז $-e_i \in U$ ונקבל כי $e_i + U = 0 + U$, אבל עבור $m < i \le k$ אנו יודעים כי $e_i$ לא תלוי לינארית באף וקטור ב־$U$.
+	נקבל אם כן כי הבסיס הפורש את $V/U$ הוא $(e_{m + 1} + U, \dots e_k + U)$ ובהתאם $\dim(V/U) = k - m$, דהינו
+	\[
+		\dim(V/U) = \dim(V) - \dim(U)
+	\]
+\end{proof}
+
+\Subquestion{}
+תהי העתקה לינארית $T : V \to W$, נוכיח כי האיזומורפיזם מעל החבורות
+\[
+	V / \ker(T) \xrightarrow{\sim} \im(T)
+\]
+הוא איזומורפיזם של מרחבים וקטוריים.
+\begin{proof}
+	בסעיפים הקודמים מצאנו כי $V/\ker(T)$ הוא מרחב וקטורי, ואנו יודעים כי גם $\im(T)$ הוא מרחב וקטורי. \\*
+	כל וקטור $w \in V$ נוכל לכתוב כחיבור של וקטור מהגרעין והתמונה, דהינו $\exists ! v \in \ker(T), u \in \im(T)$ כך ש־$w = v + u$.
+	לכן לכל $u + U \in v/\ker(T)$ נוכל לבחור $v$ ונקבל $T(u + v) = Tu \in \im(T)$. \\*
+	דהינו הראינו כי האיזומורפיזם מעל החבורות למעשה מקיים גם את התכונות של איזומורפיזם של מרחבים וקטוריים.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+תהי $G \acts X$ פעולה של חבורה, ותהי $N \triangleleft G$ כך ש־$N$ פועלת טריוויאלית. \\*
+נוכיח כי ישנה פעולה יחודית של $G/N$ על $X$ כך ש־$(gN) \cdot x = g \cdot x$ לכל $g \in G$ ו־$x \in X$.
+\begin{proof}
+	מצאנו בהצראה כי כל פעולה על קבוצה איזומורפית להומומורפיזם של חבורה על קבוצת הסימטריות של הקבוצה, ולכן נגדיר את $f$
+	\[
+		f : G \to \Sym(X)
+	\]
+	לייצג את הפעולה, עוד נתון כי $\forall g \in N : f(g) = id$, ולכן נסיק כי $N \le \ker(f)$. \\*
+	ניעזר בתוצאה של שאלה 2 סעיף א' ובמשפט האיזומורפיזם הראשון ונקבל כי
+	\[
+		h : G/N \to \im(f)
+	\]
+	קיימת ביחידות, נרחיב את הטווח ונקבל כי גם $h^* : G/N \to \Sym(X)$ קיימת ביחידות ואיזומורפית לפעולה של $G/N$ על $X$. \\*
+	מאיך שהגדרנו את $h$ נקבל גם $h(gN, x) = f(g, x)$.
+\end{proof}
+
+\Subquestion{}
+נבחן את הפעולה ש־$PGL_2(\RR)$ מפעילה על $\RR P^1$ המוגדר על־ידי
+\[
+	\RR P^1 = \{ L \le \RR^2 \mid \dim(L) = 1 \}
+\]
+ונוכיח כי פעולה זו היא $2$־טרנזיטיבית.
+\begin{proof}
+	תחילה נבחין כי $\alpha M \in PGL_2(\RR)$ היא מחלקה של מטריצות הפיכות מסדר שתיים ומכפלתן בכל סקלר, וכך נסמן אותן. \\*
+	נוכל להגדיר כל $V \in \RR P^1$ על־ידי $V = \sp\{ v\}$ כאשר $v \in \RR^2$, ולכן
+	\[
+		\alpha M \cdot V = \alpha M \Sp\{ v \} = M \Sp\{ v \} = \Sp\{ Mv \}
+	\]
+	ומצאנו כי הפעולה מוגדרת ולא תלויה בנציג. \\*
+	נסמן $v \in \RR P^1$ ובהתאם $M \cdot v = Mv$. \\*
+	יהיו $x_1, x_2, y_1, y_2 \in \RR P^1$ כך ש־$x_1 \ne y_1$ וגם $x_2 \ne y_2$. \\*
+	נגדיר העתקה לינארית $T : \RR^2 \to \RR^2$ על־ידי $T(x_1) = x_2$ ו־$T(y_1) = y_2$, הווקטורים $x_1, y_1$ לא שווים ולכן מהגדרת $\RR P^1$ נסיק כי הם לא תלויים לינארית, לכן $T$ מוגדרת בהכרח ואף מוגדרת לכל $u \in \RR^2$.
+	לכן נקבל כי $T \cdot x_1 = T x_1 = x_2$ וגם $T \cdot y_1 = y_2$.
+\end{proof}
+
+\Question{}
+תהי $G$ חבורה ו־$x \in G$ איבר מסדר סופי.
+נוכיח כי לכל $p$ ראשוני קיימים $y, z \in G$ עבורם:
+\begin{enumerate}
+	\item $x = yz = zy$.
+	\item $y$ הוא מסדר חזקת $p$.
+	\item $z$ הוא מסדר ראשוני עד ל־$p$.
+\end{enumerate}
+\begin{proof}
+	ידוע כי $x$ מסדר סופי, נגדיר $n \in \NN$ מספר המקיים $x^n = e$, ונגדיר
+\end{proof}
+
+\end{document}

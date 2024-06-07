@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 
 local function env(env_name)
-	val = os.getenv(env_name)
+	local val = os.getenv(env_name)
 	tex.write(val)
 end
 
@@ -15,18 +15,18 @@ local function tst_echo(a)
 end
 
 local function generate_question()
-	tex.print("\\section{שאלה " .. q_number .. "}")
-	q_number = q_number + 1
-	c_number = 1
+	tex.print("\\section{שאלה " .. Q_number .. "}")
+	Q_number = Q_number + 1
+	C_number = 1
 end
 
 local function generate_sub_question()
-	tex.print("\\subsection{סעיף " .. letters[c_number] .. "'}")
-	c_number = c_number + 1
+	tex.print("\\subsection{סעיף " .. Letters[C_number] .. "'}")
+	C_number = C_number + 1
 end
 
 local function generate_command(command_name, function_name, argc)
-	func_arg_string = ''
+	local func_arg_string = ''
 	for i = 1, argc do
 		func_arg_string = func_arg_string .. '\'#' .. i .. '\''
 		if i < argc then
@@ -41,11 +41,11 @@ local function generate_command(command_name, function_name, argc)
 end
 
 local function main()
-	letters = { 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י',
+	Letters = { 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י',
 		'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת'
 	}
-	q_number = 1
-	c_number = 1
+	Q_number = 1
+	C_number = 1
 
 	generate_command('Env', 'env', 1)
 	generate_command('GetEnv', 'get_env', 1)
