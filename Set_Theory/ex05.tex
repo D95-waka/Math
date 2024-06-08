@@ -1,0 +1,89 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- תורת הקבוצות (80200)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\directlua{ Q_number = 3 }
+\Question{}
+תהי $\langle A, \le \rangle$ קבוצה סדורה חלקית.
+
+\Subquestion{}
+תהי $B \subseteq A$, ונוכיח כי $\langle B, \le \cap (B \times B) \rangle$ היא קבוצה סדורה חלקית אף היא.
+\begin{proof}
+	נבדוק את תכונות הסדר החלקי.
+	\begin{enumerate}
+		\item טרנזיטיביות: $\langle a, b \rangle, \langle b, c \rangle \in \le \cap B^2 \implies a \le c \land a, c \in B \implies (a, c) \in \le \cap B^2$.
+		\item רפלקסיביות: $\forall b \in B : \langle b, b \rangle \in \le \land \langle b, b \rangle \in B^2 \implies \langle b, b \rangle \in (\le \cap B^2)$.
+		\item אנטי־סימטריה: $\forall a, b \in B : \langle a, b \rangle, \langle b, a \rangle \in (\le \cap B^2) \implies a = b, b \in B$
+	\end{enumerate}
+	ומצאנו כי כל ההגדרות מתקיימות.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $a \in A$ הוא מינימום, אז הוא איבר מינימלי והמינימלי היחיד.
+\begin{proof}
+	נניח כי $a \in A$ הוא מינימום ולכן $\forall b \in A : a \le b$. \\*
+	יהי איבר $b \in A$ המקיים $b \le a$, אבל ידוע כי $a \le b$ ולכן נסיק מהאנטי־סימטריה כי $a = b$, ולכן נובע כי $a$ איבר מינימלי. \\*
+	נניח כי קיים איבר $b \in A$ אשר הוא מינימלי, ואנו יודעים כי $a \le b$, ולכן נובע מהמינימליות כי $a = b$, ומצאנו כי קיים איבר מינימלי יחיד והוא $a$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי הכיוון ההפוך לטענה הקודמת איננו נכון, קיום מינימלי יחיד לא גורר כי קיים מינימום.
+\begin{proof}
+	נבחן את $\langle \ZZ, \le \rangle$ כאשר מוציאים את כל הזוגות הסדורים שמעורבים ב־$0$, מלבד $\langle 0, 0 \rangle$. \\*
+	סדר זה עומד בכלל ההגדרות, אין מינימום או מקסימום, ואפס הוא מינימלי.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $\langle A, \le \rangle$ הוא סדר מלא אז איבר הוא מינימלי אם ורק אם הוא המינימום.
+\begin{proof}
+	\textbf{כיוון ראשון:}
+	נניח כי $a \in A$ הוא איבר מינימילי. לכן $\forall b \in a : b \le a \implies a = b$. \\*
+	כל איבר $b \in A$ מקיים $b \le a \implies a = b \implies a \le b$ או $a \le b$ ולכן נקבל כי $a \le b$ בכל מקרה, ולכן $a$ מינימום.
+
+	\textbf{כיוון שני:}
+	נניח כי $a$ הוא מינימום ולכן $\forall b \in A : a \le b$. \\*
+	יהי $b \in A, b \le a$, אז $a \le b$ ובפרט $a = b$ וקיבלנו כי גם הגדרת המינימלי חלה.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $A$ סופית ולא ריקה אז יש בה איבר מינימלי.
+\begin{proof}
+	נניח בשלילה כי לא קיים איבר מינימלי, לכן $\forall a \in A \exists b \in A : b \le a, a \ne b$. \\*
+	נניח ש־$|A| = n$ ונבחר $a_1 \in A$, כלשהו, נגדיר $a_2 \le a_1, a_1 \ne a_2$, ובאופן דומה נגדיר $a_{k + 1} \le a_k, a_{k + 1} \ne a_k$. \\*
+	נבנה כך סדרה באורך $n + 1$ ונסיק מעיקרון שובך היונים שאיבר כלשהו $a_k$ מופיע פעמיים בסדרה ומקיים $a_k \le a_k, a_k \ne a_k$ בסתירה להנחתנו כי אין איבר מינימלי.
+\end{proof}
+
+\Question{}
+יהיו ארבעה יחסים מעל $\NN^\NN$:
+\begin{align*}
+	& R_1 = \{ \langle f, g \rangle \in \NN^\NN \times \NN^\NN \mid \forall m : f(m) \le g(m) \} \\
+	& R_2 = \{ \langle f, g \rangle \in \NN^\NN \times \NN^\NN \mid \exists n \forall m : m > n \implies f(m) \le g(m) \} \\
+	& R_3 = \{ \langle f, g \rangle \in \NN^\NN \times \NN^\NN \mid \forall n \exists m, m > n \implies f(m) \le g(m) \} \\
+	& R_4 = \{ \langle f, g \rangle \in \NN^\NN \times \NN^\NN \mid f = g \lor (\exists n : f \restriction [n] = g \restriction [n] \land f(n) < g(n)) \}
+\end{align*}
+
+\Subquestion{}
+נבדוק עבור כל יחס אם הוא רפלקסיבי, טרנזיטיבי ואנטי־סימטרי.
+
+עבור $R_1$:
+\begin{enumerate}
+	\item נשים לב כי בהינתן $f \in \NN^\NN$ לכל $m \in \NN$ נקבל $f(m) = f(m) \implies f(m) \le f(m)$ ולכן $R_1$ הוא רפלקסיבי.
+	\item יהיו $f R_1 g, g R_1 h$ ויהי $m \in \NN$, אז $f(m) \le g(m), g(m) \le h(m)$ ולכן גם $f(m) \le h(m)$ ולכן $f R_1 h$, והיחס טרנזיטיבי.
+	\item יהיו $f R_1 g$ כך שגם $g R_1 f$ אז לכל $m \in \NN$ אז $f(m) \le g(m)$ וגם $g(m) \le f(m)$ ולכן נוכל להסיק $f(m) = g(m)$, דהינו $f = g$, ולכן היחס אנטי־סימטרי.
+\end{enumerate}
+עבור $R_2$:
+\begin{enumerate}
+	\item נוכל להניח כי רפלקסיביות מתקיימת שכן אם נבחר $m = 0$ נקבל את התנאי של רפלקסיביות עבור $R_1$.
+	\item יהיו $f R_2 g, g R_2 h$, לכן קיימים $n_1, n_2$ כך שבהתאמה לכל $m > n_1, n_2$ מתקיים $f(m) = g(m), g(m) = h(m)$, ולכן נבחר $n = \max\{n_1, n_2\}$ ועבורו לכל $m > n$ נקבל $f(m) \le g(m) \le h(m)$ ולכן $g R_2 h$.
+	\item נניח כי $f R_2 g, g R_2 f$, ונבחר באופן דומה להוכחת הסימטריה $n$ מינימלי עבורו $m > n > 0$ מקיים $f(m) = g(m)$, אבל עבור $m = 0$ יכול להיות ש־$f(m) \ne g(m)$ ולכן לא מתקיימת אנטי־סימטריה.
+\end{enumerate}
+עבור $R_3$:
+\begin{enumerate}
+	\item לכל $f$ ולכל $n \in \NN$ מתקיים $f(n) = f(n)$ ולכן נוכל לבחור $m = n + 1$ לכל $n$ ונקבל כי $f R_3 f$, דהינו היחס הוא רפלקסיבי.
+	\item תהינה $f R_3 g, g R_3 h$ פונקציות, ויהי $n \in \NN$. לכן קיים $m_1 > n$ כך ש־$f(m_1) \le g(m_1)$, וקיים גם $m_2 > g(m_1)$ עבורו $g(m_2) \le h(m_2)$.
+\end{enumerate}
+
+\end{document}
