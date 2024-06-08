@@ -1,11 +1,9 @@
 \input{../article_base.tex}
 \setcounter{secnumdepth}{2}
-
+\directlua{require ('./tmp')}
 \begin{document}
 
 \section{A}
-
-\directlua{require ('./tmp')}
 \begin{theorem}
 	משפט לדוגמה
 \end{theorem}
@@ -13,8 +11,15 @@
 	משפט לדוגמה 2
 \end{theorem}
 
-\directlua{ generate_end() }
+\section{B}
+\begin{theorem}
+	משפט בסקשן 2
+\end{theorem}
 
+\section{סייכום משפטים}
+\directlua{ Generate_end() } \thesection{}
+
+\section{נספח}
 \begin{theorem}
 	משפט בסוף כדי לבדוק מונים
 \end{theorem}

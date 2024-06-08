@@ -1,12 +1,10 @@
 print("BEGIN")
---local t = token.get_next()
---tex.print(t.id .. " " .. t.tok .. " " .. t.command)
 
 Scan_in_process = false
 Theorems_buffer = ""
 Theorems_c_arr = {}
 Theorems_v_arr = {}
-local id, error = luatexbase.add_to_callback("process_input_buffer", function(line_content)
+luatexbase.add_to_callback("process_input_buffer", function(line_content)
 	print("BODY -- " .. line_content)
 	if string.find(line_content, "\\begin{theorem}") then
 		Scan_in_process = true
@@ -28,14 +26,18 @@ local id, error = luatexbase.add_to_callback("process_input_buffer", function(li
 
 	return line_content
 end, "finish")
--- print(id .. " " .. error)
 
-function generate_end()
+function Generate_end()
+	local original_section = token.scan_string()
 	for key, value in pairs(Theorems_v_arr) do
-		tex.print("\\setcounter{theorem}{" .. (tonumber(string.match(Theorems_c_arr[key], "%.(%d+)")) - 1) .. "}")
-		--tex.print(Theorems_c_arr[key])
+		local section_number = tonumber(string.match(Theorems_c_arr[key], "(%d+)%."))
+		local theorem_number = tonumber(string.match(Theorems_c_arr[key], "%.(%d+)")) - 1
+		tex.print("\\setcounter{theorem}{" .. theorem_number .. "}")
+		tex.print("\\setcounter{section}{" .. section_number .. "}")
 		tex.print(value)
 	end
+
+	tex.print("\\setcounter{section}{" .. original_section .. "}")
 end
 
 print("END")
