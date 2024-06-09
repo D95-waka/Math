@@ -64,9 +64,9 @@ set -lx AUTHOR '<author name>'
 -  [אליזה פונקציונלית](https://shnaton.huji.ac.il/index.php/NewSyl/80417) – יקבע בהמשך
 -  [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – יקבע בהמשך
 -  [תורת ההסתברות 1](https://shnaton.huji.ac.il/index.php/NewSyl/80420) – יקבע בהמשך
--  [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – יקבע בהמשך
+-  [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – 2025א'
 -  [מבוא לטופולוגיה](https://shnaton.huji.ac.il/index.php/NewSyl/80516) – יקבע בהמשך
--  [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – יקבע בהמשך
--  [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – יקבע בהמשך
+-  [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2025א'
+-  [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – 2025א'
 
 בנוסף יש לקחת קורסים באנגלית ואבני פינה מתישהו.
