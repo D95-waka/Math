@@ -59,14 +59,14 @@ set -lx AUTHOR '<author name>'
 
 ### קורסים שילמדו בעתיד
 -  [תכנות בסיסי בפייתון](https://shnaton.huji.ac.il/index.php/NewSyl/76631) – 2025א'
+-  [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – 2025א'
+-  [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – 2025א'
+-  [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2025א'
 -  [מבנים אלגבריים 2](https://shnaton.huji.ac.il/index.php/NewSyl/80446/) – יקבע בהמשך
 -  [אליזה על יריעות](https://shnaton.huji.ac.il/index.php/NewSyl/80416) – יקבע בהמשך
 -  [אליזה פונקציונלית](https://shnaton.huji.ac.il/index.php/NewSyl/80417) – יקבע בהמשך
 -  [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – יקבע בהמשך
 -  [תורת ההסתברות 1](https://shnaton.huji.ac.il/index.php/NewSyl/80420) – יקבע בהמשך
--  [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – 2025א'
 -  [מבוא לטופולוגיה](https://shnaton.huji.ac.il/index.php/NewSyl/80516) – יקבע בהמשך
--  [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2025א'
--  [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – 2025א'
 
 בנוסף יש לקחת קורסים באנגלית ואבני פינה מתישהו.

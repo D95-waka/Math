@@ -8,8 +8,6 @@ luatexbase.add_to_callback("process_input_buffer", function(line_content)
 	print("BODY -- " .. line_content)
 	if string.find(line_content, "\\begin{theorem}") then
 		Scan_in_process = true
-		-- Theorems_buffer = Theorems_buffer .. " \\thetheorem "
-		--local t = token.get_next()
 		Theorems_buffer = Theorems_buffer .. line_content
 		return line_content .. " \\directlua{ t = token.scan_word() table.insert(Theorems_c_arr, t) } \\thetheorem{} "
 	end
