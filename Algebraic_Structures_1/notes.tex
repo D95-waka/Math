@@ -1979,7 +1979,7 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	$\ZZ_{/n} \cong \ZZ_{/m}$ אם ורק אם $\gcd(m, n) = 1$.
 \end{example}
 \begin{example}
-	אם $A$ חבורה אבלית ו־$K, H$ תתי־חבורות של $A$ כך ש־$HK = A$ ו־$H \cap K = \{e\}$ אז $A \cong H \times K$.
+	אם $A$ חבורה אבלית ו־$K, H$ תתי־חבורות של $A$ כך ש־$HK = A$ ו־$H \cap K = \{e\}$ אז $A \cong H \times K$ כפי שמצאנו בהרצאות הקודמות.
 \end{example}
 \begin{theorem}
 	תהי $G$ חבורה ו־$X, Y \le G$ אז $\varphi(x, y) = xy$ הוא איזומורפיזם אם ורק אם מתקיימים התנאים הבאים:
@@ -1990,7 +1990,7 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	נראה כי 1 שרול להיות $\varphi$ על: \\*
+	נראה כי 1 שקול להיות $\varphi$ על: \\*
 	אם $\varphi$ על, אז $\im(\varphi) = X \cdot Y = G$. \\*
 	אם $XY = G$ אז נקבל $\im(\varphi) = XY = G$.
 
@@ -2007,9 +2007,9 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 	נניח ששלושת התנאים מתקיימים, וצריך להראות כי $x_1 y_1 x_2 y_2 x_1 y_1 x_2 y_2 \iff y_1 x_2 = x_2 y_1 \iff \forall x \in X, y \in Y : xy = yx$. \\*
 	אנחנו צריכים להראות כי $xy = yx \iff x^{-1} (y_{-1} x y) = e$ ולכן $x^{-1} \in X, y^{-1} x y \in Y$ ולכן $x^{-1} y^{-1} x y \in X, Y$ ולכן נובע $x^{-1} y^{-1} x y = e$.
 \end{proof}
-\begin{example}
-	נתבונן ב־$D_4$, ונוכיח כי $D_4$ איננה איזומורפית למכפלה ישרה של תתי־חבורות ממש.
-\end{example}
+\begin{proposition}
+	$D_4$ היא לא איזומורפית למכפלה ישרה של תת־חבורות ממש שלה.
+\end{proposition}
 \begin{proof}
 	נניח בשלילה ש־$X, Y \le D_4$ כך ש־$\varphi : X \times Y \to D_4$ המוגדרת על־ידי $\varphi(x, y) = xy$ היא איזומורפיזם. \\*
 	ראינו כי תת־החבורה הנורמלית היחידה מגודל $2$ של $D_4$ היא $\langle \sigma^2 \rangle$ ולכן נניח כי $Y = \langle \sigma^2 \rangle$. \\*
@@ -2021,12 +2021,13 @@ $N \le G$ תת־חבורה של חבורה $G$ נקראת \textbf{נורמלית
 ברצוננו להגדיר מבנה של חבורה על מכפלה $X \cdot Y$ כאשר $X, Y \le D_4$ כך ש־$\varphi$ כן תהיה איזומורפיזם.
 נתבונן ב־$X = \langle \sigma \rangle, Y = \langle \tau \rangle$.
 נראה כי $XY = D_4$ וגם כי $X \cap Y = \{ e \}$, לכן $\varphi : X \times Y \to D_4$ שהגדרנו על־ידי $\varphi(x, y) = xy$ היא חד־חד ערכית ועל. \\*
+ננסה להגדיר פעולה חדשה על תת־חבורות שתניב מבנה חבורה.
 נגדיר על $X \times Y$ מבנה של חבורה על־ידי
 \[
 	(x_1, y_1) \cdot (x_2, y_2) = ( x_1(y_1 x_2 y_1^{-1}), y_1 y_2) \in X \times Y
 \]
 \begin{proposition}
-	המבנה שהגדרנו הוא אכן מבנה של חבורה.
+	המבנה שהגדרנו הוא אכן חבורה.
 \end{proposition}
 \begin{proof}
 	אסוציאטיביות:
@@ -2059,22 +2060,25 @@ $\varphi : X \times Y \to D_4$ המוגדרת על־ידי $\varphi(x, y) = xy$ 
 	\varphi(x_1, y_1) \varphi(x_2, y_2) = x_1 y_1 x_2 y _2,
 	\qquad \varphi((x_1, y_1) \cdot (x_2, y_2)) = \varphi(x_1 y_1 x_2 y_1^{-1}, y_1 y_2) = x_1 y_1 x_2 y_2 = \varphi(x_1, y_1) \cdot \varphi(x_2, y_2)
 \]
-\begin{proposition}
-	תהי $G$ חבורה ויהיו $H, K \le G$ כך ש־$H \trianglelefteq G$. אז נגדיר פעולה בינארית על $H \times K$ על־ידי
+\begin{definition}[מכפלה פנימית חצי ישרה]
+	תהי $G$ חבורה ויהיו $H, K \le G$ כך ש־$H \trianglelefteq G$. \\*
+	נגדיר את הפעולה הבינארית על $H \times K$ על־ידי
 	\[
 		(h_1, k_1) \cdot (h_2, k_2) = (h_1 k_1 h_2 k_1^{-1}, k_1 k_2)
 	\]
-	אז $H \times K$ עם הפעולה הזו היא חבורה. \\*
-	מסמנים חבורה זו על־ידי $H \rtimes K$ ונקרא לה המכפלה הפנימית החצי ישרה כאשר $H$ פועלת על $H$.
-\end{proposition}
+	פעולה זו נקראת המכפלה הפנימית החצי ישרה, ונסמן את החבורה שנוצרת על־ידה על־ידי $H \rtimes K$.
+\end{definition}
+\begin{remark}
+	סדר המכפלה חשוב, ולא בהכרח $H \rtimes K$ איזומורפי ל־$K \rtimes H$.
+\end{remark}
 \begin{theorem}
 	תהי $G$ חבורה ו־$H, K \le G$ כך ש־$H \trianglelefteq G$, $H \cdot K = G$ ו־$H \cap K = \{ e \}$, \\*
-	אז $\varphi : H \rtimes K \to G$ המתקבלת על־ידי $\varphi(h, k) = hk$ היא איזומורפיזם.
+	אז $\varphi : H \rtimes K \to G$ המתקבלת על־ידי $\varphi(h, k) = h \cdot k$ היא איזומורפיזם.
 \end{theorem}
 \begin{proof}
 	נבדוק ונקבל
 	\[
-		\varphi(h_1, k_1) \varphi(h_2, k_2) = h_1 k_1 h_2 k _2,
+		\varphi(h_1, k_1) \cdot \varphi(h_2, k_2) = h_1 k_1 h_2 k _2,
 		\qquad \varphi((h_1, k_1) \cdot (h_2, k_2)) = \varphi(h_1 k_1 h_2 k_1^{-1}, k_1 k_2) = h_1 k_1 h_2 k_2 = \varphi(h_1, k_1) \cdot \varphi(h_2, k_2)
 	\]
 	וקיבלנו מהחד־חד ערכיות ועל כי זהו איזומורפיזם.
@@ -2084,6 +2088,7 @@ $\varphi : X \times Y \to D_4$ המוגדרת על־ידי $\varphi(x, y) = xy$ 
 	\[
 		D_n \overset{\varphi}{\cong} \langle \sigma \rangle \rtimes \langle \tau \rangle
 	\]
+	דהינו, $D_n$ איזומורפית לחבורה של זוגות סדורים של שתי תת־החבורות יחד עם פעולת הכפל הפנימי החצי ישר.
 \end{conclusion}
 \begin{definition}[מכפלה חצי ישרה חיצונית]
 	יהיו $H, K$ חבורות כלשהן.
@@ -2092,10 +2097,10 @@ $\varphi : X \times Y \to D_4$ המוגדרת על־ידי $\varphi(x, y) = xy$ 
 	\[
 		(h_1, k_1) \cdot (h_2, k_2) = (h_1 \cdot \theta(k_1)(h_2), k_1 k_2)
 	\]
-	פעולה זו משרה מבנה של חבורה ל־$H \times K$ מבנה של חבורה ונסמנה על־ידי $H \rtimes_\theta K$, וקוראים לה מכפלה חצי ישרה חיצונית כאשר $K$ פועלת על $H$ ביחס ל־$\theta$.
+	פעולה זו על המכפלה $H \times K$ משרה מבנה של חבורה ונסמן חבורה זו על־ידי $H \rtimes_\theta K$, נקרא לה \textbf{המכפלה החצי ישרה החיצונית} כאשר $K$ פועלת על $H$ ביחס ל־$\theta$.
 \end{definition}
 \begin{theorem}
-	חבורה $G$ תהיה איזומורפית ל־$H \rtimes_\theta K$ אם ורק אם קיימת חבורה $H$ כך שקיימות $\pi : G \to K, s : K \to G$ כך ש־$\pi \circ s = id_H$ ו־$\pi, s$ הומומורפיזמים.
+	תהי $G$ חבורה, אז $G$ איזומורפית למכפלה חצי ישרה חיצונית רק אם קיימים $H, K$ חבורות כך שקיימים הומומורפיזמים $\pi : G \to K, s : K \to G$ כך ש־$\pi \circ s = id_H$.
 \end{theorem}
 \begin{proof}
 	נניח כי $G = H \rtimes_\theta K$ אז נצטרך למצוא $\pi : G \to K, s : K \to G$ אז נגדיר
