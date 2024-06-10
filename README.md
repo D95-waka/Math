@@ -62,11 +62,11 @@ set -lx AUTHOR '<author name>'
 -  [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – 2025א'
 -  [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – 2025א'
 -  [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2025א'
--  [אליזה על יריעות](https://shnaton.huji.ac.il/index.php/NewSyl/80416) – 2026א'
--  [אליזה פונקציונלית](https://shnaton.huji.ac.il/index.php/NewSyl/80417) – 2026א'
--  [מבנים אלגבריים 2](https://shnaton.huji.ac.il/index.php/NewSyl/80446/) – 2026א'
+-  [תורת ההסתברות 1](https://shnaton.huji.ac.il/index.php/NewSyl/80420) – 2025א'
+-  [אליזה על יריעות](https://shnaton.huji.ac.il/index.php/NewSyl/80416) – 2025ב'
+-  [אליזה פונקציונלית](https://shnaton.huji.ac.il/index.php/NewSyl/80417) – 2025ב'
+-  [מבנים אלגבריים 2](https://shnaton.huji.ac.il/index.php/NewSyl/80446/) – 2025ב'
 -  [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – יקבע בהמשך
--  [תורת ההסתברות 1](https://shnaton.huji.ac.il/index.php/NewSyl/80420) – יקבע בהמשך
 -  [מבוא לטופולוגיה](https://shnaton.huji.ac.il/index.php/NewSyl/80516) – יקבע בהמשך
 
 בנוסף יש לקחת קורסים באנגלית ואבני פינה מתישהו.
