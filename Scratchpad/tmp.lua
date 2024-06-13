@@ -34,6 +34,7 @@ end
 
 function Generate_theorems_summary()
 	local original_section = token.scan_string()
+	tex.print("\\begin{NoHyper}")
 	for key, value in pairs(Theorems_v_arr) do
 		local section_number = tonumber(string.match(Theorems_c_arr[key], "(%d+)%."))
 		local theorem_number = tonumber(string.match(Theorems_c_arr[key], "%.(%d+)")) - 1
@@ -42,5 +43,6 @@ function Generate_theorems_summary()
 		tex.print(value)
 	end
 
+	tex.print("\\end{NoHyper}")
 	tex.print("\\setcounter{section}{" .. original_section .. "}")
 end
