@@ -1,31 +1,38 @@
-print("BEGIN")
-
-Scan_in_process = false
-Theorems_buffer = ""
-Theorems_c_arr = {}
-Theorems_v_arr = {}
-luatexbase.add_to_callback("process_input_buffer", function(line_content)
-	print("BODY -- " .. line_content)
-	if string.find(line_content, "\\begin{theorem}") then
-		Scan_in_process = true
+local function scan_theorems(line_content)
+	local env = string.match(line_content, "\\begin%{([a-zA-Z]+)%}")
+	if env ~= nil and Theorems_macro_names[env] ~= nil then
+		Scan_in_process = env
 		Theorems_buffer = Theorems_buffer .. line_content
 		return line_content .. " \\directlua{ t = token.scan_word() table.insert(Theorems_c_arr, t) } \\thetheorem{} "
 	end
 
-	if Scan_in_process then
+	if Scan_in_process ~= nil then
 		Theorems_buffer = Theorems_buffer .. line_content
 	end
 
-	if string.find(line_content, "\\end{theorem}") then
-		Scan_in_process = false
+	if Scan_in_process ~= nil and string.find(line_content, "\\end{" .. Scan_in_process .. "}") then
+		Scan_in_process = nil
 		table.insert(Theorems_v_arr, Theorems_buffer)
 		Theorems_buffer = ""
 	end
 
 	return line_content
-end, "finish")
+end
 
-function Generate_end()
+function Theorems_summary_setup(macro_names)
+	Scan_in_process = nil
+	Theorems_buffer = ""
+	Theorems_c_arr = {}
+	Theorems_v_arr = {}
+	Theorems_macro_names = {}
+	for v in string.gmatch(macro_names, "[^, ]+") do
+		Theorems_macro_names[v] = 1
+	end
+
+	luatexbase.add_to_callback("process_input_buffer", scan_theorems, "finish")
+end
+
+function Generate_theorems_summary()
 	local original_section = token.scan_string()
 	for key, value in pairs(Theorems_v_arr) do
 		local section_number = tonumber(string.match(Theorems_c_arr[key], "(%d+)%."))
@@ -37,5 +44,3 @@ function Generate_end()
 
 	tex.print("\\setcounter{section}{" .. original_section .. "}")
 end
-
-print("END")

@@ -1,23 +1,36 @@
 \input{../article_base.tex}
 \setcounter{secnumdepth}{2}
 \directlua{require ('./tmp')}
+\newcommand{\TheoremsSummarySetup}[1]{\directlua{ Theorems_summary_setup('#1') }}
+\newcommand{\TheoremsSummary}[0]{\directlua{ Generate_theorems_summary() } \thesection{}}
+
+\TheoremsSummarySetup{theorem, lemma, definition, proposition}
 \begin{document}
 
 \section{A}
 \begin{theorem}
 	משפט לדוגמה
 \end{theorem}
+\begin{definition}
+	הגדרה 1 לדוגמה
+\end{definition}
 \begin{theorem}
 	משפט לדוגמה 2
 \end{theorem}
+\begin{lemma}
+	למה 1 לדוגמה
+\end{lemma}
 
 \section{B}
+\begin{proposition}
+	טענה כלשהי לדוגמה
+\end{proposition}
 \begin{theorem}
 	משפט בסקשן 2
 \end{theorem}
 
-\section{סייכום משפטים}
-\directlua{ Generate_end() } \thesection{}
+\section{סיכום משפטים}
+\TheoremsSummary{}
 
 \section{נספח}
 \begin{theorem}
