@@ -67,11 +67,19 @@
 נמצא סדרים חלקיים $\langle A, \le_A \rangle, \langle B, \le_B \rangle$ כך שקיימים שיכונים $f : \langle A, \le_A \rangle \to \langle B, \le_B \rangle$
 וגם $g : \langle B, \le_B \rangle \to \langle A, \le_A \rangle$ אבל שגם $\langle A, \le_A \rangle \not\cong \langle B, \le_B \rangle$
 
-נבחין כי כל שיכון הוא חד־חד ערכי, ואיזומורפיזם אם הוא גם על, ולכן ננסה למצוא סדרים כך שהשיכון מכל אחד לשני הוא חד־חד ערכי אבל לא על.
-נבחר את הקבוצות $\NN, A = {(\NN \setminus \{0\})}^2$ יחד עם יחס הסדר של הטבעיים והיחס $\le_2 \subseteq A \times A$ המוגדר על־ידי $(a, b) \le_2 (a' b') \iff a + b \le a' + b'$.
-נגדיר $f : \langle \NN, \le \rangle \to \langle \NN^2, \le_2 \rangle$ המוגדרת על־ידי $n \mapsto \langle n + 1, 1 \rangle$ ולכן כמובן נקבל כי $n \le m \iff n + 1 \le m + 1 \iff (n + 1, 1) \le_2 (m + 1, 1)$ וזהו שיכון. \\*
-עוד נגדיר $g : \langle A, \le_2 \rangle \to \langle \NN, \le \rangle$ על־ידי $(a, b) \mapsto a + b$ ולכן $(a, b) \le (a', b') \iff a + b \le a' + b'$ ולמעשה מצאנו כי זהו שיכון.
-אבל נבחין כי שני השיכונים אינם על, $f$ מסיבות ברורות, ו־$g$ משום שאין זוג סדור אשר מוביל ל־$0 \in \NN$.
+נגדיר $A = \RR_{>0}$ ו־$B = \RR \cup \{ m\}$ ונגדיר $\le_A = \le_\RR, \le_B = \le_\RR \cup \{ \langle m, x \rangle \mid x \in \RR \}$. \\*
+עוד נגדיר גם
+\[
+	f(x) = x,
+	\qquad
+	g(x) = \begin{cases}
+		e^x + 1 & x \in \RR \\
+		1 & x = m
+	\end{cases}
+\]
+נשים לב כי $x \le_A y \iff x \le_B y$ ולכן $f$ היא שיכון. \\*
+עבור $x, y \in B$ נקבל כי $x \le y \iff 1 \le e^x + 1 \lor e^x \le x^y$ ומצאנו כי זהו גם שיכון. \\*
+למרות זאת בעוד ל־$B$ יש איבר מינימלי, ל־$A$ אין, ולכן נוכל להסיק כי הם לא איזומורפיים.
 
 \Question{}
 נגדיר
