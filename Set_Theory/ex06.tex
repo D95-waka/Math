@@ -124,7 +124,7 @@
 	\langle B, \le_\RR \rangle \cong \langle X, \preceq \rangle,
 \]
 
-נגדיר $A = [0, 1], B = \{ n + \frac{1}{k} \mid n \in \NN, k \in \NN_{>0} \}$ \\*
+נגדיר $A = \{1\} \cup \{ 1 - \frac{1}{n} \mid n \in \NN \}, B = \{ n + \frac{1}{k} \mid n \text{ is prime}, k \in \NN_{>0} \}$ \\*
 נגדיר $f : \NN \to A$ על־ידי
 \[
 	f(n) = \begin{cases}
@@ -133,5 +133,14 @@
 	\end{cases}
 \]
 לכן נקבל $n \trianglelefteq 0 \iff f(n) \le f(0) \iff 1 - \frac{1}{n} \le 1$, וגם $n \trianglelefteq m \iff 0 < n \le m \iff 0 < 1 - \frac{1}{n} \le 1 - \frac{1}{m} \iff f(n) \le f(m)$.
+מצאנו כי זהו שיכון ונשאר להוכיח כי הוא על, אך למעשה הגדרנו את הקבוצה בהתאם לתמונת $f$ ולכן היא על, ונקבל כי מתקיימת איזומורפיה.
+
+נעבור ל־$B$, ונגדיר $g : \langle X, \preceq \rangle \to \langle B, \le_\RR\rangle$ על־ידי
+\[
+	g(p^n) = p + 1 - \frac{1}{n + 1}
+\]
+אילו $p, q$ ראשוניים שונים אז $p^n \preceq q^m$ לכל $m, n$, וגם $p + 1 - \frac{1}{n + 1} \le p + 1 \le q \le q + 1 - \frac{1}{m + 1}$ ונקבל $g(p^n) \le g(q^m)$.
+אילו $n \le m$ אז $p^n \preceq q^m$ ובהתאם $-\frac{1}{n + 1} \le -\frac{1}{m + 1}$ ונקבל כי $g(p^n) \le g(p^m)$, ומצאנו כי זהו אכן שיכון.
+גם במקרה זה הקבוצה הוגדרה להיות תמונת השיכון ולכן היא על בהגדרתה ונקבל כי ישנה איזומורפיה.
 
 \end{document}
