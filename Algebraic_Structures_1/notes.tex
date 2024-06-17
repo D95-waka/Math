@@ -2142,4 +2142,129 @@ $\varphi : X \times Y \to D_4$ המוגדרת על־ידי $\varphi(x, y) = xy$ 
 	\]
 \end{example}
 
+\section{שיעור 11 --- 17.5.2024}
+\subsection{משפטי האיזומורפיזם}
+\begin{remark}[תזכורת]
+	דיברנו בשיעור הקודם על משפטי האיזומורפיזם.
+	משפט האיזומורפיזם הראשון קובע כי הומומורפיזם $\varphi : G \to H$ גורס כי $G / \ker(f) \xrightarrow{\sim} \im(f)$. \\*
+	משפט האיזומורפיזם השלישי טוען כי אם $N \triangleleft K \triangleleft G$ אז מתקיים
+	\[
+		(G/N) / (K/N) \cong G/K
+	\]
+	אבל למעשה משפט זה מדבר בצורה כוללנית על היכולת שלנו לבחור תת־חבורות שמוכלות בגרעין ותת־חבורות המכילות את הגרעין, והמשפט קושר קשר בין תת־חבורות אלה.
+	טענה זו נובעת ממשפט ההתאמה.
+\end{remark}
+עתה נעסוק במשפט השני, אם יש לנו $N \triangleleft G \ge H$ אנו לא יכולים לדבר על $H / N$ שכן הן לא קשורות בהכרח אחת לשנייה בשום דרך.
+אפשר להקטין את $N$ ולדבר על $H/(N \cap H)$ וזה מן הסתם מוגדר, אבל אפשר לנסות להגדיל במקום את $H$ עצמה, דהינו לבחון את $HN$ ולבדוק אותה במקום, ונוכל לבחון כך את $NH / N$.
+\begin{theorem}[משפט האיזומורפיזם השני]
+	אם $N \triangleleft G \ge H$ חבורה ותת־חבורות שלה, אז
+	\[
+		(HN)/N \cong H/(N \cap H)
+	\]
+	בפרט $N \cap H \triangleleft H$ ו־$N \triangleleft HN \le G$.
+\end{theorem}
+\begin{proof}
+	ברור ש־$N \cap H$ תת־חבורה של $H$. עבור נורמליות לכל $h \in H$ ו־$x \in N \cap H$ צריך להראות כי $h x h^{-1} \in N \cap H$.
+	נראה כי $h x h^{-1} \in N$ כי $N \triangleleft G$ וגם $h h x x^{-1} \in H$ כי $x \in H$ ו־$H \le G$. \\*
+	נראה ש־$HN \le G$. לכל $g_i \in HN$ נוכל להגדיר $h_i x_i = g_i$ עבור $h_i \in H, x_i \in N$, עבור $i = 1, 2$. מתקיים
+	\[
+		g_1 \cdot g_2 = (h_1 x_1)(h_2 x_2) = (h_1 h_2) (h_2^{-1} x_1 h_2 x_2)
+	\]
+	ונבחין כי $h_2^{-1} x_1 h_2 x_2 \in N$. \\*
+	סגירות להופכי דומה בהוכחתה ומושארת כתרגיל.
+
+	נתבונן בהומומורפיזם $H \hookrightarrow G \xrightarrow{\pi} G/N$ ונקרא להרכבה זו $f$.
+	נראה כי $\ker(f) = \ker(\pi) \cap H = N \cap H$.
+	נבחן את התמונה גם ונקבל $\im(f) = \{ hN \mid h \in H \} \subseteq G/N$.
+	נותר להראות ש־$\im(f) = HN/N$. ההכלה $\im(f) \subseteq HN / N$ ברורה.
+	בכיוון השני לכל $hx = g \in HN$ עם $h \in H, x \in N$ מתקיים
+	\[
+		gN = hxN = h(xN) = hN
+	\]
+	ולכן שייך ל־$\im(f)$. \\*
+	לכן ממשפט האיזומורפיזם הראשון נקבל $H/\ker(f) \cong \im(f)$ ולכן $H/(H \cap N) \cong HN/N$.
+\end{proof}
+\begin{remark}[תזכורת]
+	ממשפט האיזומורפיזם השלישי מצאנו כי
+	\[
+		3\ZZ / 6\ZZ \cong \ZZ_{/2}
+	\]
+	ואנו יודעים כי $6\ZZ \triangleleft \ZZ$ ולכן $\ZZ / 6\ZZ \cong \ZZ_{/6}$.
+	נקבל
+	\[
+		(\ZZ / 6 \ZZ) / (3\ZZ / 6\ZZ) \cong \ZZ / 2\ZZ
+	\]
+
+	אוקיי תתעלם ממה שהיה למעלה, זה:
+	\[
+		3\ZZ / 6\ZZ \cong \ZZ_{/2}
+	\]
+	שכן $\ZZ \xrightarrow{\cdot 3} 3\ZZ$. עוד נראה כי $2\ZZ \xrightarrow{\cdot 3} 6\ZZ$ וחבורות אלה איזומורפיות בהתאמה (מקור למקור).
+\end{remark}
+\begin{example}
+	ניקח את $\ZZ$ ואת $a \ZZ$ ו־$b \ZZ$ ונבחין כי $a\ZZ \cap b\ZZ = lcm(a, b) \ZZ$.
+	נבחן גם את $a\ZZ + b\ZZ = \gcd(a, b) \ZZ$ (הלמה של בוזו).
+	משפט האיזומורפיזם השלישי גורר כי $\ZZ / \frac{a}{\gcd(a, b)}\ZZ \cong \gcd(a, b) \ZZ / a\ZZ \cong b\ZZ / lcm(a, b) \ZZ \cong \ZZ / \frac{lcm(a, b)}{b} \ZZ$. \\*
+	לכן נקבל ממשפט האיזומורפיזם השני
+	\[
+		\frac{a}{\gcd(a, b)} = \frac{lcm(a, b)}{b}
+	\]
+\end{example}
+
+\subsection{חבורת הסימטריות של קוביה}
+כשהדרנו את $D_4$ לא הראינו למה היא שקולה לסימטריות של ריבוע, ולכן נוכל להגדיר ריבוע במרחב $C_2 = \{ (x, y) \in \RR^2 \mid -1 \le xy \le 1 \}$
+ואת ההזזות על־ידי העתקות אורתוגונליות $G_2 = \{ v \in C_2, g \in O(2) \mid gv \in C_2 \}$.
+נבחין כי $G_2 \le O(2)$.
+\begin{proposition}
+	$G_2 \cong D_4$.
+\end{proposition}
+\begin{proof}
+	לכל $g \in G_2$ מתקיים $gv \in \{v_1, v_2, v_3, v_4\} := V$ הקודקודים של הריבוע במרחב.
+	ידוע כי $V \subseteq C_2$ קבוצת וקטורים עם אורך מקסימלי ($\sqrt{2}$) ו־$g$ משמרת אורכים. \\*
+	בפרט $G_2$ פועלת על $V$, כלומר מקבלים הומומורפיזם $G_2 \xrightarrow{\varphi} \Sym(V) \cong S_4$.
+\end{proof}
+\begin{lemma}
+	$\varphi$ חד־חד ערכית.
+\end{lemma}
+\begin{proof}
+	אם $\varphi(g) = Id$ אז בפרט $g(v_1) = v_1$ ו־$g(v_2) = v_2$. מכיוון ש־$\{v_1, v_2\}$ בסיס של $\RR^2$ נובע ש־$g = Id$.
+\end{proof}
+נבחין כי שיקוף בתשעים מעלות מעל המרחב שהגדרנו הוא
+\[
+	A = \begin{pmatrix}
+		0 & -1 \\
+		1 & 0
+	\end{pmatrix},
+	B = \begin{pmatrix}
+		-1 & 0 \\
+		0 & 1
+	\end{pmatrix}
+	\in G_2
+\]
+ולכן $\varphi(A) = (1\ 2\ 3\ 4) = \sigma$ ו־$\varphi(B) = (1\ 2)(3\ 4) = \tau$.
+\begin{conclusion}
+	$\im(\varphi) \supseteq \langle \sigma, \tau \rangle = D_4$
+\end{conclusion}
+נותר להראות $|G_2| \le 8$. \\*
+כל $g \in G_2$ היא העתקה לינארית הפיכה ולכן לוקחת זוג וקטורים בלתי תלויים לינאית ב־$V$ לזוג וקטורים בת''ל ב־$V$,
+לכן אם $g(v_1) = v_i$ אז נובע כי $g(v_2) \ne v_i, -v_i$ ולכן יש ארבע אפשרויות ל־$v_i$ ולכל בחירה שלו יש שתי אפשרויות ל־$g(v_2)$, ונקבל כי יש שמונה אפשרויות שונות.
+
+נעבור לבחון את $\RR^3$, בניסיון לבסס פורמלית את הסימטריות של קוביה, נגדיר
+\[
+	C_3 = \{ (x, y, z) \in \RR^3 \mid -1 \le x, y, z \le 1 \}
+\]
+ונגדיר גם
+\[
+	G_3 := \{ g \in O(3) \mid \forall v \in C_3, g v \in C_3 \}
+\]
+\begin{theorem}
+	$G_3 \cong S_4 \times \ZZ_{/2}$.
+\end{theorem}
+נגדיר $V = \{ (1, 1, 1), (-1, 1, 1), (1, -1, 1), (-1, -1, 1), (1, 1, -1), (-1, 1, -1), (1, -1, -1), (-1, -1, -1)\} \subseteq C_3$
+ונקבל כי $\lVert (x, y, z) \rVert = \sqrt{x^2 + y^2 + z^2}$ ונקבל מקסימום אורך אם ורק אם $x, y, z = \pm 1$, דהינו אם ורק אם $(x, y, z) \in V$. \\*
+מקבלים הומומורפיזם $G_3 \xrightarrow{\varphi} S_8$ והוא חד־חד ערכי כי $V$ פורשת את המישור.
+\begin{conclusion}
+	$G_3$ חבורה סופית.
+\end{conclusion}
+
 \end{document}
