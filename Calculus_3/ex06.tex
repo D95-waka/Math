@@ -1,0 +1,217 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 06 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $A \subseteq \RR^2$ פתוחה ותהי $f : A \to \RR$ כך שכל הנגזרות החלקיות של $f$ מסדר ראשון ושני קיימות ורציפות ב־$A$.
+
+\Subquestion{}
+נוכיח כי $f$ גזירה פעמיים.
+\begin{proof}
+	תהי $x_0 \in A$, נתון כי כל הנגזרות החלקיות שלה מוגדרות, ולכן נובע כי $f$ גזירה ונתון כי היא גם רציפה, דהינו $Df|_{x_0} : A \to \hom(A, \RR)$ רציפה,
+	ונתון כי היא גם גזירה ברציפות ולכן מאותו משפט נובע גם כי $D^2 f\mid_{x_0}$ גם היא מוגדרת ורציפה.
+\end{proof}
+
+\Subquestion{}
+יהיו $v = (v_1, v_2)$ ו־$w = (w_1, w_2)$ וקטורים ב־$\RR^2$, נכתוב את $D^2 f \mid_p(v, w)$.
+
+נבחין כי
+\[
+	Df\mid_v x = \nabla f_v(x) = (\partial_x f(v) x, \partial_y f(v) x)
+\]
+כאשר $Df\mid_v : \RR^2 \to \RR^2$. \\*
+עוד אנו יודעים כי $D^2 f : \RR^2 \to \RR^{2 \times 2}$, ובהתאם נקבל
+\[
+	D^f(v, w) = \begin{pmatrix}
+		\partial_{xx}f(v, w) & \partial_{yx}f(v, w) \\
+		\partial_{xy}f(v, w) & \partial_{yy}f(v, w)
+	\end{pmatrix}
+\]
+
+\Question{}
+נגדיר $f : \RR^2 \to \RR$ על־ידי
+\[
+	f(x, y) = \begin{cases}
+		\frac{x^2y^2}{x^2 + y^2} & x^2 + y^2 \ne 0 \\
+		0 & x^2 + y^2 = 0
+	\end{cases}
+\]
+
+\Subquestion{}
+נוכיח כי $f$ גזירה בכל נקודה ונחשב את $\nabla f$.
+\begin{proof}
+	נראה כי בנקודות $(x, y) \ne (0, 0)$ זוהי הרכבת פונקציות רציפות וגזירות ונוכל לחשב ולקבל
+	\[
+		\nabla f (x, y) = (\frac{2xy^4}{{(x^2 + y^2)}^2}, \frac{2x^4y}{{(x^2 + y^2)}^2})
+	\]
+	נבדוק את הגבול ב־$(0, 0)$:
+	\[
+		\lim_{(x, y) \to (0, 0)} \frac{f(x, y) - f(0, 0)}{\sqrt{x^2 + y^2}}
+		= \lim_{(x, y) \to (0, 0)} \frac{x^2y^2}{\lVert (x, y) \rVert^3}
+		= \lim_{(x, y) \to (0, 0)} \frac{\lVert (x, y) \rVert^4}{\lVert (x, y) \rVert^3}
+		= 0
+	\]
+	ומצאנו כי $\nabla f(0, 0) = (0, 0)$, וכי הפונקציה גזירה בכל נקודה.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי כל הנגזרות החלקיות מסדר שני של $f$ קיימות ב־$(0, 0)$.
+\begin{proof}
+	נבדוק
+	\[
+		\partial_{xx} f(0, 0)
+		= \lim_{x \to 0} \frac{2x \cdot 0^4}{\lVert (x, 0) \rVert^3}
+		= 0
+	\]
+	ונקבל באופן דומה גם כי $\partial_{yy} f (0, 0) = 0$. \\*
+	נותר לבדוק את $\partial_{xy} f(0, 0)$, נראה
+	\[
+		\partial_{xy} f(0, 0)
+		= \lim_{x \to 0} \frac{2 x^4 \cdot 0}{\lVert (x, 0) \rVert^3}
+		= 0
+	\]
+	וקיבלנו כי כל הנגזרות החלקיות מתאפסות בנקודה.
+\end{proof}
+
+\Subquestion{}
+נראה כי $f$ לא גזירה פעמיים ב־$(0, 0)$.
+\begin{proof}
+	נבחן את $g(x, y) = \frac{2xy^4}{{(x^2 + y^2)}^2}$, הרכיב הראשון בנגזרת של $f$, ונבדוק את נגזרתו הכיוונית עבור $v = (1, 1)$:
+	\[
+		\lim_{t \to 0} \frac{g(t, t) - g(0, 0)}{t} = \frac{2t^5}{\sqrt{2} t^5} = \frac{\sqrt{2}}{2}
+	\]
+	דהינו, נגזרת מכוונת זו היא לא אפס בסתירה למה שמצאנו בסעיף ההקודם.
+\end{proof}
+
+\Question{}
+תהי $f : \RR^d \to \RR^m$ פונקציה גזירה שלוש פעמים ב־$p \in \RR^d$. יהי $\{e_1, \dots, e_d\}$ הבסיס הסטנדרטי של $\RR^3$, נכתוב במפורש את $D^3 f\mid_p (e_i, e_j, e_k)$.
+
+נבחן תחילה את $Df\mid_p(e_i)$, ונראה כי מתקיים
+\[
+	Df\mid_p =
+	\begin{pmatrix}
+		\partial_1 f_1 \mid_p & \hdots & \partial_d f_1 \mid_p \\
+		\vdots & & \vdots \\
+		\partial_1 f_m \mid_p & \hdots & \partial_d f_m \mid_p
+	\end{pmatrix}
+\]
+ולכן נוכל להציב ולקבל
+\[
+	Df\mid_p(e_i) =
+	\begin{pmatrix}
+		\partial_1 f_1 \mid_p & \hdots & \partial_d f_1 \mid_p \\
+		\vdots & & \vdots \\
+		\partial_1 f_m \mid_p & \hdots & \partial_d f_m \mid_p
+	\end{pmatrix}
+	\cdot
+	e_i
+	=
+	\begin{pmatrix}
+		\partial_i f_1 \mid_p \\
+		\vdots \\
+		\partial_i f_m \mid_p
+	\end{pmatrix}
+	= \partial_i f\mid_p
+\]
+מחזרה על חישוב זה נקבל
+\[
+	D^3f \mid_p (e_i, e_j, e_k) = \partial_k \partial_j \partial_i f \mid_p
+\]
+
+\Question{}
+\Subquestion{}
+נחשב את פולינום טיילור של $f(x, y) = e^{-(x^2 + y^2)} \cos(xy)$ עד סדר $4$ סביב $(0, 0)$.
+
+נבחין כי $e^{-(x^2 + y^2)} = e^{-t^2}$ כאשר $t = \lVert (x, y) \rVert$, מפיתוח טיילור של האקספוננט נקבל
+\[
+	e^{-t^2} = 1 - 0 t + \frac{1}{2} \cdot (-2) \cdot t^2 + \frac{1}{3!} \cdot 0 \cdot t^3 + \frac{1}{4!} \cdot (-8) t^4 + o(t^4)
+	= 1 - t^2 - \frac{1}{2} t^4 + o(t^4)
+\]
+ולכן נסיק גם
+\[
+	e^{-(x^2+y^2)} = 1 - (x^2 + y^2) - \frac{1}{2} {(x^2 + y^2)}^2 + o(\lVert (x, y) \rVert^4)
+\]
+אנו יודעים כי
+\[
+	\cos(t) = 1 - \frac{1}{2} t^2 + \frac{1}{4!} t^4 + o(t^4),
+	\qquad
+	xy = xy + o(\lVert (x, y) \rVert^4)
+\]
+פיתוח טיילור סטנדרטי ופיתוח טיילור של פולינום.
+נשתמש בהרכבת פולינומי טיילור ונקבל כי
+\[
+	\cos(xy) = 1 - \frac{x^2 y^2}{2} + o(\lVert (x, y) \rVert^4)
+\]
+ועתה נכפיל ונקבל
+\begin{align*}
+	f(x, y)
+	& = (1 - (x^2 + y^2) - \frac{1}{2} {(x^2 + y^2)}^2)(1 - \frac{1}{2}(x^2y^2)) + o(\lVert (x, y) \rVert^4) \\
+	& = 1 - (x^2 + y^2) - \frac{1}{2} {(x^2 + y^2)}^2 - \frac{1}{2}(x^2y^2) + o(\lVert (x, y) \rVert^4)
+\end{align*}
+
+\Subquestion{}
+נמצא פיתוח טיילור של $f(x, y) = e^y \tan x$ עד סדר $3$ סביב $(0, \frac{1}{2})$.
+
+נתחיל ונבחין כי
+\[
+	e^y = \sqrt{e} + \sqrt{e} (y - \frac{1}{2}) + \frac{\sqrt{e}}{2} {(y - \frac{1}{2})}^2 + \frac{\sqrt{e}}{3!} {(y - \frac{1}{2})}^3 + o(\lVert (x, y) \rVert^3)
+\]
+ונחשב ונקבל גם
+\[
+	\tan x = x + \frac{1}{3!} x^3 + o(\lVert (x, y) \rVert^3)
+\]
+לכן נוכל להסיק
+\begin{align*}
+	f(x, y)
+	& = (\sqrt{e} + \sqrt{e} (y - \frac{1}{2}) + \frac{\sqrt{e}}{2} {(y - \frac{1}{2})}^2 + \frac{\sqrt{e}}{3!} {(y - \frac{1}{2})}^3)(x + \frac{1}{3!} x^3) + o(\lVert (x, y) \rVert^3) \\
+	& = \sqrt{e} x + \frac{\sqrt{e}}{3!} x^3 + \sqrt{e} x (y - \frac{1}{2}) + o(\lVert (x, y) \rVert^3)
+\end{align*}
+
+\Subquestion{}
+נחשב את פולינום טיילור של $f(x, y, z) = x^3 + 2z^2 - 3yz + 5z$ סביב $(0, 1, 2)$ עד סדר $3$.
+
+נתחיל בסיבה לבחירת הסדר, היא כמובן על־פי מעלת הפולינום. \\*
+נבחין כי פולינום טיילור של פולינום מתכנס לפולינום עצמו, ולכן נוכל לקבוע כי
+\[
+	f(x, y, z) = x^3 + 2z^2 - 3yz + 5z + o(\lVert (x, y, z) \rVert^3)
+\]
+
+\Question{}
+יהיו $a, b, d \ne 0$, נמצא את הנקודה הקרובה ביותר לראשית שעל המישור $ax + by + z = d$.
+
+נגדיר $f : \RR^2 \to \RR$ על־ידי
+\[
+	f(x, y) = d - ax - by
+\]
+לכן הנקודה הקרובה ביותר על המישור היא גם המינימום של $\lVert (x, y, f(x, y)) \rVert$, מינימום של פונקציה זו זהה למינימום של
+\[
+	g(x, y) = \lVert (x, y, f(x, y)) \rVert^2
+\]
+ולכן מספיק לחקור אותה.
+תחילה נראה כי
+\[
+	g(x, y) = x^2 + y^2 + {(d - ax - by)}^2
+\]
+נחפש את נקודות הקיצון של $g$, אלה תופיענה בנקודות בהן הנגזרות החלקיות מתאפסות, לכן נחשב אותן
+\[
+	\nabla g (x, y) = (2x - 2a(d - ax - by), 2y - 2b(d - ax - by) )
+\]
+נבדוק התאפסות
+\begin{align*}
+	& (1 + a^2) x + ab y - ad = 0
+	\iff x = \frac{ad - ab y}{1 + a^2}, \\
+	& (1 + b^2) y - bd + ab \frac{ad - aby}{1 + a^2} = 0 \\
+	& \iff (1 + b^2 - \frac{a^2b^2}{1 + a^2}) y = bd - \frac{a^2bd}{1 + a^2} \\
+	& \iff y = \frac{bd - \frac{a^2bd}{1 + a^2}}{1 + b^2 - \frac{a^2b^2}{1 + a^2}} \\
+	& \iff y = \frac{bd}{1 + b^2a + a^2b}
+\end{align*}
+ומתהליך מקביל והפוך נוכל לקבל גם
+\[
+	x = \frac{ad}{1 + a^2b + ab^2}
+\]
+ומצאנו נקודה יחידה חשודה להיות המינימום.
+
+\end{document}
