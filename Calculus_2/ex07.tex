@@ -1,0 +1,39 @@
+\input{../article_base.tex}
+\usepackage{tikz}
+\DeclareMathOperator\arcsinh{arcsinh}
+\title{פתרון מטלה 7 – חשבון אינפיניטסימלי 2 (80132)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+יהיו $a, b \in \RR$ כך ש־$0 < a < b$ ו־$\alpha \in \NN$. לכל $n \in \NN$ נסמן $q = q_n = \sqrt[n]{\frac{b}{a}}$ ו־$P_n = \{a, aq, \dots, aq^n = b\}$.
+
+\Subquestion{}
+נחשב את $\lim_{n \to \infty} \triangle(P_n)$.
+
+נבחן את $aq^{i + 1} - aq^i = \triangle x_i$, ונקבל $aq^i (q - 1)$, כמובן ש־$q - 1$ הוא ערך קבוע ולכן עלינו לבחון את $aq^i$ בלבד. כמובן ידוע כי $b > a$ ולכן $q > 1$ ונקבל כי $i = n - 1$ הוא המקסימום, דהינו
+\[
+	\triangle(P_n) = aq^{n - 1} (q - 1)
+\]
+ולכן גם
+\[
+	\lim_{n \to \infty} \triangle(P_n)
+	= \lim_{n \to \infty} b - {(\frac{b}{a})}^{(n-1)/n}
+	= \frac{ab - b}{a}
+\]
+
+\Subquestion{}
+תהי $f : [a, b] \to \RR$ המוגדרת על־ידי $f(x) = x^\alpha$. \\*
+נוכיח כי
+\[
+	L(f, P_n) = (b^{\alpha + 1} - a^{\alpha - 1}) \cdot \frac{q - 1}{q^{\alpha + 1} - 1},
+	\qquad
+	U(f, P_n) = q^\alpha \cdot L(f, P_n)
+\]
+\begin{proof}
+	נבחר חלוקה $P_n$ אחידה ולכן מהחלוקה נקבל כי $f(P_n)$ מתלכדת עם החלוקה מהסעיף הקודם, ונוכל להסיק מיידית כי $U(f, P_n) = aq^{\alpha - 1} (q - 1)$
+\end{proof}
+
+\end{document}
