@@ -666,4 +666,186 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 תרגיל:
 הראו כי בהינתן אקסיומת הבחירה כי לכל $A, B$ אם יש $g : B \to A$ על $A$ אז $|A| \le |B|$.
 
+\section{שיעור 6 --- 19.5.2024}
+\subsection{הגישה האקסיומטית לתורת הקבוצות}
+\begin{definition}[כללי יסוד]
+	\begin{enumerate}
+		\item כל האובייקטים המתמטיים הם קבוצות.
+		\item כל הקבוצות מתוארות בשפה היסודית הכוללת סימנים של $=, \in$ וגם סימנים לוגיים סטנדרטים כמו סוגריים, כמתים, קשרים ומשתנים וכן הלאה.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	המספרים הטבעיים הם קבוצות, שכן הם אובייקטים מתמטיים, נגדיר
+	\[
+		0 = \emptyset, 1 = \{ \emptyset \}, n + 1 = n \cup \{ n \}
+	\]
+\end{example}
+\begin{example}
+	זוג סדור הוא קבוצה:
+	\[
+		\langle x, y \rangle = \{ \{x\}, \{x, y \}\}
+	\]
+\end{example}
+\begin{example}
+		נתאר את הקבוצה הריקה
+		\[
+			\varphi_0(x) = \forall y : y \notin x
+		\]
+		תכונה זו משמעותה היא שעבור $x$ לכל קבוצה $y$ אז $y \notin x$.
+\end{example}
+\begin{example}
+	הכלה בין קבוצות $x \subseteq y$ תיכתב על־ידי
+	\[
+		\forall z : z \in x \implies z \in y
+	\]
+\end{example}
+\begin{example}
+	כיצד נבטא את הביטוי $x = 1$ בשפה פורמלית? \\*
+	אנו יודעים כי $1 = \{ \emptyset \}$ ובשפה הפורמלית
+	\[
+		\varphi_1(x) = \exists y : \varphi_0(y) \land y \in x \land \forall z (z \in x \implies z = y)
+	\]
+	את הביטוי $x = 2$ נוכל לכתוב על־ידי
+	\[
+		\varphi_2(x) = \forall z ( z \in x \implies (\varphi_0(z) \lor \varphi_1(z)) \land \exists x_0 (x_0 \in x \land \varphi_0(x_0)) \land \exists x_1 (x_1 \in x \land \varphi_1(x_1)))
+	\]
+\end{example}
+\begin{definition}[תכונה]
+	תכונה $p(x)$ של קבוצות היא כזו הניתנת לתיאור בשפה הפורמלית.
+\end{definition}
+\begin{example}
+	$x \subseteq y$ היא אכן תכונה.
+\end{example}
+\begin{remark}
+	נרשה לעשות שימוש בקבוצות $a$ כחלק מתיאור של תכונה.
+\end{remark}
+\begin{example}
+	$a = 2$. התכונה $p(x) = x \subseteq 2$ ניתנת לתיאור בשפה הפורמלית.
+\end{example}
+עתה נשאל את עצמנו, מהן קבוצות? \\*
+הניסיון הנאיבי הוא לכל $p(x)$ יש קבוצה $\{ x \mid p(x) \}$ (קבוצת האובייקטים שמקיימים $p$).
+
+ניתקל כך בבעיה, ראינו כי $p(x) := x \notin x$ הוא תכונה אבל לא תיתכן קבוצה $\{ x \mid x \notin x \}$.
+
+הגישה שלנו היא לרום רשימת אקסיומות ZFC = ZF + AC, שתכולתן לתת לנו תיאור של הקבוצות הקיימות.
+\begin{remark}
+	באופן כללי, לאוסף מהצורה
+	\[
+		\{ x \mid p(x) \}
+	\]
+	כאשר $p(x)$ תכונה כלשהי, יקרא מחלקה.
+\end{remark}
+\begin{remark}
+	כל קבוצה $A$ היא מחלקה, שכן ניתן לרשום
+	\[
+		A = \{ x \mid x \in A \}
+	\]
+\end{remark}
+מחלקה שאינה קבוצה תיקרא מחלקה נאותה.
+\begin{example}
+	\[
+		\{ x \mid x \notin x\}
+	\]
+	היא מחלקה נאותה על־פי משפט ראסל ו־ZF. % chktex 13
+\end{example}
+\begin{definition}[המערכת ZF]
+	\begin{enumerate}
+		\item אקסיומת ההיקפיות:
+			שתי קבוצות שוות אם ורק אם יש בהן אותם איברים,
+			\[
+				\forall x \forall y ( x = y \iff (\forall z, z \in x \iff x \in y))
+			\]
+		\item אקסיומת הקבוצה הריקה:
+			קיימ קבוצה ריקה
+			\[
+				\exists x\ \varphi_0(x)
+			\]
+		\item אקסיומת הזוג הלא סדור:
+			לכל קבוצות $x$ ו־$y$ קיימת $\{x, y\}$,
+			\[
+				\forall x \forall y \ \exists z [ x \in z \land y \in z \land \forall w (w \in z \implies w = x \lor w = y)]
+			\]
+			הערה: נסיק קיום יחידונים לכל $x$ על־ידי $\{ x, x \} = \{ x \}$.
+		\item אקסיומת האיחוד:
+			לכל קבוצה $x$ קיימת הקבוצה $\cup x$,
+			\[
+				\forall x \exists y \ \forall w [w \in y \iff \exists z (z \in x \land w \in z)]
+			\]
+			הערה: נסיק כי לכל זוג קבוצות $a, b$ קיימת הקבוצה $a \cup b$, שכן מאקסיומת הזוגות קיימת הקבוצה $x = \{ a, b \}$ ומאקסיומת האיחוד קיימת קבוצה $a \cup b = \cup x$.
+		\item אקסיומת קבוצת החזקה:
+			לכל קבוצה $x$ קיימת קבוצת חזקה $\mathcal{P}(x)$ (קבוצה שאיבריה הם תתי־הקבוצות של $x$),
+			\[
+				\forall x\exists y \forall z (z \in y \iff z \subseteq x)
+			\]
+		\item אקסיומת הסדירות (ביסוס היטב):
+			אם $x$ קבוצה לא ריקה אז קיים איבר $y \in x$ שהוא מזערי ביחס $\in$ (כלומר אין $z \in x$ כך ש־$z \in y$),
+			\[
+				\forall x [ \lnot \varphi_0(x) \implies \exists y ( y \in x \land \forall z (z \in x \implies \lnot z \in y))]
+			\]
+			מסקנה: לא קיים $x$ כך ש־$x \in x$, שכן אחרת $x = \{ a \}$ סותרת את אקסיומת הסדירות. \\*
+			מסקנה 2: לא יתכן $a, b$ קבוצות כך ש־$b \in a \land a \in b$, על־ידי $x = \{a, b\}$. \\*
+			מסקנה 3: לא תיתכן סדרה אינסופית יורדת ביחס $\in$ של קבוצות, דהינו
+			\[
+				x_0 \ni x_1 \dots \ni x_n \ni \dots
+			\]
+			שכן $x = {\{ x_n \}}_{n \in \NN}$ לא מקיימת את אקסיומת הסדירות.
+		\item אקסיומת האינסוף:
+			הכנה: \\*
+			סימון: לכל קבוצה $x$ נגדיר $s(x) = x \cup \{ x \}$ (מובטח קיום מתוך האקסיומות הקודמות). \\*
+			הגדרה: קבוצה $I$ נקראת אינדוקטיבית אם $\emptyset \in I$, וגם $\forall x (x \in I \implies s(x) \in I)$. \\*
+			האקסיומה משמעותה היא שיש קבוצה אינדוקטיבית,
+			\[
+				\exists y [ \emptyset \in y \land \forall x (x \in y \implies s(x) \in y)]
+			\]
+		\item אקסיומת (סכמת) הפרדה:
+			לכל תכונה $p(x)$ וקבוצה $A$ קיימת קבוצה $\{ x \in A \mid p(x) \}$, \\*
+			נניח כי $p(x)$ היא תכונה מוגדרת על־ידי נוסחה $\varphi(x, a_1, \dots, a_k)$, אז
+			\[
+				\forall x \forall a_1, \dots, a_k \exists y [\forall z \ z \in y \iff z \in x \land \varphi(z, a_1, \dots, a_k)]
+			\]
+			הערה: זו סכמה של אקסיומות במובן שלכל נוסחה (תכונה) כותבים אקסיומה עבורה.
+		\item אקסיומת (סכמת) החלפה: \\*
+			הכנה: \\*
+			נאמר כי תכונה $p(x, y)$ מקיימת את תנאי הפונקציה אם לכל $x_1, y_1, x_2, y_2$ אם $p(x_1, y_1)$ וגם $p(x_2, y_2)$ וגם $x_1 = x_2$ אז $y_1 = y_2$. \\*
+			הערה: אם $p(x, y)$ מקיימת את תנאי הפונקציה אז נאמר כי המחלקה $F = \{ \langle x, y \rangle \mid p(x, y) \}$ אז היא מחלקה המקיימת את תנאי הפונקציה. \\*
+			האקסיומה קובעת כי לכל תכונה $p(x, y)$ המקיימת את תנאי הפונקציה ולכל קבוצה $A$ קיימת קבוצה שהיא
+			\[
+				F[A] = \{ y \mid \exists x \in A\ \overbrace{\langle x, y \rangle \in F}^{p(x, y)} \}
+			\]
+			תרגיל: לרשום את האקסיומה (סכמה) בשפה הפורמלית.
+	\end{enumerate}
+\end{definition}
+תשובה לשאלה המקורית היא שקבוצה היא כל אוסף שהאקסיומות מוכיחות שהוא קבוצה.
+
+\subsection{בניות ראשונות ב־ZF}
+\begin{proposition}
+	לכל קבוצות $a, b$ קיימת קבוצה $\{ \{a\}, \{a, b\}\}$ והיא הזוג הסדור של $a, b$, מסומן ב־$\langle a, b \rangle$ או $(a, b)$.
+\end{proposition}
+\begin{exercise}
+	הראו כי לכל קבוצות $a_1, b_1, a_2, b_2$ אם $\langle a_1, b_1 \rangle = \langle a_2, b_2 \rangle$ אז $a_1 = a_2$ וגם $b_1 = b_2$.
+\end{exercise}
+\begin{proposition}
+	לכל זוג קבוצות $A, B$ קיימת המכפלה הקרטזית
+	\[
+		A \times B = \{ \langle a, b \rangle \mid a \in A, b \in B \}
+	\]
+\end{proposition}
+\begin{proof}
+	יהיו $A, B$ קבוצות. הראינו כי קיימת הקבוצה $A \cup B$. \\*
+	מאקסיומת חזקה קיימת קבוצת חזקה $\mathcal{P}(A \cup B)$. 
+	נשים לב כי לכל $a \in A, b \in B$ מתקיים $\{a\}, \{b\} \in \mathcal{P}(A \cup B)$. \\*
+	גם מאקסיומת החזקה קיימת גם $\mathcal{P}(\mathcal{P}(A \cup B))$, ולכן נשים לב כי לכל $a \in A, b \in B$ מתקיים
+	\[
+		\langle a, b \rangle = \{\{a\}, \{a, b\}\} \in \mathcal{P}(\mathcal{P}(A \cup B))
+	\]
+	נשתמש באקסיומת הפרדה עבור התכונה
+	\[
+		p(z) = \exists a \exists b (a \in A \land b \in B \land z = \langle a, b \rangle)
+	\]
+	מאקסיומת ההחלפה נסיק כי קיימת קבוצה
+	\[
+		\{ \langle a, b \rangle \mid a \in A, b \in B \} = \{ z \in \mathcal{P}(\mathcal{P}(A \cup B)) \mid p(z) \}
+	\]
+\end{proof}
+
 \end{document}
