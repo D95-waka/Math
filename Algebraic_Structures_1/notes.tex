@@ -2372,4 +2372,184 @@ $i, j, k$ הם מסדר $4$, וכך גם $-i, -j, -k$, לעומת זאת רק $\
 מחלקות הצמידות של $A_5$ הן מגודל $1, 15, 12, 20, 12$ בלבד. \\*
 מכאן נוכל להסיק כי הטענה נכונה.
 
+\section{שיעור 12 --- 19.5.2024}
+\subsection{קוביות}
+בשיעור הקודם התחלנו לבחון את הקודקדים של קוביה והסיבוב שלה על־פי $G_3 \le (3)$,
+איברים אלה משמרים את מבנה הקבוצה של הקודקדים, היא $C_3$. \\*
+ראינו גם שהקודקדים הם הרחוקים ביותר ממרכז הקוביה, ומשום שהעתקות אורתוגונליות משמרות מרחק, הן גם מזיזות קודקודים לקודקודים בלבד.
+\begin{theorem}
+	$G_3 \cong S_4 \times \ZZ_{/2}$
+\end{theorem}
+משפט זה יוכח בשלבים במהלך ההרצאה. \\*
+נראה כי הקודקודים הם
+\[
+	V = \{ (1, 1, 1), (-1, 1, 1), (1, -1, 1), (-1, -1, 1), (-1, -1, -1), (1, -1, -1), (-1, 1, -1), (1, 1, -1) \}
+\]
+וידוע כי $\lVert (x, y, z) \rVert = \sqrt{x^2 + y^2 + z^2}$.
+\begin{lemma}
+	לכל $g \in G_3$ ו־$v \in V$ מתקיים $gv \in V$.
+\end{lemma}
+ההוכחה זהה למקרה של $G_2$ ולא נחזור עליה. \\*
+מקבלים $\varphi : G_3 \to S_8$.
+\begin{lemma}
+	$\varphi$ חד־חד ערכית ובפרט $|G_3| < \infty$.
+\end{lemma}
+במקום לבחון פאות נבחן את מרכזי הפאות, מטעמי נוחות ופשטות.
+יש שש פאות ובהתאם שישה וקטורים המייצגים את הפאות. נגדיר
+\[
+	F = \{ (1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 0, 0), (0, -1, 0), (0, 0, -1) \}
+\]
+\begin{lemma}
+	$G_3$ משמרת את $F$.
+\end{lemma}
+\begin{proof}
+	נראה שלכל $g \in G_3$ מתקיים $ge_1 \in F$. \\*
+	$v_1 = (1, 1, 1), v_2 = (1, -1, -1)$ אז נקבל $e_1 = \frac{v_1 + v_2}{2}$ ולכן נקבל גם $g e_1 = \frac{gv_1 + gv_2}{2}$. \\*
+	ניזכר שמתקיים $\langle (x, y, z), (x', y', z') \rangle = xx' + yy' + zz'$ ולכן עבור וקטורים ב־$V$ נקבל את כמות האגפים בהם הם זהים פחות כמות האגפים בהם הם שונים. \\*
+	לכן $\langle gv_1, gv_2 \rangle = \langle v_1, v_2 \rangle = -1$ ולכן $ve_1 = \frac{gv_1 + gv_2}{2} \in F$.
+\end{proof}
+מקבלים המומורפיזם $\varphi : G_3 \to S_6$.
+\begin{lemma}
+	הפעולה שקיבלנו $G_3 \acts F$ היא טרנזיטיבית.
+\end{lemma}
+\begin{proof}
+	בתרגיל.
+\end{proof}
+ניזכר במשפט מסלול־מייצב
+\[
+	G \acts X, |Q_x| = \frac{|G|}{|G_x|}
+\]
+אנו יודעים את גודל המסלול, ואנו רוצים למצוא את $|G|$, אז נמצא את גודל המייצב.
+\begin{lemma}
+	${(G_3)}_{e_1} = \left\{
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & a & b \\
+			0 & c & d
+		\end{pmatrix}
+		\middle|
+		\begin{pmatrix}
+			a & b \\
+			c & d
+		\end{pmatrix}
+		\in G_2
+	\right\}$
+\end{lemma}
+\begin{proof}
+	נגדיר את המטריצה החיצונית $A$ ואת הפנימית $B$.
+	נראה כי
+	\[
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & a & b \\
+			0 & c & d
+		\end{pmatrix}
+		\begin{pmatrix}
+			x \\ y \\ z
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x \\
+			ay + bz \\
+			cy + dz
+		\end{pmatrix}
+	\]
+	אז $A \in G_3 \iff (\begin{pmatrix} x \\ y \\ z \end{pmatrix} \implies A \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in C_3)$.
+	מכיוון ש־$A \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix}
+		x \\
+		B \begin{pmatrix}
+			y \\ z
+		\end{pmatrix}
+	\end{pmatrix}$
+	זה שקול לכך ש־$B \in G_2$.
+\end{proof}
+\begin{conclusion}
+	$|G_3| = 48$
+\end{conclusion}
+\begin{proof}
+	ממספט מסלול־מייצב לפעולה $G_3 \acts F$ ו־$e_1 \in F$ מקבלים
+	\[
+		|O(e_1)| = \frac{|G_3|}{{(G_3)}_{e_1}}
+	\]
+	מטרנזיטיביות $O(e_1) = F$ ולכן $|O(e_1)| = 6$ וגם ${(G_3)}_{e_1} \cong G_2 \cong D_4$ ולכן $|{(G_3)}_{e_1}| = 8$ ונקבל
+	\[
+		|G_3| = |O(e_1)| \cdot |{(G_3)}_{e_1}| = 6 \cdot 8
+	\]
+\end{proof}
+נגדיר את קבוצת האלכסונים הראשיים $D = \{x_1, x_2, x_3, x_4\}$, כאשר לדוגמה $x_1 = \{ (1, 1, 1), (-1, -1, -1) \}$, דהינו $x = \{v, -1\}$. \\*
+נגדיר גם עבור $g \in G_3$ את $gx = \{ gv, g(-v)\}$.
+\begin{proposition}
+	זוהי פעולה של $G_3$ על $D$.
+\end{proposition}
+מקבלים הומומורפיזם $f : G_3 \to S_4$.
+\begin{lemma}
+	$\ker(f) = \{ Id \}$.
+\end{lemma}
+\begin{proof}
+	ברור ש־$-Id, Id \in \ker(f)$.
+	נניח ש־$g \in \ker(f)$.
+	נבחר $v_1 \in V$.
+	מספיק להראות שאם $g v_1 = v_1$ אז $gv = v$ לכל $v \in V$.
+	בלי הגבלת הכלליות $v_1 = (1, 1, 1)$ ולכן עבור $v = (x, y, z)$ נקבל
+	\[
+		\langle v, v_1 \rangle = x + y + z \ne -x - y - z = \langle -v, v_1 \rangle
+	\]
+	מכיוון שצריך להתקיים $\langle gv, v_1 \rangle = \langle gv, gv_1 \rangle = \langle v, v_1 \rangle$
+	וגם $gv = \pm v$ כי $g \in \ker(f)$ נובע ש־$gv = v$ כי $\langle v, v_1 \rangle \ne 0$ ולכן
+	\[
+		\langle v, -v_1 \rangle = - \langle v, v_1 \rangle \ne \langle v, v_1 \rangle
+	\]
+\end{proof}
+\begin{conclusion}
+	$f$ על.
+\end{conclusion}
+\begin{proof}
+	ממשפט האיזומורפיזם הראשון נקבל
+	\[
+		G_3 / \{\pm Id\} \cong \im(f)
+	\]
+	ולכן בפרט גם $48 / 2 = |G_3| / |\{ \pm Id \} = |\im(f)| = |S_4|$.
+\end{proof}
+נסתכל על $G \xrightarrow{\det} \{ \pm 1 \} \cong \ZZ_{/2}$, נסמן $SG_3 = \ker(\det) \triangleleft G_3$.
+נתבונן בהומומורפיזם $\psi : G_3 \to S_4 \times \{\pm 1\}$ המוגדר על־ידי $g \mapsto (f(g), \det(g))$.
+\begin{proposition}
+	$\psi$ היא איזומורפיזם.
+\end{proposition}
+\begin{proof}
+	מתקיים כי $|G_3| = 48 = 24 \cdot 2 = |S_4 \times \{\pm 1\}|$ ולכן מספיק להראות כי $\psi$ היא חד־חד ערכית. \\*
+	נחשב:
+	\[
+		\ker(\psi) = \ker(f) \cap \ker(\det) = \{ \pm Id \} \cap SG_3 = \{ Id \}
+	\]
+	ולכן $\psi$ חד־חד ערכית.
+\end{proof}
+בנינו העתקה ל־$S_4$ על־ידי האלכסונים ואז בנינו העתקה לדטרמיננטה, ואז הוכחנו שהם הפיכים.
+אפשר להוכיח את הגודל של קוביה n־ממדית על־ידי שימוש במשפט מסלול מייצב והגודל של הקוביה מממד אחד יותר נמוך באינדוקציה בשיטה שבה עבדנו גם עכשיו עם הפאות. \\*
+$G_3 \le O(3)$ אבל לא מצאנו מהם האיברים שנמצאים בחבורה זו. אז מהם האיברים הללו?
+\begin{enumerate}
+	\item שיקופים:
+		\[
+			\begin{pmatrix}
+				\pm 1 & & \\
+				  & \pm 1 & \\
+				  & & \pm 1 \\
+			\end{pmatrix}
+			\cong {(\ZZ_{/2})}^3
+		\]
+		יש 8 כאלה.
+	\item מטריצות הפרמוטציה:
+		לדוגמה
+		\[
+			\begin{pmatrix}
+				0 & 1 & 0 \\
+				1 & 0 & 0 \\
+				0 & 0 & 1 \\
+			\end{pmatrix}
+			\cong S_3
+		\]
+		כאלה יש 6.
+\end{enumerate}
+$G_3$ וגם $G_n$ הן מטריצות פרמוטציה מוכללות. \\*
+נבחין כי $S_3$ פועל על הצירים, או על זוגות של פאות.
+
 \end{document}
