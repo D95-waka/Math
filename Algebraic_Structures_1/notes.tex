@@ -2552,4 +2552,165 @@ $G_3 \le O(3)$ אבל לא מצאנו מהם האיברים שנמצאים בח�
 $G_3$ וגם $G_n$ הן מטריצות פרמוטציה מוכללות. \\*
 נבחין כי $S_3$ פועל על הצירים, או על זוגות של פאות.
 
+\section{שיעור 13 --- 24.6.2024}
+\subsection{חבורות סופיות}
+הפעם נניח שחבורה היא סופית וננתח את המבנה שלה לעומק. \\*
+ראינו כי אם חבורה היא מגודל ראשוני אז אין לה תת־חבורות, וכי היא ציקלית, וראינו גם כי אפשר לבנות חבורות מתת־חבורות ראשוניות.
+\[
+	|G| = p_1^{\alpha_1} p_2^{\alpha_2} \dots
+\]
+\begin{definition}[חבורת p]
+	חבורת $p$ היא חבורה $G$ מגודל $p^n$ לאיזשהו $n \in \NN$.
+\end{definition}
+\begin{proposition}
+	אם $G$ חבורת $p$ אז $Z(G) \ne \{ e \}$.
+\end{proposition}
+שימושי לנו ליכולת לפרק חבורות מסוג זה על־ידי שימוש במרכז.
+\begin{conclusion}
+	חבורת $p$ לא אבלית איננה פשוטה.
+\end{conclusion}
+\begin{conclusion}
+	אם $|G| = p^n$ אז קיימת $H \le G$ כך ש־$|H| = p^k$ לכל $0 \le k \le n$.
+\end{conclusion}
+\begin{proof}
+	$Z(G)$ תת־חבורת $p$ לא טריוויאלית, דהינו $p \mid |Z(G)|$ ולכן ש תת־חבורה $H \le Z(G)$ כך ש־$|H| = p$.
+	מכיוון ש־$H$ מרכזית היא נורמלית ב־$G$.
+	מתקיים $|G/H| = p^{n - 1}$.
+	לכן באינדוקציה לכל $0 \le k \le n - 1$ יש תת־חבורה $\overline{K} \le G/H$ כך ש־$|\overline{K}| = p^k$.
+	ממשפט ההתאמה $\overline{K}$ מתאימה לאיזושהי $K \le G$ עם $\overline{K} = K/H$ ונקבל
+	\[
+		[G : K ] = [G/H : \overline{K}] = p^{n - k - 1}
+	\]
+	לכן $|K| = p^{k + 1}$.
+\end{proof}
+עתה נעסוק בשאלה איך ניתן למצוא שרשרת של תת־חבורות נורמליות עבור חבורה סופית כלשהי.
+השאלה המעניינת היא באיזה סדר מספר תת־החבורות גדל ביחס לגודל החבורה הסופית.
+
+נעבור עתה לעיסוק בחבורה $|G| = n = p^r \cdot m$ כאשר $\gcd(m, p) = 1$.
+\begin{definition}[חבורות סילו]
+	תת־חבורה $P \le G$ מגודל $p^r$ נקראת $p$־סילו (p-Silor).
+\end{definition}
+\begin{theorem}[משפט סילו הראשון]
+	לכל חבורה סופית $G$ וראשוני $p$ יש ל־$G$ תת־חבורה $p$־סילו.
+\end{theorem}
+\begin{remark}
+	$p \nmid |G|$ אם ורק אם $\{e \} \le G$ היא $p$־סילו.
+\end{remark}
+\begin{example}
+	אם $G$ חבורת $p$ אז $P = G \le G$ היא $p$־סילו יחידה של $G$.
+\end{example}
+\begin{example}
+	נניח $G = \ZZ_{/n}$ אז יש $p$־סילו יחידה $P = m\ZZ / n\ZZ$ מגודל $\frac{n}{m} = p^r$.
+	ממשפט השאריות הסיני נקבל גם
+	\[
+		\ZZ_{/n} \cong \ZZ_{/m} \times \ZZ_{/p^r}
+	\]
+	במקרה זה $P \cong \{ e \} \times \ZZ_{/m}$.
+\end{example}
+\begin{example}
+	$G = S_p$, $|S_p| = p! = p \cdot (p - 1)! $. ונגדיר $m = (p - 1)! $.
+	נוכל לבחור $P = \langle  (1\ 2\ \dots\ p)\rangle \le S_p$
+	נוכל גם להשתמש במשפט קיילי ולגבל
+	\[
+		\ZZ_{/p} \hookrightarrow \Sym(\ZZ_{/p}) \cong S_p
+	\]
+\end{example}
+\begin{example}
+	$G = GL_n(\FF_p)$,
+	נבחן את המטריצות המשולשיות העליות, כאשר האלכסון הוא $1$, ונוכל לבחור במשלוש עצמו מה שאנחנו רוצים, נגדיר חבורה זו להיות $U_n(\FF_p)$.
+	\[
+		|GL_n(\FF_p)| = (p^n - 1)(p^n - p)(p^n - p^2) \cdots (p^n - p^{n - 1})
+	\]
+	משיקולי אלגברה לינארית.
+	נראה גם
+	\[
+		|U_n(\FF_p)| = p^0 p^1 \cdots p^{n - 1} = p^{\binom{n}{2}}
+	\]
+	לכן נקבל
+	\[
+		|GL_n(\FF_p) / U_n(\FF_p)| = (p^n - 1) (p^{n - 1} - 1) \cdots (p - 1)
+	\]
+	וזה זר ל־$p$.
+\end{example}
+\begin{lemma}
+	$\gcd(p, m) = 1$ אז
+	\[
+		\binom{p^r m}{p^r} = m (\mod p)
+	\]
+\end{lemma}
+\begin{proof}
+	נבחן את הפולינום ${(x + y)}^p = \sum_{k = 0}^{p} \binom{n}{k} x^k y^{n - k}$. \\*
+	עבור $0 < k < p$ מתקיים ש־$p \mid \binom{p}{k}$ שכן
+	\[
+		\binom{p}{k} = \frac{p!}{k!(p - k)!}
+	\]
+	ולכן ${(x + y)}^p = x^p + y^p (\mod p)$ ולכן באינדוקציה
+	\[
+		{(x + y)}^{p^r} = x^{p^r} + y^{p^r} (\mod p)
+	\]
+	לכן ${(x + y)}^{p^r m} = {(x^{p^r} + y^{p^r})}^m (\mod p)$.
+	לכן בפרט יש שוויון של המקדמים של $x^{p^r} \cdot y^{p^r (m - 1)}$, כלומר
+	\[
+		\binom{p^r m}{p^r} = \binom{m}{1} (\mod p)
+	\]
+\end{proof}
+\begin{theorem}[משפט סילו הראשון]
+	לכל חבורה $G$ מהגודל $p^r m$ יש תת־חבורה $p$־סילו.
+\end{theorem}
+\begin{proof}
+	נבחן את $X = \{ S \subseteq G \mid |S| = p^r \}$. לא כל האיברים פה הם תת־חבורות וננסה להוכיח שאחד מהם הוא כן. \\*
+	נסתכל על הפעולה הרגולרית של $G$ על $X$ המוגדרת על־ידי
+	\[
+		g \cdot S = gS = \{ gs \mid s \in S \}
+	\]
+	ראית נשים לב כי  $|X| = \binom{p^r m}{p^r}$ לפי הגדרת הבינום.
+	ואנו יודעים כי ביטוי זה שקול ל־$m (\mod p)$ ולכן בפרט
+	\[
+		p \nmid |X|
+	\]
+	לכן קיים מסלול $O(S)$ כך ש־$p \nmid |O(S)|$. \\*
+	ממשפט מסלול־מייצב נקבל $|O(S)| = |G| / |G_S|$ ולכן $|G_S| \ge p^r$. \\*
+	נקבל ש־$G_S$ פועלת (רגולרית) על $S$.
+	לכל $x \in G_S$ ו־$s \in S$ מתקבל כי $xs \in S$. \\*
+	בפרט אם $xs = ys$ אז $x = y$ לכ $x, y \in G_S$.
+\end{proof}
+\begin{lemma}
+	עבור $s \in S$ הפונקציה $G_s \to S$ על־ידי $x \mapsto s_0$ היא חד־חד ערכית.
+\end{lemma}
+\begin{proof}
+	$x, y \in G_S$ אם $xs_0 = ys_0$ אז על־ידי כפל מימין ב־$s_0^{-1}$ נקבל $x = y$.
+\end{proof}
+\begin{conclusion}
+	\[
+		|G_S| \le |S| = p^r
+	\]
+	ולכן
+	\[
+		|G_S| = p^r
+	\]
+\end{conclusion}
+\begin{theorem}[משפט סילו השני]
+	כל תת־החבורות $p$־סילו של $G$ הן צמודות זו לזו.
+\end{theorem}
+\begin{proposition}
+	$P \le G$ תת־חבורה $p$־סילו ו־$Q \le G$ תת־חבורה $p$־סילו כלשהי אז קיים $g \in G$ כך ש־$g Q g^{-1} \le P$.
+\end{proposition}
+הטענה הזו גוררת את משפט סילו השני משיקלוי גודל.
+\begin{lemma}[למת הספירה היסודית]
+	אם $G$ חבורת $p$ פועלת על $X$ סופית אז
+	\[
+		|Fix_G(X)| = |X| (\mod p)
+	\]
+\end{lemma}
+\begin{proof}
+	לכל $x \in X$ נקבל
+	\[
+		|O(x)| = |G| / |G_x| \in \{ 1, pm \}
+	\]
+	ולכן בפרט
+	\[
+		|X| = \sum |O(x)| = |Fix_G(x)| (\mod p)
+	\]
+\end{proof}
+
 \end{document}
