@@ -756,7 +756,7 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 				\forall x \forall y ( x = y \iff (\forall z, z \in x \iff x \in y))
 			\]
 		\item אקסיומת הקבוצה הריקה:
-			קיימ קבוצה ריקה
+			קיימת קבוצה ריקה
 			\[
 				\exists x\ \varphi_0(x)
 			\]
@@ -846,6 +846,192 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 	\[
 		\{ \langle a, b \rangle \mid a \in A, b \in B \} = \{ z \in \mathcal{P}(\mathcal{P}(A \cup B)) \mid p(z) \}
 	\]
+\end{proof}
+
+\section{שיעור 7 --- 26.6.2024}
+\subsection{התורה האקסיומתית}
+תזכורת: לפי הגישה האקסיומטית כל אובייקט הוא קבוצה. ישנה רשימת אקסיומות ZF אשר קובעת כללים למהן הקבוצות. \\*
+מחלקה היא אוסף של קבוצות הנתונה על־ידי $p(x)$ תכונה כלשהי. \\*
+מחלקות נאותות הן מחלקות שאינן קבוצות. באופן פורמלי (בשפה הפורמלית) לא ניתן להשתמש במחלקות נאותות כקבוצות. \\*
+אף־על־פי כן בהינתן מחלקות $A = \{ x \mid p_A(x) \}$ ו־$B = \{ x \mid P_B(x) \}$ הנקבעות על־ידי תכונות $P_A, P_B$ אנו רושמים לעיתים באופן לא פורמלי $x \in A$ או $A \subseteq B$. \\*
+המשמעות של ביטויים אלה הם
+\[
+	P_A(x),
+	\quad
+	\forall x (P_A(x) \implies P_B(x))
+\]
+בהתאמה.
+
+\begin{notation}
+	$V = \{ x \mid x = x \}$ מחלקת כל הקבוצות.
+\end{notation}
+\begin{proposition}
+	$V$ אינו קבוצה (היא מחלקה נאותה).
+\end{proposition}
+\begin{proof}
+	נניח כי $V$ קבוצה ונתבונן בתכונה $p(x) = x \notin x$, מאקסיומת ההפרדה נסיק כי יש קבוצה
+	\[
+		\{ x \in V \mid x \notin x \} = \{ x \mid x \notin x \}
+	\]
+	בסתירה לטיעון הפרדוקס של ראסל.
+\end{proof}
+בסוף השיעור הקודם הוכחנו את הטענות
+\begin{proposition}
+	לכל זוג קבוצות $a, b$ קיימת הקבוצה
+	\[
+		\langle a, b \rangle = \{ \{a\}, \{a, b\} \}
+	\]
+\end{proposition}
+\begin{proposition}
+	לכל זוג קבוצות $X, Y$ קיימת קבוצת המכפלה הקרטזית
+	\[
+		X \times Y = \{ \langle a, b \rangle \mid a, X, b \in Y \}
+	\]
+\end{proposition}
+\begin{proposition}
+	לכל זוג קבוצות $X, Y$ קיימת קבוצת כל היחסים $R \subseteq X \times Y$.
+\end{proposition}
+\begin{proof}
+	מהטענה הקודמת $X \times Y$ קיימת ונשים לב כי קבוצת כל היחסים בין $X$ ל־$Y$ היא $\mathcal{P}(X \times Y)$, ולכן הקיום נובע מאקסיומת החזקה.
+\end{proof}
+\begin{proposition}
+	לכל זוג קבוצות $X, Y$ קיימת קבוצת כל הפונקציות $f : X \to Y$.
+\end{proposition}
+\begin{proof}
+	כל פונקציה $f : X \to Y$ היא יחס $f \subseteq X \times Y$ שמקיים את תכונת נפונקציה $p_f(x)$ ומאקסיומת ההפרדה קיימת.
+	\[
+		\{ f \in \mathcal{P}(X \times Y) \mid p_f(f) \}
+	\]
+\end{proof}
+\begin{proposition}
+	בהינתן קבוצות $X, Y$ ותכונה $p(x, y)$ שמקיימת את תנאי הפונקציה וכך שלכל $x \in X$ קיים $y \in Y$ כך ש־$p(x, y)$ אז קיימת פונקציה $f : X \to Y$ המתארת את  $p$.
+\end{proposition}
+\begin{proposition}
+	באופן דומה לטענה הקודמת לכל תכונה $p(x, y)$ המקיימת את תכונת יחס השקילות על קבוצה נתונה $X$ אז קיים יחס שקילות $E \subseteq X \times X$ שמתאים לתיאור של $p(x, y)$.
+\end{proposition}
+הוכחה כתרגיל.
+\begin{proposition}
+	לקבוצת קבוצות $X \ne \emptyset$ קיימת קבוצה
+	\[
+		\cap X = \{ z \mid \forall y \in X : z \in y \}
+	\]
+\end{proposition}
+\begin{proof}
+	מאקסיומת האיחוד קיימת $\cup X$ ונשים לב כי
+	\[
+		\{ z \mid \forall y \in X : z \notin y \} = \{ z \in \cup X \mid \forall y \in X : z \in y \}
+	\]
+	מאקסיומת ההפרדה קיימת הקבוצה
+	\[
+		\{ z \in \cup X \mid \forall y \in x : z \in y \}
+	\]
+	ולכן $\cap X$ קיים.
+\end{proof}
+
+\subsection{קבוצת הטבעיים}
+הגדרנו לכל קבוצה $x$ את הקבוצה $s(x) = x \cup \{ x \}$, והוכחנו בשיעור הקודם מ־ZF שהיא אכן קיימת לכל $x$. \\*
+נרצה להשתמש במושג $s(x)$ כדי להגדיר את המספרים הטבעיים, הרעיון הוא
+\[
+	0 = \emptyset,
+	\quad
+	1 = s(0) = \{ \emptyset \},
+	\quad
+	2 = s(1) = 1 \cup \{ 1 \} = \{ \emptyset, \{ \emptyset \} \},
+	\quad
+	\dots
+\]
+תזכורת: אקסיומת האינסוף מבטיחה קיום קבוצה אינדוקטיבית $I$, כך שמתקיים
+\[
+	\emptyset \in I,
+	\qquad
+	\forall x \in I, s(x) \in I
+\]
+\begin{proposition}
+	קיימת קבוצה אינדוקטיבית מינימלית $I^*$ ביחס הכלה, כלומר $I^* \subseteq I$ לכל $I$ אינדוקטיבית.
+\end{proposition}
+\begin{proof}
+	\textbf{שלב א':}
+	נוכיח כי בהינתן $X \ne \emptyset$ קבוצה שאבריה הן קבוצות אינדוקטיביות אז גם $I_x = \cap X$ אינדוקטיבית. \\*
+	$\emptyset \in \cap X$ כי לכל $I \in X$ $I$ היא אינדוקטיבית ולכן $\emptyset \in I$. \\*
+	באופן דומה לכל $x \in \cap X$ נקבל $x \in I$ לכל $I \in X$ אינדוקטיבית. \\*
+	לכן $s(x) \in I$ לכל $I \in X$ ולכן $s(x) \in \cap X$.
+
+	\textbf{שלב ב':}
+	ניקח קבוצה אינדוקטיבית כלשהי $I_0$, מאקסיומת החזקה והפרדה נסיק שקיימת $X = \{ I \subseteq I_0 \mid I \text{ אינדוקטיבית} \}$. \\*
+	$X \ne \emptyset$ שכן $I_0 \in X$. משלב א' נקבל $I^* = \cap X$ היא אינדוקטיבית.
+
+	\textbf{שלב ג':}
+	נטען כי $I^*$ אינדוקטיבית מינימלית ב־$\subseteq$. \\*
+	תהי $J$ קבוצה אינדוקטיבית אז $J \cap I_0$ אינדוקטיבית ותת־קבוצה של $I_0$ ולכן שייכת ל־$X$.
+	נסיק כי $I^* = \cap X \subseteq J \cap I_0 \subseteq J$,
+	כלומר $I^* \subseteq J$ כמבוקש.
+\end{proof}
+\begin{definition}[קבוצת הטבעיים]
+	קבוצת הטבעיים $\NN$ היא הקבוצה האינדוקטיבית המינימלית ($I^*$ מהטענה האחרונה).
+\end{definition}
+\begin{conclusion}
+	מספר טבעי היא קבוצה $n \in \NN$.
+\end{conclusion}
+\begin{example}
+	$0 = \emptyset \in \NN$.
+	נקבל גם $1 = s(0) \in \NN$.
+\end{example}
+\begin{theorem}[אינדוקציה על הטבעיים]
+	תהי $p(x)$ תכונה. אם $p(0)$ מתקיים וגם לכל $n \in \NN$ מתקיים $p(n) \implies p(n + 1)$ אז $p(n)$ מתקיים לכל $n \in \NN$.
+\end{theorem}
+\begin{proof}
+	בהינתן תכונה $p$ נגדיר $I_p$ קבוצת הטבעיים המקיימים את $p$. \\*
+	נשים לב כי מההנחות על $p$ מתקיים $0 = \emptyset \in I_p$ ולכל $n \in I_p$ גם $I_p \ni s(n)$. \\*
+	נסיק כי $\NN \supseteq I_p$ היא קבוצה אינדוקטיבית. \\*
+	מכיוון ש־$\NN$ היא אינדוקטיבית מינימלית ב־$\subseteq$ נסיק $I_p = \NN$ ולכן $\forall n \in \NN : p(n)$.
+\end{proof}
+\begin{definition}[יחס הסדר על הטבעיים]
+	נגדיר עבור קבוצות $n, m \in \NN$ את $n < m$ אם ורק אם $n \in m$. \\*
+	נבקש להראות כי $<$ הוא יחס סדר על הטבעיים וכי הוא סדר טוב.
+\end{definition}
+נוכיח מספר טענות למטרה זו.
+\begin{proposition}
+	לכל $n \in \NN$ מתקיים $n \subseteq \NN$.
+\end{proposition}
+\begin{proof}
+	באינדוקציה על $n$ כמובן $0 = \emptyset \subseteq \NN$
+	נניח כי $n \in \NN$ מקיים $n \subseteq \NN$ ונקבל $s(n) = n \cup \{ n \} \subseteq \NN$
+\end{proof}
+\begin{remark}
+	בעבר סימנו לכל $n \in \NN$ את הקבוצה $[n] = \{ m \in \NN \mid m < n \}$. \\*
+	נשים לב כי בפרשנות שלנו ל־$\NN$ נקבל $[n] = \{ m \in \NN \mid m \in n \} = n$.
+\end{remark}
+\begin{proposition}
+	לכל $n, m \in \NN$ אם $n \in m$ אז $s(n) \in m$ או $s(n) = m$.
+\end{proposition}
+\begin{proof}
+	באינדוקציה על התכונה $p(m)$ לפיה לכל $n \in m$ מתקיים $s(n) \in m$ או $s(n) = m$. \\*
+	$p(0)$ נכון באופן ריק. \\*
+	לצעד האינדוקציה נניח כי $p(m)$ ונבקש להראות את $p(s(m))$, כלומר כי לכל $n \in s(m)$ חייב להתקיים $s(n) \in s(m)$ או $s(n) = s(m)$. \\*
+	ניזכר $s(m) = m \cup \{ m \}$.
+	יהי $n \in s(m)$ ונחלק למקרים:
+	\begin{itemize}
+		\item אם $n \in m$ אז מהנחת האינדוקציה $s(n) = m$ או $s(n) \in m$ ובכל מקרה מכיוון ש־$m \subseteq s(m)$ נסיק כי $s(n) \in s(m)$.
+		\item אם $n = m$ אז $s(n) = s(m)$.
+	\end{itemize}
+\end{proof}
+\begin{proposition}
+	לכל $m \in \NN$ מתקיים ש־$0 \in m$ או ש־$0 = m$.
+\end{proposition}
+מושאר כתרגיל.
+\begin{proposition}
+	לכל $n, m \in \NN$ מתקיים $n \in m$ או ש־$m = n$ או ש־$m \in n$.
+\end{proposition}
+\begin{proof}
+	לכל $n \in \NN$ נתבונן בתכונה $p_n(m)$ שאומרת ש־$n \in m$ או ש־$n = m$ או ש־$m \in n$. \\*
+	נקבע $n \in \NN$ ונוכיח באינדוקציה $p_n(m)$ מתקיים לכל $m$. \\*
+	בסיס: $m = 0$ מתקיים מהטענה הקודמת. \\*
+	נניח $p_m(n)$ ונוכיח $p_n(s(m))$, נפריד בין שלושה מקרים פשוטים:
+	\begin{itemize}
+		\item אם $n \in m$ אז $n \in s(m)$.
+		\item אם $n = m$ אז $n \in s(m)$.
+		\item אם $m \in n$ אז מטענה קודמת נקבל $s(m) \in n$ או ש־$s(m) = n$.
+	\end{itemize}
 \end{proof}
 
 \end{document}
