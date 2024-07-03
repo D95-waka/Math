@@ -1,0 +1,40 @@
+\input{../article_base.tex}
+\usepackage{tikz}
+\DeclareMathOperator\arcsinh{arcsinh}
+\title{פתרון מטלה 9 – חשבון אינפיניטסימלי 2 (80132)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נבדוק את התכנסות וערך האינטגרלים הבאים.
+
+\subsection{i.}
+\[
+	\int_{0}^{1} \ln(x)\ dx
+\]
+נבחין כי בתחום מתקבל
+\[
+	\int \ln(x)\ dx = \frac{1}{x}
+\]
+ולכן אם נניח שהאינטגרל מוגדר נקבל כי
+\[
+	\lim_{C \to 0} \frac{1}{1} - \frac{1}{C} = -\infty
+\]
+מתכנס, בסתירה כמובן להתבדרותו.
+
+\subsection{ii.}
+\[
+	\int_{0}^{\infty} \frac{\arctan(x)}{x^2 + 1} dx
+\]
+נגדיר $t = \arctan x, dt = \frac{dx}{1 + x^2}$ ולכן נקבל
+\[
+	\int_{0}^{\pi} t\ dt = \pi
+\]
+
+\Question{}
+יהי $a \in \RR$ ותהינה $f, g : [a, \infty) \to \RR$ פונקציות אינטגרביליות ב־$[a, N]$ עבור כל $a < N$. \\* % chktex 9
+נתון כי קיים $c \in [a, \infty)$ כך שלכל $c \le x$ מתקיים $0 < f(x)$ ו־$0 < g(x)$. % chktex 9
+
+\end{document} % chktex 17
