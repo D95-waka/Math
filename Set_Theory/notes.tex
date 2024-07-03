@@ -1034,4 +1034,180 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 	\end{itemize}
 \end{proof}
 
+\section{שיעור 8 --- 3.7.2024}
+\subsection{קבוצת הטבעיים --- המשך}
+בשיעור הקודם הגדרנו את $\NN$ להיות הקבוצה האינדוקטיבית הקטנה ביותר. \\*
+מספר טבעי $n \in \NN$ הוא קבוצה.
+כבר הוכחנו כי לכל $n, m \in \NN$ מתקיים $n \in m$ או $n = m$ או $m \in n$.
+נרצה להוכיח את המשפט הבא
+\begin{theorem}
+	היחס $\in$ על $\NN$ הוא יחס סדר טוב, כלומר
+	\begin{enumerate}
+		\item $\in$ יחס סדר חזק על $\NN$ (טרנזיטיבי ואנטי־סימטרי חזק).
+		\item $\in$ יחס סדר קווי (לינארי) על $\NN$.
+		\item $\in$ מבוסס היטב על $\NN$.
+	\end{enumerate}
+\end{theorem}
+\begin{proposition}
+	לכל $n \in \NN$ אם $m \in n$ אז $m \subseteq n$.
+\end{proposition}
+\begin{proof}
+	באינדוקציה על $n$. \\*
+	\textbf{בסיס:}
+	הטענה נכונה באופן ריק.
+
+	\textbf{צעד:}
+	נניח שהטענה נכונה עבור $n$ ונוכיח עבור $s(n)$ (והחל מעכשיו נסמנו על־ידי $n + 1$). \\*
+	ניזכר כי $s(n) = n \cup \{n\}$ ויהי $m \in s(n)$ אם $m \in n$ נקבל מהנחת האינדוקציה $m \subseteq s(n)$. \\*
+	במקרה השני אם $m = n$ אז בבירור $m \subseteq s(n)$.
+\end{proof}
+\begin{proof}[הוכחת המשפט]
+	\begin{enumerate}
+		\item נתחיל בבדיקת יחס סדר. נוכיח טרנזיטיביות.
+			נניח $n, m, k \in \NN$ כך ש־$m \in n, k \in m$ ומטענת העזר נקבל $m \in n \implies m \subseteq n$ ולכן $k \in n$. \\*
+			נבדוק כי היחס הוא אנטי־סימטרי חזק. נרצה להוכיח שאין $n, m \in \NN$ כך ש־$n \in m \land m \in n$. \\*
+			אחרת הקבוצה $x = \{n, m\}$ סותרת את אקסיומת הסדירות.
+		\item $\in$ קווי, נובע מיידית מהטענה שהוכחנו בשבוע שעבר ומופיעה בתזכורת.
+		\item נוכיח כי הוא מבוסס היטב. תהי $A \subseteq \NN$ לא ריקה. מאקסיומת הסדירות קיים $n \in A$ כך שלכל $m \in A$ מתקיים $\lnot(m \in n)$. \\*
+			מכיוון ש־$\in$ קווי על $\NN$ אז המספר $n$ הזה הוא גם המספר המינימלי ב־$A$.
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	נגדיר את $<$ על $\NN$ להיות $\in$. \\*
+	מהמשפט האחרון נסיק כי $<$ הוא סדר טוב.
+\end{definition}
+
+\subsection{רקורסיה על N}
+\begin{theorem}[רקורסיה]
+	תהי $A \ne \emptyset$ ו־$f : A \to A$ ו־$a \in A$. \\*
+	קיימת םונקציה $g : \NN \to A$ עבורה מתקיים $g(0) = a, g(n + 1) = f(g(n))$.
+\end{theorem}
+\begin{proof}
+	בתרגיל
+\end{proof}
+\begin{theorem}[רקורסיה בגרסת המחלקה]
+	תהי $A$ מחלקה לא ריקה (המתוארת על־ידי תכונה $p_A(x)$) ו־$F$ מחלקה (המתוארת על־ידי תכונה $P_F(x, y)$) שאיבריה הם זוגות $\langle a, b \rangle$ כאשר $a, b \in A$,
+	וגם $F$ מקיימת את תנאי הפונקציה על $A$, כלומר לכל קבוצה $a$ אם $P_A(a)$ אז קיימת ויחידה קבוצה $b$ עם $f_A(b)$ כך ש־$P_F(a, b)$. \\*
+	לכל $a \in A$ קיימת פונקציה $g : \NN \to A$ כך ש־$g(0) = a, \forall n\ g(n + 1) = F(g(n))$, דהינו $P_F(g(n), F(g(n)))$.
+\end{theorem}
+באופן לא פורמלי: לכל $a \in A$ קיים ויחיד $b \in B$ כך ש־$\langle a, b \rangle \in F$. נרשום $F : A \to A$.
+
+נעבור עתה לבחון את השימושים.
+\begin{theorem}
+	לכל קבוצה $X$ קיימת סדרה $\langle x^n \mid n \in \NN \setminus \{0\}\rangle$ החזקות הקרטזיות של $X$, \\*
+	הממומשת על־ידי $g$ כאשר $dom(g) = \NN$ ו־$\forall n\ g(n) = X^{n + 1}$.
+\end{theorem}
+\begin{proof}
+	נתבונן במחלקה $V$ המוגדרת על־ידי
+	\[
+		V = \{ x \mid x = x \}
+	\]
+	מחלקת לכ הקבוצות ונתבונן בפונקציית המחלקה $F$ המוגדרת על־ידי
+	\[
+		\forall y \in V\ F(y) = X \times y
+	\]
+	פורמלית $F$ מתוארת על־ידי התכונה
+	\[
+		P_F(r, u) = u = X \times r
+	\]
+	ניקח את $V \ni a = X$ אז ממשפט הרקורסיה יש $g : \NN \to V$ כך ש־$g(0) = X$ ומתקיים
+	\[
+		g(n + 1) = F(g(n)) = X \times g(n)
+	\]
+	ולכן למעשה $g(0) = X, g(1) = X \times X, g(2) = X \times (X \times X)$ וכן הלאה.
+\end{proof}
+נתאר הגדרה פורמלית של פעולת החיבור על־ידי רקורסיה על הטבעיים.
+\begin{theorem}[פונקציית חיבור הטבעיים]
+	קיימת פונקציה $\text{add} : \NN \times \NN$ המקיימת $\text{add}(0, 0) = 0$
+	ו־$\forall n, m\ \text{add}(n, m + 1) = \text{add}(n, m) + 1 = s(\text{add}(n, m))$
+	וגם $\forall n, m\ \text{add}(n + 1, m) = \text{add}(n, m) + 1$.
+\end{theorem}
+\begin{proof}
+	נוכיח קיום פונקציה כזו בשני שלבים
+	בשלב הראשון נוכיח קיום סדרת פונקציות $\langle a_m \mid m \in \NN \rangle$ לכל $m$ $a_m : \NN \to \NN$
+	כך שלכל $m$ יתקיים
+	\[
+		a_m(0) = m,
+		\qquad
+		a_m(n + 1) = a_m(n) + 1
+	\]
+	בשלב השני נגדיר $\text{add}(n, m)$ על־ידי $\text{add}(n, m) = a_n(m)$.
+
+	נתחיל אם כן בשלב א', נעשה שימוש במשפט הרקורסיה. \\*
+	תהי $A$ קבוצת כל הפונקציות $h : \NN \to \NN$ ו־$a = id_\NN = \{ \langle n, n \rangle \mid n \in \NN \}$.
+	ניקח $F : A \to A$ פונקציה המוגדרת באופן הבא: בהינתן $A \ni h : \NN \to \NN$ נגדיר
+	\[
+		F(h)(m) = h(m) + 1,
+		\qquad
+		F(h) : \NN \to \NN
+	\]
+	ממשפט הרקורסיה קיימת $g : \NN \to A$ המקיימת
+	\[
+		g(0) = a = id_\NN,
+		\qquad
+		g(n + 1) = F(g(n))
+	\]
+	כלומר לכל $m$ נקבל $g(n + 1)(m) = g(n)(m) + 1$. \\*
+	הסדרה $\langle a_n, n \in \NN \rangle$ ממומשת על־ידי $g$, $a_n = g(n)$. \\*
+	צריך להוכיח כי הסדרה הזו מקיימת את תנאי המשפט, לכל $n$, $g(n)(0) = n$. \\*
+	נראה גם כי $g(n)(k + 1) = g(n)(k) + 1$ מתכונת הרקורסיה שמקיימת את $g$.
+
+	בשלב ב' נבדוק את התוצאה. \\*
+	נגדיר $\text{add}(n, m) = a_n(m) = g(n)(m)$, וצריך להוכיח add מקיימת את שלוש התכונות. \\*
+	נראה כי $\text{add}(0, 0) = g(0, 0) = id_\NN(0) = 0$. \\*
+	נראה גם כי $\text{add}(n + 1, m) = g(n)(m) + 1$ כתכונה של $g$ וערכה. \\*
+	ונשאר להוכיח את הטענה כי $g(n)(k + 1) = g(n)(k) + 1$.
+\end{proof}
+\begin{proof}[הוכחת הטענה]
+	נוכיח באינדוקציה על $n$ שכן לכל $k$ נקבל $g(n)(k + 1) = g(n)(k) + 1$. \\*
+	עבור $n = 0$ קיבלנו כי $g(0) = id_\NN$ ונקבל $g(0)(k + 1) = id(k + 1) = k + 1$.
+
+	\textbf{צעד:}
+	נניח כי עבור $n$ הטענה נכונה ונבדוק עבור $s(n) = n + 1$, נקבל
+	\[
+		g(n + 1)(k + 1) = g(n)(k + 1) + 1 = g(n)(k) + 1 + 1 = (g(n + 1)(k)) + 1 = g(n + 1)(k) + 1
+	\]
+
+	נותר להוכיח כי לכל $n$ מתקיים $g(n)(0) = n$ באינדוקציה על $n$ (תרגיל).
+\end{proof}
+\begin{exercise}
+	הוכיחו קיום פונקציה $\text{mul} : \NN \times \NN \to \NN$ המממשרת את פעולת הכפל בטבעיים.
+\end{exercise}
+
+\subsection{השוואת סדרים טובים וסודרים}
+\begin{definition}[פונקציה שומרת סדר]
+	יהיו $(X, \le_X), (Y, \le_Y)$ סדרים חלקיים. \\*
+	פונקציה $f : X \to Y$ היא שומרת סדר אם
+	\[
+		\forall x_1, x_2 \in X : x_1 \le_X x_2 \implies f(x_1) \le_Y f(x_2)
+	\]
+\end{definition}
+\begin{definition}[שיכון]
+	נאמר כי $f : X \to Y$ היא שיכון בין הסדרים אם היא חד־חד ערכית וגם
+	\[
+		\forall x_1, x_2 \in X : x_1 \le_X x_2 \iff f(x_1) \le_Y f(x_2)
+	\]
+\end{definition}
+\begin{definition}[איזומורפיזם]
+	נאמר כי $f : X \to Y$ היא איזומורפיזם אם היא שיכון של $X$ ב־$Y$ וגם על $Y$.
+\end{definition}
+\begin{definition}
+	יהי $\langle X, \le_X \rangle$ סדר חלקי. \\*
+	קבוצה $X^* \subseteq X$ היא תחילית (רישא) אם
+	\[
+		\forall x_1 \in X^* \forall x_2 \le_X x_1 : x_2 \in X^*
+	\]
+\end{definition}
+\begin{proposition}
+	אם $(X, \le_X)$ סדר טוב אז לכל תחילית $X^* \subseteq X$ חייב להתקיים או $X = X^*$ או שקיים $y \in X$ כך ש־$X^* = \{ x \in X \mid x <_X y \}$.
+\end{proposition}
+\begin{theorem}[משפט ההשוואה]
+	יהיו $(X, \le_X), (Y, \le_Y)$ סדרים טובים, אז מתקיים אחד מהבאים
+	\begin{enumerate}
+		\item $(X, \le_X)$ היא איזומורפית לתחילית של $(Y, \le_Y)$.
+		\item $(Y, \le_Y)$ היא איזומורפית לתחילית של $(X, \le_X)$.
+	\end{enumerate}
+\end{theorem}
+נוכיח הכול בשיעור הבא.
+
 \end{document}
