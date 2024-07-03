@@ -3000,4 +3000,148 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	צריך לבדוק שאכן $(G_i \cap N) G_{i + 1} \triangleleft G_i$ תת־חבורה נורמלית (תרגיל).
 \end{proof}
 
+\section{שיעור 16 --- 3.7.2024}
+חפש ביוטיוב finite simple group of order 2.
+\begin{definition}[גורמי הרכב]
+	עבור $G$ עם סדרת הרכב, ונגדיר כי היא סופית,
+	אז \textbf{גורמי ההרכב} של $G$ הם הקבוצה של $G_i / G_{i + 1}$ קבוצה עם כפילויות לכל סדרת הרכב ${(G_i)}_{i = 1}^r$.
+\end{definition}
+ישנן חבורות אינסופיות ויש חבורות סופיות ויש מקרים שבהם אלו נוצרות יחדיו, לדוגמה במקרה של $GL_n(\FF)$, נוכל לבחור $\FF_p$ וליצור חבורות סופיות.
+\begin{proposition}
+	עבור $G$ חבורה סופית מתקיים ש־$G$ פתירה אם ורק אם גורמי ההרכב שלה כולם ציקליים מסדר ראשוני ($\ZZ_{/p} \simeq$).
+\end{proposition}
+\begin{proof}
+	אם גורמי הרכב מהצורה $\ZZ_{/p}$ אז הם בפרט אבליים ולכן $G$ פתירה.
+
+	לכיוון ההפוך אם היא פתירה אז ניקח סדרה תת־נורמלית עם מנות עוקבות $G_i / G_{i + 1}$ אבליות, ונעדן אותה לסדרת הרכב.
+	כל גורם ברכב מקיים $G_{i + 1} \triangleleft \dots \triangleleft K \triangleleft H \triangleleft \dots \triangleleft G_i$ ולכן כל גורם הרכב הוא אבלי כי הוא מנה של תת־חבורה של חבורה אבלית $G_i / G_{i + 1}$.
+	מכיוון שפשוטה סופית ואבלית היא ציקלית מגודל ראשוני קיבלנו את הטענה.
+\end{proof}
+מחוץ לקונטקסט של הקורס כי זאת הוכחה עצומהף אבל לידע כללי המשפט הזה קיים
+\begin{theorem}[משפט Feit-Thompson]
+	כל חבורה סופית מגודל אי־זוגי היא פתירה.
+\end{theorem}
+\begin{proposition}
+	$G$ חבורה פתירה אז
+	\begin{enumerate}
+		\item כל $H \le G$ פתירה אף היא.
+		\item לכל $N \triangleleft G$ חבורת המנה $G/N$ פתירה.
+		\item לכל תת־חבורה נורמלית $N$ וגם $G/N$ פתירות אז גם $G$ פתירה.
+	\end{enumerate}
+\end{proposition}
+\begin{lemma}
+	עבור חבורה $G$ עם סדרה תת־נורמלית $\{e\} = G_r \triangleleft \dots \triangleleft G_0 = G$ ותת־חבורה $H \le G$ נגדיר
+	\[
+		\{e\} = H_r \triangleleft \dots \triangleleft H_0 = H
+	\]
+	על־ידי $H_i = G_i \cap H$. אז מתקיים
+	\[
+		H_i / H_{i + 1} \simeq G_i / G_{i + 1}
+	\]
+	בפרט זה גורר את סעיף 1 של הטענה הקודמת שכן אם $G_i / G_{i + 1}$ אבלית אז $H_i / H_{i + 1}$ אבלית.
+\end{lemma}
+\begin{proof}
+	ראשית נשים לב כי $H_{i + 1} = H \cap G_{i + 1} \triangleleft H \cap G_i = H_i$. \\*
+	נחשב ונקבל
+	\[
+		H_i / H_{i + 1} \simeq (H_i) / (H \cap G_{i + 1})
+		= H_i / ((H \cap G_i) \cap G_{i + 1})
+		= H_i / (H_i \cap G_{i + 1})
+	\]
+	לכן נקבל כי
+	\[
+		H_i / (H_i \cap G_{i + 1}) \overset{\text{Iso II}}{\simeq} H_i G_{i + 1} / G_{i + 1} \le G_i / G_{i + 1}
+	\]
+\end{proof}
+\begin{lemma}
+	\[
+		\{e\} = G_r \triangleleft \dots \triangleleft G_0 = G
+	\]
+	ו־$N \triangleleft G$ עם $K = G/N$ נגדיר
+	\[
+		K_i = G_i N / N
+	\]
+	מתקיים כי $K_i / K_{i + 1}$ איזומורפית למנה של $G_i / G_{i + 1}$ ובפרט אם $G$ פתירה אז $G/N$ פתירה.
+\end{lemma}
+\begin{proof}
+	\[
+		K_i / K_{i + 1}
+		= (G_i N / N) / (G_{i + 1}N / N)
+		\overset{\text{Iso III}}{\simeq} 
+		(G_i N) / (G_{i + 1} N)
+		\simeq
+		\frac{G_i (G_{i + 1} N)}{G_{i + 1} N}
+		\overset{\text{Iso II}}{\simeq} 
+		G_i / (G_i \cap G_{i + 1} N)
+	\]
+	מכיוון ש־$G_{i + 1} \le G_i \cap G_{i + 1} N$ נובע ש־$G_i / (G_i \cap G_{i + 1} N)$ איזומורפית למנה של $G_i / G_{i + 1}$. \\*
+	הסבר: $G_{i + 1} \triangleleft G_i \cap G_{i + 1} N \triangleleft G_i$ והפעלת משפט האיזומורפיזם השלישי על המנה של הדברים האלה.
+\end{proof}
+\begin{lemma}
+	$N \triangleleft G$ עם מנה $K = G / N$ ו־$\{e\} = N_r \triangleleft \dots \triangleleft N_0 = N$. \\*
+	$\{e\} = G_r / N \triangleleft \dots \triangleleft G_0 / N = G/N$. \\*
+	אז $\{e\} = N_r \triangleleft \dots \triangleleft N_0 = G_s \triangleleft \dots \triangleleft G_0 = G$
+	עם מנות עוקבות איזומורפיות $N_i / N_{i + 1}$ ו־$(G_i/N) / (G_{i + 1}/N) \simeq (G_i / N)/(G_{i + 1} / N)$. \\*
+	בפרט אם $N$ ו־$G / N$ פתירות אז $G$ פתירה.
+\end{lemma}
+\begin{proof}
+	ממשפט האיזומורפיזם השלישי נקבל ישר $G_i / G_{i + 1} \simeq (G_i / N) / (G_{i + 1} / N)$.
+\end{proof}
+איך אפשר לפרק חבורה סופית $G$ כלשהי בלי להכיר אותה לפני זה?
+בשלב הראשון אנו מחפשים תת־חבורה נורמלית $N \triangleleft G$ כך ש־$G/N$ אבלית.
+לכאורה אנו יכולים לבחור את החבורה הלא נכונה ואז להיתקע בתהליך, אבל למעשה על־ידי עידון לסדרת הרכב ומשפט ז'ורדן־הורדר מהשיעור הקודם נקבל כי נוכל להמשיך את מלאכת הפירוק.
+אבל יש דבר אפילו יותר יעיל, בכל שלב אפשר לעשות את המנה הכי גדולה שאפשר, למצוא את החלוקה הכי יעילה בכל שלב.
+ככה כל צעד יהיה הכי גדול ויכיל כמה שיותר עבודה. נבחן את
+\[
+	\pi : G \twoheadrightarrow G / N
+\]
+צריך שיתקיים $\pi(x) \pi(y) = \pi(y) \pi(x)$ ונבחין כי נקבל מהם $\pi(xy) = \pi(yx)$ וזה קורה אם ורק אם $\pi(xyx^{-1}y^{-1}) = e$, דהינו אם $\pi(x) \pi(y) {(\pi(x))}^{-1} {(\pi(y))}^{-1} = e$,
+טם $x y x^{-1} y^{-1} \in \ker(\pi) = N$.
+\begin{conclusion}
+	$G/N$ אבלית אם ורק אם לכל $x, y \in G$ מתקיים $xyx^{-1} y^{-1} \in N$
+\end{conclusion}
+\begin{definition}[קומוטטור]
+	הביטוי $xyx^{-1}y^{-1} = \lceil x, y \rceil$ נקרא הקומוטטור של $x$ ו־$y$.
+\end{definition}
+נקבל כי $\lceil x, y \rceil yx = xy$.
+\begin{definition}[חבורה נגזרת]
+	עבור חבורה $G$ ה\textbf{חבורה הנגזרת} של $G$ המסומנת על־ידי $G' = \langle \{ \lceil x, y \rceil \mid x, y \in G \} \rangle$.
+\end{definition}
+\begin{proposition}
+	$G'$ תת־חבורה נורמלית של $G$.
+\end{proposition}
+\begin{proof}
+	מספיק להראות שלכל $z \in G$ ולכל יוצר מהצורה $\lceil x, y \rceil$ ב־$G$ מתקיים $z \lceil x, y \rceil z^{-1} \in G'$. \\*
+	זה נובע מ־$z \lceil x, y \rceil z^{-1} = z xy x^{-1} y^{-1} z^{-1} = z x z^{-1} z y z ^{-1} z x^{-1} z^{-1} z y^{-1} z^{-1} = \lceil zxz^{-1}, zyz^{-1} \rceil$
+\end{proof}
+בהוכחה השתמשנו באוטומורפיזם ולכן נוכל לטעון טענה יותר משמעותית על כל אוטומורפיזם. במקרה הזה זה סוג של אפשרי, נקרא חבורה אופיינית (Characteristic).
+\begin{definition}[אבליזציה]
+	האבליזציה של $G$ מוגדרת להיות
+	\[
+		G^{ab} := G / G'
+	\]
+\end{definition}
+\begin{remark}
+	 אם $N \triangleleft G$ כך ש־$G / N$ אבלית אז $G' \triangleleft N$ ו־$G / N$ איזומורפית למנה של $G^{ab}$.
+\end{remark}
+\begin{definition}
+	$G$ חבורה. לכל $n \ge 0$ נסמן $G^{(0)} = G$ ו־$G^{(n + 1)} = (G^{(n)})'$. \\*
+	הסדרה הנגזרת $\dots \triangleleft G^{(2)} \triangleleft G^{(1)} \triangleleft G^{(0)} = G$.
+\end{definition}
+\begin{proposition}
+	$G$ פתירה אם ורק אם קיים $0 \le n$ כך ש־$G^{(n)} = \{e\}$.
+\end{proposition}
+\begin{proof}
+	אם $G^{(n)} = \{e\}$ לאיזושהו $n$ אז $G$ פתירה כי מצאנו סדרה תת־נורמלית עם מנות עוקבות אבליות.
+
+	נניח כי $G$ פתירה עם $\{e\} = G_r \triangleleft \dots \triangleleft G_0 = G$ כך שכל המנות אבליות. \\*
+	נוכיח באינדוקציה ש־$G^{(i)} \le G_i$. \\*
+	עבור $i = 0$ לפי הגדרה, ונוכיח עבור $i + 1$,
+	\[
+		G^{(i + 1)} = (G^{(i)})' \le (G_i)'
+	\]
+	מכיוון ש־$G_i / G_{i + 1}$ אבלית אז $G_i' \le G_{i + 1}$.
+\end{proof}
+הנושא של חבורות נילפוטנטיותת שהוא מה שיושב בין חבורות אבליות לפתירות הוא נושא שננסה לעשות בשיעור אחד ובמקסימום נוותר ופשוט נמשיך לתורת החוגים במקום כדי להספיק.
+
 \end{document}
