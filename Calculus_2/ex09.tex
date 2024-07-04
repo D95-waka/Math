@@ -155,10 +155,16 @@
 \Subquestion{}
 \begin{align*}
 	\int \frac{4x^2 - 3x - 4}{{(x - 1)}^3 (x + 2)} dx
-	= \int \frac{4(x^2 + x - 2) - 7x + 4}{{(x - 1)}^3 (x + 2)} dx \\
-	= \frac{4}{1 - x} + \int \frac{- 7x + 4}{{(x - 1)}^3 (x + 2)} dx \\
-	= \frac{4}{1 - x} + \int \frac{- 7(x + 2)}{{(x - 1)}^3 (x + 2)} + \frac{18}{{(x - 1)}^3 (x + 2)} dx \\
-	= \frac{4}{1 - x} + \frac{7}{2{(x - 1)}^2} + \int \frac{18}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \int \frac{4(x^2 + x - 2) - 7x + 4}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \int \frac{- 7x + 4}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \int \frac{- 7(x + 2)}{{(x - 1)}^3 (x + 2)} + \frac{18}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \frac{7}{2{(x - 1)}^2} + \int \frac{18}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \frac{7}{2{(x - 1)}^2} + \int \frac{2(x - 1) + 2(x - 1) + 2(x - 1) + 6(x + 2)}{{(x - 1)}^3 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \frac{7}{2{(x - 1)}^2} - \frac{6}{2{(x - 1)}^2} + \int \frac{-2(x - 1) + 2(x + 2)}{{(x - 1)}^2 (x + 2)} dx \\
+	& = \frac{4}{1 - x} + \frac{1}{2{(x - 1)}^2} + \int \frac{-2}{(x - 1) (x + 2)} + \frac{2}{{(x - 1)}^2} dx \\
+	& = \frac{4}{1 - x} + \frac{1}{2{(x - 1)}^2} + \frac{2}{1 - x} + \int \frac{\frac{2}{3}(x - 1) - \frac{2}{3}(x + 2)}{(x - 1) (x + 2)} dx \\
+	& = \frac{6}{1 - x} + \frac{1}{2{(x - 1)}^2} + \int \frac{\frac{2}{3}}{x + 2} + \frac{-\frac{2}{3}}{x - 1} dx \\
+	& = \frac{6}{1 - x} + \frac{1}{2{(x - 1)}^2} + \frac{2}{3} \ln|x + 2| - \frac{2}{3} \ln|x - 1| + C
 \end{align*}
 
 \Question{}
@@ -184,7 +190,15 @@
 	\int \frac{Ax + B}{{(x^2 + bx + c)}^n} dx
 \]
 
-מלא חישוב לא מעניין.
+נחשב ונראה
+\begin{align*}
+	\int \frac{Ax + B}{{(x^2 + bx + c)}^n} dx
+	& = \int \frac{\frac{A}{2}(2x + b) + B - \frac{A b}{2}}{{(x^2 + bx + c)}^n} dx \\
+	& \overset{\begin{smallmatrix} t = x^2 + bx + c \\ dt = (2x + b)\ dx \end{smallmatrix}}{=}
+	\int \frac{\frac{A}{2}}{{t}^n}\ dt + \int \frac{B - \frac{A b}{2}}{{(x^2 + bx + c)}^n} dx \\
+	& = \frac{-A}{2 (n - 1) t^{n - 1}} + (B - \frac{A b}{2}) \int \frac{1}{{(x^2 + bx + c)}^n} dx \\
+	& = \frac{-A}{2 (n - 1) t^{n - 1}} + (B - \frac{A b}{2}) {(c - \frac{b^2}{4})}^{-n} I_n
+\end{align*}
 
 \Question{}
 תהי סדרה חסומה ${(a_n)}_{n = 1}^\infty$ ונסמן $u_k = \sup\{ a_n \mid n \ge k \}$ ו־$l_k = \inf\{ a_n \mid n \ge k \}$. \\*
