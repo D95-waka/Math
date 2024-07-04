@@ -174,8 +174,8 @@
 \[
 	\int \frac{1}{{(x^2 + bx + c)}^n} dx
 	= \int \frac{1}{{({(x + \frac{b}{2})}^2 + c - \frac{b^2}{4})}^n} dx
-	= {(c - \frac{b^2}{4})}^{-1} \int \frac{1}{{({(\frac{x + \frac{b}{2}}{\sqrt{c - b^2/4}})}^2 + 1)}^n} dx
-	= {(c - \frac{b^2}{4})}^{-1} I_n
+	= {(c - \frac{b^2}{4})}^{-n} \int \frac{1}{{({(\frac{x + \frac{b}{2}}{\sqrt{c - b^2/4}})}^2 + 1)}^n} dx
+	= {(c - \frac{b^2}{4})}^{-n} I_n
 \]
 
 \Subquestion{}
@@ -199,12 +199,44 @@ $(a_n)$ סדרה מונוטונית עולה המתכנסת ל־$A \in \RR$.
 \Subquestion{}
 $a_n = {(-1)}^n (1 + \frac{1}{n})$.
 
-נבחין כי $a_{2n} = 1 + \frac{1}{n}$, וגם $a_{2n - 1} = -1 - \frac{1}{n}$ ולכן נסיק $a_{2n} \ge a_{2m - 1}$ ולכן נקבל $u_k = \frac{3}{2}$ בלבד, ובאופן דומה נקבבל $l_k = -\frac{3}{2}$.
+נבחין כי $a_{2n} = 1 + \frac{1}{n}$, וגם $a_{2n - 1} = -1 - \frac{1}{n}$. \\*
+לכן נקבל כי $a_n \xrightarrow{n \to \infty} 1$ ולכן נסיק $u_k = 1 + \frac{1}{n}$, ונסיק באופן דומה כי $u_k = -1 - \frac{1}{n}$.
 
 \Subquestion{}
 $a_n = {(-1)}^n + \frac{1}{n}$
 
-כמובן $u_k = $.
-טוב יש פה טעויות אני אתקן מתישהו
+נקבל $a_{2n} = 1 + \frac{1}{n}, a_{2n + 1} = -1 + \frac{1}{n}$. \\*
+לכן נבחין כי $1 + \frac{1}{k}$ הוא הערך הגדול ביותר שנקבל עבור $n \ge k$, ונקבל $u_k = 1 + \frac{1}{k}$, ונבחין כי $a_{2n + 1}$ מונוטונית יורדת ולכן נסיק $l_k = -1$.
+
+\Question{}
+תהי ${(a_n)}_{n = 1}^\infty$ כלשהי.
+
+\Subquestion{}
+נוכיח כי אם $(a_n)$ חסומה אז מתקיים
+\[
+	\uplim_{n \to \infty} (-a_n) = - \lowlim_{n \to \infty}(a_n)
+\]
+\begin{proof}
+	ידוע שהקבוצה חסומה ולכן נוכל להסיק כי כלל הגבולות החלקיים חסומים אף הם, נניח
+	\[
+		\lowlim_{n \to \infty} a_n = l,
+		\qquad
+		\uplim_{n \to \infty} a_n = L
+	\]
+	עתה, אם נבחן את $(-a_n)$ נקבל כי הגבולות החלקיים שלה כולם הם הגבולות החלקיים של $(a_n)$ עם היפוך סימן, ולכן נוכל להסיק כי גם
+	\[
+		\lowlim_{n \to \infty} -a_n = -L,
+		\qquad
+		\uplim_{n \to \infty} -a_n = -l
+	\]
+	ולמעשה הוכחנו עתה את הטענה.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $\lowlim_{n \to \infty} a_n < \infty$ אז יש $L \in \RR$ כך ש־$a_n < L$ מתקיים באופן שכיח.
+\begin{proof}
+	נגדיר $\lowlim_{n \to \infty} a_n = K$ ואנו יודעים כי $K \in \RR$, אז אנו יודעים כי קיימת $n_k$ כך ש־$a_{n_k} \xrightarrow{k \to \infty} K$. \\*
+	לכן מהגדרת הגבול נקבל כי $-1 < a_{n_k} - K < 1$ ולכן $K - 1 < a_{n_k} < K + 1$ ונוכל לבחור $L = K + 1$ וקיבלנו כי התכונה אכן שכיחה עבור $n$.
+\end{proof}
 
 \end{document} % chktex 17
