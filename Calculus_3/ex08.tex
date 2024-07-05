@@ -67,6 +67,134 @@
 	\]
 	נציב את הנקודה ונקבל $J(0, 1, 2, 1) = 3(1 \cdot 2^2 - 0 \cdot 1^2) = 12 \ne 0$, ולכן משפט הפונקציה הסתומה חל ונקבל כי המערכת אכן מגדירה פונקציה של $z, w$ כתלות ב־$x, y$. \\*
 	נעבור עתה לחישוב הנגזרות.
+	\[
+		\frac{\partial f_1}{\partial x} (x, y) = 0,
+		\qquad
+		\frac{\partial f_2}{\partial x} (x, y) = 0
+	\]
+	ולכן נקבל
+	\[
+		z + x \frac{\partial z}{\partial x} - y \frac{\partial w}{\partial x} + e^x = 0,
+		\qquad
+		y \sin(xy) + 2x + 3z^2 \frac{\partial z}{\partial x} - 3w^2 \frac{\partial w}{\partial x} = 0
+	\]
+	נציב $(0, 1)$ ונקבל כמובן
+	\[
+		2 - \frac{\partial w}{\partial x} + 1 = 0,
+		\qquad
+		12 \frac{\partial z}{\partial x} - 3 \frac{\partial w}{\partial x} = 0
+	\]
+	ולכן נקבל כי $\frac{\partial z}{\partial x} = \frac{3}{4}, \frac{\partial w}{\partial x} = 3$. \\*
+	נגזור עתה על־פי $y$ ונקבל
+	\[
+		x \frac{\partial z}{\partial y} - w - y \frac{\partial w}{\partial y} = 0
+		\implies
+		0 - 1  - 1\frac{\partial w}{\partial y} = 0
+		\implies
+		\frac{\partial w}{\partial y} = -1
+	\]
+\end{proof}
+
+\Question{}
+תהי $f : \RR^3 \to \RR$ פונקציה גזירה ברציפות, ונניח ש־$f$ מתאפסת בראשית, ושכל הנזגרות החלקיות הראשונות בראשית לא מתאפסות.
+
+\Subquestion{}
+נוכיח שאפשר לחלץ כל אחד מהמשתנים $x, y, z$ כפונקציה של שני המשתנים האחרים בסביבת הראשית.
+\begin{proof}
+	ידוע לנו כי $\frac{\partial f}{\partial z}$ לא אפס, ולכן יחד עם כל ההנחות שעשינו משפט הפונקציה הסתומה חל (יחד עם היעקוביאן של איבר אחד של נגזרת זו) ונקבל כי $z$ ניתן לתיאור כפונקציה של $x, y$.
+	נוכל כמובן לבצע אותו תהליך עבור שני המשתנים הנוספים וקיבלנו כי כל משתנה ניתן לביטוי על־ידי שני האחרים.
+\end{proof}
+
+\Subquestion{}
+נוכיח שהחילוצים הללו מקיימים בראשית
+\[
+	\frac{\partial z}{\partial x}
+	= - \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial x}
+\]
+\begin{proof}
+	אם נגדיר $f(x, y, z(x, y))$ אז בגזירה על־ידי כלל ההצבה יחד עם $g(x, y) = (x, y, z(x, y))$ נקבל
+	\[
+		\nabla f(x, y, z) = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}),
+		Dg\mid_{(x, y)} = \begin{pmatrix}
+			1 & 0 \\
+			0 & 1 \\
+			\frac{\partial z}{\partial x} & \frac{\partial z}{\partial y}
+		\end{pmatrix}
+	\]
+	ולכן נקבל מהמשפט כי
+	\[
+		\nabla f \circ g \mid_{(x, y)}
+		= (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z})
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1 \\
+			\frac{\partial z}{\partial x} & \frac{\partial z}{\partial y}
+		\end{pmatrix}
+		= (\frac{\partial f}{\partial x} + \frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial x}, \frac{\partial f}{\partial y} + \frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial y})
+	\]
+	נוכל אם כן לקבל באופן דומה כי גם
+	\[
+		\nabla f(x, y(x, z), z)
+		= (\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial x}, \frac{\partial f}{\partial z} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial z})
+	\]
+	וכמובן גם
+	\[
+		\nabla f(x(y, z), y, z)
+		= (\frac{\partial f}{\partial y} + \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial y}, \frac{\partial f}{\partial z} + \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial z})
+	\]
+	ועל־ידי השוואת האגפים הימניים והשמאליים נוכל לקבל את הנוסחה שהתבקשנו למצוא.
+\end{proof}
+
+\Question{}
+תהי $f : \RR^{d + 1} \to \RR$ פונקציה $C^2$ בסביבת $(a, b)$ כאשר $a \in \RR^d, b \in \RR$, וידוע כי $f(a, b) = 0$ ו־$\partial_{d + 1} f(a, b) \ne 0$. \\*
+נוכיח כי החילוץ $g$ שמתקבל ממשפט הפונקציה הסתומה הוא $C^2$.
+\begin{proof}
+	נתחיל ונראה שעל־פי המשפט, $g$ היא $C^1$, ולכן עלינו להראות רק שנגזרותיה הן גם $C^1$. \\*
+	נניח בשלילה כי $g$ לא $C^2$, לכן נוכל להסיק כי נגזרת שנייה של $g$ לא מתקיימת לפחות עבור נגזרת חלקית אחת. \\*
+	אם כן, נבחר את הכיוון הזה ונקבל כי גם הנגזרת של הפונקציה $f$ בכיוון זה לא גזירה, שכן מצאנו כי $f$ ניתנת לכתיבה על־ידי $g$ זו באגפה ה־$d + 1$. \\*
+	קיבלנו סתירה כמובן ל־$f \in C^2$ ולכן נוכל להסיק כי $g$ עצמה היא $C^2$.
+\end{proof}
+
+\Question{}
+תהי $A = [a_1, b_1] \times \cdots \times [a_d, b_d] \subseteq \RR^d$ תיבה, ו־$f : A \to \RR$ פונקציה חסומה.
+
+\Subquestion{}
+נניח ש־$f$ אינטגרבילית. יהי $\varepsilon > 0$. \\*
+נוכיח שקיים $\delta > 0$ כך שלכל חלוקה מתאימה $P = (P_1, \dots, P_d)$ שעבורה הפרמטר של כל $P_i$ קטן מ־$\delta$, \\*
+ושאם נסמן $C_1, \dots, C_k$ את התיבות המתקבלות אז לכל בחירת נקודות $p_1 \in C_1, \dots, p_k \in C_k$ מתקיים
+\[
+	\left\lvert \sum_{i = 1}^{k} f(p_i) \cdot \text{vol}(C_i) - \int_A f \right\rvert < \varepsilon
+\]
+\begin{proof}
+	\[
+		\forall \delta > 0, \forall P, \lambda(P) < \delta \implies \forall p_i \in P_i : f(p_i) \le \sup_{p \in P_i} (p), \text{vol}(C_i) \le \delta \text{vol}(C_\lambda)
+		\implies \sum_{i = 1}^{k} f(p_i) \text{vol}(C_i) \le \delta \sum_{i = 1}^{k} M_i |C_i|
+	\]
+	נקבל אם כן כי
+	\[
+		\left\lvert \sum_{i = 1}^{k} f(p_i) \cdot \text{vol}(C_i) - \int_A f \right\rvert \le
+		\left\lvert \delta \overline{S}(f, P) - \int_A f \right\rvert < \varepsilon
+	\]
+	וכמובן מהגדרת האינטגרל קיים $\delta > 0$ עבורו אי־שוויון זה מתקיים.
+\end{proof}
+
+\Subquestion{}
+יהיו $\varepsilon > 0$ ו־$I \in \RR$. נניח שיש חלוקה $P$ של $A$ עם תיבות $C_1, \dots, C_k$ כך שלכל בחירת נקודות $p_i \in C_i$ לכל $0 < i \le k$ מתקיים
+\[
+	\left\lvert \sum_{i = 1}^{k} f(p_i) \cdot \text{vol}(C_i) - I \right\rvert < \varepsilon
+\]
+נוכיח כי $I - \varepsilon \le \underline{\int_A} f \le \overline{\int_A} f \le I + \varepsilon$.
+\begin{proof}
+	מצאנו קודם כי
+	\[
+		\left\lvert \sum_{i = 1}^{k} f(p_i) \cdot \text{vol}(C_i) - I \right\rvert \le
+		\left\lvert \overline{S}(f, P) - I \right\rvert < \varepsilon
+	\]
+	ולכן נוכל להסיק כי גם
+	\[
+		|\underline{S}(f, P) - I| < \varepsilon
+	\]
+	וכמובן על־ידי חיבור המשוואות וחוקי ערך מוחלט נוכל לקבל כי הטענה נכונה.
 \end{proof}
 
 \end{document}
