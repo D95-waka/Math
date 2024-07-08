@@ -3001,6 +3001,8 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 \end{proof}
 
 \section{שיעור 16 --- 3.7.2024}
+
+\subsection{סדרות נורמליות --- המשך}
 חפש ביוטיוב finite simple group of order 2.
 \begin{definition}[גורמי הרכב]
 	עבור $G$ עם סדרת הרכב, ונגדיר כי היא סופית,
@@ -3143,5 +3145,184 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	מכיוון ש־$G_i / G_{i + 1}$ אבלית אז $G_i' \le G_{i + 1}$.
 \end{proof}
 הנושא של חבורות נילפוטנטיותת שהוא מה שיושב בין חבורות אבליות לפתירות הוא נושא שננסה לעשות בשיעור אחד ובמקסימום נוותר ופשוט נמשיך לתורת החוגים במקום כדי להספיק.
+
+\section{שיעור 17 --- 8.7.2024}
+\subsection{סדרות וחבורות פתירות}
+דיברנו על זה שאם $\{ e \} = G_r \triangleleft \dots \triangleleft G_0 = G$ סופית ו־$G_i / G_{i + 1}$ אבלית לכל $i$. \\*
+אין אוםציה לטעות, תמיד אפשר להמשיך, ונוכל להראות שהיא פתירה מכל זווית. \\*
+נוכל לקחת את הסדרה שמצטמצמת הכי מהר, היא סדרת הנגזרות
+\[
+	\{ e \} = G^{(r)} \triangleleft \dots \triangleleft G^{(0)} = G
+\]
+המוגדרת על־ידי יוצרים מורכבים מקומוטטורים.
+
+נטען כי אם אנחנו מנסים לבנות את הסדרה הזאת בכיוון ההפוך, מהאיבר הנייטרלי עד ל־$G$, אז אנחנו יכולים להיתקע, נראה דוגמה
+\begin{example}
+	\[
+		\{ e \} \triangleleft A_3 \triangleleft S_3
+	\]
+	אבל אם היינו מתחילים מהאיבר הנייטרלי היינו יכולים לבחור
+	\[
+		\{e\} \triangleleft \langle (1\ 2) \rangle \le S_3
+	\]
+	אבל אנו יודעים כי אין חבורה נורמלית שתאפשר לנו להתקדם.
+\end{example}
+בתרגיל של השבוע אנו מראים כי כל אחת מהחבורות בסדרה הנגזרת היא נורמלית בחבורה כולה.
+ולכן סדרת הנגזרות היא לא סתם תת־נורמלית, היא נורמלית, תנאי חזק הרבה יותר. \\*
+לכן אם תמיד נבחר סדרות נורמליות נוכל להסיק שלא ניתקע בתהליך בניית הסדרה, משני הכיוונים. \\*
+תמיד אפשר למצוא סדרה נורמלית עם איבר $G$.
+\begin{example}
+	אם $Z(G) \ne \{ e \}$ אז נוכל לבחור $\{e\} \triangleleft Z(G) \triangleleft G$. \\*
+	נסמן $Z(G) = Z_1$ ונבדוק את $Z(G / Z_1) \simeq Z_2 / Z_1$ ונקבל חבורה נורמלית גדולה יותר ונוכל לבנות ככה סדרה
+	\[
+		\{e\} \triangleleft Z_1 \triangleleft Z_2 \triangleleft \dots \triangleleft G
+	\]
+\end{example}
+לחבורות כאלה יש שם, הן חבורות נילפוטנטיות, חבורות שבהן אפשר לבנות סדרה נורמלית משני הכיוונים.
+\begin{definition}[חבורה נילפוטנטית]
+	חבורה $G$ נקראת \textbf{$r$־נילפוטנטית} כאשר $G / Z(G)$ היא $r - 1$־נילפוטנטית, כאשר תנאי העצירה הוא $0$־נילפוטנטית ולכן היא טריוויאלית. \\*
+	חבורה נקראת נילפוטנטית אם היא $r$־נילפוטנטית לאיזשהו $r \in \NN$.
+\end{definition}
+\begin{remark}
+	חבורה $0$־נילפוטנטית היא טריוויאלית, חבורה $1$־נילפוטנטית היא אבלית.
+\end{remark}
+\begin{example}
+	כל חבורת $p$ היא נילפוטנטית.
+\end{example}
+\begin{example}
+	$S_3$ היא פתירה אך לא נילפוטנטית.
+\end{example}
+נגדיר למה שלא קשורה לחומר ותעזור לנו
+\begin{lemma}
+	אם $N_1 \triangleleft G_1, N_2 \triangleleft G_2$ אז $N_1 \times N_2 \triangleleft G_1 \times G_2$ ומתקיים
+	\[
+		(G_1 \times G_2) / (N_1 \times N_2) \simeq (G_1 / N_1) \times (G_2 / N_2)
+	\]
+\end{lemma}
+\begin{proof}
+	נבנה הומומורפיזם $\pi : G_1 \times G_2 \to (G_1 / N_1) \times (G_2 / N_2)$. \\*
+	נשתמש בהטלות הקנוניות $\pi_1 : G_1 \to G_1 / N_1, \pi_2 : G_2 \to G_2$ ונגדיר
+	\[
+		\pi(x_1, x_2) = ( \pi_1(x_1), \pi_2(x_2) )
+	\]
+	קל תראות שזה הומומורפיזם (תרגיל). \\*
+	נחשב את הגרעין:
+	\[
+		( \pi_1(x_1), \pi_2(x_2) ) = \pi(x_1, x_2) = (e_1, e_2)
+		\iff
+		x_1 \in \ker(\pi_1) = N_1,
+		x_2 \in \ker(\pi_2) = N_2
+	\]
+	מצד שני מכיוון ש־$\pi_1$ ו־$\pi_2$ על אז גם $\pi$ על ולכן ממשפט האיזומורפיזם הראשון נקבל
+	\[
+		(G_1 \times G_2) / (N_1 \times N_2) = (G_1 \times G_2) / \ker(\pi) \simeq \im(\pi) = (G_1 / N_1) \times (G_2 / N_2)
+	\]
+\end{proof}
+\begin{example}
+	$\RR / \ZZ \simeq S^1 \subseteq \{ z \in \CC^\times \mid |z| = 1 \}$ \\*
+	באופן דומה $\RR \times \RR / \ZZ \times \ZZ \simeq S^1 \times S^1$.
+\end{example}
+\begin{proposition}
+	\begin{enumerate}
+		\item תת־חבורה של חבורה $r$־נילפוטנטית היא בעצמה $r$־נילפוטנטית.
+		\item מנה של חבורה $r$־נילפוטנטית היא בעצמה גם $r$־נילפוטנטית.
+		\item מכפלה ישרה של חבורות $r$־נילפוטנטיות היא $r$־נילפוטנטית.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	הטענה הראשונה והשנייה בתרגיל. \\*
+	נוכיח את הטענה השלישית. \\*
+	ראשית
+	\[
+		Z(G_1 \times G_2) = Z(G_1) \times Z(G_2)
+	\]
+	ונוכיח באינדוקציה על $r$.
+
+	עבור $r = 0$ זה ברור שכן שתי החבורות טריוויאליות.
+
+	ל־$r \ge 1$ נראה
+	\[
+		(G_1 \times G_2) / (Z(G_1 \times G_2))
+		\simeq 
+		(G_1 \times G_2) / (Z(G_1) \times Z(G_2))
+		\overset{\text{הלמה}}{\simeq}
+		(G_1 / Z(G_1)) \times (G_2 / Z(G_1))
+	\]
+	ונקבל כי הביטוי האחרון הוא $(r - 1)$־נילפוטנטי כחלוקה במרכזים כפי שהגדרנו נילפוטנטיות,
+	ומהנחת האינדוקציה $(r - 1)$ נילפוטנטית.
+\end{proof}
+\begin{example}
+	לכל $\FF$ שדה ו־$U_n(\FF) \le GL_n(\FF)$ אז $U_n$ נילפוטנטית, אבל נבחין כי יתכן כי $\FF = \RR$ ובכלל לא בהכרח היא סופית, דהינו נילפוטנטיות היא לא סגורה לסופיות.
+\end{example}
+\begin{theorem}
+	עבור $G$ חבורה סופית, התנאים הבאים שקולים
+	\begin{enumerate}
+		\item $G$ נילפוטנטית.
+		\item $G$ איזומורפית למכפלה ישרה של חבורות $p$.
+		\item לכל ראשוני $p$ החבורה ה־$p$־סילו של $G$ היא יחידה (שקול לנורמליות).
+	\end{enumerate}
+\end{theorem}
+מספר הערות עבור ההוכחה:
+\begin{remark}
+	אם $p_1, \dots, p_n$ ראשוניים שונים ו־$P_1, \dots, P_n$ כך ש־$P_i$ חבורת $p_i$ אז ה־$p_i$־סילו של $G = P_1 \times \cdots \times P_n$ היא $P_i$.
+\end{remark}
+\begin{remark}
+	אם $N \triangleleft G$ ו־$H \le G$ אז $HN \le G$. \\*
+	אם $N \triangleleft G, H \triangleleft G$ אז $HN \triangleleft G$ כנביעה מ:
+	\[
+		g(hn)g^{-1} = (ghg^{-1})(gng^{-1}) \in HN
+	\]
+\end{remark}
+\begin{remark}
+	אם $H \le G = \langle g_1, \dots, g_e \rangle$ אז
+	\[
+		H \triangleleft G \iff \forall i \in [r] \, H = g_i H g_i^{-1}
+	\]
+\end{remark}
+\begin{proof}
+	הגרירה של 2 ל־3 הייתה בתרגיל, ו־2 גורר את 1 מהטענה האחרונה, ולכן נוכיח את הגרירה מ־1 ל־2 בלבד.
+
+	$(2) \implies (1)$ ברור.\\*
+	נוכיח $(1) \implies (3)$ באינדוקציה על $|G|$.
+	ראשית $\{e\} \ne Z(G) \triangleleft G$ אז נבחר ראשוני כך ש־$p \mid |Z(G)|$.
+	ממשפט קושי קיים $z \in Z(G)$ מסדר $p$, כלומר תת־החבורה $W = \langle z \rangle \le Z(G)$ מגודל $p$.
+	מכיוון ש־$W \le Z(G)$ אז מתקיים $W \triangleleft G$, ולכן נסתכל על $\overline{G} = G / W$ שהיא מגודל $|\overline{G}| = \frac{|G|}{|W|} = \frac{|G|}{p}$ ובפרט קטן מ־$|G|$.
+	בתור מנה של $G$ החבורה $\overline{G}$ נילפוטנטית ולכן מהנחת האינדוקציה יש ל־$\overline{G}$ חבורת $q$־סילו יחידה ונורמלית לכל ראשוני $q$. \\*
+	ראשית נראה של־$G$ יש חבורת $p$־סילו נורמלית (המקרה $p = q$).
+	נבחר $\overline{P} \triangleleft \overline{G}$ ה־$p$־סילו של $\overline{G}$.
+	ממשפט ההתאמה נקבל $\overline{P} = P / W$ עבור $W \triangleleft P \triangleleft G$.
+	נשים לב ש־$P$ היא $p$־סילו של $G$
+	\[
+		|P| = |\overline{P}| \cdot p
+		\qquad
+		|G| = |\overline{G}| \cdot p
+	\]
+	עבור ראשוני $q \ne p$ ניקח $q$־סילו $\frac{\tilde{Q}}{W} = \overline{Q} \triangleleft \overline{G}$ כאשר $W \triangleleft \tilde{Q} \triangleleft G$ (ממשפט ההתאמה) ומתקיים
+	\[
+		|\tilde{Q}| = |Q| \cdot p = q^m \cdot p
+	\]
+	כאשר החבורות $q$־סילו של $G$ כולן מגודל $q^m$.\\*
+	לכל $q$־סילו $Q \le G$
+	\[
+		W \triangleleft Q \cdot W \le G
+	\]
+	ממשפט ההתאמה $\overline{QW} = \frac{QW}{W}$ תת־חבורה מגודל $q^m$ של $\overline{G}$. \\*
+	ולכן $q$־סילו של $\overline{G}$, מהנחת האינדוקציה ל־$\overline{G}$ נקבל $q$־סילו יחידה ולכן ממשפט ההתאמה $Q \le WQ = \tilde{Q}$. \\*
+	הסבר: $Q$ ו־$W$ מתחלפות ו־$Q \cap W = \{ e \}$ ולכן $WQ \simeq W \times Q$ ובפרט $|WQ| = |W| \cdot |Q| = p \cdot q^m$ ו־$WQ \to W \times Q$. \\*
+	בפרט כל $q$־סילו של $G$ מוכלת ב־$\tilde{Q}$.
+	נותר להראות של־$\tilde{Q}$ עצמה יש $q$־סילו יחידה (נורמלית).
+	\begin{itemize}
+		\item כל $g \in Q$ מקיים $g Q g^{-1} = Q$
+		\item כל איבר $w \in W$ מקיים $w Q w^{-1} = Q$ שכן $W \le Z(G)$
+	\end{itemize}
+	ולכן $Q \triangleleft \tilde{Q}$ (ולכן גם יחידה).
+\end{proof}
+\begin{example}
+	אם $n = p_1^{d_1} \cdots p_n^{d_n}$ אז נקבל
+	\[
+		\ZZ_{/n} \simeq \ZZ_{/p_1^{d_1}} \times \cdots \times \ZZ_{/p_n^{d_n}} 
+	\]
+	וקיבלנו את משפט השאריות הסיני.
+\end{example}
 
 \end{document}
