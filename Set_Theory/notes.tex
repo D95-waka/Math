@@ -1210,4 +1210,173 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 \end{theorem}
 נוכיח הכול בשיעור הבא.
 
+\section{שיעור 9 --- 10.7.2024}
+\subsection{תורה בסיסית של סדרים טובים}
+\begin{definition}[סדר טוב]
+	יחס סדר $(X, \le_X)$ הוא סדר טוב אם הוא
+	\begin{enumerate}
+		\item קווי
+		\item מבוסס היטב
+	\end{enumerate}
+\end{definition}
+\begin{theorem}[אינדוקציה על סדרים טובים]
+	יהי $(X, \le_X)$ סדר טוב ו־$p(r)$ תכונה. \\*
+	אם מתקיים: לכל $x \in X$ אם לכל $y <_X x$, $p(y)$ אז $p(x)$, אז $p(x)$ לכל $x \in X$.
+\end{theorem}
+\begin{proof}
+	נסמן $A = \{ x \in X \mid \lnot p(x) \}$.
+	צריך להוכיח ש־$A = \emptyset$, אחרת ניקח את $x_0 = \min_{<_X}(A)$ האיבר המינימלי ב־$A$ לפי $<_X$.
+	נשים לב כי לכל $y \in X, y <_X x_0$ מתקיים $y \notin A$.
+	נקבל מהגדרת $A$ כי $p(y)$.
+	מהנחת האינדוקציה של הטענה נסיק כי $p(x_0)$ וזו סתירה לכך ש־$x_0 \in A$ והגדרת $A$.
+\end{proof}
+\begin{definition}[שומרת סדר חזק]
+	יהי $(X, \le_X)$ סדר, פונקציה $f : X \to X$ היא שומרת סדר חזק אם
+	\[
+		\forall x, y \in X \, x <_X \implies f(x) <_X f(y)
+	\]
+\end{definition}
+\begin{proposition}
+	יהי $(X, \le_X)$ סדר טוב, לכל פונקציה $f : X \to X$ ששומרת סדר חזק מתקיים
+	\[
+		\forall x \in X \, f(x) \ge_X x
+	\]
+\end{proposition}
+\begin{proof}
+	באינדוקציה עבור התכונה $p(x) = x \le_X p(x)$. \\*
+	יהי $x \in X$ ונניח ש־$\forall y \in X, y <_X x \implies p(y)$.
+	צריך להוכיח $p(x)$.
+
+	נניח אחרת, דהינו $f(x) <_X x$, נסמן $y = f(x)$.
+	מההנחה $p(y)$ אנו יודעים כי $y \le_X f(y)$.
+	נסיק כי $y <_X x$ וגם $f(y) \ge_X y = f(x)$
+	בסתירה להנחה כי $f$ שומרת סדר חזק.
+\end{proof}
+\begin{definition}[רישא]
+	יהי $(X, \le_X)$ סדר, רישא (תחילית) היא תת־קבוצה $X' \subseteq X$ המקיימת
+	\[
+		\forall x \in X', y \in X, x <_X x \implies y \in X'
+	\]
+	דהינו, היא סגורה כלפי מטה
+\end{definition}
+\begin{example}
+	ב־$(\NN, <)$ נקבל $X' = 0 = \emptyset$ תחילית באופן ריק. \\*
+	גם $X' = 10 = \{0, \dots, 9\}$ תחילית. \\*
+	$X' = \NN$ תחילית.
+\end{example}
+\begin{remark}
+	לכל סדר $(X, \le_X)$ ו־$y \in X$ הקבוצה $X_y = \{ x \in X \mid x <_X y\}$ היא תחילית של $X$.
+\end{remark}
+תחת אילו תנאים נוכל להגיד שכל התחיליות הן מהצורה הזאת בלבד?
+\begin{example}
+	ניקח את $(\QQ, \le)$ סדר רגיל על הרציונליים, ונבחר $X' = (-\infty, \pi) \cap \QQ$.
+	$X'$ תחילית אבל אינה מהצורה $X_y$ עבור $y \in \QQ$.
+\end{example}
+\begin{proposition}
+	יהי $(X, \le_X)$ סדר טוב, לכל תחילית $X' \subseteq X$ חייב להתקיים או $X' = X$ או קיים $y \in X$ כך ש־$X' = X_y$.
+\end{proposition}
+\begin{proof}
+	תהי $X' \subseteq X$ תחילית של $X$, אם $X' = X$ אז סיימנו, אחרת נסמן $\emptyset \ne A = X \setminus X'$. \\*
+	כיוון ש־$(X, \le_X)$ סדר טוב אז קיים $y = \min_{\le_X}(A)$.
+	נבדוק שהתחילית הנתונה היא $X' = X_y$. \\*
+	נבדוק $X' \subseteq X_y$: יהי $x' \in X'$, אם $x' \not<_X y$ אז $x' \ge y$, לכן או ש־$x' = y$ או ש־$x' >_X y$.
+	אם $x' \ni x' = y$ וזו סתירה ל־$y \in X \setminus X'$ ואם $x' >_X y$ אז מהעובדה ש־$X$ תחילית נקבל $x' \ni y$ וסתירה דומה. \\*
+	מסכימים כי $x' \in X' \implies x' <_X y \implies x' \in X_y$.
+
+	נבדוק $X_y \subseteq X'$.
+	לכל $x' \in X_y$ נקבל מהגדרת $X_y$ כי $x' <_X y$, מהמינימליות של $y \in X \setminus X'$ נקבל $x' \in X'$ וסיימנו.
+\end{proof}
+\begin{theorem}[השוואת סדרים טובים]
+	לכל זוג סדרים טובים $(X, \le_X), (Y, \le_Y)$ אחד הסדרים הוא איזומורפי לרישא (תחילית) של השני.
+\end{theorem}
+\begin{proposition}[טענת עזר]
+	לכל קבוצה סדורה היטב $(X, \le_X)$ מתקיים
+	\begin{enumerate}
+		\item אין שיכון של $X$ בתחילית $X' \subsetneq X$
+		\item האיזומורפיזם היחיד בין יחס הסדר לעצמו הוא הזהות
+		\item לכל יחס סדר $(Y, \le_Y)$ אם הוא איזומורפי ל־$(X, \le_X)$ אז קיים איזומורפיזם יחיד.
+		\item לכל $(Y, \le_Y)$ אם הוא איזומורפי לתחילית $X'$ לש $X$ אז התחילית הזאת היא יחידה.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item אחרת, יש שיכון $f : (X, \le_X) \to (X', \le_{X'})$. אנו יודעים כי $X' \subsetneq X$ ולכן היא מהצורה $X_y$ עבור $y \in X$ כלשהו.
+			בפרט נקבל $f : X \to X$ שומרת סדר חזק אבל $f(y) <_X y$ בסתירה לטענה הקודמת.
+		\item יהי $f : X \to X$ איזומורפיזם של $(X, \le_X)$ עם עצמו. \\*
+			נשים לב כי גם הפונקציה ההופכית $f^{-1} : X \to X$ היא איזומורפיזם.
+			נבחין ש־$f, f^{-1}$ שתיהן שומרות סדר חזק ולכן בהינתן $x \in X$ ו־$y = f(x)$ נקבל $x = f^{-1}(y)$. \\*
+			נסיק מהטענה הקודמת כי $x \le_X f(x) = y, y \le_X f^{-1}(y) = x$ ולכן $x = y$ ו־$f$ היא פונקציית הזהות.
+		\item נניח ש־$(Y, \le_Y)$ סדר ו־$f, g : (X, \le_X) \to (Y, \le_Y)$ זוג איזומורפיזמים, צריך להוכיח $f = g$. \\*
+			נשים לב כי $g^{-1} \circ f : X \to X$ היא איזומורפיזם של $(X, \le_X)$ ועצמו, ומהסעיף הקודם נסיק כי $g^{-1} \circ f = id_X$.\\*
+			נסיק מהרכבה על שני הצדדים כי $g \circ (g^{-1} \circ f) = g \circ id_X$ ולכן $f = g$.
+		\item נניח ש־$(Y, \le_Y)$ איזומורפי לתחיליות $X', X'' \subseteq X$ וצריך להוכיח כי $X' = X''$. \\*
+			מכיוון שכל תחילית של $X$ היא מהצורה $X' = X$ או $X' = X_x$ עבור $x \in X$ כלשהו, חייב כי כל זוג תחיליות של $X$ ניתנות להשוואה ב־$\subseteq$. \\*
+			אחרת $X' \ne X''$ ומכאן בלי הגבלת הכלליות נקבל כי $X' \subsetneq X''$.
+			נסיק כי $(X'', \le_X \upharpoonright x'') \simeq (Y, \le_Y) \simeq (X', \le_X \upharpoonright x')$ אבל $X' \subsetneq X''$ תחילית בסתירה לסעיף 1.
+	\end{enumerate}
+\end{proof}
+\begin{proof}[הוכחת המשפט]
+	יהיו $(X, \le_X), (Y, \le_Y)$ זוג סדרים טובים. \\*
+	נאמר כי זוג $(x, y) \in X \times Y$ הוא מתאים אם $X_x \simeq Y_y$.
+	נסמן $R = \{ (x, y) \in X \times Y \mid (x, y) \text{ מתאימים} \}$.
+	הבחנות:
+	\begin{enumerate}
+		\item אם $(x, y)$ מתאים ו־$(x, y')$ מתאים אז $y = y'$ כנביעה מסעיף 4 בטענת העזר
+		\item באופן דומה אם $(x, y)$ ו־$(x', y)$ מתאימים אז $x = x'$
+		\item אם $(x, y)$ מתאים ו־$x' <_X x$ אז קיים ויחיד $y' <_X y$ כך ש־$(x', y')$ זוג מתאים
+		\item אם $(x, y)$ מתאים ו־$y' <_X y$ אז קיים ויחיד $x' <_X x$ כך ש־$(x', y')$ זוג מתאים
+	\end{enumerate}
+	נתבונן בקבוצה $X' = \text{dom} R \subseteq X$ ומהבחנה 3 נקבל $X'$ היא רישא. \\*
+	באופן דומה הקבוצה $Y' = \rng(R) = \text{dom}(R^{-1}) \subseteq Y$ גם רישא מהבחנה 4. \\*
+	נסיק מהבחנות 1 ו־2 כי
+	\[
+		R : X' \leftrightarrow Y'
+	\]
+	פונקציה חד־חד ערכית ועל, ושומרת סדר.
+	לכן $R : (X', \le_X \upharpoonright x') \to (Y', \le_Y \upharpoonright y')$ איזומורפיזם בין הרישאות. \\*
+	נותר להראות כי לפחות אחת מבין $X', Y'$ היא רישא מקסימלית, דהינו $X' = X$ או $Y' = Y$. \\*
+	נניח אחרת. לכן יש איברים $x^* \in X, y^* \in Y$ כך ש־$X' = X_{x^*}, Y' = Y_{y^*}$.
+	נסיק כי $R$ הוא איזומורפיזם בין $X_{x^*}$ לבין $Y_{y^*}$ ומכאן $(x^*, y^*) \in R$ מתאים.
+	לכן $X_{x^*} = \text{dom}(R) \ni x^*$ ולכן $x^* <_X x^*$ וזו סתירה.
+\end{proof}
+
+\subsection{סודרים}
+תזכורת: ההגדרה שנתנו למספרים הטבעיים נתנה לנו כי לכל $n \in \NN$ מתקיים
+\begin{enumerate}
+	\item $n$ קבוצה טרנזיטיבית ($\forall m \in n \implies m \subseteq n$)
+	\item $(n, \in)$ הוא סדר טוב.
+\end{enumerate}
+\begin{definition}[סודר]
+	קבוצה $\alpha$ תיקרא \textbf{סודר} אם היא מקיימת
+	\begin{enumerate}
+		\item $\alpha$ קבוצה טרנזיטיבית, דהינו $\forall x \in \alpha, x \subseteq \alpha$
+		\item $(\alpha, \in)$ סדר קווי (שקול לטוב)
+	\end{enumerate}
+\end{definition}
+\begin{exercise}
+	איך נראים סודרים? כמה סדרים יש?
+\end{exercise}
+\begin{example}
+	$0 = \emptyset$ הוא סודר. \\*
+	באופן כללי, כל $n \in \NN$ הוא סודר.
+\end{example}
+\begin{example}
+	הקבוצה $\omega = \NN$ היא טרנזיטיבית כי לכל $n \in \NN$ הראינו כי $n \subseteq \NN$, והיחס $(\NN, \in)$ הוא קווי כפי שכבר הוכחנו.
+\end{example}
+\begin{conclusion}
+	$\omega$ הוא סודר אינסופי.
+\end{conclusion}
+\begin{proposition}
+	לכל סודר $\alpha$, גם $s(\alpha) = \alpha \cup \{ \alpha \}$ היא סודר.
+\end{proposition}
+\begin{proof}
+	נראה כי $s(\alpha)$ טרנזיטיבית, יהי $x \in s(\alpha)$, אם חייב ש־$x \in \alpha$ או $x = \alpha$.
+	אם $x \in \alpha$ אז $x \subseteq \alpha \subseteq s(\alpha)$, ואם $x = \alpha$ אז $x \subseteq s(\alpha) = \alpha \cup \{ \alpha \}$. \\*
+	יהיו $x, y \in s(\alpha)$ כך ש־$x \ne y$, חייב כי $x, y \in \alpha$ או שבדיוק אחד מבין $x, y$ הוא $\alpha$.
+	אם $x, y \in \alpha$ אז חיבי $x \in y$ או $y \in x$, אחרת בלי הגבלת הכלליות $x = \alpha$ אז $y \in \alpha = x$.
+\end{proof}
+\begin{proposition}
+	אם $\emptyset \ne S$ היא קבוצה של סודרים, אז $\alpha_S = \cup S$ הוא סודר.
+\end{proposition}
+
 \end{document}
