@@ -1,5 +1,5 @@
 \input{../article_base.tex}
-\title{מבנים אלגבריים 1}
+\title{מבנים אלגבריים 1 --- סיכום}
 \setcounter{secnumdepth}{2}
 
 \hypersetup{}
@@ -3325,5 +3325,168 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	\]
 	וקיבלנו את משפט השאריות הסיני.
 \end{example}
+
+\section{שיעור 18 --- 10.7.2024}
+\subsection{תורת החוגים}
+\begin{remark}
+	$(\FF, +, \cdot, 0, 1)$ היא שדה אם
+	\begin{itemize}
+		\item $(\FF, +, 0)$ היא חבורה אבלית
+		\item $(\FF^\times, \cdot, 1)$ היא חבורה אבלית
+		\item יש פילוג
+		\item $0 \ne 1$
+	\end{itemize}
+\end{remark}
+\begin{definition}[חוג]
+	$(R, +, \cdot, 0, 1)$ היא חוג כאשר
+	\begin{enumerate}
+		\item $(R, +, \cdot)$ חבורה אבלית
+		\item $(R, \cdot, 1)$ מקיימת
+			\subitem{א.} קיבוץ: $\forall x, y, z \in R : (xy)z = x(yz)$.
+			\subitem{ב.} קיון נייטרלי: $1 \cdot x = x \cdot 1$ לכל $x \in R$
+		\item פילוג: $\forall x, y, z \in R : (x + y) \cdot z = x \cdot z + y \cdot z, z \cdot (x + y) = z \cdot x + z \cdot y$.
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	חוג $R$ נקרא
+	\begin{enumerate}
+		\item חוג קומוטטיבי אם $x \cdot y = y \cdot x$ לכל $x, y \in R$
+		\item חוג חילוק אם $\forall x \in R \setminus \{ 0 \}$ קיים $y \in R$ כך ש־$1 = x \cdot y = y \cdot x$.
+	\end{enumerate}
+\end{definition}
+חוג האפס $R = \{ 0 \}$ הוא חוג.
+בתרגיל נראה שתכונות של חוגים מתקיימות ומזכירות את התכונות של חבורות.
+לדוגמה $0 \cdot x = x \cdot 0 = 0$, או ש־$(-1) \cdot x = -x$.
+אם ב־$R$ יש לפחות שני איברים אז $1 \ne 0$.
+\begin{definition}[תת־חוג]
+	עבור חוג $R$ תת־חוג זו תת־קבוצה $S \subseteq R$ כך שמתקיים
+	\begin{enumerate}
+		\item $S$ תת־חבורה ביחס לחיבור
+		\item $S$ היא תת־מונואיד ביחס לכפל, כלומר
+			\subitem{א.} סגורה לכפל
+			\subitem{ב.} $1 \in S$
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	תת־חוג הוא בפרט חוג עם אותן הפעולות ו־$0$ ו־$1$.
+\end{remark}
+\begin{example}
+	כל שדה $\FF$ הוא חוג, למשל $\RR, \CC, \QQ, \FF_p$ או למשל $\RR(f)$ הפולינומים. \\*
+	גם $\ZZ$ הוא חוג, וגם $\ZZ_{/n}$ עם הפעולות הרגילות. \\*
+	גם $M_n(\FF)$ מטריצות $n \times n$ מעל שדה $\FF$ עם חיבור וכפל מטריצות הוא חוג. \\*
+	כמובן גם חוג האפס. \\*
+	יותר מזה, $M_n(R)$ מטריצות מעל חוג הוא גם חוג. \\*
+	גם $\FF[x]$ פולינומים מעל שדה הם חוג, מוגדרים על־ידי $\FF[x] = \{ a_0 + a_1 x + \cdots + a_n x^n \mid n \in \NN, a_i \in \FF \forall i \}$, עם המוסכמה שלכל $m \ge n$
+	\[
+		a_0 + a_1 x + \cdots + a_n x^n = a_0 + \cdots + a_n x^n + 0 x^{n + 1} + \cdots + 0 x^m
+	\]
+	ולכן זה חוג יחד עם חיבור לפי מקדם ועם כפל פולינומים מהצורה
+	\[
+		(a_0 + \cdots + a_n x^n) \cdot (b_0 + \cdots + b_m x^n)
+		= a_0 b_0 + (a_0 b_1 + a_1 b_0) x + \cdots + (a_n b_m) x^{n + m}
+	\]
+	כלומר המקדם של $x^k$ במכפלה נתון על־ידי $\sum_{0 \le i \le n, 0 \le j \le m, i + j = k} a_i b_j$.
+
+	גם $R[x]$ הוא חוג מעל כל חוג $R$, אם הוא חוג קומוטטיבי, למשל $(\FF[x])[y] := \FF[x, y]$.
+\end{example}
+\begin{example}
+	חוג טורי החזקות $\FF[[m]] = \{ \sum_{i = 0}^\infty a_i x^i \mid a_i \in \FF \}$.
+	באותו האופן כמו $\FF[x]$.
+	למשל $\RR[[x]]$ המוגדר על־ידי $\sum_{n = 0}^{\infty} n! x^n$
+\end{example}
+\begin{remark}
+	$\FF[x]$ הוא תת־חוג של $\FF[[x]]$.
+\end{remark}
+\begin{remark}
+	$\FF_2[x]$ הוא חוג אינסופי.
+\end{remark}
+\begin{example}
+	אם $R$ חוג ו־$X$ קבוצה אז $R^X := \{ f : X \to R \mid f \text{ פונקציה}\}$ עם חיבור וכפל בטווח.
+	\[
+		(f + g)(x) = f(x) + g(x),
+		\qquad
+		(f \cdot g)(x) = f(x) \cdot g(x)
+	\]
+\end{example}
+\begin{example}
+	ניקח את $C([0, 1]; \RR) \subseteq \RR^{[0, 1]}$ הפונקציות הרציפות היא חוג.
+\end{example}
+\begin{example}
+	לכל $D \in \ZZ$ שלילי נוכל להגדיר $\ZZ[\sqrt{D}] = \{ a + b \sqrt{D} \mid a, b \in \ZZ \}$ כתת־חוג של המרוכבים $\CC$. \\*
+	בפרט $\ZZ[i] \subseteq \CC$ נקרא חוג השלמים של גאוס.
+\end{example}
+נבחן עתה חוגי חילוק,
+\[
+	\RR \subseteq \CC \subseteq \mathbb{H}
+\]
+חוג הקוורטרניונים, המוגדר על־ידי
+\[
+	\mathbb{H} = \{ a + bi + cj + dk \mid a, b, c, d \in \RR \}
+\]
+כאשר $i^2 = j^2 = k^2 = -1, ij = k, jk = i, ki = j$, נבחין כי זהו לא חוג קומוטטיבי.
+מתברר שזהו חוג החילוק היחיד שהוא חוג חילוק כחזקה סופית של שדה הממשיים.
+
+נשים לב שבקורס זה וכנראה בעולם בכללי חוג הוא בהגדרה וחוג ללא יחידה נקרא פשוט חוג ללא יחידה ולא ממש נעסוק בו. \\*
+עוד נבחין שבזמן שהומומורפיזם משמר פעולות, יתכן מצב שבו הוא לא משמר יחידה, לדוגמה
+\[
+	\RR \hookrightarrow M_2(\RR),
+	\qquad
+	a \mapsto \begin{pmatrix}
+		a & 0 \\
+		0 & 0
+	\end{pmatrix}
+\]
+ולכן נגדיר
+\begin{definition}
+	פונקציה $f : R \to S$ היא הומומורפיזם של חוגים אם
+	\[
+		\forall x, y \in R,
+		\quad
+		f(x + y) = f(x) + f(y),
+		\qquad
+		f(x y) = f(x) \cdot f(y),
+		\qquad
+		f(1) = 1
+	\]
+\end{definition}
+כל החוגים שלנו הם עם יחידה והומומורפיזמים מעתה מכבדים את היחידה.
+\begin{definition}[איזומורפיזם]
+	הומומורפיזם של חוגים נקרא איזומורפיזם אם הוא חד־חד ערכי ועל.
+\end{definition}
+\begin{lemma}
+	אם $f : R \to S$ איזומורפיזם אז $f^{-1} : S \to R$ היא הומומורפיזם (ולכן איזומורפיזם).
+\end{lemma}
+\begin{definition}[שיכון]
+	הומומורפיזם נקרא מונומורפיזם או שיכון אם הוא חד־חד ערכי.
+\end{definition}
+\begin{example}
+	$f : \ZZ \to \ZZ_{/n}$ המוגדרת על־ידי $f(n) = a \mod n$ היא המומורפיזם של חבורות ונראה כי גם של חוגים.
+\end{example}
+\begin{example}
+	נראה כי $f : M_d(\ZZ) \to M_d(\ZZ_{/n})$ שמפעילה $\mod n$ לכל קורדינטה היא גם הומומורפיזם.
+\end{example}
+\begin{example}
+	לכל $a \in \FF$ הפונקציה $ev_a : \FF[x] \to \FF$ המוגדרת על־ידי $ev_a(p(x)) = p(a)$. \\*
+	כאשר $p(x) = c_0 + c_1 x + \cdots + c_n x^n \in \FF[x]$, ו־$p(a) = c_0 + \cdots + c_n a^n \in \FF$. \\*
+	זהו הומומורפיזם שכן אנחנו בוחרים $a$ קבוע ומשתמשים בחיבור מקדמים וכפל מקדמים יחד עם הקבוע הזה.
+\end{example}
+\begin{example}
+	$\det : M_n(\FF) \to \FF$ היא לא הומומורפיזם של חוגים שכן
+	\[
+		\det(A + B) \ne \det(A) + \det(B)
+	\]
+\end{example}
+\begin{definition}
+	בהינתן הומומורפיזם של חוגים $f : R \to S$ נגדיר את התמונה והגרעין
+	\[
+		\im(f) := \{ f(x) \mid x \in R \},
+		\qquad
+		\ker(f) := \{ x \in R \mid f(x) = 0 \}
+	\]
+\end{definition}
+\begin{remark}
+	האם $\im(f) \subseteq S$ תת־חוג? התשובה היא שכן. \\*
+	האם $\ker(f) \subseteq R$ הוא תת־חוג? הגרעין הוא לא תת־חוג
+\end{remark}
 
 \end{document}
