@@ -38,9 +38,10 @@
 
 \Question{}
 תהינה $f, g : [1, \infty) \to \RR$ פונקציות אינטגרביליות ב־$[1, N]$ עבור כל $1 < N$. \\*
-נוכיח כי אם הסדרה ${( \int_{1}^{n} f(x)\ dx)}_{n = 1}^\infty$ מתכנסת אז $\int_{1}^{\infty} f(x)\ dx$ מתכנס אף הוא.
+נסתור את הטענה כי אם הסדרה ${( \int_{1}^{n} f(x)\ dx)}_{n = 1}^\infty$ מתכנסת אז $\int_{1}^{\infty} f(x)\ dx$ מתכנס אף הוא, על־ידי דגומה נגדית
 \begin{proof}
-	נניח בשלילה כי הסדרה לא מתכנסת ואז נקבל מאפיון היינה לסדרות סתירה לגבול הפונקציה הצוברת של $f$ באינסוף.
+	נגדיר $f(x) = \sin(2\pi x)$ וכלן לכל $N > 1$ נקבל $\int_1^N f(x)\ dx = \frac{1}{2 \pi} \cos(\pi x) \mid_1^N = 1 - 1 = 0$ ולכן נקבל סדרה קבועה וכמובן מתכנסת.
+	לעומת זאת אנו יודעים כי $\int_{1}^{\infty} \sin (2\pi x)\ dx$ לא מתכנס, וקיבלנו סתירה.
 \end{proof}
 
 \Question{}
@@ -252,7 +253,7 @@
 	ולכן נקבל
 	\[
 		\lim_{N \to \infty} \sum_{n = N + 1}^\infty a_n
-		= \lim_{N \to \infty} \left(\sum_{n = 1}^{\infty} a_n\right) - \left( \sum_{n = 1}^{N} a_n \right)
+		= \lim_{N \to \infty} \left( \left(\sum_{n = 1}^{\infty} a_n\right) - \left( \sum_{n = 1}^{N} a_n \right) \right)
 		= L - L
 		= 0
 	\]
