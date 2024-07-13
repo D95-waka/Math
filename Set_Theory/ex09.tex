@@ -1,0 +1,108 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- תורת הקבוצות (80200)}
+
+\DeclareMathOperator\dom{dom}
+\DeclareMathOperator\add{Add}
+\DeclareMathOperator\mult{Mult}
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי קבוצה $A$ ונוכיח כי התנאים הבאים שקולים:
+\begin{enumerate}
+	\item $A$ טרנזיטיבית
+	\item $A \subseteq \mathcal{P}(A)$
+	\item $\bigcup A \subseteq A$
+\end{enumerate}
+\begin{proof}
+	$1 \to 2$:
+	נניח כי $A$ טרנזיטיבית. \\*
+	נראה ש־$\forall x \in A \implies x \subseteq A \iff x \in \mathcal{P}(A)$. \\*
+	ההגדרה של הכלה היא כמובן $\forall x \in A \implies x \in B \iff A \subseteq B$ וקיבלנו כי $\forall x \in A \implies x \in \mathcal{P}(A)$ ולכן נסיק כי $A \subseteq \mathcal{P}(A)$.
+
+	$2 \to 3$:
+	נניח כי $A \subseteq \mathcal{P}(A)$. \\*
+	בחלק הקודם מצאנו $x \subseteq A \iff x \in \mathcal{P}(A)$ ולכן נסיק,
+	ונתון כי $\forall x \in A \implies x \in \mathcal{P}(A)$, ומשרשור הטענות נקבל
+	\[
+		\forall x \in A \implies x \subseteq A
+	\]
+	וכמובן גם $\bigcup x \in A = A$ על־פי הגדרה, ולכן נקבל כי גם $\bigcup A \subseteq A$.
+
+	$3 \to 1$:
+	נניח כי $\bigcup A \subseteq A$. \\*
+	יהי $x \in A$, אז נקבל כי $x \subseteq \bigcup A \subseteq A$ מההגדרה של איחוד, וקיבלנו כי $\forall x, x \in A \implies x \subseteq A$.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח כי אם $A$ טרנזיטיבית אז גם $\mathcal{P}(A)$ טרנזיטיבית.
+\begin{proof}
+	נניח כי $A$ טרנזיטיבית ולכן מהשאלה הקודמת נקבל $A \subseteq \mathcal{P}(A)$ ונסיק
+	\[
+		x \in \mathcal{P}(A) \implies x \subseteq A \subseteq \mathcal{P}(A)
+	\]
+	ומצאנו כי $\mathcal{P}(A)$ טרנזיטיבית.
+\end{proof}
+
+\Subquestion{}
+נניח כי $A \ne \emptyset$ קבוצה של קבוצות טרנזיטיביות, נוכיח כי $\bigcup A, \bigcap A$ טרנזיטיביות.
+\begin{proof}
+	תהי $x \in A$, נתון כי היא טרנזיטיבית ולכן משאלה 1 נקבל $\bigcup x \subseteq x$, נפעיל את פעולת האיחוד על שני האגפים ונקבל $\bigcup \bigcup A \subseteq \bigcup A$ ולכן נסיק משאלה 1 כי גם $\bigcup A$ טרנזיטיבית.
+
+	יהי $y \in \bigcap A$, דהינו $\forall x \in A\enspace y \in x$, ונבחין כי גם $\forall x \in A \enspace y \in x \implies y \subseteq x \implies y \subseteq \bigcap A$ וקיבלנו כי גם החיתוך הוא טרנזיטיבי.
+\end{proof}
+
+\Question{}
+יהי $\alpha$ סודר ונסמן $\alpha + 1 = s(\alpha) = \alpha \cup \{ \alpha \}$. \\*
+נוכיח כי $\alpha + 1$ סודר וכי הוא העוקב של $\alpha$.
+\begin{proof}
+	נבדוק אם $\alpha + 1$ הוא טרנזיטיבי. \\*
+	אם $x \in \alpha + 1$ אז נקבל כי $x \in \alpha \lor \alpha \in \{ \alpha \}$, דהינו $x \in \alpha$ או $x = \alpha$. \\*
+	אם $x = \alpha$ אז כמובן $x = \alpha \subseteq \alpha + 1$, ואם $x \in \alpha$ אז $x \subseteq \alpha \subseteq \alpha \cup \{ \alpha \} = \alpha + 1$. \\*
+	נראה כי $(\alpha + 1, \in)$ סדר קווי. אנו כבר יודעים כי $(\alpha, \in)$ סדר קווי וזהו למעשה אותו הסדר עם תוספת של איבר יחיד $\{ \alpha \}$, ולכן מספיק לבדוק אותו בסדר זה. \\*
+	נראה כי אם $x \in \alpha$ אז כמובן $x \in \alpha + 1$ כפי שכבר ראינו, ולמעשה הראינו כי תכונת הסדר הקווית נשמרת. \\*
+	נסיק אם כן ש־$\alpha + 1$ הוא סודר.
+
+	נוכיח כי $\alpha + 1$ הוא העוקב של $\alpha$.
+	ראינו כבר כי $\alpha \in \alpha + 1$, ואנו יודעים כי $\alpha$ איבר מקסימלי ב־$(\alpha, \in)$, ונסיק כי $\forall x \in \alpha \in \alpha + 1$. \\*
+	אם כן החשוד היחידי הוא $x = \{ \alpha \}$ עצמו, האיבר היחיד שנוסף ב־$(\alpha + 1, \in)$, וכמובן $x \in \alpha + 1$ ולכן נסיק כי אין איברים שסותרים את תכונת העוקב, ולכן $\alpha + 1$ אכן עוקב של $\alpha$.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+נוכיח שאם $A \ne \emptyset$ קבוצת סודרים אז $\bigcup A, \bigcap A$ סודרים ושמתקיים $\min A = \bigcap A$ וגם $\sup A = \bigcup \alpha$.
+\begin{proof}
+	בשאלה 2 מצאנו כי שתי קבוצות אלה טרנזיטיביות ולכן מספיק להוכיח כי הן מגדירות יחס סדר קווי יחד עם $\in$ כדי להראות שהן סודרים. \\*
+	נשתמש בטענה מהתרגול הטוענת כי כל שני סודרים $\alpha, \beta$ מתקיים $\alpha = \beta$ או $\alpha \in \beta$ וזהו ללא הגבלת הכלליות. \\*
+	אם $\alpha = \beta$ כמובן $(\alpha \cup \beta, \in)$ הוא סדר קווי, ולכן נניח כי $\alpha \in \beta$. \\*
+	יהיו $x \in \alpha, y \in \beta$, ואנו יודעים כי $x \in \alpha \in \beta \implies x \in \beta$, ולכן נקבל כי $x, y \in \beta$ ומהסדר הטוב $(\beta, \in)$ נסיק כי $x = y \lor x \in y \lor y \in x$. \\*
+	נוכל אם כן לבצע אותו הליך באופן רקורסיבי לכל הקבוצות ב־$A$ ונקבל כי $(\bigcup A, \in)$ הוא סדר קווי ולכן $\bigcup A$ סודר. \\*
+	נעבור לבדוק את הסדר הממוגדר על־ידי $\bigcap A$, יהיו $\alpha, \beta \in A$, אם $\alpha = \beta$ אז $\alpha \cap \beta = \alpha$ ומצאנו כי זהו סודר, ולכן נניח ללא הגבלת הכלליות כי $\alpha \in \beta$. \\*
+	נוכל אם כן להסיק כי גם $\alpha \subseteq \beta$ ונסיק ישירות ש־$\alpha \cap \beta = \alpha$ ובהתאם גם $\bigcap A$ הוא סודר.
+
+	ראינו כי $\alpha \in \beta \implies \alpha \cap \beta = \alpha$ ולכן אם נבחר את הסודר המינימלי ב־$A$ (כפי שמותר לנו לעשות שכן מצאנו ש־Ord סדר קווי עם יחס ההכלה) ונגדירו $\alpha$.
+	נוכל אם כן להסיק $\forall \beta \in A \enspace \alpha \cap \beta = \alpha$ ולכן נוכל להסיק כי $\bigcap A = \alpha = \min A$. \\*
+	באופו דומה מצאנו כי $\forall \alpha, \beta \in A \enspace \alpha \in \beta \implies \alpha \cup \beta = \beta$,
+	לכן נקבל כי $\forall \alpha \in A \enspace \alpha \in \bigcup A$ ואם נניח $\gamma$ סודר כך ש־$\alpha \in \gamma$ לכל $\alpha \in A$ אז נקבל כי גם $\bigcup A \in \gamma$ מהטענה הקודמת, ונוכל להסיק כי $\sup A = \bigcup A$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם ל־$A$ אין מקסימום אז $\sup A$ הוא סודר גבולי, דהינו לא קיים $\alpha$ סודר כך ש־$\sup A = \alpha + 1$.
+\begin{proof}
+	נניח כי ל־$A$ אין מקסימום ונניח בשלילה ש־$\sup A = \alpha + 1$ עבור סודר $\alpha$ כלשהו. \\*
+	מצאנו כי $\sup A = \bigcup A$ ולכן $\alpha + 1 \in x$ עבור $x \in A$ כלשהו, ולכן מטענות שראינו בהוכחה הקודמת נסיק $\forall y \in A \enspace y \in x$ ומצאנו כי $x$ מקסימום ב־$A$ בסתירה להנחה.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+יהי $\alpha$ סודר.
+
+\subsubsection{i.}
+נוכיח שאם $\alpha = \beta + 1$ הוא עוקב אז $\bigcup \alpha = \beta$.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
