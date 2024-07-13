@@ -1,0 +1,283 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- מבנים אלגבריים 1 (80445)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $G$ חבורה נילפוטנטית.
+
+\Subquestion{}
+נוכיח שכל $H \le G$ תת־חבורה היא גם נילפוטנטית.
+\begin{proof}
+	נניח כי $G$ היא $r$־נילפוטנטית, ונגדיר $\{e\} = Z_0 \triangleleft Z_1 \triangleleft \dots \triangleleft Z_r = G$ הסדרה הנורמלית הנוצרת על־ידי הרכיבים הנילפוטנטיים. \\*
+	ממשפט האיזומורפיזם השני נקבל כי $Z_i \cap H \triangleleft H$ לכל $0 \le i \le r$. \\*
+	כך נקבל כי $Z(G/Z_i) \simeq Z_{i + 1} / Z_i$ ולכן עלינו להוכיח כי $Z(H / (Z_i \cap H)) \simeq (H \cap Z_{i + 1}) / (H \cap Z_i)$. \\*
+	אני לא יודע.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי לכל $N \triangleleft G$, המנה $G / N$ היא נילפוטנטית.
+\begin{proof}
+	לא יודע.
+\end{proof}
+
+\Question{}
+תהי $G$ חבורהה נילפוטנטית סופית.
+
+\Subquestion{}
+נוכיח כי לכל $m \mid |G|$ קיימת תת־חבורה $H \le G$ כך ש־$|H| = m$.
+\begin{proof}
+	אנו יודעים כי קיימת תת־חבורה $p$־סילו יחידה ונורמלית לכל $p$ ואנו יודעים כי גם $G$ היא מכפלה ישרה של חבורות $p$ אלה. \\*
+	ידוע גם כי קיימת תת־חבורה מכל סדר חזקת $p$ קטן או שווה לחזקה המקסימלית, ולכן אם ניקח את הפירוק של $m$ לראשוניים, מהעובדה שהוא מחלק את $|G|$ נוכל לקבוע כי לכל $p^r \mid m$ קיימת תת־חבורה בגודל זה ל־$G$. \\*
+	נשתמש בעובדה שהיא איזומורפית למכפלה ישרה ונכפול את תת־החבורות האלו בגדלים ראשוניים מקסימליים המחלקים את $m$ ונקבל תת־חבורה $H$ כך שגודלה הוא בדיוק $m$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי לכל $p \mid |G|$ ראשוני, מתקיים גם $p \mid |Z(G)|$.
+\begin{proof}
+	תהי $P$ חבורת $p$־סילו של $G$, וידוע כי $p \mid |Z(P)|$. \\*
+	מהמשפט ש־$G$ איזומורפית למכפלה ישרה של חבורות $p$ נסיק כי קיימת חבורה $H \le G$ כך ש־$G \simeq H \times P$, ומהלמה על מרכזי מכפלה ישרה נסיק $Z(G) \simeq Z(H) \times Z(P)$.
+	לכן בפרט גם $|Z(G)| = |Z(H)| \cdot |Z(P)|$ ומצאנו כבר כי $p \mid |Z(P)|$ ולכן נסיק כי גם $p \mid |Z(G)|$.
+\end{proof}
+
+\Question{}
+יהי $\FF$ שדה. תהי $B_n(\FF) \le GL_n(\FF)$ תת־חבורת המטריצות המשולשיות העליות ו־$U_n(\FF) \le B_n(\FF)$ כאשר האלכסון שקול ל־$I_n$.
+
+\Subquestion{}
+נוכיח שהחבורה $U_n(\FF)$ היא נילפוטנטית לכל $n \ge 1$.
+\begin{proof}
+	נניח ש־$U, A \in U_n(\FF)$, ולכן אנו יודעים כי $U \sim I_n$ ולכן נסיק כי קיימת $M \in GL_n(\FF)$ כך ש־$M U M^{-1} = I_n$. \\*
+	עתה נבדוק מתי מתקיימת חילופיות ונקבל
+	\[
+		A U = U A
+		\iff A M^{-1} M = M^{-1} M A
+		\iff M A M^{-1} = M A
+		\iff
+		U = A
+	\]
+	ולכן נסיק כי $Z(U_n(\FF)) = \{ I_n \}$ בלבד, ומכאן נוכל להסיק ישירות כי מתקיימת נילפוטנטיות.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי החבורה $B_n(\FF)$ היא לא נילפוטנטית לכל $n \ge 2$.
+\begin{proof}
+	אילו נעשה תהליך דומה לסעיף הקודם נקבל כי המרכז של $B_n(\FF)$ הוא חבורת המטריצות הסקלריות, נסמן $L_n(\FF) = \{ \lambda I_n \mid \lambda \in \FF, \lambda \ne 0_\FF \}$. \\*
+	נגדיר הומומורפיזם $\varphi : B_n(\FF) \to B_n(\FF)$ על־ידי $\varphi(B) = \frac{B}{|B|}$, זהו אכן הומומורפיזם כנביעה מהעובדה שדטרמיננטה היא הומומורפיזם. \\*
+	נבחין כי $\forall \lambda I_n \in L_n(\FF) : \varphi(\lambda I_n) = 1 / \lambda^n$.
+	ממשפט האיזומורפיזם הראשון נסיק כי $B_n(\FF) / Z(B_n(\FF)) \simeq $ \\*
+	לא משנה אני לא יודע.
+\end{proof}
+
+\Question{}
+יהי $R$ חוג ויהיו $x, y \in R$.
+נוכיח או נפריך את הטענות הבאות.
+
+\Subquestion{}
+נוכיח ש־$x \cdot 0 = 0 \cdot x = 0$.
+\begin{proof}
+	מפילוג נקבל
+	\[
+		0 \cdot x = (1 - 1) \cdot x = 1 \cdot x - 1 \cdot x = 0 = x \cdot 1 - x \cdot 1 = x \cdot 0
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $(-1) \cdot x = -x$.
+\begin{proof}
+	$0 = 0 \cdot x = (1 - 1) \cdot x = x + (-1) \cdot x = 0 \implies x + (-1) \cdot x - x = -x \implies (-1) \cdot x = -x$.
+\end{proof}
+
+\Subquestion{}
+נסתור את הטענה כי ${(x + y)}^2 = x^2 + 2xy + y^2$ על־ידי דוגמה נגדית.
+
+נבחין כי בעוד $x \cdot x$ חילופי בינו לבין עצמו, וכך גם $y = y$, לא בהכרח $xy = yx$. \\*
+נבחן את חוג המטריצות $M_2(\RR)$ ונראה כי
+\[
+	x = \begin{pmatrix}
+		1 & 2 \\
+		0 & 3
+	\end{pmatrix},
+	y = \begin{pmatrix}
+		1 & 0 \\
+		0 & 2
+	\end{pmatrix},
+	\qquad
+	x y = \begin{pmatrix}
+		1 & 4 \\
+		0 & 6
+	\end{pmatrix},
+	y x = \begin{pmatrix}
+		1 & 2 \\
+		0 & 6
+	\end{pmatrix}
+\]
+ולכן נקבל
+\[
+	{(x + y)}^2
+	= \begin{pmatrix}
+		2 & 2 \\
+		0 & 6
+	\end{pmatrix}^2
+	= \begin{pmatrix}
+		2 & 16 \\
+		0 & 36
+	\end{pmatrix}
+\]
+אבל
+\[
+	x^2 + 2 xy + y^2
+	= \begin{pmatrix}
+		1 & 7 \\
+		0 & 9
+	\end{pmatrix}
+	+ \begin{pmatrix}
+		2 & 8 \\
+		0 & 12
+	\end{pmatrix}
+	+ \begin{pmatrix}
+		1 & 0 \\
+		0 & 4
+	\end{pmatrix}
+	= \begin{pmatrix}
+		4 & 15 \\
+		0 & 25
+	\end{pmatrix}
+\]
+ואלו כמובן מטריצות שונות.
+
+\Subquestion{}
+נסתור את הטענה $xy = 0 \implies x = 0 \lor y = 0$ על־ידי דוגמה נגדית.
+
+נגדיר
+\[
+	x = y = \begin{pmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{pmatrix}
+\]
+זוהי כמובן מטריצה נילפוטנטית וידוע כי
+\[
+	x y
+	= \begin{pmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{pmatrix}^2
+	= 0
+\]
+אבל $x, y \ne 0$.
+
+\Subquestion{}
+נסתור את הטענה $0 = 1 \implies R = \{ 0 \}$ על־ידי דוגמה נגדית.
+
+נגדיר $R = \ZZ_{/2}$ יחד עם פעולת הכפל הטריוויאלית, דהינו $\forall x, y \in R : x \cdot y = 0$, ולכן נקבל כי $0 \cdot x = x \cdot 0 = 0$ ולכן ההגדרה מקיימת את תכונות החוג. \\*
+לעומת זאת, $R \ne \{ 0 \}$.
+
+\Question{}
+\Subquestion{}
+נוכיח שההעתקה $\varphi : \ZZ \to \ZZ_{/n}$ המוגדרת על־ידי $\varphi(x) = x \mod n$ היא הומומורפיזם חוגים.
+\begin{proof}
+	יהיו $x, y \in \ZZ$, ונוכל לייצגם על־ידי $x = x' + k n, y = y' + k n$ כאשר $k$ משתנה ו־$0 \le x', y' < n$. \\*
+	נקבל כמובן $\varphi(x) = x', \varphi(y) = y'$, ועתה נבחין כי $\varphi(x + y) = \varphi(x' + y') = x' + y' \mod n$. \\*
+	כמו כן נקבל גם $\varphi(x y) = \varphi((x' + kn)(y' + kn)) = \varphi(x' y' + n(x'k + y'k + k^2)) = x' y' \mod n$. \\*
+	נשאר לראות $\varphi(1) = 1$, ואכן על־פי הגדרה שוויון זה מתקיים לכל $n \ge 1$.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $\FF$ שדה ו־$R$ חוג לא אפס, אז כל הומומורפיזם חוגים $f : \FF \to S$ הוא חד־חד ערכי.
+\begin{proof}
+	מה זה $S$?
+\end{proof}
+
+\Subquestion{}
+נוכיח שתת־הקבוצה
+\[
+	C = \left\{
+		\begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}
+		\middle|
+		a, b \in \RR
+	\right\}
+	\subseteq M_2(\RR)
+\]
+היא תת־חוג שאיזומורפי ל־$\CC$.
+\begin{proof}
+	למעשה כבר נתקלנו בהרצאה (שיעור 7) בקבוצה זו, שם הוכחנו כי היא סגורה לכפל ותת־חבורה ללא אפס, דהינו $I_2 \in C$. \\*
+	נותר אם כן לבדוק כי היא חבורה יחד עם פעולת החיבור, אנו יודעים כי $0_2 \in C$, ולכן נבדוק סגירות לחיבור וקיום הופכי בלבד:
+	\[
+		\begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			a' & -b' \\
+			b' & a'
+		\end{pmatrix}
+		= \begin{pmatrix}
+			a + a' & -(b + b') \\
+			b + b' & a + a'
+		\end{pmatrix}
+		\in C,
+		\qquad
+		\begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			-a & b \\
+			-b & -a
+		\end{pmatrix}
+		= 0_2
+	\]
+	ומצאנו כי זהו אכן תת־חוג.
+
+	נבדוק איזומורפיה של $C$ ל־$\CC$. \\*
+	נגדיר העתקה  $\varphi : C \to \CC$ המוגדרת על־ידי
+	\[
+		\varphi( \begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}) = a + bi
+	\]
+	ונבדוק סגירות לחיבור, כפל ויחידה:
+	\[
+		\varphi(\begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix} + \begin{pmatrix}
+			a' & -b' \\
+			b' & a'
+		\end{pmatrix})
+		= (a + a') + (b + b')i,
+		\varphi(\begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}) + \varphi(\begin{pmatrix}
+			a' & -b' \\
+			b' & a'
+		\end{pmatrix})
+		= a + bi + a' + b'i
+		= (a + a') + (b + b')i
+	\]
+	ומצאנו סגירות לחיבור, בגירות לכפל נמצא באותה הדרך בדיוק תוך שימוש בהוכחה שצויינה לעיל מהרצאה 7, וכמובן על־פי הגדרה
+	\[
+		\varphi(I_2) = 1 + 0i = 1
+	\]
+	ומצאנו כי זהו הומומורפיזם חוגים, נותר לראות כי הוא הפיך.
+	נגדיר $\varphi^{-1} : \CC \to C$ על־ידי
+	\[
+		\varphi^{-1}(a + bi)
+		= \begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}
+	\]
+	נוכל לבדוק ישירות על־ידי הצבה ונקבל $\varphi \circ \varphi^{-1} = \varphi^{-1} \circ \varphi = Id$ ונסיק כי שניהם אכן איזומורפיזמים, ולכן $C$ איזומורפי ל־$\CC$.
+\end{proof}
+
+\end{document}
