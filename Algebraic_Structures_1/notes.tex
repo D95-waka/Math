@@ -3489,4 +3489,163 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	האם $\ker(f) \subseteq R$ הוא תת־חוג? הגרעין הוא לא תת־חוג
 \end{remark}
 
+\section{שיעור 19 --- 15.7.2024}
+\subsection{תורת החוגים --- הומומורפיזמים}
+הומומורפיזם של חוגים $f : R \to S$ פונקציה שמקיימת $\forall x, y \in R : f(x + y) = f(x) + f(y), f(xy) = f(x) \cdot f(y)$ ואנו דורשים בנוסף מטעמי נוחות וקונבנציה ש־$f(1) = 1$. \\*
+הגדרנו ש־$\im(f) = \{ f(x) \mid x \in R \}$ ו־$\ker(f) = \{ x \in R \mid f(x) = 0 \} \subseteq R$.
+אמרנו ש־$\im(f)$ הוא תמיד תת־חוג של $S$ וגם שהגרעין הוא \textbf{לא} תת־חוג של $R$, בדרך־כלל. \\*
+נבחין מההגדרה של חוג שחיבור וכפל משתמרים בגרעין, ונקבל את הלמה הבאה.
+\begin{lemma}
+	$\ker(f)$ הוא תת־חוג של $R$ אם ורק אם $f(1) = 0$, דהינו אם $S = 0$.
+\end{lemma}
+\begin{definition}[אידאל]
+	$R$ חוג, אידאל (Ideal) של $R$ זו תת־קבוצה $I \subseteq R$ כך שמתקיימות התכונות הבאות:
+	\begin{enumerate}
+		\item $I$ הוא תת־חבורה חיבורית של $R$
+		\item לכל $x \in I$ ו־$r \in R$ מתקיים $rx \in I, xr \in I$.
+	\end{enumerate}
+	דהינו שהקבוצה שואבת לתוכה תחת פעולת הכפל.
+\end{definition}
+\begin{notation}
+	נסמן אידאל כמו תת־חבורה נורמלית, על־ידי $I \triangleleft R$, וזה גם בגדול המושג המקביל.
+\end{notation}
+\begin{lemma}
+	עבור הומומורפיזם של חוגים $f : R \to S$ מתקיים ש־$\ker(f)$ הוא אידאל של $R$, דהינו $\ker(f) \triangleleft R$.
+\end{lemma}
+\begin{proof}
+	אנו כבר יודעים כי זוהי חבורה חיבורית ואם $x \in \ker(f)$ ו־$r \in R$ אז $f(rx) = f(r)f(x) = f(r) \cdot 0 = 0$ ובדומה נקבל גם $f(xr) = 0$.
+\end{proof}
+עתה נבנה חוג מנה
+\begin{definition}[חוג מנה]
+	$R$ חוג ו־$I \triangleleft R$. נגדיר על $R/I$ מבנה של חוג כך שיתקיים
+	\begin{enumerate}
+		\item כחבורה חיבורית זו חבורת המנה
+			\[
+				(a + I) + (b + I) = (a + b) + I
+			\]
+		\item נשים לב
+			\[
+				(a + I)(b + I) = ab + aI + Ib + I^2 \subseteq ab + I
+			\]
+			אבל ממש לא בהכרח שווה, בגלל $I^2$ שאיננו בהכרח $I$ עצמו. \\*
+			נגדיר $(a + I) \cdot (b + I) := ab + I$.
+	\end{enumerate}
+\end{definition}
+\begin{proposition}
+	$R/I$ חוג עם הפעולות שהוגדרו, וההטלה $\pi : R \to R / I$ המוגדרת על־ידי $\pi(r) = r - I$ הומומורפיזם של חוגים.
+\end{proposition}
+\begin{proof}[הוכחה חלקית]
+	$(R/I, +)$ אכן חבורה חיבורית אבלית. \\*
+	נבדוק נייטרלי לכפל $1 + I$ שכן מתקיים
+	\[
+		(1 + I)(a + I) = 1a + I = a + I
+	\]
+	וכמובן זה נכון גם בכיוון ההפוך של המכפלה. \\*
+	נבדוק אחד מחוקי הפילוג והשאר הם תרגיל. \\*
+	פילוג משמאל:
+	\begin{align*}
+		& (a + I)((b + I) + (c + I))
+		& = (a + I)((b + c) + I)
+		& = a(b + c) + I \\
+		& = ab + ac + I
+		& = ((ab) + I) + ((ac) + I)
+		& = (a + I)(b + I) + (a + I)(c + I)
+	\end{align*}
+	לכל $x, y \in R$ נקבל
+	\[
+		\pi(xy) = xy + I = (x + I)(y + I) = \pi(x) \cdot \pi(y),
+		\qquad
+		\pi(1) = 1 + I,
+		\qquad
+		\pi(x + y) = \pi(x) + \pi(y)
+	\]
+\end{proof}
+\begin{example}
+	ננסה לחשב את $GL_n(\RR) / SL_n(\RR)$, ממשט האיזומורפיזם הראשון נקבל ש־$\det : GL_n(\RR) \to \RR^\times$ אז $\ker(f) \simeq SL_n(\RR)$, השאל איך בונים הומומורפיזם כזה, אז נקבל $GL_n(\RR) / SL_n(\RR) \simeq \RR^\times$.
+\end{example}
+נעבור לדבר על אידאלים באופן כללי.
+\begin{lemma}
+	$R$ חוג ו־$I \triangleleft R$, עבור $\alpha \in S$ משפחה של אידאלים, אז גם $\bigcap_{\alpha \in S} \alpha$ גם אידאל.
+\end{lemma}
+הוכחה בתרגיל.
+\begin{definition}
+	$R$ חוג ו־$X \subseteq R$ תת־קבוצה, האידאל שנוצר על־ידי $X$ ב־$R$ מוגדר להיות
+	\[
+		(X) := \bigcap_{X \subseteq I \triangleleft R} I \triangleleft R
+	\]
+\end{definition}
+\begin{example}
+	אם $r \in R$ אז
+	\[
+		(r) = \bigcap_{r \in I \triangleleft R} I
+		= \{ \sum_{i = 1}^{n} a_i r b_i \mid n \in \NN, a_i b_i \in \RR \}
+	\]
+	זהו האידאל הנוצר על־ידי איבר בודד.
+\end{example}
+\begin{remark}
+	אם $R$ קומומוטטיבי אז
+	\[
+		(r) = \{ a r \mid a \in R \} = rR
+	\]
+\end{remark}
+\begin{proposition}
+	האידאלים של $\ZZ$ הם בדיוק התת־קבוצות $n \ZZ$.
+\end{proposition}
+\begin{proof}
+	אלה התת־חבורות החיבוריות של $\ZZ$ והן כולן אידאלים.
+\end{proof}
+\begin{proposition}
+	אם $\FF$ שדה אז האידאלים היחידים בו הם $\FF$ ו־$\{ 0 \}$.
+\end{proposition}
+\begin{proof}
+	אם $0 \ne x \in I \triangleleft \FF$ אז לכל $y \in \FF$ נקבל $y = {(yx)}^{-1} x \in I \implies I = \FF$.
+\end{proof}
+\begin{theorem}[משפט האיזומורפיזם הראשון לחוגים]
+	עבור הומומורפיזם חוגים $f : R \to S$ מתקיים
+	\[
+		R / \ker(f) \simeq \im(S)
+	\]
+	ובראי העתקות הטלה, נקבל $x + \ker(f) \mapsto f(x)$.
+\end{theorem}
+\begin{proof}
+	בנינו כבר העתקה $\varphi : R / \ker(f) \xrightarrow{\sim} \im(S)$.
+	כחבורה חיבורית ונותר רק לבדוק שהיא משמרת כפל ויחידה.
+	\[
+		\varphi((x + I)(y + I)) = f(xy + I) = f(xy) + I,
+		\qquad
+		\varphi(x + I)\varphi(y + I) = f(x)f(y)
+	\]
+	ומצאנו כי הם שווים, נבדוק יחידה
+	\[
+		\varphi(1 + I) = \varphi(1) = 1
+	\]
+	ולמעשה מצאנו כי כלל התכונות משתמרות.
+\end{proof}
+אנחנו צריכים להסתכל על חוגים כעל חבורות אבליות עם ההרחבה של פעולה כפלית והתנהגות יותר ספציפית, ככה למשפטי האיזומורפיזם יש יותר משמעות והיגיון בהקשר של חבורות.
+\begin{example}
+	פעולת ההצבה בפולינום עבור $a \in \FF$ היא $ev_a : \FF[x] \to \FF$ המוגדרת על־ידי $P(x) \mapsto P(a)$. \\*
+	באופן דומה, $\varphi : \RR[x] \to \CC$ על־ידי $f(x) \mapsto f(i)$, הוא הומומורפיזם תקין ושנוכל לקבל ממנו ערכים מרוכבים.
+	נטען כי
+	\[
+		\im(\varphi) = \CC
+	\]
+	שכן
+	\[
+		\varphi(a + bx) = a + bi, \varphi(-1) = -1, \varphi(x^2) = -1, \varphi(x^2 + 1) = 0
+	\]
+	ולכן $\RR[x] / \ker(\varphi) \simeq \CC$.
+\end{example}
+\begin{lemma}
+	$\ker(\varphi) = (x^2 + 1)$
+\end{lemma}
+\begin{proof}
+	ראינו ש־$x^2 + 1 \in \ker(\varphi)$ ולכן $(x^2 + 1) \subseteq \ker(\varphi)$. \\*
+	אם $f(i) = 0$ אז $(x - i) \mid f(x)$ ב־$\CC[x]$ אבל ל־$f$ מקדמים ממשיים ולכן $f(-i) = \overline{f(i)} = \overline{0} = 0$ ולכן $x + 1 \mid f(x)$.
+	לכן $(x + i)(x - i) \mid f(x)$, דהינו $x^2 + 1 \mid f(x)$. \\*
+	אזהרה: ההנחה השתמשה בתכונות של $\CC[x]$.
+\end{proof}
+\begin{conclusion}
+	$\RR[x] / (x^2 + 1) \simeq \CC$
+\end{conclusion}
+
 \end{document}
