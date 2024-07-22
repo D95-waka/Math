@@ -3648,4 +3648,179 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	$\RR[x] / (x^2 + 1) \simeq \CC$
 \end{conclusion}
 
+\section{שיעור 20 --- 17.7.2024}
+\subsection{חוגים --- הומומורפיזמים המשך}
+נזכיר את משפט האיזומורפיזם הראשון לחוגים עליו דיברנו בשיעור הקודם
+\begin{theorem}[משפט האיזומורפיזם הראשון לחוגים]
+	עבור הומומורפיזם של חוגים $f : R \to S$ מתקיים
+	\[
+		R / \ker(f) \xrightarrow{\sim} \im(f),
+		\qquad
+		x + \ker(f) \mapsto f(x)
+	\]
+\end{theorem}
+ישנם כמובן משפטי איזומורפיזם מקבילים לשני והשלישי.
+\begin{theorem}[משפט האיזומורפיזם השני לחוגים]
+	$R$ חוג ו־$I \triangleleft R$ אידאל ו־$S \subseteq R$ תת־חוג, אז מתקיים:
+	\begin{enumerate}
+		\item $I \cap S \triangleleft S$ אידאל
+		\item $I + S \subseteq R$ תת־חוג
+		\item $S / (I \cap S) \simeq (I + S) / I$
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[משפט האיזומורפיזם השלישי לחוגים]
+	$R$ חוג ו־$I, J \triangleleft R$ כך ש־$I \subseteq J$ אז
+	\begin{enumerate}
+		\item $R / J \triangleright R / I$
+		\item $(R / I) / (J / I) \simeq R / J$
+	\end{enumerate}
+\end{theorem}
+\begin{example}[דוגמה למשפט האיזומורפיזם השני]
+	$R = \CC[x]$ ו־$R \triangleright I = (x) = \{ a_1 x + \cdots + a_n x^n \mid a_1, \dots, a_n \in \CC \}$, יחד עם $R \supseteq S = \RR[x]$.
+	נוכל להסתכל על $S \cap I$, כל הפולינומים הממשיים שמתחלקים ב־$x$, ונוכל לבחון את $I + S$ שהיא קבוצת הפולינומים עם מקדם חופשי ממשי.
+	נקבל מהמשפט כי $S / (S \cap I) \simeq (I + S) / I$.
+	נבחין כי נקבל שמתקיים
+	\[
+		R / I = \CC[x] / (x) \simeq \CC
+	\]
+	שכן לקחנו את כל הפולינומים המרוכבים וכל מה שמתחלק מאיקס הכרזנו עליו כאפס, ונשאר למעשה רק המקדם החופשי עצמו בלבד.
+	לכן גם בשוויון שקיבלנו קודם נקבל פעמיים את המספרים המרוכבים.
+\end{example}
+\begin{theorem}[משפט ההתאמה לחוגים]
+	אם $R$ חוג ו־$I \triangleleft R$ אז יש התאמה חד־חד ערכית ועל
+	\[
+		\{ \overline{J} \triangleleft R / I \} \simeq \{ I \subseteq J \triangleleft R \}
+	\]
+	ו־$\overline{J} \mapsto \pi^{-1}(\overline{J})$ כאשר $\pi : R \to R / I$.
+\end{theorem}
+ניזכר במשפט השאריות הסיני שראינו כבר, מתברר כי הוא מתקיים גם עובר חוגים
+\begin{theorem}[משפט השאריות הסיני לחוגים]
+	אם $n, m$ מספרים זרים אז
+	\[
+		\ZZ_{/nm} \simeq \ZZ_{/n} \times \ZZ_{/m}
+	\]
+	כאיזומורפיזמים של חוגים.
+\end{theorem}
+\begin{definition}[קבוצת ההפיכים כפלית]
+	$R$ חוג אז $R^\times \subseteq R$ היא קבוצת האיברים ההפיכים כפלית.
+\end{definition}
+נבחין כי אם $\FF$ שדה אז נקבל $\FF \setminus \{ 0 \} = \FF^\times$.
+\begin{proposition}
+	$R^\times$ חבורה ביחס לכפל.
+\end{proposition}
+\begin{conclusion}
+	נסיק ממשפט השאריות הסיני כי לכל $n, m \in \NN$ זרים מתקיים
+	\[
+		{(\ZZ_{/nm})}^\times \simeq {(\ZZ_{/n})}^\times \times {(\ZZ_{/m})}^\times
+	\]
+\end{conclusion}
+\begin{proof}
+	$\ZZ_{/nm} \xrightarrow{\sim} \ZZ_{/n} \times \ZZ_{/m}$
+	ולכן נסיק כי גם ${(\ZZ_{/nm})}^\times \xrightarrow{\sim} {(\ZZ_{/n} \times \ZZ_{/m})}^\times$.
+	והביטוי האחרון הוא כמובן שקול לפירוק הכפלי שלהם.
+\end{proof}
+\begin{example}
+	נבחן את ${(\ZZ_{/8})}^\times = \{ 1, 3, 5, 7 \}$.
+	נבדוק את הסדרים של המספרים, נראה כי $1^2 = 1$, כי $3^2 \cong 1$ וכך גם $5^2 \cong 7^2 \cong 1$, דהינו כל האיברים הם מסדר $2$.
+\end{example}
+\begin{example}
+	נקבל גם עבור $n = p_1^{d_1} \cdots p_r^{d_r}$ כי
+	\[
+		{(\ZZ_{/n})}^\times \simeq {(\ZZ_{/p_1^{d_1}})}^\times \times \cdots \times {(\ZZ_{/p_r^{d_r}})}^\times 
+	\]
+	ואנו יודעים כי
+	\[
+		|{(\ZZ_{/p^{d}})}^\times| = p^d - p^{d - 1} = p^{d - 1}(p - 1)
+	\]
+	ולכן נקבל כי $\varphi(n) := |{(\ZZ_{/n})}^\times| = \prod_{i = 1}^r p_i^{d_i - 1} (p_i - 1)$ וזו נקראת פונציית פי של אוילר.
+\end{example}
+\begin{definition}
+	$R$ חוג ו־$I, J \triangleleft R$ אז נגדיר
+	\[
+		I + J = \{ a + b \mid a \in I, b \in J \},
+		\qquad
+		I \cdot J = \{ \sum_{i = 1}^{n} a_i b_i \mid a_i \in I, b_i \in J \}
+	\]
+\end{definition}
+\begin{proposition}
+	גם $I + J, I \cdot J$ הם אידאלים.
+\end{proposition}
+\begin{theorem}[משפט השאריות הסיני לחוגים]
+	יהי $R$ חוג קומוטטיבי ו־$I, J \triangleleft R$ כך ש־$I + J = R$ אז
+	\[
+		R / (I \cdot J) \simeq (R / I) \times (R / J)
+	\]
+\end{theorem}
+\begin{proof}
+	\[
+		\pi_I : R \to R / I,
+		\qquad
+		\pi_J : R \to R / J
+	\]
+	ונגדיר
+	\[
+		\pi : R \to R / I \times R / J
+	\]
+	על־ידי
+	\[
+		\pi(x) = (\pi_I(x), \pi_J(x))
+	\]
+	צריך להראות ש־$\pi$ על ו־$\ker(\pi) = I \cdot J$ נקבע על־ידי איזו הראשון:
+	\[
+		R / (I \cdot J) \simeq R  / I \times R / J
+	\]
+	מתקיים
+	\[
+		\ker(\pi) = \ker(\pi_I) \cap \ker(\pi_J) = I \cap J
+	\]
+
+	הערת צד: $I \cdot J \subseteq I \cap J$ ולפעמים $I \cdot J \ne I \cap J$, למשל $(2 \ZZ)(2\ZZ) = 4 \ZZ$ אבל $2\ZZ \cap 2\ZZ = 2\ZZ$.
+
+	מתקיים $I \cdot J \subseteq I \cap J$, ונראה שגם ההכפלה ההפוכה מתקיימת.
+	נבחר איברים $a \in I, b \in J$ כך ש־$a + b = 1$, לכל $r \in I \cap J$ מתקיים $r = r \cdot 1 = \overbrace{r \cdot a}^{\in I \cdot J} + \overbrace{r \cdot b}^{I \cdot J} \in I \cdot J$.
+	הוכחנו כי הגרעין הוא המכפלה, וההוכחה ש־$\pi$ על תהיה בתרגיל.
+\end{proof}
+
+\subsection{חוגים קומוטטיביים}
+ההבדל ביניהם לשדה הוא שלא קיים בהכרח הופכי לכל איבר שונה מאפס.
+אם $R$ הוא חוג קומוטטיבי ו־$a \in R$ אז נוכל לבחון את הפונקציה $f_a : R \to R$ המקיימת $f_a(x) = ax$.
+\begin{lemma}
+	$a$ הפיך אם ורק אם $f_a$ פונקציה הפיכה, דהינו חד־חד ערכית ועל.
+\end{lemma}
+\begin{proof}
+	אם $a$ הפיכך אז $f_{a^{-1}}$ היא הופכית של $f_a$:
+	\[
+		f_{a^{-1}}(f_a(x)) = a^{-1} a x = x,
+		\qquad
+		f_a(f_{a^{-1}}(x)) = a a^{-1} x = x
+	\]
+	מצד שני, אם $f_a$ חד־חד ערכית ועל. קיים איבר $b \in R$ עבורו $f_a(b) = 1 = ab = ba$ ולכן $b$ הופכי של $a$.
+\end{proof}
+\begin{lemma}
+	$f_a : R \to R$ לא חד־חד ערכית אם ורק אם קיים $0 \ne b \in R$ עבורו $ab = 0$.
+\end{lemma}
+\begin{proof}
+	אם קיים $b$ כזה אז $f_a(b) = 0 = f_a(0)$.
+
+	מצד שני אם קיימים $b \ne c$ שונים ב־$R$ כך ש־$ac = f_a(b) = f_a(c) = ac$ אז $f_a(b - c) = ab - ac = 0$.
+\end{proof}
+\begin{definition}[מחלק אפס]
+	$R$ חוג קומוטטיבי, $0 \ne a \in R$ נקרא \textbf{מחלק אפס} (zero divisor) אם קיים $0 \ne b \in R$ כך ש־$a \cdot b = 0$. \\*
+	$R$ חוג קומוטטיבי נקרא \textbf{תחום שלמות} (Integral domain) אם אין בו מחלק אפס.
+\end{definition}
+\begin{example}
+	נראה כי הבאים הם תחומי שלמות.
+	שדה, תת־חוג של שדה, למשל $\ZZ$. וגם $\FF[x]$ ל־$\FF$ שדה.
+\end{example}
+\begin{example}[דוגמות נגדיות]
+	$\ZZ_{/4}$ שכן $2 \cdot 2 = 0$.
+\end{example}
+\begin{definition}[איבר נילפוטנטי ואידמפוטנטי]
+	$R$ חוג קומוטטיבי, $x \in R$ נקרא
+	\begin{enumerate}
+		\item \textbf{נילפוטנטי} אם קיים $n \in \NN$ כך ש־$x^n = 0$.
+		\item \textbf{אידמפוטנטי} אם $x^2 = x$, דהינו $x (1 - x) = 0$, במקרה זה נוכל להגדיר $y = 1 - x$ ולקבל $y^2 = y$ ו־$x + y = 1$, וזהו נקרא האידמפוטנט המשלים.
+	\end{enumerate}
+\end{definition}
+
 \end{document}
