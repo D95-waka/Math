@@ -3823,4 +3823,133 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 	\end{enumerate}
 \end{definition}
 
+\section{שיעור 21 --- 22.7.2024}
+\subsection{חוגים --- קומוטטיביים}
+\begin{exercise}
+	אילו $n \in \NN$ ניתן לכתוב בצורה $n = a^2 + b^2$ כאשר $a, b \in \NN$.
+\end{exercise}
+על שאלה זו נענה בהרצאה הבאה. \\*
+ניזכר כי ההבדל היחיד בין שדות לחוגים קומוטטיביים הוא עניין ההפיכות, בשדה כל האיברים ששונים מאפס הם הפיכים.
+לכן זו גם התופעה המעניינת בהפרש הזה בין שני התחומים.
+דיברנו גם על תחומי השלמות, המוכלים בחוגים, והמכילים שדות.
+בתחום שלמו נקבל $a b = 0 \implies a = 0 \lor b = 0$, דהינו ניתן לצמצם.
+נקבל גם $a b = ac \land a \ne 0 \implies b = 0$.
+דיברנו גם על איבר נילפוטנטי ועל איבר אידמפוטנטי.
+נראה עתה דוגמות לאיברים אידמפוטנטיים.
+\begin{example}
+	נבחן את מכפלת החוגים $R \times S$, ונבחר $x = (1, 0)$, הוא למעשה לא אפס ולא אחד, ונקבל $(1 - x) = (0, 1)$.
+\end{example}
+\begin{example}
+	נבחן את $\ZZ_{/6}$ ונבחין כי $3^2 \cong 9 \cong 3 (\mod 6)$. \\*
+	נגדיר איזומורפיזם $\ZZ_{/6} \xrightarrow{\sim} \ZZ_{/3} \times \ZZ_{/2}$ ונראה כי אם $3 \mapsto (1, 0)$ אז נקבל $4 \mapsto (0, 1)$ ולמעשה נוכל להסיק בכללי את הטענה הבאה.
+\end{example}
+\begin{proposition}
+	$R$ חוג קומוטטיבי ו־$x \in R$ אידמפוטנטי אז קיים $\varphi : R \to R_1 \times R_2$ איזומורפיזם כך ש־$\varphi(x) = (1, 0)$.
+\end{proposition}
+\begin{proof}
+	נבחן את $R \xrightarrow{\pi_2} R_2 = R / (x)$. נגדיר $R \xrightarrow{\pi_1} R_1 = R / (1 - x)$. \\*
+	כמובן נגדיר $\varphi = (\pi_1, \pi_2)$, דהינו $\varphi : R \to R_1 \times R_2$. מתקיים
+	\[
+		(x) + (1 - x) = R,
+		\qquad
+		x + 1 - x = 1
+	\]
+	ולכן נוכל להסיק ממשפט השאריות הסיני כי $\varphi$ איזומורפיזם.
+	זאת מכיוון ש־$R / ((x) \cdot (1 - x)) \simeq R_1 \times R_2$. \\*
+	נותר לשים לב ש־$(x) \cdot (1 - x) = (x - x^2) = (0)$.
+\end{proof}
+כך לדוגמה בתהליכי פירוק לראשוניים משתמשים ברעיון הזה כדי לחשב מספרים אידמפוטנטיים מעל חבורת $\ZZ_{/n}$ לכל מספר טבעי.
+\begin{example}
+	ראינו כי $\FF[x] / (x^2 + 1) \simeq \CC$, ומצד שני דנו בשאלה מה מייצג $\RR[x] / (x^2 - 1)$, שזוהי הוספה למעשה של איבר קיים לחוג הפולינומים, וזו שאלה הרבה פחות טריוויאלית.
+	נבחין כי $(x - 1)$ נמצא במנה הזאת שכן הוא לא מתחלק במנה, וכך גם $(x + 1)$, אבל מכפלתם היא אפס תחת החוג, דהינו $(x - 1)(x + 1) = 0$ במנה זו, ובכללי נקבל כי $\RR[x] / (x^2 - 1) \simeq \RR \times \RR$. \\*
+	זאת שכן ממשפט השאריות הסיני נקבל $(\{x - 1\}) + (\{x + 1\}) = \RR[x]$,
+	דהינו $\RR[x] / (x^2 - 1) \simeq (\RR[x]/(x - 1)) \times (\RR[x]/(x + 1)) \simeq \RR \times \RR$ שכן זהואי מכפלה של פולינומים שמתאפסים באחת ופולינומים שמתאפסים ב־$-1$.
+	רעיונית המנה הזאת היא המקרה שבו הפולינום אכן מתאפס, ולכן הוא מתאפס או באחת או במינוס אחת ולכן יש לנו למעשה מכפלה של המקרים בהם האיבר הראשון אפס ומקרים בהם האיבר השני אפס.
+	כהסבר מוסף נראה ש־$(\{x^2 - 1\}) = (\{x - 1\}) \cap (\{x + 1\})$.
+\end{example}
+מה יקרה אם ננסה להוסיף שורש למספר שכבר יש לו שורש יחיד, לדוגמה $\RR[x] / (x^2) := \RR[\epsilon]$ כאשר $\epsilon = x + x^2 \RR[x]$ והוא מקיים ש־$\epsilon^2 = 0$.
+נקבל ש־$\RR[\epsilon] = \{ a + h\epsilon \mid a, h \in \RR \}$. הדבר הזה הוא מעין גרסה אלגברית של מספר אינפיניטסמלי, בעצם זה שאנו אומרים שהריבוע שלו הוא אפס אנו אומרים שהוא ''קטן''.
+נראה כי $f(x) + x^2 \RR[x] = g(x) + x^2 \RR[x]$, דהינו אם $f(x) - g(x) \in x^2 \RR[x]$, אז אם $f(x) = a + bx + x^2 h(x)$ אז $f(x) + x^2 \RR[x] = a + bx + x^2 \RR[x]$.
+החוג הזה נקרא Dual numbers.
+\begin{exercise}
+	יהי $f(x) \in \RR[x]$, וננסה להציב איבר מהסוג הזה, נכתוב $f(a + h\epsilon) = f(a) + h f'(a) \epsilon$, ויש להבין למה זה נכון ומה המשמעות של זה.
+\end{exercise}
+\begin{definition}[ניל־רדיקל]
+	$R$ חוג קומוטטיבי, נגדרי $N(R) = \{ x \in R \mid \exists n \in \NN, x^n = 0 \}$ והיא נקראת הקבוצה ה\textbf{ניל־רדיקל} של $R$.
+\end{definition}
+\begin{proposition}
+	$N(R)$ היא אידאל של $R$.
+\end{proposition}
+\begin{proof}
+	נבדוק סגירות לכפל, $x \in N(R)$ ויהי $y \in R$ אז קיים $n \in \NN$ כך ש־$x^n = 0$ ולכן ${(xy)}^n = x^n y^n = 0 y^n = 0$ ולכן גם $xy \in N(R)$. \\*
+	נבדוק סגירות לחיבור, $x, y \in N(R)$ אז קיימים $n, m \in \NN$ כך ש־$x^n = y^m = 0$.
+	לכן ${(x + y)}^{n + m} = \sum_{k = 0}^{n + m} \binom{n + m}{k} x^k y^{n + m - k}$ ולכל $k$ נקבל או $k \ge n$ או ש־$n + m - k \ge m$ ולכן $x^k y^{n + m - k} = 0$ ונקבל $x + y \in N(R)$.
+\end{proof}
+\begin{definition}[חוג מצומצם]
+	$R$ חוג קומוטטיבי נקרא \textbf{מצומצם} (Reduced) אם $N(R) = \{ 0 \}$.
+\end{definition}
+בתרגיל נראה ש־$R / N(R)$ הוא מצומצם.
+\begin{definition}
+	נניח ש־$R$ חוג קומוטטיבי ו־$I \triangleleft R$ אז
+	\begin{enumerate}
+		\item $I$ נקרא \textbf{מקסימלי} אם ורק אם לכל $I \subseteq J \triangleleft R$ מתקיים $J = R$ או $J = I$.
+		\item $I$ נקרא \textbf{ראשוני} אם לכל $x, y \in R$ אם $x \cdot y \in I$ אז $x \in I$ או $j \in I$.
+	\end{enumerate}
+\end{definition}
+\begin{proposition}
+	$R$ חוג קומוטטיבי ו־$I \triangleleft R$ כך ש$I \ne R$ אז
+	\begin{enumerate}
+		\item $R / I$ שדה אם ורק אם $I$ מקסימלי
+		\item $R / I$ תחום שלמות אם ורק אם $I$ ראשוני
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\textbf{1.}
+	$R / I \ne \{ 0 \}$ שכן $I$ אידאל ממש ולכן $R / I$ שדה אם ורק אם אין בו אידאלים שהם לא האידדאל הטריוויאלי, וזה בתרגיל.
+	לכן ממשפט ההתאמה זה אם ורק אם אין אידאלים $I \subseteq J \triangleleft R$
+
+	\textbf{2.}
+	$R / I$ תחום שלמות אם ורק אם לכל $y, x \in R$ מתקיים $(x + I)(y + I) = I \implies x + I = I \lor y + I = I$.
+	כלומר, אם ורק אם $xy \in I \implies x \in I \lor y \in I$.
+\end{proof}
+אם $R = \ZZ$ אז יש סוגיה קצת מרגיזה ש־$6 = 2 \cdot 3 = (-2)(-3)$ ויש קצת תסבוכת עם הסימנים, אנו יכולים לבחור לייצג את המספרים על־ידי חיוביים ומינוס יחיד ככה שנקבל יצוג יחיד וקאנוני.
+\begin{definition}[חברים]
+	$R$ תחום שלמות. $x, y \in R$ נקראים \textbf{חברים} אם קיים $u \in R^\times$ כך ש־$y = xu$ ומסמנים $x \sim y$, וזהו יחס שקילות.
+\end{definition}
+\begin{example}
+	ב־$\ZZ$ נקבל $n \sim -n$ בלבד, ב־$\RR[x]$ מתקיים $x^2 - 3 \sim 2x^2 - 6$.
+	ב־$\ZZ[i]$ מתקיים $x - i \sim ix + 1$.
+\end{example}
+\begin{definition}[מחלק]
+	נאמר ש־$x$ מחלק את $y$ אם קיים $z \in R$ עעבורו $y = xz$ ונסמן $x \mid y$.
+\end{definition}
+\begin{definition}[פירוק]
+	\textbf{פירוק} של $x$ זו הצגה $x = yz$ ונאמר שהפירוק \textbf{אמיתי} אם $y$ ו־$z$ לא הפיכים.
+\end{definition}
+\begin{definition}[אי־פריק וראשוני]
+	$x$ נקרא \textbf{אי־פריק} אם אין לו פירוק אמיתי. \\*
+	$x$ נקרא \textbf{ראשוני} אם הוא לא פריק ולכל $0 \ne y, z \in R$ מתקיים $x \mid yz \implies x \mid y \lor x \mid z$.
+\end{definition}
+הטענה שלנו היא שאת כל המונחים האלה אפשר לטעון במונחים של אידאלים.
+\begin{proposition}
+	$x, y, z \in R$ איברים באידאל.
+	\begin{enumerate}
+		\item $x \in R^\times \iff (x) = R$
+		\item $x \mid y \iff (x) \supseteq (y)$
+		\item $x \sim y \iff (x) = (y)$
+		\item $x$ אי־פריק (ולא הפיך לפי דרישה) אם ורק אם לכל $y \in R$ אם $(x) \subseteq (y) \triangleleft R$ אז $(y) = R \lor (x) = (y)$
+		\item $x$ ראשוני אם ורק אם $(x)$ ראשוני
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\textbf{1.}
+	$x \in R^\times \iff x \mid 1 \iff R = (1) \subseteq (x) \subseteq R \iff (x) = R$
+
+	\textbf{2.}
+	$x \mid y$ אם ורק אם קיים $z \in R$ כך ש־$y = xz$ אם ורק אם $y \in (x)$ אם ורק אם $(y) \subseteq (x)$
+
+	\textbf{3.}
+	$x \sim y \overset{\text{בתרגיל}}{\iff} x \mid y \land y \mid x \iff (y) \subseteq (x) \land (x) \subseteq (y) \iff (x) = (y)$
+\end{proof}
+
 \end{document}
