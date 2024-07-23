@@ -1379,4 +1379,132 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 	אם $\emptyset \ne S$ היא קבוצה של סודרים, אז $\alpha_S = \cup S$ הוא סודר.
 \end{proposition}
 
+\section{שיעור 10 --- 17.7.2024}
+\subsection{סודרים}
+ניזכר כי $\alpha$ היא סודר אם היא קבוצה טרנזיטיבית וסדר קווי יחד עם יחס ההכלה.
+להיות קווי זה להיות שקול לסדר טוב במקרה זה.
+ראינו גם כי אם $\alpha$ סודר אז גם $\alpha + 1$ הוא סודר, וראינו כי גם כל הטבעיים הם סודר, וגם הטבעיים עצמם הם סודר, ובמקרה זה נסמן אותם על־ידי $\omega$.
+
+עוד הוכחנו בתרגול כי אם $\alpha$ סודר אז לכל $\beta \in \alpha$ גם $\beta$ הוא סודר, ואפשר להוסיף בהקשר זה שהוא גם סודר ולכן גם רישא והצמצום של הסדר של $\alpha$ ל־$\beta$ הוא $(\beta, \in)$ עצמו.
+מצאנו גם כי לכל זוג סודרים או $\alpha \in \beta$ או ש־$\beta \in \alpha$.
+ומצאנו כי גם אם $\alpha \ne \beta$ סודרים אז $(\alpha, \in) \not\cong (\beta, \in)$, דהינו הם לא איזומורפיים. \\*
+דבר אחרון שמצאנו בתרגול הוא שמחלקת הסודרים $\text{Ord} = \{ \alpha \mid \alpha \text{ סודר} \}$ היא מחלקה נאותה, דהינו אין קבוצה של כלל הסודרים.
+
+\begin{proposition}
+	לכל קבוצת סודרים $S \ne \emptyset$ גם $\bigcup S$ הוא סודר.
+\end{proposition}
+\begin{proof}
+	נסמן $\sigma = \bigcup S$ ונוכיח כי $\sigma$ טרנזיטיבית וסדר קווי יחד עם $\in$.
+
+	יהי $\beta \in \sigma$, מהגדרת $\sigma$ נקבל כי קיים $\alpha \in S$ כך ש־$\beta \in \alpha$, ו־$\alpha$ סודר ולכן $\beta \in \alpha \implies \beta \subseteq \alpha$ וקיבלנו כי $\alpha \in S$.
+
+	נניח כי קיימים $\beta, \beta' \in \sigma$. ניקח $\alpha, \alpha' \in S$ כך ש־$\beta \in \alpha, \beta' \in \alpha'$, אבל $\alpha \in \alpha'$ או הפוך מהטענות שמצאנו ומופיעות בתזכורת.
+	נניח ללא הגבלת הכלליות $\alpha \in \alpha$ ולכן $\beta, \beta' \in \alpha'$ ולכן נקבל או $\beta \in \beta'$ או $\beta' \in \beta$ ולכן $(\sigma, \in)$ סדר קווי ומצאנו כי $\bigcup S$ סודר.
+\end{proof}
+\begin{theorem}
+	לכל סדר טוב $(X, <_X)$ קיים ויחיד $\alpha$ סודר כך ש־$(X, <_X) \simeq (\alpha, \in)$.
+\end{theorem}
+\begin{proof}
+	יהי $(X, <_X)$ סדר טוב. \\*
+	לכל $x \in X$ אנו יודעים כי הסדר המצומצם $(X_x, <_X \upharpoonright X_x)$ כאשר $X_x = \{ y \in X \mid y <_X x \}$. \\*
+	נשתמש במסקנה מהתזכורת ונקבל שאם $X_x$ איזומורפי לסודר אז הסודר הזה הוא יחיד ונסמנו $\alpha_x$. \\*
+	נגדיר $D = \{ x \in X \mid (X_x, <_X \upharpoonright X_x) \simeq (\alpha, \in) \}$ קבוצת האיברים ב־$X$ שאיזומורפיים לסודר כלשהו.
+	נקבל כי $D \subseteq X$ מההגדרה, נשתמש באקסיומת ההחלפה על המחלקה $F = \{ (x, \alpha_x) \mid x \in D \}$ ומההבחנה האחרונה $F$ מקיימת את תנאי הפונקציה.
+	מכיוון ש־$D$ קבוצה נקבל מאקסיומת ההחלפה כי גם התכונה $S = F(D) = \{ \alpha \mid \exists x, \alpha = \alpha_x \}$ ומהטענה האחרונה $\sigma = \bigcup S$ סודר.
+	לכן גם $\sigma + 1$ סודר.
+	נשים לב כי $\sigma + 1 \notin S$ שכן אחרת נקבל $\sigma + 1 \in \sigma + 1$.
+	נפעיל את משפט ההשוואה על סדרים טובים עבור הסדר הטוב $(X, <_X)$ שלנו ו־$(\sigma + 1, \in)$ ואנו יודעים שיש סדר קווי בין כל הסודרים, לכן עלינו רק לפסול ש־$X$ מכיל את $\sigma + 1$. \\*
+	לפי המשפט חייב כי $(\sigma + 1, \in)$ איזומורפי לרישא $X_x$ או ש־$(X, <_X)$ איזומורפי לרישא של $\sigma + 1$. \\*
+	המקרה השני מסיים את ההוכחה ולכן מספיק לפסול את אופציה א', נניח כי היא נכונה ונקבל כי $\alpha_x = \sigma + 1$ עבור איזשהו $x \in X$ ולכן $\sigma + 1 \in S$ וזו סתירה.
+\end{proof}
+\begin{theorem}
+	לכל סודר $\alpha$ קיים סודר $\beta$ כך ש־$|\alpha| < |\beta|$.
+\end{theorem}
+\begin{proof}
+	נגדיר $A_\le = \{ \beta \in \text{Ord} \mid |\beta| \le |\alpha| \}$ מחלקה ונבחן על $A_= = \{ \beta \in \text{Ord} \mid |\beta| = |\alpha| \}$. \\*
+	מספיק להוכיח ש־$A_\le$ קבוצה, שכן אז נסיק כי יש סודר $\beta \in \text{Ord} \setminus A_\le$ ועל־פי הגדרת $A_\le$ חייב להתקיים $|\alpha| < |\beta|$ כמבוקש. \\*
+	נשים לב כי $A_\le = A_= \cup \alpha$. \\*
+	עבור $\supseteq$ נבחין כי $\forall \beta \in \alpha \implies \beta \subseteq \alpha \implies |\beta| \le |\alpha|$. \\*
+	עבור $\subseteq$, לכל $\beta \in A_\le$ אם $\beta \notin \alpha$ אז $\alpha \in \beta$ אבל אז נקבל גם $|\alpha| \le |\beta|$ אבל ידוע כי $|\beta| \le |\alpha|$ ולכן נובע שהעומות שוות ולכן $\beta \in A_=$.
+
+	השוויון $A_\le = A_= \cup \alpha$ מראה כי מספיק להוכיח ש־$A_=$ היא קבוצה כדי לקבל ש־$A_\le$ קבוצה. \\*
+	נשים לב כי לכל $\beta \in A_=$ קיים סדר טוב $<_\alpha^\beta$ על $\alpha$ (דהינו $<_\alpha^\beta \subseteq \alpha \times \alpha$) כך ש־$(\alpha, <_\alpha^\beta) \simeq (\beta, \in)$,
+	נבנה $<_\alpha^\beta$ באופן הבא:
+	ניקח $g : \alpha \to \beta$ הפיכה (שקיימת בהתאם לשוויון העוצמות) ללא קשר לסדרים ונגדיר $<_\alpha^\beta$ באופן הבא
+	\[
+		\forall \alpha_1, \alpha_2, \alpha_1 <_\alpha^\beta \alpha_2 \iff g(\alpha_1) \in g(\alpha_2)
+	\]
+	מיידי מהגדרת $g$ כי היא איזומורפיזם בין הסדרים $(\beta, \in) \simeq (\alpha, <_\alpha^\beta)$. \\*
+	נתבונן בקבוצה $D = \{ R \subseteq \alpha \times \alpha \mid R \text{ סדר טוב} \alpha, \exists \beta \text{ סודר}, (\alpha, R) \simeq (\beta, \in) \}$.
+	נראה ש־$D \subseteq \mathcal{P}(\alpha \times \alpha)$ ולכל $R \in D$ קיים ויחיד $\beta_R$ כך ש־$(\alpha, R) \simeq (\beta, \in) \}$. \\*
+	נתבונן ב־$F = \{ (R, \beta_R) \mid R \in D, \text{$\beta_R$ סודר יחיד מתאים ל־$R$}\}$,
+	$F$ מקיימת את תנאי הפונקציה ולכן התחום של $F$ היא קבוצה והיא $D$ ולכן מאקסיומת ההחלפה התמונה של $F$ היא קבוצה, אבל $\im(F) = A_=$ הוא קבוצה כמבוקש.
+\end{proof}
+\begin{notation}
+	לכל סודר $\alpha$ נסמן $\alpha^+$ את הסודר המינימלי $\beta$ כך ש־$|\beta| > |\alpha|$.
+\end{notation}
+\begin{example}
+	נבחין כי $0^+ = 1$, וכך גם $21^+ = 2$ בכלל $n^+ = n + 1$. \\*
+	לעומת זאת, $\omega^+ \ne \omega + 1$ וגם $\omega^+ \ne \omega + 2$.
+	אז איפה נמצא $\omega^+ := \omega_1$?
+	קיומו נובע מהמשפט, אבל אין לנו דרך ישירה לגשת אליו ולחשבו.
+\end{example}
+\begin{definition}[מונה]
+	סודר $\kappa$ יקרא \textbf{מונה} אם לכל $\alpha \in \kappa$ מתקיים $|\alpha| < |\kappa|$.
+\end{definition}
+\begin{example}
+	כל $n \in \NN$ הוא מונה, גם $\omega$ הוא מונה, וגם $\omega^+ = \omega_1$ הוא מונה.
+\end{example}
+\begin{definition}[היררכיית מונים]
+	נגדיר לכל סודר $\alpha$ מונה $\omega_\alpha$ באופן הבא
+	\[
+		\omega_0 = \omega
+	\]
+	ולכל $\alpha$ בהינתן $\omega_\alpha$ נגדיר $\omega_{\alpha + 1} = \omega_\alpha^+$. \\*
+	אם $\delta$ הוא סודר שאינו עוקב (סודר גבולי) אז $\delta = \bigcup \delta$ ונגדיר
+	\[
+		\omega_\delta = \bigcup_{\alpha \in \delta} \omega_\alpha
+	\]
+\end{definition}
+\begin{definition}[עוצמת המונים האינסופיים]
+	נגדיר לכל מונה $\omega_\alpha$ את
+	\[
+		\aleph_\alpha = |\omega_\alpha|
+	\]
+\end{definition}
+אז $\omega_0 = \omega$ ואיפשהו אחרי זה מופיע $\omega_1 = \omega_0^+$ וכן הלאה, ולבסוף נקבל את האיחוד $\omega_\omega = \bigcup_{n \in \omega} \omega_n$.
+עוצמות אלה מסומנות על־ידי אלף, דהינו $\aleph_0, \alpha_1, \dots, \aleph_\omega$.
+\begin{definition}[עיקרון הסדר הטוב]
+	עיקרון הסדר הטוב אומר כי לכל קבוצה $X$ קיים סדר טוב $(X, <_X)$.
+\end{definition}
+\begin{conclusion}
+	מ־ZF ועיקרון הסדר הטוב נקבל
+	\begin{enumerate}
+		\item לכל קבוצה $X$ קיים סודר $\alpha$ כך ש־$|X| = |\alpha|$
+		\item לכל קבוצה $X$ קיים מונה $\kappa$ כך ש־$|X| = |\kappa|$
+		\item לכל זוג קבוצות $X, Y$ מתקיים $|X| \le |Y|$ או $|Y| \le |X|$
+	\end{enumerate}
+\end{conclusion}
+\begin{theorem}[שקילות לאקסיומת הבחירה]
+	התנאים הבאים שקולים (תחת ZF):
+	\begin{enumerate}
+		\item אקסיומת הבחירה (AC)
+		\item עיקרון הסדר הטוב
+		\item הלמה של צורן
+	\end{enumerate}
+\end{theorem}
+
+\subsection{הלמה של צורן}
+\begin{definition}
+	יהי $(Z, <_Z)$ יחס סדר חלקי
+	\begin{enumerate}
+		\item תת־קבוצה $C \subseteq Z$ תיקרא \textbf{שרשרת} אם (ב־$<_Z$) אם $<_Z$ הוא קווי על $C$
+		\item איבר $x \in Z$ הוא \textbf{חסם מלעיל} של שרשרת $C$ אם $\forall y \in C, y \le_Z x$
+		\item איבר $m \in Z$ יקרא \textbf{איבר מקסימלי} אם לא קיים $y \in Z$ כך ש־$m <_Z y$
+	\end{enumerate}
+\end{definition}
+\begin{definition}[הלמה של צורן]
+	לכל יחס סדר חלקי $(Z, <_Z)$ אם לכל שרשרת $C \subseteq Z$ יש חסם מלעיל אז יש איבר מקסימלי בסדר $(Z, <_Z)$.
+\end{definition}
+
 \end{document}
