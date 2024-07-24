@@ -1507,4 +1507,153 @@ $*$ משרהר פעולה מוגדרת הייטב על $X/E$ אם מתקיימת
 	לכל יחס סדר חלקי $(Z, <_Z)$ אם לכל שרשרת $C \subseteq Z$ יש חסם מלעיל אז יש איבר מקסימלי בסדר $(Z, <_Z)$.
 \end{definition}
 
+\section{שיעור 11 --- 24.7.2024}
+\subsection{הלמה של צורן ומשפט השקילות}
+ניזכר בלמה של צורן
+\begin{definition}[הלמה של צורן]
+	עבור $X \ne \emptyset$, לכל יחס סדר $(X, <_X)$ אם לכל שרשרת $C \subseteq X$ יש חסם מלעיל אז יש ב־$(X, <_X)$ איבר מירבי.
+\end{definition}
+נבחן דוגמה שמשתמשת בלמה של צורן
+\begin{remark}[תזכורת על בסיס למרחב לינארי]
+	יהי $V$ מרחב וקטורי מעל שדה $\FF$, קבוצה $S \subseteq V$ היא בלתי תלויה לינארית אם ורק אם לכל $v_1, \dots, v_n \in S$ שונים ולכל $a_1, \dots, a_n \in \FF$ שלא כולם 0 מחייבים
+	\[
+		\sum_{i = 1}^{n} a_i v_i = a_1 v_1 + \cdots + a_n v_n \ne 0
+	\]
+	קבוצה $S \subseteq V$ אם לכל $u \in V$ קיימים $v_1, \dots, v_n \in S$ ו־$a_1, \dots, a_n \in \FF$ כך ש־$\sum_{i = 1}^{n} v_i a_i = u$. \\*
+	$S \subseteq V$ היא בסיס אם היא פורשת ובלתי תלויה לינארית.
+\end{remark}
+ניזכר גם במשפט מאלגברה לינארית
+\begin{theorem}
+	$S \subseteq V$ היא בסיס אם ורק אם היא בלתי תלויה לינארית מקסימלית.
+\end{theorem}
+\begin{theorem}[בסיס מרחב וקטורי על־ידי ZF + Zorn's Lemma]
+	לכל מרחב וקטורי מעל שדה $\FF$ יש בסיס.
+\end{theorem}
+\begin{proof}
+	נתון $V$ מרחב וקטורי מעל שדה $\FF$ ולפי המשפט האחרון נצטרך להוכיח קיום $S \subseteq V$ בלתי תלויה לינארית ומקסימלית,
+	דהינו לכל $u \in V \setminus S$, $S \cup \{ u \}$ היא תלויה לינארית. \\*
+	נגדיר $(X, <_X)$ כאשר $X = \{ S \subseteq V \mid S \text{ בלתי תלויה לינארית}\}$ ו־$<_X = \subsetneq$. \\*
+	צריך להוכיח כי $X \ne \emptyset$ וכי לכל שרשרת $C \subseteq X$ יש חסם מלעיל, ואז נוכל להפעיל את הלמה של צורן.
+
+	אכן $\emptyset \subseteq V$ בלתי תלויה לינארית ולכן $\emptyset \in X$ ובהתאם $X \ne \emptyset$. \\*
+	תהי $C \subseteq X$ שרשרת, כלומר לכל $S, S^* \in C$ חייב להתקיים $S \subseteq S^* \lor S^* \subseteq S$.
+	נגדיר $S_C = \bigcup C = \bigcup \{ s \mid s \in C \}$.
+	נבדוק ש־$S_C \in X$, דהינו שהיא בלתי תלויה לינארית.
+	יהי $n \in \omega$ ויהיו $v_1, \dots, v_n \in S_C$ ו־$a_1, \dots, a_n \in \FF$ שלא כולם אפס, מהגדרת $S_C$ לכל $i = 1, \dots, n$ קיים $S_i \in C$ כך ש־$v_i \in S_i$.
+	מכיוון שמדובר בשרשרת אז הקבוצות $S_1, \dots, S_n$ משוות על־ידי $\subseteq$ ולכן חייב שיש $i^*$ כך ש־$S_1, \dots, S_n \subseteq S_{i^*}$.
+	בפרט נסיק כי $v_1, \dots, v_n \in S_{i^*}$, מכיוון ש־$S_{i^*} \in X$ בלתי תלויה לינארית חייב $\sum_{i = 1}^{n} a_i v_i \ne 0$.
+
+	$\forall S \in C, S \subseteq S_C$ ולכן $S_C \in X$ היא חסומה מלעיל ב־$X$ של $C$.
+
+	בדקנו ש־$(X, <_X)$ מקיים את התנאים של הלמה של צורן ולכן נקבל כי קיים $S^* \in X$ מירבי ב־$\subseteq$.
+	על־פי הגדרת $X$ נסיק כי $S^* \subseteq V$ והיא בלתי תלויה מקסימלית.
+\end{proof}
+\begin{remark}
+	יש מרחבים וקטוריים בעלי מימד (גודל בסיס) גדול מ־$\aleph_0$.
+\end{remark}
+\begin{example}
+	נבחן את $V = \QQ^\QQ$ מרחב הפונקציות $f : \QQ \to \QQ$ מעל $\FF = \QQ$. \\*
+	נקבל כי $|V| = \aleph_0^{\aleph_0} = 2^{\aleph_0}$.
+
+	יהי $S \subseteq \QQ^\QQ$ בסיס, נטען כי $\aleph_0 < |S|$, מכיוון ש־$S$ בסיס נסיק כי
+	\[
+		\QQ^\QQ = V = \bigcup_b \{ \sum_{i = 1}^{n} a_1 v_1 \mid a_1, \dots, a_n \in \QQ, v_1, \dots, v_n \in S \}
+	\]
+	אילו $|S| = \aleph_0$ אז לכל $n$
+	\[
+		\aleph_0 = |S^n| = |\QQ^n|
+	\]
+	ולכן גם
+	\[
+		\aleph_0 = \left\lvert \bigcup_b \left\{ \sum_{i = 1}^{n} a_1 v_1 \middle\vert a_1, \dots, a_n \in \QQ, v_1, \dots, v_n \in S \right\} \right\rvert
+	\]
+	אבל אז נסיק כי $|V| = \aleph_0$ וזו סתירה.
+\end{example}
+\begin{theorem}[משפט השקילות]
+	נניח ZF, התנאים הבאים שקולים
+	\begin{enumerate}
+		\item עיקרון הסדר הטוב
+		\item אקסיומת הבחירה
+		\item הלמה של צורן
+	\end{enumerate}
+	ולכן בפרט כל אלה נכונים תחת ZFC = ZF + AC.\@
+\end{theorem}
+\begin{proof}[סקיצה של הוכחה]
+	$1 \implies 2$:
+	יהיו $\{ X_i \mid i \in I \}$ קבוצה של קבוצות לא ריקות $X_i \ne \emptyset$. \\*
+	אנו רוצים להראות פונקציית בחירה $f : I \to \bigcup_{i \in I} X_i$ כך שלכל $i \in I$ נקבל $f(i) \in X_i$. \\*
+	נסמן $X = \bigcup_{i \in I} X_i$ ומעיקרון הסדר הטוב קיים סדר טוב $(X, <_X)$. \\*
+	נגדיר באמצעות הסדר $<_X$ פונקציה $f$ על־ידי
+	\[
+		f(i) = \min_{<_X} X_i
+	\]
+	הגיוני כי $\emptyset \ne X_i \subseteq X$ ולכן יש ב־$X_i$ איבר מינימלי יחיד לפי $<_X$.
+
+	$2 \implies 3$:
+	יהי $(X, <_X)$ יחס סדר המקיים את תנאי הלמה של צורן.
+	נרצה להשתמש באקסיומת הבחירה כדי למצוא איבר מירבי ב־$X$. \\*
+	נגדיר $I = \{ C \subseteq X \mid C \text{ שרשרת} \}$, לכל $C \in I$ נסמן $\emptyset \ne X_C = \{ x \in X \mid x \text{ חסם מלעיל מעל $C$} \}$.
+	ניקח פונקציית בחירה $f : I \to \bigcup_{C \in I} X_C$.
+	כלומר לכל שרשרת $C$, נקבל $f(C) \in X$ חסם מלעיל.
+	ניקח עוד פונקציית בחירה $g : X^* \to X$ עבור $X^* = \{ x \in X \mid x \text{ לא מירבי} \}$.
+	נגדיר באמצעות $f$ ו־$g$ איברים $x_\alpha \in X$ ו־$\alpha$ סודר, כל עוד $x_\alpha$ אינו מקסימלי
+	\[
+		x_0 = f(\emptyset) \in X
+	\]
+	בהינתן $x_\alpha$ נגדיר $x_{\alpha + 1} = g(x_\alpha) >_X x_\alpha$ בשלב (סודר) גבולי $\delta$. נתבוננן ב־$C = \{ x_\alpha \mid \alpha \in \delta \}$ שרשרת, וניקח $x_\delta = f(C)$.
+	מכיוון ש־Ord מחלקה נאותה ו־$X$ קבוצה ו־$x_\beta <_X x_\alpha$ לכל $\beta \in \alpha$, הבנייה חייבת להיעצר בסודר $\alpha$ כלשהו, כלומר $x_\alpha$ חייב להיות מירבי.
+
+	$3 \implies 1$:
+	נתונה קבוצה $A$ ונרצה להשתמש בלמה של צורן כדי למצוא סדר טוב על $A$. \\*
+	נגדיר $X = \{ \langle B, <_B \rangle \mid B \subseteq A, <_B \text{ סדר טוב על $B$} \}$, \\*
+	$<_B$ מוגדר כך
+	\[
+		(B_1, <_{B_1}) <_X (B_2, <_{B_2}) \iff B_1 \subsetneq B_2 \land <_{B_1} = <_{B_2} \upharpoonright B_1
+	\]
+	וגם כל איברי $B_2 \setminus B_1$ מעל איברי $B_1$ לפי $<_{B_2}$. \\*
+	בודקים כי $(X, <_X)$ מקיים את תנאי הלמה של צורן (תרגיל). \\*
+	מהלמה נקבל איבר מקסימלי (מירבי) $(B, <_B) \in X$ סדר טוב. עתה $A = B$, אחרת ניקח $a \in A \setminus B$ ונגדיר $<_{B \cup \{ a \}}$ על $B \cup \{ a \}$ על־ידי הוספת $a$ אחרון.
+\end{proof}
+
+\subsection{סיכום}
+נבחן את הקשר שבין התורה הנאיבית לבין התורה האקסיומתית
+\begin{enumerate}
+	\item בתורה הנאיבית הוכחנו שבהינתן סדרת קבוצות $\langle A_n \mid n \in \NN \rangle$ וסדרת פונקציות $\langle h_n \mid n \in \NN \rangle$ כאשר $h_n : \NN \to A_n$ הפיכה אז גם $\bigcup_{n \in \NN} A_n$ בת־מנייה. \\*
+		לעומת זאת בתורה האקסיומתית מצאנו שאיחוד $\bigcup_{n \in \NN} A_n$ של קבוצות בנות מנייה $|A_n| = \aleph_0$ לכל $n$ אז גם $\bigcup_{n \in \NN} A_n$ בן־מנייה. \\*
+		המעבר בין שתי הטענות מבוסס על AC, פונקציית בחירה שבוחרת לכל $n \in \NN$ את $h_n : \NN \to A_n$ הפיכה (מעידה על כך ש־$A_n$ בת־מנייה).
+	\item בחלק הנאיבי הוכחנו כי לכל $A$ בת־מנייה (למשל $A = \emptyset$) גם $\text{seq}(A) = \bigcup_{n \in \NN} A^n$ בת־מנייה. \\*
+		ההוכחה שנתנו לא עשתה שימוש ב־AC, במקום זאת הגדרנו סדרה $\langle h_n \mid n \in \NN \rangle$ באופן מפורש לפי מתכון
+		\[
+			h_1 : \NN \to A,
+			h_n : \NN \to A^n,
+			h_1 \times h_n : \NN \times \NN \to A^{n + 1}
+		\]
+		הכלי הפורמלי ב־ZF שמאפשר זאת (שימוש ברקורסיה כדי להוכיח את הטענה) הוא רקורסיה על הטבעיים.
+	\item נשארה השאלה מהתורה הנאיבית האם לכל זוג קבוצות $A, B$ מתקיים בהכרח $|A| \le |B|$ או $|B| \le |A|$. \\*
+		בעבודה אקסיומתית ובעיקר על־ידי שימוש ב־ZFC נקבל מעיקרון הסדר הטוב אנו יודעים כי קיימים סודרים $\alpha, \beta$
+		כך ש־$|A| = |\alpha|$ ו־$|B| = |\beta|$ ומכיוון ש־$\alpha, \beta$ סודרים מתקיים $\alpha \subseteq \beta$ או $\beta \subseteq \alpha$ ולכן בהכרח $|\alpha| \le |\beta|$ או $|\beta| \le |\alpha|$.
+	\item בתורה הנאיבית עלתה השאלה האם ניתן לעבוד עם מחלקות עוצמה $|A| = \mathfrak{a}$ כמו קבוצות רגילות (החשש הוא ש־$\mathfrak{a}$ מחלקות נאותות).
+		למשל הטענה כי $\forall \mathfrak{a}, \mathfrak{b}, \mathfrak{a} \cdot \mathfrak{b} = \mathfrak{b} \cdot \mathfrak{a}$. \\*
+		אקסיומתית מאפשר לנו לפתור את הבעיה הזאת על־ידי עבודה עם מונים.
+		הרעיון הוא שתחת ZFC בכל מחלקת עוצמה $\mathfrak{a}$ יש מונה יחיד $\kappa$, ולכן $\mathfrak{a} = |\kappa|$.
+		נוכל אם כך לטעון ולעבוד עם מונים בלבד.
+		למשל $\forall \kappa, \lambda$ מונים מתקיים $|\kappa \times \lambda| = |\lambda \times \kappa|$.
+	\item בחלק הנאיבי הוכחנו כי $\aleph_0 = \aleph_0 \cdot \aleph_0$. \\*
+		בחלק האקסיומתי נוכל להוכיח שלכל עוצמה $\mathfrak{a}$ מתקיים $\mathfrak{a} = \mathfrak{a} \cdot \mathfrak{a}$ (מוכיחים כי לכל מונה $\kappa$ מתקיים $|\kappa| = |\kappa \times \kappa|$).
+	\item הראינו כי לכל $A, B$ קבוצות אם קיימת $f : A \to B$ חד־חד ערכית אז קיימת $g : B \to A$ על בתורה הנאיבית. \\*
+		עתה עם אקסיומת הבחירה נקבל כי לכל $A, B$ קבוצות התנאים הבאים שקולים: קיימת $f : A \to B$ חד־חד ערכית, קיימת $g : B \to A$ על.
+		בהינתן $g : B \to A$ על, נגדיר $I = A$ ולכל $a \in I$ נגדיר $\emptyset \ne B_a = g^{-1}(\{a\}) = \{ b \in B \mid g(b) = a \}$ ומאקסיומת הבחירה יש פונקציה $f : I \to \bigcup_a B_a = B$.
+		$a \in I, f(a) \in B_a$ ונקבל כי $f$ חד־חד ערכית שכן לכל $a_1 \ne a_2 \in A$ נקבל $B_{a_1} \cap B_{a_2} = \emptyset$ ולכן $f(a_1) \ne f(a_2)$ וכמסקנה $f : A \to B$ חד־חד ערכית.
+	\item עוד שאלה שניסחנו בהקשר הנאיבי היא האם $2^{\aleph_0} = |\RR|$ היא המינימלית הגדולה מ־$\aleph_0$.
+		ננסח את השאלה בצורה מדויקת יותר, האם קיימת $A \subseteq \RR$ כך ש־$|A| \ne n, \aleph_0, 2^{\aleph_0}$. \\*
+		תחת ZFC נקבל ש־$2^{\aleph_0}$ מיוצגת על־ידי מונה $\omega < \kappa$ ואנו יודעים כי אחרי $\omega$ מגיע $\omega_1$ וכן הלאה והם מסומנים על־ידי $\aleph_0, \aleph_1$ וכן הלאה.
+		כלומר יש $\alpha$ סודר כך ש־$2^{\aleph_0} = \aleph_\alpha = |\omega_\alpha|$.
+		ניסוח מדויק יותר הוא האם $2^{\aleph_0} = \aleph_1$.
+		לשאלה זאת קוראים השערת הרצף (CH), קנטור ניסח את השאלה ושיער ש־$2^{\aleph_0} = \aleph_1$.
+\end{enumerate}
+\begin{theorem}[כהן]
+	לא ניתן להכריע את CH ב־ZFC.\@
+\end{theorem}
+הקורס הבא של תורת הקבוצות, כפייה ואי־תלות, עונה על השאלה הזאת ומלמד את הטכניקה הזאת.
+
 \end{document}
