@@ -3928,11 +3928,11 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 \end{definition}
 \begin{definition}[אי־פריק וראשוני]
 	$x$ נקרא \textbf{אי־פריק} אם הוא לא הפיך ואין לו פירוק אמיתי.
-	$x$ נקרא \textbf{ראשוני} אם הוא לא פריק ולכל $0 \ne y, z \in R$ מתקיים $x \mid yz \implies x \mid y \lor x \mid z$.
+	$x$ נקרא \textbf{ראשוני} אם הוא לא הפיך ולכל $0 \ne y, z \in R$ מתקיים $x \mid yz \implies x \mid y \lor x \mid z$.
 \end{definition}
 הטענה שלנו היא שאת כל המונחים האלה אפשר לטעון במונחים של אידאלים.
 \begin{proposition}
-	$x, y, z \in R$ איברים באידאל.
+	$x, y, z \in R$ איברים בחוג.
 	\begin{enumerate}
 		\item $x \in R^\times \iff (x) = R$
 		\item $x \mid y \iff (x) \supseteq (y)$
@@ -3950,6 +3950,169 @@ TODO יש ניסוח יותר כללי, השלם אותו בבקשה.
 
 	\textbf{3.}
 	$x \sim y \overset{\text{בתרגיל}}{\iff} x \mid y \land y \mid x \iff (y) \subseteq (x) \land (x) \subseteq (y) \iff (x) = (y)$
+\end{proof}
+
+\section{שיעור 22 --- 24.7.2024}
+\subsection{חוגים --- המשך}
+\begin{lemma}
+	$R$ תחום שלמות, ו־$0 \ne x \in R$. \\*
+	$x = yz$, מתקיים ש־$y$ הפיך אם ורק אם $z \sim x$.
+\end{lemma}
+\begin{proof}
+	אם $y$ הפיך אז $z \sim x$ לפי הגדרה. מצד שני, אם $z \sum x$ אז קיים $u \in R^\times$ כך ש־$z = xu$,
+	ולכן נקבל $x = yz = yux$, מכיוון ש־$x \ne 0$ אז נקבל $11 = yu$ ובפרט $y$ הפיך.
+\end{proof}
+\begin{proposition}
+	$R$ תחום שלמות, ויהיו $a, b \in R$, אז
+	\begin{enumerate}
+		\item $a \in R^\times$ הפיך אם ורק אם $(x) = R$
+		\item $a \mid b \iff (b) \subseteq (a)$
+		\item $a \sim b \iff (a) = (b)$
+		\item $a$ אי־פריק אם ורק אם לכל $(a) \subseteq (b) \subseteq R$ מתקיים $(b) = (a)$ או $(b) = R$
+		\item $a$ ראשוני אם ורק אם $(a)$ ראשוני, דהינו אם הוא מחלק מכפלה הוא מחלק את אחד המוכפלים אם ורק אם האידאל ראשוני, דהינו שכשמחלקים בו מקבלים תחום שלמות
+	\end{enumerate}
+\end{proposition}
+\begin{proof}[הוכחה (המשך)]
+	\textbf{4.}
+	$a$ אי־פריק אם ורק אם אין לו פירוק אמיתי, אם ורק אם לכל $b \mid a$ מתקיים $b$ הפיך או ש־$b \sim a$, לפי 1 ו־3 סיימנו.
+
+	\textbf{5.}
+	$a$ ראשוני אם ורק אם לכל $b, c \in R$ אם $a \mid bc$ אז $a \mid b$ או $a \mid c$.
+	נסמן לכל $x \in R$ ב־$\overline{x}$ את תמונתו תחת ההטלה $R \to R / (a)$ ונקבל ש־$a$ ראשוני אם ורק אם לכל זוג איברים $b, c \in R / (a)$
+	מתקיים $\overline{b} \overline{c} = 0$ אז $\overline{b} = 0$ או $\overline{c} = 0$, כלומר אם ורק אם $R / (a)$ תחום שלמות.
+\end{proof}
+איזה סוג שאלות מעניין אותנו בהקשר למושגים האלה?
+בעולם של מספרים ראשוניים רגילים, אנחנו רגילים שהתכונה של ראשוניות שקולה לתכונה של אי־פריקות,
+אבל שתי התכונות האלה לא שקולות, רק עומדות ביחס גרירה.
+\begin{proposition}
+	אם $R$ חוג שלמות, כל $x \in R$ שהוא ראשוני הוא אי־פריק.
+\end{proposition}
+\begin{proof}
+	אם נניח ש־$x = yz$, אז בפרט $x \mid yz$, ולכן בלי הגבלת הכלליות מהראשוניות $x \mid y$ ולכן $y = xw$. נקבל
+	\[
+		x = yz = xwz
+	\]
+	ולכן $1 = wz$, כלומר $z \in R^\times$ ועל־כן הפירוק $x = yz$ הוא לא אמיתי.
+\end{proof}
+\begin{example}
+	נבחן את $M = \{ n \in \NN \mid n \cong 1 (\mod 3) \} = \{ 1, 4, 7, 10, 13, \dots \}$ עם פעולת הכפל. \\*
+	נראה ש־$10 \mid 4 \cdot 25$ אבל $10$ לא מחלק לא את $4$ ולא את $25$, ולכן הוא לא ראשוני, אבל $10$ כן אי־פריק, שכן הוא לא ניתן לכתיבה על־ידי מכפלת איברים לא הפיכים.
+	נראה גם שאפשר לכתוב את $100 = 10 \cdot 10$, מכפלה של שני גורמים אי־פריקים, אבל גם $100 = 4 \cdot 25$, ובקבוצה זו (שהיא לא הטבעיים) פירוק זה הוא שונה.
+\end{example}
+\begin{definition}[פירוק]
+	$R$ תחום שלמות, ו־$x \in R$.
+	\begin{enumerate}
+		\item \textbf{פירוק} של $x$ לאי־פריקים זו משוואה מהצורה $x = y_1 y_2 \cdots y_n$ כאשר $y_1, \dots, y_n$ אי־פריקים
+		\item שני פירוקים לאי־פריקים $x = y_1 \cdots y_n = z_1 \cdots z_n$ הם \textbf{שקולים} אם $n = m$ ואחרי שינוי סדר $y_i \sim z_i$ לכל $1 \le i \le n$
+		\item נגדיר של־$x$ יש פריקות \textbf{חד־ערכית} אם יש לו פירוק לאי־פריקים וכל שניים כאלה שקולים
+		\item $R$ נקרא \textbf{תחום פריקות חד־ערכית} (UFD --- unique factorization domain) אם לכל $0 \ne x \in R$ ולא הפיך יש פריקות חד־ערכית
+	\end{enumerate}
+\end{definition}
+\begin{proposition}
+	$R$ תחום שלמות שבו לכל איבר לא הפיך ושונה מאפס יש פירוק לאי־פריקים, אז
+	$R$ תחום פריקות חד־ערכית אם ורק אם כל אי־פריק שונה מאפס הוא ראשוני.
+\end{proposition}
+\begin{proof}
+	נניח ש־$R$ הוא UFD, ו־$x \in R$ אי־פריק.
+	בהינתן $x \mid yz$, קיים $w \in R$ עבורו $xw = yz$.
+	נפרק את $y, z, w$ לגורמים אי־פריקים ונקבל $y = y_1 \cdots y_m, w = w_1 \cdots w_n, z = z_1 \cdots z_k$.
+	מפריקות חד־ערכית נקבל $x \mid y \iff x \sim y_i$ או $x \mid z \iff x \sim z_i$ לאיזשהו $i$.
+
+	בכיוון ההפוך, נניח שכל אי־פריק שונה מאפס הוא ראשוני ויש פירוק לאי־פריקים.
+	יהיו $x = x_1 \cdots x_n, y = y_1 \cdots y_m$ כך שכל האיברים אי־פריקים. צריך להראות שהפירוקים שונים.
+	$x_1 \mid y$ ולכן בלי הגבלת הכלליות $x_1 \mid y_1$,
+	כלומר $y_1 = x_1 \cdot w$ ומכיוון ש־$y_1$ אי־פריק $w$ הפיך, דהינו $x = y \implies x = (wx_1) y_2 \cdots y_m$ ונוכל לצמצם ולקבל $x_2 \cdots x_n = (wy_2) \cdots y_m$ כאשר $wy_2$ אי־פריק.
+	באינדוקציה על $n$ שני הפירוקים הללו הם שקולים ולכן גם המקוריים.
+\end{proof}
+\begin{definition}
+	$R$ נקרא \textbf{תחום ראשי} (PID --- Principal Ideal Domain) אם הוא תחום שלמות שבו כל אידאל הוא ראשי (נוצר על־ידי איבר אחד).
+\end{definition}
+\begin{example}
+	דוגמות לתחומים ראשיים:
+	\begin{enumerate}
+		\item $\ZZ$
+		\item שדה $\FF$
+		\item $\FF[x]$
+	\end{enumerate}
+	לעומת זאת דוגמות נגדיות, $\FF[x, y]$, האידאל $(x, y)$ לא ראשי.
+\end{example}
+בכללי ההתנהגות הזאת של תחום ראשי זה משהו שקורה רק כשהמימד הוא 1, וסוג של מבדל אותם.
+\begin{theorem}
+	כל PID הוא UFD
+\end{theorem}
+\begin{proof}
+	לכל $x \in R$ לא הפיך ושונה מאפס נראה שקיים פירוק לאי־פריקים.
+
+	נניח בשלילה ש־$x$ פריק ולכן $x = x_1 y_1$ פירוק אמיתי.
+	אם ל־$x_1$ ול־$y_1$ היה פירוק לאי־פריקים גם ל־$x$ היה ולכן בלי הגבלת הכלליות ל־$x_1$ אין פירוק כזה ובפרט $x_1 = x_2 y_2$ פירוק אמיתי.
+	נקבל כי $\dots \mid x_2 \mid x_1 \mid x$ ולכן $(x) \subsetneq (x_1) \subsetneq (x_2) \subsetneq \dots$. \\*
+	נסתכל על האידאל $I = \bigcup_{n = 1}^\infty (x_n) \triangleleft R$ אך מכיוון ש־$R$ הוא PID נקבל $I = (y)$, ולכן ישנו $n \in \NN$ עבורו $y \in (x_n)$,
+	וזו סתירה כי אז $I = (x_n) = (x_{n + 1})$.
+
+	כעת נראה שכל אי־פריק הוא ראשוני.
+	$x$ אי־פריק גורר ש־$(x)$ מקסימלי מבין הראשיין ולכן מ־PID נובע $(x)$ מקסימלי ולכן $(x)$ ראשוני.
+	לכן $R / (x)$ שדה ולכן בפרט גם תחום שלמות ולכן נובע כי $x$ ראשוני.
+\end{proof}
+\begin{conclusion}
+	$\ZZ$ ו־$\FF[x]$ הם~UFD\@.
+\end{conclusion}
+\begin{theorem}[משפט שלא נוכיח]
+	$R$ הוא UFD אז $R[x]$ הוא~UFD\@. \\*
+	בפרט $\FF[x, y] = (\FF[x])[y]$ הוא~UFD\@.
+\end{theorem}
+נחזור לענות על השאלה מה תוכן הקבוצה $S = \{ a^2 + b^2 \mid a, b \in \NN \}$.
+\begin{theorem}
+	$n \in S$ אם ורק אם בפירוק שלו לראשוניים כל ראשוני שהוא 3 מודולו 4 מופיע בחזקה זוגית.
+\end{theorem}
+כשאנחנו ניגשים למשוואה כזו, $a^2 + b^2 = n$, שהיא משוואה של שלמים, נרצה לבחון אותה מעל מודולו כדי לנסות להבין מה הולך איתה.
+במקרה זה נבדוק את $a^2 + b^2 \cong n (\mod 4)$, נקבל שאם $n \cong 3 (\mod 4)$ אז $n \notin S$.
+נשתמש גם בטענה הבאה
+\begin{proposition}
+	אם $n, m \in S$ אז $nm \in S$.
+\end{proposition}
+\begin{proof}
+	נניח ש־$n = a^2 + b^2, m = c^2 + d^2$.
+	ניקח את ${(ac - bd)}^2 + {(ad + bc)}^2 = a^2 c^2 - 2abcd + b^2 d^2 + a^2 d^2 + 2abcd + b^2 c^2 = (a^2 + b^2)(c^2 + d^2) = n \cdot m$.
+\end{proof}
+הדבר הזה מזכיר מאוד כפל של מרוכבים, וזה לא במקרה, נראה שמתקיים
+\[
+	(a + bi)(c + di) = (ac - bd) + (ad + bc)i
+\]
+הרעיון הוא שאפשר להזתכל על החוג $\ZZ[i]$, ונגדיר את $N : \ZZ[i] \to \NN$ המוגדרת על־ידי
+\[
+	N(a + bi) = a^2 + b^2 = (a + bi)(a - bi) = {\lVert a + bi \rVert}^2
+\]
+ומתקיים $N(xy) = N(x)N(y)$, ולכן $S = \im(N)$.
+אז נשאל את עצמנו מהם האיברים ההפיכים ב־$\ZZ[i]$, ונקבל ${\ZZ[i]}^\times = \{ 1, -1, i, -i \}$.
+אם $a + bi$ הפיך אז $N(a + bi) = 1 = a^2 + b^2$.
+\begin{proposition}
+	עבור $p$ אי־זוגי וראשוני, $p \in S$ אם ורק אם $p \cong 1 (\mod 4)$.
+\end{proposition}
+\begin{lemma}
+	$p$ ראשוני אי־זוגי הוא פריק ב־$\ZZ[i]$ אם ורק אם $p \cong 1 (\mod 4)$.
+\end{lemma}
+כל מיני עובדות שלא נוכיח אבל משתמש בהן:
+\begin{enumerate}
+	\item $\ZZ[i]$ הוא תחום ראשי ולכן UFD
+	\item $\FF_p^\times$ היא ציקלית (מסדר $p - 1$).
+\end{enumerate}
+\begin{proof}
+	$p$ אי־פריק ב־$\ZZ[i]$ אם ורק אם הוא ראשוני אם ורק אם $(p)$ ראשוני אם ורק אם $\ZZ[i] / (p)$ תחום שלמות.
+	\[
+		\ZZ[i] \simeq \ZZ[x] / (x^2 + 1)
+	\]
+	ולכן $\ZZ[i] / (p) \simeq (\ZZ[x] / (x^2 + 1)) / (p) \simeq \ZZ[x] / (x^2 + 1, p)$, וכך נקבל גם
+	\[
+		\ZZ[i] / (p) \simeq (\ZZ[x] / (p)) / (x^2 + 1) \simeq \FF_p[x] / (x^2 + 1)
+	\]
+	לכן $p$ פריק ב־$\ZZ[i]$ אם ורק אם $x^2 + 1$ פריק ב־$\FF_p[x]$ אם ורק אם קיים $a \in \FF_p$ שמקיים $a^2 = -1$.
+	נקבל $\FF_p^\times \simeq \ZZ_{/p - 1}$ אם ורק אם יש ל־$\ZZ_{/p - 1}$ תת־חבורה מגודל 4, כלומר אם ורק אם $4 \mid p - 1$.
+	זה אומר שכאשר $p \cong 1 (\mod 4)$ אז $p = zw \in \ZZ[i]$ פירוק אמיתי.
+	\[
+		p^2 = N(p) = N(z) N(w)
+	\]
+	ולכן $N(z) = N(w) = p$.
+	אם $z = a + bi$ ונקבל $a^2 + b^2 = p$.
 \end{proof}
 
 \end{document}
