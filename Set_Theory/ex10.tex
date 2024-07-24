@@ -1,0 +1,32 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- תורת הקבוצות (80200)}
+
+\DeclareMathOperator\dom{dom}
+\DeclareMathOperator\add{Add}
+\DeclareMathOperator\mult{Mult}
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נוכיח שלכל סודר $\alpha$ מתקיים $\alpha \le \omega_\alpha$.
+\begin{proof}
+	נתחיל בבדיקת הטבעיים, מהגדרה נקבל כי $n \in \NN = \omega \in \omega_n$ ולכן $n \le \omega_n$ לכל $n \in \NN$. \\*
+	עבור $\omega \le \alpha \le \omega^+$ נקבל $\omega^+ \le \omega_\alpha$ כמובן.
+	נוכל כמובן באופן דומה לחסום כל סודר $\alpha$ במונים ולקבל שהמונה $\omega_\alpha$ גדול מהם על־פי הגדרה.
+\end{proof}
+
+\Question{}
+נוכיח שלכל סודר $\alpha$ קיים סודר $\beta \ge \alpha$ כך ש־$\beta = \omega_\beta$.
+\begin{proof}
+	נגדיר מחלקת פונקציה $\xi \to \omega_\xi$ ולכן ממשפט הרקורסיה עבור $\alpha$ נקבל כי קיימת הקבוצה $\delta = \{ \alpha, \omega_\alpha, \omega_{\omega_\alpha}, \dots \}$. \\*
+	מההגדרה של סודר גבולי נקבל ש־$\omega_\delta = \bigcup_{\beta \in \delta} \beta = \delta$.
+\end{proof}
+
+\Question{}
+נוכיח שמחלקת המונים היא מחלקה נאותה.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
