@@ -1,0 +1,45 @@
+\input{../article_base.tex}
+\usepackage{tikz}
+\DeclareMathOperator\arcsinh{arcsinh}
+\title{פתרון מטלה 11 – חשבון אינפיניטסימלי 2 (80132)}
+% chktex-file 9
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\Subquestion{}
+יהי $0 < S \in \RR$ ויהיו האינטגרלים
+\[
+	\int_{0}^{1} e^{-t} t^{S - 1}\ dt,
+	\qquad
+	\int_{1}^{\infty} e^{-t} t^{S - 1}\ dt
+\]
+נוכיח כי הם מתכנסים.
+\begin{proof}
+	נבחין כי במבחן ההשוואה ל־$\int e^{-t}\ dt$ (אשר מתכנס) נקבל כי האינטגרלים הנתונים מתכנסים אם ורק אם $t^{S - 1} \xrightarrow{x \to D} L < \infty$. \\*
+	כאשר $S \le 1$ כמובן נקבל התכנות מהגרסה המורחבת של מבחן ההשוואה הגבולי מהמטלות הקודמות. \\*
+	עבור $S > 1$ נשתמש בהשוואה לפונקציה $t^{-2}$ אשר חוסם מלמעלה את הפונקציה הנתונה לכל $x$ רלוונטי, ולכן נסיק כי יש התכנסות גם עבור $S > 1$ ובכלל עבור $0 < S$ כללי.
+\end{proof}
+
+\Subquestion{}
+נגדיר $\Gamma : \RR^+ \to \RR$ המוגדר על־ידי
+\[
+	\Gamma(s) = \int_{0}^{\infty} e^{-t} t^{s - 1}\ dt
+\]
+אשר מצאנו בסעיף הקודם שמתכנס, ונוכיח כי גם $\forall s \in (0, \infty) : \Gamma(s + 1) = s \Gamma(s)$.
+\begin{proof}
+	נגדיר $N \in (0, \infty)$ כלשהו ויהי $0 < \delta < N$ ונקבל
+	\[
+		\int_{\delta}^{N} e^{-t} t^{N - 1}
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח כי לכל $n \in \NN$ מתקיים $r(n + 1) = n! $.
+\begin{proof}
+	
+\end{proof}
+
+\end{document} % chktex 17
