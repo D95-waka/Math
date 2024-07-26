@@ -1,0 +1,204 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- חשבון אינפינטסמלי 3 (80415)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+יהי $A \subset \RR^2$ התחום החסום על־ידי העקומים $x^2 - y^2 = 1, y = 0, y = x, xy = 1$ ברביע הראשון. \\*
+נחשב את $\int_A (x^2 + y^2)\ dx\ dy$ על־ידי החלפת המשתנים $u = xy, v = x^2 - y^2$.
+
+נחשב את היעקוביאן עבור החלפת המשתנים ונקבל
+\[
+	J = \frac{\partial(u, v)}{\partial(x, y)}
+	= \begin{vmatrix}
+		y & x \\
+		2x & -2y
+	\end{vmatrix}
+	= -2(x + y)
+\]
+ולכן $|J^{-1}| = 2{(x + y)}^2$.
+נקבל אם כן $f(x, y) = x^2 + y^2 = \frac{1}{2} |J|$. \\*
+עוד נבחין כי $x^2 - y^2 = 1 \iff v = 1, y = 0 \iff u = 0, y = x = 0 \iff v = 0, xy = u = 1$ ולכן נקבל ממשפט החלפת משתנים
+\[
+	\int_A (x^2, y^2)\ dx\ dy
+	= \int_0^1 \left( \int_0^1 \frac{1}{2}\ du \right)\ dv
+	= \frac{1}{2}
+\]
+
+\Question{}
+נגדיר
+\[
+	f(x, y) = \frac{y^2 - x^2}{{(x^2 + y^2)}^2}
+\]
+
+\Subquestion{}
+נראה ש־$f = \frac{\partial}{\partial x}( \frac{x}{x^2 + y^2})$.
+\begin{proof}
+	נחשב
+	\[
+		\frac{\partial}{\partial x}( \frac{x}{x^2 + y^2})
+		= \frac{1 \cdot (x^2 + y^2) - x (2x + 0)}{{(x^2 + y^2)}^2}
+		= \frac{-x^2 + y^2}{{(x^2 + y^2)}^2}
+		= f(x, y)
+	\]
+\end{proof}
+
+\Subquestion{}
+נחשב את $\int_0^1( \int_0^1 f(x, y)\ dx)\ dy$ ואת $\int_0^1( \int_0^1 f(x, y)\ dy)\ dx$.
+
+נשתמש בתוצאת הסעיף הקודם ונקבל
+\[
+	\int_0^1 \left( \int_0^1 f(x, y)\ dx\right)\ dy
+	= \int_0^1 \left( \left. \frac{x}{x^2 + y^2} \right|_{x = 0}^{x = 1} \right)\ dy
+	= \int_0^1 \left( \frac{1}{1 + y^2} - 0 \right)\ dy
+	= \arctan(y) \big|_0^1
+	= \frac{\pi}{4}
+\]
+ניתן לראות כי
+\[
+	f = \frac{\partial}{\partial y}( \frac{-y}{x^2 + y^2})
+\]
+באותו האופן בו ראינו בסעיף א' את השוויון הדומה עבור $x$, ונקבל
+\[
+	\int_0^1 \left( \int_0^1 f(x, y)\ dy\right)\ dx
+	= \int_0^1 \left( \left. \frac{-y}{x^2 + y^2} \right|_{y = 0}^{y = 1} \right)\ dx
+	= \int_0^1 \left( \frac{-1}{1 + x^2} - 0 \right)\ dx
+	= -\arctan(x) \big|_0^1
+	= -\frac{\pi}{4}
+\]
+
+\Subquestion{}
+נשים לב כי תוצאת שני האינטגרלים היא שונה, לכאורה בסתירה למשפט פוביני, נסביר את מקור הבעיה.
+
+הפתרון הוא ש־$f$ כלל לא חסומה בתחום הנתון, כאשר $f(0, 0)$ לא מוגדר והפונקציה לא שואפת לערך קבוע בנקודה זו, ולכן תנאי המשפט כלל לא חלים.
+
+\Question{}
+נחשב את האינטגרל של $f(x, y, z, w) = (x^2 + y^2) {(z^2 + w^2)}^3$ בתחום $\overline{B}(0, 3) \subseteq \RR^4$
+
+נגדיר $r = \sqrt{x^2 + y^2}, \theta = \arctan(\frac{y}{x})$ קורדינטות פולריות ו־$s = \sqrt{z^2 + w^2}, \phi = \arctan(\frac{w}{z})$ קורדינטות קוטביות בלתי תלויות. \\*
+ראינו בתרגול כי החלפת משתנים זו עומדת במבחן החלפת משתנים, ולכן נחשב אותה
+\begin{align*}
+	J
+	& = \left\lvert \frac{\partial(r, \theta, s, \varphi)}{\partial(x, y, z, w)} \right\rvert \\
+	& = \begin{vmatrix}
+		\frac{x}{\sqrt{x^2 + y^2}} & \frac{y}{\sqrt{x^2 + y^2}} & 0 & 0 \\
+		\frac{-y}{x^2 + y^2} & \frac{x}{x^2 + y^2} & 0 & 0 \\
+		0 & 0 & \frac{z}{\sqrt{z^2 + w^2}} & \frac{w}{\sqrt{z^2 + w^2}} \\
+		0 & 0 & \frac{-w}{z^2 + w^2} & \frac{z}{z^2 + w^2}
+	\end{vmatrix} \\
+	& = \frac{x^2 + y^2}{(x^2 + y^2) \sqrt{x^2 + y^2}} \cdot \frac{z^2 + w^2}{(z^2 + w^2) \sqrt{z^2 + w^2}} \\
+	& = \frac{1}{\sqrt{x^2 + y^2} \sqrt{z^2 + w^2}}
+\end{align*}
+ולכן $|J^{-1}| = J^{-1} = \sqrt{(x^2 + y^2)(z^2 + w^2)}$. \\*
+עתה נקבל
+\[
+	f(x, y, z, w) = J^{-1} \cdot r s^5
+\]
+ולכן גם
+\begin{align*}
+	\int_{\overline{B}(0, 3)} f
+	& = \int_{0}^{2 \pi} \left( \int_{0}^{3} \left( \int_0^{2 \pi} \left( \int_0^3 r s^5\ ds \right)\ d\varphi \right)\ dr \right)\ d\theta \\
+	& = \left( \int_{0}^{2 \pi} 1\ d\theta\right) \cdot \left( \int_{0}^{2 \pi} 1\ d\varphi \right) \cdot \int_{0}^{3} \left( \int_0^3 r s^5\ ds \right)\ dr \\
+	& = 4\pi^2 \cdot \int_0^3 \frac{1}{6} (3^6 r - 0)\ dr \\
+	& = 2 \cdot 3^5 \pi^2 \cdot \int_0^3 r dr \\
+	& = 3^7 \pi^2
+\end{align*}
+
+\Question{}
+תהי $A \in \RR^{3 \times 3}$ מטריצה, ויהי $B \subset \RR^3$ כדור היחידה.
+לכל $v = {(x, y, z)}^t$ נחשב
+\[
+	\iiint_B \langle A v, v \rangle\ dx\ dy\ dz
+\]
+
+נגדיר את פונקציית ההמרה לקורדינטה כדורית
+\[
+	g(r, \theta, \varphi) = (r \cos \theta \sin \varphi, r \sin \theta \sin \varphi, r \cos \varphi)
+\]
+ומצאנו בתרגול כי $J_g(r, \theta, \varphi) = r^2 \sin \varphi$ ונבחין כי ביטוי זה תמיד חיובי עבור תחומי המשתנים. \\*
+אנו יודעים כי
+\[
+	f(x, y, z) := \langle A v, v \rangle = a_{11} x^2 + a_{22} y^2 + a_{33} z^2 + (a_{21} + a_{12}) xy + (a_{31} + a_{13}) xz + (a_{23} + a_{32}) yz
+\]
+ולכן
+\[
+	\iiint_B f(x, y, z)\ dx\ dy\ dz
+	= \iiint_{g^{-1}(B)} f(g(r, \theta, \varphi)) J_g\ dr\ d\theta\ d\varphi
+\]
+נציב ונקבל את הביטוי
+\begin{align*}
+	\iiint_{\substack{0 \le r \le 1, \\ 0 \le \theta \le 2\pi, \\ 0 \le \varphi \le \pi}}
+	& (a_{11} {(r \cos(\theta) \sin(\varphi))}^2 + a_{22} {(r \sin(\theta) \sin(\varphi))}^2 + a_{33} {(r \cos(\varphi))}^2 \\
+	& + (a_{21} + a_{12}) (r \cos(\theta) \sin(\varphi))(r \sin(\theta) \sin(\varphi)) + (a_{31} + a_{13}) (r \cos(\theta) \sin(\varphi))(r \cos(\varphi)) \\
+	& + (a_{23} + a_{32}) (r \sin(\theta) \sin(\varphi))(r \cos(\varphi))) r^2 \sin(\varphi)\ dr\ d\theta\ d\varphi
+\end{align*}
+נכנס איברים ונקבל
+\begin{align*}
+	\iiint_{\substack{0 \le r \le 1, \\ 0 \le \theta \le 2\pi, \\ 0 \le \varphi \le \pi}}
+	& a_{11} (r^4 \cos^2(\theta)\sin^3(\varphi)) + a_{22} (r^4 \sin^2(\theta)\sin^3(\varphi)) + a_{33} (r^4 \cos^2(\varphi) \sin(\varphi)) \\
+	& + \frac{1}{2} (a_{21} + a_{12}) (r^4 \sin(2\theta) \sin^3(\varphi)) + (a_{31} + a_{13}) (r^4 \cos(\theta) \sin^2(\varphi) \cos(\varphi)) \\
+	& + (a_{23} + a_{32}) (r^4 \sin(\theta) \sin^2(\varphi) \cos(\varphi))\ dr\ d\theta\ d\varphi
+\end{align*}
+עתה נבחין כי $\int_0^1 r^4\ dr = \frac{1}{5}$ ולכן האינטגרל הנתון שווה לביטוי
+\begin{align*}
+	\frac{1}{5} \iint_{\substack{0 \le \theta \le 2\pi, \\ 0 \le \varphi \le \pi}}
+	& a_{11} (\cos^2(\theta)\sin^3(\varphi)) + a_{22} (\sin^2(\theta)\sin^3(\varphi)) + a_{33} (\cos^2(\varphi) \sin(\varphi)) \\
+	& + \frac{1}{2} (a_{21} + a_{12}) (\sin(2\theta) \sin^3(\varphi)) + (a_{31} + a_{13}) (\cos(\theta) \sin^2(\varphi) \cos(\varphi)) \\
+	& + (a_{23} + a_{32}) (\sin(\theta) \sin^2(\varphi) \cos(\varphi))\ d\theta\ d\varphi
+\end{align*}
+נחשב את המכפלות שקשורות ל־$\theta$, נחשב כל מקרה לגופו ונבחין לפני זה כי
+\[
+	\int \cos^2(\theta)\ \theta = \sin(2\theta) + \frac{x}{2},
+	\qquad
+	\int \sin^2(\theta)\ \theta = -\frac{1}{4} \sin(2\theta) + \frac{x}{2}
+\]
+ולכן גם
+\[
+	\int_0^{2\pi} \cos^2(\theta)\ \theta = \pi,
+	\qquad
+	\int_0^{2\pi} \sin^2(\theta)\ \theta = \pi
+\]
+ונקבל
+\[
+	\frac{1}{5} \int_{0 \le \varphi \le \pi} (\pi a_{11} (\sin^3(\varphi)) + \pi a_{22} (\sin^3(\varphi)) + 2\pi a_{33} (\cos^2(\varphi) \sin(\varphi)) + 0)\ d\varphi
+\]
+עתה נבחין כי
+\[
+	\int_0^\pi \sin^3(\varphi)\ d\varphi = \frac{4}{3}
+\]
+ולכן נקבל כי ערך האינטגרל הוא
+\[
+	\frac{\pi}{5} (\frac{4}{3} a_{11} + \frac{4}{3} a_{22} - \frac{2}{3} a_{33})
+\]
+
+\Question{}
+מומנט אינרציה מוגדר לגוף בתחום $V \subseteq \RR^3$ ושצפיפותו היא $\rho : V \to \RR^+$ על־ידי
+\[
+	I_z = \iiint_V (x^2 + y^2) \rho(x, y, z)\ dx\ dy\ dz
+\]
+נוכיח שעבור גוף $V = \{ (x, y, z) \in \RR^3 \mid R_1^2 \le x^2 + y^2 + z^2 \le R_2^2 \}$ בעל צפיפות אחידה, מתקיים $I_z = \frac{2M}{5} \cdot \frac{R_2^5 - R_1^5}{R_2^3 - R_1^3}$.
+\begin{proof}
+	נעבור לקורדינטות כדוריות ונקבל
+	\begin{align*}
+		I_z & = \iiint_{\substack{R_1 \le r \le R_2, \\ 0 \le \theta \le 2\pi, \\ 0 \le \varphi \le \pi}} (r^4 \cos^2(\theta)\sin^3(\varphi) + r^4 \sin^2(\theta) \sin^3(\varphi))\ dr\ d\theta\ d\varphi \\
+			& = \left( \int_{R_1}^{R_2} r^4\ dr \right) \left( \int_0^{2\pi} (\cos^2 \theta + \sin^2 \theta)\ d\theta \right) \left( \int_0^\pi \sin^3(\varphi)\ d\varphi \right) \\
+			& = \frac{1}{5} \left( R_2^5 - R_1^5 \right) \left( 2\pi \right) \left( \frac{4}{3} \right) \\
+			& = \frac{4 \pi}{15} \left( R_2^5 - R_1^5 \right)
+	\end{align*}
+	נעבור עתה לחישוב המסה של הקליפה הכדורית
+	\[
+		\iiint_V \rho(x, y, z)\ dx\ dy\ dz
+		= \left( \int_{R_1}^{R_2} r^2\ dr \right) \left( \int_0^{2\pi} 1\ d\theta \right) \left( \int_0^\pi \sin \varphi\ d\varphi \right)
+		= \frac{R_2^3 - R_1^3}{3} \cdot 2\pi \cdot 1
+	\]
+	ולכן נקבל
+	\[
+		I_z
+		= \frac{2 \pi}{15} \left( R_2^5 - R_1^5 \right) \cdot M \frac{3}{2\pi(R_2^3 - R_1^3)}
+		= \frac{2M}{5} \cdot \frac{R_2^5 - R_1^5}{(R_2^3 - R_1^3)}
+	\]
+\end{proof}
+
+\end{document}
