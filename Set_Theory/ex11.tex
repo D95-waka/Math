@@ -1,0 +1,39 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- תורת הקבוצות (80200)}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $\langle X, \prec \rangle$ קבוצה סדורה חלקית, נוכיח שקיים סדר קווי $\triangleleft$ על $X$ שמרחיב את $\prec$,
+דהינו $\forall x, y \in X, x \prec y \implies x \triangleleft y$.
+\begin{proof}
+	נבנה את הסדר $\triangleleft$, נתחיל מ־$\triangleleft = \prec$ ונוסיף איברים. \\*
+	נגדיר $\le$ יחס סדר מלא על $X$, קיים אחד לפי משפט הסדר הטוב. \\*
+	יהיו $x, y, z \in X$ כך ש־$x, y \prec z$ ו־$x \not\prec y \land y \not\prec x$ ו־$x \le y$, אז נגדיר $x \triangleleft y$. \\*
+	באופן דומה לכל $x, y, z \in X$ כך ש־$z \triangleleft x, y$ שאינם ניתנים להשוואה כך ש־$x \triangleleft y$ נגדיר $x \le y$. \\*
+	נקבל עתה כי $\le$ הוא מספר סדרים קוויים זרים עתה, כנביעה ישירה מהבנייה, תהינה שתי שרשראות $C, C' \subseteq X$ כך שהן מכילות את כלל האיברים ברי־ההשוואה לאיבריהן,
+	נגדיר $\forall x \in C, y \in C', x \triangleleft y$ באופן שרירותי, וכך נקבל שתחת השינוי ב־$\triangleleft$ $C = C'$, נחזור על התהליך עד שלא תישארנה שרשאות נפרדות ב־$X$.
+\end{proof}
+
+\Question{}
+תהי $A$ קבוצה אינסופית ו־$B \subseteq A$, נוכיח כי מתקיים $|B| = |A|$ או $|A \setminus B| = |A|$.
+\begin{proof}
+	ידוע ש־$|A| \le |B|$, אילו $|B| = |A|$ סיימנו, ולכן נניח $|B| < |A|$ ונוכיח ש־$|A \setminus B| = |A|$. \\*
+	נבחין כי כמובן $|A \setminus B| \le |A|$ ולכן עלינו רק להוכיח ש־$|A| \le |A \setminus B|$. \\*
+	אנחנו יודעים ש־$A$ אינסופית ולכן $|A| \cdot 2 = |A|$ ונוכל להסיק שקיימות $C, C' \subseteq A$ כך ש־$C \cap C' = \emptyset$. \\*
+	אנו יודעים ש־$|C| = |A|$ ולכן $|B| < |C|$ ולכן נוכל לבחור קבוצות $C, C'$ כך ש־$B \subseteq C$ ולכן גם $B \cap C' = \emptyset$. \\*
+	נבנה אם כן פונקציה $f : A \to A \setminus B$ כהרחבה של הפונקציה החד־חד ערכית ועל $A \to C$ ונגדיר $\forall x \in B, f(x) \in C'$ באופן חד־חד ערכי כפי שמובטח שייתכן מאותם שיקולי עוצמות. \\*
+	נקבל אם כן ש־$f$ חד־חד ערכית ולכן $|A| \le |A \setminus B|$ כפי שרצינו להוכיח.
+\end{proof}
+
+\Question{}
+נוכיח שלכל $A$ אינסופית, מתקיים $2^{|A|} = {|A|}^{|A|}$.
+\begin{proof}
+	תהי $A$ קבוצה כלשהי, נבחין כי $2^A \subseteq A^A$, ולכן גם $2^{|A|} \le {|A|}^{|A|}$ ונשאר להוכיח את הכיוון השני בלבד. \\*
+	נבחין כי $A^A \subseteq \mathcal{P}(A \times A)$, וידוע כי $A$ אינסופית, לכן $|A| = |A \times A|$ ובהתאם ${|A|}^{|{A}|} \le |\mathcal{P}(A \times A)| = |\mathcal{P}(A)|$. \\*
+	הוכח בהרצאה כי מתקיים $|mathcal{P}(X)| = 2^{|X|}$ לכל $X$ קבוצה, ולכן נקבל בפרט ש־${|A|}^{|A|} \le 2^{|A|}$.
+\end{proof}
+
+\end{document}
