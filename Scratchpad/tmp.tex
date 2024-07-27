@@ -2,17 +2,24 @@
 
 \begin{document}
 
-תהי סדרה ${(a_n)}_{n = 1}^\infty$ כך ש־$\sum_n a_n$ מתכנס וגם $0 \le a_n$ לכל $n \in \NN$. \\*
-נבדוק האם גם $\sum_n a_{2n}$ מתכנס. \\*
-נגדיר סדרה חדשה
+נגדיר $D = \{ (x, y) \mid \frac{x^2}{a^2} + \frac{y^2}{b^2} \le 1 \}$. \\*
+עכשיו, נגדיר $\frac{x}{a} = r \cos \theta, \frac{y}{b} = r \sin \theta$ ולכן נקבל $D = \{ (r, \theta) \mid r^2 (\cos^2 \theta + \sin^2 \theta) = r^2 \le 1 \}$. \\*
+נחשב גם את הדטרמיננטה בשביל מעבר קורדינטה ונקבל
 \[
-	b_n = \begin{cases}
-		a_n & n = 0 \mod 2 \\
-		0 & n = 1 \mod 2
-	\end{cases}
+	J = \frac{\partial (x, y)}{\partial (r, \theta)}
+	= \begin{vmatrix}
+		a \cos \theta & -ar \sin \theta \\
+		b \sin \theta & br \cos \theta
+	\end{vmatrix}
+	= ab r \cos^2(\theta) + ab r \sin^2(\theta) = ab r
 \]
-ולכן נקבל כי $\sum_{2n} b_n = \sum_n a_{2n}$. \\*
-נבחין כי גם $0 \le \sum_{2n} b_n \le \sum_{2n} a_n$ שכן הסכומים החלקיים הם מונוטוניים עולים. \\*
-לכן נסיק ש־$\sum_n b_n$ מתכנס ולכן נוכל להסיק כי גם $\sum_n a_{2n}$ מתכנס.
+ולכן במעבר לקורדינטה פולרית אליפטית צריך לכפול את הפונקציה ב־$ab r$ ולהפוך את $D$ לתחום $\{ (r, \theta) \mid r \le 1 \}$. \\*
+עכשיו נעבור לאינטגרל עצמו ונקבל
+\[
+	\iint_D 1\ dx\ dy
+	= \iint_{0 \le r \le 1, 0 \le \theta \le 2\pi} ab r\ dr\ d\theta
+	= ab \cdot \iint_{0 \le r \le 1, 0 \le \theta \le 2\pi} r\ dr\ d\theta
+	= ab \int_0^{2\pi} \left( \int_0^1 r\ dr \right)\ d\theta
+\]
 
 \end{document}
