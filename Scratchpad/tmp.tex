@@ -2,24 +2,30 @@
 
 \begin{document}
 
-נגדיר $D = \{ (x, y) \mid \frac{x^2}{a^2} + \frac{y^2}{b^2} \le 1 \}$. \\*
-עכשיו, נגדיר $\frac{x}{a} = r \cos \theta, \frac{y}{b} = r \sin \theta$ ולכן נקבל $D = \{ (r, \theta) \mid r^2 (\cos^2 \theta + \sin^2 \theta) = r^2 \le 1 \}$. \\*
-נחשב גם את הדטרמיננטה בשביל מעבר קורדינטה ונקבל
+נגדיר
 \[
-	J = \frac{\partial (x, y)}{\partial (r, \theta)}
-	= \begin{vmatrix}
-		a \cos \theta & -ar \sin \theta \\
-		b \sin \theta & br \cos \theta
-	\end{vmatrix}
-	= ab r \cos^2(\theta) + ab r \sin^2(\theta) = ab r
+	f(x) = \frac{\ln x}{\sqrt{x^3 + x^2 - x + 1}}
 \]
-ולכן במעבר לקורדינטה פולרית אליפטית צריך לכפול את הפונקציה ב־$ab r$ ולהפוך את $D$ לתחום $\{ (r, \theta) \mid r \le 1 \}$. \\*
-עכשיו נעבור לאינטגרל עצמו ונקבל
+ונמצא את
 \[
-	\iint_D 1\ dx\ dy
-	= \iint_{0 \le r \le 1, 0 \le \theta \le 2\pi} ab r\ dr\ d\theta
-	= ab \cdot \iint_{0 \le r \le 1, 0 \le \theta \le 2\pi} r\ dr\ d\theta
-	= ab \int_0^{2\pi} \left( \int_0^1 r\ dr \right)\ d\theta
+	\int_{1}^{\infty} f(x)\ dx
 \]
+
+נגדיר $g(x) = \frac{\ln x}{\sqrt{x^3}}$ ונקבל
+\[
+	\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1
+\]
+ולכן ממבחן ההשוואה הגבולי האינטגרל שאנו מחפשים מתכנס אם ורק אם $\int_{1}^{\infty} g(x)\ dx$ מתכנס אף הוא. \\*
+אנו יודעים כי $\forall x > 2, \ln x < \sqrt[3]{x}$ ולכן נקבל גם
+\[
+	\frac{\ln x}{\sqrt{x^3}} < \frac{\sqrt[3]{x}}{\sqrt{x^3}}
+\]
+ולכן האינטגרל הנתון מתכנס אם ורק אם מתכנס האינטגרל
+\[
+	\int_{1}^{\infty} \frac{\sqrt[3]{x}}{\sqrt{x^3}}\ dx
+	= \int_{1}^{\infty} x^{-7/6}\ dx
+	= \frac{-6}{13} x^{-1/6} \mid_1^\infty = \frac{-6}{13}
+\]
+ולכן ממבחן ההשוואה נקבל כי גם $\int_{1}^{\infty} f(x)\ dx$ מתכנס.
 
 \end{document}
