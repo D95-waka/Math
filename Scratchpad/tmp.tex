@@ -2,43 +2,10 @@
 
 \begin{document}
 
-\begin{proposition}
-	תהינה פונקציות גזירות $f, g : [a, b] \to \RR$,
-	מתקיים $f(a) = g(a)$ ו־$\forall x \in [a, b], f'(x) < g'(x)$,
-	אז מתקיים $\forall x \in (a, b], f(x) < g(x)$.
-\end{proposition}
-\begin{remark}
-	הטענה נכונה גם באופן מוכלל, דהינו אם $b = \infty$.
-\end{remark}
-\begin{proof}
-	נגדיר פונקציה חדשה $h(x) = g(x) - f(x)$, ולכן נקבל $h(a) = 0$. \\*
-	נשים לב כי $h'(x) = g'(x) - f'(x) > 0$ ולכן נובע כי הפונקציה עולה בכל התחום. \\*
-	נסיק אם כן ש־$h(x) > 0$ בתחום הפתוח, דהינו $g(x) - f(x) > 0$.
-\end{proof}
-\begin{conclusion}
-	אם $f'(x) > M$ כאשר $0 < M \in \RR$ אז נקבל
-	\[
-		f(x) > M(x - a) + f(a)
-	\]
-\end{conclusion}
-\begin{proof}
-	נגדיר $g(x) = M(x - a) + f(a)$, לכן $g(a) = f(a)$ ותנאי הטענה מתקיימים. \\*
-	לכן נקבל לכל $x > a$ שגם $f(x) > M(x - a) + f(a)$.
-\end{proof}
-\begin{proposition}
-	תהי פונקציה $f : [a, \infty) \to \RR$ כך ש־$\lim_{x \to \infty} f(x) = L$ אז $\lim_{x \to \infty} f'(x) = 0$.
-\end{proposition}
-\begin{proof}
-	ההוכחה הזאת לא מלאה כי היא לא פוסלת מקרים שהנגזרת לא מתכנסת. \\*
-	נניח בשלילה ש־$\lim_{x \to \infty} f'(x) = L' > 0$,
-	אז קיים $N$ כך ש־$\forall x > M, f'(x) > \frac{L'}{2}$. \\*
-	נסתכל על המשיק בנקודה כלשהי $t > N$,
-	\[
-		g(x) = f'(t)(x - t) + f(t) > \frac{L'}{2}(x - t) + f(t)
-	\]
-	ונקבל מהטענה הקודמת ש־$f(x) > g(x)$ לכל $x > N$, אבל $\lim_{x \to \infty} g(x) = \infty$,
-	אז ממשפט הפרוסה נקבל גם $\lim_{x \to \infty} f(x) = \infty$ וזו סתירה.
-\end{proof}
-
+\[
+	U(f, P) \implies \overline{S}(f, P),
+	L(f, P) \implies \underline{S}(f, P),
+	\Delta(P) \implies \lambda(P)
+\]
 
 \end{document}
