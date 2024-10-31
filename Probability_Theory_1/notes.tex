@@ -139,4 +139,82 @@
 נשים לב כי בעוד פונקציית הסתברות נקודתית מאפשרת לנו לדון בהסתברות של איבר בודד בקבוצות בנות מניה, פונקציית הסתברות למעשה מאפשרת לנו לדון בהסתברות של מאורעות, הם קבוצות של כמה מצבים אפשריים, ובכך להגדיל את מושא הדיון שלנו.
 מהטענה האחרונה גם נוכל להסיק שבין שתי ההגדרות קיים קשר הדוק, שכן פונקציית הסתברות נקודתית גוררת את קיומה של פונקציית הסתברות כללית.
 
+\section{תרגול 1 --- 31.10.2024}
+המתרגל הוא אמיר, amir.behar@mail.huji.ac.il
+
+\subsection{מרחבי הסתברות סופיים ובני־מניה}
+ניזכר בהגדרה למרחב הסתברות, המטרה של הגדרה זו היא לתאר תוצאות אפשריות של מצב נתון.
+\begin{definition}[מרחב הסתברות]
+	מרחב הסתברות הוא קבוצה $(\Omega, \mathcal{F}, \PP)$ כאשר $\PP : \mathcal{F} \to [0, 1]$, כך שמתקיים
+	\begin{enumerate}
+		\item חיוביות: $\forall A \in \mathcal{F}, \PP(A) \ge 0$
+		\item נרמול: $\PP(\Omega) = 1$
+		\item על־אדיטיביות: זה הזוועה עם הסדרות תשלים אחר־כך
+	\end{enumerate}
+\end{definition}
+\begin{exercise}
+	$(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, $A, B \in \mathcal{F}$, הוכיחו
+	\[
+		\PP(A \cup B) = \PP(A) + \PP(B) - \PP(A \cap B)
+	\]
+\end{exercise}
+\begin{proof}
+	נבחין כי $\PP(A) = \PP(A - (A \cap B)) + \PP(A \cap B)$ וגם $\PP(B) = \PP(B - (A \cap B)) + \PP(A \cap B)$. נוכל אם כן לסכום ולקבל
+	\[
+		\PP(A) + \PP(B) = \PP(A - (A \cap B)) + \PP(A \cap B) + \PP(B - (A \cap B)) + \PP(A \cap B)
+		= \PP(A \cup B) + \PP(A \cap B)
+	\]
+	נבחין כי השוויון האחרון נובע מהזרות של קבוצות אלה.
+\end{proof}
+לאורך פרק זה נגדיר מעתה שמתקיים $\Omega$ סופית, $\mathcal{F} = 2^\Omega$ ואף נגדיר כי ההסתברות אחידה, דהינו $\forall A, \PP(A) = \frac{|A|}{|\Omega|}$, זה כמובן שקול לטענה
+\[
+	\forall \omega, \omega' \in \Omega, \PP(\{\omega\}) = \PP(\{\omega'\})
+\]
+\begin{exercise}
+	מטילים קוביה הוגנת, מה ההסתברות שיצא מספר זוגי?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = [6] = \{1, \dots, 6\}$, עם $\PP$ אחידה. \\*
+	נרצה לחשב את $A = \{2, 4, 6\}$ ולכן נקבל $\PP(A) = \frac{|A|}{|\Omega|} = \frac{3}{6} = \frac{1}{2}$.
+\end{solution}
+\begin{exercise}
+	מטילים מטבע הוגן שלוש פעמים, מה ההסתברות שיצא עץ בדיוק פעמיים, ומה ההסתברות שיצא עץ לפחות פעמיים.
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = \{ TTT, TTP, TPT, PTT, \dots \}$. \\*
+	עבור המקרה הראשון נגדיר $A = \{ TTP, TPT, PTT \}$, ולכן נקבל שההסתברות היא $\PP(A) = \frac{3}{8}$. \\*
+	במקרה השני נקבל $B = A \cup \{ TTT \}$ ולכן $P(B) = \frac{1}{2}$.
+\end{solution}
+\begin{exercise}
+	מטילים קוביה הוגנת $n$ פעמים.
+	\begin{enumerate}
+		\item מה ההסתברות שתוצאת ההטלה הראשונה קטנה מ־4?
+		\item מה ההסתברות שתוצאת ההטלה הראשונה קטנה שווה מתוצאת ההטלה השנייה?
+		\item מה ההסתברות שיצא 1 לפחות פעם אחת?
+	\end{enumerate}
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = {[6]}^n = \{ (x_1, \dots, x_n) \mid x_i \in [6] \}$.
+	\begin{enumerate}
+		\item נגדיר $A = \{ (x_1, \dots, x_n) \in \Omega \mid x_1 < 4 \}$ ולכן $\PP(A) = \frac{3 \cdot 6^{n - 1}}{6^n} = \frac{1}{2}$.
+		\item נגדיר $B = \{ (x_1, \dots, x_n) \in \Omega \mid x_1 \le x_2 \} = \bigcup_{i = 1}^6 \{ (x_1, i, x_3, \dots, x_n) \in \Omega \mid x_i \le i \}$, ולכן נקבל
+			\[
+				\PP(B) = \sum \PP(B_i) = \sum \frac{i \cdot 6^{n - 2}}{6^n} = \frac{\sum_{i = 1}^{6} i}{6^2} = \frac{6 \cdot 7}{6^2 \cdot 2} = \frac{7}{12}
+			\]
+		\item הפעם $C = \{ (x_1, \dots, x_n) \in \Omega \mid \exists i, x_i = 1 \}$, בהתאם $C^C = \{ (x_1, \dots, x_n) \in \Omega \mid \forall i, x_1 \ne 1 \}$. \\*
+			לכן נקבל $\PP(C^C) = \frac{5^n}{6^n} \implies \PP(C) = 1 - \frac{5^n}{6^n}$.
+	\end{enumerate}
+\end{solution}
+\begin{exercise}
+	חמישה אנשים בריאים וחמישה אנשים חולי שפעת עומדים בשורה. מה ההסתברות שחולי השפעת נמצאים משמאל לאנשים הבריאים?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega$ ככל הסידורים של $0, 1$ כשיש חמישה מכל סוג.
+	לכן נקבל $|\Omega| = \binom{10}{5}$, שכן $\Omega = \{ X \subset [10] \mid |X| = 5 \}$. \\*
+	המאורע הפעם הוא $A = \{ \{ 1, 2, 3, 4, 5 \} \}$ ובהתאם $\PP(A) = \frac{5! 5!}{10!}$.
+
+	נוכל גם להגדיר $\Omega = \{ \pi : [10] \to [10] \mid \pi \text{חד־חד ערכי ועל} \}$ כאשר חמשת המספרים הראשונים מייצגים בריאים וחמשת האחרונים מייצגים חולים. \\*
+	במקרה זה נקבל $A = \{ \pi \in \Omega \mid \pi(\{1, 2, 3, 4, 5\}) \subseteq \{1, 2, 3, 4, 5\} \}$ ולכן $|A| = 5! 5! $ וכך $\PP(A) = \frac{5! 5!}{10!}$.
+\end{solution}
+
 \end{document}
