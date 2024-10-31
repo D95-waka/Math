@@ -217,4 +217,118 @@
 	במקרה זה נקבל $A = \{ \pi \in \Omega \mid \pi(\{1, 2, 3, 4, 5\}) \subseteq \{1, 2, 3, 4, 5\} \}$ ולכן $|A| = 5! 5! $ וכך $\PP(A) = \frac{5! 5!}{10!}$.
 \end{solution}
 
+\section{שיעור 2 --- 31.10.2024}
+\subsection{תכונות של פונקציות הסתברות}
+נגדיר הגדרה שדרושה לצורך ההרצאה הקודמת כדי להיות מסוגלים לדון בסכומים אינסופיים בני־מניה.
+\begin{definition}
+	אם ${\{a_i\}}_{i \in I}$ ו־$a_i \ge 0$ לכל $i \in I$ אז נגדיר
+	\[
+		\sum_{i \in I} a_i = \sup \left\{ \sum_{i \in J} \mid J \subseteq I, J \text{ is finite} \right\}
+	\]
+\end{definition}
+\begin{exercise}
+	הוכיחו כי אם $\sum_{i \in I} a_i < \infty$ ו־$a_i \ge 0$ לכל $i \in I$ אז $|\{ i \in I \mid a_i < 0 \}| \le \aleph_0$.
+	במילים אחרות הוכיחו כי התומך של $a$ הוא בן־מניה.
+\end{exercise}
+ניזכר בהגדרה וטענה מהשיעור הקודם:
+\begin{definition}
+	בהינתן פונקציית הסתברות נקודתית $p$ נגדיר
+	\[
+		\PP_p(A) = \sum_{\omega \in A} p(\omega)
+	\]
+\end{definition}
+\begin{proposition}
+	$\PP_p$ היא פונקציית הסתברות.
+\end{proposition}
+ונבנה הגדרה חדשה על־ידי שימוש בטענה זו.
+\begin{definition}[מרחב הסתברות בדיד]
+	אם $\PP$ פונקציית הסתברות כך שקיימת פונקציית הסתברות נקודתית $p$ כך ש$\PP = \PP_p$, אז נאמר ש־$\PP$ היא בדידה ו־$(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות בדיד.
+\end{definition}
+\begin{proposition}
+	יש פונקציות הסתברות שאינן בדידות.
+	בפרט, עבור מדגם ההסתברות $\Omega = [0, 1]$ קיימת פונקציית הסתברות $\PP$ המקיימת ש־$\PP([a, b]) = b - a$ לכל $0 \le a \le b \le 1$.
+\end{proposition}
+\begin{example}
+	ידוע כי $\sum_{n \in \NN} \frac{1}{n^2} = \frac{\pi^2}{6} < \infty$ ולכן נוכל להגדיר $\Omega = \NN$ ו־$p(n) = \frac{1}{\frac{\pi^2}{6} n^2}$ ולכן נקבל $\sum_{n \in \NN} p(n) = 1$. \\*
+	נחשב את $\PP_p(A)$ עבור $A = 2\NN$:
+	\[
+		\PP_p(A) = \sum_{n \in A} p(n) = \sum_{k \in \NN} p(2k) = \frac{1}{\frac{\pi^2}{6} {(2k)}^2} = \frac{6}{\pi^2} \frac{1}{4} \sum_{k \in \NN} \frac{1}{k^2} = \frac{1}{4}
+	\]
+\end{example}
+\begin{theorem}
+	$\PP$ פונקציית הסתברות על $(\Omega, \mathcal{F})$, אז
+	\begin{enumerate}
+		\item $\PP(\emptyset) = 0$
+		\item אם $I$ קבוצה סופית ו־${\{A_i\}}_{i \in I}$ מאורעות זרים בזוגות, אז $\PP(\bigcup_{i \in I} A_i) = \sum_{i \in I} \PP(A_i)$
+		\item אם $A \subseteq B$ מאורעות אז $\PP(A) \le \PP(B)$
+		\item $\PP(A) \le 1$ לכל מאורע $A$
+		\item לכל מאורע $A$ מתקיים $\PP(A^C) = 1 - \PP(A)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	נוכיח את התכונות
+	\begin{enumerate}
+		\item נראה כי $\PP(\emptyset) = \sum_{i = 1}^\infty \PP(\emptyset)$, רק $\PP(\emptyset) = 0$ מקיים את התנאי.
+		\item נגדיר $A_i = \emptyset$ לכל $i > n$ ונשתמש בסיגמא־אדיטיביות ונקבל
+			\[
+				\PP(\bigcup_{i \in I} A_i)
+				= \PP(\bigcup_{i \in \NN} A_i)
+				= \sum_{i \in \NN} \PP(A_i)
+				= \sum_{i \in I} \PP(A_i)
+			\]
+		\item נשתש בתכונה 2 על $B, B \setminus A$, אלו הן קבוצות זרות כמובן, ו־$D = A \cup (B \setminus A)$ ולכן $\PP(D) = \PP(A) + \PP(B \setminus A) \ge \PP(A)$.
+		\item נובע ישירות מתכונה 3 ומ־$A \subseteq \Omega$.
+		\item ניזכר כי $A^C = \Omega \setminus A$ ולכן $\Omega = A \cup A^C$ ונקבל $1 = \PP(\Omega) = \PP(A) + \PP(A^C)$.
+	\end{enumerate}
+\end{proof}
+נעבור עתה לאפיון של פונקציות הסתברות בדידות, נבין מתי הן כאלה ומתי לא.
+\begin{theorem}
+	אם $(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $\PP$ היא פונקציית הסתברות בדידה
+		\item $\PP$ נתמכת על קבוצות בנות־מניה, כלומר קיימת קבוצה $A \in \mathcal{F}$ בת־מניה כך ש־$\PP(A) = 1$
+		\item $\sum_{\omega \in \Omega} \PP(\{\omega\}) = 1$
+		\item לכל מאורע $A \in \mathcal{F}$ מתקיים $\PP(A) = \sum_{\omega \in A} \PP(\{\omega\})$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$:
+	נניח ש־$\PP = \PP_p$ עבור $p : \Omega \to [0, \infty)$ פונקציית הסתברות נקודתית.
+	נסתכל על $Support(p) = \{ \omega \in \Omega \mid p(\omega) > 0 \}$, לפי הגדרת הסכום והתרגיל נובע ש־$A = Support(p)$ בת־מניה.
+	נקבל
+	\[
+		\PP(A) = \sum_{\omega \in A} p(\omega) = \sum_{\omega \in \Omega} p(\omega) = \PP(\Omega) = 1
+	\]
+
+	$2 \implies 4$:
+	נניח ש־$\PP(S) = 1$ עבור $S$ בת־מניה. לכן $\PP(S^C) = 0$.
+	נראה כי $A$ הוא איחוד זר $A = (A \cap S) \cup (A \cap S^C)$ ולכן נקבל
+	\[
+		\PP(A) = \PP(A \cap S) + \PP(A \cap S^C) = \PP(A \cap S) + 0 = \sum_{\omega \in A \cap S} \PP(\{\omega\}) = \sum_{\omega \in A} \PP(\{\omega\})
+	\]
+
+	$4 \implies 3$:
+	אם נבחר $A = \Omega$ נקבל את טענה 3.
+
+	$3 \implies 1$:
+	נגדיר $p : \Omega \to [0, \infty)$ על־ידי $p(\omega) = \PP(\{ \omega \})$, נקבל $\sum_{\omega \in \Omega} p(\omega) = 1$ ולכן $p$ היא פונקציית הסתברות נקודתית.
+	מהתרגיל והגדרת הסכום נובע ש־$S = Support(p)$ היא בת־מניה ומתקיים $\PP(S^C) = 0$, אז לכל $A \in \mathcal{F}$ מתקיים
+	\[
+		\PP(A) = \PP(A \cap S) + \PP(A \cap S^C) = \PP(A \cap S) = \sum_{\omega \in A \cap S} \PP(\{ \omega \}) = \sum_{\omega \in A} \PP(\{\omega\}) = \sum_{\omega \in A} p(\omega) = \PP_p(A)
+	\]
+\end{proof}
+
+\subsection{פרדוקס יום ההולדת}
+נניח שכל תאריכי יום ההולדת הם סבירים באותה מידה ונבחן את הפרדוקס.
+נניח כי $\Omega = {[365]}^k$ עבור $k$ מספר האנשים בקבוצה נתונה כלשהי.
+$p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
+נקבל $\PP(A) = \PP_p(A) = \frac{|A|}{365^k}$
+נרצה לחשב את $A$ כמאורע שיש לפחות שני אנשים שיש להם יום הולדת באותו יום, דהינו שיש שני ערכים זהים ברשימת המספרים, נגדיר $A = \{ \omega \in \Omega \mid \exists 1 \le i \ne j \le k, \omega_i = \omega_j \}$.
+בשל המורכבות נבחן את המשלים $A^C$, נקבל $|A^C| = 365 \cdot 364 \cdots (365 - (k - 1))$.
+נחשב
+\[
+	\PP(A^C) = \frac{|A^C|}{365^k} = \prod_{i = 1}^k \frac{365 - (i - 1)}{365} = \prod_{i = 1}^k (1 - \frac{i - 1}{365})
+\]
+עבור $k = 23$ נקבל שההסתברות היא בערך $\frac{1}{2}$, דהינו בקבוצה של 23 אנשים יש סבירות של חצי שלפחות שניים יחגגו יום הולדת באתו יום.
+
 \end{document}
