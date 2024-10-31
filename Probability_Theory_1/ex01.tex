@@ -1,0 +1,141 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- תורת ההסתברות (1), 80420}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+יהי $(\Omega, \PP)$ מרחב הסתברות בדיד, נוכיח או נפריך את הטענות הבאות.
+
+\Subquestion{}
+נוכיח שאם $A \subseteq \Omega$ מקיימת $\PP(A) = 0$ אז לכל $B \subseteq \Omega$ מתקיים $\PP(A \cup B) = \PP(B)$.
+\begin{proof}
+	נבחין כי $D = B \setminus A$ היא זרה באיחוד ל־$A \cap B$, לכן נקבל $\PP(B) = \PP(D \cup (A \cap B)) = \PP(D) + \PP(A \cap B)$. \\*
+	אבל $A \cap B \subseteq A$ ולכן מתכונות פונקציית הסתברות נקבל $\PP(A \cap B) \le \PP(A) = 0$. \\*
+	לכן $\PP(D) = \PP(B)$. נשתמש בטענה זו ונקבל
+	\[
+		\PP(A \cup B) = \PP(A \cup (B \setminus A)) = \PP(A) + \PP(D) = 0 + \PP(B)
+	\]
+	וקיבלנו כי השוויון אכן מתקיים.
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $A \subseteq B$ אז $\PP(A) \le \PP(B)$.
+\begin{proof}
+	למעשה תכונה זו הוכחה בהרצאה, נעתיק את ההוכחה:
+	\begin{enumerate}
+		\item נראה כי $\PP(\emptyset) = \sum_{i = 1}^\infty \PP(\emptyset)$ שכן כל איחוד של קבוצות ריקות הוא זר, לכן אילו $\PP(\emptyset) \ne 0$ נקבל ישר סתירה, נסיק כי $\PP(\emptyset) = 0$ בלבד.
+		\item נגדיר $A_i = \emptyset$ לכל $i > n$ ונשתמש בסיגמא־אדיטיביות ונקבל
+			\[
+				\PP(\bigcup_{i \in I} A_i)
+				= \PP(\bigcup_{i \in \NN} A_i)
+				= \sum_{i \in \NN} \PP(A_i)
+				= \sum_{i \in I} \PP(A_i)
+			\]
+		\item נשתמש בתכונה 2 על $B, B \setminus A$, אלו הן קבוצות זרות כמובן, אם נגדיר $D = A \cup (B \setminus A)$ נקבל $\PP(D) = \PP(A) + \PP(B \setminus A) \ge \PP(A)$.
+	\end{enumerate}
+\end{proof}
+
+\Subquestion{}
+נסתור את הטענה כי אם $A \subsetneq B$ אז $\PP(A) \lneq \PP(B)$.
+\begin{solution}
+	נגדיר $\Omega = [3]$ ו־$p(1) = p(2) = \frac{1}{2}, p(3) = 0$, ונבחן את $\PP_p$. \\*
+	אם נגדיר $A = \{ 1 \}, B = \{ 1, 3 \}$ נקבל $A \subsetneq B$ אבל $\PP(A) = \PP(B) = \frac{1}{2}$ בסתירה לטענה.
+\end{solution}
+
+\Subquestion{}
+נוכיח שלכל $A, B \subseteq \Omega$ מתקיים $\PP(A \cap B) \ge \PP(A) + \PP(B) - 1$
+\begin{proof}
+	מתכונות פונקציית הסתברות נקבל $\PP(A \cup B) = \PP(A) + \PP(B) - \PP(A \cap B)$, \\*
+	לאחר החלפת אגפים נקבל
+	\[
+		\PP(A \cap B) = \PP(A) + \PP(B) - \PP(A \cup B) \ge \PP(A) + \PP(B) - 1
+	\]
+	שכן מתקיים $1 \ge \PP(X)$ לכל $X \in \mathcal{F}$ ובפרט עבור $A \cup B$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי מתקיים $\PP(A \triangle B) = \PP(A) + \PP(B) - 2 \PP(A \cap B)$.
+\begin{proof}
+	נבחין תחילה כי $A \triangle B = (A \cup B) \setminus (A \cap B) = (A \cup B) \cap {(A \cap B)}^C$, \\*
+	נשתמש בשוויון מהסעיף הקודם ונקבל
+	\begin{align*}
+		\PP(A \triangle B)
+		& = \PP((A \cup B) \cap {(A \cap B)}^C) \\
+		& = \PP(A \cup B) + \PP({(A \cap B)}^C) - \PP((A \cup B) \cup {(A \cap B)}^C) \\
+		& = \PP(A \cup B) + \PP(\Omega \setminus (A \cap B)) - \PP(\Omega) \\ \tag{1}
+		& = \PP(A \cup B) + \PP(\Omega) - \PP(A \cap B) - 1 \\
+		& = \PP(A) + \PP(B) - 2 \PP(A \cap B)
+	\end{align*}
+	כאשר המעבר $(1)$ נובע מהשוויון $A \cup B \cup {(A \cap B)}^C = A \cup B \cup A^C \cup B^C = \Omega$ שנובעת מדה־מורגן לקבוצות.
+\end{proof}
+
+\Question{}
+נוכיח שקיימת פונקציית הסתברות יחידה על $\Omega = \NN$ המקיימת $\PP(\{n\}) = 3 \PP(\{n + 1\})$.
+\begin{proof}
+	נוכיח שקיימת כזאת פונקציית הסתברות, נגדיר $p : \NN \to [0, 1]$ על־ידי $p(n) = 2 \cdot \frac{1}{3^n}$. \\*
+	נקבל מנוסחת סכום סדרה הנדסית ש־$\sum_{n = 1}^{\infty} p(n) = 1$ ולכן זוהי פונקציית הסתברות נקודתית והיא משרה פונקציית הסתברות $\PP_p$ המקיימת את תנאי הטענה.
+	אז הוכחנו שקיימת לכל הפחות פונקציה אחת כזו.
+
+	נעבור להוכחת יחידות, נניח ש־$\PP, \PP'$ שתי פונקציות הסתברות המקיימות את הטענה. \\*
+	באינדוקציה על $n$ נקבל כי $\PP(\{n\}) = 3^{1 - n} \PP(\{1\})$.
+	מסיגמא־אדיטיביות נקבל
+	\[
+		1
+		= \PP(\NN)
+		= \PP(\bigcup_{n \in \NN} \{ n \})
+		= \sum_{n \in \NN} \PP(\{ n \})
+		= \sum_{n = 1}^{\infty} \PP(\{1\}) 3^{1 - n}
+		= \PP(\{1\}) \sum_{n = 1}^{\infty} 3^{1 - n}
+		= \PP(\{1\}) \cdot \frac{1}{1 - \frac{1}{3}}
+	\]
+	ולכן נסיק $\PP(\{1\}) = \frac{2}{3}$, וממהלך זה נוכל גם להסיק על־ידי סעיף ב' בתנאים שקולים לפונקציית הסתברות בדידה שקיימות פונקציות הסתברות נקודתיות $p, p'$ כך ש־$\PP = \PP_p, \PP' = \PP_{p'}$.
+	אבל קיבלנו אם כך ש־$p(1) = p'(1) = \frac{2}{3}$ ובהתאם להגדרה הרקורסיבית נקבל $p = p'$ ובהתאם $\PP = \PP'$, דהינו קיימת פונקציית הסתברות יחידה המקיימת את תנאי הטענה.
+\end{proof}
+נחשב את $\PP(\NN)$ ואת $\PP(3\NN)$.
+כמובן $\PP(\NN) = 1$, עבור $3\NN$ נקבל
+\[
+	\PP(3\NN) 
+	= \sum_{n \in 3\NN} \PP(\{n\}) 
+	= \sum_{n = 1}^{\infty} p(3n) 
+	= \sum_{n = 1}^{\infty} 2 \cdot \frac{1}{3^{3n}}
+	= \sum_{n = 1}^{\infty} 2 \cdot \frac{1}{9^{n}}
+	= \frac{1}{4}
+\]
+
+\Question{}
+מטעמי קריאות ולאור דרישת שמירת סדר מופע השאלות, שאלות 1 עד 7 בחלק השני של המטלה תאוגדנה כסעיפים א' עד ז' בשאלה זו.
+
+נבנה מרחב הסתברות $(\Omega, \PP)$ לכל סיטואציה בסעיפים הבאים.
+
+\Subquestion{}
+מטילים קוביה הוגנת 10 פעמים, לכן נגדיר $\Omega = {[6]}^{10}$, שכן כך אנו מתחשבים בכל תוצאת 10 הטלות ולפי סדר, עוד נגדיר $\PP = \PP_p$ עבור פונקציית הסתברות נקודתית אחידה $p : [6] \to [0, 1]$.
+המאורע שקיבלנו לפחות פעם אחת 1 הוא $A = \{ (x_1, \dots, x_{10}) \in \Omega \mid \exists i \in [10], x_i = 1 \}$.
+נחשב במקום את המשלים, נגדיר מאורע $B = \Omega \setminus A = \{ (x_i) \mid \forall i, x_i \ne 1 \}$ ולכן נקבל $|B| = 5^{10}$.
+נקבל אם כן $\PP(A) = \PP(\Omega \setminus B) = 1 - \frac{5^{10}}{6^{10}}$.
+נחשב את ההסתברות שיצא 1 בדיוק פעם אחת, נגדיר מאורע $C = \{ (x_i) \in \Omega \mid \exists ! i \in [10], x_i = 1 \}$.
+משיקולים קומבינטוריים נקבל $|C| = 10 \cdot 5^9$ ולכן בהתאם $\PP(C) = \frac{10 \cdot 5^9}{6^{10}}$.
+
+\Subquestion{}
+מטילים שתי קוביות הוגנות, לכן $\Omega = {[6]}^2$ ו־$\PP$ פונקציית הסתברות אחידה, ונחשב את ההסתברות שסכום התוצאות הוא לפחות 7.
+נגדיר את המאורע $A = \{ (n, m) \in \Omega \mid n + m \ge 7 \}$, ונפרק אותו למקרים, נגדיר $A_i = \{ (i, n) \in \Omega \mid i + n \ge 7 \}$ עבור $1 \le i \le 6$ ונקבל $A = \bigcup_{i \in [6]} A_i$.
+לכן
+\[
+	\PP(A) = \PP(\bigcup_{i \in [6]} A_i)
+	= \sum_{i = 1}^{6} \PP(A_i)
+	= \sum_{i = 1}^{6} \frac{i}{6^2}
+	= \frac{1}{6^2} \cdot \frac{6 \cdot 7}{2}
+\]
+
+\Subquestion{}
+נתונה קבוצה של עשרה חודשי לידה ולכן נקבע $\Omega = {[12]}^{10}$, ונתון כי ההסתברות היא אחידה.
+נחשב את הסבירות ששני אנשים לפחות נולדו באותו חודש.
+המאורע הוא $A = \{ (x_i) \in \Omega \mid \exists i, j : 1 \le i < j \le 10, x_i = x_j \}$.
+נחשב על־ידי חישוב המשלים, נגדיר $B = \{ (x_i) \in \Omega \mid \forall i, j : i \ne j \implies x_i \ne x_j \}$ המאורע שאין שני אנשים שחוגגים ביחד חודש הולדת.
+משיקולים קומבינטוריים נקבל $|B| = \frac{12!}{2!}$ ולכן $\PP(A) = 1 - \PP(B) = 1 - \frac{12!}{2 \cdot 12^{10}}$.
+
+\Subquestion{}
+חידת התפוזים
+
+\end{document}

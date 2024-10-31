@@ -275,7 +275,7 @@
 \begin{proof}
 	נוכיח את התכונות
 	\begin{enumerate}
-		\item נראה כי $\PP(\emptyset) = \sum_{i = 1}^\infty \PP(\emptyset)$ שכן כל איחוד של קבוצות ריקות הוא זר, לכן אילו $\PP(\emptyset) \ne 0$ נקבבל ישר סתירה, נסיק כי $\PP(\emptyset) = 0$ בלבד.
+		\item נראה כי $\PP(\emptyset) = \sum_{i = 1}^\infty \PP(\emptyset)$ שכן כל איחוד של קבוצות ריקות הוא זר, לכן אילו $\PP(\emptyset) \ne 0$ נקבל ישר סתירה, נסיק כי $\PP(\emptyset) = 0$ בלבד.
 		\item נגדיר $A_i = \emptyset$ לכל $i > n$ ונשתמש בסיגמא־אדיטיביות ונקבל
 			\[
 				\PP(\bigcup_{i \in I} A_i)
@@ -283,7 +283,7 @@
 				= \sum_{i \in \NN} \PP(A_i)
 				= \sum_{i \in I} \PP(A_i)
 			\]
-		\item נשתש בתכונה 2 על $B, B \setminus A$, אלו הן קבוצות זרות כמובן, אם נדגיר $D = A \cup (B \setminus A)$ נקבל $\PP(D) = \PP(A) + \PP(B \setminus A) \ge \PP(A)$.
+		\item נשתמש בתכונה 2 על $B, B \setminus A$, אלו הן קבוצות זרות כמובן, אם נגדיר $D = A \cup (B \setminus A)$ נקבל $\PP(D) = \PP(A) + \PP(B \setminus A) \ge \PP(A)$.
 		\item נובע ישירות מתכונה 3 ומ־$A \subseteq \Omega$.
 		\item ניזכר כי $A^C = \Omega \setminus A$ ולכן $\Omega = A \cup A^C$ ונקבל $1 = \PP(\Omega) = \PP(A) + \PP(A^C)$.
 	\end{enumerate}
