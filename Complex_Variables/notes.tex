@@ -14,18 +14,40 @@
 שיעורי הבית הפעם הם 20 אחוזים מהציון, גם פה עם התחשבות במטלות הטובות ביותר.
 שעת קבלה של עדי היא בימי ראשון אחרי השיעור, דהינו ב־12:00, במנצ'סטר 303.
 
-\subsection{השדה המרוכב}
-אנחנו נבצע התאמה של מספרים ממשיים $(x, y) \mapsto z = x + i y, i = \sqrt{-1}$.
-עוד נסמן $\re(z) = x$ ו־$\im(z) = y$, החלק הממשי והחלק המדומה. \\*
-נגדיר גם את הפעולו, אם $z = x + i y$ ו־$w = a + i b$ אז נגדיר $z \pm w = (x \pm a) + i (y \pm b)$.
-כפל בסקלר $\alpha \in \RR$ נגדיר על־ידי $\alpha \cdot z = \alpha x + i \alpha y$.
-כפל של מרוכב במרוכב נגדיר על־ידי $z \cdot w = (x + i y)(a + i b) = xa + xib + iya + iy ib = xa - yb + i(xb + ya)$. \\*
-נגדיר פעולה חדשה, היא הצמדה (conjugation), נסמן $\overline{z} = \overline{x + iy} = x - y$. נקבל גם $\overline{\overline{z}} = z$.
-במקרה בו $z \in \RR$ אז נקבל $\overline{z} = x$ ולמעשה השוויון מתקיים אם ורק אם $z \in \RR$. \\*
-נגדיר גם את הערך המוחלט, על־ידי $|z| = \sqrt{z \cdot \overline{z}}$, פעולה זו מייצגת את המרחק מהראשית במישור המרוכב. \\*
-הפעולה האחרונה שנגדיר היא חלוקה: $\frac{z}{w} = \frac{z \cdot \overline{w}}{w \cdot \overline{w}} = \frac{z \overline{w}}{{|w|}^2} = \frac{1}{{|w|}^2} z \cdot \overline{w}$. \\*
-כשדה וקטורי אפשר לבחון מספרים על־ידי $z = x \begin{pmatrix} 1 \\ 0 \end{pmatrix} + y \begin{pmatrix} 0 \\ 1 \end{pmatrix}$. \\*
-ישנן מספר הצגות שונות למספרים מרוכבים, אחת מהן היא במטריצות, את זה נראה בתרגול, ובנוסף ישנה ההצגה הפולארית.
+\subsection{מבוא}
+נגדיר מספרים מרוכבים על־ידי ההתאמה $(x, y) \mapsto z = x + i y$ כאשר $i = \sqrt{-1}$, הקבוע המדומה.
+נגדיר מספר סימונים שיעזרו לנו בהמשך.
+\begin{definition}[חלק שלם וחלק מדומה]
+	עבור $z = x + iy$ נגדיר $\re(z) = x$ ו־$\im(z) = y$, החלק הממשי והחלק המדומה בהתאמה.
+\end{definition}
+נעבור להגדרת הפעולות בשדה המרוכב:
+\begin{definition}[חיבור וחיסור מרוכבים]
+	אם $z = x + i y$ ו־$w = a + i b$ אז נגדיר $z \pm w = (x \pm a) + i (y \pm b)$.
+\end{definition}
+\begin{definition}[כפל]
+	כפל בסקלר $\alpha \in \RR$ נגדיר על־ידי $\alpha \cdot z = \alpha x + i \alpha y$. \\*
+	כפל של מרוכב במרוכב נגדיר על־ידי $z \cdot w = (x + i y)(a + i b) = xa + xib + iya + iy ib = xa - yb + i(xb + ya)$.
+\end{definition}
+\begin{definition}[הצמדה]
+	נגדיר פעולה חדשה שלא קיימת בממשיים, היא הצמדה (conjugation), נסמן $\overline{z} = \overline{x + iy} = x - y$. \\*
+	נקבל גם $\overline{\overline{z}} = z$.
+\end{definition}
+במקרה בו $z \in \RR$ אז נקבל $\overline{z} = x$ ולמעשה השוויון מתקיים אם ורק אם $z \in \RR$.
+\begin{definition}[ערך מוחלט]
+	נגדיר ערך מוחלט על־ידי $|z| = \sqrt{z \cdot \overline{z}}$. \\*
+	פעולה זו מייצגת את המרחק מהראשית במישור המרוכב, בדומה לאופן פעולת הערך המוחלט בממשיים.
+\end{definition}
+\begin{definition}[חלוקה]
+	חלוקה נגדיר על־ידי $\frac{z}{w} = \frac{z \cdot \overline{w}}{w \cdot \overline{w}} = \frac{z \overline{w}}{{|w|}^2} = \frac{1}{{|w|}^2} z \cdot \overline{w}$.
+\end{definition}
+\begin{remark}[מרוכבים כמרחב וקטורי מעל הממשיים]
+	ניתן לבחון את המרוכבים כמרחב וקטורי מעל $\RR^2$ על־ידי $\CC \to \RR^2$ המוגדר
+	\[
+		z = x \begin{pmatrix} 1 \\ 0 \end{pmatrix} + y \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+	\]
+\end{remark}
+ראינו כי אפשר לייצג את המרוכבים על־ידי מרחב וקטורי ממשי, ובאותו אופן ניתן לייצג את המרוכבים גם על־ידי מטריצות ועל־ידי תצוגה פולארית. בתרגול נעסוק בתצוגת המטריצות, ועתה נתעמק בהצגה פולארית.
+
 נוכל לבחון כל מספר כווקטור, דהינו על־ידי עוצמה וזווית.
 בקורס שלנו זווית היא ב־$(-\pi, \pi]$ והיא מודדת מרחק זוויתי מהכיוון החיובי של ציר ה־$x$. %chktex 9
 כל מספר $z = x + i y$ ניתן לייצג על־ידי $(r, \theta)$, כאשר $r = |z|$ ו־$\theta = \text{Arg}(z)$.
@@ -53,14 +75,30 @@
 	דהינו $Arg(w) n = Arg(z)$ ולכן $Arg(w) = \frac{Arg(z)}{n} + \frac{2\pi k}{n}$ עבור $k = \{0, 1, \dots, n - 1\}$.
 \end{solution}
 
-\subsection{מטריקה}
-מגיעה מהערך המוחלט, דהינו נגדיר $d(z, w) = |z - w|$, הגדרה זו משרה טופולוגיה.
-נוכל אם כן לבחון כדורים פתוחים, $B(z, r) = \{ w \mid |z - w| < r \}$, ו־$U \subseteq \CC$ פתוחה אם לכל $z \in U$ קיים $r = r(Z)$ כך ש־$B(z, r) \subseteq U$.
-$F \subseteq \CC$ סגורה אם $\CC \setminus F$ היא קבוצה פתוחה.
-פנים של $A \subset \CC$ מוגדר $int(A) = \{ z \in A \mid \exists r > 0, B(z, r) \subset A \}$.
-החוץ של $A$ מוגדר כ־$Ext(A) = int(\CC \setminus A)$ והשפה של $A$ תוגדר להיות $\partial A = \CC \setminus (int(A) \cup Ext(A))$.
-הסגור של $A$ הוא $A \cup \partial A$, קבוצה היא חסומה אם קיים $R > 0$ כך ש־$A \subseteq B(0, R)$ וקבוצה $K$ היא קומפקטית אם היא סגורה וחסומה.
-
-בפעם הבאה נדבר על התכנסות בעולם של מרוכבים, מהי רציפות וכן הלאה.
+\subsection{תזכורת למטריקות}
+נוכל להגדיר מטריקה על המרוכבים על־ידי שימוש בערך המוחלט שהגדרנו, דהינו נגדיר $d(z, w) = |z - w|$, והגדרה זו משרה טופולוגיה על המרוכבים ומאפשרת לנו לדון במספר תכונות נוספות:
+\begin{definition}[כדור פתוח]
+	נגדיר כדור פתוח במרוכבים על־ידי $B(z, r) = \{ w \in \CC \mid d(z, w) < r\}$.
+\end{definition}
+ניזכר בהגדרה של קבוצות פתוחות וסגורות:
+\begin{definition}[קבוצה פתוחה וסגורה]
+	קבוצה $U \subseteq \CC$ תיקרא \textbf{פתוחה} אם $\forall z \in U \exists r \in \RR, B(z, r) \subseteq U$. \\*
+	קבוצה $F \subseteq \CC$ תיקרא \textbf{סגורה} אם המשלים שלה $F^C = \CC \setminus F$ הוא קבוצה פתוחה.
+\end{definition}
+\begin{definition}[פנים של קבוצה]
+	פנים של $A \subseteq \CC$ מוגדר על־ידי $\text{int}(A) = \{ z \in A \mid \exists r > 0, B(z, r) \subseteq A \}$.
+\end{definition}
+\begin{definition}[חוץ של קבוצה]
+	החוץ של $A$ מוגדר על־ידי $\text{Ext}(A) = \text{int}(\CC \setminus A)$.
+\end{definition}
+\begin{definition}[שפה של קבוצה]
+	השפה של $A$ תוגדר להיות $\partial A = \CC \setminus (\text{int}(A) \cup \text{Ext}(A))$.
+\end{definition}
+\begin{definition}[סגור של קבוצה]
+	הסגור של $A$ הוא $A \cup \partial A$, 
+\end{definition}
+\begin{definition}[קבוצה חסומה וקבוצה קומפקטית]
+	קבוצה $A$ היא חסומה אם קיים $R > 0$ כך ש־$A \subseteq B(0, R)$ וקבוצה $K$ היא קומפקטית אם היא סגורה וחסומה.
+\end{definition}
 
 \end{document} % chktex 17
