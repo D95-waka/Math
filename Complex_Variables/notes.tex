@@ -1,0 +1,66 @@
+\input{../article_base.tex}
+\title{פונקציות מרוכבות --- סיכום}
+\setcounter{secnumdepth}{2}
+
+\hypersetup{}
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\tableofcontents
+
+\section{שיעור 1 --- 31.10.2024}
+למרצה קוראים עדי. המייל הוא adi.glucksam@mail.huji.ac.il \\*
+שיעורי הבית הפעם הם 20 אחוזים מהציון, גם פה עם התחשבות במטלות הטובות ביותר.
+שעת קבלה של עדי היא בימי ראשון אחרי השיעור, דהינו ב־12:00, במנצ'סטר 303.
+
+\subsection{השדה המרוכב}
+אנחנו נבצע התאמה של מספרים ממשיים $(x, y) \mapsto z = x + i y, i = \sqrt{-1}$.
+עוד נסמן $\re(z) = x$ ו־$\im(z) = y$, החלק הממשי והחלק המדומה. \\*
+נגדיר גם את הפעולו, אם $z = x + i y$ ו־$w = a + i b$ אז נגדיר $z \pm w = (x \pm a) + i (y \pm b)$.
+כפל בסקלר $\alpha \in \RR$ נגדיר על־ידי $\alpha \cdot z = \alpha x + i \alpha y$.
+כפל של מרוכב במרוכב נגדיר על־ידי $z \cdot w = (x + i y)(a + i b) = xa + xib + iya + iy ib = xa - yb + i(xb + ya)$. \\*
+נגדיר פעולה חדשה, היא הצמדה (conjugation), נסמן $\overline{z} = \overline{x + iy} = x - y$. נקבל גם $\overline{\overline{z}} = z$.
+במקרה בו $z \in \RR$ אז נקבל $\overline{z} = x$ ולמעשה השוויון מתקיים אם ורק אם $z \in \RR$. \\*
+נגדיר גם את הערך המוחלט, על־ידי $|z| = \sqrt{z \cdot \overline{z}}$, פעולה זו מייצגת את המרחק מהראשית במישור המרוכב. \\*
+הפעולה האחרונה שנגדיר היא חלוקה: $\frac{z}{w} = \frac{z \cdot \overline{w}}{w \cdot \overline{w}} = \frac{z \overline{w}}{{|w|}^2} = \frac{1}{{|w|}^2} z \cdot \overline{w}$. \\*
+כשדה וקטורי אפשר לבחון מספרים על־ידי $z = x \begin{pmatrix} 1 \\ 0 \end{pmatrix} + y \begin{pmatrix} 0 \\ 1 \end{pmatrix}$. \\*
+ישנן מספר הצגות שונות למספרים מרוכבים, אחת מהן היא במטריצות, את זה נראה בתרגול, ובנוסף ישנה ההצגה הפולארית.
+נוכל לבחון כל מספר כווקטור, דהינו על־ידי עוצמה וזווית.
+בקורס שלנו זווית היא ב־$(-\pi, \pi]$ והיא מודדת מרחק זוויתי מהכיוון החיובי של ציר ה־$x$. %chktex 9
+כל מספר $z = x + i y$ ניתן לייצג על־ידי $(r, \theta)$, כאשר $r = |z|$ ו־$\theta = \text{Arg}(z)$.
+סימון לזה (ובהמשך הקורס הוא יהפוך להגדרה) הוא $e^{i\theta} = \cos(\theta) + i \sin(\theta)$.
+בהתאם $z = r \cdot e^{i\theta}$.
+\begin{exercise}
+	\begin{enumerate}
+		\item הראו כי $e^{i \theta_1} \cdot e^{i \theta_2} = e^{i(\theta_1 + \theta_2)}$
+		\item האם נכון תמיד ש־$Arg(z \cdot w) = Arg(z) + Arg(w)$?
+		\item אם התשובה היא לא, איך זה לא מתנגש עם סעיף 1?
+	\end{enumerate}
+\end{exercise}
+\begin{exercise}
+	מצאו את כל הפתרונות של המשוואה $\sqrt[n]{z} = w$.
+\end{exercise}
+\begin{solution}
+	\[
+		\sqrt[n]{z} = w \iff z = w^n = {(r \cdot e^{i\theta})}^n = r^n {(e^{i\theta})}^n
+	\]
+	אז נקבל ${|w|}^n = r^n$ ולכן נקבל $|w| = {|z|}^\frac{1}{n}$. \\*
+	נקבל בנוסף על־ידי נוסחת דה־מואר (שתגיע בהמשך הקורס)
+	\[
+		{(e^{i\theta})}^n = e^{i\theta} {(e^{i\theta})}^{n - 1} = e^{i n\theta}
+	\]
+	דהינו $Arg(w) n = Arg(z)$ ולכן $Arg(w) = \frac{Arg(z)}{n} + \frac{2\pi k}{n}$ עבור $k = \{0, 1, \dots, n - 1\}$.
+\end{solution}
+
+\subsection{מטריקה}
+מגיעה מהערך המוחלט, דהינו נגדיר $d(z, w) = |z - w|$, הגדרה זו משרה טופולוגיה.
+נוכל אם כן לבחון כדורים פתוחים, $B(z, r) = \{ w \mid |z - w| < r \}$, ו־$U \subseteq \CC$ פתוחה אם לכל $z \in U$ קיים $r = r(Z)$ כך ש־$B(z, r) \subseteq U$.
+$F \subseteq \CC$ סגורה אם $\CC \setminus F$ היא קבוצה פתוחה.
+פנים של $A \subset \CC$ מוגדר $int(A) = \{ z \in A \mid \exists r > 0, B(z, r) \subset A \}$.
+החוץ של $A$ מוגדר כ־$Ext(A) = int(\CC \setminus A)$ והשפה של $A$ תוגדר להיות $\partial A = \CC \setminus (int(A) \cup Ext(A))$.
+הסגור של $A$ הוא $A \cup \partial A$, קבוצה היא חסומה אם קיים $R > 0$ כך ש־$A \subseteq B(0, R)$ וקבוצה $K$ היא קומפקטית אם היא סגורה וחסומה.
+
+בפעם הבאה נדבר על התכנסות בעולם של מרוכבים, מהי רציפות וכן הלאה.
+
+\end{document} % chktex 17
