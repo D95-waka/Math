@@ -68,8 +68,9 @@ set -lx AUTHOR '<author name>'
 - [מבנים אלגבריים 2](https://shnaton.huji.ac.il/index.php/NewSyl/80446/) – 2025ב'
 - [מבוא לטופולוגיה](https://shnaton.huji.ac.il/index.php/NewSyl/80516) – 2025ב'
 - [לוגיקה מתמטית 2](https://shnaton.huji.ac.il/index.php/NewSyl/80424) – 2025ב'
+- [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – 2025ב'
+- [כפיה ואי־תלות](https://shnaton.huji.ac.il/index.php/NewSyl/80579) – 2025ב'
 - [תורת המספרים האלגבריים](https://shnaton.huji.ac.il/index.php/NewSyl/80756) – 2026א'
 - [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2026א'
-- [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – 2026ב'
 
-בנוסף יש לקחת קורסים באנגלית ואבני פינה מתישהו.
+יש להוסיף קורס באנגלית וקורס אבני פינה.
