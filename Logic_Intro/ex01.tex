@@ -58,6 +58,47 @@
 \end{proof}
 
 \Question{}
+נוכיח כי אם $X \subseteq sent_L^+$ מקיימת לכל $\varphi \in X$ ש־$(\lnot \varphi) \in X$, וכן לכל $\square \in \mathcal{B}$ ולכל $\varphi, \psi \in X$ מתקיים $(\varphi \square \psi) \in X$ אז $sent_L^+ \subseteq X$.
+\begin{proof}
+	תהי קבוצה $X$ ונוכיח את הטענה באינדוקציה על אורך הסדרה.
 
+	יהי $\varphi \in sent_L^+$ כך שקיימת סדרת יצירה $(\varphi_0)$ עבורה $\varphi = \varphi_0$, מהגדרת סדרות יצירה נוכל להסיק ישירות כי $\varphi_0 \in L$ ולכן $\varphi \in L$ ובהתאם להגדרת $X$ גם $\varphi \in X$.
+	נשתמש בטענה זו כבסיס האינדוקציה.
+
+	נניח את מעבר האינדוקציה, דהינו לכל $0 \le k < n$ אם $(\varphi_0, \dots, \varphi_k)$ אז $\varphi_k \in X$.
+	יהי $\varphi \in sent_L^+$ כך שקיימת לו סדרת יצירה $(\psi_0, \dots, \psi_n)$ כך ש־$\varphi = \psi_n$.
+	אילו $\varphi \in L$ אז ידוע כי $\varphi \in X$ וסיימנו.
+	אם $\varphi = (\lnot \psi_k)$ עבור איזשהו $0 \le k < n$ אז נקבל $\psi_k \in X$ מהגדרת $X$ ולכן גם $\varphi \in X$.
+	אם קיימים $0 \le k < l < n$ כך ש־$\varphi = (\psi_k \square \psi_l)$ אז נקבל כמובן מהנחת האינדוקציה $\psi_k, \psi_l \in X$ ובהתאם להגדרתה גם $\varphi \in X$.
+	לכן נקבל כי $\varphi \in X$ תמיד והשלמנו את מהלך האינדוקציה.
+\end{proof}
+
+\Question{}
+יהי $T = (V, E)$ חרוט בינארי סטנדרטי מיושר לשמאל, נגדיר $R \subseteq V$ קבוצת העלים שלו, ותהי $f : V \to \mathcal{B} \cup L \cup \{ \lnot \}$ המקיימת
+\begin{itemize}
+	\item $\forall t \in R, f(t) \in L$
+	\item לכל $t \in T$ עם עוקב יחיד מתקיים $f(t) = \lnot$
+	\item לכל $t \in T$ עם שני עוקבים מתקיים $f(t) \in \mathcal{B}$
+\end{itemize}
+נניח גם ש־$X$ קבוצה, $g : R \to X$ פונקציה, $\epsilon_\lnot : X \to X$ פונקציה ו־$\forall \square \in \mathcal{B}, \epsilon_\square : X \times X \to X$ פונקציות. \\*
+נוכיח כי קיימת פונקציה יחידה $\tilde{g} : T \to X$ כך שמתקיים
+\begin{itemize}
+	\item $\forall t \in R, \tilde{g}(t) = g(t)$
+	\item לכל $t \in T$ עם עוקב יחיד מתקיים $\tilde{g}(t) = \epsilon_\lnot(g(t \frown \langle 0 \rangle))$
+	\item לכל $t \in T$ עם שני עוקבים מתקיים $\tilde{g}(t) = \epsilon_{f(t)}(\tilde{g}(t \frown \langle 0 \rangle), \tilde{g}(t \frown \langle 1 \rangle))$
+\end{itemize}
+\begin{proof}
+	נוכיח שקיימת פונקציה כזו ושהיא אף יחידה באינדוקציה על גובה החרוט.
+
+	נניח כי גובה החרוט הוא 1, דהינו $V = \{ s \}$ עבור $s \in {\{0, 1\}}^n$ כלשהו, אז נקבל $\tilde{g}(s) = g(s)$ בלבד, שכן $s \in R$.
+
+	נניח כי הטענה נכונה לכל $0 \le k < n$, דהינו הפונקציה $\tilde{g}$ מוגדרת ויחידה עבור תת־חרוטים מגובה עד $n$, ונניח כי החרוט $T$ הוא בגובה $n$.
+	עתה נבחין כי אם $s$ גזע החרוט, אז או שיש לו שני עוקבים או שיש לו עוקב יחיד, נבדוק את שני המקרים.
+	אילו ל־$s$ יש עוקב יחיד $t = s \frown \langle 0 \rangle$, אז תת־העץ ששורשו הוא $t$ הוא עץ בגובה $n - 1$ ולכן $\tilde{g}(t)$ מוגדר ביחידות, ובהתאם נקבל $\tilde{g}(s) = \epsilon_\lnot(\tilde{g}(t))$ קיים ויחידי.
+	אילו ל־$s$ שני עוקבים, $t_0 = s \frown \langle 0 \rangle, t_1 = s \frown \langle 1 \rangle$ אז נקבל באופן דומה כי גובה תת־העצים ששורשם $t_0, t_1$ הם לכל היותר $n - 1$.
+	נוכל אם כן להסיק מהנחת האינדוקציה ש־$\tilde{g}(t_0), \tilde{g}(t_1)$ שניהם קיימים ביחידות, גם $f(s)$ מוגדר ביחידות, ולכן נוכל להסיק כי $\tilde{g}(s) = \epsilon_{f(t)}(\tilde{g}(t_0), \tilde{g}(t_1))$ בלבד.
+
+	השלמנו את מהלך האינדוקציה ולכן לכל חרוט $T$ נקבל כי $\tilde{g}$ מוגדרת ויחידה.
+\end{proof}
 
 \end{document}
