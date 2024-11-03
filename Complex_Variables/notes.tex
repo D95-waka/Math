@@ -107,20 +107,20 @@
 \begin{definition}[התכנסות סדרות מרוכבים]
 	תהי סדרה ${\{z_n\}}_{n = 1}^\infty \subseteq \CC$,
 	נאמר ש־$z_n \to z$ אם $\lim_{n \to \infty} |z_n - z| = 0$.
-	נבחין כי זהו גבול מעל הממשיים.
 \end{definition}
+נבחין כי זהו גבול מעל הממשיים.
 \begin{exercise}
 	תהי ${\{z_n\}}_{n = 1}^\infty \subseteq \CC$ ונסמן $x_n = \re(z_n), y_n = \im(z_n)$ אז $z_n \to z \iff x_n \to x \land y_n \to y$.
 	כאשר $z = x + iy$.
 \end{exercise}
 \begin{example}
 	תהי $z_n = 2^{1/n} + i2^{-n}$ ונבדוק אם היא מתכנסת.
-	נבחן את הערך הממשי שלה, $x_n = \re(z_n) = 2^{1/n} \xrightarrow{x \to \infty} 1$.
-	באופן דומה $y_n = \im(z_n) = 2^{-n} \xrightarrow{x \to \infty} 0$.
+	נבחן את הערך הממשי שלה, $x_n = \re(z_n) = 2^{1/n} \xrightarrow[n \to \infty]{} 1$. \\*
+	באופן דומה $y_n = \im(z_n) = 2^{-n} \xrightarrow[x \to \infty]{} 0$.
 	ולכן $z_n \to 1$.
 \end{example}
 \begin{example}
-	אם לעומת זאת $z_n = {(-1)}^n 2^{1/n} + i 2^{-n}$,
+	לעומת זאת $z_n = {(-1)}^n 2^{1/n} + i 2^{-n}$,
 	$x_{2n} = \re(z_{2n}) = 2^{1/2n} \xrightarrow{x \to \infty} 1$ \\*
 	אבל $x_{2n + 1} = \re(z_{2n + 1}) = - 2^{1/(2n + 1)} \xrightarrow{x \to \infty} -1$.
 	ולכן $z_n$ לא מתכנסת.
@@ -149,11 +149,11 @@
 	תהי $G \subseteq \CC$ קבוצה פתוחה, התנאים הבאים שקולים:
 	\begin{enumerate}
 		\item אם $U \subseteq G$ פתוחה וגם $G \setminus U$ פתוחה אז $U = G$ או $U = \emptyset$
-		\item קשירות פוליגוניאלית: לכל $z, w \in G$ קיים $z \le a_1, \dots, a_n \le w$ כך ש־$G \supseteq [a_j, a_{j + 1}]$. \\*
+		\item קשירות פוליגונלית: לכל $z, w \in G$ קיים $z \le a_1, \dots, a_n \le w$ כך ש־$G \supseteq [a_j, a_{j + 1}]$. \\*
 			נבחין כי $[z, w] = \{ t \cdot z + (1 - t) \cdot w \mid t \in [0, 1]\}$. \\*
-			הרעיון הוא שיש קבוצת כדורים פנימיים בקבוצה שמחברים בין שתי נקודות, מעין יצירת מסלול בין כל שתי נקודות על־ידי יצירת כדורים.
+			הרעיון הוא שלכל שתי נקודות, נוכל לבחור סדרת נקודות, כל שתי נקודות מחוברות בקטע ישר, ובסך הכול קיים מסלול של קטעים ישרים כאלה שמחבר את הנקודות, והחובה היא שכל הקטעים האלה מוכלים בקבוצה.
 		\item כל פונקציה קבועה מקומית היא קבועה. \\*
-			ההגדרה לפונקציה קבועה מקומית היא $\forall z \in G, \exists r, B(z, r) \subseteq G \land f \mid_{B(z, r)} - c$.
+			ההגדרה לפונקציה קבועה מקומית היא $\forall z \in G, \exists r, B(z, r) \subseteq G \land f \mid_{B(z, r)} = c$.
 			בפועל המשמעות היא שבכל קבוצה מבודדת הערך קבוע.
 	\end{enumerate}
 \end{definition}
@@ -183,19 +183,19 @@
 \]
 
 נחשב את $\phi^{-1} : S^2 \to \CC$. \\*
-עתה $P = (x_0, y_0, z_0) \in S^2$, דהינו $x_0^2 + y_0^2 + z_0^2 = 1$, אך עדיין אם $\phi^{-1}(P) = z$ אז $P \in L_z$ ובהתאם $z \in L_p$, כאשר
+עתה $P = (x_0, y_0, z_0) \in S^2$, דהינו $x_0^2 + y_0^2 + z_0^2 = 1$, אך עדיין אם $\phi^{-1}(P) = z_0$ אז $P \in L_{z_0}$ ובהתאם $z_0 \in L_p$, כאשר
 \[
 	L_p = \{ t P + (1 - t) N \mid t \in \RR \}
 \]
 ולכן
 \[
-	\re(z) = t x_0,
-	\quad \im(z) = t y_0,
+	\re(z_0) = t x_0,
+	\quad \im(z_0) = t y_0,
 	\quad \{ z = 0 \} \subseteq \RR^3
 \]
 אם כך נקבל
 \[
-	t z + (1 - t) = 0 \iff t(z - 1) = -1 \implies t = \frac{1}{1 - z_0}
+	t z_0 + (1 - t) = 0 \iff t(z_0 - 1) = -1 \implies t = \frac{1}{1 - z_0}
 \]
 אז
 \[
