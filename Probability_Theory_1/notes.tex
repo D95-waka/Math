@@ -341,4 +341,196 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \]
 מהנוסחה שקיבלנו נראה שמההצבה $k = 23$ נקבל שההסתברות היא בערך $\frac{1}{2}$, דהינו בקבוצה של 23 אנשים יש סבירות של חצי שלפחות שניים יחגגו יום הולדת באתו יום.
 
+\section{שיעור 3 --- 5.11.2024}
+
+\subsection{מכפלת מרחבי הסתברות בדידים}
+ניזכר תחילה במרחבי הסתברות אחידים
+\begin{definition}
+	מרחב הסתברות אחיד הוא $(\Omega, \mathcal{F}, \PP_p)$ המקיים $p(\omega_1) = p(\omega_2)$ לכל $\omega_1, \omega_2 \in \Omega$.
+\end{definition}
+\begin{conclusion}
+	$\PP_p(A) = \frac{|A|}{|\Omega|}$
+\end{conclusion}
+נבחין כי במקרים מסוימים ההסתברות שלנו מורכבת משני מאורעות בלתי תלויים, במקרים אלה נרצה להגדיר מכפלה של מרחבי ההסתברות.
+\begin{definition}[מרחב מכפלת הסתברויות]
+	אם $(\Omega_1, \mathcal{F}_1, \PP_{p_1})$ ו־$(\Omega_2, \mathcal{F}_2, \PP_{p_2})$ מרחבי הסתברות בדידים
+	נגדיר $q : \Omega_1 \times \Omega_2 \to [0, \infty)$ על־ידי $q(\omega_1, \omega_2) = p(\omega_1) \cdot p(\omega_2)$.
+\end{definition}
+\begin{proposition}
+	$q$ פונקציית הסתברות נקודתית.
+\end{proposition}
+\begin{proof}
+	נשתמש ישירות בהגדרה ונחשב
+	\[
+		\sum_{(\omega_1, \omega_2) \in \Omega_1 \times \Omega_2} q(\omega_1, \omega_2)
+		= \sum_{\omega_1 \in \Omega_1, \omega_2 \in \Omega_2} q(\omega_1, \omega_2)
+		= \sum_{\omega_1 \in \Omega_1} \left( \sum_{\omega_2 \in \Omega_2} p_1(\omega_1) p_2(\omega_2) \right)
+		= \sum_{\omega_1 \in \Omega_1} p_1(\omega_1)
+		= 1
+	\]
+\end{proof}
+עתה כשהוכחנו טענה זו, יש לנו הצדקה אמיתית להגדיר את $(\Omega_1 \times \Omega_2, \mathcal{F}_{1,2}, \PP_q)$ כמרחב הסתברות, ונקרא לו מרחב מכפלה.
+\begin{proposition}
+	אם $(\Omega_1, \mathcal{F}_1, \PP_{p_1})$ ו־$(\Omega_2, \mathcal{F}_2, \PP_{p_2})$ מרחבי הסתברות אחידים,
+	אז מרחב המכפלה $(\Omega_1 \times \Omega_2, \mathcal{F}_{1,2}, \PP_q)$ אחיד אף הוא.
+\end{proposition}
+\begin{proof}
+	\[
+		q(\omega_1, \omega_2) = p_1(\omega_1) p_2(\omega_2)
+		= \frac{1}{|\Omega_1|} \cdot \frac{1}{|\Omega_2|}
+		= \frac{1}{|\Omega_1 \times \Omega_2|}
+	\]
+\end{proof}
+\begin{definition}
+	במרחב מכפלה המאורעות מהצורה $A \times \Omega_2$ או $\Omega_1 \times A$ נקראים שוליים. \\*
+	מאורע מהצורה $A \times B$ נקרא מאורע מכפלה.
+\end{definition}
+\begin{proposition}
+	במרחב מכפלה $\PP_q(A \times B) = \PP_{p_1}(A) \cdot \PP_{p_2}(B)$.
+	בפרט $\PP_q(A \times \Omega_2) = \PP_{p_1}(A)$.
+\end{proposition}
+\begin{proof}
+	\[
+		\sum_{(\omega_1, \omega_2) \in A \times B} q(\omega_1, \omega_2)
+		= \sum_{\omega_1 \in A, \omega_2 \in B} q(\omega_1, \omega_2)
+		= \sum_{\omega_1 \in A} \left( \sum_{\omega_2 \in B} p_1(\omega_1) p_2(\omega_2) \right)
+		= \sum_{\omega_1 \in A} p_1(\omega_1) \PP_{p_2}(B)
+		= \PP_{p_1}(A) \PP_{p_2}(B)
+	\]
+\end{proof}
+\begin{example}
+	בהינתן $n$ הטלות מטבע כלשהו, מה ההסתברות שיצאו $k$ עצים?
+
+	עבור ההטלה הראשונה, $\Omega_1 = \{0, 1\}$. עוד נגדיר $p(1) = \alpha, p(0) = 1 - \alpha$ עבור $0 \le \alpha \le 1$ כלשהו. \\*
+	בהתאם נקבל $\Omega = {\{0, 1\}}^n$, וכן
+	\[
+		q(\omega_1, \dots, \omega_n) = \prod_{i = 1}^n p(\omega_i)
+		= \prod_{i = 1}^n \alpha^{\omega_i} \cdot {(1 - \alpha)}^{1 - {\omega_i}}
+		= \alpha^{\sum_{i = 1}^n \omega_i} {(1 - \alpha)}^{n - \sum_{i = 1}^n \omega_i}
+	\]
+
+	נבחין כי היינו יכולים לתאר את המקרה הזה ממש על־ידי $q(\omega) = \alpha^\omega \cdot {(1 - \alpha)}^{1 - \omega}$.
+
+	נעבור עתה לבחינת המאורע
+	\[
+		A = \{ (\omega_1, \dots, \omega_n) \in \Omega \mid \sum_{i = 1}^{n} \omega_i = k \}
+	\]
+	נקבל מהביטוי שמצאנו כי
+	\[
+		\PP_q(A)
+		= \sum_{(\omega_1, \dots, \omega_n) \in A} q(\omega_1, \dots, \omega_n)
+		\sum_{\sum_{i = 1}^n \omega_i = k} \alpha^{\sum_{i = 1}^n \omega_i} {(1 - \alpha)}^{n - \sum_{i = 1}^n \omega_i}
+		= |A| \alpha^k {(1 - \alpha)}^{n - k}
+		= \binom{n}{k} \alpha^k {(1 - \alpha)}^{n - k}
+	\]
+\end{example}
+\begin{example}
+	נבחן עתה את המקרה של הטלות הוגנות ובחינת המקרה שחצי מההטלות לפחות יצאו עץ,
+	זאת־אומרת שנבחן את הדוגמה הקודמת כאשר $n = 2m, k = m$, ו־$\alpha = \frac{1}{2}$.
+	מנוסחת סטרלינג שאנחנו לא מכירים $m! \simeq \sqrt{2\pi m} {(\frac{m}{e})}^m$ ואז נוכל להסיק
+	\[
+		\PP_q(A)
+		= \binom{2m}{m} \frac{1}{2^m}
+		\simeq \frac{\sqrt{4\pi m} {(\frac{2m}{e})}^{2m}}{{(\sqrt{2\pi m} {(\frac{k}{e})}^m)}^2 2^{2m}}
+		= \frac{\sqrt{4\pi m}}{2\pi m}
+		= \frac{1}{\sqrt{\pi m}}
+	\]
+\end{example}
+
+\subsection{ניסויים דו־שלביים}
+נניח $(\Omega_1, \mathcal{F}_1, \PP_{p_1})$ מרחב הסתברות בדידה עבור הניסוי הראשון, ונניח שיש מרחב הסתברות בדידה עבור הניסוי השני כך שלכל תוצאה בניסוי הראשון, פונקציית ההסתברות תשתנה בהתאם בניסוי השני.
+לכל $\omega_1 \in \Omega_1$ יש פונקציית הסתברות נקודתית $p_{\omega_1} : \Omega_2 \to [0, \infty)$.
+נגדיר את מרחב הניסוי הדו־שלבי $(\Omega_1 \times \Omega_2, \mathcal{F}_{1, 2}, \PP_q)$,
+כאשר $q(\omega_1, \omega_2) = p_1(\omega_1) \cdot p_{\omega_1}(\omega_2)$.
+\begin{proposition}
+	$\PP_q$ פונקציית הסתברות.
+\end{proposition}
+\begin{proof}
+	\[
+		\sum_{(\omega_1, \omega_2) \in \Omega_1 \times \Omega_2} q(\omega_1, \omega_2)
+		= \sum_{\omega_1 \in \Omega_1} \left( \sum_{\omega_2 \in \Omega_2} p_1(\omega_1) p_{\omega_1}(\omega_2) \right)
+		= \sum_{\omega_1 \in \Omega_1} p_1(\omega_1) \left( \sum_{\omega_2 \in \Omega_2} p_{\omega_1}(\omega_2) \right)
+		= \sum_{\omega_1 \in \Omega_1} p_1(\omega_1)
+		= 1
+	\]
+\end{proof}
+\begin{example}
+	$\Omega_1 = \{H, T\}$ ו־$\Omega_2 = \{1, \dots, 8\}$, נגדיר $p_1(H) = p_1(T) = \frac{1}{2}$.
+	עוד נגדיר
+	\[
+		p_H(\omega_2) = \begin{cases}
+			\frac{1}{6} & 1 \le \omega_2 \le 6 \\
+			0 & \text{else}
+		\end{cases},
+		\qquad
+		p_T(\omega_2) = \frac{1}{8}
+	\]
+	מהגדרה זו נקבל
+	\[
+		q(\omega_1, \omega_2) = \begin{cases}
+			\frac{1}{12} & \omega_1 = H, \omega_2 \in [6] \\
+			0 & \omega_1 = H, \omega_2 \in \{7, 8\} \\
+			\frac{1}{16} & \omega_1 = T, \omega_2 \in [8]
+		\end{cases}
+	\]
+\end{example}
+\begin{theorem}[חסם האיחוד]
+	אם $A, B$ מאורעות אז $\PP(A \cup B) \le \PP(A) + \PP(B)$.
+\end{theorem}
+\begin{proof}
+	\[
+		\PP(A \cup B)
+		= \PP(A \uplus (B \setminus A))
+		= \PP(A) + \PP(B \setminus A)
+		\le \PP(A) + \PP(B)
+	\]
+\end{proof}
+נוכל להשתמש בחסם האיחוד כדי להוכיח גרסה כללית יותר של המשפט:
+\begin{theorem}[אי־שוויון בול]
+	אם $A_1, \dots, A_k$ מאורעות, אז $\PP(\bigcup_{i = 1}^k A_i) \le \sum_{i = 1}^k \PP(A_i)$.
+\end{theorem}
+\begin{example}
+	נחזור לבחון את פרדוקס יום ההולדת, הפעם נבחן גרסה כללית יותר של הרעיון.
+	נגדיר $\Omega = {[m]}^k$ עם הסתברות אחידה.
+	נגדיר גם $A = \{ \omega \in \Omega \mid \exists 1 \le i < j \le k, \omega_i = \omega_j \}$.
+	אנו רוצים את ההסתברות $\PP(A) = \frac{|A|}{|\Omega|}$, אז נבחן את המשלים
+	\[
+		A^C = \{ \omega \in \Omega \mid \forall 1 \le i, j \le k, i \ne j \implies \omega_i \ne \omega_j \}
+	\]
+	נחשב
+	\[
+		|A^C| = m (m - 1) \cdots (m - (k - 1))
+	\]
+	בהתאם
+	\[
+		\PP(A^C)
+		= \frac{\prod_{i = 0}^{k - 1} (m - i)}{m^k}
+		= \prod_{i = 0}^{k - 1} \frac{m - i}{m^k}
+		= \prod_{i = 0}^{k - 1} (1 - \frac{i}{m})
+	\]
+	נזכור ש־$\forall x \in \RR, 1 + x \le e^x$, ונוכל לקבל
+	\[
+		\prod_{i = 0}^{k - 1} (1 - \frac{i}{m})
+		\le \prod_{i = 0}^{k - 1} e^{-\frac{i}{m}}
+		= \exp(- \frac{1}{m} \sum_{i = 0}^{k - 1} i)
+		= e^{- \frac{k(k - 1)}{2m}}
+	\]
+	כאשר $k$ גדול ביחס ל־$\sqrt{2m}$ מקבלים חסם קרוב ל־$0$.
+
+נגדיר הפעם $A = \bigcup_{\substack{i \ne j \\ i, j \in [k]}} A_{ij}$ עבור $A_{ij} = \{ \omega \in \Omega \mid \omega_i = \omega_j \}$.
+	וגם
+	\[
+		i \ne j \implies \PP(A_{ij}) = \frac{|A_{ij}|}{m^k} = \frac{m \cdot m^{k - 2}}{m^k} = \frac{1}{m}
+	\]
+	ועתה
+	\[
+		\PP(A)
+		\le \sum_{\substack{i \ne j \\ i, j \in [k]}} \PP(A_{ij})
+		= \sum_{\substack{i \ne j \\ i, j \in [k]}} \frac{1}{m}
+		= \binom{k}{2} \frac{1}{m}
+		= \frac{k (k - 1)}{2m}
+	\]
+	לכן אם $k$ קטן ביחס ל־$\sqrt{2m}$ אז ההסתברות ליום־הולדת משותף קטנה.
+\end{example}
+
 \end{document}
