@@ -1,0 +1,95 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 00 --- תורת הקבוצות האקסיומטית, 80650}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+במטלה זו נניח את סט האקסיומות Z --- Foundation.
+\Question{}
+נוכיח שאם $A$ מחלקה לא ריקה, אז $\bigcap A$ קבוצה.
+\begin{proof}
+	נבחין תחילה כי $\bigcap A$ מחלקה (שעלולה להיות ריקה), עוד נתון כי $A$ עצמה לא ריקה ולכן תהי $a \in A$ קבוצה כלשהי.
+	עתה נשתמש בסכמת הפרדה ונקבל $\{ x \in a \mid x \in \bigcap A \}$ קבוצה, אבל מהגדרת החיתוך אם $x \in A \iff \forall b \in A, b \in x \implies x \in a$ וסיימנו.
+\end{proof}
+
+\Question{}
+נוכיח כי לכל $a, b$ קבוצות, גם $a \times b = \{ \langle x, y \rangle = \{ \{ x \}, \{ x, y \}\} \mid x \in a, y \in b \}$ קבוצה.
+\begin{proof}
+	מאקסיומת קבוצת חזקה נבחין כי $\mathcal{P}(a)$ קיימת, מסכמת הפרדה עבור $\varphi = \forall w, z \in x, w = z$ נקבל קבוצת יחידונים עבור קבוצות ב־$a$, דהינו $c_0 = \{ \{ x \} \mid x \in a \}$.
+	מאקסיומת האיחוד ומאקסיומת הזוגות הלא סדורים קיימת הקבוצה $c_1 = \{ \{x, y \} \mid x, y \in a \cup b \}$, וכן קיימת $c_0 \cup c_1$.
+	עתה נגדיר $c_2 = \mathcal{P}(c_0 \cup c_1)$ ואת הטענה $\varphi = \forall u \in x (\exists z_0, z_1 \in u \land z_0 \in z_1 \land z_0 \subseteq z_1 \land \forall z_2 \in u (z_2 = z_0 \lor z_2 = z_1))$.
+	ונקבל מסכמת הפרדה את קבוצת הקבוצות בגודל 2 כך שקבוצה אחת חלקית לשנייה, נשאר להשתמש שוב בסכמת הפרדה עבור $\psi = \forall u \in x, \exists z_0, z_1 (z_0 \in a \land z_1 \in b \land z_0, z_1 \in u )$
+	וקיבלנו את הקבוצה המבוקשת.
+\end{proof}
+
+\Question{}
+עתה נוכיח את טענת השאלה הקודמת כאשר לא מניחים את אקסיומת קבוצת החזקה אך מניחים את אסיומת סכמת החלפה.
+\begin{proof}
+	מאקסיומת הזוג הלא סדור יש לנו הצדקה להגדיר את פונקציית המחלקה
+	\[
+		F_y(x) = \{ x, y \}
+	\]
+	מאקסיומת החלפה נקבל שעבור $y \in b$ כלשהו, $c_y = \{ \{x, y \} \mid x \in a \}$ היא קבוצה, ולכן יש לנו הצדקה להגדיר פונקציית מחלקה נוספת
+	\[
+		G(y) = \{ c_y \mid y \}
+	\]
+	ונקבל $d = \{ c_y \mid y \in b \}$ קבוצה, ונבחין כי גם האיחוד $\bigcup d$ קבוצה, עתה נשתמש בסכמת החלפה עם $H(\{x, y\}) = \{ \langle x, y \rangle, \langle y, x\rangle \}$ ובאיחוד ונקבל את הקבוצה הדרושה.
+\end{proof}
+
+\Question{}
+נפתור את הסעיפים הבאים תוך שימוש ב־Z.
+
+\Subquestion{}
+נמצא נוסחה $\Delta_0$, $\varphi_1(x)$ כך ש־$x$ סודר אם ורק אם $\varphi_1(x)$.
+\begin{solution}
+	נגדיר נוסחה כך ש־$x$ סדר טוב יחד עם $\in$ אם ורק אם $\psi_0(x)$.
+	\[
+		\psi_0(x) = \forall a \in \mathcal{P}(x) (\exists b \in a (\forall c \in a (b \in c)))
+	\]
+	נגדיר נוסחה $\psi_1(x)$ אשר מתקיימת אם ורק אם $x$ קבוצה טרנזיטיבית.
+	\[
+		\psi_1(x) = \forall a \in x (\forall b \in a ( b \in x))
+	\]
+	לבסוף נגדיר $\varphi(x) = \psi_1(x) \land \psi_1(x)$.
+\end{solution}
+
+\Subquestion{}
+נמצא נוסחה $\Delta_0$, $\varphi_2(x, y)$ כך ש־$x = \bigcup y$ אם ורק אם $\varphi_2(x)$.
+\begin{solution}
+	נגדיר את הנוסחה בהתאם להגדרת האיחוד
+	\[
+		\varphi_2(x, y) = (\forall a \in x (\exists b \in y (a \in b))) \land (\forall a \in y (\forall b \in a (b \in x)))
+	\]
+\end{solution}
+נמצא נוסחה $\Delta_0$, $\varphi_3(x)$ כך ש־$x$ הוא סודר עוקב אם ורק אם $\varphi_3(x)$.
+\begin{solution}
+	נוכל להשתמש ב־$\varphi_1(x)$ כדי לוודא ש־$x$ אכן סודר, ונכתוב נוסחה נוספת לבדיקה שהוא אכן עוקב לסודר אחר:
+	\[
+		\psi(x) = \exists a \in x (x = a \cup \{ a \})
+	\]
+	נוסחה זו כמובן מקבל משמעות בעקבות אקסיומת הזוג הלא סדור.
+	לבסוף נגדיר $\varphi_3(x) = \varphi_1(x) \land \psi(x)$.
+\end{solution}
+
+\Subquestion{}
+נמצא נוסחה $\Delta_0$, $\varphi_4(x)$ כך ש־$x = \omega$ אם ורק אם $\varphi_4(x)$.
+\begin{solution}
+	נשתמש בעובדה ש־$\omega$ הסודר הגבולי הראשון, ולכן כל $n \in \omega$ הוא סודר עוקב או הקבוצה הריקה:
+	\[
+		\varphi_4(x) = \forall a \in x (\varphi_3(a) \lor a = \emptyset)
+	\]
+\end{solution}
+
+\Question{}
+יהיו $A \subseteq B$ קבוצות טרנזיטיביות לא ריקות.
+
+\Subquestion{}
+תהי נוסחה $\varphi(y_0, \dots, y_{n - 1})$ מהצורה $\forall x \psi$ כאשר $\psi$ היא $\Delta_0$, ויהיו $p_0, \dots, p_{n - 1} \in A$. \\*
+נוכיח כי $\langle B, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$ גורר ש־$\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
+\begin{proof}
+	נניח ש־$\langle B, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$, ולכן מלמה שהוכחה בכיתה $\varphi(p_0, \dots, p_{n - 1})$ מתקיים,
+	על־פי אותה הלמה בדיוק זה נכון אם ורק אם $\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
+\end{proof}
+
+\end{document}
