@@ -380,4 +380,98 @@ $f$ דיפרנציאבילית ב־$(x_0, y_0)$ אם ניתן לחקור את ה
 	\end{align*}
 \end{proof}
 
+\section{שיעור 3 --- 7.11.2024}
+\subsection{דיפרנציאביליות ועוד}
+ניזכר בהגדרה של דיפרנציאביליות ב־$\RR$ וב־$\RR^2$.
+במימד אחד פונקציה גזירה אם קיים הגבול
+\[
+	\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} = f'(x)
+\]
+ובהתאם $f(x) = f(x_0) + f'(x_0)(x - x_0) + o(|x - x_0|)$ \\*
+בשני מימדים $f(x, y) = f(x_0, y_0) + a(a - x_0) + b(y - y_0) + o(\lVert (x, y) \rVert)$ כאשר גם $a = f_x(x_0, y_0), b = f_y(x_0, y_0)$.
+\begin{definition}[דיפרנציאביליות במרוכבות]
+	תהי $f : U_{z_0} \to \CC$, נאמר כי היא דיפרנציאבילית, או גזירה, ב־$z_0 \in \CC$ אם ורק אם קיים הגבול
+	\[
+		\lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+	\]
+	ובמקרה זה נסמן גבול זה ב־$f'(z_0)$.
+\end{definition}
+\begin{proposition}[תכונות של גזירות]
+	שתי התכונות הבאות מתקיימות עבור $f : U_{z_0} \to \CC$ גזירה ב־$\CC$:
+	\begin{enumerate}
+		\item $L(z) = f(z_0) + f'(z_0)(z - z_0)$ לינארית ב־$\CC$
+		\item $\lim_{z \to z_0} \frac{f(z) - L(z)}{z - z_0} = 0$.
+	\end{enumerate}
+\end{proposition}
+ברמה הפשוטה אנו עלולים לזהות פונקציה מרוכבת כדומה לפונקציה $\RR^2 \to \RR^2$, גם היא יכולה להיות גזירה, אז נשאל מה ההבדל.
+התשובה היא שבעוד שבמקרה של משתנים מרובים הנגזרת מוגדרת עבור ציר וכן בהתאם קיימות נגזרות כיווניות שונות, במקרה המרוכב יש רק ציר אחד, וכל הפונקציות הכיווניות הן למעשה אותה הפונקציה, זהו תנאי חזק הרבה יותר.
+\begin{example}
+	נניח ש־$f(z) = z^n$, נבדוק את גזירותה.
+	נשתמש בטענה $z^n - w^n = (z - w)(z^{n - 1} + wz^{n - 2} + w^2 z^{n - 3} + \cdots + w^{n - 1})$ ונקבל
+	\[
+		\lim_{w \to z} \frac{f(z) - f(w)}{z - w}
+		= \lim_{w \to z} \frac{z^n - w^n}{z - w}
+		= \lim_{w \to z} \sum_{k = 0}^{n - 1} w^k z^{n - 1 - k}
+		= n \cdot z^{n - 1}
+	\]
+\end{example}
+\begin{example}
+	נגדיר $f(x, y) = (x, -y)$, נמיר לפונקציה מרוכבת על־ידי $f(x + iy) = x - iy \iff f(z) = \overline{z}$, ונבדוק אם הפונקציה גזירה, דהינו אם קיים הגבול
+	\[
+		\lim_{w \to z} \frac{\overline{w} - \overline{z}}{w - z}
+	\]
+	נראה שהגבול הזה לא קיים, נניח $w = z + i \epsilon$ ונקבל
+	\[
+		\lim_{w \to z} \frac{\overline{w} - \overline{z}}{w - z}
+		= \lim_{\epsilon \to 0} \frac{\overline{z} - (\overline{z} - i \epsilon)}{-i\epsilon}
+		= \lim_{\epsilon \to 0} \frac{i}{-i} = -1
+	\]
+	נניח $w = z + \epsilon$ ונקבל
+	\[
+		\lim_{z \to w} \frac{z + \epsilon - z}{\epsilon} = 1
+	\]
+	ולכן הפונקציה לא גזירה, נשים לב גם שב־$\RR^2$ הפונקציה דיפרנציאבילית ומתקיים $\nabla f = (-1, -1)$, דהינו אין קשר מחייב בין גזירות בשני המקרים.
+\end{example}
+\begin{definition}
+	נאמר ש־$f$ היא \textbf{אנליטית} ב־$z_0$ אם קיימת סביבה $U_{z_0}$ כך ש־$f$ דיפרנציאבילית (במובן המרוכב) לכל $z \in U_{z_0}$.
+\end{definition}
+\begin{notation}
+	יהי $G \subseteq \CC$ תחום, נסמן ב־$\text{Hol}(G)$ את קבוצת הפונקציות האנליטיות ב־$G$.
+\end{notation}
+\begin{proposition}[תכונות של פונקציות אנליטיות]
+	נניח $f, g \in \text{Hol}(G)$
+	\begin{enumerate}
+		\item $(f \pm g)' = f' \pm g'$.
+		\item $(f \cdot g)' = f'g + fg'$
+		\item $(\frac{1}{g})' = \frac{-g'}{g^2}$
+		\item $(f \circ g)' = (f' \circ g) \cdot g'$
+		\item $\overline{f(\overline{z})}$ אנליטית, דהינו $g$ אינווריאנטית תחת הצמדה.
+		\item $f(\overline{z})$ ו־$\overline{f(z)}$ לא אנליטיות.
+	\end{enumerate}
+\end{proposition}
+נעבור על מספר דוגמות של פונקציות
+\begin{example}[פונקציות לינאריות]
+	נסמן $\mathcal{L}_0(\CC, \CC)$ ככל הפונקציות הלינאריות העוברות דרך הראשית. \\*
+	במישור המרוכב $L(z) = a z$ עבור $a \in \CC$. \\*
+	ב־$\RR^2$ ניתן לתאר כל העתקה לינארית על־ידי כפל במטריצה
+	\[
+		(x, y) \mapsto \begin{pmatrix}
+			\alpha & \beta \\
+			\gamma & \delta
+		\end{pmatrix}
+		\begin{pmatrix}
+			x \\ y
+		\end{pmatrix}
+		= (\alpha x + \beta y, \gamma x + \delta y)
+	\]
+\end{example}
+\begin{exercise}
+	לפונקציה שתיארנו זה עתה מתאימה פונקציה מרוכבת ונוכיח
+	\begin{enumerate}
+		\item $L(z) = z ( \frac{\alpha + \delta}{2} + i \frac{\gamma + \beta}{2}) + \overline{z} ( \frac{\alpha - \delta}{2} + i \frac{\gamma - \beta}{2})$
+		\item $L(z) = az + b\overline{z}$ עבור $a, b \in \CC$ אז $L$ אנליטית אם ורק אם $b = 0$.
+		\item מסקנה: $L : \RR^2 \to \RR^2$ לינארית אז $L : \CC \to \CC$ אנליטית אם ורק אם $\beta = -\gamma, \alpha = \delta$.
+	\end{enumerate}
+\end{exercise}
+
 \end{document} % chktex 17
