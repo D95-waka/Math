@@ -533,4 +533,306 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	לכן אם $k$ קטן ביחס ל־$\sqrt{2m}$ אז ההסתברות ליום־הולדת משותף קטנה.
 \end{example}
 
+\section{תרגול 2 --- 7.11.2024}
+
+\subsection{פתרון שאלות הסתברותיות}
+נתחיל בבחינת טענה שימושית לביצוע חישובי הסתברות:
+\begin{proposition}[נוסחת ההסתברות השלמה]
+	יהי $(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, $\mathcal{A}$ חלוקה בת־מניה של $\Omega$, לכל $B \in \mathcal{F}$ מתקיים
+	\[
+		\PP(B) = \sum_{A \in \mathcal{A}} \PP(A \cap B)
+	\]
+	נניח שיש מרחב הסתברות ויש חלוקה בת מניה של המרחב, אז לכל מאורע ההסתברות שלו היא הסכום על החלוקה על החיתוך של החלוקה ו־$A$.
+\end{proposition}
+\begin{proof}
+	נשים לב כי $B = \biguplus{A \in \mathcal{A}} B \cap A$ איחוד זר, ולכן הטענה נובעת מסיגמא־אדיטיביות.
+\end{proof}
+\begin{exercise}
+	קוביה מוטה בעלת 6 פאות עם הסתברות נקודתית $p(i) = \frac{i}{21}$ מוטלת 5 פעמים. \\*
+	מה ההסתברות שתוצאת ההטלה הראשונה התקבלה פעם אחת ויחידה?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = {[6]}^5$ ונגדיר $\PP(x_1, \dots, x_5) = p(x_1) \cdots p(x_5)$.
+	אנו רוצים לחשב את
+	\[
+		B = \{ (x_1, \dots, x_5) \in \Omega \mid \forall j \ne 1, x_j \ne x_1 \}
+	\]
+	נגדיר חלוקה $\mathcal{A} = \{ A_1, \dots, A_6 \}$ של $\Omega$ כך ש־$A_i = \{ (i, x_2, \dots, x_5) \in \Omega \mid 1 \le x_j \le 6 \}$. \\*
+	נקבל
+	\[
+		\PP(B \cap A_i) = \frac{i}{21} \cdot {(1 - \frac{i}{21})}^4
+	\]
+	על־ידי שימוש בנוסחת ההסתברות השלמה נקבל
+	\[
+		\PP(B) = \sum_{i = 1}^{6} \PP(B \cap A_i) = \sum_{i = 1}^{6} \frac{i}{21} {(1 - \frac{i}{21})}^4
+	\]
+\end{solution}
+נראה עתה דוגמה לשימוש בחסם האיחוד בן־המניה, אותו נראה בהרצאה הבאה
+\begin{proposition}[חסם האיחוד הבן־מניה]
+	אם $(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות ו־${\{A_i\}}_{i = 1}^\infty \subseteq \mathcal{F}$ אז מתקיים
+	\[
+		\PP(\bigcup_{i = 1}^\infty A_i) \le \sum_{i \in \NN} \PP(A_i)
+	\]
+\end{proposition}
+\begin{exercise}
+	משלשלים $k$ פתקי הצבעה בין $n$ קלפיות. \\*
+	מה ההסתברות שאין קלפי עם יותר מפתק אחד?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = \{ (x_1, \dots, x_n) \mid 0 \le x_i, x_1 + \cdots + x_n = k \}$.
+	נחשב ונקבל $|\Omega| = \binom{n + k - 1}{k - 1}$. \\*
+	נגדיר את המאורע, $A = \{ (x_1, \dots, x_n) \in \Omega \mid x_i \le 1 \}$. \\*
+	ננסה לחסום את המשלים,
+	\[
+		\Omega \setminus A = \{ (x_1, \dots, x_n) \in \Omega \mid \exists i, x_i \ge 2 \}
+	\]
+	אם נגדיר $A_i = \{ (x_1, \dots, x_n) \in \Omega \mid x_i \ge 2 \}$ אז נוכל להגדיר
+	\[
+		\Omega \setminus A = \bigcup_{i \in [n]} A_i
+	\]
+	נחשב את ההסתברות של כל $A_i$, מתקבל $|A_i| = \binom{n + k - 3}{k - 3}$ מהשיקול של סכימת הפתרונות השלמים תוך התעלמות משני פתקים. \\*
+	לכן
+	\[
+		\PP(A_i) = \frac{|A_i|}{|\Omega|} = \frac{\binom{n + k - 3}{k - 3}}{\binom{n + k - 1}{k - 1}} = \frac{k(k - 1)}{(k + n - 1)(k + n - 2)}
+	\]
+	מחסם האיחוד נובע
+	\[
+		\PP(\Omega - A) \le \sum_{i = 1}^{n} \frac{k(k - 1)}{(k + n - 1)(k + n - 2)} = n \cdot \frac{k(k  -1)}{(n + k - 1)(n + k - 2)}
+	\]
+	ועל־ידי מעבר למשלים שוב נוכל להסיק $\PP(A) \ge 1 - n \cdot \frac{k(k  -1)}{(n + k - 1)(n + k - 2)}$. \\*
+	נזכור כי אנו מנסים להבין את המגמה כאשר המספרים מאוד גדולים, לכן נבחן את המקרה ש־$n \to \infty$, אז נובע $\PP(A) \xrightarrow[n \to \infty]{} 1$, \\*
+	דהינו כאשר יש כמות קלפיות הולכת וגדלה הסיכוי שיהיה פתק יחיד בכל אחת (מספר הפתקים לא משתנה) הולך וגדל ומתקרב לסיכוי מלא.
+\end{solution}
+נראה עתה דוגמה לשימוש במרחבי ניסוי דו־שלביים:
+\begin{exercise}
+	מה ההסתברות שנגריל מספר $m$ בין $1$ ל־$n$,
+	ואז נגריל עוד מספר והוא יהיה בין $1$ לבין $m$?
+\end{exercise}
+\begin{solution}
+	נבנה פונקציית הסתברות עבור הניסוי השני, נניח שבניסוי השני קיבלנו $m$:
+	\[
+		p_m(k) = \begin{cases}
+			\frac{1}{m} & k \le m \\
+			0 & k > m
+		\end{cases},
+		\qquad
+		q(m, k) = \begin{cases}
+			\frac{1}{mn} & k \le m \\
+			0 & k > m
+		\end{cases}
+	\]
+	נגדיר $A_k$ המאורע שתוצאת ההגרלה השניה היא $k$, לכן
+	\[
+		\PP(A_k)
+		= \PP(\{(m, k) \in \Omega \mid m \le k \})
+		= \sum_{m = 1}^{n} q(m, k)
+		= \sum_{m = k}^{n} \frac{1}{mn}
+	\]
+	נבחין כי המעבר האחרון אכן תקין, שכן קיבענו את המשתנה השני, זאת אומרת שעכשיו במקום להסתכל על מספר שיותר קטן ממספר אחר, אנו בוחנים את המספר החוסם מלמעלה, המספר הגדול יותר. \\*
+	לדוגמה
+	\[
+		\PP(A_n) = \frac{1}{n^2},
+		\qquad
+		\PP(A_1) = \sum_{m = 1}^{n} \frac{1}{mn} = \frac{1}{n} \sum_{m = 1}^n \frac{1}{m} \approx \frac{\log n}{n}
+	\]
+\end{solution}
+נבחן דוגמה ספציפית כהמשך של השאלה הזו, הפעם נגדיר $m = n / 2$:
+\begin{example}
+	נגדיר $B_{n / 2}$ להיות המאורע בהתחלה השניה ו־$B$ שבהגרלה השניה יצא מספר גדול מ־$n / 2$
+	\[
+		\PP(B_{n / 2}) = \PP(\bigcup_{k \ge n / 2}^n A_k)
+		= \frac{1}{n} \sum_{k \ge \frac{n}{2}}^n \sum_{m = k}^n \frac{1}{m}
+		= \frac{1}{n} \sum_{m = \lceil \frac{n}{2}\rceil}^{n} \frac{\frac{n}{2} + 1 - n + m}{m}
+	\]
+	כמו בשאלה הקודמת, גם הפעם נרצה להבין מגמה כללית, ולכן נבדוק את הביטוי כאשר $n$ שואף לאינסוף, דהינו שהמספרים שאפשר להגדיל הולכים וגדלים בכמותם:
+	\[
+		\lim_{n \to \infty} \PP(B_{n / 2})
+		= \lim_{n \to \infty} \frac{1}{n} \sum_{m = \lceil \frac{n}{2}\rceil}^{n} \frac{1 + m - \frac{n}{2}}{m}
+	\]
+	נבחין כי $\sum_{m = 1}^n \frac{1}{m} = \log(n) + e + o(\frac{1}{m})$ ולכן
+	\begin{align*}
+		\lim_{n \to \infty} \frac{1}{n} \sum_{m = \lceil \frac{n}{2}\rceil}^{n} \frac{1 + m - \frac{n}{2}}{m}
+		& = \lim_{n \to \infty} \frac{1}{2} + \frac{n}{2n} (\log(n) - \log(\frac{n}{2}) + o(\frac{1}{n})) + \frac{1}{n} (\log(n) - \log(\frac{n}{2}) + o(\frac{1}{n})) \\
+		& = \frac{1}{2} + \frac{1}{n} \log 2
+	\end{align*}
+\end{example}
+
+\section{שיעור 4 --- 7.11.2024}
+בשיעור הקודם דיברנו על מרחבי מכפלה וניסויים דו־שלביים. 
+ברור לנו כי על־ידי שרשור דומה לתהליך של ניסוי דו־שלבי נוכל לבנות ניסוי רב־שלבי.
+עוד דיברנו על חסם האיחוד, הטענה כי $\PP(\bigcup_{i = 1}^n A_i) = \sum_{i = 1}^n \PP(A_i)$.
+השימוש של חסם האיחוד מאפשר לנו לפשט חישובים שבהם אנחנו רוצים הבנה כללית של ההתנהגות של מרחב ההסתברות.
+
+\subsection{חסמי איחוד ורציפות}
+\begin{definition}
+	סדרת מאורעות ${\{A_n\}}_{n = 1}^\infty$ נקראת עולה אם $A_n \subseteq A_{n + 1}$ לכל $n \in \NN$.
+\end{definition}
+\begin{notation}
+	נסמן $A_\infty = \bigcup_{n \in \NN} A_n$.
+\end{notation}
+\begin{theorem}[משפט רציפות פונקציית ההסתברות]
+	אם ${\{A_n\}}_{n = 1}^\infty$ סדרת מאורעות עולה אז
+	\[
+		\PP(A_\infty) = \lim_{n \to \infty} \PP(A_n)
+	\]
+\end{theorem}
+המשפט נקרא כך בשל ההקבלה שלו לקונספט של רציפות בפונקציות רגילות, עבור $f : \RR \to \RR$ היא רציפה ב־$a$ אם ורק אם לכל סדרה $x_n \to a$ מתקיים $f(x_n) \to f(a)$.
+\begin{proof}
+	נגדיר $B_n = A_n \setminus A_{n - 1}$ כאשר $B_1 = A_1 \setminus \emptyset = A_1$. \\*
+	נראה כי מתקיים $\biguplus_{n = 1}^m B_n = A_m$ איחוד זר: \\*
+	$\bigcup_{n = 1}^m B_n = A_m$ כי לכל $\omega \in A_m$ יש $n$ מינימלי כך ש־$\omega \in A_n$, אבל $\omega \notin A_{n - 1}$, לכן נוכל להסיק כי $\omega \in A_n \setminus A_{n - 1} = B_n$. \\*
+	אם $\omega \in B_n = A_n \setminus A_{n - 1}$ אז $\omega \notin A_{n - 1}$ ולכן $\omega \notin A_k$ לכל $k < n$.
+	מסיגמא־אדיטיביות נסיק
+	\[
+		\sum_{n = 1}^{m} \PP(B_n) = \PP(A_m)
+	\]
+	וגם
+	\[
+		\sum_{n = 1}^{\infty} \PP(B_n)
+		= \PP(\biguplus_{n = 1}^\infty B_n)
+		= \PP(\bigcup_{m = 1}^\infty \left(\biguplus_{n = 1}^\infty B_n\right))
+		= \PP(\bigcup_{m = 1}^\infty A_m)
+	\]
+	מצד שני מהגדרת הגבול
+	\[
+		\sum_{n = 1}^{\infty} \PP(B_n)
+		= \lim_{m \to \infty} \sum_{n = 1}^{m}  \PP(B_n)
+		= \lim_{m \to \infty} \PP(A_m)
+	\]
+\end{proof}
+\begin{definition}[סדרת מאורעות יורדת]
+	נגדיר סדרת מאורעות ${\{A_n\}}_{n = 1}^\infty$ כך שמתקיים $A_{n + 1} \subseteq A_n$ לכל $n \in \NN$.
+\end{definition}
+נוכל להסיק מהעובדה שמשלים של סדרה עולה הוא סדרה יורדת ונקבל
+\begin{proposition}
+	\[
+		\PP(\bigcap_{n \in \NN} A_n) = \lim_{n \to \infty} \PP(A_n)
+	\]
+\end{proposition}
+\begin{proposition}[חסם האיחוד הבן־מניה]
+	אם ${\{A_n\}}_{n = 1}^\infty$ סדרת מאורעות אז מתקיים
+	\[
+		\PP(\bigcup_{n = 1}^\infty A_n) \le \sum_{n \in \NN} \PP(A_n)
+	\]
+\end{proposition}
+\begin{proof}
+	נגדיר $B_m = \bigcup_{n = 1}^m A_n$, זוהי סדרה עולה ולכן
+	\[
+		\PP(\bigcup_{n = 1}^\infty A_n)
+		= \PP(\bigcup_{m = 1}^\infty B_m)
+		= \lim_{m \to \infty} \PP(B_m)
+		\le \lim_{m \to \infty} \sum_{n = 1}^{m} \PP(A_n)
+		= \sum_{n = 1}^{\infty} \PP(A_n)
+	\]
+\end{proof}
+
+\subsection{עיקרון ההכלה וההדחה}
+\begin{proposition}
+	אם $A, B$ מאורעות אז
+	\[
+		\PP(A \cup B) = \PP(A) + \PP(B) - \PP(A \cap B)
+	\]
+\end{proposition}
+\begin{proof}
+	נגדיר $C = A \setminus B, D = A \cap B, E = B \setminus A$, נקבל
+	\[
+		A = C \uplus D,
+		\quad
+		B = D \uplus E,
+		\quad
+		A \cup B = C \uplus D \uplus E
+	\]
+	ונקבל
+	\[
+		\PP(A) = \PP(C) + \PP(D),
+		\quad
+		\PP(D \cup B) = \PP(D) + \PP(E)
+	\]
+	ולכן
+	\[
+		\PP(A \cup B) = \PP(C) + \PP(D) + \PP(E)
+	\]
+\end{proof}
+\begin{theorem}
+	עבור שלושה מאורעות $A, B, C$:
+	\[
+		\PP(A \cup B \cup C) = \PP(A) + \PP(B) + \PP(C) - (\PP(A \cap B) + \PP(A \cap C) + \PP(B \cap C)) + \PP(A \cap B \cap C)
+	\]
+\end{theorem}
+\begin{theorem}
+	יהיו $A_1, \dots, A_n$ מאורעות, אז
+	\[
+		\PP(\bigcup_{i = 1}^n A_i)
+		= \sum_{i = 1}^{n} \PP(A_i) - \sum_{i = 1}^{n} \sum_{j = 1}^{i - 1} \PP(A_i \cap A_j) + \sum_{i = 1}^{n} \sum_{j = 1}^{i - 1} \sum_{k = 1}^{j - 1} \PP(A_i \cap A_j \cap A_k) + \dots
+	\]
+	אם נגדיר $A_I = \bigcap_{i \in I} A_i$ לכל $I \subseteq [n]$ אז נקבל
+	\[
+		\PP(\bigcup_{n = 1}^n A_i)
+		= \sum_{k = 1}^{n} {(-1)}^{k + 1} \sum_{\substack{I \subseteq [i] \\ |I| = k}} \PP(A_I)
+		= \sum_{\emptyset \ne I \subseteq [n]} {(-1)}^{|I| + 1} \PP(A_I)
+	\]
+\end{theorem}
+את משפט זה נוכיח בהמשך הקורס. \\*
+נראה דוגמה לבעיה קלאסית במקרים אלה.
+\begin{exercise}[בעיית ההתאמה]
+	מחלקים $n$ מעטפות ל־$n$ תיבות דואר, אחת לכל תיבה, מה ההסתברות שאף מכתב לא הגיע ליעדו?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = S_n$ מרחב אחיד.
+	$A = \{ \omega \in \Omega \mid \forall i, \omega(i) \ne i \}$. \\*
+	נבחן את המשלים, $A^C = \{ \omega \in \Omega \mid \exists i, \omega(i) = i \} = \bigcup_{i = 1}^n A_i$ עבור $A_i = \{ \omega \in \Omega \mid \omega(i) = i \}$.
+	נחשב
+	\[
+		\PP(A_i) = \frac{|A_i|}{|\Omega|} = \frac{(n - 1)!}{n!} = \frac{1}{n}
+	\]
+	במקרה של חיתוך $\PP(A_i \cap A_j)$ עבור $j < i$ נקבל
+	\[
+		\PP(A_i \cap A_j) = \frac{|A_i \cap A_j|}{|\Omega|} = \frac{(n - 2)!}{n!} = \frac{1}{n(n - 1)}
+	\]
+	נוכל להמשיך את התהליך הזה, ונקבל
+	\[
+		\PP(A_I) = \frac{|\bigcap_{i \in I} A_i|}{|\Omega|} 
+		= \frac{(n - |I|)!}{n!}
+		= \frac{1}{n (n - 1) (n - 2) \cdots (n - (I + 1))}
+	\]
+	כעת נותר להשתמש בנוסחה להכלה והדחה, ונקבל
+	\[
+		\PP(\bigcup_{i = 1}^n A_i)
+		= \sum_{k = 1}^{n} {(-1)}^{k + 1} \sum_{\substack{I \subseteq [n] \\ |I| = k}} \frac{(n - k)!}{n!}
+		= \sum_{k = 1}^{n} {(-1)}^{k + 1} \binom{n}{k} \frac{(n - k)!}{n!}
+		= \sum_{k = 1}^{n} \frac{{(-1)}^{k + 1}}{k!}
+	\]
+	נשים לב כי רצינו לחשב את המשלים למאורע, לכן
+	\[
+		\PP(A)
+		= 1 - \PP(\bigcup_{i = 1}^n A_i)
+		= 1 + \sum_{k = 1}^{n} \frac{{(-1)}^k}{k!}
+		= \sum_{k = 0}^{n} \frac{{(-1)}^k}{k!}
+		\xrightarrow[n \to \infty]{} e^{-1}
+	\]
+	נקבל שאוסף התמורות ללא נקודת שבת הוא
+	\[
+		|A^n| = n! \sum_{l = 0}^{n} \frac{{(-1)}^l}{l!}
+	\]
+	נגדיר קבוצה חדשה
+	\[
+		D_k = \{ \omega \in S_n \mid \exists i, \omega(i) = i \}
+		= \biguplus_{\substack{I \subseteq [n] \\ |I| = k }} D_I
+	\]
+	ונבחין כי
+	\[
+		D_I = \{ \omega \in S_n \mid \forall i \in I, \omega(i) = i, \forall i \notin I, \omega(i) \ne i \}
+	\]
+	ולכן
+	\begin{align*}
+		\PP(D_k)
+		& = \sum_{\substack{I \subseteq [n] \\ |I| = k }} \PP(D_I) \\
+		& = \sum_{\substack{I \subseteq [n] \\ |I| = k }} \frac{|D_I|}{n!} \\
+		& = \sum_{\substack{I \subseteq [n] \\ |I| = k }} \frac{(n - k)! \sum_{l = 0}^n \frac{{(-1)}^l}{l!}}{n!} \\
+		& = \binom{n}{k} \frac{(n - k)!}{n!} \sum_{l = 0}^n \frac{{(-1)}^l}{l!} \\
+		& = \frac{1}{k!} \sum_{l = 0}^n \frac{{(-1)}^l}{l!} \\
+		& \xrightarrow[n \to \infty]{} \frac{e^{-1}}{k!}
+	\end{align*}
+\end{solution}
+
 \end{document}
