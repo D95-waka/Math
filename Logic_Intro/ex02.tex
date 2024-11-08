@@ -1,0 +1,105 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי שפה $L = \{P, Q, R, S\}$ ויהי $\varphi = (\lnot ((P \to (\lnot Q)) \land ((\lnot R) \lor S)))$. \\*
+נכתוב עץ בינארי סטנדרטי מיושר לשמאל $(T, f)$ ל־$\varphi$, ונחשב את הפונקציה המתאימה $\psi$.
+\begin{solution}
+	נגדיר
+	\begin{align*}
+		f = \{
+			& (\langle \rangle, \lnot),
+			(\langle 0, 0, 1 \rangle, \lnot),
+			(\langle 0, 1, 0 \rangle, \lnot),
+			(\langle 0 \rangle, \land),
+			(\langle 0, 0 \rangle, \rightarrow), \\
+			& (\langle 0, 1 \rangle, \lor),
+			(\langle 0, 0, 0 \rangle, P),
+			(\langle 0, 0, 1, 0 \rangle, Q),
+			(\langle 0, 1, 0, 0 \rangle, R),
+			(\langle 0, 1, 1 \rangle, S)
+		\}
+	\end{align*}
+	עוד נגדיר $T = (\text{dom} f, \preceq)$ כאשר $\preceq$ יחס הרישא חד־מקומי, ובהתאם $(T, f)$ עץ היצירה של $\varphi$.
+
+	נגדיר $\psi : T \to \text{sent}_L$, נקבל
+	\begin{align*}
+		\psi = \{
+			& ( \langle \rangle, (\lnot ((P \to (\lnot Q)) \land ((\lnot R) \lor S))) ), \\
+			& ( \langle 0 \rangle, ((P \to (\lnot Q)) \land ((\lnot R) \lor S)) ), \\
+			& ( \langle 0, 0 \rangle, (P \to (\lnot Q)) ), \\
+			& ( \langle 0, 0, 0 \rangle, P ), \\
+			& ( \langle 0, 0, 1 \rangle, (\lnot Q) ), \\
+			& ( \langle 0, 0, 1, 0 \rangle, Q ), \\
+			& ( \langle 0, 1 \rangle, ((\lnot R) \lor S) ), \\
+			& ( \langle 0, 1, 0 \rangle, (\lnot R) ), \\
+			& ( \langle 0, 1, 0, 0 \rangle, R ), \\
+			& ( \langle 0, 1, 1 \rangle, S )
+		\}
+	\end{align*}
+\end{solution}
+
+\Question{}
+תהי $L$ שפה, נוכיח שהביטוי $p \in \exp_L$ הוא פסוק אם ורק אם הוא פסוק מוגדר קווית.
+\begin{proof}
+	נוכיח ש־$sent_L^+$ תת־קבוצה מינימלית של $\exp_L$ הסגורה תחת $F_\lnot, F_\square$ לכל $\square \in B$. \\*
+	נניח כי $\varphi \in sent_L^+$ ונגדיר $S \subseteq \exp_L$ הקבוצה המינימלית עליה דיברנו, עוד נניח כי $\varphi \notin L$, דהינו הקבוצה $sent_L^+$ לא מינימלית בגללה. \\*
+	מהגדרת $sent_L^+$ קיימת סדרת יצירה ל־$\varphi$, נגדירה כ־$(\varphi_0, \dots, \varphi_n = \varphi)$.
+	עתה נוכיח באינדוקציה על אורך הרשימה כי $\varphi \in S$. כבסיס נניח שאורך הרשימה 1, לכן $\varphi_0 = \varphi \in S$ וסיימנו.
+	נניח עתה כי אורך הרשימה הוא $n$, ועוד נניח כי לכל $0 \le k < n$ מתקיים $\varphi_k \in S$, נוכיח כי גם $\varphi_n \in S$.
+	אילו $\varphi_n \in L$ אז סיימנו, אילו מתקיים $\varphi_n = (\lnot \varphi_k)$ עבור $0 \le k < n$ אז נקבל ש־$\varphi_n = F_\lnot(\varphi_k)$ אבל $\varphi_k \in S$ ולכן גם $F_\lnot(\varphi_k)$ ולכן גם $\varphi \in S$.
+	נניח אם כן שמתקיים $\varphi = (\varphi_i \square \varphi_j)$ עבור $0 \le i, j < n$, נקבל אם כן $\varphi_i, \varphi_j \in S$, ובהתאם $F_\square(\varphi_i, \varphi_j) \in S$, וקיבלנו כי בכל מקרה $\varphi \in S$.
+	השלמנו את צעד האינדוקציה ולכן קיבלנו שמתקיים $sent_L^+ \subseteq S \subseteq sent_L^+$ ולכן $S = sent_L^+$ בלבד.
+
+	נוכיח עתה גם כי $sent_L \subseteq S$, נגדיר $\varphi$ מחדש על־ידי $\varphi \in sent_L$, לכן ל־$\varphi$ עץ יצירה $(T, f)$.
+	נוכיח באינדוקציה על גובה העץ כי $\varphi \in S$, כבסיס נניח כי גובה העץ 1, לכן אין עוקבים ל־$\langle \rangle$, אז נובע כי $\varphi \in L$ ולכן גם $\varphi \in S$.
+	נניח כי הטענה נכונה עבור גובה עץ $0 \le k < n$ ונניח כי גובה $T$ הוא $n$. לא יתכן כי ל־$\langle \rangle$ אין עוקבים, לכן או שיש לו עוקב או שיש לו שניים.
+	אילו יש לו עוקב יחיד, אז מתקיים $\varphi = (\lnot \psi_{\langle 0 \rangle})$, כאשר ל־$\psi_{\langle 0 \rangle}$ עץ יצירה באורך $n - 1$, לכן הוא מוכל ב־$S$ ובהתאם $\varphi \in S$.
+	נניח אם כן שיש שני עוקבים ל־$\langle \rangle$, נסמנם $\psi_0, \psi_1$, ונקבל כי אורך עץ היצירה של שניהם $n - 1$ ולכן גם $\psi_0, \psi_1 \in S$.
+	נקבל כי גם $F_{f(\langle \rangle)}(\psi_0, \psi_1) \in S$, אבל $F_{f(\langle \rangle)}(\psi_1, \psi_2) = \varphi$, לכן $\varphi \in S$ והשלמנו את מהלך האינדוקציה.
+	נסיק אם כן $S \subseteq sent_L \subseteq S$ ולכן בהכרח $S = sent_L$.
+
+	נסיק $sent_L = S = sent_L^+$, דהינו $sent_L = sent_L^+$.
+\end{proof}
+
+\Question{}
+תהי $L$ שפה לתחשיב פסוקים, $X$ קבוצה, $h : L \to X$ פונקציה, $\epsilon_\lnot : X \to X$ פונקציה ו־$\epsilon_\square : X^2 \to X$ פונקציה לכל $\square \in B$.
+
+\directlua{ C_number = 2 }
+\Subquestion{}
+נוכיח כי קיימת פונקציה $\bar{h} : sent_L \to X$ כך ש־$\forall \varphi \in L, \bar{h}(\varphi) = h(\varphi)$ וכן $\forall \varphi = (\lnot \psi), \bar{h}(\varphi) = \epsilon_\lnot(\bar{h}(\psi))$
+ועבור כל $\square \in B$ מתקיים $\varphi = (\psi_0 \square \psi_1) \implies \bar{h}(\varphi) = \epsilon_\square(\bar{h}(\psi_0), \bar{h}(\psi_1))$.
+\begin{proof}
+	יהי $\psi \in sent_L$, לכן קיים עץ יצירה $(T_\psi, f_\psi)$ עבורו. \\*
+	ניזכר בשאלה 3 ממטלה 1 ונגדיר את $\tilde{g}_{\psi, (T_\psi, f_\psi)} : T_\psi \to X$ הפונקציה היחידה המקיימת לכל עלה בעץ היצירה $\tilde{g}_{\psi, (T_\psi, f_\psi)}(t) = h(f(t))$,
+	לכל $t \in T_\psi$ בעל עוקב יחיד $\tilde{g}_{\psi, (T_\psi, f_\psi)}(t) = \epsilon_\lnot(\tilde{g}_{\psi, (T_\psi, f_\psi)}(t \frown \langle 0 \rangle))$
+	וכן לכל $t \in T_\psi$ בעל שני עוקבים $\tilde{g}_{\psi, (T_\psi, f_\psi)}(t) = \epsilon_{f(t)}(\tilde{g}_{\psi, (T_\psi, f_\psi)}(t \frown \langle 0 \rangle), \tilde{g}_{\psi, (T_\psi, f_\psi)}(t \frown \langle 1 \rangle))$. \\*
+	נגדיר עתה $\bar{h}(\psi) = \tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle \rangle)$ ונבדוק שהתנאים אכן מתקיימים. \\*
+	תחילה נבחין כי ממסקנה מהכיתה נובע כי עץ היצירה לכל פסוק הוא יחיד, לכן הגדרה זו יחד עם יחידות $g$ היא תקפה, ונוכל לדון לא בתוקפה אלא בקיום התכונות הרצויות בלבד. \\*
+	נניח כי $\psi \in L^1$, אז מתקיים $\bar{h}(\psi) = \tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle \rangle) = h(f_\psi(\langle \rangle)) = h(\psi)$. \\*
+	עתה נשתמש בטענה זו כבסיס למהלך אינדוקטיבי על מבנה הפסוק, נניח כי הטענה נכונה עבור $\varphi$ ועוד נניח שמתקיים $\psi = (\lnot \varphi)$,
+	אז נקבל $\bar{h}(\psi) = \tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle \rangle) = \epsilon_\lnot(\tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle 0 \rangle)) = \epsilon_\lnot(\bar{h}(\varphi))$,
+	נבחין כי השתמשנו פה פעמיים בהגדרה שסיפקנו ל־$\bar{h}$.
+	נניח אם כן שמתקיים $\psi = (\varphi_0 \square \varphi_1)$ עבור $\square \in B$,
+	ואז $\bar{h}(\psi) = \tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle \rangle) = \epsilon_{f_\psi(\langle \rangle)}(\tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle 0 \rangle), \tilde{g}_{\psi, (T_\psi, f_\psi)}(\langle 1 \rangle))
+	= \epsilon_\square(\bar{h}(\varphi_0), \bar{h}(\varphi_1))$, ושוב קיבלנו כי התכונה של $\bar{h}$ נשמרת, והשלמנו את המהלך האינדוקטיבי. \\*
+	בהתאם נוכל להסיק כי $\bar{h}$ לא רק מוגדרת באופן חזק, אלא גם מקיימת את שלושת התנאים.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי הפונקציה $\bar{h}$ מוגדרת ביחידות.
+\begin{proof}
+	תהינה $\bar{h}, \bar{h}'$ שתי פונקציות המקיימות את התנאים. \\*
+	יהי $\psi \in L$, מהתכונות שמצאנו מתקיים $\bar{h}(\psi) = h(\psi)$ אך גם $\bar{h}'(\psi) = h(\psi)$ ולכן בפרט $\bar{h}(\psi) = \bar{h}'(\psi)$. \\*
+	גם הפעם נשתמש בטענה זו כבסיס האינדוקציה על מבנה הפסוק, ולכן נניח עתה את מהלך האינדוקציה, דהינו יהי $\varphi \in sent_L$ כך ש־$\bar{h}(\varphi) = \bar{h}'(\varphi)$, ויהי $\psi = (\lnot \varphi)$.
+	לכן $\bar{h}(\psi) = \epsilon_\lnot(\bar{h}(\varphi)) = \epsilon_\lnot(\bar{h}'(\varphi)) = \bar{h}'(\psi)$ ושוב הגענו לשוויון.
+	נניח אם כך $\varphi_0, \varphi_1 \in sent_L$ מקיימים את הטענה, ונגדיר $\psi = (\varphi_0 \square \varphi_1)$ עבור $\square \in B$.
+	אז $\bar{h}(\psi) = \epsilon_\square(\bar{h}(\varphi_0), \bar{h}(\varphi_1)) = \epsilon_\square(\bar{h}'(\varphi_0), \bar{h}'(\varphi_1)) = \bar{h}'(\psi)$.
+	השלמנו אם כך את מהלך האינדוקציה וקיבלנו ש־$\bar{h}$ היא אכן יחידה.
+\end{proof}
+
+\end{document}
