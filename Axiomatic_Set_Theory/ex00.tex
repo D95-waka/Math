@@ -88,8 +88,17 @@
 תהי נוסחה $\varphi(y_0, \dots, y_{n - 1})$ מהצורה $\forall x \psi$ כאשר $\psi$ היא $\Delta_0$, ויהיו $p_0, \dots, p_{n - 1} \in A$. \\*
 נוכיח כי $\langle B, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$ גורר ש־$\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
 \begin{proof}
-	נניח ש־$\langle B, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$, ולכן מלמה שהוכחה בכיתה $\varphi(p_0, \dots, p_{n - 1})$ מתקיים,
-	על־פי אותה הלמה בדיוק זה נכון אם ורק אם $\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
+	אפשר להראות ש־$\varphi(p_0, \dots, p_{n - 1}) \vdash \forall x \in B \psi$ ולכן גם $\varphi(p_0, \dots, p_{n - 1}) \models \forall x \in B \psi$ ומהלמה שנלמדה בכיתה נקבל כי הטענה מתקיימת, לכן בפרט גם $\forall x \in A \psi$,
+	ושוב מהלמה נקבל $\langle A, \in \rangle \models \forall x \in A \psi$, אבל $\models_A \forall x \in A$, דהינו טענה זו חלה תמיד, ולכן נוכל לקבל גם $\forall x \in A \psi \vdash \varphi(p_0, \dots, p_{n - 1})$.
+	בהתאם נקבל $\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
+\end{proof}
+
+\Subquestion{}
+הפעם תהי $\varphi(y_0, \dots, y_{n - 1})$ מהצורה $\exists x \psi$ עבור אותה $\psi$ וכאשר $p_0, \dots, p_{n - 1} \in A$.
+נוכיח שהפעם $\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$ גורר $\langle B, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})$.
+\begin{proof}
+	נוכל לבחון את הפסוק $\exists x \in A \psi(p_0, \dots, p_{n - 1})$, הוא כמובן עומד בתנאי הלמה ולכן $\langle B, \in \rangle \models \exists x \in A \psi(p_0, \dots, p_{n - 1})$.
+	אבל אז מתקיים $\exists x \in A \psi(p_0, \dots, p_{n - 1}) \models \exists x \psi$ דהינו $\langle B, \in \rangle \models \varphi$.
 \end{proof}
 
 \end{document}
