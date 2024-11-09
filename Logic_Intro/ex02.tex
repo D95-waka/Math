@@ -96,10 +96,33 @@
 	תהינה $\bar{h}, \bar{h}'$ שתי פונקציות המקיימות את התנאים. \\*
 	יהי $\psi \in L$, מהתכונות שמצאנו מתקיים $\bar{h}(\psi) = h(\psi)$ אך גם $\bar{h}'(\psi) = h(\psi)$ ולכן בפרט $\bar{h}(\psi) = \bar{h}'(\psi)$. \\*
 	גם הפעם נשתמש בטענה זו כבסיס האינדוקציה על מבנה הפסוק, ולכן נניח עתה את מהלך האינדוקציה, דהינו יהי $\varphi \in sent_L$ כך ש־$\bar{h}(\varphi) = \bar{h}'(\varphi)$, ויהי $\psi = (\lnot \varphi)$.
-	לכן $\bar{h}(\psi) = \epsilon_\lnot(\bar{h}(\varphi)) = \epsilon_\lnot(\bar{h}'(\varphi)) = \bar{h}'(\psi)$ ושוב הגענו לשוויון.
-	נניח אם כך $\varphi_0, \varphi_1 \in sent_L$ מקיימים את הטענה, ונגדיר $\psi = (\varphi_0 \square \varphi_1)$ עבור $\square \in B$.
-	אז $\bar{h}(\psi) = \epsilon_\square(\bar{h}(\varphi_0), \bar{h}(\varphi_1)) = \epsilon_\square(\bar{h}'(\varphi_0), \bar{h}'(\varphi_1)) = \bar{h}'(\psi)$.
+	לכן $\bar{h}(\psi) = \epsilon_\lnot(\bar{h}(\varphi)) = \epsilon_\lnot(\bar{h}'(\varphi)) = \bar{h}'(\psi)$ ושוב הגענו לשוויון. \\*
+	נניח אם כך $\varphi_0, \varphi_1 \in sent_L$ מקיימים את הטענה, ונגדיר $\psi = (\varphi_0 \square \varphi_1)$ עבור $\square \in B$. \\*
+	אז $\bar{h}(\psi) = \epsilon_\square(\bar{h}(\varphi_0), \bar{h}(\varphi_1)) = \epsilon_\square(\bar{h}'(\varphi_0), \bar{h}'(\varphi_1)) = \bar{h}'(\psi)$. \\*
 	השלמנו אם כך את מהלך האינדוקציה וקיבלנו ש־$\bar{h}$ היא אכן יחידה.
 \end{proof}
+
+\Question{}
+תהי $L$ שפה לתחשיב פסוקים.
+
+\Subquestion{}
+נוכיח כי אם $\varphi \in sent_L$ אז יש לו אינסוף סדרות יצירה שונות.
+\begin{proof}
+	תהי $\alpha_0 = \langle \varphi_0, \dots, \varphi_{n - 1} \rangle$ סדרת יצירה כך ש־$\varphi = \varphi_0$. \\*
+	נניח כי $\psi \in L$ פסוק יסודי כלשהו שמובטחל שקיים מהגדרת $L$. \\*
+	עתה נבנה סדרה חדשה $\alpha_1 = \langle \varphi \rangle \frown \alpha_0$.
+	נבחין כי כל תנאי סדרת היצירה נשמרו שכן האיבר הראשון לא מצריך איברים נוספים, ולכל איבר כל האיברים הקודמים לו נשמרו ברשימה ובסדר. \\*
+	ביתר פירוט נוכל להוכיח באינדוקציה על אורך הרשימה כי אכן $\alpha_1$ סדרת יצירה של $\varphi$. \\*
+	עתה נבצע תהליך זה באופן מחזורי, נגדיר $\alpha_k = \langle \psi \rangle \frown \alpha_{k - 1}$.
+	כמובן אורך $\alpha_k$ שונה לכל $k \in \NN$ ולכן הסדרות אכן שונות.
+\end{proof}
+
+\Subquestion{}
+עתה נגדיר $L = \{ p, q \}$, ונחשב את מספר סדרות היצירה השונות של הפסוק $\varphi = (p \to q)$ כך שהן באורך 3.
+\begin{solution}
+	נגדיר $\langle \varphi_0, \varphi_1, \varphi_2 \rangle$ סדרת יצירה של $\varphi$, לכן גם $\varphi_2 = \varphi$. \\*
+	מהגדרת סדרת יצירה קיים $0 \le i \le 2$ כך ש־$p$ מופיע בסדרה וכך גם עבור $q$, זאת מטענה $\varphi = \varphi_2$, נבחין כי מצב זה יתכן כאשר $\varphi_0 = p, \varphi_1 = q$ או כאשר $\varphi_0 = q, \varphi_1 = p$ בלבד.
+	נסיק אם כן שמספר הסדרות באורך 3 הוא 2 בלבד.
+\end{solution}
 
 \end{document}
