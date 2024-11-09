@@ -1,0 +1,210 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נצייר את הקבוצות הבאות במישור המרוכב:
+
+\Subquestion{}
+$\{z \in \CC \mid 1 \le |z - 1| < 2\}$. \\*
+זהו למעשה עיגול שמרכזו הוא $(1, 0)$ שרדיוסו 2 לא כולל, ללא עיגול פנימי ברדיוס 1.
+
+\Subquestion{}
+$\{z \in \CC \mid \frac{\pi}{3} < \text{Arg}(z) \le \frac{\pi}{2} \}$. \\*
+זוהי קרן חסומה על־ידי $y = x$ מצד אחד ו־$y = \arctan(\frac{\pi}{3})x$, בכיוון החיובי.
+
+\Subquestion{}
+$\{ z \in \CC \mid 2 < \im(z) < 4 \}$. \\*
+שקול ל־$2 < y < 4$ לכל $x$.
+
+\Subquestion{}
+$\{ z \in \CC \mid |z^2 + 1| \ge |z + i| \}$. \\*
+נחשב
+\[
+	|z^2 + 1| \ge |z + i|
+	\iff |z + i| \cdot |z - i| \ge |z + i|
+	\iff |z - i| \ge 1
+	\iff \sqrt{x^2 + {(y - 1)}^2} \ge 1
+\]
+דהינו זהו כל המישור למעט עיגול פתוח שמרכזו $(0, 1)$ ורדיוסו 1.
+
+\Subquestion{}
+$A = \{z \in \CC \mid \frac{1}{z} = \overline{z}\}$. \\*
+נבחין כי $0 \notin A$, ועתה נוכל לקבוע כי
+\[
+	\frac{1}{z} = \overline{z}
+	\iff z \overline{z} = 1
+	\iff x^2 + y^2 = 1
+\]
+ולכן זהו מעגל היחידה, ובכל מקרה $0$ לא במעגל היחידה.
+
+\Question{}
+\Subquestion{}
+המספר $z_1 = -1 + i$ נמצא ב־$(-1, 1) \in \RR^2$, ומתקיים $\re(z_1) = -1, \im(z_1) = 1, |z_1| = \sqrt{2}, \text{Arg}(z_1) = \frac{3\pi}{4}$.
+
+\Subquestion{}
+המספר $z_2 = 4 \exp(\frac{4\pi}{3} i)$ נמצא ב־$(4 \cdot \cos(\frac{4\pi}{3}), 4 \cdot \sin(\frac{4\pi}{3}))$,
+ומתקיים $\re(z_2) = 4 \cdot \cos(\frac{4\pi}{3}), \im(z_2) = 4 \cdot \sin(\frac{4\pi}{3}), |z_2| = 4, \text{Arg}(z_2) = \frac{4\pi}{3}$.
+
+\Subquestion{}
+המספר $z_3 = 7i$ נמצא ב־$(0, 7)$,
+ומתקיים $\re(z_3) = 0, \im(z_3) = 7, |z_3| = 7, \text{Arg}(z_2) = \frac{\pi}{2}$.
+
+\Subquestion{}
+המספר $z_4 = e^2$ נמצא ב־$(e^2, 0)$,
+ומתקיים $\re(z_4) = e^2, \im(z_4) = 0, |z_4| = e^2, \text{Arg}(z_2) = 0$.
+
+\Subquestion{}
+המספר $z_5 = (\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i)(\frac{1}{2} - \frac{\sqrt{3}}{2}i) = e^{i \pi / 4} e^{-i\pi/3} = e^{i \pi / 12}$ נמצא ב־$(\cos(\pi/12), -\sin(\pi/12))$, \\*
+ומתקיים $\re(z_5) = \cos(\pi/12), \im(z_5) = -\sin(\pi/12), |z_4| = 1, \text{Arg}(z_2) = -\pi/12$.
+
+\Question{}
+תהי ${(z_n)}_{n = 1}^\infty \subseteq \CC$.
+
+\Subquestion{}
+נוכיח כי $z_n \to z$ אם ורק אם $\re(z_n) \to \re(z) \land \im(z_n) \to \im(z)$.
+\begin{proof}
+	תחילה נגדיר $x_n = \re(z_n), y_n = \im(z_n)$.
+
+	נניח כי $z_n \to z$.
+	לכן מתקיים $\lim_{n \to \infty} |z_n - z| = 0$, אז נקבל $|x_n - x + i(y_n - y)| \to 0$ או בהתאם ${(x_n - x)}^2 + {(y_n - y)}^2 \to 0$. \\*
+	אילו נניח בשלילה שלפחות אחת הסדרות לא מתכנסת, נקבל כי האינפימום הוא חיובי ובהתאם הגבול לא יכול להיות אפס, וסיימנו.
+
+	בכיוון ההפוך נניח $x_n \to x, y_n \to y$ ולכן בהתאם גם ${(x - x_n)}^2 + {(y - y_n)}^2 \to 0$, אבל זה שקול לגבול $|z_n - z| to 0$ וקיבלנו את הסדרה המקורית.
+\end{proof}
+
+\Subquestion{}
+נניח כי $z_n \to z$ ונסמן 4$z_n = r_n e^{i \theta_n}$ ובהתאם $z = r e^{i\theta}$. \\*
+נוכיח כי בהכרח $r_n \to r$ ונמצא דוגמה נגדית הסותרת את הטענה $\theta_n \to \theta$.
+\begin{proof}[הוכחה ($r_n \to r$)]
+	מהסעיף הקודם נסיק כי אם $z_n \to z$ אז גם $|z_n| \to |z|$, אבל $|z_n| = r_n, |z| = r$ ולכן ישירות $r_n \to r$.
+\end{proof}
+\begin{solution}[הפרכה $\theta_n \to \theta$]
+	נניח $r_n = \frac{1}{n}$, $\theta_n = n \pi$, וגם $r = 0, \theta = 1$, אז נקבל $|z_n - z| = |\frac{1}{n} e^{i\pi n} - 0| = \frac{1}{n} \to 0$ וקיבלנו את ההתכנסות $z_n \to z$ למרות שברור כי $\theta_n$ לא מתכנסת כלל.
+\end{solution}
+
+\Question{}
+נמצא נוסחה סגורה לשני הסכומים הבאים עבור $\theta \in \RR$ ו־$N \in \NN$.
+
+\Subquestion{}
+\[
+	\sum_{n = 0}^N \cos(n \theta)
+	= \sum_{n = 0}^N \re(e^{in\theta})
+	= \re( \sum_{n = 0}^N {(e^{i\theta})}^n )
+	= \re (\frac{e^{i\theta (N + 1)} - 1^N}{e^{i\theta} - 1})
+\]
+מצאנו נוסחה סגורה.
+
+\Subquestion{}
+נפעל באופן דוגמה ונקבל
+\[
+	\sum_{n = 0}^N \sin(n \theta)
+	= \im (\frac{e^{i\theta (N + 1)} - 1}{e^{i\theta} - 1})
+\]
+
+\Question{}
+לכל $c \in \CC$ נגדיר $f_c(z) = z^2 + c$, והגדרנו את קבוצת מנדלברוט על־ידי $M = \{ c \in \CC \mid {(f_c^n(0))}_{n = 1}^\infty \text{ is bound}\}$.
+
+\Subquestion{}
+נוכיח כי לכל $z \in \CC$ ו־$\epsilon > 0$ כך ש־$|z| \ge \max\{ 2 + \epsilon, |c|\}$ מתקיים $|f_c(z)| \ge (1 + \epsilon)|z|$.
+\begin{proof}
+	נשתמש בהגדרת $|z|$ ונקבל
+	\[
+		|f_c(z)| = |z^2 + c| \ge |z^2| - |c| = |z| \cdot |z| - |c| \ge |z| (2 + \epsilon) - |c|
+		= |z| (1 + \epsilon) + |z| - |c| \ge |z| (1 + \epsilon)
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $M \subseteq \overline{B}(0, 2) \subseteq \CC$.
+\begin{proof}
+	יהי $c \notin \overline{B}(0, 2)$, אז בהכרח $|c| > 2$. \\*
+	מחישוב ישיר $z_1 = f_c^1(0) = 0^2 + c$ ולכן גם $|z_1| > 2$.
+	בהתאם לטענת סעיף א' מתקיים שאם $z_2 = f_c^2(0)$ אז $|z_2| \ge |z_1|(1 + \epsilon)$ עבור $\epsilon = \frac{1}{2}$, דהינו $|z_2| \ge |z_1| \frac{3}{2}$. \\*
+	נגדיר סדרה ${(z_n)}_{n = 1}^\infty \subseteq \CC$ על־ידי תהליך זה ונקבל שגם $|z_{n + 1}| \ge \frac{3}{2} |z_n|$ ולכן נוכל להסיק כי $z_n \to \infty$, ובהתאם $c \notin M$. \\*
+	לכן נוכל להסיק כי אם $c \in M$ אז גם $c \in \overline{B}(0, 2)$.
+\end{proof}
+
+\Subquestion{}
+לכל $n \in \NN$ נגדיר $F_n = \{ c \in \CC \mid |f_c^n(0) \le 2 \}$, ונגדיר $F = \bigcap_{n \in N} F_n$. \\*
+נוכיח כי $M = F$.
+\begin{proof}
+	תחילה נבחין כי $M \supseteq F$ שכן כל איבר בקבוצה זו מהגדרתה חסום לכל $n \in \NN$ וסיימנו.
+
+	נראה כי $M \subseteq F$. \\*
+	יהי $c \in M$, אז כמובן $c \in F_1$ מסעיף ב'.
+	נניח כי $m \in \NN$ המינימלי כך ש־$c \notin F_m$.
+	אז נקבל $f_c^m(0) > 2$, אבל שוב מסעיף ב' וההנחה נקבל כי $f_c^{m - 1}(0) \in \overline{B}(0, 2)$ ולכן גן $f_c^m(0) \in \overline{B}(0, 2)$, וזו כמובן סתירה, לכן אין $m$ כזה, ובהתאם $c \in F_n$ לכל $n \in \NN$. \\*
+	נסיק כמובן ש־$c \in F$ ולכן $M \subseteq F$.
+\end{proof}
+נבחין כי חיתוך של קבוצות סגורות וקומפקטיות אף הוא חסום וקומפקטי ולכן $F$ קומפקטית, אבל $M = F$ ולכן קיבלנו כי $M$ קומפקטית.
+
+\Question{}
+\Subquestion{}
+נוכיח כי כל ישר או מעגל ב־$\CC$ נשלח למעגל ב־$\mathbb{S}^2$ תחת ההעתקה ההופכית להטלה הסטריאוגרפית המוגדרת על־ידי
+\[
+	\varphi(z) = \left( \frac{2 \re(z)}{1 + {|z|}^2}, \frac{2 \im(z)}{1 + {|z|}^2}, \frac{-1 + {|z|}^2}{1 + {|z|}^2} \right)
+\]
+\begin{proof}
+	יהי $c = a \re(z) + b \im(z)$ ישר כלשהו ב־$\CC$, נבחר שלוש נקודות שונות על ישר זה ונבחן את המישור שהן יוצרות לאחר הטלה סטריאוגרפית, נגדיר מישור זה להיות $P_C$.
+	אבל מטענה מהכיתה נובע כי החיתוך $\mathbb{S}^2 \cap P_C$ הוא ישר או מעגל בלבד ב־$\CC$, ומהגדרתו שלוש נקודות שונות של הישר שהגדרנו מונחות עליו, ולכן לא יתכן שהוא מעגל.
+	נסיק אם כן שהוא ישר, ומהתלכדות שלוש נקודות שונות בו נסיק ששני הישרים שווים.
+	נשים לב כי יכולנו לבחור שתי נקודות בלבד ולבחור את הנקודה $\infty \in \CC*$ כנקודה שלישית, שני ישירם זהים אם שתי נקודות שלהם מתלכדות ולכן טענה זו עדיין חלה.
+
+	נעבור אם כך לבחינת מעגל ב־$\CC$, גם הפעם עבור נעגל נבחר שלוש נקודות ונגדיר מישור $P_C \subseteq \RR^3$ המוגדר על־ידי הנקודות הללו אחרי העתקה סטריאוגרפית.
+	גם הפעם אנו יודעים כי $\mathbb{S}^2 \cap P_C$ מעגל ב־$\RR^3$ וגם הפעם נקבל שהוא משליך מעגל או ישר על המישור המרוכב, אבל שלוש הנקודות שבחרנו פוסלות את היותו ישר ומקבעים מעגל יחיד, שכן מעגל נוצר ביחידות על־ידי שלוש נקודות.
+\end{proof}
+
+\Subquestion{}
+נגדיר $\rho : \CC \to \RR_+$ המטריקה המושרית מההעתקה הסטריאוגרפית, ידוע כי
+\[
+	\rho(z, w) = \frac{2|z - w|}{\sqrt{(1 + {|z|}^2)(1 + {|w|}^2)}}
+\]
+נוכיח כי אם ${(z_n)}_{n = 1}^\infty \subseteq \CC$ אז $z_n \to z$ עבור $z \in \CC$ אם ורק אם $\rho(z_n, z) \to 0$.
+\begin{proof}
+	נבחין כי $\sqrt{(1 + {|z|}^2)(1 + {|w|}^2)} \ge 1$ לכל $z, w \in \CC$. \\*
+	נניח כי $z_n \to z$, לכן לפי ההגדרה $|z - z_n| \to 0$, וכן גם $2|z - z_n| \to 0$ מאריתמטיקה, לכן
+	\[
+		0 \le \rho(z_n, z) \le 2|z_n - z|
+	\]
+	לכל $n \in \NN$ ובהתאם נסיק ש־$\rho(z_n, z) \to 0$.
+
+	בכיוון ההפוך נניח כי $\rho(z_n, z) \to 0$ ובשלילה ש־$z_n \not\to z$.
+	קיים אם כך $\epsilon > 0$ כך ש־$|z - z_n| \ge \epsilon$ היא תכונה שכיחה על $n$, ובהתאם נקבל
+	\[
+		\rho(z_n, z) = \frac{2|z_n - z|}{\sqrt{(1 + {|z_n|}^2)(1 + {|z|}^2)}}
+		\ge \frac{2\epsilon}{\sqrt{(1 + {|z_n|}^2)(1 + {|z|}^2)}}
+		\ge \frac{2\epsilon}{\sqrt{(1 + \sup {|z_n|}^2)(1 + {|z|}^2)}}
+	\]
+	ובהתאם קיבלנו חסם תחתון חיובי למרחק ובהתאם קיבלנו סתירה ל־$\rho(z_n, z) \to 0$.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי לכל $z, w \in \CC$ מתקיים $\rho(z, w) = \rho(\overline{z}, \overline{w}) = \rho(\frac{1}{z}, \frac{1}{w})$.
+\begin{proof}
+	נוכיח טענה כללית יותר תחילה, נוכיח כי לכל $z \in \CC$ מתקיים $|z| = |\overline{z}|$.
+	נזכור כי הגדרנו $|z| = \sqrt{z \cdot \overline{z}}$, וראינו בכיתה כי $\overline{\overline{z}} = z$ ולכן נסיק כי $|\overline{z}| = \sqrt{\overline{z} \cdot z} = |z|$.
+	לכן בהכרח גם
+	\[
+		\rho(\overline{z}, \overline{w})
+		= \frac{2|\overline{z} - \overline{w}|}{\sqrt{(1 + {|\overline{z}|}^2)(1 + {|\overline{w}|}^2)}}
+		= \frac{2|\overline{z - w}|}{\sqrt{(1 + {|z|}^2)(1 + {|w|}^2)}}
+		= \frac{2|z - w|}{\sqrt{(1 + {|z|}^2)(1 + {|w|}^2)}}
+		= \rho(z, w)
+	\]
+	נעבור לבדיקת החלק האחרון בשוויון:
+	\begin{align*}
+		 \rho(\frac{1}{z}, \frac{1}{w})
+		& = \frac{2|\frac{1}{z} - \frac{1}{w}|}{\sqrt{(1 + {|\frac{1}{z}|}^2)(1 + {|\frac{1}{w}|}^2)}}
+		& = \frac{2|\frac{z - w}{zw}|}{\sqrt{(1 + \frac{1}{{|z|}^2})(1 + \frac{1}{{|w|}^2}|)}} \\
+		& = \frac{2|z - w|}{\sqrt{{|zw|}^2 (1 + \frac{1}{{|z|}^2})(1 + \frac{1}{{|w|}^2}|)}}
+		& = \frac{2|z - w|}{\sqrt{(1 + {|z|}^2)(1 + {|w|}^2)}} \\
+		& = \rho(z, w)
+	\end{align*}
+	ומצאנו כי השוויון אכן מתקיים.
+\end{proof}
+
+\end{document}
