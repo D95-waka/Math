@@ -474,4 +474,160 @@ $f$ דיפרנציאבילית ב־$(x_0, y_0)$ אם ניתן לחקור את ה
 	\end{enumerate}
 \end{exercise}
 
+\section{שיעור 4 --- 10.11.2024}
+בשיעור הקודם ראינו פונקציות לינאריות כדוגמה, היום נראה עוד דוגמות.
+קיימות פונקציות לינאריות ב־$\RR^2$ שאינן לינאריות כ־$\CC$.
+\begin{example}
+	יהי פולינום
+	\[
+		p(z) = \sum_{k = 0}^{N} a_k z^k, a_n \in \CC
+	\]
+	אבל כפי שראינו $f(x, y) = 2x y$ לא פולינום מרוכב, היא לא דיפרנציאבילית במובן המרוכב.
+	עוד הערה היא שמתקיים
+	\[
+		(p(z))' = \sum_{k = 0}^{N} (a_k z^k)' = \sum_{k = 0}^{N} a_k k z^{k - 1}
+	\]
+\end{example}
+המוטיבציה להגדרת המרוכבים הייתה למציאת פתרונות למשוואה $x^2 + 1 = 0$, ואכן נראה בהמשך כי אם $p$ פולינום ממעלה $k \ge 1$ אז בהכרח ניתן לפרק את $p$ לביטוי $(z - a_1) \cdots (z - a_k)$, יש לו בדיוק $k$ שורשים.
+\begin{proposition}
+	\begin{enumerate}
+		\item אם $a_N = 1$ אז נקרא לו פולינום מתוקן (monic polynom).
+		\item $p$ הוא ממשי אם $\forall k, a_k \in \RR$.
+		\item אם $p$ ממשי אז מתקיים $p(\RR) \subseteq \RR$.
+		\item אם $p$ פולינום ממשי וגם $p(z) = 0$ אז $p(\overline{z}) = 0$.
+	\end{enumerate}
+\end{proposition}
+
+נעבור לדבר על העתקות מוביוס (Mobius).
+העתקות מהצורה $h(z) = \frac{a z + b}{cz + d}$ עבור $a, b, c, d \in \CC$, הרבה פעמים מתארים על־ידי
+\[
+	A_h = \begin{pmatrix}
+		a & b \\
+		c & d
+	\end{pmatrix}
+\]
+\begin{proposition}
+	תכונות
+	\begin{enumerate}
+		\item אם $A = Id$ אז $h(z) = z$.
+		\item $h'(z) = \frac{\det(A)}{{(cz + d)}^2}$ ולכן $h$ קבועה אם ורק אם $\det(A) = 0$, לכן נניח תמיד ש־$\det(A) \ne 0$.
+		\item תהינה $A, B$ מטריצות, אז $h_A \circ h_B = h_{AB}$.
+		\item $h_{A^{-1}} = {(h_A)}^{-1}$.
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}
+	$Mob(\CC)$ קבוצת העתקות מביוס, בדרך־כלל מנורמלות כך שיש רק דטרמיננטה 1, יחד עם תכונה 3 ו־4 נותנות לקבוצה זו מבנה של חבורה.
+	לכל 3 נקודות $z_1, z_2, z_3 \in \CC$ קיימת העתקת מביוס $h$ כך ש־$h(z_1) = 1, h(z_2) = 0, h(z_3) = \infty$.
+\end{proposition}
+נשאל את עצמנו האם $0, 1, \infty$ מיוחדות.
+\begin{proof}
+	נמצא $h \in Mob(\CC)$ המקיימת $h(-1) = \infty, h(0) = i, h(1) = 0$.
+	נשים לב כי למרות שיש ארבעה משתנים חופשיים, אחד נקבע בעקבות קיבוע הדטרמיננטה, דהינו אחד השוויונות הוא $ad - bc = 1$ והוא מוריד דרגת חופש.
+	\[
+		h(0) = \frac{b}{d} = i,
+		\quad h(1) = \frac{a + b}{c + d} = 0,
+		\quad h(-1) = \frac{b - a}{c - d} = \infty
+	\]
+	מהנתון השלישי נקבל $c - d = 0$, דהינו $c = d$.
+	מהשוויון השני נקבל $a + b = 0 \iff a = -b$.
+	לבסוף נקבל גם $b = id = -a = ic$. \\*
+	נקבל אם כך ש־$h(z) = \frac{az - a}{ia z + ia} = \frac{z - 1}{i(z + 1)} = i \frac{1 - z}{1 + z}$
+\end{proof}
+\begin{proposition}
+	ההעתקה $h$ ממפה את כדור היחידה $\{ |z| < 1 \} = \mathbb{D}$ לחצי העליון של המישור המרוכב $\mathbb{H} = \{ \im z > 0 \}$
+\end{proposition}
+\begin{exercise}
+	מצאו את $h^{-1}$. בדקו לאן הוא ממפה את $\RR$ ואת $i\RR$.
+\end{exercise}
+
+טורים, ותזכורת על טורים.
+\begin{theorem}[M test]
+	נניח כי $f_n : E \to \CC$, נניח כי $|f_n| \le M_n$ ונניח כי $\sum M_n < \infty$ אז $\sum f_n$ מתכנס בהחלט ובידה שווה ב־$E$.
+\end{theorem}
+\begin{lemma}
+	אם $\sum c_n (w - z_n)$ מתכנס בהחלט אז הטור מתכנס בהחלט ובמידה שווה ב־$\{ z \mid |z - z_n| < |w - z| \}$.
+\end{lemma}
+נסמן טורים על־ידי $\sum_{n = 0}^\infty c_n {(z - z_0)}^n$.
+\begin{proposition}
+	אחד מהבאים מתקיים
+	\begin{enumerate}
+		\item לכל $z \ne z_0$ הטור מתבדר.
+		\item לכל $z$ הטור מתכנס.
+		\item קיים $R$ כך ש־$|z - z_0| < R$ אז הטור מתכנס, אם $|z - z_0| > R$ הטור מתבדר ואם $|z - z_0| = R$ לא ידוע.
+	\end{enumerate}
+\end{proposition}
+\begin{definition}[רדיוס התכנסות]
+	מספר $R_c \ge 0$ כך ש־$|z - z_0| \le R_c$ גורר שהטור מתכנס, ואם $|z - z_0| > R_c$ הטור מתבדר.
+\end{definition}
+\begin{theorem}[הדאמר]
+	$\frac{1}{R_c} = \limsup_{n \to \infty} {|c_n|}^\frac{1}{n}$. \\*
+	אם $R_c > 0$ נסמן
+	\[
+		C(z) = \sum_{n = 0}^{\infty} c_n {(z - z_0)}^n
+	\]
+	מוגדר בתחום $\{ |z - z_0| < R_c \}$.
+	אז
+	\[
+		C'(z) = \sum_{n = 1}^{\infty} c_n n {(z - z_0)}^{n - 1}
+	\]
+	וכן
+	\[
+		C^{(j)}(z) = \sum_{n = j}^{\infty} c_n n(n - 1) \cdots (n - j + 1) {(z - z_0)}^{n - j}
+	\]
+\end{theorem}
+\begin{definition}[אקספוננט מרוכב והטריגונומטריות המרוכבות]
+	\[
+		e^z = \sum_{n = 0}^{\infty} \frac{z^n}{n!}
+	\]
+	נקבל $R_c = \infty$ ולכן יש הצדקה להגדרה זו.
+	\[
+		\sin(z) = \sum_{n = 0}^{\infty} \frac{{(-1)}^n z^{2n + 1}}{(2n + 1)!},
+		\qquad \cos(z) = \sum_{n = 0}^{\infty} \frac{{(-1)}^n z^{2n}}{(2n)!}
+	\]
+\end{definition}
+\begin{proposition}[זהות אוילר]
+	\[
+		e^{iz} = \cos(z) + i \sin(z)
+	\]
+	עבור $z = \theta \in [-\pi, \pi]$.
+\end{proposition}
+\begin{exercise}
+	מתקיים
+	\begin{enumerate}
+		\item $\frac{e^{iz} + e^{-iz}}{2} = \cos(z)$
+		\item $\frac{e^{iz} - e^{-iz}}{2} = \sin(z)$
+	\end{enumerate}
+	מראים זאת עם הטורים ומסיקים את הזהות.
+\end{exercise}
+ואז אפשר להסיק שמתקיים
+\[
+	\cos(z) + i \sin(z)
+	= \frac{e^{iz} + e^{-iz}}{2}
+	+ i \frac{e^{iz} - e^{-iz}}{2}
+	= e^{iz}
+\]
+\begin{exercise}
+	הראו ש־$e^z$ אנליטית ב־$\CC$, הסיקו גזירות, $\sin z, \cos z$ ומצאו את הנגזרות.
+\end{exercise}
+\begin{proposition}
+	תהי $f$ הולומורפית (אנליטית ב־$\CC$) המקיימת $f' = f$, אז $f(z) = c \cdot e^z$.
+\end{proposition}
+\begin{proof}
+	נסמן $g(z) = f(z) \cdot e^{-z}$.
+	$g$ הולומורפית כמכפלת פונקציות הולומורפיות.
+	\[
+		g'(z) = f'(z) e^{-z} + f(z) (-e^{-z})
+		= e^{-z} (f'(z) - f(z))
+		= 0
+	\]
+	לכן $g' = 0$ ולכן $g(z) = c$, ובהתאם $c = g(z) = f(z) e^{-z}$ ובהתאם $f(z) = c e^z$.
+\end{proof}
+\begin{conclusion}
+	$f = f' \iff f = ce^z$
+\end{conclusion}
+נעבור לפונקציות יוצאות.
+נגדיר $\tan(z) = \frac{\sin(z)}{\cos(z)} = \frac{\frac{e^{iz} - e^{-iz}}{2}}{\frac{e^{iz} + e^{-iz}}{2}}= -i \frac{e^{iz} + e^{-iz}}{e^{iz} + e^{-iz}}$.
+נגדיר גם $\cot(z) = \frac{\cos(z)}{\sin(z)}$.
+באופו אופן $\sinh(z) = i \sin(iz) = \frac{e^z - e^{-z}}{2}$ וכמובן $\cosh(z) = \frac{e^z + e^{-z}}{2}$.
+
 \end{document} % chktex 17
