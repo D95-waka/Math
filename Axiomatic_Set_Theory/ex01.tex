@@ -1,0 +1,67 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- תורת הקבוצות האקסיומטית, 80650}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נניח את Z --- Foundation, ותהי קבוצה טרנזיטיבית לא ריקה $x$, נניח גם שלכל $y \in x$ יש קבוצה טרנזיטיבית $z$ כך ש־$y \subseteq z \in x$, ולכל $y \in x$ גם $\mathcal{P}(y) \in x$.
+
+\Subquestion{}
+נוכיח ש־$\langle x, \in \rangle$ הוא מודל שמקיים את האקסיומות: ההיקפיות, הקבוצה הריקה, הפרדה והאיחוד.
+\begin{proof}
+	נוכיח את האקסיומות:
+	\begin{itemize}
+		\item היקפיות:
+			אם $\varphi = \forall y, y' (y = y' \iff \forall z(z \in y \iff z \in y'))$ אז בהתאם $\varphi^x = \forall y, y' \in x (y = y' \iff \forall z \in x (z \in y \iff z \in y'))$. \\*
+			זהו כמובן פסוק $\Delta_0$ ולכן נוכל להסיק שהוא מתקיים אם ורק אם $\varphi^x$ מתקיים, והוא אכן מתקיים.
+		\item הקבוצה הריקה:
+			נתון כי $x$ טרנזיטיבית ולכן $\in$ מגדיר עליה סדר טוב, בהתאם קיים $y \in x$ כך שלכל $z \in x$ גם $y \in z$, לכן $\exists y \in x (\forall z \in x (z \notin y))$ ולמעשה $\emptyset^x = y$.
+		\item סכמת החלפה: תהי $y \in x$, אז גם $\PP(y) \in x$ ומטרנזיטיביות גם $\forall z \in z \in \PP(y) \in x \implies z \in x$. \\*
+			עתה תהי $A$ מחלקה לא ריקה ב־$x$, אז כמובן $A^x$ מחלקה $\Delta_0$ ובהתאם נוכל לקבל ש־$y \cap A^x \in V$ וגם $y \cap A^x \subseteq y$, לכן $y \cap A^x \in \PP(y)$ אבל מצאנו כי במצב זה $y \cap A^c \in x$.
+		\item איחוד:
+			תהי $y \in x$, אז קיימת $z \in x$ טרנזיטיבית כך ש־$y \subseteq z$, לכל $a \in y$ מתקיים $a \in z$ ולכן לכל $b \in a$ גם $b \in z$, אם כך נשתמש באקסיומת החלפה על מחלקת האיחוד של $y$ על $z$ ונקבל $\bigcup y$.
+	\end{itemize}
+\end{proof}
+
+\Question{}
+נניח את אקסיומת היסוד ונראה ש־$\langle x, \in \rangle$ מודל המקיים גם את אקסיומת היסוד.
+\begin{proof}
+	נבחין כי אם $\varphi$ אקסיומת היסוד אז $\varphi$ מתקיים ולכן גם $\varphi^x$ מתקיים, אבל $\varphi^x$ הוא $\Delta_0$ ולכן גם $\langle x, \in \rangle$ מקיים אותו, ולכן $\langle x, \in \rangle \models \varphi$. \\*
+	נוכל לראות גם שאם $\langle x, \in \rangle \not\models \varphi$ אז קיים $y \in x$ כך ש־$\langle x, \in \rangle \models \lnot \varphi(y)$ אבל $y \in V$ ולכן $\models \lnot \varphi(y)$ וזו סתירה לאקסיומה שהנחנו.
+\end{proof}
+
+\Question{}
+נניח עתה שגם
+\[
+	\forall y, z \in x (y \cup z \in x)
+\]
+ונוכיח שהמודל מקיים את אקסיומת הזוג הלא סדור.
+\begin{proof}
+	נגדיר $\varphi(y) = \forall z, z' \in y (z = z')$ הנוסחה שקיים איבר יחיד ב־$y$ ($y$ יחידון), כמובן היא תקפה מאקסיומת ההיקפיות,
+	ידוע גם ש$y \in x \implies \mathcal{P}(y) \in x$, ולכן מסכמת הפרדה גם מחלקת היחידונים מ־$y$ קבוצה ומטרנזיטיביות נקבל כי $\{ y \} \in x$, נעשה תהליך זה שוב עבור $z \in x$. \\*
+	נקבל מהנוסחה הנתונה כי גם $\{ y \} \cup \{ z \} = \{ y, z \} \in x$ ולכן אקסיומת הזוג הלא סדור חלה.
+\end{proof}
+נקבל כי $\langle x, \in \rangle$ מקיים את Z --- Infinity.
+
+\Question{}
+נניח ש־$\omega \in x$ ונוכיח ש־$\langle x, \in \rangle$ מקיים את אקסיומת האינסוף.
+\begin{proof}
+	מאקסיומת השלמות קיים $\alpha \in \omega$ כך שחיתוכם זר ב־$x$.
+	כמובן $\alpha < \omega$ מאקסיומת הפרדה עבור התכונה של איבר מינימלי נקבל כי $\emptyset \in x$, לכן $\emptyset^x = \emptyset$.
+	אז נקבל מכל האקסיומות מלבד אינסוף שהעוקב לקבוצה הריקה, והעוקב ה־$n$־סופי של הקבוצה הריקה כולם מוכלים ב־$x$, ונתון כי גם $\omega$ מוכל בה, ולכן אקסיומת האינסוף מתקיימת.
+\end{proof}
+
+\Question{}
+נניח עתה את ZF\@. נוכיח שלכל $\alpha$ סודר גבולי ככה ש־$\alpha \ge \omega + \omega$ ולכל $\varphi$ אקסיומה של Z, $\langle V_\alpha, \in \rangle \models \alpha$.
+\begin{proof}
+	יהי $\alpha$ כזה, נבחין כי $V_\alpha$ טרנזיטיבית (טענה מהכיתה) ונתון כי איננה ריקה. עוד ראינו כי לכל $y \in V_\alpha$ קיים $\beta \in \alpha$ כך ש־$y \subseteq V_\beta$,
+	ומטרנזיטיביות $V_\beta \in V_\alpha$. לבסוף, גם $\mathcal{P}(y) \in V_{\alpha + 1}$ ולכן $\mathcal{P}(y) \in V_\alpha$, אז טענת שאלה 1 חלה וכך גם 2 (הנחנו יסוד). \\*
+	אם $y, z \in V_\alpha$ אז קיימים $i, j < \alpha$ כך ש־$y \in V_i, z \in V_z$, וכן בהכרח $V_i \le V_j$ או הפוך, נניח $V_i \le V_j$ ולכן מטרנזיטיביות $y, z \in V_j$.
+	בהתאם $\{ i, j \} \subseteq V_j$ כמחלקה, ולכן $\{ y, z \} \in V_{j + 1}$, לכן נוכל להסיק כי זו קבוצה, מטרנזיטיביות נקבל $\{ y, z \} \in V_\alpha$. \\*
+	מצאנו אם כך שטענת שאלה 3 מתקיימת אף היא.
+	ידוע כי $\alpha \ge \omega$ ולכן $\omega \in V_\alpha$ ולכן $\langle V_\alpha, \in \rangle$ מקיים את Z.
+\end{proof}
+
+\end{document}
