@@ -630,4 +630,35 @@ $f$ דיפרנציאבילית ב־$(x_0, y_0)$ אם ניתן לחקור את ה
 נגדיר גם $\cot(z) = \frac{\cos(z)}{\sin(z)}$.
 באופו אופן $\sinh(z) = i \sin(iz) = \frac{e^z - e^{-z}}{2}$ וכמובן $\cosh(z) = \frac{e^z + e^{-z}}{2}$.
 
+\section{שיעור 5 --- 14.11.2024}
+\subsection{לוגריתם מרוכב}
+נבחין כי אם $z_1 = i \pi / 2, z_2 = i(\pi / 2 + 2\pi)$ אז $e^{z_1} = e^{z_2}$, לכן האקספוננט המרוכב הוא לא חד־חד ערכי.
+\begin{definition}
+	הגדרנו את $\Arg : \CC \to (-\pi, \pi]$, זהו הענף הראשי של הארגומנט. % chktex 9
+	בהתאם נגדיר את הענף הראשי של הלוגריתם על־ידי
+	\[
+		\text{Log}(z) = \log |z| + i \Arg(z)
+	\]
+\end{definition}
+\begin{remark}
+	אם $z_1, z_2 \in 2\pi i \ZZ$ אז $\Arg(z_1) = \Arg(z_2) \implies \text{Log}(z_1) = \text{Log}(z_2)$.
+\end{remark}
+הקטע הוא להסתכל על קבוצת מקרים ספציפית שמכסה את כל המקרים.
+\begin{definition}[ענף]
+	תהי $G \subseteq \CC$ תחום המקיים $0 \in G$. \\*
+	נגדיר \textbf{ענף} של הארגומנט להיות כל פונקציה $\alpha : G \to \RR$ רציפה המקיימת
+	\[
+		\alpha(z) \in \{ \Arg(z) + 2\pi k \mid k \in \ZZ \}
+	\]
+\end{definition}
+\begin{example}
+	$G = \{ \re(x) > 0 \mid x \in \RR \}$, אז נוכל להגדיר $\arg_G(z) = \Arg(z)$, נבחין כי היא אכן רציפה ומקיימת את הטענה.
+\end{example}
+\begin{example}
+	הפעם $G = \CC \setminus \RR_{\ge 0}$. \\*
+	הפעם נגדיר $\alpha(z) = \Arg(e^{i \pi} z)$ כדי לעמוד בהגדרת התחום. \\*
+	לכן $\alpha : G \to (0, 2\pi]$. % chktex 9
+	$\alpha$ רציפה שכן $\Arg$ רציפה בתחום הנתון, ובנוסף אכן מתקיים $\alpha(z) \in \{ \Arg(z) + 2\pi k\}$.
+\end{example}
+
 \end{document} % chktex 17

@@ -970,4 +970,237 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\]
 \end{example}
 
+\section{תרגול 3 --- 14.11.2024}
+
+\subsection{הסתברות מותנית}
+\begin{exercise}
+	מטילים זוג קוביות הוגנות ושונות. נתון שסכום תוצאותיהן גדול מעשר,
+	מה ההסתברות שבהטלה השנייה יצא 6?
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = {[6]}^2$ עם $\PP$ אחידה. \\*
+	עוד נגדיר $A = \{ (x, y) \in \Omega \mid x + y > 10 \}$ וכן $B = \{ (x, 6) \in \Omega \}$, לכן
+	\[
+		\PP(B \mid A)
+		= \frac{\PP(A \cap B)}{\PP(A)}
+		= \frac{\frac{|A \cap B|}{|\Omega|}}{\frac{|A|}{|\Omega|}}
+		= \frac{|A \cap B|}{|A|} = \frac{2}{3}
+	\]
+\end{solution}
+\begin{exercise}
+	אדם מחפש מכתב, זכור לו במעורפל בהסתברות $0 \le p \le 1$ שהניח אותו באחת ממגירות שולחן העבודה. \\*
+	בשולחן $n$ מגירות והאדם חיפש ב־$k$ המגירות הראשונות ולא מצא את המכתב. \\*
+	מה ההסתברות שהמכתב בשולחן?
+\end{exercise}
+\begin{solution}
+	נגדיר $A$ להיות המאורע שהמכתב בשולחן ו־$B_k$ המכתב לא באף אחת מ־$k$ המגירות הראשונות. אנו מחפשים את $\PP(A \mid B_k)$. \\*
+	לכן
+	\[
+		\PP(A \mid B_k)
+		= \frac{\PP(A \cap B_k)}{\PP(B_k)}
+	\]
+	עוד אנו יודעים כי
+	\[
+		\PP(A) = p,
+		\PP(B_k) = 1 - \frac{kp}{n}
+	\]
+	אזי
+	\[
+		\frac{\PP(A \cap B_k)}{\PP(B_k)}
+		= \frac{\frac{(n - k)p}{n}}{\frac{n - kp}{n}}
+		= \frac{(n - k) p}{n - kp}
+	\]
+\end{solution}
+\begin{exercise}
+	האדם הוא מתודי והחליט להפסיק את החיפוש אם ההסתברות שהמכתב בשולחן קטנה מ־$\frac{1}{4}$. \\*
+	נניח ש־$p = \frac{3}{4}$ ושיש 10 מגירות, כמה מגירות תיבדקנה לכל היותר עד שהאדם יפסיק את החיפוש?
+\end{exercise}
+\begin{solution}
+	\[
+		\frac{1}{4} > \PP(A \mid B_k) = \frac{(10 - k) \frac{3}{4}}{10 - \frac{3k}{4}} \iff k > \frac{89}{11}
+	\]
+	נבדוק לכל היותר 8 מגירות.
+\end{solution}
+
+\subsection{ניסוי דו־שלבי על־ידי הסתברות מותנית}
+\begin{proposition}
+	נניח שנתון ניסוי דו־שלבי על $\Omega_1 \times \Omega_2$ עם פונקציית הסתברות נקודתית $p$ על $\Omega_1$ ולכל $\omega \in \Omega_1$ גם $p_\omega$ היא פונקציית הסתברות נקודתית על $\Omega_2$. \\*
+	אם $\PP$ היא פונקציה על $\Omega_1 \times \Omega_2$ המקיימת
+	\[
+		\PP(\{a, x\}) = p(a),
+		\qquad
+		\PP(\{ x, b \} \mid \{ (a, x) \}) = p_a(b)
+	\]
+	אז $\PP$ היא פונקציית הסתברות יחידה המתאימה לניסוי הדו־שלבי.
+\end{proposition}
+\begin{proof}
+	יהי $(a, b) \in \Omega_1 \times \Omega_2$, מכלל השרשרת נובע
+	\[
+		\PP(\{(a, b)\})
+		= \PP(\{(a, x)\}) \cdot \PP(\{(x, b)\} \mid \{(a, x)\})
+		= p(a) \cdot p_a(b)
+		= q(a, b)
+	\]
+	עבור $q$ פונקציית הסתברות נקודתית של $\PP$.
+\end{proof}
+נבחין שוב כי בעוד כל ניסוי דו־שלבי, ניתן לבחון אותו כניסוי מותנה, הכיוון ההפוך לא בהכרח מתקיים; לא כל ניסוי מותנה הוא ניסוי דו־שלבי. \\*
+נבחן דוגמות לשימוש בקשר זה.
+\begin{exercise}
+	בשוק ישנם שלושה סוגי מחשבים. חצי מסוג ראשון, 30\% מסוג שני ו־20\% מסוג שלישי. \\*
+	הסיכוי שמחשב מסוג ראשון יתקלקל בשנתו הראשונה הוא עשירית, הסיכוי לסוג שני הוא חמישית והסיכוי למחשב מהסוג השלישי הוא $\frac{1}{20}$. \\*
+	קונים מחשב באקראי מבין מחשבי השוק, מה ההסתברות שהוא יתקלקל בשנתו הראשונה?
+\end{exercise}
+\begin{solution}
+	נסמן $C_j$ הוא המאורע שקנינו מחשב מסוג $j$ ו־$B$ המאורע שהמחשב התקלקל בשנתו הראשונה. \\*
+	עוד נתון $\PP(C_1) = \frac{l}{2}, \PP(C_2) = \frac{3}{10}, \PP(C_3) = \frac{1}{5}$. \\*
+	נתונים לנו גם $\PP(B \mid C_1) = \frac{1}{10}, \PP(B \mid C_2) = \frac{1}{5}, \PP(B \mid C_3) = \frac{1}{20}$.
+	מנוסחת ההסתברות השלמה נובע
+	\[
+		\PP(B) = \PP(B \mid C_1) \PP(C_1) + \PP(B \mid C_2) \PP(C_2) + \PP(B \mid C_3) \PP(C_3)
+	\]
+\end{solution}
+\begin{exercise}
+	במבחן אמריקאי לכל שאלה 4 אפשרויות ובדיוק 1 נכונה.
+	סטודנטית ניגשת למבחן עם האסטרטגיה הבאה:
+	\begin{itemize}
+		\item אם היא יודעת את התשובה היא עונה נכונה.
+		\item אם היא לא יודעת את התשובה אז היא בוחרת תשובה אקראית.
+	\end{itemize}
+	נתון כי הסטודנטית יודעת את התשובה ל־90\% משאלות הבחינה. \\*
+	בוחרים שאלה באקראי, ונתון שהסטודנטית ענתה עליה נכון, מה ההסתברות שהיא ידעה את התשובה.
+\end{exercise}
+\begin{solution}
+	נסמן ב־$A$ את המאורע שהסטודנטית ידעה את התשובה, וב־$B$ את המאורע שהסטודנטית ענתה נכון. \\*
+	אנו יודעים כי $\PP(A) = \frac{9}{10}$ וגם כי $\PP(B \mid A) = 1, \PP(B \mid A^C) = \frac{1}{4}$.
+	\[
+		\PP(A \mid B)
+		= \frac{\PP(A)}{\PP(B)} \PP(B \mid A)
+		= \frac{\frac{9}{10} \cdot 1}{\PP(B \mid A) \cdot \PP(A) + \PP(B \mid A^C) \cdot \PP(A^C)}
+		= \frac{\frac{9}{10}}{\frac{9}{10} + \frac{1}{4} \cdot \frac{1}{10}}
+		= \frac{\frac{9}{10}}{\frac{37}{40}}
+		\approx 0.973
+	\]
+\end{solution}
+
+\section{שיעור 6 --- 14.11.2024}
+
+\subsection{אי־תלות}
+\begin{definition}[מאורעות בלתי־תלויים]
+	מאורעות $A, B$ המקיימים $\PP(A \cap B) = \PP(A) \PP(B)$ יקראו \textbf{בלתי־תלויים}.
+\end{definition}
+\begin{remark}
+	נובע שמתקיים
+	\[
+		\PP(A \mid B) = \PP(A),
+		\qquad
+		\PP(B \mid A) = \PP(B)
+	\]
+\end{remark}
+\begin{remark}[תזכורת]
+	אם $A \subseteq \Omega_1$ ו־$B \subseteq \Omega_2$ ועובדים עם $\PP$ פונקציית הסתברות של מרחב המכפלה $\Omega_1 \times \Omega_2$. \\*
+	אז ראינו שמתקיים $\PP(A \times B) = \PP_1(A) \cdot \PP_2(B) = \PP(A \times \Omega_2) \cdot \PP(\Omega_1 \times B)$
+\end{remark}
+\begin{example}
+	מטילים שתי קוביות, אז $\Omega = {[6]}^2$. \\*
+	נגדיר $A = \{ 4 \} \times [6]$ המאורע שיצא 4 בקוביה הראשונה ו־$B$ המאורע שסכום הקוביות הוא 7.
+	\[
+		\PP(A) = \frac{|A|}{|\Omega|} = \frac{1}{6},
+		\qquad
+		\PP(B) = \frac{|B|}{|\Omega|} = \frac{1}{6}
+	\]
+	וחישוב חיתוך המאורעות יניב
+	\[
+		\PP(A \cap B) = \frac{|A \cap B|}{|\Omega|} = \frac{|\{(4, 3)\}|}{36} = \frac{1}{36} = \PP(A) \PP(B)
+	\]
+	אז המאורעות בלתי־תלויים.
+\end{example}
+\begin{proposition}
+	\begin{enumerate}
+		\item לכל מרורע $A$, $A$ ו־$\emptyset$ בלתי־תלויים וכן $A$ ו־$\Omega$ בלתי־תלויים.
+		\item אם $A$ ו־$B$ בלתי־תלויים ו־$\PP(B) > 0$ אז $\PP(A \mid B) = \PP(A)$.
+		\item אם $A$ ו־$B$ בלתי־תלויים אז גם $A^C$ ו־$B$ בלתי תלויים.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	נוכיח את הטענה השלישית
+	\[
+		\PP(B \cap A^C)
+		= \PP(B) - \PP(A \cap B)
+		= \PP(B) - \PP(B) \PP(A)
+		= \PP(B) (1 - \PP(A))
+		= \PP(B) \PP(A^C)
+	\]
+	במעבר הראשון השתמשנו בנוסחת ההסתברות השלמה על החלוקה $A, A^C$.
+\end{proof}
+נראה הגדרה לאי־תלות במספר מאורעות, אך לא ההגדרה שאנו רוצים לעבוד איתה.
+\begin{definition}[אי־תלות בזוגות]
+	אם $A_1, \dots, A_n$ נקראים בלתי תלויים בזוגות אם
+	\[
+		\forall 1 \le i < j \le n, \PP(A_i \cap A_j) = \PP(A_i) \PP(A_j)
+	\]
+\end{definition}
+\begin{definition}
+	מאורע $A$ נקרא בלתי־תלוי בקבוצת המאורעות $B_1, \dots, B_n$ אם לכל $I \subseteq [n]$ מתקיים
+	\[
+		\PP(A \mid \bigcap_{i \in I} B_i) = \PP(A)
+	\]
+	דהינו $A$ ו־$\bigcap_{i \in I} B_i$ בלתי־תלוי.
+\end{definition}
+\begin{exercise}
+	הביאו דוגמה למאורעות $A, B_1, B_2$ כך ש־$A$ ו־$B_1$ בלתי־תלויים וכך גם $A$ ו־$B_2$ אבל $A$ לא בלתי־תלוי בקבוצה $\{B_1, B_2\}$. \\*
+	הראו כי אם $A, B_1$ בלתי־תלויים וגם $A, B_2$ בלתי־תלויים וגם $B_1, B_2$ זרים, אז $A$ בלתי־תלוי ב־$\{B_1, B_2\}$.
+\end{exercise}
+\begin{proposition}
+	$A$ בלתי־תלוי ב־$\{B_1, \dots, B_n\}$ אם ורק אם $A$ בלתי תלוי ב־$\{B_1, \dots, B_n, B_1^C, \dots, B_n^C\}$.
+\end{proposition}
+\begin{proof}
+	הכיוון השני הוא טריוויאלי, לכן נוכיח את הכיוון הראשון בלבד. \\*
+	נראה ש־$A$ בלתי־תלוי בקבוצה ${\{B_1, \dots, B_n, B_1\}}^C$.
+	נרצה להראות שלכל $I \subseteq [n + 1]$ מתקיים ש־$A$ ו־$\bigcap_{i \in I} B_i$ בלתי־תלויים. \\*
+	אם $n + 1 \notin I$ אז לפי ההנחה חוסר התלות כבר מתקיים. \\*
+	אחרת נגדיר $J = I \setminus \{ n + 1 \}$ ולכן $I = J \uplus \{ n + 1 \}$, ומכאן נובע
+	\begin{align*}
+		\PP((\bigcap_{i \in I} B_i) \cap A)
+		& = \PP((\bigcap_{i \in J} B_i) \cap B_1^C \cap A) \\
+		& = \PP(\bigcap_{i \in J} B_i \cap A) - \PP(\bigcap_{i \in J} B_i \cap B_1 \cap A) \\
+		& = \PP(\bigcap_{i \in J} B_i) \PP(A) - \PP(\bigcap_{i \in J} B_i \cap B_1) \PP(A) \\
+		& = \PP(\bigcap_{i \in J} B_i \cap B_1^C) \PP(A) \\
+		& = \PP(\bigcap_{i \in I} B_i) \PP(A)
+	\end{align*}
+	ומצאנו כי ניתן להוסיף איבר, בשל כך נוכל לבצע את התהליך איטרטיבית ולקבל את המבוקש.
+\end{proof}
+\begin{definition}[אי־תלות קבוצת מאורעות]
+	קבוצת מאורעות $\{A_1, \dots, A_n\}$ נקראת בלתי־תלויה אם לכל $I \subseteq [n]$ מתקיים
+	\[
+		\PP(\bigcap_{i \in I} A_i) = \prod_{i \in I} \PP(A_i)
+	\]
+\end{definition}
+\begin{conclusion}
+	אם $A_1, \dots, A_n$ בלתי־תלויים, אז גם כל תת־קבוצה של מאורעות היא בלתי־תלויה. \\*
+	בפרט $A_1, \dots, A_n$ בלתי־תלויים גורר ש־$A_1, \dots, A_n$ בלתי־תלויים בזוגות.
+\end{conclusion}
+\begin{proposition}
+	קבוצת מאורעות $\{A_1, \dots, A_n\}$ בלתי־תלויה אם ורק אם לכל $i \in [n]$ מתקיים ש־$A_i$ בלתי־תלויה ב־$\{A_1, \dots, A_n\} \setminus \{A_i\}$.
+\end{proposition}
+\begin{proof}
+	לכיוון הראשון, נרצה להראות ש־$A_1$ לא תלוי ב־$\{A_2, \dots, A_n\}$, כלומר לכל $I \subseteq \{2, \dots, n\}$ רוצים להראות ש־$\PP(\bigcap_{i \in I} A_i \cap A_1) = \PP(\bigcap_{i \in I} A_i) \PP(A_1)$ על־ידי
+	\[
+		\PP(\bigcap_{i \in I} A_i \cap A_1)
+		= (\prod_{i \in I} \PP(A_i)) \PP(A_1)
+		= \PP(\bigcap_{i \in I} A_i) \PP(A_1)
+	\]
+
+	נעבור לכיוון השני.
+	צריך להראות שלכל $I \subseteq [n]$ מתקיים $\PP(\bigcap_{i \in I} A_i) = \prod_{i \in I} \PP(A_i)$.
+	תהי $I \subseteq [n] = \{ i_1, \dots, i_k \}$ כאשר $|I| = k$. \\*
+	לפי ההנחה $A_{i_1}$ בלתי־תלוי ב־$\{ A_j \mid j \in [n] \setminus \{ i_1 \}\}$, לכן נקבל באינדוקציה
+	\[
+		\PP(\bigcap_{l = 1}^k A_{i_l})
+		= \PP(A_{i_1} \cap (\bigcap_{l = 2}^k A_{i_l}))
+		= \PP(A_{i_1}) \cdot \PP(\bigcap_{l = 2}^k A_{i_l})
+		= \PP(A_{i_1}) \PP(A_{i_2}) \PP(\bigcap_{l = 3}^k A_{i_l})
+		= \cdots = \PP(A_{i_1}) \cdots \PP(A_{i_k})
+	\]
+\end{proof}
+
 \end{document}
