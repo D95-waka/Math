@@ -1,0 +1,143 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהינה $f, g : U \to \CC$ פונקציות אנליטיות המוגדרות על קבוצה פתוחה $U \subseteq \CC$.
+
+\Subquestion{}
+נוכיח כי $(f + g)'(z) = f'(z) + g'(z)$.
+\begin{proof}
+	מהגדרת הנגזרת נובע
+	\[
+		(f + g)'(z_0)
+		= \lim_{z \to z_0} \frac{(f + g)(z) - (f + g)(z_0)}{z - z_0}
+		= \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} + \frac{g(z) - g(z_0)}{z - z_0}
+	\]
+	אבל שני הביטויים הללו נתונים ולכן מאריתמטיקה
+	\[
+		(f + g)'(z_0)
+		= \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} + \lim_{z \to z_0}  \frac{g(z) - g(z_0)}{z - z_0}
+		= f'(z_0) + g'(z_0)
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $(f \cdot g)'(z) = f'(z) g(z) + f(z) g'(z)$.
+\begin{proof}
+	מהגדרת הנגזרת ומרציפות פונקציות גזירות נובע
+	\begin{align*}
+		(f \cdot g)'(z_0)
+		& = \lim_{z \to z_0} \frac{(f \cdot g)(z) - (f \cdot g)(z_0)}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{f(z) \cdot g(z) - f(z_0) \cdot g(z_0)}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{(f(z) - f(z_0)) \cdot g(z) + f(z_0) g(z) - f(z_0) \cdot g(z_0)}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} \cdot g(z) + \frac{f(z_0) g(z) - f(z_0) \cdot g(z_0)}{z - z_0} \\
+		& = f'(z_0) g(z_0) + f(z_0) \lim_{z \to z_0} \frac{g(z) - g(z_0)}{z - z_0} \\
+		& = f'(z_0) g(z_0) + f(z_0) g'(z_0)
+	\end{align*}
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $(f \circ g)'(z) = f'(g(z)) \cdot g'(z)$.
+\begin{proof}
+	מהגדרת הנגזרת נקבל
+	\begin{align*}
+		(f \circ g)'(z_0)
+		& = \lim_{z \to z_0} \frac{(f \circ g)(z) - (f \circ g)(z_0)}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{f(g(z)) - f(g(z_0))}{g(z) - g(z_0)} \cdot \frac{g(z) - g(z_0)}{z - z_0} \\
+		& = f'(g(z_0)) \cdot g'(z_0)
+	\end{align*}
+\end{proof}
+
+\Question{}
+עבור הפונקציות הבאות נמצא את נקודות הגזירות ונקבע באילו נקודות היא אנליטית.
+
+\Subquestion{}
+\[
+	f(x + iy) = (x^2 + y^2) + i (-x^2 + y^2)
+\]
+\begin{solution}
+	נבחין כי אם נגזור את החלק מממשי נקבל
+	\[
+		\re(f(x + iy))' = (x^2 + y^2)' = (2x, 2y)
+	\]
+	ובאופן דומה
+	\[
+		\im(f(x + iy))' = (-x^2 + y^2)' = (-2x, 2y)
+	\]
+	כמובן $2y = 2y$ בכל התחום, אך $2x = - 2x \iff x = 0$ ולכן היא גזירה על הציר המדומה בלבד. \\*
+	בהתאם אין נקודה פנימית בתחום הגזירות ולכן $f$ לא אנליטית לאף נקודה.
+\end{solution}
+
+\Subquestion{}
+\[
+	g(x + iy) = x^2 + 3iy
+\]
+גם הפעם נחשב
+\[
+	\re(g(x + iy))' = (3x^2, 0),
+	\qquad
+	\im(g(x + iy))' = (0, 3)
+\]
+אין נקודה בה $3 = 0$ ולכן $g$ לא גזירה באף נקודה.
+
+\Subquestion{}
+\[
+	h(x + iy) = |x^2 - y^2| + 2i xy
+\]
+\begin{solution}
+	נבחן את הנגזרות החלקיות כשאר $x^2 \ge y^2$:
+	\[
+		\re(h)' = (2x , -2y),
+		\qquad
+		\im(h)' = (2, 2)
+	\]
+	ונקבל גזירות כאשר $x = 1, y = -1$ בלבד. \\*
+	נבחן את הנגזרות החלקיות בשאר המקרים:
+	\[
+		\re(h)' = (-2x, 2y),
+		\qquad
+		\im(h)' = (2, 2)
+	\]
+	ונקבל $x = -1, y = 1$ בלבד, אך לא מתקיים ${(-1)}^2 < 1^2$ ולכן נוכל להסיק כי $1 - i$ נקודת גזירות יחידה.
+\end{solution}
+
+\Subquestion{}
+\[
+	\forall a, b \in \CC,
+	k(z) = az + b \overline{z}
+\]
+\begin{solution}
+	ראינו כבר כי אם $b = 0$ אז $k$ גזירה ואנליטית בכל תחומה. \\*
+	אילו $a = 0$ נקבל
+	\[
+		\lim_{z \to z_0} b\frac{\overline{z} - \overline{z_0}}{z - z_0}
+		= b \lim_{z \to z_0} \frac{\overline{z - z_0}}{z - z_0}
+	\]
+	ומכאן ניתן לראות כי הצבה של סדרות ממשיות תניב נגזרת $1$ והצבת סדרות מדומות תניב $-1$ ו־$k$ איננה גזירה באף נקודה. \\*
+	נניח $a, b \ne 0$ ונניח שקיימים ערכים עבורם $k$ גזירה, נקבל אם כך $(a z + b \overline{z})'$ גזיר, ומשאלה 1 נסיק $az' + b\overline{z}'$ ביטוי מוגדר, וזו כמובן סתירה לתוצאה שקיבלנו זה עתה. \\*
+	נסיק שכל עוד $b = 0$ אז $k$ הולומורפית.
+\end{solution}
+
+\Question{}
+תהי $f : G \to \CC$ פונקציה אנליטית המוגדרת על תחום $G \subseteq \CC$.
+
+\Subquestion{}
+נוכיח כי אם $\forall z \in G, f'(z) = 0$ אז $f$ בהכרח קבועה.
+\begin{proof}
+	תהינה שתי נקודות $z_0, z_1 \in G$, נניח גם $z_0 \ne z_1$. \\*
+	נגדיר מסילה $l = [z_0, z_1]$, אז כמובן $l : \RR \to \CC$, ונבחן את הגרסה שלה בשני משתנים $l : \RR \to \RR^2$ במקום. \\*
+	בגרסה זו נגזרתה מתלכדת עם הנגזרת הכיוונית $Df_{z_1 - z_0} = 0$, ולכן גם $\nabla l = {(0, 0)}^t$. \\*
+	ידוע ש־$z_0 \ne z_1 \iff (\re(z_0) \ne \re(z_1) \lor \im(z_0) \ne \im(z_1))$ נניח בלי הגבלת הכלליות ש־$\re(z_0) \ne \re(z_1)$ ולכן אם $l = (l_1, l_2)$ מספיק שנבחן את $l_1$. \\*
+	קיבלנו ש־$l_1 : \RR \to \RR$ וגם $l'(t) = 0$ לכל $0 \le t \le 1$, ולכן $l_1(0) = l_1(1)$ וזאת בסתירה להנחתנו, לכן $z_0 = z_1$ בלבד.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם $f(G) \subseteq \RR$ אז $f$ בהכרח קבועה.
+\begin{proof}
+\end{proof}
+
+\end{document}
