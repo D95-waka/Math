@@ -138,6 +138,197 @@
 \Subquestion{}
 נוכיח כי אם $f(G) \subseteq \RR$ אז $f$ בהכרח קבועה.
 \begin{proof}
+	נראה כי אם $z = x + iy$ אז נובע
+	\[
+		\frac{\partial f}{\partial x} (x_0 + iy_0) = \frac{\partial f}{\partial iy} (x_0 + iy_0) = 0
+	\]
+	דהינו $f$ אנליטית אם ורק אם $f'(z) = 0$ לכל $z \in G$, אז מהסעיף הקודם נובע $f$ קבועה.
 \end{proof}
+
+\Subquestion{}
+נוכיח כי אם $f(\overline{z})$ אנליטית אז $f$ בהכרח קבועה.
+\begin{proof}
+	מנתון נסיק ישירות כי גם $\overline{f(\overline{\overline{z}})}$ אנליטית, דהינו $\overline{f(z)}$. \\*
+	אבל ידוע כי גם $f$ גזירה ולכן
+	\[
+		\frac{\partial f}{\partial iy}(z)
+		= \frac{\partial f}{\partial x}(z)
+		= \frac{\partial \overline{f}}{\partial x}(z)
+		= \frac{\partial \overline{f}}{\partial iy}(z)
+		= -\frac{\partial f}{\partial iy}(z)
+	\]
+	ולכן $\frac{\partial f}{\partial iy}(z) = 0$ בלבד, ולכן $f'(z) = 0$ לכל $z \in G$, אז מסעיף א' היא קבועה.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $\overline{f(\overline{z})}$ אנליטית ונחשב את ערכה.
+\begin{proof}
+	\begin{align*}
+		\lim_{z \to z_0} \frac{\overline{f(\overline{z})} - \overline{f(\overline{z_0})}}{z - z_0}
+		& = \lim_{z \to z_0} \frac{\overline{f(\overline{z}) - f(\overline{z_0})}}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{\overline{z - z_0}}{{|z - z_0|}^2} (\overline{f(\overline{z}) - f(\overline{z_0})}) \\
+		& = \lim_{z \to z_0} \frac{1}{{|z - z_0|}^2} \overline{(f(\overline{z}) - f(\overline{z_0})) (z - z_0)} \\
+		& = \lim_{z \to z_0} \overline{\left(\frac{f(\overline{z}) - f(\overline{z_0})}{\overline{z} - \overline{z_0}}\right)} \\
+		& = \overline{\left(\lim_{z \to z_0} \frac{f(\overline{z}) - f(\overline{z_0})}{\overline{z} - \overline{z_0}}\right)} \\
+		& = \overline{f'(\overline{z})}
+	\end{align*}
+\end{proof}
+
+\Question{}
+נחשב את החלק הממשי, החלק מהדומה, הערך המוחלט ואת השורשים של הפונקציות הנתונות.
+
+\Subquestion{}
+נבחן את $\cos(z)$.
+\begin{solution}
+	תחילה נמצא ביטוי בערך ממשי ומדומה לביטוי:
+	\begin{align*}
+		\cos(x + iy)
+		& = \frac{1}{2}(e^{i(x + iy)} + e^{-i(x + iy)}) \\
+		& = \frac{1}{2}(e^{ix} e^{-y} + e^{-ix} e^{y}) \\
+		& = \frac{1}{2}((\cos(x) + i\sin(x)) e^{-y} + (\cos(-x) + i\sin(-x)) e^{y}) \\
+		& = \frac{1}{2}(\cos(x) e^{-y} + \cos(x) e^{y}) + i \frac{1}{2}(\sin(x) e^{-y} - \sin(x) e^{y})
+	\end{align*}
+	נעבור לחישוב הערך המוחלט:
+	\begin{align*}
+		|\cos(x + iy)|
+		& = \sqrt{{(\frac{1}{2}(\cos(x) e^{-y} + \cos(x) e^{y}))}^2 + {(\frac{1}{2}(\sin(x) e^{-y} - \sin(x) e^{y}))}^2} \\
+		& = \sqrt{\frac{1}{4} ( {(\cos(x) e^{-y} + \cos(x) e^{y})}^2 + {(\sin(x) e^{-y} - \sin(x) e^{y})}^2 )} \\
+		& = \sqrt{\frac{1}{4} (\cos^2(x) e^{-2y} + 2\cos^2(x) + \cos^2(x)e^{2y} + \sin^2(x) e^{-2y} - 2\sin^2(x) + \sin^2(x)e^{2y})} \\
+		& = \frac{1}{2} \sqrt{e^{-2y} + e^{2y} + 2\cos(2x)}
+	\end{align*}
+	לבסוף נבדוק את השורשים על־ידי שימוש בזהות $\cos(z) = 0 \iff |\cos(z)| = 0$, דהינו
+	\[
+		\frac{1}{2} \sqrt{e^{-2y} + e^{2y} + 2\cos(2x)} = 0
+		\iff e^{-2y} + e^{2y} + 2\cos(2x) = 0
+		\iff \cos(2x) = \frac{e^{2y} + e^{-2y}}{2}
+	\]
+	אבל כמובן אם $y \ne 0$ נקבל ביטוי קטן מ־$-1$ ולכן $y = 0$, ו־$\cos(2x) = -1$, דהינו $x = \frac{\pi}{2} + \pi k$.
+\end{solution}
+
+\Subquestion{}
+נעבור לבדוק את $\sin(z)$.
+\begin{solution}
+	ידוע כי $\sin(z) = \frac{e^{iy} - e^{-iy}}{2i}$, לכן נבצע אותו הליך שעשינו בסעיף הקודם תוך התחשבות בשינוי הסימן ונסיק
+	\begin{align*}
+		\sin(x + iy)
+		& = \frac{1}{2i}(\cos(x) e^{-y} - \cos(x) e^{y}) + i \frac{1}{2i}(\sin(x) e^{-y} + \sin(x) e^{y}) \\
+		& = \frac{1}{2}(\sin(x) e^{-y} + \sin(x) e^{y}) + i\frac{1}{2}(\cos(x) e^{y} - \cos(x) e^{-y})
+	\end{align*}
+	הערך המוחלט הוא:
+	\begin{align*}
+		|\sin(x + iy)|
+		& = \frac{1}{2} \sqrt{\sin^2(x) (e^{-2y} + 2 + e^{2y}) + \cos^2(x) (e^{y} - 2 + e^{-y})} \\
+		& = \frac{1}{2} \sqrt{e^{-2y} + e^{2y} - 2\cos(2x) }
+	\end{align*}
+	לבסוף נקבל שהשורשים הם $z = \pi k$ משיקולים זהים לסעיף הקודם.
+\end{solution}
+
+\Subquestion{}
+נחקור את $\tan(z)$:
+\begin{solution}
+	נתחיל בחישוב החלק השלם והמדומה על־ידי שימוש בסעיפים הקודמים:
+	\begin{align*}
+		\tan(x + i y)
+		& = \frac{\frac{1}{2}(\sin(x) e^{-y} + \sin(x) e^{y}) + i\frac{1}{2}(\cos(x) e^{y} - \cos(x) e^{-y})}{\frac{1}{2}(\cos(x) e^{-y} + \cos(x) e^{y}) + i \frac{1}{2}(\sin(x) e^{-y} - \sin(x) e^{y})} \\
+		& = \frac{(\sin(x) (e^{-y} + e^{y}) + i \cos(x) (e^{y} - e^{-y}))(\cos(x) (e^{-y} + e^{y}) - i \sin(x) (e^{-y} - e^{y}))}{e^{-2y} + e^{2y} + 2\cos(2x)} \\
+		& = \frac{\sin(x)\cos(x)({(e^y + e^{-y})}^2 - {(e^y - e^{-y})}^2) + i( \sin^2(x)(e^{2y} - e^{-2y}) + \cos^2(x) (e^{2y} - e^{-2y}) )}{e^{-2y} + e^{2y} + 2\cos(2x)} \\
+		& = \frac{2\sin(2x) + i(e^{2y} - e^{-2y})}{2\cos(2x) + e^{2y} + e^{-2y}} \\
+	\end{align*}
+	נעבור לחישוב הערך המוחלט:
+	\[
+		|\tan(x + iy)|
+		= \frac{\sqrt{4\sin^2(2x) + {(e^{2y} - e^{-2y})}^2}}{2\cos(2x) + e^{2y} + e^{-2y}} \\
+	\]
+	ושורשים כבר חישבנו, שכן $\tan(z)$ מתאפס אם ורק אם $\sin(z)$ מתאפס מהגדרה.
+\end{solution}
+
+\Question{}
+יהיו $z, w \in \CC$.
+
+\Subquestion{}
+נוכיח כי $\cos^2(z) + \sin^2(z) = 1$.
+\begin{proof}
+	\[
+		\cos^2(z) + \sin^2(z)
+		= \frac{e^{-2z} + 2 e^{0} + e^{-2z}}{4} + \frac{e^{-2z} - 2 e^{0} + e^{2z}}{-4}
+		= 1
+	\]
+\end{proof}
+
+\Subquestion{}
+נוכיח כי $\sin(z + w) = \sin(z) \cos(w) + \cos(z) \sin(w)$.
+\begin{proof}
+	נחשב
+	\begin{align*}
+		\sin(z + w)
+		& = \frac{1}{2i}(e^{i(z + w)} - e^{-i(z + w)}) \\
+		& = \frac{1}{2i}(e^{iz} e^{iw} - e^{-iz} e^{-iw}) \\
+		& = \frac{1}{4i}(e^{iz} e^{iw} - e^{-iz} e^{iw} + e^{iz} e^{-iw} - e^{-iz} e^{-iw} + e^{iz} e^{iw} + e^{-iz} e^{iw} - e^{iz} e^{-iw} - e^{-iz} e^{-iw}) \\
+		& = \frac{1}{4i}(e^{iz} - e^{-iz})(e^{iw} + e^{-iw}) + \frac{1}{4i}(e^{iz} + e^{-iz})(e^{iw} - e^{-iw}) \\
+		& = \sin(z) \cos(w) + \cos(z) \sin(w)
+	\end{align*}
+\end{proof}
+
+\Subquestion{}
+נוכיח את הזהות $\cos(3z) = 4\cos^3(z) - 3 \cos(z)$.
+\begin{proof}
+	נסמן $a = e^{iz}, b = e^{-iz}$, ונבחין כי $ab = e^{iz - iz} = 1$.
+	נשתמש בהגדרת הטריגונומטריות המרוכבות
+	\begin{align*}
+		4\cos^3(z) - 3 \cos(z)
+		& = 4 \frac{{(a + b)}^3}{2^3} - 3 \frac{a + b}{2} \\
+		& = \frac{a^3 + 3 a^2 b + 3 a b^2 + b^3 - 3a - 3b}{2} \\
+		& = \frac{a^3 + 3 a + 3 b + b^3 - 3a - 3b}{2} \\
+		& = \frac{e^{i 3z} + e^{-i 3z}}{2} \\
+		& = \cos(3z)
+	\end{align*}
+\end{proof}
+
+\Question{}
+נמצא את כל הנקודות $z \in \CC$ עבורן $\sum_{n = 0}^\infty \frac{z^{3n + 1}}{3n + 1}$ מתכנס.
+\begin{solution}
+	נגדיר ${(a_n)}_{n = 1}^\infty \subseteq \RR$ על־ידי
+	\[
+		a_n = \begin{cases}
+			\frac{1}{3n + 1} & n \equiv 1 (\mod 3) \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	לכן נקבל
+	\[
+		\sum_{n = 0}^\infty a_n z^n
+		= \sum_{n = 0}^\infty \frac{z^{3n + 1}}{3n + 1}
+	\]
+	אז נוכל להסיק ממבחן אבל כי הטור מתכנס עבור $z \in \overline{B}(0, 1) \setminus \{1\}$. \\*
+	כמובן עבור $|z| > 1$ נוכל לראות כי הערך המוחלט של הטור מתבדר ולכן גם הטור עצמו.
+\end{solution}
+
+\Question{}
+יהי $\sum_{n = 0}^\infty \alpha_n$ טור מרוכב מתכנס.
+
+\Subquestion{}
+נוכיח כי אם $|\Arg(\alpha_n)| \le \theta < \frac{\pi}{2}$ לכל $n \in \NN$ אז הטור מתכנס בהחלט.
+\begin{proof}
+	נתון כי $-\theta \le \Arg(\alpha_n) \le \theta$, לכן גם $0 < \cos(\theta) \le \cos(\Arg(\alpha_n)) \le 1$. \\*
+	עוד נבחין כי $\sum_{n = 0}^\infty \re(\alpha_n)$ מתכנס מהנתון כי הטור המקורי מתכנס, אבל מאי־השוויון הקודם נובע $0 < \re(\alpha_n)$ ולכן $\sum_{n = 0}^{\infty} |\re(\alpha_n)|$ מתכנס אף הוא,
+	מצאנו כי סדרת הערכים הממשיים מתכנסת בהחלט. \\*
+	נרצה עוד להראות כי $|\im(\alpha_n)| \le C |\re(\alpha_n)|$ עבור איזשהו $C \in [0, 1]$. \\*
+	נבחר $m = \sup_{n \in \NN} |\Arg(\alpha_n)|$, אז זהו גם האינפימום של $\cos(\Arg(\alpha_n))$,
+	נגדיר $|\sin(\Arg(\alpha_m))| = C \cos(\Arg(\alpha_m))$ ולכן מהגדרה $|\sin(\Arg(\alpha_n))| \le C \cos(\Arg(\alpha_n))$ לכל $n \in \NN$.
+	אבל אם כך אז $|\im(\alpha_n)| \le C \re(\alpha_n)$ לכל $n$ ובהתאם $\sum_{n = 0}^{\infty} |\im(\alpha_n)|$ מתכנס, דהינו מצאנו כי הן הערך הממשי והן הערך המדומה מתכנסים בהחלט, לכן גם $\sum_{n = 0}^{\infty} |\alpha_n|$ מתכנס.
+\end{proof}
+
+\Subquestion{}
+נראה כי הטענה לא נכונה אם מניחים שרק $|\Arg(\alpha_n)| < \frac{\pi}{2}$ לכל $n \in \NN$ על־ידי דוגמה נגדית.
+\begin{solution}
+	נגדיר $\alpha_n = \frac{1}{n^2} + i {(-1)}^n \frac{1}{n}$. \\*
+	לסדרה זו תמיד יש ערך ממשי חיובי ולכן היא מקיימת את תנאי הטענה. \\*
+	נבחין כי $\re(\alpha_n) = \frac{1}{n^2} \to 0$ טור מתכנס בהחלט, וגם $\im(\alpha_n) = \frac{{(-1)}^n}{n}$ הוא טור לייבניץ ולכן נתכנס, ונקבל $\sum_{n = 1}^{\infty} \alpha_n$ מתכנס אף הוא. \\*
+	לעומת זאת, מחישוב ישיר נקבל
+	\[
+		|\alpha_n| = \sqrt{\frac{1}{n^2} + \frac{1}{n^4}} = \frac{1}{n} \sqrt{1 + \frac{1}{n^2}}
+	\]
+	וזו כמובן סדרה ממשית מתבדרת.
+\end{solution}
 
 \end{document}
