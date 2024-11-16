@@ -220,7 +220,7 @@
 \section{שיעור 2 --- 31.10.2024}
 \subsection{השלמה לטורים דו־מימדיים}
 נגדיר הגדרה שדרושה לצורך ההרצאה הקודמת כדי להיות מסוגלים לדון בסכומים אינסופיים בני־מניה.
-\begin{definition}
+\begin{definition}[סכום קבוצת בת־מניה]
 	אם ${\{a_i\}}_{i \in I}$ ו־$a_i \ge 0$ לכל $i \in I$ אז נגדיר
 	\[
 		\sum_{i \in I} a_i = \sup \left\{ \sum_{i \in J} \mid J \subseteq I, J \text{ is finite} \right\}
@@ -234,7 +234,7 @@
 	במילים אחרות הוכיחו כי התומך של $a$ הוא בן־מניה.
 \end{exercise}
 בשיעור הקודם ראינו את ההגדרה והטענה הבאות:
-\begin{definition}
+\begin{definition}[פונקציית הסתברות מתאימה לנקודתית]
 	בהינתן פונקציית הסתברות נקודתית $p$ נגדיר
 	\[
 		\PP_p(A) = \sum_{\omega \in A} p(\omega)
@@ -345,7 +345,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 
 \subsection{מכפלת מרחבי הסתברות בדידים}
 ניזכר תחילה במרחבי הסתברות אחידים
-\begin{definition}
+\begin{definition}[מרחב הסתברות אחיד]
 	מרחב הסתברות אחיד הוא $(\Omega, \mathcal{F}, \PP_p)$ המקיים $p(\omega_1) = p(\omega_2)$ לכל $\omega_1, \omega_2 \in \Omega$.
 \end{definition}
 \begin{conclusion}
@@ -381,7 +381,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		= \frac{1}{|\Omega_1 \times \Omega_2|}
 	\]
 \end{proof}
-\begin{definition}
+\begin{definition}[מאורע שוליים ומאורע מכפלה]
 	במרחב מכפלה המאורעות מהצורה $A \times \Omega_2$ או $\Omega_1 \times A$ נקראים שוליים. \\*
 	מאורע מהצורה $A \times B$ נקרא מאורע מכפלה.
 \end{definition}
@@ -664,7 +664,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 השימוש של חסם האיחוד מאפשר לנו לפשט חישובים שבהם אנחנו רוצים הבנה כללית של ההתנהגות של מרחב ההסתברות.
 
 \subsection{חסמי איחוד ורציפות}
-\begin{definition}
+\begin{definition}[סדרת מאורעות עולה]
 	סדרת מאורעות ${\{A_n\}}_{n = 1}^\infty$ נקראת עולה אם $A_n \subseteq A_{n + 1}$ לכל $n \in \NN$.
 \end{definition}
 \begin{notation}
@@ -753,13 +753,13 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		\PP(A \cup B) = \PP(C) + \PP(D) + \PP(E)
 	\]
 \end{proof}
-\begin{theorem}
+\begin{theorem}[הכלה והפרדה לשלושה מאורעות]
 	עבור שלושה מאורעות $A, B, C$:
 	\[
 		\PP(A \cup B \cup C) = \PP(A) + \PP(B) + \PP(C) - (\PP(A \cap B) + \PP(A \cap C) + \PP(B \cap C)) + \PP(A \cap B \cap C)
 	\]
 \end{theorem}
-\begin{theorem}
+\begin{theorem}[הכלה והפרדה ל־n מאורעות]
 	יהיו $A_1, \dots, A_n$ מאורעות, אז
 	\[
 		\PP(\bigcup_{i = 1}^n A_i)
@@ -1116,7 +1116,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \end{example}
 \begin{proposition}
 	\begin{enumerate}
-		\item לכל מרורע $A$, $A$ ו־$\emptyset$ בלתי־תלויים וכן $A$ ו־$\Omega$ בלתי־תלויים.
+		\item לכל מאורע $A$, $A$ ו־$\emptyset$ בלתי־תלויים וכן $A$ ו־$\Omega$ בלתי־תלויים.
 		\item אם $A$ ו־$B$ בלתי־תלויים ו־$\PP(B) > 0$ אז $\PP(A \mid B) = \PP(A)$.
 		\item אם $A$ ו־$B$ בלתי־תלויים אז גם $A^C$ ו־$B$ בלתי תלויים.
 	\end{enumerate}
@@ -1139,7 +1139,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		\forall 1 \le i < j \le n, \PP(A_i \cap A_j) = \PP(A_i) \PP(A_j)
 	\]
 \end{definition}
-\begin{definition}
+\begin{definition}[קבוצה בלתי־תלויה]
 	מאורע $A$ נקרא בלתי־תלוי בקבוצת המאורעות $B_1, \dots, B_n$ אם לכל $I \subseteq [n]$ מתקיים
 	\[
 		\PP(A \mid \bigcap_{i \in I} B_i) = \PP(A)
@@ -1202,5 +1202,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		= \cdots = \PP(A_{i_1}) \cdots \PP(A_{i_k})
 	\]
 \end{proof}
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 
 \end{document}
