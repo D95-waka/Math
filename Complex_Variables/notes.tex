@@ -1,6 +1,7 @@
 \input{../article_base.tex}
 \title{פונקציות מרוכבות --- סיכום}
 \setcounter{secnumdepth}{2}
+% chktex-file 9
 
 \hypersetup{}
 \begin{document}
@@ -659,6 +660,123 @@ $f$ דיפרנציאבילית ב־$(x_0, y_0)$ אם ניתן לחקור את ה
 	הפעם נגדיר $\alpha(z) = \Arg(e^{i \pi} z)$ כדי לעמוד בהגדרת התחום. \\*
 	לכן $\alpha : G \to (0, 2\pi]$. % chktex 9
 	$\alpha$ רציפה שכן $\Arg$ רציפה בתחום הנתון, ובנוסף אכן מתקיים $\alpha(z) \in \{ \Arg(z) + 2\pi k\}$.
+\end{example}
+
+\section{שיעור 6 --- 17.11.2024}
+
+\subsection{הלוגריתם המרוכב}
+הגדרנו את הענף הראשי של לוג על־ידי
+\[
+	\Log(z) = \log |z| + i \Arg(z)
+\]
+ניזכר כי הגדרנו ענפים על־ידי
+\begin{definition}
+	ענף של הארגומנט הוא פונקציה $\alpha : G \to \CC$ אשר היא רציפה ומתקיים
+	\[
+		\alpha(z) \in \{ \Arg(z) + 2\pi k \mid k \in \ZZ \}
+	\]
+\end{definition}
+איך מוכיחים? מראים רציפות, ואז מראים התנאי השני, ראינו ש־$e^{z + w} = e^z e^w$, ואז נוכל להראות $e^{i\alpha(z)} = e^{i\Arg(z)}$. \\*
+כדי להפריך צריך להשתמש בקפיצה שבוודאות יש איפשהו בפונקציה, קפיצה במינוס שני פאי.
+\begin{remark}
+	לכל $l(z) \in \{ \Log(z) + 2\pi k \}$, $\im(l)$ הוא ענף של הארגומנט. \\*
+	לכל ענף של הארגומנט, $\alpha(z)$, מתקיים
+	\[
+		l(z) = \log|z| + i \alpha(z)
+	\]
+	יהיה ענף של הלוגריתם.
+\end{remark}
+\begin{proposition}
+	אם $l$ ענך של הלוגריתם, אז $l$ הולומורפית ב־$G$ וגם $l'(z) = \frac{1}{z}$.
+\end{proposition}
+\begin{proof}
+	אנו יודעים $w = e^{l(w)}, l(z) = \zeta, l(w) = \xi$ ולכן
+	\[
+		\lim_{w \to z} \frac{l(w) - l(z)}{w - z}
+		= \lim_{\xi \to \zeta} \frac{\xi - \zeta}{e^\xi - e^\zeta}
+		= \lim_{\xi \to \zeta} \frac{1}{\frac{e^\xi - e^\zeta}{\xi - \zeta}}
+		= \frac{1}{\lim_{\xi \to \zeta} \frac{e^\xi - e^\zeta}{\xi - \zeta}}
+		= \frac{1}{\frac{d}{d\zeta} e^\zeta}
+		= \frac{1}{e^\zeta}
+		= \frac{1}{z}
+	\]
+\end{proof}
+\begin{theorem}
+	תהי $f : G \to G'$ עבור $G, G'$ תחומים, המקיימת עבור $f$ הולומורפית
+	\[
+		(f \circ g)(z) = (g \circ f)(z)
+	\]
+	אז
+	\[
+		g \in Hol(G'),
+		\qquad
+		g'(z) = \frac{1}{f'(g(z))}
+	\]
+\end{theorem}
+ונוכיח את המשפט בפרקים הבאים.
+\begin{definition}
+	תהי $f \in Hol(G)$ המקיימת $f(z) \ne 0$.
+	נגדיר ענף של $\log f$ להיות כל פונקציה רציפה $g$ המקיימת $e^{g(z)} = f(z)$.
+\end{definition}
+\begin{proposition}
+	אם $g$ הוא ענף של $\log f$ אז $g \in Hol(G)$ ו־$g'(z) = \frac{f'(z)}{f(z)}$.
+\end{proposition}
+\begin{proof}
+	נקבע $z_0 \in G$ ולכן $f(z_0) \ne 0$, מרציפות של $f$ קיימת סביבה $U_{z_0} \subseteq G$ כך ש־$f \mid_{U_{z_0}} \ne 0$. \\*
+	נשתמש במשפט ההעתקה הפתוחה (שיוכח בהמשך) שגורר שאם $f : G \to \CC$ פתוחה לכל $U$ אז $f(U)$ פתוחה. \\*
+	ממשפט ההעתקה הפתוחה $f(U_{z_0}) = V$ היא קבוצה פתוחה שלא מכילה את הראשית,
+	לכן נוכל להגדיר ענף של הלוגריתם המקיים $\log f(w) \in \{ \Log f(w) + 2\pi k \mid k \in \ZZ \}$.
+\end{proof}
+\begin{definition}
+	אם $f \ne 0$ ב־$G$ אז $\frac{f'}{f}$ היא הנגזרת הלוגריתמית של $f$.
+\end{definition}
+\begin{definition}[n + 1]
+	יהי $G$ תחום כך שקיים ענף של הלוג ב־$G$, נדגיר לכל $\sigma \in G$ את $z^\sigma = \exp(\sigma \log z)$. \\*
+	נבחין כי ההגדרה תלויה בתחום $G = \CC \setminus (-\infty, 0]$. \\* % chktex 9
+	נקבל $z^\sigma = \exp(\sigma(\log|z| + i \Arg(z)))$.
+\end{definition}
+$l_1 \to \sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg(z)) = \exp(\frac{i}{2} \log|z| - \frac{1}{2} \Arg(z)) \implies |z^{i/2}| = e^{-\frac{1}{2} \Arg(z)}$.
+לעומת זאת
+$\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg(z) + 2\pi) = \exp(\frac{i}{2} \log|z| - \frac{1}{2} \Arg(z) + 2\pi) \implies |z^{i/2}| = e^{-\frac{1}{2} \Arg(z)} e^{-\pi}$. \\*
+לכל שני ענפים $l_1, l_2$ נקבל
+\[
+	z^\sigma = \exp(\sigma l_1(z)) = \exp(\sigma l_2(z)) \cdot \exp(\sigma 2 \pi k)
+\]
+\begin{example}
+	$G = \CC \setminus (-\infty, 0]$ עבור $\sigma \in \RR$ נקבל $z^\sigma = r^\sigma e^{i\sigma \theta}$
+\end{example}
+\begin{example}
+	$f(z) = \sqrt{\frac{z + 1l}{z - 1}}$.
+\end{example}
+
+\subsection{טורי טיילור}
+\begin{example}
+	$\Log(1 + z) = \sum_{n = 1}^{\infty} {(-1)}^n \frac{z^n}{n}$. \\*
+	אם $f(z) = z + 1$ אז $\log(z + 1) = \log f$ ולכן $\mathbb{D} \to \CC$ לא מכיל את $(-\infty, 0]$. \\*
+	עוד ראינו כי $\log'(1 + z) = \frac{f'}{f} = \frac{1}{z + 1} \mid_{z = 0} = 1$.
+	\[
+		\frac{d}{df} \log(1 + z) = \frac{1}{1 + z} = \sum_{n = 0}^{\infty} {(-1)}^n z^n
+	\]
+	וזהו סכום סדרה הנדסית ואז
+	\[
+		\Log(1 + z) = \int \sum_{n = 0}^{\infty} {(-1)}^n z^n = \sum_{n = 1}^{\infty} {(-1)}^n \frac{z^n}{n} + C
+	\]
+	נציב $z = 0$ ונקבל $C = 0$.
+\end{example}
+\begin{example}
+	אם $f_n \to f$ במידה שווה משהו $f_n' \to f'$ במידה שווה מקומית.
+\end{example}
+\begin{example}
+	\[
+		\arctan(z) = \sum_{n = 1}^{\infty} {(-1)}^{n - 1} \frac{z^{2n - 1}}{2n - 1}
+	\]
+	רדיוס התכנסות 1.
+	\[
+		\tan(w) = \frac{\sin w}{\cos w} = \frac{-i e^{iw} - e^{-iw}}{e^{iw} + e^{-iw}}
+	\]
+	\[
+		\tan(w) = z \iff w = \frac{1}{2i} \log(\frac{1 + iz}{1 - iz})
+	\]
 \end{example}
 
 \end{document} % chktex 17
