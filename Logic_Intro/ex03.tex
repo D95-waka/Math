@@ -1,0 +1,75 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $L = \{ p_i \mid i < n \}$ שפה לתחשיב פסוקים, ותהי $L'$ שפה נוספת כזו. בנוסף יהיו הפסוקים $\alpha \in sent_L, \beta_0, \dots, \beta_{n - 1} \in sent_{L'}$. \\*
+נגדיר $\alpha_{\beta_0, \dots, \beta_{n - 1}}^{p_0, \dots, p_{n - 1}} \in sent_{L'}$ כפסוק המתקבל מהחלפת כל מופע של $p_i$ ב־$\beta_i$.
+
+\Subquestion{}
+נוכיח כי הפונקציה ניתנת להגדרה ברקורסיה.
+\begin{proof}
+	נגדיר פונקציה $g : L \to sent_{L'}$ על־ידי $g(p_i) = \beta_i$ לכל $i < n$. \\*
+	נגדיר $\epsilon_\lnot : sent_{L'} \to sent_{L'}$ על־ידי $\epsilon_\lnot(\varphi) = (\lnot \varphi)$.
+	נבחין כי זהו סימון בלבד, קיצרנו את הכתיב $\epsilon_\lnot(\varphi) = \langle ( \lnot \rangle \frown \varphi \frown \langle ) \rangle$, וכך נמשיך ונעשה מטעמי קריאות. \\*
+	עבור כל $\square \in \mathcal{B}$ נגדיר $\epsilon_\square : sent_{L'}^2 \to sent_{L'}$ על־ידי $\epsilon_\square(\varphi, \phi) = (\varphi \square \phi)$. \\*
+	ממשפט ההגדרה ברקורסיה נובע כי קיימת $\bar{g} : sent_L \to sent_{L'}$ יחידה המקיימת את דרישות ההחלפה, ומתקיים $\bar{g}(\alpha) = \alpha_{\beta_0, \dots, \beta_{n - 1}}^{p_0, \dots, p_{n - 1}}$.
+\end{proof}
+
+\Subquestion{}
+תהי פונקציית הערכת אמת $v : L' \to \{ \TT, \FF \}$.
+אילו $u : L \to \{ \TT, \FF \}$ כך ש־$u(p_i) = \bar{v}(\beta_i)$ אז נוכיח כי מתקיים $\bar{u}(\alpha) = \bar{v}(\bar{g}(\alpha))$.
+\begin{proof}
+	הפונקציה $u$ משרה ממשפט הרקורסיה להערכות אמת פונקציה יחידה $\bar{u} : sent_L \to \{ \TT, \FF \}$, ועלינו להראות כי השוויון המבוקש מתקיים, נעשה זאת באינדוקציה על מבנה הפסוק. \\*
+	נתחיל מבסיס האינדוקציה ונניח כי הפסוק הוא פסוק יסודי, אז מתקיים $\bar{u}(p_i) = u(p_i) = \bar{v}(\beta_i) = \bar{v}(\bar{g}(\alpha))$ וקיבלנו כי השוויון מתקיים מהגדרת $g$. \\*
+	נניח עתה כי השוויון מתקיים עבור $\varphi$ ונוכיח כי הוא מתקיים גם עבור $(\lnot \varphi)$.
+	מהגדרת הפונקציות הרקורסיביות $\bar{u}, \bar{v}$ נסיק כי
+	\[
+		\bar{u}(\lnot \varphi) = V_\lnot(\bar{u}(\varphi)) = V_\lnot(\bar{v}(\bar{g}(\varphi))) = \bar{v}(\lnot \bar{g}(\varphi))
+	\]
+	ומצאנו כי השוויון מתקיים, לכן נותר לנו רק להניח כי הוא מתקיים עבור $\psi$ ולהראות כי לכל $\square \in \mathcal{B}$ השוויון מתקיים עבור $(\varphi \square \phi)$:
+	\[
+		\bar{u}(\varphi \square \psi) = V_\square(\bar{u}(\varphi), \bar{u}(\psi)) = V_\square(\bar{v}(\bar{g}(\varphi)), \bar{v}(\bar{g}(\psi))) = \bar{v}(\bar{g}(\varphi) \square \bar{v}(\bar{g}(\psi)))
+	\]
+	ולכן השוויון מתקיים והוכחנו את מהלך האינדוקציה, אז נסיק כי השוויון אכן חל.
+\end{proof}
+
+\Subquestion{}
+נסיק שאם $\alpha$ טאוטולוגיה אז גם $\bar{g}(\alpha)$ טאוטולוגיה, וכן אם $\alpha \equiv_{tau} \beta$ אז גם $\bar{g}(\alpha) \equiv_{tau} \bar{g}(\beta)$.
+\begin{proof}
+	נניח ש־$\alpha$ טאוטולוגיה, אז לכל $u$ הערכת אמת מתקיים $\bar{u}(\alpha) = \TT$, ותהי $v$ הערכת אמת ל־$L'$. \\*
+	מהסעיף הקודם נסיק כי קיימת $u$ הערכת אמת כך ש־$\bar{u}(\alpha) = \bar{v}(\bar{g}(\alpha))$, אבל $\bar{u}(\alpha) = \TT$, לכן גם $\bar{v}(\bar{g}(\alpha)) = \TT$, דהינו היא אכן טאוטולוגיה.
+
+	נניח עתה שמתקיים $\alpha \equiv_{tau} \beta$, אז לכל הערכת אמת $u$ של $L$ מתקיים $\bar{u}(\alpha) = \bar{u}(\beta)$. \\*
+	תהי $v$ הערכת אמת של $L'$, אז עבור $u$ מתאימה של $v$ נקבל
+	\[
+		\bar{v}(\bar{g}(\alpha)) = \bar{u}(\alpha) = \bar{u}(\beta) = \bar{v}(\bar{g}(\beta))
+	\]
+	ולכן $\bar{g}(\alpha) \equiv_{tau} \bar{g}(\beta)$.
+\end{proof}
+
+\Subquestion{}
+נסתור את הטענה כי יתכן ש־$\bar{g}(\alpha)$ טאוטולוגיה ו־$\alpha$ אינה טאוטולוגיה על־ידי דוגמה נגדית.
+\begin{solution}
+	נניח $n = 1$ וכן $L = L'$, עוד נניח $\beta_0 = (p_0 \to p_0)$, לכן $\beta_0$ טאוטולוגיה, נגדיר $\alpha = p_0$ ונקבל ש־$\alpha$ יכולה לקבל אמת ושקר, אבל $\bar{g}(\alpha) = (p_0 \to p_0)$ וזו כמובן טאוטולוגיה.
+\end{solution}
+
+\Question{}
+יהי $G = (V, E)$ גרף. נאמר ש־$G$ גרף סופי מקומית אם לכל $v \in V$ מתקיים שקבוצת השכנים $N(v) = \{ w \in V \mid \{ v, w \} \in E \}$ היא סופית.
+נאמר ש־$G$ הוא דו־צדדי אם ישנה חלוקה $V = V_0 \uplus V_1$ של הקודקודים כך שאם $u, w \in V$ מקיימים $vEw$ אז הם לא שניהם ב־$V_0$ או ב־$V_1$.
+עבור גרף דו־צדדי $G = (V_0 \uplus V_1, E)$ נגדיר צימוד מושלם ב־$G$ להיות פונקציה חד־חד ערכית $f : V_0 \to V_1$ כך שלכל $v \in V_0$ מתקיים $vEf(v)$. \\*
+תהי השפה $L = \{ p_{v, w} : v \in V_0, w \in V_1, vEw \}$ שפה לתחשיב פסוקים, ונסמן
+\begin{align*}
+	\Sigma_0 & = \{ (\lnot (p_{v, w_1} \cap  p_{v, w_2}) ) \mid v \in V, w_1 \ne w_2 \} \\
+	\Sigma_1 & = \{ (\lnot (p_{v_1, w} \cap  p_{v_2, w}) ) \mid w \in V, v_1 \ne v_2 \} \\
+	\Sigma_2 & = \left\{ \left( \bigvee_{k = 0}^{n_v - 1} p_{v, w_k} \right) \mid v \in V, N(v) = \{ w_0, \dots, w_{n_v - 1} \} \right\}
+\end{align*}
+וכן $\Sigma = \Sigma_0 \cup \Sigma_1 \cup \Sigma_2$.
+
+\Subquestion{}
+נוכיח שאם הקבוצה $\Sigma$ ספיקה אז יש לגרף $G$ צימוד מושלם.
+
+\end{document}
