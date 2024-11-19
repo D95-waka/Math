@@ -658,7 +658,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \end{example}
 
 \section{שיעור 4 --- 7.11.2024}
-בשיעור הקודם דיברנו על מרחבי מכפלה וניסויים דו־שלביים. 
+בשיעור הקודם דיברנו על מרחבי מכפלה וניסויים דו־שלביים.
 ברור לנו כי על־ידי שרשור דומה לתהליך של ניסוי דו־שלבי נוכל לבנות ניסוי רב־שלבי.
 עוד דיברנו על חסם האיחוד, הטענה כי $\PP(\bigcup_{i = 1}^n A_i) = \sum_{i = 1}^n \PP(A_i)$.
 השימוש של חסם האיחוד מאפשר לנו לפשט חישובים שבהם אנחנו רוצים הבנה כללית של ההתנהגות של מרחב ההסתברות.
@@ -791,7 +791,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\]
 	נוכל להמשיך את התהליך הזה, ונקבל
 	\[
-		\PP(A_I) = \frac{|\bigcap_{i \in I} A_i|}{|\Omega|} 
+		\PP(A_I) = \frac{|\bigcap_{i \in I} A_i|}{|\Omega|}
 		= \frac{(n - |I|)!}{n!}
 		= \frac{1}{n (n - 1) (n - 2) \cdots (n - (I + 1))}
 	\]
@@ -1201,6 +1201,142 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		= \PP(A_{i_1}) \PP(A_{i_2}) \PP(\bigcap_{l = 3}^k A_{i_l})
 		= \cdots = \PP(A_{i_1}) \cdots \PP(A_{i_k})
 	\]
+\end{proof}
+
+\section{שיעור 7 --- 19.11.2024}
+
+\subsection{אי־תלות}
+נראה הגדרה שקולה לאי־תלות
+\begin{definition}[שקולה לאי־תלות]
+	$A_1, \dots, A_n$ בלתי־תלויים אם ורק אם
+	\[
+		\forall I \subseteq [n], \PP((\bigcap_{i \in I} A_i) \cap (\bigcap_{i \in [n] \setminus I} A_i^C))
+		= \prod_{i \in I} \PP(A_i) \prod_{i \in [n] \setminus I} \PP(A_i^C)
+	\]
+\end{definition}
+את השקילות של ההגדרות נראה בתרגיל. \\*
+מאורעות $A_1, \dots, A_n$ בלתי־תלויים בהינתן $B$ אם הם בלתי־תלויים לפי פונקציית ההסתברות המותנית ב־$B$, $\PP_B$.
+\begin{example}
+	בוחרים מטבע באקראי משק ומטילים אותו $n$ פעמים. \\*
+	$A_i$ יצא עץ בהטלה ה־$i$ בלתי־תלוי בהינתן בחירת המטבע, $B$ המאורע שנבחר מטבע מסוים.
+\end{example}
+נרצה לנסות לתת הגדרה חדשה עבור מקרים אינסופיים, נראה שיתקיים
+\[
+	\forall I \subseteq \NN, \PP(\bigcap_{i \in I} A_i = \prod_{i \in I} \PP(A_i))
+\]
+אבל היא לא מועילה לנו, נגדיר במקום זאת
+\begin{definition}[קבוצה בת־מניה בלתי־תלויה]
+	$A_1, A_2, \dots$ מאורעות הם בלתי־תלויים אם ורק אם \\*
+	לכל קבוצה סופית $I$ מתקיים ${\{A_i\}}_{i \in I}$ קבוצה בלתי־תלויה.
+\end{definition}
+\begin{remark}[מכפלה אינסופית]
+	נגדיר מכפלה אינסופית על־ידי
+	\[
+		\prod_{i \in \NN} a_i
+		= \prod_{i = 1}^\infty a_i
+		= \lim_{N \to \infty} \prod_{i = 1}^N a_i
+	\]
+\end{remark}
+\begin{proposition}
+	אם $A_1, A_2, \dots$ סדרת מאורעות בלתי־תלויים אז
+	\[
+		\PP(\bigcap_{i \in \NN} A_i) = \prod_{i \in \NN} \PP(A_i)
+	\]
+\end{proposition}
+\begin{proof}
+	נגדיר $B_n = \bigcap_{i = 1}^n A_i$ סדרה יורדת ולכן מרציפות פונקציית ההסתברות נובע
+	\[
+		\PP(\bigcap_{i \in \NN} A_i)
+		= \PP(\bigcap_{n \in \NN} B_n)
+		= \lim_{n \to \infty} \PP(B_n)
+		= \lim_{N \to \infty} \prod_{i = 1}^N \PP(A_i)
+		= \prod_{i = 1}^\infty \PP(A_i)
+	\]
+\end{proof}
+\begin{example}
+	אם $A_1, \dots$ בלתי־תלויים ו־$\PP(A_i) = p < 1$ אז $\PP(\bigcap_{i \in \NN} A_i) = 0$. \\*
+	לדוגמה בהטלה אינסוף פעמים של מטבע הסיכוי שייצא עץ הוא אפס.
+	דוגמה זו קצת בעייתית שכן כלל לא הראינו כי מרחב זה קיים ומוגדר, אבל המשמעות היא שעבור מרחבי מדגם הולכים וגדלים, אז ההסתברות המבוקשת שואפת להיות אפס.
+\end{example}
+
+\subsection{משתנים מקריים}
+עד כה היינו צריכים לבצע ניתוח מלא של הסיטואציה כדי להגיע למסקנה, גם אם בהרבה מקרים שונים הגענו לבדיוק אותה המסקנה, המטרה של משתנים מקריים הוא לבודד את הרעיון הזה ולתקוף אותו.
+\begin{definition}[משתנה מקרי]
+	יהי $(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, פונצקיה מ־$\Omega$ ל־$\RR$ נקראת \textbf{משתנה מקרי}.
+\end{definition}
+\begin{notation}
+	על־אף שזו פונקציה, נהוג לסמן משתנים מקריים בסימונים שאנו רגילים שמשמשים למשתנים, לדוגמה $X, Y, Z$.
+\end{notation}
+\begin{remark}
+	השם קצת מטעה, אלו הם לא משתנים, ושווה לחשוב עליהם בתור מצבים מקריים יותר.
+\end{remark}
+\begin{example}
+	נניח $\Omega = \{H, T\}$ הטלת מטבע, ונגדיר את הפונקציה $f : \Omega \to \RR$ על־ידי $f(H) = 2, f(T) = -3$,
+	זאת במטרה לייצג שאם יוצא עץ נפסיד שלושה מטבעות ואם מתקבל פלי אז נקבל שני מטבעות.
+\end{example}
+\begin{example}
+	נרצה להטיל שתי קוביות ונרצה לדבר על תוצאת אחת ההטלות, נתחיל ונגדיר $\Omega = {[6]}^2$. \\*
+	נגדיר $X_1 : \Omega \to \RR$ על־ידי $X_1(a, b) = a$, ובאופן דומה נגדיר $X_2(a, b) = b$.
+	יצרנו פונקציות שמהוות משתנה מקרי עבור ההטלה הראשונה ועבור ההטלה השנייה, נגדיר גם עבור הסכום, $Y(a, b) = a + b$. \\*
+	נקבל עתה $Y = X_1 + X_2$, ונבחין בכוח האמיתי של הגדרה זו, יש לנו איזשהו קישור מורכב במרחב ההסתברות ללא עבודה ישירות מול המרחב.
+\end{example}
+\begin{definition}[משתנה מקרי מושרה ממאורע]
+	אם $A$ מאורע אז נגדיר $1_A$ משתנה מקרי על־ידי
+	\[
+		1_A(\omega) = \begin{cases}
+			1, & \omega \in A \\
+			0, & \omega \notin A
+		\end{cases}
+	\]
+\end{definition}
+\begin{proposition}[תכונות של משתנים מקריים מושרים]
+	\begin{enumerate}
+		\item $1_{A^C} = 1 - 1_A$
+		\item $1_{A \cap B} = 1_A \cdot 1_B$
+		\item $1_{A \cup B} = \max\{1_A, 1_B\}$
+	\end{enumerate}
+\end{proposition}
+\begin{example}
+	$\Omega = S_n$, $A_i$ המאורע שיש $i$ נקודות שבת. \\*
+	נסמן $X_i = 1_{A_i}$ ו־$X = \sum_{i = 1}^n X_i$.
+\end{example}
+בדוגמות הקודמות ההטלה הראשונה זוגית $\{ (a, b) \in {[6]}^2 \mid a \in \{2, 4, 6\}\}$. נכתוב במקום זאת $X_1 \in \{2, 4, 6\}$.
+\begin{definition}
+	אם $X$ משתנה מקרי ו־$S \in \mathcal{F}_\RR$, המאורע $X \in S$ מוגדר להיות
+	\[
+		X^{-1}(S) = \{ \omega \in \Omega \mid X(\omega) \in S \}
+	\]
+	בהתאם נכתוב $\PP(\{x \in S\})$ על־ידי $\PP(X \in S)$, ובאופן דומה נוכל לציין גם את $\PP(X = s), \PP(X \le s)$ ודומים.
+\end{definition}
+\begin{definition}
+	$(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, ויהי $X$ משתנה מקרי. \\*
+	נגדיר פונקציה $\PP_X : \mathcal{F}_\RR \to [0, \infty)$ על־ידי
+	\[
+		\PP_X(S) = \PP(X \in S) = \PP(\{\omega \in \Omega \mid X(\omega) \in S \})
+	\]
+	$\PP_X$ מכונה ה\textbf{ההתפלגות} של $X$. \\*
+	אם $\PP_X$ נתמכת על $S$ (כלומר $\PP_X(S) = 1$) אז אומרים ש־$X$ נתמך על $S$.
+\end{definition}
+\begin{proposition}
+	$\PP_X$ היא פונקציית הסתברות על $(\RR, \mathcal{F}_\RR)$.
+\end{proposition}
+\begin{proof}
+	\[
+		\forall S, \PP_X(S) = \PP(X \in S) \ge 0
+	\]
+	וכן
+	\[
+		\PP_X(\RR) = \PP(X \in \RR) = \PP(\Omega) = 1
+	\]
+	ולבסוף סיגמא־אדיטיביות:
+	\begin{align*}
+		\forall S_1, S_2, \dots, \PP_X(\biguplus_{n \in \NN} S_n)
+		& = \PP(X \in \biguplus_{n \in \NN} S_n) \\
+		& = \PP(\{\omega \in \Omega \mid X(\omega) \in \biguplus_{n \in \NN} S_n \}) \\
+		& = \PP(\biguplus_{n \in \NN} \{ X \in S_n \}) \\
+		& = \sum_{n \in \NN} \PP(X \in S_n) \\
+		& = \sum_{n \in \NN} \PP_X(S_n)
+	\end{align*}
 \end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
