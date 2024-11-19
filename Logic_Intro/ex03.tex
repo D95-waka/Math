@@ -71,5 +71,91 @@
 
 \Subquestion{}
 נוכיח שאם הקבוצה $\Sigma$ ספיקה אז יש לגרף $G$ צימוד מושלם.
+\begin{proof}
+	נתון כי $\Sigma$ ספיקה ולכן קיימת הערכת אמת $u : L \to \{ \TT, \FF \}$ כך ש־$\forall \varphi \in \Sigma, \bar{u}(\varphi) = \TT$. \\*
+	מהנתון על מבנה $\Sigma$ נסיק כי $v$ מקיימת גם את $\Sigma_0, \Sigma_1, \Sigma_2$. \\*
+	עתה נגדיר $f = \{ \langle v, w \rangle \mid v \in V_0, w \in W_0, u(p_{v, w}) = \TT \}$, זוהי כמובן קבוצה מאקסיומת הפרדה, ואף יחס כך ש־$\text{dom}(f) \subseteq V_0, \text{rng}(f) \subseteq V_1$,
+	אנו רוצים להוכיח כי $f$ מקיימת את תכונת הפונקציה וכי $\text{dom}(f) = V_0$. \\*
+	נניח בשלילה ש־$f$ לא מקיימת את תכונת הפונקציה, ולכן קיימים $\langle v, w \rangle, \langle v, w' \rangle \in f$ עבור $w \ne w'$. \\*
+	הפסוק המתאים הוא $p_{v, w} \cap p_{v, w'}$, אבל נבחין כי $\Sigma_0 \models \lnot (p_{v, w} \cap p_{v, w'})$ ולכן ההנחה כי הפסוק נובע מ־$\Sigma$ מובילה לסתירה, לכן $f$ היא פונקציה. \\*
+	נעבור להוכיח כי תחומה הוא $V_0$. לכל $v \in V_0$ קיים פסוק $\varphi \in \Sigma_2$ כך ש־$\bar{u}(\varphi) = \TT$ מתכונות של איווי ומההנחה שלנו, ולכן $v \in \text{dom}(f)$, לכן בהכרח $\text{dom}(f) = V_0$. \\*
+	מצאנו אם כך ש־$f : V_0 \to V_1$, נותר להוכיח כי היא חד־חד ערכית.
+	למעשה הוכחה זו זהה להוכחה כי $f$ פונקציה ובהתבסס על $\Sigma_1$, נניח בשלילה כי היא לא חד־חד ערכית ונקבל שני זוגות סדורים שמוכלים ב־$f$, אבל הם יהוו סתירה להגדרת $f$. \\*
+	מצאנו אם כך ש־$f$ עומדת בכל התנאים שהצגנו להוות צימוד מושלם.
+\end{proof}
+
+\Subquestion{}
+נוכיח כי אם ל־$G$ יש צימוד מושלם אז $\Sigma$ ספיקה.
+\begin{proof}
+	נניח $f$ הצימוד המושלם של $G$ שהנחנו שקיים. \\*
+	נגדיר $u : L \to \{ \TT, \FF$ על־ידי
+		\[
+			u(p_{v, w}) = \begin{cases}
+				\TT, & \langle v, w \rangle \in f \\
+				\FF, & \langle v, w \rangle \notin f
+		\end{cases}
+	\]
+	אנו יודעים כי $f$ מקיימת את תכונת הפונקציה וזו שקולה לקבוצת הפסוקים $\Sigma_0$, כמו־כן היא חד־חד ערכית ותכונה זו שקולה ל־$\Sigma_1$. \\*
+	לבסוף $\text{dom}(f) = V_0$ ולכן לכל $v \in V_0$ מתקיים $\langle v, f(v) \rangle \in f$ ומתקיים גם $\Sigma_2$, לכן $v$ מספק את שלוש הקבוצות ובהתאם גם את איחודן,
+	דהינו $\Sigma = \Sigma_0 \cup \Sigma_1 \cup \Sigma_2$ היא ספיקה, וספיקה בפרט על־ידי $u$.
+\end{proof}
+
+\Question{}
+תהי $L$ שפה כך ש־$|L| = k$.
+
+\Subquestion{}
+נוכיח שלכל $\psi \in sent_L$ קיים $\varphi \in sent_L$ כך ש־$\varphi = \left( \bigwedge_{i < m} \left( \bigvee_{j < n} \varphi_{i, j} \right)\right)$
+כך ש־$\forall i, j (\exists p \in L (\varphi_{i, j} = p \lor \varphi_{i, j} = (\lnot p)))$,
+ומתקיים $\varphi \equiv_{tau} \psi$.
+\begin{proof}
+	ממשפט שהוכח בהרצאה נובע כי קיים ל־$\psi \equiv_{tau} \phi \in sent_L$ עבור $\phi = \left( \bigvee_{i < n} \left( \bigwedge_{j < n} \phi_{i, j} \right) \right)$,
+	כאשר $\phi_{i, j} = p \in L \lor (\lnot p)$. \\*
+	עוד אנו יודעים כי $\phi \equiv (\lnot (\lnot \phi))$ וכי מחוקי דה־מורגן
+	\[
+		\phi
+		\equiv \left( \lnot \left( \bigwedge_{i < n} \lnot \left( \bigwedge_{j < n} \phi_{i, j} \right) \right) \right)
+		\equiv \left( \lnot \left( \bigwedge_{i < n} \left( \bigvee_{j < n} (\lnot \phi_{i, j}) \right) \right) \right)
+		\equiv \left( \lnot \left( \bigwedge_{i < n} \left( \bigvee_{j < n} \phi_{i, j} \right) \right) \right)
+	\]
+	כאשר במעבר האחרון הגדרנו את $\phi_{i, j}$ מחדש כך שהוא עדיין עומד בהגדרתו המקורית. \\*
+	נבחין כי מצאנו פסוק שקול בצורה של שלילה של פסוק גימום נורמלי, ולכן נוכל לבצע את התהליך מחדש עבור $(\lnot \varphi)$ ולקבל כי קיים $\phi \equiv \psi$ כך שגם
+	\[
+		\phi \equiv \left( \bigwedge_{i < n} \left( \bigvee_{j < n} \phi_{i, j} \right) \right)
+	\]
+\end{proof}
+
+\Subquestion{}
+נסמן ב־$X$ את קבוצת הערכות האמת על $L$. עבור פסוק $\psi$ נתון נסמן $T_\psi \subseteq X$ את קבוצת הערכות האמת $v : L \to \{ \TT, \FF \}$ כך שמתקיים $\bar{v}(\psi) = \TT$. \\*
+נוכיח שלכל שני פסוקים $\varphi_1, \varphi_2 \in sent_L$ מתקיים $\varphi_1 \models \varphi_2$ אם ורק אם $T_{\varphi_1} \subseteq T_{\varphi_2}$.
+\begin{proof}
+	נניח כי $\varphi_1 \models \varphi_2$. \\*
+	תהי הערכת אמת $v \in T_{\varphi_1}$, אז נקבל $\bar{v}(\varphi_1) = \TT$.
+	אבל מהגדרת הגרירה הטאוטולוגית נסיק גם $\bar{v}(\varphi_2) = \TT$, לכן $v \in T_{\varphi_2}$, אז $T_{\varphi_1} \subseteq T_{\varphi_2}$.
+
+	נניח עתה כי $T_{\varphi_1} \subseteq T_{\varphi_2}$. \\*
+	לכל הערכת אמת $v \in T_{\varphi_1}$ נקבל $v \in T_{\varphi_2}$. עתה נבחין כי ההגדרה הזו לכל $v$ מתלכדת עם ההגדרה ''לכל $v$ כך ש־$\bar{v}(\varphi_1) = \TT$'' מתלכדות מהגדרת $T_{\varphi_1}$,
+	ולכן $\bar{v}(\varphi_1) = \TT$ וגם $\bar{v}(\varphi_2) = \TT$ בשל ההכלה של $T_{\varphi_1}$, לכן לפי הגדרת הגרירה הטאוטולוגית מתקיים $\varphi_1 \models \varphi_2$.
+\end{proof}
+
+\Subquestion{}
+נגדיר שרשרת גרירה באורך $l$ להיות סדרת פסוקים ב־$L$, $\langle \psi_0, \dots, \psi_{l - 1} \rangle$ כך שלכל $i < l - 1$ מתקיים $\psi_{i} \models \psi_{i + 1}$ וגם $\psi_{i + 1} \not\models \psi_i$. \\*
+נמצא את האורך המקסימלי של שרשרת ב־$L$.
+\begin{solution}
+	מטענת סעיף ב' נבחין כי כל שרשרת גרירה משרה שרשרת קבוצות $\langle T_{\psi_0}, \dots, T_{\psi_{l - 1}} \rangle$ כך ש־$T_{\psi_i} \subsetneq T_{i + 1}$. \\*
+	אנו גם יודעים כי הפסוק בעל הקבוצה כזו המינימלית היא זו המושרה מהקבוצה הריקה, זוהי כמובן סתירה, לכן נגדיר $\psi_0 = \perp$. \\*
+	באופן דומה הקבוצה $T$ כזו המקסימלית היא הקבוצה $T = X$, אשר מקושרת לפסוק שערכו $\TT$ תמיד, דהינו $\psi_{l - 1} = (p \to p)$ עבור $p \in L$ כלשהו. \\*
+	עתה נאמר כי במטרה להשיג את השרשרת הארוכה ביותר, נרצה בכל שלב להקטין את גודל $|T_{\psi_i}|$ במינימום, הוא כמובן $1$, לכן נבחר איבר כלשהו $v \in T_{\psi_i}$ ונגדיר $T_{\psi_{i + 1}} = T_{\psi_i} \setminus v$. \\*
+	בהתאם קיים $\psi_{i + 1}$ שמקיים קבוצה זו, ואותו נגדיר כאיבר הבא בשרשרת באופן רקורסיבי. \\*
+	נותר אם כך להראות שבבנייה זו האיבר האחרון הוא אכן סתירה, ואכן כל תנאי ש־$|T_{\psi_i}| > 0$ נוכל להמשיך את התהליך, וכאשר $|T_{\psi_i}| = 0$ כבר ראינו כי הוא סתירה. \\*
+	עתה נעבור לחישוב גודל השרשרת הזו, למעשה גודלה הוא $|X|$ מדרך הבנייה של הסדרה, ואנו יודעים כי $|X| = |\{ v \mid v : L \to \{\TT, \FF\}\}| = 2^k$.
+\end{solution}
+
+\Subquestion{}
+נוכיח שקיימים $2^{2^k}$ פסוקים ב־$L$ עד כדי שקילות טאוטולוגית.
+\begin{proof}
+	בסעיף הקודם ראינו כי אנו יכולים לקבוע פסוק בהתאם להגדרה האם הוא מתקיים או לא עבור $v$ הערכת אחת כלשהי, אנו גם מצאנו כי ישנן $2^k$ הערכות אמת שונות ל־$L$. \\*
+	לכל הערכת אמת כזו קיים ערך יחיד של אמת או שקר שפסוק יקבל, ובהתאם למידע זה ומההוכחה לצורת איווי נורמלית נוכל להסיק כי אם אנו יודעים עבור פסוק לכל הערכת אמת מה התוצאה שלו, אז הוא שקול לפסוק נורממלי יחיד. \\*
+	נסיק אם כן שקיימים $2^{2^k}$ פסוקים נורמליים כאלה, וכל פסוק ב־$sent_L$ שקול לאחד מהם.
+\end{proof}
 
 \end{document}
