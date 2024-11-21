@@ -1454,6 +1454,187 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 		& = \frac{6}{36} = \frac{1}{6}
 	\end{align*}
 \end{example}
+
+\section{שיעור 8 --- 21.11.2024}
+
+\subsection{משתנים מקריים --- המשך}
+\begin{definition}[משתנה מקרי בדיד]
+	$X$ משתנה מקרי נקרא \textbf{בדיד} אם $\PP_X$ הוא פונקציית הסתברות בדידה. \\*
+	במקרה זה יש ל־$X$ התפלגות נקודתית $p_X : \RR \to [0, \infty)$.
+\end{definition}
+\begin{remark}
+	נבחין כי גם אם מרחב ההסתברות הוא לא בדיד, נוכל להגדיר משתנה מקרי בדיד עליו.
+\end{remark}
+\begin{example}
+	נגדיר $A \in \mathcal{F}$ ו־$X = 1^A$ ונניח $\PP(A) = p$. \\*
+	אם $S \subseteq \mathcal{F}_\RR$ אז אם $\{0, 1 \} \in S$ אז $\Omega = X^{-1}(S)$ ואז $\PP_X(S) = \PP(\Omega) = 1$. \\*
+	אם $1 \in S$ אבל $0 \notin S$ אז $A = X^{-1}(S)$ ואז $\PP_X(S) = \PP(A) = p$. \\*
+	לבסוף אם $0 \in S$ ו־$1 \notin S$ אז $A^C = X^{-1}(S)$ אז $\emptyset = X^{-1}(S)$ ואז $\PP_X(S) = \PP(\emptyset) = 0$.
+
+	אם נגדיר $p_X : \RR \to [0, \infty)$ על־ידי
+	\[
+		p_X(s) = \begin{cases}
+			p & s = 1 \\
+			1 - p & s = 0 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	אז מתקיים
+	\[
+		\PP_X(S) = \sum_{s \in S} p_X(s)
+	\]
+\end{example}
+\begin{definition}[התפלגות ברנולי]
+	משתנה מקרי $X$ מתפלג ברנולי עם פרמטר $p$ אם יש לו פונקציית התפלגות נקודתית
+	\[
+		p_X(s) = \begin{cases}
+			p & s = 1 \\
+			1 - p & s = 0 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	במקרה זה נסמן $X \sim \text{Ber}(p)$, סימון לא מאוד מועיל או מתכתב עם השימוש הסטנדרטי, אבל אלה הם החיים.
+\end{definition}
+נשאל את עצמנו את השאלה האם כל משתנה מקרי מתפלג ברנולי הוא מציין של מאורע.
+אילו נגדיר $A = X^{-1}(1)$ אז מתקבל $X = 1_A$, אנו אומרים ש־$X$ שווה למציין של $1_A$ כמעט תמיד, נראה זאת בהמשך הפרק. \\*
+נמשיך לעוד מקרים.
+\begin{definition}[משתנה מקרי קבוע]
+	משתנה מקרי $X$ הוא קבוע אם
+	\[
+		p_X(s) = \begin{cases}
+			1 & s = c \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	עבור $c$ קבוע כלשהו.
+\end{definition}
+\begin{definition}[משתנה מקרי אחיד]
+	משתנה מקרי $X$ נקרא אחיד על $S$ תת־קבוצה סופית של $\RR$ אם
+	\[
+		p_X(s) = \begin{cases}
+			\frac{1}{|S|} & s \in S \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	במקרה זה נסמן $X \sim U(S)$.
+\end{definition}
+\begin{definition}[התפלגות גאומטרית]
+	$X$ מתפלג גאומטרית עם פרמטר $p$ אם
+	\[
+		p_X(s) = \begin{cases}
+			{(1 - p)}^{s - 1} p & s \in \{1, 2, \dots \} \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	ונסמן $X \sim \text{Geo}(p)$. \\*
+	לפעמים הגדרה זו תסומן אחרת על־ידי מדידת המקרים שבהם יצאה ההסתברות למאורע הראשון בלבד. \\*
+	התפלגות זו מתארת את המקרה שניסינו לקבל תוצאה בהסתברות בין שני מקרים וקיבלנו אותה בפעם ה־$s$.
+\end{definition}
+\begin{definition}[התפלגות בינומית]
+	$X$ מתפלג בינומית עם פרמטרים $n$ ו־$p$ אם
+	\[
+		p_X(s) = \begin{cases}
+			\binom{n}{s} p^s {(1 - p)}^{n - s} & s \in \{1, 2, \dots\} \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	ונסמן $X \sim \text{Bin}(n, p)$.
+\end{definition}
+מאפשר לנו לחשב את מספר המטבעות המוטים שיצאו על צד מסוים.
+ולבסוף
+\begin{definition}[התפלגות פואסונית]
+	$X$ מתפלג פואסונית עם פרמטר $\lambda$ אם
+	\[
+		p_X(s) = \begin{cases}
+			e^{-\lambda} \frac{\lambda^s}{s!} & s \in \{0, 1, 2, \dots\} \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	ונסמן $X \sim \text{Po}(\lambda)$.
+\end{definition}
+בפעם הראשונה ההתפלגות הזו הופיעה בהקשר של מספר החיילים שנהרגו מבעיטה מהסוס שלהם, התפלגות שהייתה מהותית עד מלחמת העולם הראשונה.
+
+\subsection{קשרים בין משתנים־מקריים}
+\begin{example}
+	$\Omega = {[6]}^2$ מרחב אחיד להטלת שתי קוביות, ונגדיר שוב $Y = X_1 + X_2$ סכום הטלות שתי הקוביות, דהינו
+	\[
+		X_1(a, b) = a,
+		X_2(a, b) = b,
+		Y(a, b) = a + b
+	\]
+	בתרגול מצאנו את הערכים של $p_Y$ לכל ערך אפשרי. \\*
+	נגדיר גם $Z = Y \mod 6$ (ומנוחות נגדיר $Z \in [6]$), ונשאל מה ההתפלגות של $Z$.
+	\[
+		p_Z(1) = \PP(Z = 1) = \PP(Y = 7) = \frac{1}{6}
+	\]
+	באופן דומה
+	\[
+		p_Z(2) = \PP(Z = 2) = \PP(Y = 2) + \PP(Y = 8) = \frac{1}{36} + \frac{5}{36} = \frac{1}{6}
+	\]
+	באופן כללי מתקיים מחישוב כזה ש־$p_Z(n) = \frac{1}{6}$ לכל $n \in [6]$, נסיק כי $Z \sim U([6])$.
+\end{example}
+\begin{definition}[הסתברות כמעט תמיד]
+	אם $A$ מאורע עם הסתברות $1$ אז אומרים שהוא מתרחש כמעט תמיד.
+\end{definition}
+\begin{definition}[משתנים שווים שמעט תמיד]
+	אם $X$ ו־$Y$ המקיימים ש־$X = Y$ כמעט תמיד אז נסמן $X \overset{a.s.}{=} Y$. \\*
+	זה כמובן שקול להגדרה כי $\PP(\{ \omega \in \Omega \mid X(\omega) = Y(\omega) \}) = 1$ וזה נכון אם ורק אם $\PP(\{\omega \in \Omega \mid X(\omega) \ne Y(\omega) \}) = 0$.
+\end{definition}
+\begin{exercise}
+	הוכיחו כי אם $X \overset{a.s.}{=} Y$ וגם $Y \overset{a.s.}{=} Z$ אז גם $X \overset{a.s.}{=} Z$, דהינו זהו יחס טרנזיטיבי.
+\end{exercise}
+\begin{proof}
+	נשים לב לעובדה הבאה, אם $X(\omega) = Y(\omega)$ ו־$Y(\omega) = Z(\omega)$ עבור $\omega \in \Omega$ כלשהו, אז $X(\omega) = Z(\omega)$,
+	כלומר
+	\[
+		\{ \omega \in \Omega \mid X(\omega) = Y(\omega) \} \cap \{ \omega \in \Omega \mid Y(\omega) = Z(\omega) \} \subseteq \{ \omega \in \Omega \mid X(\omega) = Z(\omega) \}
+	\]
+	ובהתאם גם
+	\[
+		\{ \omega \in \Omega \mid X(\omega) \ne Y(\omega) \} \cup \{ \omega \in \Omega \mid Y(\omega) \ne Z(\omega) \} \supseteq \{ \omega \in \Omega \mid X(\omega) \ne Z(\omega) \}
+	\]
+	אז מחסם האיחוד נקבל
+	\[
+		0 \le \{ \omega \in \Omega \mid X(\omega) \ne Z(\omega) \} \le 0 + 0
+	\]
+\end{proof}
+\begin{proposition}
+	$\overset{a.s.}{=}$ הוא יחס שקילות על מרחב כל המשתנים־המקריים על $\Omega$.
+\end{proposition}
+\begin{proof}
+	ראינו עתה טרנזיטיביות, וסימטריה ורפלקסיביות נובעות ישירות מההגדרה.
+\end{proof}
+\begin{exercise}
+	האם בדוגמה קודם מתקיים $X_1 \overset{a.s.}{=} X_2$?
+\end{exercise}
+\begin{solution}
+	מחישוב מתקיים $\PP(X_1 = X_2) = \frac{1}{6}$ ולכן התשובה היא שלא. \\*
+	נבחין כי גם $\PP(X_1 \ne Z) \ge \PP(X_1 = 2, Z = 3) = \PP(\{(2, 1)\}) = \frac{1}{36}$.
+\end{solution}
+באופן יותר כללי גם אם יש מאורעות שיש להם אותה ההסתברות, אין הכרח שיהיה קשר לשוויון שלהם כמעט תמיד.
+\begin{definition}[משתנים  מקריים שווי התפלגות]
+	אם למשתנים מקריים $X, Y$ יש אותה פונקציית התפלגות, דהינו $\PP_Y = \PP_X$, \\*
+	דהינו מתקיים $\forall S \in \mathcal{F}_\RR, \PP_X(S) = \PP_Y(S) \iff \PP(X \in S) = \PP(Y \in S) \iff \PP(X^{-1}(S)) = \PP(Y^{-1}(S))$, \\*
+	אז נאמר שהם שווי התפלגות ונסמן $X \overset{d}{=} Y$.
+\end{definition}
+ראינו שיש משתנים מקריים $X$ ו־$Y$ כך ש־$X \overset{a.s.}{\ne} Y$ אבל $X \overset{d}{=} Y$,
+האם $X \overset{a.s.}{=} Y$ גורר $X \overset{d}{=} Y$?
+התשובה היא שכן!
+\begin{proposition}
+	אם $X \overset{a.s.}{=} Y$ אז גם $X \overset{d}{=}$.
+\end{proposition}
+\begin{proof}
+	נניח ש־$X \overset{a.s.}{=} Y$ ונרצה להוכיח ש־$\forall S \in \mathcal{F}_\RR, \PP(X \in S) = \PP(Y \in S)$. \\*
+	לכל $S \in \mathcal{F}_\RR$ מתקיים
+	\[
+		0 \ne \PP(X \ne Y) \ge \PP(X \in S, Y \notin S) = 0
+	\]
+	ובהתאם
+	\[
+		\PP(X \in S) = \PP(X \in S, Y \in S) + \overbrace{\PP(X \in S, Y \notin S)}^{= 0} = \PP(X \in S, Y \in S)
+	\]
+	כמו־כן גם $\PP(Y \in S) = \PP(X \in S, Y \in S)$.
+\end{proof}
 	
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
