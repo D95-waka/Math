@@ -1339,6 +1339,121 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\end{align*}
 \end{proof}
 
-\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
+\section{תרגול 4 --- 21.11.2024}
 
+\subsection{אי־תלות}
+נניח מרחב הסתברות $(\Omega, \mathcal{F}, \PP)$.
+\begin{exercise}
+	בכד שלושה מטבעות, שניים הוגנים ואחד שמוטבע עץ על שני צדדיו. \\*
+	שולפים מטבע באקראי ואז מטילים אותו פעמיים. \\*
+	האם תוצאת ההטלה הראשונה תלויה בתוצאת ההטלה השנייה?
+\end{exercise}
+\begin{solution}
+	נסמן ב־$A_i$ את המאורע שבהטלה ה־$i$ יצא עץ. \\*
+	אנו שואלים אם $A_1, A_2$ הם תלויים, נסמן גם $F$ המאורע ששלפנו מטבע הוגן.
+	\[
+		\PP(A_1)
+		= \PP(A_1 \mid F) \PP(F) + \PP(A_1 \mid F^C) \PP(F^C)
+		= \frac{1}{2} \cdot \frac{2}{3} + 1 \cdot \frac{1}{3} = \frac{2}{3}
+	\]
+	אנו רוצים לבדוק את התלות ולכן נחשב
+	\[
+		\PP(A_1 \cap A_2)
+		= \PP(A_1 \cap A_2 \mid F) \PP(F) + \PP(A_1 \cap A_2 \mid F^C) \PP(F^C)
+		= \frac{1}{4} \cdot \frac{2}{3} + 1 \cdot \frac{1}{3} = \frac{1}{2} \ne \frac{4}{9} = \PP(A_1) \cdot \PP(A_2)
+	\]
+	ולכן הם תלויים.
+\end{solution}
+\begin{exercise}
+	נגדיר $\Omega = \NN$ ו־$\PP(\{n\}) = \frac{1}{c \cdot n^2}$, כאשר $c = \sum_{n \in \NN} \frac{1}{n^2} = \frac{\pi^2}{6}$. \\*
+	נגדיר $\forall k \in \NN, A_k = k \NN = \{ kn \mid n \in \NN \}$. \\*
+	האם ${\{A_k\}}_{k \in \NN}$ היא תלויה?
+\end{exercise}
+\begin{solution}
+	\[
+		\PP(A_k) = \sum_{n \in \NN} \PP(\{k_n\})
+		= \sum_{n \in \NN} \frac{1}{c k^2 n^2}
+		= \frac{1}{c k^2} \sum_{n \in \NN} \frac{1}{n^2}
+		= \frac{1}{k^2}
+	\]
+	ולכן
+	\[
+		\PP(A_2 \mid A_4) = 1 \ne \frac{1}{4} = \PP(A_2)
+	\]
+	ולכן המאורעות תלויים ובכלל הקבוצה לא בלתי־תלויה.
+\end{solution}
+\begin{exercise}
+	נגדיר $P$ קבוצת המספרים הראשוניים, האם ${\{A_p\}}_{p \in P}$ בלתי־תלויה?
+\end{exercise}
+\begin{solution}
+	יהיו $p_1, \dots, p_m \in P$ ראשוניים, אז מהמשפט היסודי של האריתמטיקה (או פירוק לגורמים ראשוניים)
+	\[
+		A_{p_1} \cap \cdots \cap A_{p_m} = A_{p_1 \cdots p_m}
+	\]
+	ולכן
+	\[
+		\PP(A_{p_1} \cap \cdots \cap A_{p_m}) = \PP(A_{p_1 \cdots p_m}) = \frac{1}{{(p_1 \cdots p_m)}^2}
+		= \frac{1}{p_1^2} \cdots \frac{1}{p_m^2} = \PP(A_{p_1}) \cdots \PP(A_{p_m})
+	\]
+	נגדיר גם $B = \bigcap_{p \in P} A_p^C = \{ 1 \}$, ונחשב
+	\[
+		\frac{6}{\pi^2} = \frac{1}{c} = \PP(B) = \prod_{p \in P} (1 - \frac{1}{p^2})
+	\]
+\end{solution}
+\begin{conclusion}
+	נוכל להסיק מסקנה משמעותית נוספת, לכל $s > 1$ מתקיים
+	\[
+		\sum_{n = 1}^\infty \frac{1}{n^2} = \prod_{p \in P} {(1 - \frac{1}{ps})}^{-1} = \zeta(s)
+	\]
+	הערך ה־$s$ של פונקציית זטא של רימן, וזו זהות אוילר לפונקציית זטא.
+\end{conclusion}
+\begin{conclusion}
+	מסקנה נוספת היא שבשל אי־רציונליות $\pi$ נוכל להסיק כי הטור הוא לא טור סופי, לכן יש אינסוף ראשוניים.
+\end{conclusion}
+
+\subsection{משתנים מקריים}
+אנו רוצים להסתכל על משתנה מקרי כדרך להסתכל מחדש על מרחב ההסתברות ובפרט פונקציית ההסתברות באופן נוסף, זה בתורו יאפשר לנו לפתור בעיות בדרך חדשה ואולי אף פשוטה יותר, כפי שנראה בהמשך.
+\begin{example}
+	נגדיר $X$ להיות משתנה מקרי שמתאר סכום הטלת שתי קוביות הוגנות, דהינו נוכל להגדיר $\PP = {[6]}^2$ ו־$\PP$ אחידה. \\*
+	בהתאם נגדיר $X : \Omega \to \RR$ על־ידי $(a, b) \mapsto a + b$. \\*
+	לכן
+	\[
+		\rng(X) = \{2, \dots, 12 \}
+	\]
+	נעבור לחישוב הסתברויות
+	\begin{align*}
+		& \PP(X = 2) = \frac{1}{36}, \\
+		& \PP(X = 3) = \frac{2}{36}, \\
+		& \PP(X = 4) = \frac{3}{36}, \\
+		& \PP(X = 5) = \frac{4}{36}, \\
+		& \PP(X = 6) = \frac{5}{36}, \\
+		& \PP(X = 7) = \frac{6}{36}, \\
+		& \PP(X = 8) = \frac{5}{36}
+	\end{align*}
+	וכן הלאה, בהתאם נוכל להסיק
+	\[
+		\forall E \subseteq \RR,
+		\PP(X \in E)
+		= \PP_X(E \cap \rng(X))
+		= \sum_{i \in E \cap \rng(X)} \PP(X = i)
+	\]
+	נסמן $X_i$ תוצאת ההטלה ה־$i$, ולכן $X = X_1 + X_2$, נחשב את $X$ ביחס ל־$X_i$.
+	\begin{align*}
+		\forall n \in \{2, \dots, 12\},
+		\PP(X = n) 
+		& = \sum_{i = 1}^{6} \PP(X_1 = i) \PP(X_2 = n - i) \\
+		& = \sum_{i = 1}^{6} \frac{1}{6} \min\{6 - i, 0\} \\
+		& = \frac{1}{36} |\{\{1, \dots, 6\} \cap \{n - 1, \dots, n - 6 \}\}|
+	\end{align*}
+	אם נגדיר $Y = X (\mod 6)$ אז $\rng(Y) = \{0, \dots, 5\}$ ונחשב
+	\begin{align*}
+		\forall n \in \{0, \dots, 5\},
+		\PP(Y = n)
+		& = \PP(X = n \lor X = n + 6 \lor X = n + 12) \\
+		& = \frac{1}{36} \cdot |\{1, \dots, 6\} \cap \{n + 12, \dots, n - 6\}| \\
+		& = \frac{6}{36} = \frac{1}{6}
+	\end{align*}
+\end{example}
+	
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
