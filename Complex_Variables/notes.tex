@@ -779,4 +779,94 @@ $\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg
 	\]
 \end{example}
 
+\section{שיעור 7 --- 21.11.2024}
+\begin{remark}
+	את החישוב של טור טיילור של $\log(z)$ אפשר לקבל גם על־ידי שימוש בנוסחה של הפרש חזקות.
+\end{remark}
+\begin{exercise}
+	אם $f_n^i \to g$ במידה שווה מקומית וגם $f_n(z) \to L$ אז $f_n \to f$, $f$ גזירה ו־$f_n' \to f'$.
+\end{exercise}
+בהינתן התרגיל
+\[
+	g_N' = \sum_{k = 0}^{N} a_k z^k
+\]
+וכן $g_N' \to g'$ וכן
+\[
+	g_N = \sum_{k = 0}^{N} \frac{z^{k + 1}}{k + 1} + f(0)
+\]
+הסדרה $g_N$ מקיימת $g_N' \to g$ במידה שווה מקומית. $g_N(0) = f(0)$ ומהתרגיל $g_N \to f$.
+
+\subsection{משוואות קושי רימן}
+\begin{notation}
+	אם $f : \CC \to \CC$, אז נסמן $\re(f) = u(x, y)$ ו־$\im(f) = v(x, y)$, כאשר $u, v : \RR^2 \to \RR$. \\*
+	אז $f(z) = f(x + iy) = u(u, y) + i v(x, y)$.
+\end{notation}
+\begin{proposition}[משוואות קושי־רימן]
+	תהי $f = u + i v$ פונקציה גזירה במובן המרוכב, אז
+	אז $f' = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} = -i \frac{\partial u}{\partial y} + \frac{\partial v}{\partial y}$, ולכן
+	\[
+		\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y},
+		\qquad
+		\frac{\partial u}{\partial y} = - \frac{\partial v}{\partial x}
+	\]
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		f'(z) = \lim_{w \to z} \frac{f(z) - f(w)}{z - w}
+		& = \lim_{\substack{h \to 0 \\ h \in \RR}} \frac{f(z) - f(z - h)}{h} \\
+		& = \lim_{\substack{h \to 0 \\ h \in \RR}} \frac{u(x, y) - u(x - h, y)}{h} + i \frac{v(x, y) - v(x - h, y)}{h} \\
+		& = \lim_{\substack{h \to 0 \\ h \in \RR}} \frac{u(x, y) - u(x - h, y)}{h} + i \lim_{\substack{h \to 0 \\ h \in \RR}} \frac{v(x, y) - v(x - h, y)}{h} \\
+		& = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x}
+	\end{align*}
+\end{proof}
+האם זה תנאי מספיק לגזירות?
+\begin{theorem}
+	תהינה $u, v \in C^1(G)$ והן מקיימות את משוואות קושי־רימן, אז $f = u + i v$ היא גזירה ב־$G$.
+\end{theorem}
+\begin{proof}
+	תהי $h = \delta + i \epsilon$ עבור $\delta, \epsilon \in \RR$. לכן
+	\[
+		u(x + \delta, y + \epsilon) - u(x, y)
+		= \underbrace{\frac{\partial u}{\partial x}}_{\alpha} \delta + \underbrace{\frac{\partial u}{\partial y}}_{\beta} \epsilon + o(\delta, \epsilon)
+	\]
+	וכן
+	\[
+		v(x + \delta, y + \epsilon) - v(x, y)
+		= - \beta \delta + \alpha \epsilon + o(\lVert h \rVert)
+	\]
+	אם $h = w - z$ אז
+	\begin{align*}
+		\lim_{w \to z} \frac{f(w) - f(z)}{w - z}
+		& = \lim_{h \to 0} \frac{f(z + h) - f(z)}{h} \\
+		& = \lim_{h \to 0} \frac{u(x + \delta, y + \epsilon) + i v(x + \delta, y + \epsilon) - u(x, y) - i v(x, y)}{h} \\
+		& = \lim_{h \to 0} \frac{1}{h} (\alpha \delta + \beta \epsilon + o(\lVert h \rVert) + i(-\beta \delta + \alpha \epsilon + o(\lVert h \rVert))) \\
+		& = \lim_{h \to 0} \frac{1}{h} (\alpha(\delta + i \epsilon) + \beta(\epsilon - i \delta) + o(\lVert h \rVert)) \\
+		& = \alpha - i \beta = f'(z)
+	\end{align*}
+\end{proof}
+\begin{remark}
+	מספיק $u, v$ גזירות ב־$\RR^2$ לא מספיק קיום $u_x, v_y$.
+\end{remark}
+\begin{theorem}
+	יהי $G \subseteq \CC$ תחום ו־$f \in \text{Hol}(G)$, התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $f$ קבועה
+		\item $0 \equiv f'$
+		\item $u = \re(f)$ קבועה
+		\item $\im f = v$ קבועה
+		\item $|f|$ קבועה
+		\item $\Arg(f)$ קבועה
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	מספיק להראות שהכול שקול ל־$f' \equiv 0$. \\*
+	ברור ש־1 גורר הכול.
+
+	אם $u$ קבועה אז
+	\[
+		\frac{\partial u}{\partial x} = \frac{\partial u}{\partial y} = 0
+	\]
+	ולכן מקושי־רימן גם $\frac{\partial v}{\partial x} = \frac{\partial v}{\partial y} = 0$ ולכן $f' = 0$.
+\end{proof}
+
 \end{document} % chktex 17
