@@ -1,0 +1,130 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- תורת הקבוצות האקסיומטית, 80650}
+
+\DeclareMathOperator{\rank}{rank}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+במטלה זו נניח ZF אלא אם נאמר אחרת.
+
+\Question{}
+נוכיח את משפט הרקורסיה עבור יחסים מבוססים היטב. \\*
+תהי מחלקה $A$ ויהי $R$ יחס על $A$ כך שהוא מבוסס היטב ודומה־קבוצה (set-like). \\*
+תהי $G$ מחלקת פונקציה כך שכל קבוצה במקור שלה, ונוכיח כי קיימת מחלקה יחודית $F$ כך שמתקיים
+\[
+	\forall x \in A, F(x) = G(F \upharpoonright \{y \mid y R x \})
+\]
+\begin{proof}
+	אם $A$ ריקה אז סיימנו, אחרת נניח ש־$\tilde{a} \in A$ איבר כלשהו, ולכן מתכונת דמיון־קבוצה נסיק כי $\{ x \mid x R \tilde{a} \}$ היא קבוצה, ובתור קבוצה ש־$R$ יחס מבוסס היטב עליה נוכל להסיק כי יש לה מינימום $a$. \\*
+	נגדיר מחלקה $F$ כך ש־$F(a) = G(\emptyset)$, ונשתמש בהגדרה זו כבסיס לאינדוקציה על סדרים מבוססים היטב. \\*
+	עתה נניח ש־$x \in A$, וש־$\{ y \in A \mid y R x \} \subseteq \dom F$ ונרצה להראות שמתקיים $F(x) - G(F \upharpoonleft \{ y \mid y R x \})$. \\*
+	מההנחה שלנו נבחין כי $F \upharpoonright \{ y \mid y R x \}$ היא מחלקת פונקציה ומאקסיומת הפרדה נוכל להניח כי זו בפרט קבוצה ולכן $G$ מוגדרת עליה, אז נקבל ש־$F$ אכן מוגדרת על $x$ ולכן $x \in \dom F$. \\*
+	ממשפט האינדוקציה על סדרים מבוססים היטב נסיק כי אכן $F$ מחלקת פונקציה יחידה כך ש־$\dom F = A$ וגם התנאי מתקיים.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+יהי $R$ יחס מבוסס היטב, דומה־קבוצה, על מחלקה $A$. 
+נוכיח שקיימת מחלקת פונקציה יחידה $\rank_R : A \to Ord$ המקיימת
+\[
+	\rank_R(x) = \sup\{ \rank_R(y) + 1 \mid y R x \}
+\]
+כאשר $\sup \emptyset = 0$. \\*
+נוכיח גם ש־$x R y \implies \rank_R(x) < \rank_R(y)$ לכל $x, y \in A$.
+\begin{proof}
+	נבחר שוב $a \in A$ איבר מינימום, ולכן נגדיר $\rank_R(a) = \sup \emptyset = 0$. \\*
+	נגדיר $G$ מחלקת פונקציה כך ש־$G(\rank_R \upharpoonright \{ y \mid y R x \}) = \sup\{ \rank_R(y) + 1 \mid y R x \}$, ולכן ממשפט הרקורסיה לסדרים מבוססים היטב קיימת $\rank_R$ יחידה כזו.
+
+	נניח עתה כי $x, y \in A$ וגם ש־$x R y$.
+	נבחין כי $\rank_R(y) + 1 \in \{ \rank_R(y') \mid y' R x \}$ ולכן בהכרח $\rank_R(y) + 1 \le \rank_R(x)$, דהינו $\rank_R(y) < \rank_R(x)$.
+\end{proof}
+
+\Subquestion{}
+נוכיח ש־$V_\alpha = \{ x \mid \rank_\in(x) < \alpha \}$.
+נסיק ש־$\rank_\in(x)$ הוא הסודר $\alpha$ הקטן ביותר כך ש־$x \subseteq V_\alpha$ וש־$\forall x, \rank_\in(x) = \rank(x)$ כפי שהגדרנו בכיתה.
+\begin{proof}
+	נתחיל בהוכחת טענה קשורה, נוכיח כי$\rank_\in(V_\alpha) = \alpha$ לכל $\alpha \in Ord$. \\*
+	נוכיח באינדוקציה על סודרים, תחילה נבחין כי $\rank_\in(V_0) = \rank_\in(\emptyset) = 0$ והטענה נכונה. \\*
+	נניח כי הטענה נכונה עבור $\alpha \in Ord$, לכן מהעובדה ש־$V_\alpha \in V_{\alpha + 1}$ נובע
+	\[
+		\rank_\in(V_{\alpha + 1})
+		= \sup\{ \rank_\in(x) + 1 \mid x \in V_{\alpha + 1} \}
+		= \rank_\in(V_\alpha) + 1
+		= \alpha + 1
+	\]
+	נבחין כי מעבר זה נכון מטרנזיטיביות $V_{\alpha + 1}$. \\*
+	עתה נניח כי $\alpha$ סודר גבולי ונניח שהטענה מתקיימת עבור כל $\beta \in \alpha$, ולכן
+	\[
+		\rank_\in(V_{\alpha})
+		= \sup\{ \rank_\in(x) + 1 \mid x \in V_\alpha \}
+		= \sup\{ \rank_\in(V_\beta) + 1 \mid V_\beta \in V_\alpha \}
+		= \sup\{ \beta + 1 \mid \beta \in \alpha \}
+		= \alpha
+	\]
+	השלמנו את מהלך האינדוקציה ולכן מתקיים $\forall \alpha \in Ord, \rank_\in(V_\alpha) = \alpha$.
+
+	נעבור עתה להוכחת הטענה, מהמסקנה של הסעיף הקודם יחד עם השוויון שמצאנו זה עתה מתקיים
+	\[
+		V_\alpha
+		= \{ x \mid x \in V_\alpha \}
+		= \{ x \mid \rank_\in(x) < \rank_\in(V_\alpha) \}
+		= \{ x \mid \rank_\in(x) < \rank_\in(V_\alpha) \}
+		= \{ x \mid \rank_\in(x) < \alpha \}
+	\]
+
+	מהשוויון שמצאנו נובע שלכל $x$ מתקיים $\rank_\in(x) = \alpha = \rank_\in(V_\alpha)$, בהתאם נקבל ש־$\rank_\in(x) < \rank_\in(V_{\alpha + 1})$ ולכן $x \in V_{\alpha + 1}$ (לא הראינו את נכונות טענה זו אך היא נובעת משלילת טענה זו),
+	לכן גם $x \subseteq V_\alpha$, וכמובן מ־$\rank_\in$ נסיק כי זהו גם הסודר הקטן ביותר כך שהכלה זו מתקיימת.
+	אבל למעשה זוהי ההגדרה של $\rank$ עצמו, דהינו $\rank_\in(x) = \rank(x)$ לכל $x$.
+\end{proof}
+
+\Question{}
+\begin{definition*}
+	נאמר ש־$\omega$־רקורסיה חלה (holds) אם לכל מחלקת פונקציה $G$ קיימת פונקציה (במובן של קבוצה) $f$ כך ש־$\dom f = \omega$ כך שמתקיים
+	\[
+		\forall n < \omega, f(n) = G(f \upharpoonright n)
+	\]
+\end{definition*}
+נזכור כי $V_\alpha \models \textbf{Z}$ לכל סודר גבולי $\alpha \ge \omega + \omega$.
+
+\Subquestion{}
+נוכיח ש־$\textbf{Z}$ לא מוכיח $\omega$־רקורסיה, על־ידי מציאת מודל של $\textbf{Z}$ אשר יש בו מקרה שנכשל של $\omega$־רקורסיה.
+\begin{proof}
+	נבחן את המודל $\langle V_{\omega + \omega}, \in \rangle \models \textbf{Z}$. \\*
+	נבחין כי $V_\omega \in U$ מטרנזיטיביות, ונגדיר $f(0) = V_\omega$ ו־$\forall n \in \omega, f(n + 1) = \PP(f(n))$, נבחין כי זו אכן קבוצה לכל מקרה סופי. \\*
+	אילו היינו מניחים $\omega$־רקורסיה, על־ידי שימוש באקסיומת הפרדה היינו מקבלים כי $\rng\{ f(n) \mid n \in \omega\} = \{ V_{\omega + \alpha} \mid n \in \omega \} = V_{\omega + \omega}$ היא קבוצה, לכן $U \in U$. \\*
+	זו כמובן סתירה לאקסיומת היסוד ולכן $\omega$־רקורסיה סותרת את המודל שהגדרנו ל־$\textbf{Z}$.
+\end{proof}
+
+\Subquestion{}
+תהי $\varphi$ הטענה ''האיחוד של קבוצה בת־מניה כך שהיא מכילה קבוצות בנות־מניה הוא בן־מניה''. \\*
+נוכיח ש־$\textbf{ZF} + \varphi$ מוכיח שקיימת קבוצה טרנזיטיבית שמהווה מודל עבור $\textbf{Z} + \text{־רקורסיה}\omega$.
+\begin{proof}
+	נבחין כי $\textbf{ZF}$ מקיים את טענת $\omega$־רקורסיה, ולכן נשתמש בבנייה שעשינו בסעיף הקודם לקבוצה $V_{\omega + \omega}$ נבחין כי בבנייה שלנו כל הקבוצות הן בנות־מניה,
+	וכי גם $\{ V_{\omega + n} \mid n \in \omega \}$ בת־מניה, לכן מ־$\varphi$ נובע כי גם $V_{\omega + \omega}$ בת־מניה. \\*
+	אבל אנו יודעים כי $V_{\omega + \omega}$ היא מודל ל־$\textbf{Z}$, ומהעובדה שהיא בת־מניה נוכל להסיק שקיימת פונקציה $\omega \to V_{\omega + \omega}$ הפיכה, והיא מוכיחה את $\omega$־רקורסיה במודל עצמו. \\*
+	נסביר, הפונקציה הזו מקיימת את רקסיומת החלפה, וזו בתורה מאפשרת להוכיח את $\omega$־רקורסיה, ולכן $V_{\omega + \omega}$ היא מודל ל־$\textbf{Z} + \text{־רקורסיה}\omega$.
+\end{proof}
+
+\Question{}
+\Subquestion{}
+יהי $R$ יחס בינארי על קבוצה $X$.
+נוכיח את ההיפוך החלקי של 2 א', דהינו נניח שקיימת פונקציה $f : X \to Ord$ כך שלכל $x, y \in X, y X x \implies f(y) < f(x)$ ונוכיח ש־$R$ מבוסס־היטב.
+\begin{proof}
+	נתחיל ונראה ש־$x X x \implies f(x) < f(x)$ וזו סתירה ולכן $R$ אנטי־רפלקסיבי. כמו־כן $x X y \land y X x \implies f(x) < f(y) < f(x)$ ולכן גם א־סימטרי, ולבסוף $x R y \land y R z \implies f(x) < f(y) < f(z)$,
+	 אז $R$ לא יחס סדר חד אבל הוא כן משרה סדר חד, ובשל השימוש בסודרים סדר זה קווי ומבוסס היטב.
+	 נשתמש בביסוס היטב הזה כדי להוכיח שגם $R$ מבוסס היטב. \\*
+	 תהי $Y \subseteq X$ ונבחר על־ידי אקסיומת החלפה את $f(Y)$, נקבל קבוצת סודרים, אבל $<$ סדר טוב על הסודרים ולכן קיים מינימלי $\alpha$ כלשהו.
+	 עתה נגדיר $A = \{ y \in Y \mid f(y) = \alpha \}$, ונקבל קבוצה של איברים, זוהי קבוצה לא ריקה ולכן נניח $a \in A$ איבר כלשהו. \\*
+	 אז $a \in Y$ וכן $\forall y \in Y, a R y$ כמסקנה מהטענה הראשנה.
+\end{proof}
+
+\Subquestion{}
+תהינה $M, N$ מחלקות טרנזיטיביות המספקות את $\textbf{ZF}$, כך ש־$M \subseteq N$.
+יהי $R$ יחס על קבוצה $a \in M$. \\*
+נוכיח ש־$R$ הוא מבוסס היטב ב־$M$ אם ורק אם הוא מבוסס היטב ב־$N$.
+\begin{proof}
+	נניח ש־$R$ מבוסס היטב ב־$M$.
+\end{proof}
+
+\end{document}
