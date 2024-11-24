@@ -869,4 +869,179 @@ $\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg
 	ולכן מקושי־רימן גם $\frac{\partial v}{\partial x} = \frac{\partial v}{\partial y} = 0$ ולכן $f' = 0$.
 \end{proof}
 
+\section{שיעור 8 --- 24.11.2024}
+בשיעור הקודם דיברנו על משוואות קושי־רימן.
+נעבור להוכחה של מה שנשאר מהמשפט של השיעור הקודם.
+\begin{proof}
+	אם $f' \equiv 0$ אז $f$ קבועה ולכן גם $|f|, \arg(f)$ קבועים.
+
+	נניח ש־$|f|$ קבועה.
+	גם ${|f|}^2$ קבועה, וכן ${|f|}^2 = u^2(x, y) + v^2(x, y)$ ואם נגזור נקבל
+	\begin{align*}
+		0 = \frac{\partial}{\partial x} {|f|}^2
+		& = \frac{\partial}{\partial x} u^2(x, y) + v^2(x, y) \\
+		& = 2u(x, y) \frac{\partial u}{\partial x} + 2v(x, y) \frac{\partial v}{\partial x} \\
+		& = 2u(x, y) \frac{\partial u}{\partial y} + 2v(x, y) \frac{\partial v}{\partial y} \\
+		& = -2u(x, y) \frac{\partial u}{\partial x} + 2v(x, y) \frac{\partial v}{\partial x}
+	\end{align*}
+	ממשוואות קושי־רימן, ונקבל משוויונות אלה
+	\[
+		0 = u (\frac{\partial u}{\partial x} - \frac{\partial v}{\partial x}) + v (\frac{\partial u}{\partial y} + \frac{\partial v}{\partial y})
+	\]
+	וכן גם
+	\[
+		0 = u (\frac{\partial u}{\partial x} + \frac{\partial v}{\partial x}) + v (\frac{\partial u}{\partial y} - \frac{\partial v}{\partial y})
+	\]
+	עבור $x + iy$ כלשהם, אם $v \ne 0$ אז
+	\[
+		0 = u(u_x - v_x) + v(u_x + v_x)
+		\implies \frac{u}{v} = \frac{u_x + v_x}{u_x - v_x}
+	\]
+	ומהשוויון הקודם נסיק
+	\[
+		\frac{u}{v} = \frac{u_x - v_x}{u_x + v_x}
+		\implies \frac{u_x - v_x}{u_x + v_x} = - \frac{u_x + v_x}{u_x - v_x} = 0
+	\]
+	ולכן
+	\[
+		u_x - v_x = u_x + v_x = u_x - v_x = 0
+	\]
+	ונסיק $f'(z) = 0$. \\*
+	נניח ש־$v = 0$, אז נקבל  $\{z \mid v(z) = 0 \}$ קבוצה של נקודות לא רציפות והראינו שעל $G_0 = G \setminus \{v = 0\}$ מתקיים $f' = 0$ ולכן $f : G_0 \to \CC$ קבועה ולכן מרציפות גם ב־$G$.
+	במקרה השני קיים כדור $B \subseteq G_0$ ולכן $G \setminus \overline{B}$ קבוצה פתוחה.
+
+	נניח $\arg(f)$ קבוע ולכן
+	\[
+		\arg f = \{ \arctan(\frac{\im f}{\re f}) + 2\pi k\}
+	\]
+	אם $\arg f$ קבוע מרציפות $\frac{\im f}{\re f} = \alpha \in \RR$. \\*
+	אם $\alpha \cdot \re f = \im f$ אז $\alpha u = v$ ומקושי רימן $\alpha u_x = v_x = - \alpha v_y = - u_y$ ובאופן דומה $\alpha u_y = u_x$.
+	אז
+	\[
+		\alpha u_x = v_x = \frac{-1}{\alpha} (-\alpha v_x) = \frac{-1}{\alpha} u_x
+	\]
+	אז $u_x = 0$ או $\alpha = \frac{-1}{\alpha}$ ואז לא יתכן ש־$\alpha \in \RR$.
+\end{proof}
+
+\subsection{פונקציות הרמוניות}
+\begin{definition}
+	$h : \RR^2 \to \RR$ אז
+	\[
+		\triangle h(x, y) = \frac{\partial^2 h}{\partial x^2} + \frac{\partial^2 h}{\partial y^2}
+	\]
+	נקרא לפלסיאן.
+	נשים לב כי חייב להתקיים
+	\[
+		h \in \CC^2(G)
+	\]
+\end{definition}
+אם $h \in \CC^2(G)$ וגם $\triangle h = 0$ אז $h$ פונקציה הרמונית ב־$G$.
+\begin{remark}
+	$h : \RR^n \to \RR$ נגדיר
+	\[
+		\triangle h = \sum_{j = 1}^{n} \frac{\partial^2 h}{\partial x_j^2}
+	\]
+	ו־$h$ הרמונית אם $h \in C^2(G)$ וגם $\triangle h = 0$.
+\end{remark}
+נסמן ב־$Harm(G)$ את ההרמוניות ב־$G$.
+\begin{exercise}
+	תהי $f \in Hol(G) \cap \CC^2(G)$ אז $u, v$ הרמוניות.
+\end{exercise}
+מה לגבי הכיוון ההפוך?
+\[
+	f \in Hol(G) \cap \CC^2(G) \implies u, v \in Harm(G)
+\]
+האם לכל פונקציה $u \in Harm(G)$ קיימת פונקציה $v \in Harm(G)$ כך ש־$f = u + i v$ הולומורפית ב־$G$?
+\begin{definition}[צמודה הרמונית]
+	עבור $u \in Harm(G)$ פונקציה ו־$v \in Harm(G)$ כך ש־$u + i v \in Hol(G)$ נקראת \textbf{הצמודה ההרמונית} של $u$ ומסומנת לרוב $\tilde{u}$.
+\end{definition}
+האם לכל פונקציה הרמונית קיימת צמודה הרמוינית? \\*
+באופן כללי – לא.
+אם $G = \CC \setminus \{ 0 \}$ ונניח $u = \log|z|$ ותרגיל $\log|z| \in Hom(G)$ אבל ראינו שלא ניתן להגדיר ענף של הארגומנט (ולכן של הלוג) בתחום $G$.
+
+אז מה כן?
+\begin{example}
+	$u(x, y) = x$ אז $v(x, y) = y$ ונקבל $f = Id$, נובע מ: \\*
+	משהו אחר
+	\[
+		g(z) = \log|z| + i v(x, y), \CC \setminus \{ 0 \} = G_1
+	\]
+	וגם
+	\[
+		G_2 = \{ z \mid \re z \ge 0 \}
+	\]
+	וגם
+	\[
+		g_2(z) = \log|z| + i \Arg(z),
+		\re(g_1 - g_2) = 0 \implies g_1 = g_2
+	\]
+\end{example}
+\begin{example}
+	\[
+		u(x, y) = x^2 - y^2, v(x, y) = 2xy,
+		f(x + iy) = x^2 - y^2 + 2i xy = {(x + iy)}^2 = z^2
+	\]
+\end{example}
+יהי $G$ תחום ונקבע $(x_0, y_0) \in G$ לבחירתנו, נגדיר
+\[
+	v(x, y) = v(x, y) - v(x_0, y) + v(x_0, y) - v(x_0, y_0) + v(x_0, y_0)
+	= \int_{x_0}^{x}  \frac{\partial v}{\partial x}(t, y)\ dt + \int_{y_0}^{y} \frac{\partial v}{\partial y}(x_0, t)\ dt + v(x_0, y_0)
+\]
+וזה שווה מקושי רימן ל:
+\[
+	v(x_0, y_0) - \int_{x_0}^{x} \frac{\partial u}{\partial y}(t, y)\ dt + \int_{y_0}^{y} \frac{\partial u}{\partial x}(x_0, t)\ dt
+\]
+נגדיר אם כן
+\[
+	v(x, y) = C - \int_{x_0}^{x} \frac{\partial u}{\partial y}(t, y)\ dt + \int_{y_0}^{y} \frac{\partial u}{\partial x}(x_0, t)\ dt
+\]
+וזה משפט.
+\begin{theorem}
+	אם $G$ מלבן או עיגול אז ל־$u \in Hom(G)$ יש צמודה הרמונית.
+\end{theorem}
+\begin{exercise}
+	הוכיחו $u + iv \in Hol$.
+\end{exercise}
+\begin{example}[מציאת צמוד הרמוני]
+	נגדיר $u(x, y) = x^2 - 3xy^2$
+	נעשה בדיקה שמתקיים $\triangle u = 0$ ואז נוכל להמשיך. \\*
+	נראה ש־$\frac{\partial u}{\partial x} = 3x^2 - 3y^2$ וכן $\frac{\partial u}{\partial y} = -6xy$. \\*
+	נבחר נקודות $(0, 0)$ וינבע
+	\[
+		v(x, y) = C - \int_{0}^{x} \frac{\partial u}{\partial y}(t, y)\ dt + \int_{0}^{y} \frac{\partial u}{\partial x}(0, t)\ dt
+		= C + \int_{0}^{x}  6t\ dt + \int_{0}^{y} -3t^2\ dt
+		= C - 3x^2 y - y^3
+	\]
+	ומצאנו צמוד הרמוני.
+\end{example}
+
+\subsection{העתקות קונפורמיות}
+\begin{definition}[מסילה במרוכבים]
+	מסילה היא פונקציה רציפה $\gamma : I \to \CC$ עבור $I$ קטע סגור (בדרך־כלל $I = [0, 1]$).
+\end{definition}
+\begin{example}
+	מסילה על־ידי ישר בין נקודות, זוהי דוגמה פשוטה שכבר ראינו בקורס עד כה.
+	$\gamma(t) = tz_0 + (1 - t)z_1$ עבור $z_1, z_2 \in \CC$. \\*
+	מתקבל $\gamma(0) = z_0, \gamma(1) = z_1$.
+\end{example}
+\begin{example}
+	גם $\gamma(t) = \cos(t) + i \sin(t)$ עבור $t \in [0, 2\pi]$, המסילה שמייצגת את מעגל היחידה המרוכב.
+\end{example}
+\begin{example}
+	$\gamma(y) = \cos(t) - i \sin(t)$ נותן מעגל בכיוון ההפוך.
+\end{example}
+\begin{example}
+	\[
+		\gamma(t) = \begin{cases}
+			t & [0, 1] \\
+			1 + i(t - 1) & [1, 2] \\
+			i + (3 - t) & [2, 3] \\
+			(4 - t)i & [3, 4]
+		\end{cases}
+	\]
+	ויצרנו מסילה שהיא ריבוע!
+\end{example}
+נניח $\gamma \in C^1(I)$ אז נגדיר $\dot{\gamma}(t) = x'(t) + iy'(t)$ ו־$\gamma(t) = x(t) + y(t)$ הנגזרת של המסילה $\gamma$. \\*
+נאמר ש־$t_0$ נקודה רגולרית אם $0 \ne \dot{\gamma}(t_0)$.
+
 \end{document} % chktex 17
