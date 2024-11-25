@@ -1,0 +1,156 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+\begin{definition}[אלגברה בוליאנית]
+	תהי קבוצה סדורה $(B, +, \cdot, -, 0, 1)$ עבור $B$ קבוצה, פונקציות דו־מקומיות $+, \cdot$, פונקציה חד־מקומית $-$ וקבועים $0, 1$ כך שמתקיים לכל $x, y, z \in B$:
+	\begin{enumerate}
+		\item $+, \cdot$ קומוטטיביים ואסוציאטיביים.
+		\item ספיגה: $x + (x \cdot y) = x, \qquad x \cdot (x + y) = x$.
+		\item פילוג: $x \cdot (y + z) = x \cdot y + x \cdot z, \qquad x + (y \cdot z) = (x + y) \cdot (x + z)$.
+		\item השלמה: $x \cdot (-x) = 0, \qquad x + (-x) = 1$.
+	\end{enumerate}
+\end{definition}
+תהי $B$ אלגברה בוליאנית.
+
+\Subquestion{}
+נוכיח שלכל $x \in B$ מתקיים $x \cdot 1 = x + 0 = x \cdot x = x$.
+\begin{proof}
+	מהשלמה וספיגה נובע
+	\[
+		x \cdot 1 = x \cdot (x + (-x)) = x
+	\]
+	באופן דומה
+	\[
+		x + 0 = x + (x \cdot (-x)) = x
+	\]
+	נובע משוויון זה ומספיגה
+	\[
+		x \cdot x = x \cdot (x + 0) = x
+	\]
+	ומצאנו כי כל השוויון המבוקש מתקיים.
+\end{proof}
+
+\Subquestion{}
+נראה שקיימת אלגברה בוליאנית יחידה $B$ כך ש־$B = \{ \TT, \FF \}$ כך ש־$1 = \TT, 0 = \FF$.
+\begin{proof}
+	נראה שהפעולות מוגדרות ביחידות ולכן גם כל $B$ נקבע ביחידות. \\*
+	נתחיל מבחינת $-$, נבחין כי $-\FF = -0 = 0 + (-0) = 1 = \TT$ מהשלמה ומסעיף א', גם $-\TT = -1 = 1 \cdot (-1) = 0 = \FF$ מאותה סיבה.
+	לכן $(-) = \{ \langle \FF, \TT \rangle, \langle \TT, \FF \rangle\}$ והיא נקבעת היחידות מההגדרה. \\*
+	נעבור ל־$\cdot$, מתקיים $\TT \cdot \TT = 1 \cdot 1 = 1 = \TT$ מסעיף א' וכן $\FF \cdot \FF = 0 \cdot 0 = 0 \cdot (0 + 0) = 0 = \FF$ מספיגה וסעיף א',
+	ולבסוף $\TT \cdot \FF = \FF \cdot \TT = 0 \cdot 1 = 0 = \FF$ מקומוטטיביות, סעיף א' והשלמה.
+	לכן גם $\cdot$ נקבעת ביחידות. \\*
+	לבסוף נבחן את $+$, הפעם $\FF + \FF = 0 + 0 = 0 = \FF$ מסעיף א', $\TT + \FF = \FF + \TT = 0 + 1 = 1 = \TT$ מסעיף א' וקומוטטיביות, וגם $\TT + \TT = 1 + 1 = 1 + (1 \cdot 1) = 1 = \TT$.
+	נובע שגם $+$ נקבע ביחידות, ולכן גם האלגברה הבוליאנית $B$ נקבעת ביחידות.
+\end{proof}
+
+\Subquestion{}
+נסמן ב־$B$ את האלגברה הבוליאנית של סעיף ב' ותהי $X$ קבוצה. \\*
+נגדיר $B_X = \{ f \mid f : X \to \{ \TT, \FF \}\}$ ונגדיר $+', \cdot' : B_X^2 \to B_X, -' : B_X \to B_X$ על־ידי
+\[
+	(-' f)(x) = - f(x),
+	\qquad
+	(f +' g)(x) = f(x) + g(x),
+	\qquad
+	(f \cdot' g)(x) = f(x) \cdot g(x)
+\]
+נוכיח ש־$B_X$ היא אלגברה בוליאנית ביחס לפונקציות $-', +', \cdot'$.
+\begin{proof}
+	נעבור על כל הטענות שמגדירות אלגברה בוליאנית:
+	\begin{enumerate}
+		\item אסוציאטיביות וקומוטטיביות נובעות ישירות מתכונות אלה של האלגברה הבוליאנית $B$.
+		\item ספיגה: $(f +' (f \cdot' g))(x) = f(x) + (f \cdot' g)(x) = f(x) + (f(x) \cdot g(x)) = f(x)$ מ־$B$, וכך גם $(f \cdot' (f +' g))(x) = f(x) \cdot (f +' g)(x) = f(x) \cdot (f(x) + g(x)) = f(x)$ באותו אופן.
+		\item פילוג: $(f \cdot' (g +' h))(x) = f(x) \cdot (g(x) + h(x)) = f(x) \cdot g(x) + f(x) \cdot h(x) = (f \cdot' g)(x) + (g \cdot' h)(x) = (f \cdot' g +' f \cdot' h)(x)$. \\*
+			באופן דומה גם $(f +' (g \cdot h))(x) = f(x) + (g(x) \cdot h(x)) = (f(x) + g(x)) \cdot (f(x) + h(x)) = ((f +' g) \cdot' (f +' h))(x)$.
+		\item השלמה: $(f \cdot' (-' f))(x) = f(x) \cdot (-' f)(x) = f(x) \cdot (-f(x)) = 0$ וכן $(f +' (-' f))(x) = f(x) + (-f(x)) = 1$.
+	\end{enumerate}
+	נבחין כי במצב זה $0$ ו־$1$ הם פונקציות קבועות כך ש־$0(x) = \FF, 1(x) = \TT$ לכל $x \in X$.
+\end{proof}
+
+\Question{}
+
+\Subquestion{}
+נראה ש־$C = \{ \lor, \land, \to, \leftrightarrow \}$ היא לא מערכת קשרים שלמה.
+\begin{proof}
+	נגדיר את השפה $L = \{ P \}$, ואת הערכת האמת $u : L \to \{ \TT, \FF \}$ המוגדרת על־ידי $v(P) = \TT$ ונוכיח באינדוקציה שלכל $\varphi \in sent_L^C, \bar{u}(\varphi) = \TT$. \\*
+	האינדוקציה היא על מבנה הפסוק ולכן נבחן את המקרה של פסוק יסודי, דהינו עבור $\varphi = P$, ומהגדרה נובע $\overline{u}(\varphi) = \TT$, זהו בסיס האינדוקציה. \\*
+	נניח ש־$\bar{u}(\varphi_1) = \bar{u}(\varphi_2) = \TT$ ונוכיח שגם עבור $\square \in C$ מתקיים $\bar{u}(\varphi_1 \square \varphi_2) = \TT$. \\*
+	מתקיים $\bar{u}(\varphi_1 \square \varphi_2) = V_\square(\bar{u}(\varphi_1), \bar{u}(\varphi_2)) = V_\square(\TT, \TT)$. \\*
+	אבל מהגדרת כל $\square \in C$ אנו יודעים כי $V_\square(\TT, \TT) = \TT$ ולכן הטענה מתקיימת והשלמנו את מהלך האינדוקציה.
+
+	נניח בשלילה ש־$C$ היא מערכת קשרים שלמה ויהי פסוק $\varphi = \lnot (\perp) \in sent_L$, לכן קיים $\varphi' \in sent_L^C$ כך ש־$\varphi \equiv_{tau} \varphi'$. \\*
+	לכן לכל הערכת אמת $v$ מתקיים $\bar{v}(\varphi) = \bar{v}(\varphi')$, אבל $\varphi$ הוא סתירה ולכן $\bar{v}(\varphi) = \FF$. \\*
+	נקבל אם כך שגם $\bar{u}(\varphi') = \FF$ בסתירה לטענה שהוכחנו זה עתה, ולכן נסיק ש־$C$ איננה מערכת קשרים שלמה.
+\end{proof}
+
+\Subquestion{}
+נבחן את מערכת הקשרים $*$ אשר כוללת את הקשר ה־$0$ מקומי $\perp$. \\*
+נוכיח שהמערכת $C = \{ \to, \perp \}$ היא מערכת קשרים $*$ שלמה.
+\begin{proof}
+	תהי שפה $L$ כלשהי ויהי $\varphi \in sent_L^*$ ונוכיח כי קיים $\varphi' \in sent_L^C$ באינדוקציה על מבנה הפסוק במערכת $*$ (נניח כי כלל המשפטים הרלוונטיים זהים עד כדי הוספת $\perp$). \\*
+	עבור בסיס האינדוקציה נבחן את $\varphi \in L$, כמובן שגם $\varphi \in sent_L^C$ מהגדרה. \\*
+	נניח שהטענה מתקיימת עבור $\psi \in sent_L^*$ ולכן קיים $\psi' \in sent_L^C$ שקול טאוטולוגית ל־$\psi$, ונבחן את $\varphi = (\lnot \psi)$.
+	נגדער $\varphi' = (\psi \to \perp)$ ונקבל שעבור $\bar{v}(\psi) = \TT$ גם $\bar{v}(\psi \to \perp) = \FF$ ובאופן דומה גם $\bar{v}(\psi) = \FF \implies \bar{v}(\varphi') = \TT$ ולכן הטענה מתקיימת. \\*
+	נניח שהטענה מתקיימת עבור $\psi_1, \psi_2 \in sent_L^*$, דהינו קיימים $\psi_1', \psi_2' \in sent_L^C$, ונוכיח את הטענה גם עבור $\varphi = (\psi_1 \square \psi_2)$ לכל $\square \in B$. \\*
+	אם $\square = \land$ אז נגדיר $\varphi' = (\psi_1' \to (\psi_2' \to \perp))$, כדי לבדוק את השקילות הטאוטולוגית די שנראה שעבור הערכות אמת כך ש־$\langle \psi_1, \psi_2 \rangle \in {[\FF, \TT]}^2$ השקילות מתקיימת.
+	מחישוב ישיר נקבל שאכן ישנה שקילות. \\*
+	עבור $\square = \lor$ נגדיר $\varphi' = ((\psi_1' \to \perp) \to \psi_2')$ ונקבל מאותו טיעון את השקילות. \\*
+	עבור $\square = \to$ נגדיר $\varphi' = (\psi_1' \to \psi_2')$ והטענה נובעת ישירות. \\*
+	עבור $\leftrightarrow$ נשתמש בזהות $x \leftrightarrow y \iff ((x \land y) \lor ((\lnot x) \land (\lnot y)))$ ובזהויות שמצאנו זה עתה עבור $\lnot, \lor, \land$ ונוכל לבנות $\varphi' \in sent_L^C$ המקיים את הטענה.
+	השלמנו אם כך את מהלך האינדוקציה ולכן $C$ מערכת קשרים $*$ שלמה.
+\end{proof}
+
+\Subquestion{}
+נוסיף קשר בינארי חדש, $\mid$ למערכת הקשרים, ונגדיר שמתקיים $V_\mid(\epsilon_0, \epsilon_1) = V_\lnot(V_\land(\epsilon_0, \epsilon_1))$. \\*
+נוכיח ש־$C = \{ \mid \}$ היא מערכת קשרים שלמה.
+\begin{proof}
+	בסעיף הקודם ראינו שכדי להוכיח את הטענה מספיק למצוא זהות בין כל קשר לוגי לבין פסוק במערכת הקשרים החדשה, ונראה כי מתקיים לכל $\varphi, \psi \in sent_L^{**}$:
+	\[
+		(\lnot \varphi) \equiv (\varphi \mid \varphi)
+		\quad
+		(\varphi \land \psi) \equiv ((\varphi \mid \psi) \mid (\varphi \mid \psi))
+		\quad
+		(\varphi \lor \psi) \equiv ((\varphi \mid \varphi) \mid (\psi \mid \psi))
+	\]
+	בדיקת שוויון כמובן תתקיים על־ידי בניית טבלת ערכים והשוואתה. \\*
+	נוכל כמובן למצוא גם זהויות דומות עבור $\to, \leftrightarrow$ תוך שימוש בעובדה ש־$\{ \land, \lor, \lnot \}$ היא בעצמה מערכת קשרים שלמה. \\*
+	נוכיח באינדוקציה זהה לתהליך בסעיף הקודם ותוך שימוש בזהויות אלה את הטענה, כאשר גם בסיס האינדוקציה נשאר זהה ונובע מהעובדה ש־$sent_L^{**} \supseteq L \subseteq sent_L^C$.
+\end{proof}
+
+\Question{}
+\begin{theorem}[משפט החתונה של הול]
+	יהי $G = (V_0 \uplus V_1, E)$ גרף דו־צדדי סופי. \\*
+	לכל $A \subseteq V_0$ נסמן $N(A) = \{ v \in V_1 \mid \exists a \in A, \{a, v\} \in E \}$. \\*
+	אם $\forall A \subseteq V_0$ מתקיים $|N(A)| \ge |A|$ אז קיים ב־$G$ צימוד מושלם.
+\end{theorem}
+יהי $G = (V_0 \uplus V_1, E)$ גרף דו־צדדי סופי מקומית המקיים שלכל $A \subseteq V_0$ גם $|N(A)| \ge |A|$.
+
+\Subquestion{}
+נניח בשלילה שאין ב־$G$ צימוד מושלם ונוכיח ש־$\Sigma$ משאלה 2 בתרגיל 3 איננה ספיקה.
+\begin{proof}
+	נניח של־$G$ אין צימוד מושלם ולכן ממסקנת שאלה זו נובע ש־$\Sigma$ איננה ספיקה.
+\end{proof}
+
+\Subquestion{}
+נוכיח שכל $\Xi \subseteq \Sigma$ איננה ספיקה.
+\begin{proof}
+	ממשפט הקומפקטיות נובע ש־$\Sigma$ ספיקה אם ורק אם $\Xi$ ספיקה, אך זו הראשונה לא ספיקה לפי סעיף א', ולכן גם $\Xi$ לא ספיקה.
+\end{proof}
+
+\Subquestion{}
+נוכיח שבתת־הגרף שמורכב מהקודקודים שב־$\Xi$ יש צימוד מושלם.
+\begin{proof}
+	נבחין כי בתת־גרף זה כל תת־קבוצה $A$ היא גם תת־קבוצה ב־$G$ עצמו, ולכן $|N(A)| \ge A$, ולכן ממשפט החתונה של הול קיים צימוד מושלם בתת־גרף זה.
+\end{proof}
+
+\Subquestion{}
+נוכיח של־$G$ צימוד מושלם.
+\begin{proof}
+	מצאנו בסעיף הקודם כי ל־$\Xi$ צימוד מושלם, אז משאלה 2 במטלה 3 נובע כי $\Xi$ ספיקה, אבל זו סתירה להנחה כי $G$ לא ספיקה ולכן היא כן ספיקה, ולכן שוב משאלה 2 במטלה 3 נסיק כי ל־$G$ צימוד מושלם.
+\end{proof}
+
+\end{document}
