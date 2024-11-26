@@ -1301,14 +1301,14 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	נסמן $X_i = 1_{A_i}$ ו־$X = \sum_{i = 1}^n X_i$.
 \end{example}
 בדוגמות הקודמות ההטלה הראשונה זוגית $\{ (a, b) \in {[6]}^2 \mid a \in \{2, 4, 6\}\}$. נכתוב במקום זאת $X_1 \in \{2, 4, 6\}$.
-\begin{definition}
+\begin{definition}[מאורע מושרה ממשתנה מקרי]
 	אם $X$ משתנה מקרי ו־$S \in \mathcal{F}_\RR$, המאורע $X \in S$ מוגדר להיות
 	\[
 		X^{-1}(S) = \{ \omega \in \Omega \mid X(\omega) \in S \}
 	\]
 	בהתאם נכתוב $\PP(\{x \in S\})$ על־ידי $\PP(X \in S)$, ובאופן דומה נוכל לציין גם את $\PP(X = s), \PP(X \le s)$ ודומים.
 \end{definition}
-\begin{definition}
+\begin{definition}[פונקציית הסתברות מושרית ממשתנה מקרי]
 	$(\Omega, \mathcal{F}, \PP)$ מרחב הסתברות, ויהי $X$ משתנה מקרי. \\*
 	נגדיר פונקציה $\PP_X : \mathcal{F}_\RR \to [0, \infty)$ על־ידי
 	\[
@@ -1458,7 +1458,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \section{שיעור 8 --- 21.11.2024}
 
 \subsection{משתנים מקריים --- המשך}
-\begin{definition}[משתנה מקרי בדיד]
+\begin{definition}[משתנה מקרי בדיד]\label{def_discrete_random_variable}
 	$X$ משתנה מקרי נקרא \textbf{בדיד} אם $\PP_X$ הוא פונקציית הסתברות בדידה. \\*
 	במקרה זה יש ל־$X$ התפלגות נקודתית $p_X : \RR \to [0, \infty)$.
 \end{definition}
@@ -1635,6 +1635,108 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\]
 	כמו־כן גם $\PP(Y \in S) = \PP(X \in S, Y \in S)$.
 \end{proof}
-	
+
+\section{שיעור 9 --- 25.11.2024}
+
+\subsection{משתנים מקריים}
+ניזכר בהגדרה\ \ref{def_discrete_random_variable}:
+\begin{definition*}[משתנה מקרי בדיד]
+	משתנה מקרי נקרא בדיד אם $\PP_X$ פונקציית הסתברות בדידה, כלומר
+	\[
+		\forall S \in \mathcal{F}_X, \PP_X(S) = \sum_{s \in S} p_X(s)
+	\]
+	כאשר $p_X(s) = \PP(X = s) = \PP(X^{-1}(s)) = \PP(\{\omega \in \Omega \mid X(\omega) = s \})$.
+\end{definition*}
+גם דיברנו על סוגים שונים של התפלגות, לדוגמה
+\[
+	\forall i \in [6], p_X(i) = \frac{1}{6} \iff X \sim U([6])
+\]
+או באופן דומה
+\[
+	\forall k \in \{0, \dots, n\}, p_X(k) = \binom{n}{k} p^k {(1 - p)}^{n - k}
+\]
+$A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$ אז נאמר ש־$X = Y$ כמעט תמיד, או נסמן $X \overset{a.s.}{=} Y$. \\*
+באופן דומה אם $\PP_X = \PP_Y$ אז נסמן $X \overset{d}{=} Y$ או נאמר ש־$X$ ו־$Y$ שווי התפלגות, וראינו קשר בין שתי ההגדרות.
+\begin{example}
+	נגדיר הטלת מטבע, $\Omega = \{H, T\}$ ו־$X = 1_{\{H\}}, Y = 1_{\{T\}}$, אז $X \overset{d}{=} Y$ שכן
+	\[
+		p_X(s) = p_Y(s) = \begin{cases}
+			\frac{1}{2} & s = 0 \\
+			\frac{1}{2} & s = 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	אבל גם $\PP(X = Y) = 0$ ולכן $X \overset{a.s.}{\ne} Y$.
+\end{example}
+\begin{proposition}
+	אם $X \overset{d}{=} Y$ ו־$f \in \mathcal{F}_{\RR \to \RR}$ אז $f(X) \overset{d}{=} f(Y)$.
+\end{proposition}
+\begin{proof}
+	נגדיר $W = f(Y), Z = f(X)$,
+	צריך להוכיח ש־$\forall S \in \mathcal{F}_\RR, \PP_Z(S) = \PP_W(S)$.
+	\begin{align*}
+		\PP_Z(S)
+		& = \PP(Z \in S) \\
+		& = \PP(\{\omega \in \omega \mid Z(\omega) \in S\}) \\
+		& = \PP(\{\omega \in \omega \mid f(X(\omega)) \in S\}) \\
+		& = \PP(\{\omega \in \omega \mid X(\omega) \in f^{-1}(S)\}) \\
+		& = \PP(X \in f^{-1}(S)) \\
+		& = \PP_X(f^{-1}(S)) \\
+		& = \PP_Y(f^{-1}(S)) \\
+		& = \PP(\{\omega \in \omega \mid Y(\omega) \in f^{-1}(S)\}) \\
+		& = \PP(\{\omega \in \omega \mid f(Y(\omega)) \in S\}) \\
+		& = \PP(W \in S) \\
+		& = \PP_W(S)
+	\end{align*}
+\end{proof}
+\begin{example}
+	נניח ש־$X \sim Ber(\frac{1}{2})$ וגם $Y \sim Ber(\frac{1}{2})$, ונרצה לחשב את $\PP(X = Y)$. \\*
+	אין לנו את היכולת לעשות זאת כי אין מספיק מידע.
+\end{example}
+\begin{definition}[וקטור מקרי]
+	וקטור מקרי הוא משתנה מקרי לתוך $\RR^n$ במקום ל־$\RR$, $X : \Omega \to \RR^n$.
+\end{definition}
+כלל ההגדרות נשארות זהות פרט להגדרה זו, לדוגמה $\PP_X(S) = \PP(X \in S)$. \\*
+המוטיב שלנו הוא היכולת לבנות כמה משתנים מקריים ולעבוד איתם כיציר בודד, לדוגמה $X = (X_1, X_2)$ עבור $X_1, X_2 : \Omega \to \RR$ משתנים מקריים. \\*
+\begin{definition}[התפלגות משותפת והתפלגויות שוליות]
+	אם $X_1, \dots, X_n$ משתנים מקריים המוגדרים על $\Omega$ יחיד אז $X = (X_1, \dots, X_n)$ הוא וקטור מקרי המוגדר על $\Omega$ וההתפלגות שלו נקראת ההתפלגות המשותפת של $X_1, \dots, X_n$. \\*
+	ההתפלגויות של כל אחד מ־$X_1, \dots, X_n$ נקראות ההתפלגויות השוליות.
+\end{definition}
+השם הזה נובע מהגישה שבה נוכל להבין את ההסתברות של משתנה מקרי בודד מתוך הווקטור על־ידי, אם $X_1, X_2$ מרחבים מקריים אז
+\[
+	\PP_{X_1}(S) = \PP_{(X_1, X_2)}(S \times \RR) = \PP(\{\omega \in \in \Omega \mid (X_1(\omega), X_2(\omega)) \in S\})
+\]
+\begin{example}
+	אם $\Omega = {[6]}^2$ ו־$X_1(a, b) = a, X_2(a, b) = b$ אז $X = (X_1, X_2)$ כאשר $X : \Omega \to \RR^2$ פונקציית הזהות.
+\end{example}
+\begin{example}
+	נבחן עבור $E = \{(s, y) \in \RR^2 \mid s \le t\}$ את
+	\[
+		\PP_{(X, Y)}(E)
+		= \PP(X \le Y)
+	\]
+\end{example}
+\begin{definition}[התפלגות משותפת בדידה]
+	אם לווקטור המקרי התפלגות בדידה, כלומר $\PP_{(X_1, \dots, X_n)}$ פונקציית הסתברות בדידה, \\*
+	אז נאמר שההתפלגות המשותפת של $X_1, \dots, X_n$ בדידה.
+\end{definition}
+\begin{proposition}
+	ההתפלגות המשותפת של $X_1, \dots, X_n$ בדידה אם ורק אם ההתפלגות של כל אחד מ־$X_1, \dots, X_n$ בדידה.
+\end{proposition}
+\begin{proof}
+	נוכיח את הכיוון הראשון. \\*
+	נניח $\PP_{X_1, \dots, X_n}$ בדידה, אך זה נכון אם ורק אם היא נתמכת על־ידי קבוצה בת־מניה, נבחר קבוצה $S \in \mathcal{F}_\RR$ כזו. \\*
+	נסמן ב־$S_1$ את ההטלה של $S$ על הקורדינטה הראשונה, לכן $\PP_{X_1}(S_1) = \PP_{(X_1, X_2)}(S_1 \times \RR)$ אבל $S \subseteq S_1 \times \RR$. \\*
+	לכן $X_1$ נתמך על־ידי קבוצה בת־מניה, $S_1$, ולכן הוא בדיד.
+
+	נעבור לכיוון השני. \\*
+	נניח ש־$X_1, X_2$ בדידים, לכן קיימות $S_1, S_2 \in \mathcal{F}_\RR$ בנות־מניה, \\*
+	כך ש־$\PP(X_1 \in S_1) = \PP(X_2 \in S_2) = 1$. \\*
+	לכן $\PP((X_1, X_2) \in S_1 \times S_2) = \PP(X_1 \in S_2, X_2 \in S_2) = 1$. \\*
+	$S_1, S_2$ בנות־מניה ולכן נובע ש־$S_1 \times S_2$ בת־מניה.
+
+	כמובן לווקטורים בגודל $n > 2$ ההוכחה דומה.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}

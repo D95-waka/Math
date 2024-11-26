@@ -49,4 +49,55 @@
 	ראינו בכיתה כי גם $A$ ו־$B^C$ בלתי־תלויים, ומאותה טענה גם $A^C$ ו־$B^C$ בלתי־תלויים.
 \end{solution}
 
+\Subquestion{}
+נסתור את הטענה כי אם $A, B, C$ בלתי־תלויים אז גם $A \cup B$ ו־$C$ בלתי־תלויים.
+\begin{solution}
+	נניח $A$ קוביה א' יצאה 1, $B$ קוביה ב' יצאה 1 ו־$C = A^C$ אז כמובן $A, B, C$ בלתי־תלויים אבל
+	\[
+		\PP(C \cap (A \cup B)) = 0 \ne \frac{5}{6} \cdot \frac{1}{36} = \PP(C) \cdot \PP(A \cup B)
+	\]
+\end{solution}
+
+\Subquestion{}
+אם $A, B$ בלתי־תלויים וכן $A, C$ בלתי־תלויים אז $A, B \cup C$ בלתי תלויים.
+\begin{solution}
+	נניח $\Omega$ הטלת שתי קוביות, נניח גם $A$ שיצא סכום 7, ו־$B$ שיצא 4 בקוביה הראשונה ו־$C$ שיצא 4 בקוביה השניה. \\*
+	ראינו בהרצאה כי $A, B$ וגם $A, C$ שני זוגות מאורעות בלתי־תלויים, אבל
+	\[
+		\PP(A \cap (B \cup C)) = \frac{2}{36} \ne \frac{1}{6} \cdot \frac{6 + 6 - 1}{36} = \PP(A) \PP(B \cup C)
+	\]
+\end{solution}
+
+\Subquestion{}
+נוכיח שאם $A$ ו־$B$ בלתי־תלויים וכן $A$ ו־$C$ בלתי־תלויים וגם $B, C$ זרים אז $A$ ו־$B \cup C$ בלתי־תלויים.
+\begin{proof}
+	נבחין כי
+	\begin{align*}
+		\PP(A \cap (B \uplus C))
+		& = \PP((A \cap B) \uplus (A \cap C)) \\
+		& = \PP(A \cap B) + \PP(A \cap C) \\
+		& = \PP(A) \PP(B) + \PP(A) \PP(C) \\
+		& = \PP(A)(\PP(B) + \PP(C)) \\
+		& = \PP(A) \PP(A \cup C)
+	\end{align*}
+\end{proof}
+
+\Question{}
+נוכיח שהמאורעות $A_1, \dots, A_n$ הם בלתי תלויים אם ורק אם לכל $I \subseteq [n]$ מתקיים
+\[
+	\PP( (\bigcap_{i \in I} A_i) \cap (\bigcap_{i \in [n] \setminus I} A_i^C))
+	= (\prod_{i \in I} \PP(A_i)) \cdot (\prod_{i \in [n] \setminus I} \PP(A_i^C))
+\]
+\begin{proof}
+	נניח ש־$A_1, \dots, A_n$ בלתי תלויים ולכן מטענה מהכיתה גם $A_1, \dots, A_n, A_1^C, \dots, A_n^C$ בלתי־תלויים. \\*
+	יהי $I \subseteq [n]$ ונגדיר $J = I \cup \{ n + j \mid j \in [n] \land j \notin I \}$ ונקבל מאי־התלות ישירות
+	\[
+		\PP( (\bigcap_{i \in I} A_i) \cap (\bigcap_{i \in [n] \setminus I} A_i^C))
+		= (\prod_{i \in I} \PP(A_i)) \cdot (\prod_{i \in [n] \setminus I} \PP(A_i^C))
+	\]
+
+	נניח את כיוון השני. \\*
+	יהי $i \in [n]$ כלשהו ונרצה להראות כי $A_i$ בלתי־תלוי ב־$\{ A_j \mid 1 \le j \le n \} \setminus A_i$.
+\end{proof}
+
 \end{document}
