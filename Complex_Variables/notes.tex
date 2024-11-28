@@ -1044,4 +1044,74 @@ $\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg
 נניח $\gamma \in C^1(I)$ אז נגדיר $\dot{\gamma}(t) = x'(t) + iy'(t)$ ו־$\gamma(t) = x(t) + y(t)$ הנגזרת של המסילה $\gamma$. \\*
 נאמר ש־$t_0$ נקודה רגולרית אם $0 \ne \dot{\gamma}(t_0)$.
 
+\section{שיעור 9 --- 28.11.2024}
+\subsection{העתקות קונפורמיות}
+\begin{definition}[עקומה]
+	עקומה היא $\gamma : I \to \CC$ עבור $I$ מקטע סגור.
+\end{definition}
+לרוב נניח $\gamma \in C^1$ וכן $\dot{\gamma}(t) = x'(t) + i y'(t)$. \\*
+בנוסף נקודה $t_0$ היא רגולרית אם $\dot{\gamma}(t_0) \ne 0$.
+\begin{definition}[זוויות]
+	תהינה $\gamma_1, \gamma_2$ שתי עקומות המקיימות $\CC \ni z_0 = \gamma_1(t_1) = \gamma_2(t_2)$. \\*
+	ה\textbf{זווית} בין $\gamma_1$ ל־$\gamma_2$ ב־$z_0$ היא הזווית בין המשיקים לעקומות באותה נקודה. \\*
+	הזווית בין העקומות מוגדרת להיות
+	\[
+		\arg(\dot{\gamma}_2(t_2)) - \arg(\dot{\gamma}_1(t_1)) = \alpha
+	\]
+\end{definition}
+\begin{remark}
+	הזווית מוגדרת רק בנקודות רגולריות של $\gamma_1, \gamma_2$ ולכן קיים ענף של הארגומנט בסביבת הנקודות.
+\end{remark}
+\begin{remark}
+	הגדרה זו יחידה עד כדי $2\pi k$ משום שהוצאנו קרן ישרה שאיננה תלויה ב־$k$.
+\end{remark}
+\begin{definition}[פונקציה משמרת זווית]
+	נאמר ש־$f : G \to \CC$ ו־$\gamma_j : I_j \to G$ משמרת זוויות בין עקומות העוברות ב־$z \in G$ אם
+	\[
+		\arg(\dot{f \circ \gamma_2})(t_2) - \arg(\dot{f \circ \gamma_1})(t_1)
+		= \arg(\dot{\gamma_2})(t_2) - \arg(\dot{\gamma_1})(t_1)
+	\]
+\end{definition}
+\begin{theorem}
+	\begin{enumerate}
+		\item אם $f \in Hol(G) \cap \CC^1(G)$ וגם $f'(z_0) \ne 0$ אז $f$ משמרת זוויות בין עקומות שעוברות ב־$z_0$.
+		\item אם $f \in \CC^1(G)$ משמרת זוויות בין עקומות שעוברות ב־$z_0$ אז $f \in Hol(G)$ ו־$f'(z_0) \ne 0$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item $\frac{d}{dt}(f \circ \gamma) = f'(\gamma(t)) \cdot \dot{\gamma}(t)$ (תרגיל) ולכן
+			\begin{align*}
+				\arg(\dot{f \circ \gamma_2})(t_2) - \arg(\dot{f \circ \gamma_1})(t_1)
+				& = \arg(f'(\gamma(t_2)) \cdot \dot{\gamma}(t_2)) - \arg(f'(\gamma(t_1)) \cdot \dot{\gamma}(t_1)) \\
+				& = \arg(f'(\gamma(t_2))) + \arg(\dot{\gamma}_2(t_2)) + 2\pi k_2 - \arg(f'(\gamma(t_1))) + \arg(\dot{\gamma}_1(t_1)) - 2\pi k_1 \\
+				& = \arg(\dot{\gamma}_2(t_2)) + 2\pi k_2 + \arg(\dot{\gamma}_1(t_1)) - 2\pi k_1 \\
+				& = \arg(\dot{\gamma}_2(t_2)) + \arg(\dot{\gamma}_1(t_1)) + 2\pi k_3
+			\end{align*}
+			אבל אנו מזהים זוויות עד כדי $2\pi k$ וכלן קיבלנו שהזוויות זהות.
+		\item נתחיל במקרה ש־$f$ לינארית, נגדיר $Tz = a \cdot z + b \cdot \overline{z}$. \\*
+			אם $a + b = 0$ אז $Tz = a(z - \overline{z}) = 2ia \im(z)$ ולכן $T$ מעבירה את $\RR \subseteq \CC$ לנקודת האפס ולכן לא יכולה לשמר זווית. \\*
+			לכן $a + b \ne 0$ ונגדיר $\gamma_1(t) = t$ ו־$\gamma_2(t) = \lambda t$ עבור $\lambda = e^{i \theta}$,
+			עבור $\theta \in [0, 2\pi)$, $\gamma_1(0) = \gamma_2(0) = 0$, בהתאם
+			\[
+				\arg(\dot{\gamma}_2(0)) - \arg(\dot{\gamma}_1(0))
+				= \arg(\lambda) - \arg(1)
+				= \Arg(\lambda)
+			\]
+			ונבחין כי
+			\[
+				(T \circ \gamma_1)(0) = at + b t = \gamma_1(t) (a + b)
+			\]
+			ולכן $\dot{T \gamma_1}(t) = a + b \ne 0$ וכן באופן דומה נקבל $(\dot{T \circ \gamma_2})(t) = \lambda(a + b e^{-2i \theta})$.
+			אז
+			\[
+				\arg(\dot{T \circ \gamma_2})(0) - \arg(\dot{T \circ \gamma_1})(0)
+				= \arg(\lambda(a + b e^{-2i\theta})) - \arg(a + b)
+				= \arg(\lambda) + \arg(a + b e^{-2i\theta}) - \arg(a + b) + 2\pi k
+				\implies \arg(a + b e^{-2 i \theta})
+				= \arg(a + b) + 2 \pi k
+			\]
+	\end{enumerate}
+\end{proof}
+
 \end{document} % chktex 17
