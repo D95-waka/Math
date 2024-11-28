@@ -1,0 +1,133 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+תהי $U \subseteq \CC$ ונוכיח את הזהויות הבאות עבור $f, g \in C^1(U)$.
+
+\Subquestion{}
+\[
+	\frac{\partial}{\partial z}(f \cdot g) = \frac{\partial f}{\partial z} \cdot g + f \cdot \frac{\partial g}{\partial z}
+\]
+\begin{proof}
+	נבחן ישירות מהגדרת הגבול
+	\begin{align*}
+		\frac{\partial (f \cdot g)}{\partial z}
+		& = \lim_{h \to 0} \frac{f(z + h) g(z + h) - f(z) g(z)}{h} \\
+		& = \lim_{h \to 0} \frac{(f(z + h) - f(z)) g(z + h) + f(z) g(z + h) - f(z) g(z)}{h} \\
+		& = \lim_{h \to 0} \frac{(f(z + h) - f(z)) g(z + h)}{h} + \lim_{h \to 0} \frac{f(z) g(z + h) - f(z) g(z)}{h} \\
+		& = \lim_{h \to 0} g(z + h) \frac{f(z + h) - f(z)}{h} + \lim_{h \to 0} f(z) \frac{g(z + h) - g(z)}{h} \\
+		& = \frac{\partial f}{\partial z} g + f \frac{\partial g}{\partial z}
+	\end{align*}
+\end{proof}
+
+\Subquestion{}
+\[
+	\frac{\partial}{\partial z} (f \circ g)
+	= \left( \frac{\partial f}{\partial z} \circ g \right) \frac{\partial g}{\partial z} + \left( \frac{\partial f}{\partial \overline{z}} \circ g \right) \frac{\partial \overline{g}}{\partial z}
+\]
+\begin{proof}
+	נבצע חישובים חלקיים:
+	\[
+		\frac{\partial (f \circ g)}{\partial x}
+		= \frac{\partial f(g, \overline{g})}{\partial x}
+		= \left(\frac{\partial f}{\partial x} \circ g\right) \cdot \left(\frac{\partial g}{\partial x} + \frac{\partial \overline{g}}{\partial x}\right)
+	\]
+	וכן גם
+	\[
+		\frac{\partial (f \circ g)}{\partial y}
+		= \left(\frac{\partial f}{\partial y} \circ g\right) \cdot \left(\frac{\partial g}{\partial y} - \frac{\partial \overline{g}}{\partial y}\right)
+	\]
+	ולבסוף אנו יודעים כי
+	\[
+		\frac{\partial (f \circ g)}{\partial z}
+		= \frac{1}{2} \left(\frac{\partial f}{\partial x} - i \frac{\partial f}{\partial y}\right)
+	\]
+	ומהרכבת שלושת השוויונות האחרונים נקבל את השוויון המבוקש:
+	\[
+		\frac{\partial}{\partial z} (f \circ g)
+		= \left( \frac{\partial f}{\partial z} \circ g \right) \frac{\partial g}{\partial z} + \left( \frac{\partial f}{\partial \overline{z}} \circ g \right) \frac{\partial \overline{g}}{\partial z}
+	\]
+\end{proof}
+
+\Subquestion{}
+\[
+	\frac{\partial \overline{f}}{\partial \overline{z}}
+	= \overline{\left( \frac{\partial f}{\partial z} \right)}
+\]
+\begin{proof}
+	נשתמש באופרטור Wirtinger של $f$ ונגזור לפי $\overline{z}$:
+	\begin{align*}
+		\frac{\partial \overline{f}}{\partial \overline{z}}
+		& = \frac{1}{2} (\frac{\partial \overline{f}}{\partial x} + i\frac{\partial \overline{f}}{\partial y}) \\
+		& = \frac{1}{2} (\frac{\partial (u - i v)}{\partial x} + i\frac{\partial (u - i v)}{\partial y}) \\
+		& = \frac{1}{2} (\frac{\partial u}{\partial x} - i \frac{\partial v}{\partial x} + i \frac{\partial u}{\partial y} + \frac{\partial v}{\partial y}) \\
+		& = \frac{1}{2} \overline{(\frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} - i \frac{\partial u}{\partial y} + \frac{\partial v}{\partial y})} \\
+		& = \frac{1}{2} \overline{(\frac{\partial (u + iv)}{\partial x} - i \frac{\partial (u + iv)}{\partial y})} \\
+		& = \overline{\left(\frac{\partial f}{\partial z}\right)}
+	\end{align*}
+\end{proof}
+
+\Question{}
+נמצא את כל הנקודות בהן הפונקציות הנתונות גזירות.
+
+\Subquestion{}
+נגדיר $f(z) = \sin(\overline{z})$.
+\begin{solution}
+	נבחין כי כאופרטור Wirtinger מתקיים
+	\[
+		f(z, \overline{z})
+		= \sin(\overline{z})
+		= \frac{e^{i \overline{z}} - e^{-i \overline{z}}}{2i}
+		= \frac{e^{i (x - iy)} - e^{-i (x - iy)}}{2i}
+		= \frac{e^{ix + y} - e^{-ix - y}}{2i}
+	\]
+	ובתרגול ראינו כי הפונקציה גזירה אם ורק אם $\frac{\partial f}{\partial \overline{z}} = 0$, לכן נבדוק:
+	\[
+		\frac{\partial f}{\partial \overline{z}}
+		= \frac{1}{2} (\frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y})
+		= \frac{1}{2} (\frac{1}{2i}(i e^{ix + y} + i e^{-ix - y} + i(e^{ix + y} + e^{-ix - y})))
+		= \frac{1}{2}(e^{ix + y} + e^{-ix - y})
+		= \cos(\overline{z})
+	\]
+	בדיעבד זה נובע ישירות. \\*
+	נבדוק איפוס
+	\[
+		0 = \frac{\partial f}{\partial \overline{z}} = \cos(\overline{z})
+	\]
+	וממטלה 2 נסיק שאלו הן הנקודות $z = \frac{\pi}{2} + \pi k + 0 i$.
+\end{solution}
+
+\Subquestion{}
+נגדיר $g(z) = e^{{|z - 1|}^2}$.
+\begin{solution}
+	נבחין כי מתקיים $e^{{|z - 1|}^2} = e^{(z - 1) \overline{(z - 1)}} = e^{z \overline{z} - z - \overline{z} + 1}$ ולכן
+	\[
+		g(z, \overline{z}) = \exp(z \overline{z} - z - \overline{z} + 1)
+	\]
+	ובהתאם
+	\[
+		\frac{\partial g}{\partial \overline{z}} = (z - 1) \exp(z \overline{z} - z - \overline{z} + 1)
+	\]
+	אז מתקיים
+	\[
+		\frac{\partial g}{\partial \overline{z}} = 0
+		\iff (z - 1) g(z, \overline{z}) = 0
+		\iff z = 1, g(z, \overline{z}) = 0
+	\]
+	אבל $g$ לא מתאפסת כאקספוננט ממשי, ולכן $g$ גזירה ב־$z = 1$ בלבד.
+\end{solution}
+
+\Subquestion{}
+נגדיר $h(z) = \overline{\Log(z)} - {|z|}^2$.
+\begin{solution}
+	במקרה זה מתקיים
+	\[
+		h(z, \overline{z}) = \log(\sqrt{z \overline{z}}) - \Arg(z) - z \overline{z}
+	\]
+\end{solution}
+
+\end{document}
