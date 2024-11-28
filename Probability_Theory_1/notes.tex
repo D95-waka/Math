@@ -1638,7 +1638,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 
 \section{שיעור 9 --- 25.11.2024}
 
-\subsection{משתנים מקריים}
+\subsection{וקטורים מקריים}
 ניזכר בהגדרה\ \ref{def_discrete_random_variable}:
 \begin{definition*}[משתנה מקרי בדיד]
 	משתנה מקרי נקרא בדיד אם $\PP_X$ פונקציית הסתברות בדידה, כלומר
@@ -1844,6 +1844,121 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 	ולכן $XY \sim Ber(pq)$.
 \end{solution}
+
+\section{שיעור 10 --- 28.11.2024}
+\subsection{התפלגות תחת התניה}
+\begin{definition}[התפלגות משתנה מקרי בהינתן מאורע]
+	יהי $X$ משתנה מקרי ו־$A$ מאורע כך ש־$\PP(A) > 0$ אז אפשר לדבר על התפלגות $X$ בהינתן $A$.
+	זוהי ההתפלגות של $X$ תחת $\PP_A$ במקום $\PP$.
+	במקרה זה
+	\[
+		\PP_{X \mid A}(S) = \PP_A(X \in S) = \PP(\{X \in S\} \mid A)
+	\]
+\end{definition}
+\begin{proposition}
+	אם $X \overset{d}{=} Y$ ו־$S \in \mathcal{F}_\RR$ כך ש־$\PP(X \in S) > 0$ וכן $\PP(Y \in S) > 0$, \\*
+	אז $X \mid X \in S \overset{d}{=} Y \mid Y \in S$.
+\end{proposition}
+\begin{example}
+	נניח ש־$X, Y \sim U([6])$ ו־$S = [3, \infty)$ אז
+	\[
+		X \mid X \in S \sim U(\{3, 4, 5, 6\}),
+		\qquad
+		Y \mid Y \in S \sim U(\{3, 4, 5, 6\})
+	\]
+\end{example}
+\begin{definition}[אי־תלות משתנים מקריים]
+	$X$ ו־$Y$ נקראים בלתי־תלויים אם לכל $S, T \in \mathcal{F}_\RR$ המאורעות $X \in S, Y \in T$ בלתי־תלויים. \\*
+	הגדרה זו שקולה להגדרה שמתקיים
+	\[
+		\PP(X \in S, Y \in T) = \PP(X \in S) \cdot \PP(Y \in T)
+	\]
+\end{definition}
+\begin{proposition}
+	אם $X$ ו־$Y$ משתנים מקריים בדידים אז $X$ ו־$Y$ בלתי־תלויים אם ורק אם לכל $s, t \in \RR$ מתקיים ש־$X = s$ ו־$Y = t$ בלתי־תלויים. \\*
+	טענה זו שקולה לטענה שמתקיים
+	\[
+		\PP(X = s, Y = t) = \PP(X = s) \cdot \PP(Y = t)
+	\]
+\end{proposition}
+\begin{proof}
+	הכיוון הראשון הוא טריוויאלי מבחירת יחידונים ושימשו בהגדרה, לכן נניח את הכיוון השני ונראה כי מתקיים לכל $S, T \in \mathcal{F}_\RR$ מתקיים
+	\[
+		\PP(X \in S, Y \in T) = \PP(X \in S) \PP(Y \in T)
+	\]
+	נבחין כי
+	\begin{align*}
+		\PP(X \in S, Y \in T)
+		& = \PP(X \in S \cap Supp(X), Y \in T \cap Supp(Y)) \\
+		& = \sum_{\substack{s \in S \cap Supp(X) \\ t \in T \cap Supp(Y)}} \PP(X = s, Y = t) \\
+		& = \sum_{\substack{s \in S \cap Supp(X) \\ t \in T \cap Supp(Y)}} \PP(X = s) \PP(Y = t) \\
+		& = \sum_{s \in S \cap Supp(X)} \left( \sum_{t \in T \cap Supp(Y)} \PP(X = s) \PP(Y = t) \right) \\
+		& = \left( \sum_{s \in S \cap Supp(X)} \PP(X = s) \right) \left( \sum_{t \in T \cap Supp(Y)} \PP(Y = t) \right) \\
+		& = \PP(X \in S) \PP(Y \in T)
+	\end{align*}
+\end{proof}
+\begin{proposition}
+	התפלגות $X$ ו־$X + Y$ ו־$Y$ בלתי־תלויים קובע ביחידות את ההתפלגות המשותפת.
+\end{proposition}
+\begin{proof}[הוכחה עבור בדידים]
+	$p_X$ ו־$p_Y$ בלתי־תלויים קובע את $p_{(X, Y)}(s, t) = p_X(s) p_Y(t)$.
+\end{proof}
+\begin{proposition}
+	$X, Y, Z$ משתנים מקריים בדידים ונניח שלכל $s \in Supp(X)$ מתקיים $Y \mid X = s \overset{d}{=} Z$,
+	אז $Y \overset{d}{=} Z$ ו־$X, Y$ בלתי־תלויים.
+\end{proposition}
+\begin{proof}
+	מנוסחת ההסתברות השלמה נובע
+	\begin{align*}
+		\PP(Y = t)
+		& = \sum_{s \in Supp(X)} \PP(X = s) \PP(Y = t \mid X = s) \\
+		& = \sum_{s \in Supp(X)} \PP(X = s) \PP(Z = t) \\
+		& = \PP(Z = t)
+	\end{align*}
+	עבור החלק השני נבחין כי
+	\[
+		\PP(X = s, Y = t)
+		= \PP(X = s) \PP(Y = t \mid X = s)
+		= \PP(X = s) \PP(Z = t)
+		= \PP(X = s) \PP(Y = t)
+	\]
+\end{proof}
+\begin{proposition}
+	אם $X, Y$ משתנים מקריים בלתי־תלויים ו־$f, g \in \mathcal{F}_{\RR \to \RR}$ אז $f(X), g(Y)$ בלתי־תלויים.
+\end{proposition}
+\begin{proof}
+	צריך להראות שלכל $S, T \in \mathcal{F}_{\RR}$ מתקיים
+	\[
+		\PP(f(X) \in S, g(Y) \in T) = \PP(f(X) \in S) \PP(g(Y) \in T)
+	\]
+	אבל ראינו כבר כי
+	\[
+		\PP(f(X) \in S, g(Y) \in T) = \PP(X \in f^{-1}(S), Y \in g^{-1}(T))
+	\]
+	אבל גם
+	\[
+		\PP(X \in f^{-1}(S), Y \in g^{-1}(T)) = \PP(f(X) \in S) \PP(g(Y) \in T)
+	\]
+\end{proof}
+\begin{example}
+	$X$ ו־$Y$ בלתי־תלויים אז $X^2, \frac{1}{Y}$ בלתי־תלויים, זאת שכן $\PP(X = 1, Y = 1) = \frac{1}{2} \ne \frac{1}{2} \cdot \frac{1}{2}$. \\*
+	בכיוון ההפוך אם $X = Y \sim Ber(\frac{1}{2})$ לא בלתי־תלויים אבל אם $f(x) = g(y) = 6$ גוררים ש־$f(X)$ ו־$g(Y)$ הם כמעט תמיד 6 ולכן בלתי־תלויים.
+\end{example}
+\begin{definition}[קבוצת משתנים מקריים בלתי־תלויה]
+	יהיו $X_1, \dots, X_n$ משתנים מקריים, אז הם יקראו בלתי־תלויים אם לכל $S_1, \dots, S_n \in \mathcal{F}_\RR$ המאורעות ${\{ X_i \in S_i \}}_{i \in [n]}$ הם בלתי־תלויים.
+\end{definition}
+\begin{example}
+	אם $X, Y, Z$ הם בלתי־תלויים, האם גם $X + Y$ ו־$Z$ בלתי־תלויים?
+	אנו צריכים להראות ש־$\PP(X + Y = s, Z = t) = \PP(X + Y = s) \PP(Z = t)$ עבור כל $s \in \{0, 1, 2\}, t \in \{0, 1\}$. \\*
+	נבחר לדוגמה את $\PP(X + Y = 1, Z = 1) = \PP(X = 0, Y = 1, Z = 1) + \PP(X = 1, Y = 0, Z = 1) = \frac{1}{8} + \frac{1}{8}$ ונוכל להמשיך כך ולראות שהטענה אכן מתקיימת.
+\end{example}
+\begin{exercise}
+	מאורעות $A_1, \dots, A_n$ הם בלתי־תלויים אם ורק אם $1_{A_1}, \dots, 1_{A_n}$ הם בלתי־תלויים.
+\end{exercise}
+\begin{proposition}
+	$X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים ונניח שיש אינדקסים $1 = i_0 \< i_1 < \cdots < i_k = n$. \\*
+	נגדיר $Y_0 = (X_{i_0}, \dots, X_{i - 1}), \dots. Y_k = (X_{i_{k - 1}}, \dots, X_{i_k})$.
+\end{proposition}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
