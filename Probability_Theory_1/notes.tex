@@ -1738,5 +1738,112 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	כמובן לווקטורים בגודל $n > 2$ ההוכחה דומה.
 \end{proof}
 
+\section{תרגול 5 --- 28.11.2024}
+
+\subsection{משתנים מקריים}
+בהרצאה זו נניח שכל המשתנים המקריים הם בדידים.
+\begin{definition}[התניה במשתנים מקריים בדידים]
+	אם $X : \Omega \to \RR^d$ ו־$A \subseteq \Omega$ כך ש־$\PP(A) > 0$ אז
+	\[
+		\forall S \subseteq \RR^d, \PP_{X \mid A}(S) = \PP(X \in S \mid A) = \PP_A(X \in S)
+	\]
+\end{definition}
+\begin{definition}[אי־תלות במשתנים מקריים בדידים]
+	אם $X, Y : \Omega \to \RR^d$ בלתי־תלויים אם לכל $S, T \subseteq \RR^d$ מתקיים
+	\[
+		\PP(X \in S, Y \in T) = \PP(X \in S) \cdot \PP(Y \in T)
+	\]
+\end{definition}
+\begin{exercise}
+	יהיו $X_1, X_2 Geo(p)$ בלתי־תלויים ונגדיר גם $Z = X_1 + X_2$.
+	\begin{enumerate}
+		\item חשבו את ההתפלגות המשותפת של $X_1$ ו־$Z$.
+		\item הראו ש־$X_1 \mid \{ Z = 1 \}$ מתפלג אחיד על $\{1, \dots, n - 1\}$.
+	\end{enumerate}
+\end{exercise}
+\begin{solution}
+	תחילה ניזכר שאם $W \sim Geo(p)$ אז $Supp(W) = \NN$ ו־$\PP(W = k) = {(1 - p)}^{k - 1} p$, שכן זוהי ההסתברות שלא הצלחנו $k - 1$ פעמים ובניסיון ה־$k$ הצלחנו, עבור איזושהי פעולה.
+	\begin{enumerate}
+		\item אנו מגדירים $X = (X_1, Z)$ וקטור מקרי ואנו רוצים לחשב את ההתפלגות שלו, נחשב את התומך
+			\[
+				Supp(X_1, Z) \subseteq \NN^2
+			\]
+			ישירות מההגדרה של הווקטור, אבל אנו יודעים כי תמיד $X_1 < Z$, וכן גם אם $m < n$
+			\begin{align*}
+				P_{(X_1, Z)}(m, n)
+				& = \PP(X_1 = m, Z = n) \\
+				& = \PP(X_1 = m, X_2 = n - m) \\
+				& = \PP(X_1 = m) \cdot \PP(X_2 = m - n) \\
+				& = {(1 - p)}^{m - 1} p {(1 - p)}^{n - m - 1} p \\
+				& = p^2 {(1 - p)}^{n - 2}
+			\end{align*}
+			ולכן נסיק
+			\[
+				P_{(X_1, Z)}(n, n) = \begin{cases}
+					0 & m \ge n \\
+					p^2 {(1 - p)}^{n - 2} & m < n
+				\end{cases}
+			\]
+		\item נבחן את $X_1 \mid \{ Z = n\}$ ונבין מה התומך.
+			\[
+				Supp(X_1 \mid \{Z = 1\})
+				= \{1, \dots, n - 1\}
+			\]
+			שכן $Z$ מייצג סכום ולכן מהווה חסם ל־$X_1$ יחד עם $Supp(X_1) = \NN$. נעבור לחישוב ההתפלגות
+			\[
+				\PP(X = m \mid Z = n)
+				= \frac{\PP(X = m, Z = n)}{\PP(Z = n)}
+				= \frac{p^2 {(1 - p)}^{n - 2}}{\PP(Z = n)}
+			\]
+			אבל
+			\[
+				\PP(Z = n)
+				= \PP(X_1 + X_2 = n)
+				= \sum_{i = 1}^{n - 1}  \PP(X_1 = i, X_2 = n - i)
+				= \sum_{i = 1}^{n - 1}  p^2 {(1 - p)}^{n - 2}
+				= (n - 1) p^2 {(1 - p)}^{n - 2}
+			\]
+			זוהי קונבולוציה, לכן נוכל להסיק
+			\[
+				\PP(X_1 = m \mid Z = n)
+				= \frac{p^2 {(1 - p)}^{n - 2}}{(n - 1) p^2 {(1 - p)}^{n - 2}}
+				= \frac{1}{n - 1}
+			\]
+	\end{enumerate}
+\end{solution}
+\begin{exercise}
+	מטילים מטבע הוגן, אם יצא 0 מטילים שוב מטבע הוגן ואם יצא 1 מטילים מטבע מוטה עם הסתברות $p$ ל־1. \\*
+	נתחו את התפלגות ההטלה השנייה.
+\end{exercise}
+\begin{solution}
+	נסמן $X$ תוצאת ההטלה הראשונה ו־$Y$ תוצאת ההטלה השנייה. \\*
+	מהנתונים נסיק כי $X \sim Ber(\frac{1}{2})$. אנו גם יודעים כי גם $Y$ הוא בהתפלגות ברנולי כלשהי. \\*
+	לבסוף אנו גם יודעים שמתקיים $Y \mid \{X = 0\} \sim Ber(\frac{1}{2})$ וגם ש־$Y \mid \{X = 1\} \sim Ber(p)$, לכן
+	\[
+		\PP(Y = 1)
+		= \PP(Y = 1 \mid X = 0) \PP(X = 0) + \PP(Y = 1 \mid X = 1) \PP(X = 1)
+		= \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot p
+		= \frac{1}{4} + \frac{p}{2}
+	\]
+\end{solution}
+\begin{exercise}
+	יהיו $X \sim Ber(p)$ ו־$Y \sim Ber(q)$ בלתי־תלויים. \\*
+	חשבו את ההתפלגות של $X \cdot Y$.
+\end{exercise}
+\begin{solution}
+	נתחיל ונראה כי
+	\[
+		Supp(X Y) = \{0, 1\},
+	\]
+	וכן גם $XY$ בהתפלגות ברנולי כלשהי, אך
+	\[
+		\PP(XY = 1)
+		= \PP(X = 1, Y = 1)
+		= \PP(X = 1) \PP(Y = 1)
+		= pq
+	\]
+	ולכן $XY \sim Ber(pq)$.
+\end{solution}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
