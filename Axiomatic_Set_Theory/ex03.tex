@@ -1,0 +1,76 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- תורת הקבוצות האקסיומטית, 80650}
+
+\DeclareMathOperator{\trcl}{trcl}
+\DeclareMathOperator{\rank}{rank}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+נניח $\textbf{ZF} + \textbf{AC}$.
+יהי מונה רגולרי אינסופי $\kappa$. נגדיר $H(\kappa) = \{ x \mid |\trcl(x)| < \kappa \}$  כאשר $\trcl(x)$ הסגור הטרנזיטיבי של $x$.
+
+תהי קבוצה טרנזיטיבית $x$.
+נוכיח ש־$z = \{\rank y \mid y \in x \}$ קבוצה טרנזיטיבית.
+\begin{proof}
+	נגדיר $c : z \to x$ פונקציית בחירה כך ש־$c(a) \in x$ וכמובן $\rank c(a) \in z$. \\*
+	נוכיח שאם $t = \rank x$, אז לא קיים $l < t$ כך ש־$\forall y \in x, \rank y \ne l$. \\*
+	נבחן את $l + 1 = t$ עבור $t$ עוקב. מההגדרה השקולה ל־$\rank$ מהמטלה הקודמת נובע ישירות כי  קיים $\rank y = l, y \in x$. אילו $t$ גבולי, אז מאותה סיבה לכל $l < t$ קיים $y$ כזה אחרת $l + 1$ לא בקבוצה וההגדרה הגבולית לא חלה. \\*
+	באינדוקציה מהמבנה הזה ועל־ידי שימוש ב־$c$ נוכל לקבל שאכן לא קיים $y$ כזה. \\*
+	לבסוף, אם $b \in a \in z$, אז בהכרח $\exists y \in x, \rank y = b$ ולכן גם $c(b) \in x \implies b \in z$.
+\end{proof}
+
+\Question{}
+נוכיח ש־$H(\kappa)$ קבוצה.
+\begin{proof}
+	יהי $x \in H(\kappa)$, ונגדיר $y = \trcl(x)$, אז $|y| < \kappa$. \\*
+	נגדיר $\alpha = \rank y$, ונניח $\alpha > \kappa^+$ אז נקבל ש־$|y| > \kappa$ וזו סתירה להנחה, לכן $\rank y < \kappa^+$. \\*
+	בהתאם $y \in V_{\kappa^+}$ לכל $y$ ולכן $H(\kappa) \subseteq V_{\kappa^+}$ ובפרט קבוצה.
+\end{proof}
+
+\Question{}
+נוכיח ש־$\kappa \subseteq H(\kappa)$ וש־$H(\kappa)$ טרנזיטיבי.
+\begin{proof}
+	יהי $\alpha \in \kappa$, אז $\alpha = \trcl(\alpha)$ ואנו יודעים ש־$\kappa$ מונה ולכן מהגדרה $|\alpha| < \kappa$, שאם לא כן המונה בו $\alpha$ היה מוכל היה גדול מ־$\kappa$, וכמובן $\kappa \notin \kappa$.
+	נסיק אם כך ש־$\alpha \in H(\kappa)$ לכל $\alpha \in \kappa$ ולכן $\kappa \subseteq H(\kappa)$. \\*
+	נראה ש־$H(\kappa)$ טרנזיטיבי.
+	יהי $x \in H(\kappa)$, אז $x$ טרנזיטיבי, ונבחן את $y = \trcl(x)$. כמובן $\trcl(y) = y$ ולכן $y \in H(\kappa)$ ומצאנו ש־$H(\kappa)$ טרנזיטיבית עבור הקבוצות הטרנזיטיביות בה.
+	יהי $z \in x$, אז גם $z \in y$ ולכן $z \subseteq y$ ובהתאם $y$ סגור טרנזיטיבי של $z$ ו־$z \in H(\kappa)$ ולכן זו קבוצה טרנזיטיבית.
+
+	מתרגיל 1 והטרנזיטיביות נוכל להסיק ש־$\langle H(\kappa), \in \rangle$ מקיים את אקסיומת ההיקפיות והיסוד והקבוצה הריקה. \\*
+	אילו נניח ש־$\omega < \kappa$ אז גם $\omega \in H(\kappa)$ ומתרגיל אחד מתקיימת אקסיומת האינסוף.
+\end{proof}
+
+\Question{}
+נניח ש־$x \in H(\kappa)$ ו־$f : x \to H(\kappa)$.
+נראה ש־$f, \rng f \in H(\kappa)$.
+\begin{proof}
+	נתון ש־$x \in H(\kappa) \iff |\trcl(x)| < \kappa$ אבל $|x| \le |\trcl(x)|$ ולכן $|x| < \kappa$, אז תהי $g : x \to \alpha$ עבור $\alpha \in \kappa$, חד־חד ערכית. \\*
+	נגדיר פונקציית החלפה $c : \rng f \to x$, היא חד־חד ערכית מהגדרה, ולכן גם $c \circ g$ חד־חד ערכית ונסיק $|\rng f| = \alpha$. \\*
+	אנו יודעים כי איחוד של קבוצות טרנזיטיביות הוא טרנזיטיבי ולכן $u = \bigcup_{y \in \rng f} \trcl y$ קבוצה טרנזיטיבית. \\*
+	עוד נבחין כי $|u| < |\alpha \times \kappa| \le |\kappa \times \kappa| = \kappa$ ולכן $\rng f \in H(\kappa)$. \\*
+	לבסוף $|x \times \rng f| < |\kappa \times \kappa| < \kappa$ ולכן גם $f \in H(\kappa)$.
+
+	תחת המודל, נסיק שלכל $x \in H(k)$ ומחלקת פונקציה $F$, גם $\{F(y) \mid y \in x\}$ קבוצה, שכן $F \upharpoonright x : x \to H(\kappa)$. \\*
+	יהי $x \in H(\kappa)$, אז מעיקרון הסדר הטוב קיים $\alpha \in Ord$ כך שקיימת $f : x \to \alpha$ הפיכה, ומבחירה נוכל להסיק שגם $\alpha < \kappa$.
+\end{proof}
+
+\Question{}
+נוכיח ש־$H(\kappa)$ מספקת את אקסיומת האיחוד.
+\begin{proof}
+	למעשה כבר ראינו את הטענה הזו בסעיף הקודם.
+	איחוד של קבוצות טרנזיטיביות הוא טרנזיטיבי ולכן אם $x \in H(\kappa)$ אז $\bigcup x \subseteq \bigcup \trcl(x)$ ולכן $\bigcup x \in H(\kappa)$. \\*
+	נקבל אם כך שאקסיומת האיחוד חלה עבור $\langle H(\kappa), \in \rangle$ ולכן זהו מודל טרנזיטיבי של $\textbf{ZFC} - \textbf{Power set}$.
+\end{proof}
+
+\Question{}
+נראה ש־$\textbf{ZFC} - \textbf{Power Set}$ לא מוכיח את הקיום של קבוצה שאיננה בת־מניה.
+\begin{proof}
+	נגדיר $\kappa = \omega$ ולכן $\langle H(\omega), \in \rangle$ מודל של $\textbf{ZFC} - \textbf{Power Set}$, אז זהו מודל כך שאין בו קבוצות שאינן־בנות מניה.
+
+	אם נוסיף למודל את האקסיומה שאין קבוצה שלא בת־מניה נקבל שהיא עקבית.
+\end{proof}
+
+\end{document}
