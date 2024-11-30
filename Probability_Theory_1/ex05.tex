@@ -1,0 +1,125 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- תורת ההסתברות (1), 80420}
+
+\DeclareMathOperator{\Supp}{Supp}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\Question{}
+עבור $i \in \{0, 1\}$ תהי $\Omega_i \subseteq \RR$, ותהי $\PP_i$ פונקציית הסתברות בדידה על $\Omega_i$ ותהי $X_i : \Omega_i \to \RR$ פונקציית הזהות. \\*
+נוכיח ש־$X_1 \overset{d}{=} X_2$ אם ורק אם קיימת  $S \subseteq \Omega_1 \cap \Omega_2$ קבוצה בת־מניה במובן הרחב המקיימת $S = \Supp \PP_1 = \Supp \PP_2$ וכן $\forall x \in S, \PP_1(x) = \PP_2(x)$.
+\begin{proof}
+	נניח ש־$X_1 \overset{d}{=} X_2$, ולכן $\PP_1 = \PP_2$. \\*
+	נגדיר $S = \Supp \PP_1 = \Supp \PP_2$ ואנו יודעים כי אלו הן פונקציות בדידות ולכן $|S| \le \aleph_0$, כמובן גם מההגדרה של התומך נסיק $S \subseteq \Omega_1, \Omega_2$ ולכן בפרט $S \subseteq \Omega_1 \cap \Omega_2$. \\*
+	מתקיים $\PP_1(X_1 = x) = \PP(\{ y \in S \mid y \in X_1^{-1}(x) \}) = \PP_1(\{ y \in S \mid x = y \}) = \PP_1(x)$ ולכן נסיק ממהלך זהה על $\PP_2$ שגם $\PP_1(x) = \PP_2(x)$.
+
+	נניח את הכיוון השני. \\*
+	מצאנו כי $\forall x \in S, \PP_1(X_1 = x) = \PP_1(x)$ ואנו רוצים להראות ש־$\forall x \in \RR, \PP(X_1 = x) = \PP(X_2 = x)$ אבל מהשוויון נובע שעלינו רק להראות ש־$\PP_1(x) = \PP_2(x)$  לכל $x \in \RR$. \\*
+	כמובן אם $x \in \RR \setminus S$ אז $\PP_1(x) = 0 = \PP_2(x)$, אחרת $x \in S$, אבל אז ישירות מההנחה מתקבל $\PP_1(x) = \PP_2(x)$ ומצאנו כי $X_1 \overset{d}{=} X_2$.
+\end{proof}
+
+\Question{}
+נוכיח או נפריך את הטענות הבאות.
+
+\Subquestion{}
+נוכיח שאם תהי $f : \RR \to \RR$ פונקציה חד־חד ערכית, אז $X \overset{d}{=} Y$ אם ורק אם $f(X) \overset{d}{=} f(Y)$.
+\begin{proof}
+	הכיוון הראשון הוכח כטענה בכיתה, לכן נניח ש־$f(X) \overset{d}{=} f(Y)$. \\*
+	יהי $x \in \RR$, אם קיים $y \in \RR$ כך ש־$x = f(y)$ אז נובע $\PP(f(X) = f(y)) = \PP(f(Y) = f(y)) \implies \PP(X = x) = \PP(Y = x)$. \\*
+	אם לא קיים $y$ כזה, אז $\PP(f(X) = x) = \PP(\{\omega \in \Omega \mid \omega = X^{-1}(f^{-1}(x))\}) = 0$ ולכן נסיק $\PP(X = x) = 0$.
+\end{proof}
+
+\Subquestion{}
+נסתור את הטענה כי אם $X \overset{d}{=} Y$ אז $\PP(X = Y) > 0$.
+\begin{solution}
+	עבור $\Omega = [6]$, $\PP$ אחיד, \\*
+	עוד נגדיר $X = Id, Y = (1\ 2\ 3\ 4\ 5\ 6)$, אז נקבל $\PP(X = n) = \frac{1}{6} = \PP(Y = n)$ אבל גם
+	\[
+		\PP(X = Y)
+		= \PP(\{n \in [6] \mid X(n) = Y(n)\})
+		= 0
+	\]
+\end{solution}
+
+\Subquestion{}
+נסתור את הטענה שאם $X \overset{d}{=} Y$ וגם $X, Y$ בלתי־תלויים, אז $\PP(X = Y) > 0$.
+\begin{solution}
+	נגדיר הטלת שתי קוביות הוגנות וגם $X(n, m) = n, Y(n, m) = m + 6$, אז המשתנים המקריים בלתי־תלויים, וגם $\PP(X = Y) = 0$.
+\end{solution}
+
+\Subquestion{}
+נוכיח שאם $X$ בלתי־תלוי בעצמו, אז קיים $c \in \RR$ שעבורו $\PP(X = c) = 1$.
+\begin{proof}
+	נתון שמתקיים
+	\[
+		\PP(X = t, X = s) = \PP(X = t) \PP(X = s)
+	\]
+	אבל אם $t \ne s$ אז $\{ \omega \in \Omega \mid X(\omega) = s = t \} = \emptyset$ ולכן $\PP(X = s) \PP(X = t) = 0$. \\*
+	אם $t = s$ אז נקבל
+	\[
+		\PP(X = t, X = t) = \PP(X = t) = \PP^2(X = t)
+		\iff
+		\PP(X = t) = 0, 1
+	\]
+	ואילו לא קיים $c$ עבורו $\PP(X = c) = 1$ אז נסיק $\PP(X \in \RR) = \PP(\Omega) = 0$ וזו סתירה, לכן $c$ כזה קיים ואף יחיד.
+	ולכן 
+\end{proof}
+
+\Subquestion{}
+נוכיח שאם $X \overset{d}{=} X^2$ אז קיים $p \in [0, 1]$ שעבורו $X \sim Ber(p)$.
+\begin{proof}
+	נבחין כי
+	\[
+		\PP(X = x) = \PP(X^2 = x)
+		\iff
+		\PP(\{\omega \in \Omega \mid X(\omega) = x\}) = \PP(\{\omega \in \Omega \mid X^2(\omega) = x\})
+	\]
+	ועבור $x = 0, 1$ מתקיים $X(\omega) = X^2(\omega)$. \\*
+	אילו $x \ne 0, 1$ אז נקבל
+	\[
+		\PP(X = x) = \PP(X = \sqrt{x}) = \PP(X = \sqrt[4]{x}) = \cdots
+	\]
+	ואילו $\PP(X = x) \ne 0$ נקבל $\PP(\Omega) = \infty$ בסתירה להגדרת פונקציית הסתברות, ולכן $\PP(X = x) = 0$. \\*
+	לכן גם $\PP(X = 0) + \PP(X = 1) = 1$ ובהתאם קיבלנו כי קיים $p \in [0, 1]$ כך ש־$X \sim Ber(p)$.
+\end{proof}
+
+\Question{}
+יהיה $(\Omega, \PP)$ מרחב הסתברות. \\*
+נוכיח כי מאורעות $A_1, \dots, A_n$ הם בלתי־תלויים אם ורק אם $1_{A_1}, \dots, 1_{A_n}$ הם משתנים מקריים בלתי־תלויים.
+\begin{proof}
+	נבחין כי אילו $1_{A_1}, \dots, 1_{A_n}$ בלתי־תלויים ונבחר $S_1 = \cdots = S_n = 1$ אז נקבל את קבוצת המאורעות $A_1, \dots, A_n$.
+
+	נניח אם כך ש־$A_1, \dots, A_n$ בלתי־תלויה.
+	תהינה $S_1, \dots, S_n \mathcal{F}_\RR$. נבחין כי אם $1 \in S_i$ אז $\{ 1_{A_i}(\omega) \in S_i \} = A_i$ ובהתאם אם $1 \notin S_i$ אז $\{ 1_{A_i}(\omega) \in S_i \} = \emptyset$. \\*
+	לכן נגדיר $I = \{ i \in [n] \mid 1 \in S_i \}$ ונקבל ש־${\{1_{A_i} \in S_i\}}_{i \in [n]} = {\{ A_i \}}_{i \in I}$ וזו כמובן קבוצה בלתי־תלויה מההנחה.
+\end{proof}
+
+\Question{}
+יהיו $X \sim Geo(p), Y \sim Gro(q)$ משתנים מקריים בלתי־תלויים.
+
+\Subquestion{}
+נחשב את ההסתברות למאורע $\{X \ge n \}$ עבור $n \in \{1, 2, \dots\}$ כלשהו.
+\begin{solution}
+	\[
+		\PP(X \ge n)
+		= \sum_{m = n}^\infty \PP(X = m)
+		= \sum_{m = n}^\infty {(1 - p)}^{m - 1} p
+		= p \sum_{m = n + 1}^\infty {(1 - p)}^m
+		= p \cdot \frac{{(1 - p)}^{n + 1}}{1 - (1 - p)}
+		= {(1 - p)}^{n + 1}
+	\]
+\end{solution}
+
+\Subquestion{}
+נראה שהמשתנה המקרי $Z = \min(X, Y)$ הוא בעל התפלגות $Geo(1 - (1 - p)(1 - q))$.
+\begin{proof}
+	\[
+		p_Z(x)
+		= \PP(x = \min(X, Y))
+		= \PP(\{\omega \in \Omega \mid x = \min(X(\omega), Y(\omega))\})
+	\]
+\end{proof}
+
+\end{document}
