@@ -107,19 +107,39 @@
 		= \sum_{m = n}^\infty \PP(X = m)
 		= \sum_{m = n}^\infty {(1 - p)}^{m - 1} p
 		= p \sum_{m = n + 1}^\infty {(1 - p)}^m
-		= p \cdot \frac{{(1 - p)}^{n + 1}}{1 - (1 - p)}
-		= {(1 - p)}^{n + 1}
+		= p \cdot \frac{{(1 - p)}^{n - 1}}{1 - (1 - p)}
+		= {(1 - p)}^{n - 1}
 	\]
 \end{solution}
 
 \Subquestion{}
 נראה שהמשתנה המקרי $Z = \min(X, Y)$ הוא בעל התפלגות $Geo(1 - (1 - p)(1 - q))$.
 \begin{proof}
-	\[
+	\begin{align*}
 		p_Z(x)
-		= \PP(x = \min(X, Y))
-		= \PP(\{\omega \in \Omega \mid x = \min(X(\omega), Y(\omega))\})
-	\]
+		& = \PP(x = \min(X, Y)) \\
+		& = \PP(\{\omega \in \Omega \mid x = \min(X(\omega), Y(\omega))\}) \\
+		& = \PP(\{\omega \in \Omega \mid (x = X(\omega) \land x = Y(\omega)) \lor (x = X(\omega) \land x < Y(\omega)) \lor (x = Y(\omega) \land x < X(\omega))\}) \\
+		& \overset{(1)}{=} \PP(\{\omega \in \Omega \mid x = X(\omega), x = Y(\omega)\} \uplus \{ \omega \in \Omega \mid x = X(\omega), x < Y(\omega)\} \uplus \{\omega \in \Omega \mid x = Y(\omega), x < X(\omega)\}) \\
+		& = \PP(X = x, Y = x) + \PP(X = x) \PP(Y > x) + \PP(Y = x) \PP(X > x) \\
+		& \overset{(2)}{=} \PP(X = x) \PP(Y \ge x) + \PP(Y = x) \PP(X \ge x) - \PP(X = x, Y = x) \\
+		& = {(1 - p)}^{x - 1} p {(1 - q)}^{x - 1} + {(1 - q)}^{x - 1} q {(1 - p)}^{x - 1} - {(1 - p)}^{x - 1} p {(1 - q)}^{x - 1} q \\
+		& = {(1 - p)}^{x - 1} {(1 - q)}^{x - 1} (-p q + p + q) \\
+		& = {(1 - (1 - p)(1 - q))}^{x - 1} (1 - (1 - p)(1 - q)) \\
+	\end{align*}
+	כאשר
+	\begin{enumerate}
+		\item המאורעות המושרים הם זרים שאם לא כן נקבל סתירה לערך יחיד של $X$ או $Y$ עבור מקרה.
+		\item נחליף את המאורעות להיות במקרה של גדול ולא גדול ממש, ועל־ידי שימוש בהכלה והדחה נקבל שיש צורך בחיסור המקרה המשותף.
+	\end{enumerate}
+	ולכן $\min(X, Y) \sim Geo(1 - (1 - p)(1 - q))$.
+\end{proof}
+
+\Question{}
+יהיו שני משתנים מקריים $X, Y$ בלתי־תלויים שנתמכים על $\{0, \dots, n - 1\}$. נסמן $Z = X + Y \mod n$. \\*
+נראה ש־$X$ ו־$Z$ בלתי־תלויים אם ורק אם $Y \sim U(\{0, \dots, n - 1\})$.
+\begin{proof}
+	
 \end{proof}
 
 \end{document}
