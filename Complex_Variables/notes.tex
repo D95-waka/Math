@@ -1104,14 +1104,214 @@ $\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg
 			\]
 			ולכן $\dot{T \gamma_1}(t) = a + b \ne 0$ וכן באופן דומה נקבל $(\dot{T \circ \gamma_2})(t) = \lambda(a + b e^{-2i \theta})$.
 			אז
-			\[
-				\arg(\dot{T \circ \gamma_2})(0) - \arg(\dot{T \circ \gamma_1})(0)
-				= \arg(\lambda(a + b e^{-2i\theta})) - \arg(a + b)
-				= \arg(\lambda) + \arg(a + b e^{-2i\theta}) - \arg(a + b) + 2\pi k
-				\implies \arg(a + b e^{-2 i \theta})
-				= \arg(a + b) + 2 \pi k
-			\]
+			\begin{align*}
+				& \arg(\dot{T \circ \gamma_2})(0) - \arg(\dot{T \circ \gamma_1})(0) \\
+				& = \arg(\lambda(a + b e^{-2i\theta})) - \arg(a + b) \\
+				& = \arg(\lambda) + \arg(a + b e^{-2i\theta}) - \arg(a + b) + 2\pi k \\
+				& \implies \arg(a + b e^{-2 i \theta}) \\
+				& = \arg(a + b) + 2 \pi k
+			\end{align*}
 	\end{enumerate}
 \end{proof}
+
+\section{שיעור 10 --- 1.12.2024}
+\subsection{העתקות קונפורמיות --- המשך}
+נרחיב את ההוכחה מהשיעור הקודם עבור פונקציה כללית.
+\begin{exercise}
+	$\dot{f \circ \gamma(t)} = (\partial_z f) \cdot \dot{\gamma} + (\partial_{\overline{z}} f) \overline{\dot{\gamma}}$.
+\end{exercise}
+\begin{proof}[המשך הוכחה]
+	נשתמש באופן מסילות $\gamma_1(t) = t, \gamma_2(t) = \lambda t$.
+	\begin{align*}
+		\arg(\dot{f \circ \gamma_2})(t) - \arg(\dot{f \circ \gamma_1})(t)
+		& = (\partial_z f) \cdot \dot{\gamma_2} + (\partial_{\overline{z}} f) \overline{\dot{\gamma_2}} - (\partial_z f) \cdot \dot{\gamma_1} + (\partial_{\overline{z}} f) \overline{\dot{\gamma_1}} \\
+		& = (\arg(\partial_z f) + \arg(\partial_{\overline{z}} f) - \arg(\partial_z f) + \arg(\partial_{\overline{z}} f \overline{\lambda})) \\
+		& = (\arg(\partial_z f + \partial_{\overline{z}}) - \arg(\lambda) - \arg(\partial_z f + \frac{\overline{\lambda}}{\lambda} \partial_{\overline{z}} f)) \\
+		& = - \arg(\lambda)
+	\end{align*}
+\end{proof}
+דוגמה ממש חשובה:
+\begin{example}
+	נגדיר $f(z) = z^2 + 1$.
+	\begin{enumerate}
+		\item נבחן את $\gamma_1(t) = t, \gamma_2(t) = i t$.
+			הן נפגשות בנקודה אפס. \\*
+			אז בהתאם $f \circ \gamma_1 = t^2 + 1, f \circ \gamma_2 = 1 - t^2$. \\*
+			הזוויות יוצאות $\frac{\pi}{2}$ ו־$0$ והמשפט נכשל כי  $f'(0) = 0$.
+		\item $\gamma_1 = t, t_0 = 1$ ו־$\gamma_2(t) = t + i(1 - t), t_0 = 1$. \\*
+			במקרה זה $f \circ \gamma_1 = t^2, f \circ \gamma_2 = 2t (1 + i(t - 1))$ והפעם יש שימור זוויות שכן הנגזרת לא אפס בנקודה.
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	יהי $G$ תחום ותהי $f : G \to \CC$,
+	אז $f$ נקראת העתקה קונפורמית אם $f \in Hol(G)$ וגם $f' \ne 0$. \\*
+	באופו שקול מהמשפט $f \in C^1(G)$ ו־$f$ משמרת זוויות בין עקומות נחתכות.
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item $f(z) = z^2 + 1$ בתחום $G = \CC \setminus \{ 0 \}$.
+		\item $G = \CC \setminus \overline{\mathbb{D}}$ כאשר $\mathbb{D} = \{|z| < 1\}$ ו־$f(z) = z + \frac{1}{z}$. \\*
+			במקרה זה $f'(z) = 1 - \frac{1}{z^2}$ והוא שונה מאפס אם ורק אם $|z| > 1$.
+		\item $f(z) = e^z$ עבור $f \in Hol(\CC)$, שכן $f'(z) = e^z \ne 0$.
+		\item לוגריתם: יהי $G$ תחום שקיים עליו ענף של הלוגריתם $l$, אז $l'(z) = \frac{1}{z} \ne 0$.
+		\item העתקות מביוס.
+	\end{enumerate}
+\end{example}
+
+\subsection{המשמעות הגאומטרית של הנגזרת}
+נניח ש־$f \in Hol(G) \cap C^1(G)$ ונניח ש־$f'(z_0) \ne 0$, מה הקשר בין $w \mapsto f'(z_0) w$ לבין $f$? \\*
+מה עושה העתקה זו? \\*
+מקומית $w \mapsto f(z_0) + f'(z_0)(w - z_0)$ מקרבת את הפונקציה $f$, זוהי פונקציה מרוכבת במובן המרוכב. \\*
+בקורדינטות פולריות $f'(z_0) = |f'(z_0)| e^{i \Arg(f'(z_0))}$ ההעתקה $w \mapsto f'(z_0) w$ מותחת את המישור ב־$|f'(z_0)|$ ומסובבת את המישור בזווית $\Arg(f'(z_0))$.
+
+\subsection{אורך ושטח}
+\begin{definition}
+	עבור $\gamma : [a, b] \to \CC$ מסילה, נגדיר את האורך להיות
+	\[
+		Length(f \circ \gamma) = \int_{a}^{b} |f'(\gamma(t))| \cdot |\dot{\gamma}(t)|\ dt
+	\]
+\end{definition}
+\begin{example}
+	אם $f(z) = z^2 + 1$ ו־$\gamma(t) = t + i(t - 1)$ אז
+	\[
+		\dot{\gamma} = 1 + i,
+		\qquad
+		f'(z) = 2z
+	\]
+	ולכן
+	\[
+		Length(F \circ \gamma) = \int_0^1 |2(t + i(t - 1))| |i + 1|\ dt
+		= \cdots = \sqrt{2} + arcsinh(1)
+	\]
+\end{example}
+\begin{definition}
+	תהי $A \subseteq \CC$ 'נחמדה', אז נגדיר את השטח
+	\[
+		Area(f(A)) = \iint_\CC 1_{f(A)}(z)\ dx\ dy
+	\]
+\end{definition}
+מהחלפת משתנה $z \in f(A) \iff w = f^{-1}(z) \in A$ ואז $dz = {|f'(w)|}^2\ dw$ עבור העתקות קונפורמיות ובשימוש משפט הפונקציה ההפוכה המרוכב שעוד לא הוכחנו. אז השטח שקול לביטוי
+\[
+	\iint_\CC 1_A(w) {|f'(w)|}^2\ dx\ dy
+	= \iint_A {|f'(w)|}^2\ dx\ dy
+\]
+\begin{proposition}
+	נגדיר $G_a = \{z \mid f(z) = a\}$ ונקבל $\CC = \bigcup G_j + Z$ אז $Area(Z) = 0$.
+	בתרגיל נקבל משהו כזה שמוכיחים עם אינפי 3 עם פונקציות ואז קושי רימן משהו כזה.
+\end{proposition}
+בנוסף בתרגיל קיבלנו $\partial_z = \frac{1}{2}(\partial_x - i \partial_y)$ וגם $\partial_{\overline{z}} = \frac{1}{2}(\partial_x + i \partial y)$. \\*
+טענה שקיימת בעולם היא ש־$\partial_{\overline{z}} \equiv 0 \iff f \in Hol$. \\*
+כקונספט גם $\partial_{\overline{z}} (z \cdot \overline{z}) = z$ היא טענה לא נכונה.
+
+\subsection{אינטגרלים קוויים}
+נתחיל בהגדרות ותכונות בסיסיות.
+
+נבין את המוטיבציה שלנו. אם $\gamma : I \to \CC$ עבור $I = [a, b]$ ונניח ש־$\gamma \in C^1(I)$.
+\begin{definition}
+	נגדיר
+	\[
+		\int_\gamma f\ dz = \int_z^b f(\gamma(t)) \cdot \dot{\gamma}(t)\ dt
+	\]
+\end{definition}
+\begin{remark}
+	$\gamma(t) = x(t) + i y(t)$ וגם $\dot{\gamma}(t) = x'(t) + i y'(t)$.
+\end{remark}
+\begin{definition}
+	נאמר ש־$\gamma$ היא חלקה למקוטעין אם $I = \bigcup_{n = 1}^N (t_n, t_{n + 1})$ כך ש־$\gamma \mid_{[t_n, t_{n + 1}]}$ היא $C^1$ ו־$\gamma$ רציפה.
+\end{definition}
+\begin{definition}[עקומה]
+	עקומה היא קבוצה ב־$\CC$ שהיא תמונה של פונקציה כזו.
+\end{definition}
+\begin{example}
+	נסתכל על ריבוע עם הקודקודים $\{0, 1, 1 + i, i\}$ שראינו בהרצאה הקודמת.
+\end{example}
+\begin{proposition}[תכונות]
+	\begin{enumerate}
+		\item לינאריות: $c_1, c_2 \in \CC$, אז $\int_\gamma c_1 f_1 + c_2 f_2\ dz = c_1 \int_\gamma f_1 + c_2 \int_\gamma f_2$.
+		\item אדיטיביות: תהינה $\gamma_1 : I_1 \to \CC, \gamma_2 : I_2 \to \CC$ ונניח ש־$\gamma_1(b_1) = \gamma_2(a_2)$ ונגדיר
+			\[
+				(\gamma_1 + \gamma_2)(t) = \begin{cases}
+					\gamma_1(t) & t \in [0, 1] \\
+					\gamma_2(t) & t \in [1, 2]
+				\end{cases}
+			\]
+			אז
+			\[
+				\int_{\gamma_1 + \gamma_2} f = \int_{\gamma_1} f + \int_{\gamma_2} f
+			\]
+		\item היפוך: אם $\gamma : [0, 1] \to \CC$ אז נגדיר $-\gamma(t) = \gamma(1 - t)$ והטענה היא
+			\[
+				\int_{-\gamma} f = - \int_\gamma f
+			\]
+		\item ניוטון־לייבניץ: אם $\dot{\gamma} \ne 0$ אז
+			\[
+				\int_\gamma f' = f(\gamma(b)) - f(\gamma(a))
+			\]
+	\end{enumerate}
+\end{proposition}
+\begin{exercise}
+	הוכיחו.
+\end{exercise}
+\begin{example}
+	\begin{enumerate}
+		\item $\gamma(t) = z_0 + e^{it}$ עבור $t \in [0, 2\pi]$ ו־$f(z) = {(z - z_0)}^n$, ונחשב
+			\[
+				\int_\gamma f
+				= \int_0^{2\pi} f(z_0 + e^{it}) \cdot i e^{it}\ dt
+				= \int_0^{2\pi} {(z_0 + e^{it} - z_0)}^n \cdot i e^{it}\ dt
+				= \int_0^{2\pi} e^{int} i e^{it}\ dt
+				= \begin{cases}
+					\frac{e^{2\pi(n + 1)} - 1}{n + 1} & n \ne -1 \\
+					2\pi i & n = -1
+				\end{cases}
+			\]
+		\item $\gamma(t) = e^{it}$ עבור $t \in [0, 2\pi]$ ו־$f(z) = {(z + \frac{1}{z})}^{2n} \cdot \frac{1}{z}$. אז
+			\[
+				\int_\gamma f = \int_0^{2\pi} {(e^{it} + e^{-it})}^{2n} e^{-it} e^{it}\ dt
+				= i 2^{2n} \int_0^{2\pi} \cos^{2n}(t)\ dt
+			\]
+			ומצד שני
+			\[
+				{(z + \frac{1}{z})}^{2n}
+				= \sum_{k = 0}^{2n} \binom{2n}{k} z^k {(\frac{1}{z})}^{2n - k}
+				= \sum_{k = 0}^{2n} \binom{2n}{k} z^{2(k - n)}
+			\]
+			אז נקבל
+			\[
+				\int_0^{2\pi} \sum_{k = 0}^{2n} \binom{2n}{k} z^{2(k - n)}
+				= \sum_{k = 0}^{2n} \binom{2n}{k} \int_0^{2\pi} e^{2it (k - n)} i\ dt
+				= \binom{2n}{n} 2\pi i
+				= \begin{cases}
+					2\pi i & k = n \\
+					0 & \text{else}
+				\end{cases}
+			\]
+			חישבנו את אותו האינטגרל פעמיים ומפה נשיג את הזהות
+			\[
+				\int_0^{2\pi} \cos^{2n}(t)\ dt =-i2^{-n} \pi i \binom{2n}{n} = 2^{-2n} \binom{2n}{n} 2 \pi
+			\]
+	\end{enumerate}
+\end{example}
+\begin{exercise}
+	\[
+		e^{int} = \cos(nt) + i \sin(nt)
+	\]
+\end{exercise}
+\begin{proposition}[ר־פרמטריזציה]
+	תהי $\Gamma$ עקומה ותהינה $\gamma_1 : I_1 \to \CC, \gamma_2 : I_2 \to \CC$ כך ש־$\im(\gamma_j) = \Gamma$. \\*
+	לכל $f \in Hol(G)$ מתקיים
+	\[
+		\int_\Gamma f = \int_{\gamma_1} f = \int_{\gamma_2} f
+	\]
+	אז מתקיים (תרגיל הוכיחו)
+	\[
+		\int_{a_1}^{b_1} f(\gamma_1(t)) \dot{\gamma}_1\ dt = \int_{a_2}^{b_2} f(\gamma_2(t)) \dot{\gamma}_2\ dt
+	\]
+	אם $\mu : I_1 \to I_2$ גזירה למקוטעין אז על
+	\[
+		\int_\gamma f = \int_{\gamma \circ \mu} f
+	\]
+\end{proposition}
+
 
 \end{document} % chktex 17
