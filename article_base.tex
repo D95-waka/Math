@@ -108,8 +108,26 @@
 \newtheorem{conclusion}[theorem]{מסקנה}
 \newtheorem{notation}[theorem]{סימון}
 
-%\ifthenelse{\equal{\directlua{tex.print(document_type)}}{notes}} { }{ }
+% Questions related commands
+\newcounter{question}
+\setcounter{question}{1}
+\newcounter{sub_question}
+\setcounter{sub_question}{1}
 
+\newcommand{\question}[1][0]{
+	\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
+	\subsection{שאלה \arabic{question}}
+	\addtocounter{question}{1}
+	\setcounter{sub_question}{1}
+}
+
+\newcommand{\subquestion}[1][0]{
+	\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
+	\subsubsection{סעיף \localecounter{letters.gershayim}{sub_question}}
+	\addtocounter{sub_question}{1}
+}
+
+% import lua and start of document
 \directlua{common = require ('../common')}
 
 \GetEnv{AUTHOR}

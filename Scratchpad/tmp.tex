@@ -4,23 +4,7 @@
 
 \begin{document}
 
-\newcounter{question}
-\setcounter{question}{1}
-\newcounter{sub_question}
-\setcounter{sub_question}{1}
-\newcommand{\question}[1][0]{
-	\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
-	\subsection{שאלה \arabic{question}}
-	\addtocounter{question}{1}
-	\setcounter{sub_question}{1}
-}
-\newcommand{\subquestion}[1][0]{
-	\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
-	\subsubsection{סעיף \localecounter{letters.gershayim}{sub_question}}
-	\addtocounter{sub_question}{1}
-}
-
-\question
+\question{}
 תוכן של השאלה
 
 \subquestion[1823]
