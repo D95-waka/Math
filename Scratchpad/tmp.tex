@@ -1,14 +1,29 @@
 \input{../article_base.tex}
 
+\usepackage{ifthen}
+
 \begin{document}
 
-יהי $L < \frac{3}{2}$ ויהי $N \in \NN$, אז נבחר $n > N$ כך ש־$a_n = \frac{1}{2}$ ולכן
-\[
-	|a_n - L| \ge 1 \ge \frac{1}{2} = \epsilon
-\]
-אילו $L > \frac{3}{2}$ אז נבחר $a_n = 2$ ולכן
-\[
-	|a_n - L| \ge \frac{1}{2} = \epsilon
-\]
+\newcounter{question}
+\setcounter{question}{1}
+\newcounter{sub_question}
+\setcounter{sub_question}{1}
+\newcommand{\question}[1][0]{
+	\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
+	\subsection{שאלה \arabic{question}}
+	\addtocounter{question}{1}
+	\setcounter{sub_question}{1}
+}
+\newcommand{\subquestion}[1][0]{
+	\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
+	\subsubsection{סעיף \localecounter{letters.gershayim}{sub_question}}
+	\addtocounter{sub_question}{1}
+}
+
+\question
+תוכן של השאלה
+
+\subquestion[1823]
+תוכן של הסעיף
 
 \end{document}
