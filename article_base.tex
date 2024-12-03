@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 % packages
-\usepackage{inputenc, amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, tikzducks, hyperref}
+\usepackage{inputenc, amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, tikzducks, hyperref, ifthen}
 \usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
 \usepackage[shortlabels]{enumitem}
 \usepackage[skip=3pt, indent=0pt]{parskip}
@@ -116,14 +116,14 @@
 
 \newcommand{\question}[1][0]{
 	\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
-	\subsection{שאלה \arabic{question}}
+	\section{שאלה \arabic{question}}
 	\addtocounter{question}{1}
 	\setcounter{sub_question}{1}
 }
 
 \newcommand{\subquestion}[1][0]{
 	\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
-	\subsubsection{סעיף \localecounter{letters.gershayim}{sub_question}}
+	\subsection{סעיף \localecounter{letters.gershayim}{sub_question}}
 	\addtocounter{sub_question}{1}
 }
 

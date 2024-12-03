@@ -15,13 +15,13 @@ local function tst_echo(a)
 end
 
 local function generate_question()
-	tex.print("\\section{שאלה " .. Q_number .. "}")
+	tex.print("\\section{Obsolete שאלה " .. Q_number .. "}")
 	Q_number = Q_number + 1
 	C_number = 1
 end
 
 local function generate_sub_question()
-	tex.print("\\subsection{סעיף " .. Letters[C_number] .. "'}")
+	tex.print("\\subsection{Obsolete סעיף " .. Letters[C_number] .. "'}")
 	C_number = C_number + 1
 end
 

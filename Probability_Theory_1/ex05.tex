@@ -7,7 +7,7 @@
 \maketitle
 \maketitleprint{}
 
-\Question{}
+\question{}
 עבור $i \in \{0, 1\}$ תהי $\Omega_i \subseteq \RR$, ותהי $\PP_i$ פונקציית הסתברות בדידה על $\Omega_i$ ותהי $X_i : \Omega_i \to \RR$ פונקציית הזהות. \\*
 נוכיח ש־$X_1 \overset{d}{=} X_2$ אם ורק אם קיימת  $S \subseteq \Omega_1 \cap \Omega_2$ קבוצה בת־מניה במובן הרחב המקיימת $S = \Supp \PP_1 = \Supp \PP_2$ וכן $\forall x \in S, \PP_1(x) = \PP_2(x)$.
 \begin{proof}
@@ -20,10 +20,10 @@
 	כמובן אם $x \in \RR \setminus S$ אז $\PP_1(x) = 0 = \PP_2(x)$, אחרת $x \in S$, אבל אז ישירות מההנחה מתקבל $\PP_1(x) = \PP_2(x)$ ומצאנו כי $X_1 \overset{d}{=} X_2$.
 \end{proof}
 
-\Question{}
+\question{}
 נוכיח או נפריך את הטענות הבאות.
 
-\Subquestion{}
+\subquestion{}
 נוכיח שאם תהי $f : \RR \to \RR$ פונקציה חד־חד ערכית, אז $X \overset{d}{=} Y$ אם ורק אם $f(X) \overset{d}{=} f(Y)$.
 \begin{proof}
 	הכיוון הראשון הוכח כטענה בכיתה, לכן נניח ש־$f(X) \overset{d}{=} f(Y)$. \\*
@@ -31,7 +31,7 @@
 	אם לא קיים $y$ כזה, אז $\PP(f(X) = x) = \PP(\{\omega \in \Omega \mid \omega = X^{-1}(f^{-1}(x))\}) = 0$ ולכן נסיק $\PP(X = x) = 0$.
 \end{proof}
 
-\Subquestion{}
+\subquestion{}
 נסתור את הטענה כי אם $X \overset{d}{=} Y$ אז $\PP(X = Y) > 0$.
 \begin{solution}
 	עבור $\Omega = [6]$, $\PP$ אחיד, \\*
@@ -43,13 +43,13 @@
 	\]
 \end{solution}
 
-\Subquestion{}
+\subquestion{}
 נסתור את הטענה שאם $X \overset{d}{=} Y$ וגם $X, Y$ בלתי־תלויים, אז $\PP(X = Y) > 0$.
 \begin{solution}
 	נגדיר הטלת שתי קוביות הוגנות וגם $X(n, m) = n, Y(n, m) = m + 6$, אז המשתנים המקריים בלתי־תלויים, וגם $\PP(X = Y) = 0$.
 \end{solution}
 
-\Subquestion{}
+\subquestion{}
 נוכיח שאם $X$ בלתי־תלוי בעצמו, אז קיים $c \in \RR$ שעבורו $\PP(X = c) = 1$.
 \begin{proof}
 	נתון שמתקיים
@@ -67,7 +67,7 @@
 	ולכן 
 \end{proof}
 
-\Subquestion{}
+\subquestion{}
 נוכיח שאם $X \overset{d}{=} X^2$ אז קיים $p \in [0, 1]$ שעבורו $X \sim Ber(p)$.
 \begin{proof}
 	נבחין כי
@@ -85,7 +85,7 @@
 	לכן גם $\PP(X = 0) + \PP(X = 1) = 1$ ובהתאם קיבלנו כי קיים $p \in [0, 1]$ כך ש־$X \sim Ber(p)$.
 \end{proof}
 
-\Question{}
+\question{}
 יהיה $(\Omega, \PP)$ מרחב הסתברות. \\*
 נוכיח כי מאורעות $A_1, \dots, A_n$ הם בלתי־תלויים אם ורק אם $1_{A_1}, \dots, 1_{A_n}$ הם משתנים מקריים בלתי־תלויים.
 \begin{proof}
@@ -96,10 +96,10 @@
 	לכן נגדיר $I = \{ i \in [n] \mid 1 \in S_i \}$ ונקבל ש־${\{1_{A_i} \in S_i\}}_{i \in [n]} = {\{ A_i \}}_{i \in I}$ וזו כמובן קבוצה בלתי־תלויה מההנחה.
 \end{proof}
 
-\Question{}
+\question{}
 יהיו $X \sim Geo(p), Y \sim Gro(q)$ משתנים מקריים בלתי־תלויים.
 
-\Subquestion{}
+\subquestion{}
 נחשב את ההסתברות למאורע $\{X \ge n \}$ עבור $n \in \{1, 2, \dots\}$ כלשהו.
 \begin{solution}
 	\[
@@ -112,7 +112,7 @@
 	\]
 \end{solution}
 
-\Subquestion{}
+\subquestion{}
 נראה שהמשתנה המקרי $Z = \min(X, Y)$ הוא בעל התפלגות $Geo(1 - (1 - p)(1 - q))$.
 \begin{proof}
 	\begin{align*}
@@ -135,11 +135,111 @@
 	ולכן $\min(X, Y) \sim Geo(1 - (1 - p)(1 - q))$.
 \end{proof}
 
-\Question{}
+\question{}
 יהיו שני משתנים מקריים $X, Y$ בלתי־תלויים שנתמכים על $\{0, \dots, n - 1\}$. נסמן $Z = X + Y \mod n$. \\*
 נראה ש־$X$ ו־$Z$ בלתי־תלויים אם ורק אם $Y \sim U(\{0, \dots, n - 1\})$.
 \begin{proof}
-	
+	נניח ש־$X, Z$ בלתי־תלויים.
+	\begin{align*}
+		\PP(Z = k, X = l)
+		& = \PP(X + Y \in \{k, k + n\}, X = l) \\
+		& = \PP(\{\omega \in \Omega \mid X(\omega) + Y(\omega) \in \{k, k + n\}, X(\omega) = l\}) \\
+		& = \PP(\{\omega \in \Omega \mid l + Y(\omega) \in \{k, k + n\}, X(\omega) = l\}) \\
+		& = \PP(\{\omega \in \Omega \mid Y(\omega) \in \{k - l, k + n - l\}, X(\omega) = l\}) \\
+		& = \PP(Y \in \{k - l, k - l + n\}) \PP(X = l) \\
+	\end{align*}
+	ומצד שני
+	\[
+		\PP(Z = k, X = l)
+		= \PP(Z = k) \PP(X = l)
+	\]
+	לכן
+	\[
+		\PP(Y = k - l, k - l + n)
+		= \PP(Z = k)
+	\]
+	נחפש את המקרה $Y = m$ ונקבל $k = m + l \mod n$ ולכן
+	\[
+		\PP(Y = m) = \PP(Z = m + l)
+	\]
+	כלומר
+	\[
+		\PP(Y = m) = \PP(Z = m) = \PP(Z = m + 1) = \cdots
+	\]
+	ולכן נוכל להסיק שמתקיים $\PP(Y = m) = \frac{1}{n}$, דהינו $Y \sim U(\{0, \dots, n - 1\})$.
+
+	נניח בכיוון ההפוך ש־$Y \sim U$ ונרצה להראות ש־$X, Z$ בלתי־תלויים. \\*
+	נבדוק
+	\begin{align*}
+		\PP(X = k, Z = l)
+		& = \PP(X = k, X + Y = l) \\
+		& = \PP(X = k, Y \in \{l - k, l - k + n\}) \\
+		& = \PP(X = k) \PP(Y = \{l - k, l - k + n\}) \\
+		& = \PP(X = k) \frac{1}{n}
+	\end{align*}
+	כאשר המעבר האחרון נובע מנוסחת ההסתברות השלמה על התומך של $X$.
+	ובנוסף
+	\[
+		\PP(Z = l)
+		= \PP(X + Y \in \{l, l + n\})
+		= \PP(X + Y \in \{l, l + n\})
+		= \sum_{k = 1}^{n} \PP(X = k) \PP(Y = k - l \mod n)
+		= \frac{1}{n} \PP(X \in \RR)
+		= \frac{1}{n}
+	\]
+	ולכן נוכל להסיק כי $X, Z$ בלתי־תלויים לפי השוויון הקודם.
 \end{proof}
+
+\question{}
+תהי $M \in Mat_{2 \times 2}(\RR)$ המטריצה המתארת התפלגות משותפת נקודתית של שני משתני ברנולי $X$ ו־$Y$.
+
+\subquestion{}
+נוכיח ש־$X$ ו־$Y$ שווי התפלגות אם ורק אם $M^t = M$.
+\begin{proof}
+	נניח $X \sim Ber(p), Y \sim Ber(q)$ עבור $0 \le p, q \le 1$. \\*
+	ישירות מחישוב בהינתן סימונים אלה
+	\[
+		M = \begin{pmatrix}
+			p q & p (1 - q) \\
+			q (1 - p) & (1 - p)(1 - q)
+		\end{pmatrix}
+	\]
+	נבחין כי $\PP(X = Y = 1) = pq$ תמיד נכון, וכך גם $\PP(X = Y = 0) = (1 - p)(1 - q)$, טענות אלה תקפות תמיד. \\*
+	נניח ש־$X, Y$ שווי התפלגות ונובע $p(1 - q) = q(1 - p)$ ולכן $M$ סימטרית, נניח ש־$M$ סימטרית ונקבל שהשוויון מתקיים, ולכן בהכרח $p = q$.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$X$ ו־$Y$ שווים כמעט תמיד אם ורק אם $M$ היא אלכסונית.
+\begin{proof}
+	נניח ש־$X \overset{a.s.}{=} Y$ ולכן $\PP(X = Y) = 1$ ובהתאם $\PP(X \ne Y) = 0$, לכן מתקיים $\PP(X = 1, Y = 0) = \PP(X = 0, Y = 1) = 0$, ונקבל ש־$M$ אלכסונית.
+
+	נניח ש־$M$ אלכסונית ונבדוק $\PP(X = Y)$, אבל מהאיפוס נובע $p (1 - q) = q(1 - p) = 0$ ולכן או $p = q = 1$ או $p = q = 0$ ובהתאם מחישוב ישיר $\PP(X = Y) = 1$, לכן $X \overset{a.s.}{=} Y$.
+\end{proof}
+
+\subquestion{}
+נוכיח $X$ ו־$Y$ בלתי־תלויים אם ורק אם $M$ היא מדרגה 1 מעל הממשיים.
+\begin{proof}
+	נניח ש־$X$ ו־ $Y$ בלתי־תלויים ולכן $\PP(X = 1, Y = k) = \PP(X = 1) \PP(Y = k)$ וכן $\PP(X = 0, Y = k) = \PP(X = 0) \PP(Y = k)$ ולכן שתי השורות הן תלויות לינארית, והמטריצה מדרגה 1.
+
+	נניח שהמטריצה מדרגה 1 ולכן קיים קבוע $c$ כך ש־$\PP(X = 1, Y = 1) = c \PP(X = 1, Y = 0)$, אבל גם
+	\[
+		p = \PP(X = 1) = \PP(X = 1, Y = 0) + \PP(X = 1, Y = 1) = (c + 1) \PP(X = 1, Y = 1) + \PP(X = 1, Y = 1)
+	\]
+	ולכן
+	\[
+		\PP(X = 1, Y = 1) = \frac{p}{c + 1}
+	\]
+	מתהליך דומה נקבל גם
+	\[
+		1 - p = \PP(X = 0) = \PP(X = 0, Y = 1) + \PP(X = 0, Y = 0) = (c + 1) \PP(P = 0, Y = 1)
+		\implies \PP(X = 0, Y = 1) = \frac{1 - p}{c + 1}
+	\]
+	אבל
+	\[
+		q = \PP(Y = 1) = \PP(X = 1, Y = 1) + \PP(X = 0, Y = 1) = \frac{1 + p - p}{c + 1}
+	\]
+	ומכאן נסיק ישירות $\PP(X = t, Y = s) = \PP(X = t) \PP(Y = s)$.
+\end{proof}
+
 
 \end{document}
