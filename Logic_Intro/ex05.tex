@@ -1,0 +1,166 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+\subquestion{}
+נגדיר פעולות וקבועים על $sent_L$ על־ידי
+\[
+	\varphi + \psi = (\varphi \lor \psi),
+	\quad
+	\varphi \cdot \psi = (\varphi \land \psi),
+	\quad
+	- \varphi = (\lnot \varphi),
+	\quad
+	0 = \perp,
+	\quad
+	1 = (\lnot \perp)
+\]
+נראה שהקבוצה $sent_L$ יחד עם פעולות אלה היא לא אלגברה בוליאנית.
+\begin{solution}
+	תהי שפה $L = \{ P \}$, אז מהשלמה נובע
+	\[
+		(P \land (\lnot P))
+		= P \cdot (- P)
+		= 0
+		= (\lnot (P \to P))
+	\]
+	ואלה הן כמובן סדרות שונות של סימנים, לכן קיבלנו סתירה להנחה שספיגה מתקיימת, ובהתאם גם סתירה להנחה כי זו היא אלגברה בוליאנית.
+\end{solution}
+
+\subquestion{}
+נראה כי כל אחת מהפעולות שהגדרנו זה עתה מכבדת את יחס השקילות הטאוטולוגית.
+\begin{proof}
+	למען הקריאות נסמן $\equiv$ כשכוונתנו $\equiv_{tau}$ לשאלה זו. \\*
+	נניח ש־$\varphi, \varphi' \in sent_L$ ונניח גם $\varphi \equiv \varphi'$, לכן
+	\[
+		(-\varphi) = (\lnot \varphi) \equiv (\lnot \varphi') = (-\varphi')
+	\]
+	כאשר המעבר השני נובע ממהלכים שראינו עבור ההגדרה הרקורסיבית לחישוב ערך אמת. \\*
+	באותו אופן אם גם $\psi, \psi' \in sent_L$ ו־$\psi \equiv \psi'$ אז מתקיים לכל
+	\[
+		\varphi \cdot \psi
+		= (\varphi \land \psi)
+		\equiv (\varphi' \land \psi')
+		= \varphi' \cdot \psi'
+	\]
+	ולבסוף גם
+	\[
+		\varphi + \psi
+		= (\varphi \lor \psi)
+		\equiv (\varphi' \lor \psi')
+		= \varphi' + \psi'
+	\]
+	ולכן מצאנו שהפעולות המוגדרות אכן מכבדות את יחס שקילות זה.
+\end{proof}
+
+\subquestion{}
+נגדיר $X = sent_L / \equiv$ ונגדיר את הפעולות הבאות
+\[
+	{[\varphi]}_\equiv \tilde{+} {[\psi]}_\equiv = {[\varphi + \psi]}_\equiv
+	\quad
+	{[\varphi]}_\equiv \tilde{\cdot} {[\psi]}_\equiv = {[\varphi \cdot \psi]}_\equiv
+	\quad
+	\tilde{-} {[\varphi]}_\equiv = {[-\varphi]}_\equiv
+\]
+ונוכיח ש־$X$ יחד עם הפעולות החדשות היא אלגברה בוליאנית.
+\begin{proof}
+	נבחין כי יש שתי דרכים להוכיח טענה זו, הדרך הראשונה נובעת מהגדרת האלגברה הבוליאנית, לדוגמה ההוכחה שהפעולות הדו־מקומיות קומוטטיביות ואסוציאטיביות. \\*
+	נבחר נציגים $\varphi, \psi$, אז $\varphi + \psi \in {[\varphi + \psi]}_\equiv$ וכן $\varphi + \psi = (\varphi \lor \psi)$, אך איווי אסוציאטיבי וקומוטטיבי כפי שראינו בהרצאות הקודמות. \\*
+	באופן דומה נוכל להראות את כל התנאים המתאימים.
+
+	ההוכחה השנייה מתבססת על סעיף ג' של תרגיל 4. \\*
+	הגדרה שקולה לחלוקה שראינו היא $\{ \Sigma \subseteq sent_L \mid \forall v : P \to \{ \TT, \FF \}, \forall \varphi, \psi \in \Sigma, \overline{v}(\varphi) = \overline{v}(\psi)\}$. \\*
+	תוצאת הסעיף היא ש־$B_X$ היא אלגברה בוליאנית, אבל מההגדרה הזו יחד עם ההגדרה השקולה שראינו זה עתה, נובע כי הפעולות שהגדרנו על מחלוקה הזו יוצרים אלגברה בוליאנית, והאחת שאנו רוצים למצוא בדיוק.
+\end{proof}
+
+\question{}
+תהי $X \subseteq \NN$ ויהיה $n_0 \in \NN$ קבוע. \\*
+נגדיר $L = \{ P_{n, m, i} \mid n, m \in X, n < m, i \in \{0, 1\}\}$ שפה לתחשיב פסוקים ונגדיר גם
+\[
+	\Sigma_0^X = \{ (P_{n, m, 0} \leftrightarrow (\lnot P_{n, m, 1})) \mid n, m \in X, n < m \}
+\]
+וכן גם
+\[
+	\Sigma_1^{X, n_0} = \left\{\left(\lnot\left(\bigwedge_{\{n, m \in A \mid n < m\}} P_{n, m, i}\right)\right) \middle| i \in \{0, 1\}, A \subseteq X, |A| = n_0\right\}
+\]
+והאיחוד $\Sigma^{X, n_0} = \Sigma_0^X \cup \Sigma_1^{X, n_0}$. \\*
+נוכיח שהקבוצה $\Sigma^{X, n_0}$ ספיקה אם ורק אם קיימת צביעה $c : {[X]}^2 \to \{0, 1\}$ כך שאין קבוצה מונוכרומטית $A \subseteq X$ בגודל $n_0$.
+\begin{proof}
+	נניח ש־$\Sigma^{X, n_0}$ ספיקה, קיימת הערכת אמת $v$ המספקת את $\Sigma_0^X$ ואת $\Sigma_1^{X, n_0}$. \\*
+	נגדיר קבוצה חדשה $c = \{ \langle \{n, m\}, i \rangle \mid v(P_{n, m, i}) = \TT \}$,
+	נבחין כי $c$ יחס וגם ש־$\dom c = {[X]}^2$, זאת שכן $\Sigma_0^X$ מסופקת על־ידי $v$ ולכן לכל $\{n, m\}$ מתקיים $v(P_{n, m, 0}) = \TT$ או $v(P_{n, m, 1}) = \TT$, כאשר $n < m$.
+	מאותה טענה גם נובע ש־$c$ מקיימת את תנאי הפונקציה, זאת בשל הגרירה הדו־כיוונית לשלילה, לכן $c : {[X]}^2 \to \{0, 1\}$. \\*
+	תהי $A \subseteq X$ כך ש־$|X| = n_0$ ויהי $i \in \{0, 1\}$, אז קיימים $n, m \in X$ כך ש־$\Sigma_1^{X, n_0} \models P_{n, m, j}$ עבור $j \ne i$, כלומר $c(\{n, m\}) \ne i$.
+	זוהי כמובן ההגדרה לפונקציית צביעה המקיימת את התנאי על אי־מונוכרומטיות קבוצות מגודל $n_0$.
+
+	בכיוון ההפוך נניח כי קיימת $c : {[X]}^2 \to \{0, 1\}$ המקיימת את התנאים ונוכיח ספיקות. \\*
+	נגדיר את הערכת האמת
+	\[
+		v(P_{n, m, i}) = \begin{cases}
+			\TT & c(\{n, m\}) = i \\
+			\FF & \text{else}
+		\end{cases}
+	\]
+	ונוכיח כי היא מספקת את $\Sigma^{X, n_0}$. \\*
+	עבור $\varphi \in \Sigma_0^X$ נבחין כי $\{n, m\} \in \dom c$ וגם מתנאי הפונקציה לא יתכן שיש שתי צביעות שונות לצימוד זה, ולכן נוכל להסיק $\overline{v}(\varphi) = \TT$. \\*
+	עבור $\varphi \in \Sigma_1^{X, n_0}$ נניח $A \subseteq X, |A| = n_0$ הקבוצה שמגדירה את $\varphi$, ויהי צבע $i$, אז קיים $n, m \in X$ כך ש־$c(\{n, m\}) \ne i$ ולכן $v(P_{n, m, i}) = \FF$ ונקבל $\overline{v}(\varphi) = \TT$. \\*
+	מצאנו אם כן ש־$v$ מספקת את $\Sigma_0^X$ ואת $\Sigma_1^{X, n_0}$ ולכן היא מספקת את $\Sigma^{X, n_0}$.
+\end{proof}
+
+\question{}
+תהי $L$ שפה לתחשיב יחסים.
+
+\subquestion{}
+נגדיר קבוצה $X$, פונקציה $f : const_L \cup Var \to X$ ולכל $n \in \NN$ נגדיר $F \in Func_{L, n}$ פונקציה $\epsilon_F : X^n \to X$,
+כך שהפונקציה $\overline{f} : term_L \to X$ מתקבלת ממשפט ההגדרה ברקורסיה עבור שמות עצם, ומחזירה לכל שם עצם את קבוצת המשתנים המופיעים בו. \\*
+נוכיח שהפונקציה הזו מקיימת את הדרישות שלנו.
+\begin{proof}
+	נוכיח באינדוקציה על שמות עצם שהפונקציה אכן מקיימת את הנדרש.
+
+	במקרה הבסיס, $t \in const_L \cup Var$, אם $t \in const_L$ אז $f(t) = \emptyset$, ואילו $t \in Var$ אז $f(t) = \{ t \}$ והפונקציה מקיימת את הנדרש.
+
+	יהי $t = F(t_1, \dots, t_n)$ עבור $F \in Func_{L, n}$, אז נגדיר $\epsilon_F(X_1, \dots, X_n) = \bigcup_{i \in [n]} X_i$ ולכן עבור ההנחה כי $X_i$ מייצגים את הערך הנכון נקבל את איחוד המשתנים וזהו אכן הביטוי שאנו מחפשים.
+\end{proof}
+
+\subquestion{}
+נגדיר קבוצה $Y$, פונקציה $g : atom_L \cup Var \to X$ ולכל $n \in \NN$ פונקציות $\epsilon_\forall, \epsilon_\exists : Var \times Y \to Y$, פונקציה $\epsilon_\lnot : Y \to Y$,
+ולכל $\square \in B$ גם $\epsilon_\square : Y^2 \to Y$ כך שהפונקציה $\overline{g} : form_L \to Y$ המתקבלת ממשפט הרקורסיה לנוסחות תתאים את מספר המשתנים המופיעים ב־$\varphi$. \\*
+נוכיח כי פונקציה זו מקיימת את הנדרש.
+\begin{proof}
+	נגדיר את $g$ כך שלכל $E$ יחס $n$ מקומי כך ש־$\varphi = E(t_1, \dots, t_n)$ יתקיים $g(\varphi) = \bigcup_{i \in [n]} \overline{f}(t_i)$. \\*
+	עוד נגדיר $\epsilon_\forall(v, Y) = \epsilon_\exists(v, Y) = Y \cup \{v\}$, וכן $\epsilon_\lnot(Y) = Y$ ו־$\epsilon_\square(Y_1, Y_2) = Y_1 \cup Y_2$. \\*
+	ממשפט ההגדרה ברקורסיה על יחסים נקבל ש־$\overline{g}$ קיימת ויחידה.
+
+	נוכיח באינדוקציה שהיא מקיימת את הטענות. \\*
+	כבסיס נניח $\varphi \in atom_L$ ולכן $\varphi = E(t_1, \dots, t_n)$ עבור $E$ יחס $n$ מקומי ו־$t_i$ שמות עצם, אז מההגדרה נובע ישירות. \\*
+	נניח כי הטענה נכונה עבור $\varphi$ ונבחן את $\forall v \varphi$, מתקיים $\overline{g}(\forall v \varphi) = \epsilon_\forall(v, \overline{g}(\varphi))$ ופונקציה זו מקיימת את הטענה, ההוכחה ל־$\exists$ זהה. \\*
+	עבור $\varphi = \lnot \psi$ מתקיים מהנחת האינדוקציה וההגדרה $\overline{g}(\varphi) = \overline{g}(\psi)$ וזה אכן נכון. \\*
+	עבור $\square \in B$ אם $\varphi = (\psi_1 \square \psi_2)$ אז מהנחת האינדוקציה וההגדרה מתקיים $\overline{g}(\varphi) = \overline{g}(\psi_1) \cup \overline{g}(\psi_2)$ והטענה עדיין תקפה.
+
+	השלמנו את מהלך האינדוקציה ולכן הפונקציה אכן מקיימת את הרצוי.
+\end{proof}
+
+\question{}
+תהי $L$ שפת תורת הקבוצות.
+
+\subquestion{}
+נבדוק כמה מבנים יש ל־$L$ שעולמם הוא $A = \{1\}$. \\*
+מטעמי קריאות נגדיר את שפת תורת הקבוצות $(E)$ במקום $(\in)$.
+\begin{solution}
+	בשפת תורת הקבוצות יחס סדר דו־מקומי יחיד $E$, ולכן $E \subseteq A \times A \iff E \in \mathcal{P}(A \times A)$. \\*
+בהתאם אם $X_A = \{ E \mid E \subseteq A \times A \}$ אז $|X| = |\mathcal{P}(A \times A)| = 2^{|A \times A}| = 2^{{|A|}^2}$. \\*
+	נותר אם כך להציב וקבל שאם העולם $A$ יש בדיוק $2$ מודלים ל־$\langle A, E \rangle$.
+\end{solution}
+
+\subquestion{}
+נחבש כמה מבנים יש ל־$L$ שעולמם הוא הקבוצה $\{1, 2\}$ ועבור קבוצה $[n]$.
+\begin{solution}
+	כפי שראינו בסעיף הקודם מתקיים $|X_{[2]}| = 2^{4^2} = 16$ וכן $|X_{[n]}| = 2^{n^2}$.
+\end{solution}
+
+
+\end{document}
