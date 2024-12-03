@@ -1518,7 +1518,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\]
 	במקרה זה נסמן $X \sim U(S)$.
 \end{definition}
-\begin{definition}[התפלגות גאומטרית]
+\begin{definition}[התפלגות גאומטרית]\label{geometric_distribution}
 	$X$ מתפלג גאומטרית עם פרמטר $p$ אם
 	\[
 		p_X(s) = \begin{cases}
@@ -1956,9 +1956,107 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	מאורעות $A_1, \dots, A_n$ הם בלתי־תלויים אם ורק אם $1_{A_1}, \dots, 1_{A_n}$ הם בלתי־תלויים.
 \end{exercise}
 \begin{proposition}
-	$X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים ונניח שיש אינדקסים $1 = i_0 \< i_1 < \cdots < i_k = n$. \\*
+	$X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים ונניח שיש אינדקסים $1 = i_0 < i_1 < \cdots < i_k = n$. \\*
 	נגדיר $Y_0 = (X_{i_0}, \dots, X_{i - 1}), \dots. Y_k = (X_{i_{k - 1}}, \dots, X_{i_k})$.
 \end{proposition}
+
+\section{שיעור 11 --- 3.12.2024}
+\subsection{אי־תלות משתנים מקריים}
+נמשיך עם מהלך ההרצאה הקודמת.
+\begin{proposition}
+	יהיו $X_1, \dots, X_n$ משתנים מקריים (יכולים להיות גם וקטורים מקריים ללא השפעה על ההוכחה) בלתי־תלויים,
+	ויהיו $1 = b_0 < b_1 < \cdots < b_k = n$ ונגדיר $Y_1 = (X_{b_0 + 1}, \dots, X_{b_1}), \dots, Y_k = (X_{b_{k - 1} + 1}, \dots, X_{b_k})$. \\*
+	אז $Y_1, \dots, Y_k$ בלתי־תלויים. \\*
+	כדוגמה, $X_1, \dots, X_7 \rightarrow \overbrace{(X_1, X_2, X_3)}^{Y_1}, \overbrace{(X_4, X_5)}^{Y_2}, \overbrace{(X_6, X_7)}^{Y_3}$.
+\end{proposition}
+\begin{proof}[הוכחה במקרה הבדיד]
+	$Y_i$ הוא וקטור מקרי ממימד $b_i - b_{i - 1}$, צריך להוכיח שלכל $s_1, \dots, s_k$ כך ש$s_1 \in \RR^{b_i - b_{i - 1}}$ מתקיים
+	\[
+		\PP(\forall i \in k, Y_i = s_i) = \prod_{i = 1}^k \PP(Y_i = s_i)
+	\]
+	נניח ש־$s_i = (a_{i 1}, \dots, a_{i d_i})$ ולכן נסיק מחוסר התלות של $X_i$
+	\[
+		\prod_{i = 1}^k \PP(Y_i = s_i)
+		= \prod_{i = 1}^k \PP(\forall 1 \le j \le d_i, X_{b_{i - 1} + j} = a_{i j})
+		= \prod_{i = 1}^k \prod_{j = 1}^{d_i} \PP(X_{b_{i - 1} + j} = a_{i j})
+	\]
+	אבל
+	\[
+		PP(\forall i \in k, Y_i = s_i)
+		= \PP(\forall j = X_j = c_j)
+		= \prod_{j = 1}^h \PP(X_j = c_j)
+		= \prod_{i = 1}^k \prod_{j = 1}^{d_i} \PP(X_{b_{i - 1} + j} = a_{i j})
+	\]
+	עבור
+	\[
+		c = (\overbrace{a_{11}, \dots, a_{1d_1}}^{s_1}, \dots, \overbrace{a_{k1}, \dots, a_{kd_1}}^{s_k})
+	\]
+	ומצאנו כי השוויון אכן מתקיים ו־$Y_1, \dots, Y_k$ בלתי־תלויים.
+\end{proof}
+\begin{conclusion}
+	$X_1, \dots, X_n$ בלתי־תלויים ו־$0 = b_0 < b_1 < \cdots < b_k = n - 1$ ו־$d_i = b_i - b_{i - 1}$ כך ש־$Y_i = (X_{b_{i - 1} + 1}, \dots, X_{b_i})$ ו־$f_1, \dots, f_k$ כאשר $f_i : \RR^{d_i} \to \RR$,
+	אז ${\{f_i(Y_i)\}}_{i = 1}^k$ בלתי־תלויים.
+\end{conclusion}
+\begin{example}
+	אם $X_1, \dots, X_n$ בלתי־תלויים אז גם $X_1 + X_2, \dots, X_3 + X_4, \dots, X_{n - 1} + X_{n}$ כנביעה מהמסקנה, \\*
+	באופן דומה גם $X_1 + X_2 + X_3, \dots$ בלתי־תלויים. \\*
+	כרעיון אנו יכולים לחלק משתנים מקריים לווקטורים בלתי־תלויים, ואז להפעיל פונקציה, שלא משנה את חוסר התלות, על כל הקבוצה.
+\end{example}
+\begin{example}
+	נניח ש־$A_1, \dots, A_5$ מאורעות בלתי־תלויים, אז המאורעות $(A_5 \cap A_4) \cup (A_1 \cap A_2) \cup A_3^C, A_4 \setminus A_5$ בלתי־תלויים,
+	זאת אנו עושים על־ידי שימוש במשתנים המקריים האופייניים של $A_i$ ושימוש במסקנה.
+\end{example}
+נבחין כי דרישת סופיות קבוצת המשתנים המקריים היא לא תנאי הכרחי
+\begin{definition}[קבוצה בת־מניה של משתנים מקריים בלתי־תלויים]
+	$X_1, X_2, \dots$ משתנים מקריים הם בלתי־תלויים אם לכל $n \in \NN$ מתקיים $X_1, \dots, X_n$ בלתי־תלויים.
+\end{definition}
+\begin{proposition}
+	אם ${\{X_n\}}_{n \in \NN}$ בלתי־תלויים ו־$S_n \in \mathcal{F}_\RR$ לכל $n \in \NN$ אז
+	\[
+		\PP(\forall n \in \NN, X_n \in S_n)
+		= \prod_{n \in \NN} \PP(X_n \in S_n)
+	\]
+\end{proposition}
+נשאל את עצמנו אם מצב זה בכלל אפשרי, נראה טענה ללא הוכחה שעונה על שאלה זו.
+\begin{proposition}
+	קיימת סדרת משתנים מקריים כזאת שכולם $Ber(\frac{1}{2})$.
+\end{proposition}
+\begin{proposition}
+	סדרה כזו בהכרח לא מוגדרת על מרחב בדיד.
+\end{proposition}
+\begin{proof}
+	נניח ש־$X_1, \dots$ סדרה כזו ונניח ש־$(\Omega, \mathcal{F}, \PP)$ בדיד. \\*
+	נניח ש־$\omega_0 \in \Omega$ ו־$\PP(\{\omega_0\}) > 0$, נסמן $s_i = X_i(\omega_0)$, אז
+	\[
+		0 \xleftarrow[n \to 0]{} {\left(\frac{1}{2}\right)}^n = \PP(\forall i \le n, X_i = s_i) \ge \PP(\forall i \in \NN, X_i = s_i) \ge \PP(\{\omega_0\}) > 0
+	\]
+	וקיבלנו סתירה לקיום $\omega_0$ כזה.
+\end{proof}
+
+\subsection{התפלגות גאומטרית}
+ניזכר בהגדרה\ \ref{geometric_distribution}, אשר מדברת על ניסוי שאנו עושים שוב ושוב עד שאנו מצליחים.
+\begin{proposition}
+	אם $X_1, X_2, \dots$ משתנים מקריים בלתי־תלויים המתפלגים $Ber(p)$ עבור $0 < p < 1$, \\*
+	ונסמן $Y = \min \{ k \mid X_k = 1 \}$, אז $Y \sim Geo(p)$.
+\end{proposition}
+נבחין כי $Y$ מייצג בחירת המופע הראשון של $1$ בהתפלגות ברנולי, נזכיר כי היא מייצגת הגרלה יחידה, לדוגמה הטלת מטבע בודד. נעבור להוכחה.
+\begin{proof}
+	המאורע $Y = l$ הוא המאורע $X_1 = X_2 = \cdots = X_{l - 1} = 0$ ו־$X_l = 1$, אבל שלו הם משתנים בלתי־תלויים, לכן
+	\[
+		\PP(X_1 = \cdots = X_{l - 1} = 0, X_l = 1)
+		= \PP(X_1 = 0) \cdots \PP(X_{l - 1}) \PP(X_l = 1)
+		= {(1 - p)}^{l - 1} p
+	\]
+	זוהי התפלגות גאומטרית.
+\end{proof}
+\begin{remark}
+	הסכום הוא
+	\[
+		\sum_{l = 1}^{\infty} {(1 - p)}^{l - 1} p = 1
+	\]
+	ולכן המקרה שבו אין מינימום כפי שהגדרנו לא רלוונטי להגדרה, וניתן להתעלם ממנו.
+\end{remark}
+מה יקרה אם נגדיר ככה $Y_1 = Y$ ו־$Y_2$ המשתנה המקרי שעבורו קיבלנו 1 בפעם השנייה וכן הלאה, אז $Y_2 - Y_1$ וסדרת החיסורים היא בלתי תלויה־אף היא, תוצאה אינטואיטיבית אך לא מובנת מאליו.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
