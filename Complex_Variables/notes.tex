@@ -1313,5 +1313,88 @@ $\sigma = i / 2$ אז $z^{i / 2} = \exp(\frac{i}{2} \log|z| + \frac{i}{2} i \Arg
 	\]
 \end{proposition}
 
+\section{שיעור 11 --- 5.12.2024}
+נתחיל בהערות
+\begin{remark}
+	נבחין כי $\partial_{\overline{z}} z \overline{z} = z$, זה נובע מכלל המכפלה.
+\end{remark}
+\begin{theorem}
+	לכל $f \in Hol(G)$ לכל $\gamma : I \to G$ אז
+	\[
+	|\int_\gamma f\ dz| \le \max_\gamma |f| \cdot Length(\gamma)
+	\]
+\end{theorem}
+\begin{theorem}
+	אם $f_n \to f$ במידה שווה מקומית (במידה שווה לכל קבוצה קומפקטית $k \subseteq G$) אז
+	\[
+		\lim_{n \to \infty} \int_\gamma f_n\ dz = \int_\gamma f\ dz
+	\]
+\end{theorem}
+\begin{proof}
+	$L(\gamma) < \infty$ כי $\gamma$ היא $C^1$ למקוטין.
+	יהי $\epsilon > 0$ ונראה שלכל $n$ מספיק גדול מתקיים
+	\[
+		| \int_\gamma f_n - \int_\gamma f| < \epsilon
+	\]
+	נקבע $\epsilon_1 = \frac{\epsilon}{L(\gamma)}$ אז משום ש־$\gamma \subseteq G$,
+	ואז מהמשפט הראשון מתקיים
+	\[
+		|\int_\gamma f_n - \int_\gamma f| \le L(\gamma) \max_\gamma |f - f_n| < L \epsilon_1 L(\gamma)
+	\]
+\end{proof}
+\begin{theorem}[קירוב פוליגונלי]
+	תהי $f \in Hol(G)$ ו־$\gamma : I \to G$ מסילה $C^1$ למקוטעין. \\*
+	אז לכל $\epsilon > 0$ קיימת מסילה פוליגונלית $\Sigma_\epsilon$ כך שמתקיים
+	\[
+		|\int_\gamma g\ dz - \int_{\Sigma_\epsilon} f\ dz| < \epsilon
+	\]
+\end{theorem}
+\begin{proof}
+	נקבע $\epsilon > 0$, קיים $\delta > 0$ כך שלכל $z \in \gamma$
+	\[
+		\max_{w \in B(z, \delta)} |f(z) - f(w)| < \frac{\epsilon}{2}
+	\]
+	משום ש־$f$ רציפה במידה שווה על $\bigcup_{z \in \gamma} B(z, \delta)$. \\*
+	נגדיר סדרה $t_k$ באינדוקציה, $t_0 = a$, וכן
+	\[
+		t_k = \sup\{s > t_{k - 1} \mid |\gamma(s) - \gamma(t_{k - 1})| < s\}
+	\]
+	כך ש־$t_N = b$. \\*
+	נגדיר
+	\[
+		\Sigma_\epsilon = \sum_{k = 1}^{N} [\gamma(t_{k - 1}), \gamma(t_k)]
+	\]
+	נסמן ב־$\gamma_k$ את החלק של $\gamma$ בין הנקודות הללו, לכן $I_k = [\gamma(t_{k - 1}), \gamma(t_k)]$. \\*
+	נסמן $C_k = \gamma - I_k$ ולכן
+	\[
+		L(C_k)
+		= L(\gamma_k) + L(I_k)
+		= L(\gamma_k) + |\gamma(t_k) - \gamma(t_{k - 1})|
+		< 2 L(\gamma_k)
+	\]
+	עתה
+	\[
+		|\int_\gamma - \int_{\Sigma_\epsilon}| \le \sum_{k = 1}^{N} |\int_{\gamma_k - I_k} f|
+		= \sum_{k = 1}^{N} |\int_{C_k} f|
+	\]
+	אבל
+	\[
+		|\int_{C_k} f|
+		= |\int_{C_k} f(z_k) - f(z_k) + f(z)|
+		\le \overbrace{|\int_{C_k} |f(z) - f(z_k)|}^{< \epsilon} + \overbrace{|\int_{C_k} f(z_k)|}^{= 0}
+	\]
+	אבל למה האיפוס? מספיק להראות $\int_{C_k} 1\ dz = 0$. \\*
+	נשתמש בניוטון־לייבניץ ונקבל
+	\[
+		\int_a^b f(\gamma(t)) \dot{\gamma}(t)\ dt = f(\gamma(b)) - f(\gamma(a))
+	\]
+	אבל $C_k$ מסילה סגורה.
+	לכן
+	\[
+		|\int_\gamma f - \int_{\Sigma_\epsilon} f|
+		\le \sum_k |\int_{C_k} f|
+		< \sum_k \epsilon L(C_k)
+	\]
+\end{proof}
 
 \end{document} % chktex 17
