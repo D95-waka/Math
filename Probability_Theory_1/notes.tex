@@ -2082,7 +2082,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		= \frac{1}{2^{2n}} \sum_{k = 0}^{n} {\binom{n}{k}}^2
 	\]
 \end{solution}
-\begin{proposition}
+\begin{proposition}\label{binominal_distributions_summation_proposition}
 	יהיו $X \sim Bin(n, p)$ ו־$Y \sim Bin(m, p)$ בלתי־תלויים, אז $X + Y \sim Bin(n + m, p)$.
 \end{proposition}
 \begin{proof}
@@ -2150,6 +2150,159 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		& = \frac{e^{-\lambda p} p^k {(p \lambda)}^k}{k!}
 	\end{align*}
 \end{proof}
+
+\section{שיעור 12 --- 5.12.2024}
+
+\subsection{התפלגות גאומטרית}
+\begin{proposition}
+	אם $X_i \sim Ber(p)$ אז $Y = \min{k \mid X_k = 1}$ אז $Y \sim Geo(p)$.
+\end{proposition}
+\begin{theorem}[תכונת חוסר הזיכרון]
+	$X$ משתנה מקרי הנתמך על $\NN$, ב־$\PP(X > 1) > 0$.
+	אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $X \sim Geo(p)$ עבור $0 < p < 1$ כלשהו.
+		\item לכל $l \in \NN$ מתקיים $X \overset{d}{=} X - l \mid X > l$. כלומר $\PP(X > l \mid X - l > 0) = \PP(X = k)$ לכל $l \in \NN$.
+		\item $X \overset{d}{=} X - 1 \mid X > 1$. כלומר לכל $S \in \mathcal{F}_\RR$ מתקיים $\PP(X \in S) = \PP(X - 1 \in S \mid X > 1)$.
+	\end{enumerate}
+\end{theorem}
+נראה טענה קודמת שתעזור לנו בהוכחת המשפט
+\begin{proposition}
+	אם $X$ משתנה מקרי שנתמך על $\NN$ אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $X \sim Geo(p)$
+		\item $\PP(X > n) = {(1 - p)}^n$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	$1 \implies 2$:
+	\[
+		\PP(X > n)
+		= \sum_{k = n + 1}^{\infty} \PP(X = k)
+		= \sum_{k = n + 1}^{\infty} {(1 - p)}^{k - 1} p
+		= {(1 - p)}^n \sum_{l = 1}^{\infty} {(1 - p)}^{l - 1} p
+		= {(1 - p)}^n
+	\]
+
+	$2 \implies 1$:
+	\[
+		\forall n \in \NN,\ \PP(X = n)
+		= \PP(X > n - 1) - \PP(X > n)
+		= {(1 - p)}^{n - 1} - {(1 - p)}^n
+		= {(1 - p)}^{n - 1} (1 - (1 - p))
+	\]
+\end{proof}
+\begin{proof}[הוכחת המשפט]
+	$1 \implies 2$:
+	נניח $l, k \in \NN$
+	\[
+		{(1 - p)}^{k - 1} p
+		= \PP(X = k)
+		= \PP(X - l = k \mid X - l > 0)
+		= \frac{\PP(X = l + k)}{\PP(X > l)}
+		= \frac{{(1 - p)}^{l + k - 1} p}{{(1 - p)}^l}
+		= {(1 - p)}^{l - 1} p
+	\]
+
+	$2 \implies 3$ מיידי.
+
+	$3 \implies 1$:
+	נסמן $p = \PP(X = 1)$ ונראה ש־$X \sim Geo(p)$ על־ידי כך שנראה $\forall n \in \NN,\ \PP(X < n) = {(1 - p)}^n$ והטענה. \\*
+	נוכיח באינדוקציה. עבור $n = 1$ נובע $\PP(X > 1) = 1 - \PP(X = 1) = 1 - p$. \\*
+	נניח שהטענה נכונה ל־$n$ ונראה
+	\[
+		\PP(X > n + 1)
+		= \PP(X > 1) \PP(X > n + 1 \mid X > 1)
+		= (1 - p) \PP(X - 1 > n \mid X > 1)
+		= (1 - p) \PP(X > n)
+		= (1 - p) {(1 - p)}^n
+	\]
+	והשלמנו את מהלך האינדוקציה.
+\end{proof}
+
+\subsection{התפלגות בינומית}
+נעבור לדבר על התפלגויות בינומיות כפי שהגדרנו בהגדרה\ \ref{binominal_distribution}.
+\begin{proposition}
+	אם $X_1, \dots, X_n$ משתנים מקריים בלתי תלויים מתפלגים $Ber(p)$, אז $Y = \sum_{i = 1}^n X_i$ מתפלג $Bin(n, p)$.
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\PP(Y = k)
+		& = \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = k}} \PP(X_1 = v_1, \dots, X_n = v_n) \\
+		& = \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = k}} \prod_{i = 1}^k \PP(X_i = v_i) \\
+		& = \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = k}} p^k {(1 - p)}^{n - k} \\
+		& = \binom{n}{k} p^k {(1 - p)}^{n - k}
+	\end{align*}
+\end{proof}
+ניזכר בטענה\ \ref{binominal_distributions_summation_proposition} ונוכיח אותה הפעם בדרך פורמלית ולא על־ידי אינטואיציה.
+\begin{proof}
+	נניח שיש $Z_1, \dots, Z_{n + m}$ משתנים מקריים בלתי־תלויים $Ber(p)$ כך שמתקיים
+	\[
+		X' = \sum_{i = 1}^n Z_i,
+		\qquad
+		Y' = \sum_{i = n + 1}^{n + m} Z_i
+	\]
+	אז $X' + Y' = \sum_{i = 1}^{n + m} Z_i$, לפי הטענה
+	\[
+		X' \sim Bin(n, p),
+		\qquad
+		Y' \sim Bin(m, p)
+	\]
+	וכן
+	\[
+		X' + Y' \sim Bin(n + m, p)
+	\]
+	לפי הטענה מההרצאה הקודמת $X'$ ו־$Y'$ בלתי־תלויים. \\*
+	אבל $X \overset{d}{=} X'$ ו־$Y \overset{d}{=} Y'$ ו־$X$ ו־$Y$ בלתי־תלויים וגם $X', Y'$ בלתי־תלויים, אז $(X', Y') \overset{d}{=} (X, Y)$.
+	לבסוף נובע $X + Y \overset{d}{=} X' + Y'$.
+\end{proof}
+
+\subsection{התפלגות פואסון}
+נעבור להתפלגות\ \ref{poasson_distribution} ונבחן אותה
+\begin{proposition}
+	נניח $\lambda > 0$ ונגדיר $X_n \sim Bin(n, \frac{\lambda}{n})$ עבור $n > \lambda$, \\*
+	אז לכל $k \in \NN$ מתקיים
+	\[
+		\PP(X_n = k) \xrightarrow[n \to \infty]{} \PP(Y = k)
+	\]
+	עבור $Y \sim Pois(\lambda)$.
+\end{proposition}
+\begin{proof}
+	\[
+		\PP(X_n = 0)
+		= \binom{n}{0} {\left(\frac{\lambda}{n}\right)}^0 {\left(1 - \frac{\lambda}{n}\right)}^n \xrightarrow[n \to \infty]{} e^{-\lambda}
+	\]
+	באופן דומה
+	\[
+		\PP(X_n = 1)
+		= \binom{n}{1} {\left(\frac{\lambda}{n}\right)}^1 {\left(1 - \frac{\lambda}{n}\right)}^n \cdot {\left(1 - \frac{\lambda}{n}\right)}^{-1} \xrightarrow[n \to \infty]{} e^{-\lambda} \cdot \lambda
+	\]
+	ונעבור למקרה הכללי
+	\[
+		\PP(X_n = k)
+		= \overbrace{\binom{n}{k} {\left(\frac{\lambda}{n}\right)}^k}^{\frac{n!}{k! (n - k)!} \frac{\lambda^k}{n^k} \to \frac{\lambda^k}{k!}} {\left(1 - \frac{\lambda}{n}\right)}^n \cdot {\left(1 - \frac{\lambda}{n}\right)}^{-k}
+		\xrightarrow[n \to \infty]{} \frac{\lambda^k}{k!} e^{-\lambda} \cdot 1
+	\]
+\end{proof}
+נחזור לטענה שראינו בתרגיל הבית:
+\begin{proposition}
+	אם $X \sim Pois(\lambda_1)$ ו־$Y \sim Pois(\lambda_2)$ בלתי־תלויים אז $X + Y \sim Pois(\lambda_1 + \lambda_2)$.
+\end{proposition}
+הפעם אפשר יהיה להוכיחה על־ידי הטענה החדשה שראינו.
+\begin{example}
+	נניח ${\{X_n\}}_{n \in \NN}$ משתנים מקריים בלתי־תלויים $U([26])$ המייצגים את קבלת כל אחת מהאותיות באנגלית, אז
+	\[
+		\PP(X_1 = 1, \dots, X_{1000} = 1) = \frac{1}{26^{1000}} = \PP(X_{1001} = 1, \dots, X_{2000} = 1)
+	\]
+	ההסתברות שיצא טקסט שמורכב מהאות $a$ 1000 פעמים.
+	הרעיון הוא שאין קשר בין המיקום שבו אנו שואלים עם הטקסט הופיע, אלא רק מהו אורך הטקסט, בהתאם
+	\[
+		\PP(\lnot \exists k,\ X_{1000 k + 1} = 1, \dots, X_{1000k + 1000} = 1)
+		= {(1 - \frac{1}{26^{1000}})}^n
+		\to 0
+	\]
+	ולכן בסופו של דבר הטקסט הזה בהכרח יופיע.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}
