@@ -88,7 +88,7 @@
 	נגדיר $\Omega = \NN$ ו־$p(\omega) = \frac{1}{\omega(\omega + 1)}$, נבחין כי אכן $\sum_{n = 1}^{\infty} \frac{1}{n(n + 1)} = 1$.
 \end{example}
 \begin{definition}[תומך]
-	התומך של $p$ הוא $\text{Supp}(p) = \{ \omega \in \Omega \mid p(\omega) > 0 \}$. \\*
+	התומך של $p$ הוא $\supp(p) = \{ \omega \in \Omega \mid p(\omega) > 0 \}$. \\*
 	נבחין כי התומך הוא למעשה קבוצת האיברים שאפשרי לקבל לפי פונקציית ההסתברות, כל שאר המצבים מקבלים 0, משמעו הוא שאין אפשרות להגיע אליו.
 \end{definition}
 \begin{remark}
@@ -301,7 +301,7 @@
 \begin{proof}
 	$1 \implies 2$:
 	נניח ש־$\PP = \PP_p$ עבור $p : \Omega \to [0, \infty)$ פונקציית הסתברות נקודתית.
-	נסתכל על $\text{Supp}(p) = \{ \omega \in \Omega \mid p(\omega) > 0 \}$, לפי הגדרת הסכום והתרגיל נובע ש־$A = \text{Supp}(p)$ בת־מניה.
+	נסתכל על $\supp(p) = \{ \omega \in \Omega \mid p(\omega) > 0 \}$, לפי הגדרת הסכום והתרגיל נובע ש־$A = \supp(p)$ בת־מניה.
 	נקבל
 	\[
 		\PP(A) = \sum_{\omega \in A} p(\omega) = \sum_{\omega \in \Omega} p(\omega) = \PP(\Omega) = 1
@@ -319,7 +319,7 @@
 
 	$3 \implies 1$:
 	נגדיר $p : \Omega \to [0, \infty)$ על־ידי $p(\omega) = \PP(\{ \omega \})$, נקבל $\sum_{\omega \in \Omega} p(\omega) = 1$ ולכן $p$ היא פונקציית הסתברות נקודתית.
-	מהתרגיל והגדרת הסכום נובע ש־$S = \text{Supp}(p)$ היא בת־מניה ומתקיים $\PP(S^C) = 0$, אז לכל $A \in \mathcal{F}$ מתקיים
+	מהתרגיל והגדרת הסכום נובע ש־$S = \supp(p)$ היא בת־מניה ומתקיים $\PP(S^C) = 0$, אז לכל $A \in \mathcal{F}$ מתקיים
 	\[
 		\PP(A) = \PP(A \cap S) + \PP(A \cap S^C) = \PP(A \cap S) = \sum_{\omega \in A \cap S} \PP(\{ \omega \}) = \sum_{\omega \in A} \PP(\{\omega\}) = \sum_{\omega \in A} p(\omega) = \PP_p(A)
 	\]
@@ -1530,7 +1530,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	לפעמים הגדרה זו תסומן אחרת על־ידי מדידת המקרים שבהם יצאה ההסתברות למאורע הראשון בלבד. \\*
 	התפלגות זו מתארת את המקרה שניסינו לקבל תוצאה בהסתברות בין שני מקרים וקיבלנו אותה בפעם ה־$s$.
 \end{definition}
-\begin{definition}[התפלגות בינומית]
+\begin{definition}[התפלגות בינומית]\label{binominal_distribution}
 	$X$ מתפלג בינומית עם פרמטרים $n$ ו־$p$ אם
 	\[
 		p_X(s) = \begin{cases}
@@ -1542,7 +1542,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \end{definition}
 מאפשר לנו לחשב את מספר המטבעות המוטים שיצאו על צד מסוים.
 ולבסוף
-\begin{definition}[התפלגות פואסונית]
+\begin{definition}[התפלגות פואסונית]\label{poasson_distribution}
 	$X$ מתפלג פואסונית עם פרמטר $\lambda$ אם
 	\[
 		p_X(s) = \begin{cases}
@@ -1762,11 +1762,11 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{enumerate}
 \end{exercise}
 \begin{solution}
-	תחילה ניזכר שאם $W \sim Geo(p)$ אז $Supp(W) = \NN$ ו־$\PP(W = k) = {(1 - p)}^{k - 1} p$, שכן זוהי ההסתברות שלא הצלחנו $k - 1$ פעמים ובניסיון ה־$k$ הצלחנו, עבור איזושהי פעולה.
+	תחילה ניזכר שאם $W \sim Geo(p)$ אז $\supp(W) = \NN$ ו־$\PP(W = k) = {(1 - p)}^{k - 1} p$, שכן זוהי ההסתברות שלא הצלחנו $k - 1$ פעמים ובניסיון ה־$k$ הצלחנו, עבור איזושהי פעולה.
 	\begin{enumerate}
 		\item אנו מגדירים $X = (X_1, Z)$ וקטור מקרי ואנו רוצים לחשב את ההתפלגות שלו, נחשב את התומך
 			\[
-				Supp(X_1, Z) \subseteq \NN^2
+				\supp(X_1, Z) \subseteq \NN^2
 			\]
 			ישירות מההגדרה של הווקטור, אבל אנו יודעים כי תמיד $X_1 < Z$, וכן גם אם $m < n$
 			\begin{align*}
@@ -1786,10 +1786,10 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 			\]
 		\item נבחן את $X_1 \mid \{ Z = n\}$ ונבין מה התומך.
 			\[
-				Supp(X_1 \mid \{Z = 1\})
+				\supp(X_1 \mid \{Z = 1\})
 				= \{1, \dots, n - 1\}
 			\]
-			שכן $Z$ מייצג סכום ולכן מהווה חסם ל־$X_1$ יחד עם $Supp(X_1) = \NN$. נעבור לחישוב ההתפלגות
+			שכן $Z$ מייצג סכום ולכן מהווה חסם ל־$X_1$ יחד עם $\supp(X_1) = \NN$. נעבור לחישוב ההתפלגות
 			\[
 				\PP(X = m \mid Z = n)
 				= \frac{\PP(X = m, Z = n)}{\PP(Z = n)}
@@ -1833,7 +1833,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{solution}
 	נתחיל ונראה כי
 	\[
-		Supp(X Y) = \{0, 1\},
+		\supp(X Y) = \{0, 1\},
 	\]
 	וכן גם $XY$ בהתפלגות ברנולי כלשהי, אך
 	\[
@@ -1889,11 +1889,11 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	נבחין כי
 	\begin{align*}
 		\PP(X \in S, Y \in T)
-		& = \PP(X \in S \cap Supp(X), Y \in T \cap Supp(Y)) \\
-		& = \sum_{\substack{s \in S \cap Supp(X) \\ t \in T \cap Supp(Y)}} \PP(X = s, Y = t) \\
-		& = \sum_{\substack{s \in S \cap Supp(X) \\ t \in T \cap Supp(Y)}} \PP(X = s) \PP(Y = t) \\
-		& = \sum_{s \in S \cap Supp(X)} \left( \sum_{t \in T \cap Supp(Y)} \PP(X = s) \PP(Y = t) \right) \\
-		& = \left( \sum_{s \in S \cap Supp(X)} \PP(X = s) \right) \left( \sum_{t \in T \cap Supp(Y)} \PP(Y = t) \right) \\
+		& = \PP(X \in S \cap \supp(X), Y \in T \cap \supp(Y)) \\
+		& = \sum_{\substack{s \in S \cap \supp(X) \\ t \in T \cap \supp(Y)}} \PP(X = s, Y = t) \\
+		& = \sum_{\substack{s \in S \cap \supp(X) \\ t \in T \cap \supp(Y)}} \PP(X = s) \PP(Y = t) \\
+		& = \sum_{s \in S \cap \supp(X)} \left( \sum_{t \in T \cap \supp(Y)} \PP(X = s) \PP(Y = t) \right) \\
+		& = \left( \sum_{s \in S \cap \supp(X)} \PP(X = s) \right) \left( \sum_{t \in T \cap \supp(Y)} \PP(Y = t) \right) \\
 		& = \PP(X \in S) \PP(Y \in T)
 	\end{align*}
 \end{proof}
@@ -1904,15 +1904,15 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	$p_X$ ו־$p_Y$ בלתי־תלויים קובע את $p_{(X, Y)}(s, t) = p_X(s) p_Y(t)$.
 \end{proof}
 \begin{proposition}
-	$X, Y, Z$ משתנים מקריים בדידים ונניח שלכל $s \in Supp(X)$ מתקיים $Y \mid X = s \overset{d}{=} Z$,
+	$X, Y, Z$ משתנים מקריים בדידים ונניח שלכל $s \in \supp(X)$ מתקיים $Y \mid X = s \overset{d}{=} Z$,
 	אז $Y \overset{d}{=} Z$ ו־$X, Y$ בלתי־תלויים.
 \end{proposition}
 \begin{proof}
 	מנוסחת ההסתברות השלמה נובע
 	\begin{align*}
 		\PP(Y = t)
-		& = \sum_{s \in Supp(X)} \PP(X = s) \PP(Y = t \mid X = s) \\
-		& = \sum_{s \in Supp(X)} \PP(X = s) \PP(Z = t) \\
+		& = \sum_{s \in \supp(X)} \PP(X = s) \PP(Y = t \mid X = s) \\
+		& = \sum_{s \in \supp(X)} \PP(X = s) \PP(Z = t) \\
 		& = \PP(Z = t)
 	\end{align*}
 	עבור החלק השני נבחין כי
@@ -2057,6 +2057,99 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ולכן המקרה שבו אין מינימום כפי שהגדרנו לא רלוונטי להגדרה, וניתן להתעלם ממנו.
 \end{remark}
 מה יקרה אם נגדיר ככה $Y_1 = Y$ ו־$Y_2$ המשתנה המקרי שעבורו קיבלנו 1 בפעם השנייה וכן הלאה, אז $Y_2 - Y_1$ וסדרת החיסורים היא בלתי תלויה־אף היא, תוצאה אינטואיטיבית אך לא מובנת מאליו.
+
+\section{תרגול 6 --- 5.12.2024}
+\subsection{שאלות בנושאי משתנים מקריים בלתי־תלויים}
+\begin{exercise}
+	שתיים מטילות $n$ מטבעות הוגנים כל אחת באופן בלתי־תלוי. \\*
+	מה ההסתברות שהן קיבלו אותו מספר תוצאות עץ?
+\end{exercise}
+\begin{solution}
+	נגדיר $X_i \sim Ber(\frac{1}{2})$ ההטלה ה־$i$ של הראשונה, ו־$Y \sim Ber(\frac{1}{2})$ ההטלה ה־$i$ של השנייה, ונגדיר
+	\[
+		X = \sum_{i = 1}^{n} X_i,
+		\qquad
+		Y = \sum_{i = 1}^{n} Y_i
+	\]
+	משתנים המייצגים את מספר הטלות העץ של כל אחת מהשתיים. \\*
+	אבל זאת דרך מורכבת לפתור את השאלה הזאת, נגדיר במקום זה $X, Y \sim Bin(n, \frac{1}{n})$, את ההוכחה לשקילות נראה בהרצאה הקרובה. \\*
+	מהגדרה\ \ref{binominal_distribution} נוכל להסיק $\supp X = \{0, \dots, n\}$, ואנו מבקשים לחשב את $\PP(X = Y)$, נחשב על־ידי
+	\[
+		\PP(X = Y)
+		= \sum_{k = 0}^{n} \PP(X = k = Y)
+		= \sum_{k = 0}^{n} \PP(X = k) \PP(Y = k)
+		= \sum_{k = 0}^{n} \binom{n}{k} \frac{1}{2^n} \binom{n}{k} \frac{1}{2^n}
+		= \frac{1}{2^{2n}} \sum_{k = 0}^{n} {\binom{n}{k}}^2
+	\]
+\end{solution}
+\begin{proposition}
+	יהיו $X \sim Bin(n, p)$ ו־$Y \sim Bin(m, p)$ בלתי־תלויים, אז $X + Y \sim Bin(n + m, p)$.
+\end{proposition}
+\begin{proof}
+	נבחין תחילה ש־$\supp X + Y = \{0, \dots, n + m\}$ וכן
+	\begin{align*}
+		\PP(X + Y = k)
+		& = \sum_{i = 0}^{n + m} \PP(X = i, Y = k - i) \\
+		& = \sum_{i = 0}^{n + m} \PP(X = i) \PP(Y = k - i) \\
+		& = \sum_{i = 0}^{n + m} \binom{n}{i} p^i {(1 - p)}^{n - i} \binom{m}{k - i} p^{k - i} {(1 - p)}^{m - k + i} \\
+		& = p^k {(1 - p)}^{n + m - k} \sum_{i = 0}^{n + m} \binom{n}{i} \binom{m}{k - i} \\
+		& = p^k {(1 - p)}^{n + m - k} \binom{n + m}{k}
+	\end{align*}
+	כאשר עלינו להוכיח את השוויון האחרון, זאת נעשה בתרגיל הבא.
+\end{proof}
+\begin{exercise}[זהות ונדרמונדה]
+	מתקיים
+	\[
+		\sum_{i = 0}^{n + m} \binom{n}{i} \binom{m}{k - i}
+		= \binom{n + m}{k}
+	\]
+\end{exercise}
+\begin{solution}
+	נבחין כי $\binom{n + k}{k}$ הוא קומבינטורית שקול לבחירה $k$ ערכים מתוך קבוצה בגודל $m$ וקבוצה בגודל $n$. \\*
+	במקביל $\binom{n}{i} \binom{m}{k - i}$ הוא היכולת לבחור $i$ מתוך $m$ ועוד השארית מ־$k$ מהקבוצה השנייה. \\*
+	נבחין כי זוהי הוכחה קומבינטורית ואפשרי להוכיח גם אלגברית את השוויון הנתון.
+\end{solution}
+\begin{proposition}
+	ניזכר בהגדרה $\ref{poasson_distribution}$ יהיו $X \sim Pois(\lambda)$ ו־$Y \sim Pois(\lambda + \eta)$ בלתי־תלויים, אז $X + Y \sim Pois(\lambda + \eta)$.
+\end{proposition}
+ניזכר בהתפלגות פואסון עם דוגמה.
+אם מגיעים לבית־חולים בממוצע $\lambda = 10$ אנשים ביום, אז התפלגות פואסון היא השאלה כמה אנשים הגיעו ביום ספציפי לבית־החולים. \\*
+בהתאם השאלה שאנו שואלים מדברת על מקרה שבו יש שני בתי־חולים ואנו שואלים על כמה אנשים הגיעו ביום. \\*
+ברור לנו אם כן שטענה זו הגיונית, נעבור להוכחה.
+\begin{proof}
+	תחילה $\supp(X + Y) = \NN \cup \{0\}$ ונניח $k \in \supp(X + Y)$, ונחשב
+	\begin{align*}
+		\PP(X + Y = k)
+		& = \sum_{n = 0}^{\infty} \PP(X = n) \PP(Y = k - n) \\
+		& = \sum_{n = 0}^{k} \frac{e^{-\lambda} \lambda^n}{n!} \frac{e^{-\eta} \eta^{k - n}}{(k - n)!} \\
+		& = e^{-(\lambda + \eta)} \sum_{n = 0}^{k} \frac{\lambda^n \eta^{k - n}}{n! (k - n)!} \\
+		& = \frac{e^{-(\lambda + \eta)}}{k!} \sum_{n = 0}^{k} \frac{k!}{n! (k - n)!} \lambda^n \eta^{k - n} \\
+		& = \frac{e^{-(\lambda + \eta)}}{k!} \sum_{n = 0}^{k} \binom{k}{n} \lambda^n \eta^{k - n} \\
+		& = \frac{e^{-(\lambda + \eta)}}{k!} {(\lambda + \eta)}^k
+	\end{align*}
+\end{proof}
+\begin{proposition}
+	נניח $X \sim Pois(\lambda)$ ו־$Y$ משתנה מקרי המקיים
+	\[
+		\forall n \in \NN \cup \{0\},\ Y \mid \{X = n\} \sim Bin(n, p)
+	\]
+	אז $Y \sim Pois(\lambda p)$.
+\end{proposition}
+\begin{proof}
+	הפעם $\supp Y = \NN \cup \{0\}$. \\*
+	נניח ש־$k \in \NN \cup \{0\}$ ונחשב את $\PP(Y = k)$ על־ידי שימוש בנוסחת ההסתברות השלמה.
+	\begin{align*}
+		\PP(Y = k)
+		& = \sum_{n = 0}^{\infty} \PP(X = n) \PP(Y = k \mid X = n) \\
+		& = \sum_{n = 0}^{\infty} \frac{e^{-\lambda} \lambda^n}{n!} \binom{n}{k} p^k {(1 - p)}^{n - k} \\
+		& = \sum_{n = k}^{\infty} \frac{e^{-\lambda} \lambda^n}{n!} \frac{n!}{k! (n - k)!} p^k {(1 - p)}^{n - k} \\
+		& = \frac{e^{-\lambda} p^k}{k!} \sum_{n = k}^{\infty} \frac{\lambda^n {(1 - p)}^{n - k}}{(n - k)!} \\
+		& = \frac{e^{-\lambda} p^k}{k!} \sum_{m = 0}^{\infty} \frac{\lambda^{m + k} {(1 - p)}^m}{m!} \\
+		& = \frac{e^{-\lambda} p^k \lambda^k}{k!} \sum_{m = 0}^{\infty} \frac{\lambda^m {(1 - p)}^m}{m!} \\
+		& = \frac{e^{-\lambda} p^k \lambda^k}{k!} e^{\lambda(1 - p)} \\
+		& = \frac{e^{-\lambda p} p^k {(p \lambda)}^k}{k!}
+	\end{align*}
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
 \end{document}

@@ -4,10 +4,81 @@
 
 \begin{document}
 
-\question{}
-תוכן של השאלה
+נגדיר $\Omega = [6]$ עם הסתברות אחידה $\PP$.
+נגדיר $X(\omega) = \omega$ ו־$Y(\omega) = \omega$
+\[
+	Supp X = [6]
+	\qquad
+	Supp Y = [6]
+\]
+נגדיר $Z = X + Y$.
+\[
+	Supp Z = 2 \cdot [6]
+\]
+עכשיו נגדיר $X$ הטלת קובייה ו־$Y$ הטלת קובייה שנייה. עכשיו $\Omega = {[6]}^2$.
+\[
+	X((a, b)) = a,
+	\qquad
+	Y((a, b)) = b,
+	\qquad
+	Z((a, b)) = a + b
+	\qquad
+	Supp Z = [12]
+\]
+נחשב
+\[
+	\PP(Z = 4) = \PP(\{(1, 3), (3, 1), (2, 2)\}) = \frac{3}{36}
+	= \PP(\{\omega \in \Omega \mid Z(\omega) = 4\})
+\]
 
-\subquestion[1823]
-תוכן של הסעיף
+$Supp\ X = Supp\ Y = \{0, \dots, n - 1\}$ וגם $Z = X + Y \mod n$.
+\[
+	Supp\ Z = Supp\ X = \{0, \dots, n - 1\}
+\]
+נניח ש־$X, Z$ בלתי־תלויים. נראה ש־$\PP(Y = \omega) = \frac{1}{n}$.
+\begin{align*}
+	\PP(X = k) \cdot \PP(Z = l)
+	& = \PP(X = k, Z = l) \\
+	& = \PP(X = k, X + Y \mod n = l) \\
+	& = \PP(X = k, X + Y = l + a n) \\
+	& = \PP(X = k, X + Y \in \{l, l + n\}) \\
+	& = \PP(X = k, k + Y \in \{l, l + n\}) \\
+	& = \PP(X = k, Y \in \{l - k, l - k + n\}) \\
+	& = \PP(X = k) \PP(Y \in \{l - k, l - k + n\}) \\
+\end{align*}
+ולכן
+\[
+	\PP(Z = l) = \PP(Y \in \{l - k, l - k + n\})
+\]
+נחפש את
+\[
+	\PP(Y = m)
+\]
+נקבל $m = l - k$ או $m = l - k + n$.
+\[
+	\PP(Y = m) = \PP(Z = l)
+\]
+נכתוב $l = m + k$ או $l = m + k - n$.
+\[
+	\PP(Y = m) = \PP(Z = m + k)
+\]
+נגדיר $k = i, j$
+אז
+\[
+	\PP(Y = m) = \PP(Z = m + i) = \PP(Z = m + j)
+\]
+לדוגמה אם $m = 0$ אז
+\[
+	\PP(Z = i) = \PP(Z = j)
+\]
+לכל $0 \le i, j \le n - 1$.
+לכן
+\[
+	\PP(Z = l) = \frac{1}{n}
+\]
+אז נובע
+\[
+	\PP(Y = m) = \frac{1}{n}
+\]
 
 \end{document}
