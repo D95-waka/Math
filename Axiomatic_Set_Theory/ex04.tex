@@ -1,0 +1,79 @@
+\newcounter{englishFlag}
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- תורת הקבוצות האקסיומטית, 80650}
+
+\DeclareMathOperator{\trcl}{trcl}
+\DeclareMathOperator{\rank}{rank}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נניח ZFC, ונניח גם $\kappa$ מונה רגולרי לא בן־מניה, נבחין כי מהמטלה הקודמת נובע $H(k^+)$ הוא מודל של ZFC --- Power set.
+
+יהי $p \in H(\kappa^+)$, נראה שקיים סל''ח $C \subseteq \kappa$ כך שלכל $\delta \in C$ קיים $M \prec H(\kappa^+)$ כך ש־$p \in M$ וגם $M \cap \kappa = \delta$.
+\begin{proof}
+	תהי נוסחה $\varphi(x, y_0, \dots, y_{m - 1})$ נוסחה כלשהי בשפת תורת הקבוצות. \\*
+	לכן מטענה מההרצאה קיימת פונקציית סקולם $F_\varphi : {H(\kappa^+)}^m \to H(\kappa^+)$. \\*
+	נגדיר סדרה $\langle G_n \mid n \in \omega\rangle$ בדומה להגדרה שהייתה בהרצאה לנוסחות כאלה, עבור כלל הנוסחות הסופיות $H(\kappa^+) \models \varphi$. \\*
+	יהי $\alpha < \kappa$ סודר, ונגדיר $R(\alpha) = \{ G_n(p, \gamma_0, \dots, \gamma_{m - 1}) \mid n < \omega, \gamma_0, \dots, \gamma_{m - 1} < \alpha\} \cap \kappa$. \\*
+	מההגדרה שנתנו ל־$R$ נובע ישירות כי $R(\alpha) \prec H(\kappa^+)$. \\*
+	נראה כי $R(\alpha) < \kappa$, זאת נוכל להוכיח באינדוקציה על $G_n$ ומבנה הנוסחה. \\*
+	יהי סל''ח $\delta < \kappa$ ונראה ש־$R(\delta) = \delta$. למעשה הנוסחה שמגדירה את החסימות מוכלת ב־$\langle G_n \rangle$ ולכן הטענה נכונה. \\*
+	ולכן $p$ מקיים את הנדרש.
+\end{proof}
+
+\question{}
+יהי $M \prec N = H(\kappa^+)$ ויהיו $a_0, \dots, a_{n - 1} \in H(\kappa^+)$. \\*
+נוכיח ש־$\{a_0, \dots, a_{n - 1}\} \in M$ אם ורק אם $\forall i < n, a_i \in M$. \\*
+נראה גם שטענה זו לא בהכרח תתקיים עבור קבוצה בת־מניה של איברים.
+\begin{proof}
+	נניח ש־$a = \{a_0, \dots, a_{n - 1}\} \in M$.
+	נגדיר $\varphi(x, y) = x \in y$ ולכן $N \models \varphi(a, a_i)$ וזה נכון אם ורק אם $M \models \varphi(x, a_i)$, וזה מתקיים עבור $0 \le i < n$ ולכן מצאנו כי הטענה חלה.
+
+	נניח עתה כי $a_0, \dots, a_{n - 1} \in M$.
+	נגדיר נוסחה
+	\[
+		\varphi(x, y_0, \dots, y_{n - 1})
+		= \left(\bigwedge_{i = 0}^{n - 1} y_i \in x\right) \land \forall z \in x (z = y_0 \lor \dots \lor z = y_1)
+	\]
+	נבחין כי היא אכן נוסחה סופית (גם אם לא נכתבה כך) וכן $N \models \varphi(a, a_0, \dots, a_{n - 1})$ ולכן $M \models \varphi(a, a_0, \dots, a_{n - 1})$ וקיבלנו ש־$a \in M$.
+
+	משאלה 1 נוכל להסיק כי עבור $\omega < \kappa$ קיים $M \prec H(\kappa^+)$ כך ש־$M \subseteq \omega$, ואז כמובן שהטענה לא נכונה.
+\end{proof}
+
+\question{}
+תהי $S \subseteq \kappa$, ונראה ש־$S$ קבוצת שבת אם ורק אם לכל $p \in H(\kappa^+)$ קיים תת־מבנה אלמנטרי $M \prec H(\kappa^+)$ כך ש־$p \in M$ וגם $M \cap \kappa \in S$.
+\begin{proof}
+	נניח ש־$S$ קבוצת שבת ויהי $p \in H(\kappa^+)$. \\*
+	עוד נגדיר $C$ הסל''ח שקיים עבור $p$ לפי שאלה 1, ויהי $\delta \in C \cap S$, אז קיים $M \prec H(\kappa^+)$ עבורו $p \in M$ וגם $M \cap \kappa = \delta \in S$.
+
+	נניח עתה כי לכל $p \in H(\kappa^+)$ קיים תת־מבנה אלמנטרי $M \prec H(\kappa^+)$ כך ש־$p \in M$ וגם $M \cap \kappa \in S$ ונראה ש־$S$ קבוצת שבת. \\*
+	עתה יהי $C \subseteq \kappa$ סל''ח, כמובן $C \in H(\kappa^+)$ ולכן אם $p \in C$ כלשהו, אז נובע מההנחה ש־$\exists M, p \in M,\ M \cap \kappa \in S \implies p \in S$.
+\end{proof}
+
+\question{}
+יהי $M \prec H(\kappa^+)$ כך ש־$M \cap \kappa = \delta \in \kappa$. \\*
+נוכיח שלכל $C \in M$ סל''ח ב־$\kappa$, מתקיים $\delta \in C$.
+\begin{proof}
+	נבחין כי $\delta \cap C = M \cap \kappa \cap C = M \cap C$, ונבחן את $\varphi(x, y) = \sup(x) = y$, אנו יודעים כי $\varphi(C, \kappa)$ מההגדרה של $C$. \\*
+	נשים לב כי אם $\kappa \in M$ אז $\kappa = \delta \in \delta$ בסתירה להנחה שלנו. \\*
+	אם $\sup(\delta \cap C) = \delta$ אז $\delta \in C$ כפי שרצינו ולכן נניח אחרת,
+	אבל אז בהכרח $\sup(\delta \cap C) < \delta$ שכן אם $\sup(\delta \cap C) > \delta$ זו תהיה סתירה לאקסיומת היסוד. \\*
+	בנוסף מהשוויון שמצאנו נובע $\sup(M \cap C) = \sup(\delta \cap C) < \delta$, דהינו $M \models \varphi(C, \alpha)$ עבור $\alpha < \delta$ כלשהו. \\*
+	אבל $M \models \varphi(C, \alpha) \iff H(\kappa^+) \models \varphi(C, \alpha)$, ו־$C$ סל''ח ולכן $\sup C = \kappa$, אז $\alpha = \kappa$ וקיבלנו סתירה להנחה, לכן $\delta \in C$.
+\end{proof}
+
+\question{}
+תהי $S \subseteq \kappa$ קבוצת שבת ותהי $f : S \to \kappa$ פונקציה יורדת. \\*
+יהי $M \prec H(\kappa^+)$ כך ש־$M \cap \kappa = \delta \in S$ ו־$\{f, S\} \in M$. \\*
+נגדיר $f(\delta) = \gamma$, נוכיח ש־$X = \{ \alpha \in S \mid f(\alpha) = \gamma \}$ היא קבוצת שבת ותת־קבוצה של $\kappa$. \\*
+נסיק שהלמה של פודור חלה.
+\begin{proof}
+	אנו כבר יודעים מההגדרה ש־$X \subseteq \kappa$, ונניח בשלילה שהיא לא קבוצת שבת, לכן קיים $C \subseteq \kappa$ סל''ח, כך ש־$C \cap X = \emptyset$. \\*
+	ידוע ש־$M \cap \kappa = \delta \in S \subseteq \kappa \implies M \cap \kappa \in \kappa$ ולכן תנאי השאלה הקודמת חלים ומתקיים $\delta \in C$. \\*
+	$f(\delta) = \gamma$ ולכן $\delta \in X$ ובהתאם $X \cap \delta \ne \emptyset$ בסתירה להנחת השלילה.
+\end{proof}
+
+\end{document}
