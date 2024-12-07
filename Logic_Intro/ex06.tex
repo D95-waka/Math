@@ -1,0 +1,135 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 06 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $L$ שפה סופית לתחשיב פסוקים, ונסמן $\mathcal{F} = {\{\TT, \FF\}}^L$. \\*
+נגדיר $B : sent_L / \equiv_{tau} \to \mathcal{F}$ על־ידי $B({[\varphi]}_{\equiv_{tau}}) = B_\varphi$.
+
+\subquestion{}
+נוכיח ש־$B$ מוגדרת היטב.
+\begin{proof}
+	החל מעתה נסמן $\equiv$ כ־$\equiv_{tau}$ מטעמי קריאות. \\*
+	יהיו $\varphi, \psi \in {[\varphi]}_\equiv$ שני פסוקים. נראה כי
+	\[
+		B_\varphi = B_\psi
+		\iff \forall v \in \mathcal{F}, B_\varphi(v) = B_\psi(v)
+		\iff \forall v \in \mathcal{F}, \overline{v}(\varphi) = \overline{v}(\psi)
+		\iff \varphi \equiv \psi
+	\]
+	אבל מהגדרתם $\varphi \equiv \psi$ ולכן $B_\varphi = B_\psi$ וכן הפונקציה $B$ לא תלויה בבחירת נציג, קרי היא מוגדרת היטב.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$B$ חד־חד ערכית ועל.
+\begin{proof}
+	נניח ${[\varphi]}_\equiv \ne {[\psi]}_\equiv$ ולכן קיים $v \in \mathcal{F}$ כך שמתקיים
+	\[
+		\overline{v}(\varphi) \ne \overline{v}(\psi)
+		\implies B_\varphi \ne B_\psi
+		\iff B({[\varphi]}_\equiv) \ne B({[\psi]}_\equiv)
+	\]
+	ומצאנו חד־חד ערכיות. נעבור להוכחת על.
+	תהי $f \in \mathcal{F}$, אז מטענה מההרצאה קיים $\varphi$ כך ש־$f = B_\varphi$, ולכן ${[\varphi]}_\equiv \in \dom B$, וגם $B(f) = B_\varphi$ ומצאנו ש־$B$ על.
+\end{proof}
+
+\subquestion{}
+נוכיח שלכל $\varphi, \phi \in sent_L$ מתקיים
+\[
+	B({[\varphi]}_\equiv \tilde{\cdot} {[\phi]}_\equiv) = B({[\varphi]}_\equiv) \cdot' B({[\phi]}_\equiv),
+	\qquad
+	B({[\varphi]}_\equiv \tilde{+} {[\phi]}_\equiv) = B({[\varphi]}_\equiv) +' B({[\phi]}_\equiv),
+	\qquad
+	B(\tilde{-} {[\varphi]}_\equiv) = -' B({[\varphi]}_\equiv)
+\]
+\begin{proof}
+	יהי $v \in \mathcal{F}$, אז
+	\begin{align*}
+		B({[\varphi]}_\equiv \tilde{\cdot} {[\phi]}_\equiv)(\varphi)
+		& = B({[\varphi \cdot \phi]}_\equiv)(\varphi) \\
+		& = B_{\varphi \cap \phi}(v) \\
+		& = \overline{v}(\varphi \cap \phi) \\
+		& = V_\land(\overline{v}(\varphi), \overline{v}(\phi)) \\
+		& = \overline{v}(\varphi) \cdot \overline{v}(\phi) \\
+		& = B_\varphi(v) \cdot B_\phi(v) \\
+		& = (B_\varphi \cdot' B_\phi)(v) \\
+		& = (B({[\varphi]}_\equiv) \cdot' B({[\phi]}_\equiv))(v)
+	\end{align*}
+	ולכן $B({[\varphi]}_\equiv \tilde{\cdot} {[\phi]}_\equiv) = B({[\varphi]}_\equiv) \cdot' B({[\phi]}_\equiv)$. \\*
+	המהלך עבור $B({[\varphi]}_\equiv \tilde{+} {[\phi]}_\equiv) = B({[\varphi]}_\equiv) +' B({[\phi]}_\equiv)$ זהה. \\*
+	נבחן את השלילה:
+	\[
+		B(\tilde{-} {[\varphi]}_\equiv)(v)
+		= B({[- \varphi]}_\equiv)(v)
+		= B_{(\lnot \varphi)}(v)
+		= V_\lnot(\overline{v}(\varphi))
+		= - B_\varphi(v)
+		= (-' B({[\varphi]}_\equiv))(v)
+	\]
+	ולכן $B(\tilde{-} {[\varphi]}_\equiv) = -' B({[\varphi]}_\equiv)$.
+\end{proof}
+
+\question{}
+תהי $L$ שפה לתחשיב יחסים.
+
+\subquestion{}
+יהי $\mathcal{A} = (A; I)$ מבנה ל־$L$.
+תהי $\sigma : Var \to A$ השמה ונבנה ברקורסיה פונקציה כך ש־$\bar{f}_\sigma(t) = t^\mathcal{A}(\sigma)$.
+\begin{proof}
+	נגדיר $f_\sigma : Var \cup const_L \to A$ על־ידי $f_\sigma(v) = \sigma(v)$ עבור $v \in Var$ ו־$f_\sigma(c) = c^\mathcal{A}$ עבור $c \in const_L$. \\*
+	לכל $n \in \NN$ ולכל $F \in Func_{L, n}$ נגדיר $\epsilon_F : A^n \to A$ על־ידי $\epsilon_F(a_0, \dots, a_{n - 1}) = F^\mathcal{A}(a_0, \dots, a_{n - 1})$. \\*
+	ממשפט ההגדרה ברקורסיה נובע שקיימת ויחידה $\bar{f}_\sigma : term_L \to A$ המקיימת לפי ההגדרה $\bar{f}_\sigma(t) = t^\mathcal{A}(\sigma)$, ניתן כמובן להוכיח טענה זו באינדוקציה, אך לא התבקשנו לעשות כן.
+\end{proof}
+
+\subquestion{}
+נבנה פונקציה $form_L \to Y$ המחזירה עבור נוסחה את קבוצת המשתנים החופשיים בה.
+\begin{solution}
+	נגדיר $Y = \mathcal{P}(Var)$, וכן $f : atom_L \to Y$ כך שלכל $\varphi \in atom_L, f(\varphi) = g(\varphi)$, כאשר $g$ הפונקציה המתקבלת משאלה 3 ב' במטלה 5. \\*
+	עוד נגדיר $\epsilon_\lnot : Y \to Y$ על־ידי $\epsilon_\lnot(x) = x$ וכמו־כן לכל $\square \in \mathcal{B}$ גם $\epsilon_\square : Y^2 \to Y$ על־ידי $\epsilon_\square(x, y) = x \cup y$. \\*
+	נגדיר גם $\epsilon_\exists, \epsilon_\forall : Var \times Y$ על־ידי $\epsilon_\forall(v, x) = \epsilon_\exists(v, x) = x \setminus \{v\}$. \\*
+	כל זאת בנינו בהתאם להגדרה של משתנים חופשיים, ולכן גם $\overline{f}$ המתקיימת מהפעלת משפט הרקורסיה ליחסים קיימת ומתאימה קבוצות משתנים חופשיים לנוסחות.
+\end{solution}
+
+\question{}
+תהי $L_=$ שפת השוויון ויהי $n \in \NN$.
+
+\subquestion{}
+נוכיח שקיים $\varphi_{\ge n} \in sent_L$ כך שלכל $\mathcal{A} = (A; I)$ מבנה ל־$L_=$ מתקיים $\mathcal{A} \models \varphi_{\ge n}$ אם ורק אם $|A| \ge n$.
+\begin{proof}
+	נסמן $(\lnot =(x, y))$ על־ידי $x \ne y$, נבחין כי זהו סימון בלבד.
+	נגדיר נוסחה
+	\[
+		\varphi_{\ge n} = \exists x_0 (\exists x_1 (x_1 \ne x_0 \land \exists x_2 (x_2 \ne x_1 \land x_2 \ne x_0 \land \dots \exists x_{n - 1} (x_{n - 1} \ne x_0 \land \dots \land x_{n - 1} \ne x_{n - 2}))))
+	\]
+	נניח ש־$\mathcal{A} \models \varphi_{\ge n}$ ולכן ישירות מהגדרת הנוסחה נקבל שקיימים $x_0, \dots, x_{n - 1} \in A$ שונים בזוגות, ולכן $|A| \ge |\{x_0, \dots, x_{n - 1}\}| = n$. \\*
+	נניח ש־$|A| \ge n$ ולכן קיימת תת־קבוצה $X \subseteq A$ כך ש־$|X| = n$ (ואין צורך באקסיומת הבחירה מסופיות $X$) כך שכל האיברים שונים בזוגות,
+	דהינו $\varphi_{\ge n}$ מתקיים ב־$\mathcal{A}$ ולכן $\mathcal{A} \models \varphi_{\ge n}$.
+\end{proof}
+
+\subquestion{}
+נסיק כי יש נוסחה $\varphi_{=n}$ כך שלכל $\mathcal{A} = (A; I)$ מבנה ל־$L_=$ מתקיים $\mathcal{A} \models \varphi_{= n}$ אם ורק אם $|A| = n$.
+\begin{proof}
+	נגדיר
+	\[
+		\varphi_{\le n} = \exists x_0 \exists x_1 \dots \exists x_{n - 1} (\forall x (x = x_0 \lor \dots \dots x = x_{n - 1}))
+	\]
+	נוסחה שמתארת שקיימים לכל היותר $n$ איברים בעולם, נבחין כי בנוסחה אין התייחסות למקרה שבו $x_i = x_j$ עבור $i \ne j$, נוכל כמובן לתקן נוסחה זו באופן דומה לבניית הנוסחה $\varphi_{\ge n}$, אך אין בכך צורך. \\*
+	ניתן להוכיח באופן דומה לסעיף א' כי מתקיים $\mathcal{A} \models \varphi_{\le n} \iff |A| \le n$. \\*
+	נבחן אם כן את $\varphi_{=n} \overset{def}{=} (\varphi_{\le n} \land \varphi_{\ge n})$ ונקבל מהטענות שמצאנו ומזהויות שמתקיים $\mathcal{A} \models \varphi_{= n} \iff |A| = n$ כמבוקש, זאת שכן
+	\[
+		A \models \varphi_{= n} \iff A \models \varphi_{\ge n}, \varphi_{\le n} \iff n \le |A| \le n \iff |A| = n
+	\]
+\end{proof}
+
+\subquestion{}
+נסיק שאם $L$ שפה כלשהי לתחשיב יחסים ו־$\mathcal{A, B}$ מבנים סופיים שלה כך ש־$|A| \ne |B|$ אז $\mathcal{A, B}$ אינם שקולים אלמנטרית.
+\begin{proof}
+	נניח $|A| = n \ne m = |B|$ בהתאם לנתון. \\*
+	לכן גם $\mathcal{A} \models \varphi_{= n}$ וגם $\mathcal{B} \models \varphi_{= m}$.
+	אבל מאותו הנתון גם $\mathcal{A} \not\models \varphi_{= m}$ ו־$\mathcal{B} \not\models \varphi_{= n}$ ולכן $\mathcal{A}$ לא שקול אלמנטרית ל־$\mathcal{B}$.
+\end{proof}
+
+\end{document}
