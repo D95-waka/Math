@@ -8,8 +8,12 @@
 
 % language
 \usepackage[bidi=basic, layout=tabular, provide=*]{babel}
-\babelprovide[main, import]{hebrew}
-\babelprovide{rl}
+\ifcsname c@english\endcsname
+	\babelprovide[main, import]{english}
+\else
+	\babelprovide[main, import]{hebrew}
+	\babelprovide{rl}
+\fi
 \babelfont{rm}{Libertinus Serif}
 \babelfont{sf}{Libertinus Sans}
 \babelfont{tt}{Libertinus Mono}
@@ -90,24 +94,45 @@
 	{.5em}	% Space after theorem head
 	{\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}	% head content
 
-\theoremstyle{c_plain}
-\newtheorem{theorem}{משפט}[section]
-\newtheorem{lemma}[theorem]{למה}
-\newtheorem{proposition}[theorem]{טענה}
-\newtheorem*{proposition*}{טענה}
-%\newtheorem{corollary}[theorem]{אין חלופה עברית}
+\ifcsname c@english\endcsname
+	\theoremstyle{plain}
+	\newtheorem{theorem}{Theorem}[section]
+	\newtheorem{lemma}[theorem]{Lemma}
+	\newtheorem{proposition}[theorem]{Proposition}
+	\newtheorem*{proposition*}{Proposition}
+	%\newtheorem{corollary}[theorem]{אין חלופה עברית}
 
-\theoremstyle{c_definition}
-\newtheorem{definition}[theorem]{הגדרה}
-\newtheorem*{definition*}{הגדרה}
-\newtheorem{example}{דוגמה}[section]
-\newtheorem{exercise}{תרגיל}[section]
+	\theoremstyle{definition}
+	\newtheorem{definition}[theorem]{Definition}
+	\newtheorem*{definition*}{Definition}
+	\newtheorem{example}{Example}[section]
+	\newtheorem{exercise}{Exercise}[section]
 
-\theoremstyle{c_remark}
-\newtheorem*{remark}{הערה}
-\newtheorem*{solution}{פתרון}
-\newtheorem{conclusion}[theorem]{מסקנה}
-\newtheorem{notation}[theorem]{סימון}
+	\theoremstyle{remark}
+	\newtheorem*{remark}{Remark}
+	\newtheorem*{solution}{Solution}
+	\newtheorem{conclusion}[theorem]{Conclusion}
+	\newtheorem{notation}[theorem]{Notation}
+\else
+	\theoremstyle{c_plain}
+	\newtheorem{theorem}{משפט}[section]
+	\newtheorem{lemma}[theorem]{למה}
+	\newtheorem{proposition}[theorem]{טענה}
+	\newtheorem*{proposition*}{טענה}
+	%\newtheorem{corollary}[theorem]{אין חלופה עברית}
+
+	\theoremstyle{c_definition}
+	\newtheorem{definition}[theorem]{הגדרה}
+	\newtheorem*{definition*}{הגדרה}
+	\newtheorem{example}{דוגמה}[section]
+	\newtheorem{exercise}{תרגיל}[section]
+
+	\theoremstyle{c_remark}
+	\newtheorem*{remark}{הערה}
+	\newtheorem*{solution}{פתרון}
+	\newtheorem{conclusion}[theorem]{מסקנה}
+	\newtheorem{notation}[theorem]{סימון}
+\fi
 
 % Questions related commands
 \newcounter{question}
@@ -115,18 +140,33 @@
 \newcounter{sub_question}
 \setcounter{sub_question}{1}
 
-\newcommand{\question}[1][0]{
-	\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
-	\section{שאלה \arabic{question}}
-	\addtocounter{question}{1}
-	\setcounter{sub_question}{1}
-}
+\ifcsname c@english\endcsname
+	\newcommand{\question}[1][0]{
+		\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
+		\section{Question \arabic{question}}
+		\addtocounter{question}{1}
+		\setcounter{sub_question}{1}
+	}
 
-\newcommand{\subquestion}[1][0]{
-	\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
-	\subsection{סעיף \localecounter{letters.gershayim}{sub_question}}
-	\addtocounter{sub_question}{1}
-}
+	\newcommand{\subquestion}[1][0]{
+		\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
+		\subsection{\alph{sub_question}}
+		\addtocounter{sub_question}{1}
+	}
+\else
+	\newcommand{\question}[1][0]{
+		\ifthenelse{#1 = 0}{}{\setcounter{question}{#1}}
+		\section{שאלה \arabic{question}}
+		\addtocounter{question}{1}
+		\setcounter{sub_question}{1}
+	}
+
+	\newcommand{\subquestion}[1][0]{
+		\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
+		\subsection{סעיף \localecounter{letters.gershayim}{sub_question}}
+		\addtocounter{sub_question}{1}
+	}
+\fi
 
 % import lua and start of document
 \directlua{common = require ('../common')}
