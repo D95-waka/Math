@@ -59,7 +59,16 @@ $\gamma(t) = t e^{it}$ עבור $t \in [0, 4\pi]$.
 		= \int_{0}^{4\pi} |e^{it} (1 + it)|\ dt
 		= \int_0^{4\pi} \sqrt{1 + t^2}\ dt
 	\]
-	וזהו אינטגרל ממשי בר־חישוב שלא הצלחתי לחשב עם הרמז.
+	בהצבה $t = \sinh(\theta)$ נקבל
+	\begin{align*}
+		\int_0^{4\pi} \sqrt{1 + t^2}\ dt
+		& = \int_0^{\sinh^{-1}(4\pi)} \sqrt{1 + \sinh^2(\theta)} \cosh(\theta)\ d\theta \\
+		& = \int_0^{\sinh^{-1}(4\pi)} \cosh(\theta) \cosh(\theta)\ d\theta \\
+		& = \int_0^{\sinh^{-1}(4\pi)} \cosh^2(\theta)\ d\theta \\
+		& = \frac{1}{2} \int_0^{\sinh^{-1}(4\pi)} \cosh(2\theta) + 1\ d\theta \\
+		& = \frac{1}{2} \sinh^{-1}(4\pi) + \frac{1}{4} \sinh(2 \sinh^{-1}(\theta)) \\
+		& = \frac{1}{2} \sinh^{-1}(4\pi) + 4 \pi^2
+	\end{align*}
 \end{solution}
 
 \question{}
