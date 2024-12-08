@@ -132,4 +132,30 @@
 	אבל מאותו הנתון גם $\mathcal{A} \not\models \varphi_{= m}$ ו־$\mathcal{B} \not\models \varphi_{= n}$ ולכן $\mathcal{A}$ לא שקול אלמנטרית ל־$\mathcal{B}$.
 \end{proof}
 
+\question{}
+תהי $L$ שפה עם סימן פונקציה דו־מקומי $+$.
+יהיו $\mathcal{Z} = (\ZZ, I^\mathcal{Z}), \mathcal{W} = (\ZZ, I^\mathcal{W})$ מבנים כך שמתקיים $+^\mathcal{Z}$ החיבור הסטנדרטי של השלמים ו־$(a, b) +^\mathcal{W} (a', b') = (a + a', b + b')$.
+
+\subquestion{}
+נגדיר איבר זוגי להיות איבר המקיים את הנוסחה $\varphi(x) = \exists y (x = y + y)$. \\*
+נראה שקיים $t \in \ZZ$ כך שלכל $x \in \ZZ$ מתקיים $\varphi(x) \lor \varphi(x + t)$.
+\begin{proof}
+	נניח שאנו כבר יודעים את כל הפרטים על זוגיות בשלמים, אם לא כן נוכל להגדיר חבורת מודולו ולהגדיר את הזוגיות ביחס אליה ולהראות את אותן הטענות. \\*
+	נגדיר $t = 1$ ולכן אילו $x \in \ZZ$ זוגי אז סיימנו, ואילו הוא לא אז $x + t = x + 1$ זוגי, לכן $\varphi(x)$.
+\end{proof}
+
+\subquestion{}
+נראה שאין איבר כזה ב־$\ZZ^2$.
+\begin{proof}
+	נניח בשלילה שיש כזה, ולכן מתקיים $\varphi((1, 0))$ וגם $\varphi((0, 1))$, דהינו קיים $y, z \in \ZZ^2$ כך ש־$(1, 0) + t = y + y$ וכן $(0, 1) + t = z + z$. \\*
+	בהתאם גם $(1, 0) + (0, 1) + 2t = (1, 1) + 2t = (y + z) + (y + z)$, אבל אז גם $(1, 1) = (y + z - t) + (y + z - t)$, וקיבלנו סתירה שכן $(1, 1)$ לא זוגי. \\*
+	נבחין כי יצאנו מהמודל והוכחנו את הטענה באופן כללי, ונוכל להוכיח אותה גם מתוך המודל על־ידי פסילה דומה עבור כל $t$ פוטנציאלי.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$\mathcal{Z, W}$ לא שקוים אלמנטרית.
+\begin{proof}
+	נגדיר $\varphi = \exists t\ \forall x\ \exists y\ (x = y + y \lor x + t = y + y)$, ראינו כי $\mathcal{Z} \models \varphi$ וכן ש־$\mathcal{W} \not\models \varphi$, לכן בפרט הם לא שקולים אלמנטרית.
+\end{proof}
+
 \end{document}
