@@ -2304,5 +2304,224 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ולכן בסופו של דבר הטקסט הזה בהכרח יופיע.
 \end{example}
 
-\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber]
+\section{שיעור 13 --- 10.12.2024}
+\subsection{תוחלת}
+\begin{definition}[תוחלת במשתנים מקריים בדידים]
+	$X$ משתנה מקרי בדיד.
+	ה\textbf{תוחלת} של $X$ היא
+	\[
+		\EE(X) = \sum_{s \in \RR} s \PP(X = s)
+	\]
+\end{definition}
+\begin{remark}
+	אם הטור $\sum_{s \in \RR} s \PP(X = s)$ לא מתכנס בהחלט, אז נאמר שאין תוחלת ל־$X$.
+\end{remark}
+\begin{example}
+	נניח ש־$\Omega = [100]$ מרחב הסתברות אחיד, מייצג קבוצת תלמידים. \\*
+	נגדיר $X(\omega)$ הציון של תלמיד $\omega$ במבחן. \\*
+	אז $\EE(X)$ יהיה ממוצע הציונים בכיתה.
+\end{example}
+\begin{proposition}
+	אם $X$ מוגדר על מרחב הסתברות בדידה, אז $\EE(X) = \sum_{\omega \in \Omega} X(\omega) \PP(\{\omega\})$.
+\end{proposition}
+\begin{proof}
+	מההגדרה של מרחב הסתברות בדידה נוכל להשתמש בתומך ואז נובע
+	\[
+		\EE(X)
+		= \sum_{s \in \RR} s \PP(X = s)
+		= \sum_{s \in \RR} s \sum_{\substack{\omega \in \Omega \\ X(\omega) = s}} \PP(\{\omega\})
+		= \sum_{s \in \RR} \sum_{\substack{\omega \in \Omega \\ X(\omega) = s}} X(\omega) \PP(\{\omega\})
+		= \sum_{\omega \in \Omega} X(\omega) \PP(\{\omega\})
+	\]
+\end{proof}
+\begin{proposition}
+	אם $X_1, \dots, X_n$ משתנים מקריים בדידים ו־$f \in \mathcal{F}_{\RR^n \to \RR}$, $Y = f(X_1, \dots, X_n)$, אז
+	\[
+		\EE(Y) = \sum_{(s_1, \dots, s_n) \in \RR^n} f(s_1, \dots, s_n) \PP(X_1 = s_1, \dots, X_n = s_n)
+	\]
+\end{proposition}
+\begin{proof}
+	כמקודם נשתמש בתומך וכך נראה את השוויון.
+	\begin{align*}
+		\EE(Y)
+		& = \sum_{s \in \RR} s \PP(Y = s) \\
+		& = \sum_{s \in \RR} s \sum_{\substack{(s_1, \dots, s_n) \in \RR^n \\ f(s_1, \dots, s_n) = s}} \PP(X_1 = s_1, \dots, X_n = s_n) \\
+		& = \sum_{s \in \RR} \sum_{\substack{(s_1, \dots, s_n) \in \RR^n \\ f(s_1, \dots, s_n) = s}} f(s_1, \dots, s_n) \PP(X_1 = s_1, \dots, X_n = s_n) \\
+		& = \sum_{(s_1, \dots, s_n) \in \RR^n} f(s_1, \dots, s_n) \PP(X_1 = s_1, \dots, X_n = s_n)
+	\end{align*}
+\end{proof}
+\begin{example}
+	נניח $X \sim Ber(p)$ אז
+	\[
+		\EE(X) = 0 \cdot \PP(X = 0) + 1 \cdot \PP(X = 1) = p
+	\]
+\end{example}
+\begin{example}
+	אם $X \sim U([n])$ אז
+	\[
+		\EE(X) = \sum_{k = 1}^n k \cdot \PP(X = k)
+		= \frac{1}{n} \sum_{k = 1}^{n} k
+		= \frac{1}{n} \cdot \frac{n(n + 1)}{2}
+		= \frac{n + 1}{2}
+	\]
+\end{example}
+\begin{example}
+	אם $X \sim Bin(n, p)$ אז
+	\[
+		\EE(X)
+		= \sum_{k = 0}^{n} k \binom{n}{k} p^k {(1 - p)}^{n - k}
+		= np
+	\]
+\end{example}
+\begin{example}
+	נניח $X \sim Poi(\lambda)$, אז
+	\[
+		\EE(X)
+		= \sum_{k = 0}^\infty k e^{-\lambda} \frac{\lambda^k}{k!}
+		= \sum_{k = 1}^\infty e^{-\lambda} \frac{\lambda^k}{(k - 1)!}
+		= \lambda e^{-\lambda} \sum_{k = 1}^\infty \frac{\lambda^{k - 1}}{(k - 1)!}
+		= \lambda e^{-\lambda} \sum_{k = 0}^\infty \frac{\lambda^k}{k!}
+		= \lambda e^{-\lambda} e^\lambda
+		= \lambda
+	\]
+\end{example}
+ולבסוף גם
+\begin{example}
+	נניח $X \sim Geo(p)$ ולכן
+	\[
+		\EE(X)
+		= \sum_{k = 1}^{\infty} k {(1 - p)}^{k - 1}
+		= \frac{1}{p}
+	\]
+	את החישוב עצמו שמוכיח את הטענה הזאת נעשה בהמשך.
+\end{example}
+\begin{example}
+	נניח $X \sim Geo(\frac{1}{2})$ ונגדיר $Y = 2^X$. \\*
+	בהתאם $\PP(Y = 2) = \frac{1}{2}$ וכן $\PP(Y = 4) = \frac{1}{4}$ וכן הלאה, כך ש־$\PP(Y = 2^k) = \frac{1}{2^k}$.
+	נחשב את התוחלת:
+	\[
+		\EE(Y)
+		= \sum_{s \in \{2, 4, 8, \dots\}} 2^k \PP(Y = 2^k)
+		= \sum_{k = 1}^{\infty} 2^k \frac{1}{2^k}
+		= \sum_{k = 1}^{\infty} 1
+		= \infty
+	\]
+	ולכן אין תוחלת.
+
+	יכולנו להחליף את הגדרת $Y$ להיות $Y = {(-2)}^X$ והיינו מקבלים טור שלא מתכנס בכלל.
+\end{example}
+\begin{remark}
+	אפשר להרחיב את התוחלת ותכונותיה למקרים אינסופיים, אנו לא נעשה זאת.
+\end{remark}
+
+\subsection{תכונות של תוחלת}
+\begin{proposition}[תכונות של תוחלת]
+	אם $X, Y$ משתנים מקריים בעלי תוחלת, אז:
+	\begin{enumerate}
+		\item אם $X \ge 0$ כמעט תמיד אז $\EE(X) \ge 0$.
+			אם בנוסף $\PP(X > 0) > 0$ אז $\EE(X) > 0$.
+		\item לינאריות: אם $a, b \in \RR$ אז אם $Z = aX + bY$ יש תוחלת והיא $\EE(Z) = a \EE(X) + b \EE(Y)$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item אם $X \ge 0$ כמעט תמיד אז כל המחוברים אי־שליליים ולכן $\EE(X) \ge 0$. \\*
+			אם בנוסף $\PP(X > 0) > 0$ אז קיים $s > 0$ כך ש־$\PP(S = s) > 0$ ולכן $s \PP(X = s) > 0$ ולכן הסכום חיובי.
+		\item נגדיר $f(x, y) = ax + by$ עבור $f \in \mathcal{F}_{\RR^2 \to \RR}$. אז
+			\begin{align*}
+				\EE(Z)
+				& = \EE(f(x, y)) \\
+				& = \sum_{(s, t) \in \RR^2} f(s, t) \PP(X = s, Y = t) \\
+				& = \sum_{(s, t) \in \RR^2} (as + bt) \PP(X = s, Y = t) \\
+				& = a \left(\sum_{(s, t) \in \RR^2} s \PP(X = s, Y = t)\right) + b \left(\sum_{(s, t) \in \RR^2} t \PP(X = s, Y = t)\right) \\
+				& = a \left(\sum_{s \in \RR} \sum_{t \in \RR} s \PP(X = s, Y = t)\right) + b \left(\sum_{t \in \RR} \sum_{s \in \RR} t \PP(X = s, Y = t)\right) \\
+				& = a \sum_{s \in \RR} s \PP(X = s) + b \sum_{t \in \RR} t \PP(Y = t) \\
+				& = a \EE(X) + b \EE(Y)
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+\begin{conclusion}
+	אם $X$ ו־$Y$ משתנים מקריים בעלי תוחלת ו־$Y \le X$ כמעט תמיד, אז $\EE(Y) \le \EE(X)$.
+\end{conclusion}
+\begin{proof}
+	נגדיר $Z = X - Y$ ואז $Z \ge 0$ כמעט תמיד ולכן $\EE(Z) \ge 0$ ואז $X = Y + Z$ ולכן $\EE(X) = \EE(Y) + \EE(Z) \ge \EE(Y)$.
+\end{proof}
+\begin{example}
+	נעבור לראות את החישוב של תוחלת להתפלגות בינומית:
+	נגדיר $X \sim Bin(n, p)$ ונגדיר $X_1, \dots, X_n$ משתנים מקריים $Ber(p)$, ויהי $X = \sum_{i = 1}^n X_i$, לכן $X \sim Bin(n, p)$ וכן
+	\[
+		\EE(X) = \sum_{i = 1}^n \EE(X_i) = np
+	\]
+\end{example}
+\begin{definition}[תוחלת מותנית]
+	$X$ משתנה מקרי ו־$A$ מאורע, כך ש־$\PP(A) > 0$, אז
+	\[ 
+		\EE(X \mid A)
+		= \sum_{s \in \RR} s \PP(X = s \mid A)
+	\]
+\end{definition}
+\begin{proposition}
+	\[
+		\EE(X \mid A) = \frac{\EE(X \cdot 1_A)}{\PP(A)}
+	\]
+\end{proposition}
+\begin{proof}
+	\[
+		\EE(X \mid A)
+		= \sum_{s \in \RR} s \PP(X = s \mid A)
+		= \sum_{s \in \RR} s \frac{\PP(X = s, A)}{\PP(A)}
+		= \sum_{s \in \RR} s \frac{\PP(X \cdot 1_A = s)}{\PP(A)}
+	\]
+	כאשר המעבר האחרון נובע מהגדרת המציין ובדיקה ידנית של המקרים בהם $s \in A, s \notin A$, כלומר
+	\[
+		\PP(X = s, A)
+		= \PP(\{\omega \in \Omega \mid X(\omega) = s, \omega \in A\})
+		= \PP(\{\omega \in \Omega \mid X(\omega) = s, 1_A(\omega) = 1\})
+	\]
+\end{proof}
+\begin{proposition}
+	אם $A_1, \dots, A_n$ חלוקה של $X$ משתנה מקרי בעל תוחלת, אז
+	\[
+		\EE(X) = \sum_{k = 1}^n \EE(X \cdot q_{A_k})
+	\]
+\end{proposition}
+\begin{proof}
+	מאותו מעבר כמו בהוכחה הקודמת נסיק
+	\[
+		X = \sum_{k = 1}^n X \cdot 1_{A_k}
+	\]
+	ואז משתמש בתכונת הלינאריות של תוחלות ונקבל את המבוקש.
+\end{proof}
+\begin{proposition}[נוסחת התוחלת השלמה]
+	אם $A_1, \dots, A_n$ חלוקה ו־$\PP(A_k) > 0$ לכל $k$ אז
+	\[
+		\EE(X) = \sum_{k = 1}^n \PP(A_k) \EE(X \mid A_k)
+	\]
+\end{proposition}
+\begin{proof}
+	על־ידי הטענות הקודמות נובע
+	\[
+		\EE(X)
+		= \sum_{k = 1}^n \EE(X \cdot 1_{A_k})
+		= \sum_{k = 1}^n \PP(A_k) \EE(X \mid A_k)
+	\]
+\end{proof}
+\begin{example}
+	נניח $X \sim Geo(p)$ ו־$A_1 = \{X = 1\}$ וכן $A_2 = \{X > 1\}$, אז $\{A_1, A_2\}$ הם אכן חלוקה של $\Omega$. \\*
+	נחשב את התוחלת:
+	\[
+		\EE(X)
+		= \PP(A_1) \EE(X \mid A_1) + \PP(A_2) \EE(X \mid A_2)
+		= p \cdot 1 + (1 - p) \cdot \EE(X \mid X > 1)
+	\]
+	אבל אז מתכונת חוסר הזיכרון
+	\[
+		p \cdot 1 + (1 - p) \cdot \EE(X \mid X > 1)
+		= p + (1 - p) \cdot (\EE(X - 1 \mid X > 1) + \EE(1 \mid X > 1))
+		= p + (1 - p) \cdot (\EE(X) + 1)
+	\]
+	ולכן קיבלנו את השוויון $\EE(X) = p + (1 - p)(\EE(X) + 1)$, ממנו נובע $0 = p + (1 - p) - p \EE(X)$, לכן $\EE(X) = \frac{1}{p}$.
+\end{example}
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
