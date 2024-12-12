@@ -2523,5 +2523,232 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ולכן קיבלנו את השוויון $\EE(X) = p + (1 - p)(\EE(X) + 1)$, ממנו נובע $0 = p + (1 - p) - p \EE(X)$, לכן $\EE(X) = \frac{1}{p}$.
 \end{example}
 
+\section{תרגול 7 --- 12.12.2024}
+\subsection{שאלות ותכונות של תוחלות}
+באנגלית תוחלת היא Expectancy, מילה שמתארת בצורה יותר נאמנה את מושג התוחלת.
+\begin{example}
+	נניח ש־$X \sim Geo(p)$, ונחשב את התוחלת של $X$. \\*
+	יש להעריך את הטור $\sum_{n = 1}^\infty n \PP(X = n)$.
+	\[
+		\sum_{k = 1}^\infty k \PP(X = k)
+		= \sum_{n = 1}^\infty k p {(1 - p)}^{k - 1}
+		= p \sum_{n = 1}^\infty k {(1 - p)}^{k - 1}
+	\]
+	נגדיר $f \in (0, 1)$ את $f(q) = \frac{1}{1 - q} = \sum_{k = 0}^{\infty} q^k$ ולכן $f$ אנליטית ומתכנסת במידה שווה על תת־קבוצות של התחום שלה.
+	אז
+	\[
+		\frac{1}{{(1 - q)}^2}
+		= f'(q)
+		= \sum_{k = 0}^{\infty} k q^{k - 1}
+		= \sum_{k = 1}^{\infty} k q^{k - 1}
+	\]
+	אם נציב $q = 1 - p$ אז נובע
+	\[
+		p \sum_{n = 1}^\infty k {(1 - p)}^{k - 1}
+		= p \cdot \frac{1}{{(1 - (1 - p))}^2}
+		= \frac{1}{p}
+	\]
+\end{example}
+\begin{example}
+	אם $X \sim Bin(n, p)$ ואם נגדיר $Y \sim Bin(n - 1, p)$ אז
+	\begin{align*}
+		\EE(X)
+		& = \sum_{k = 0}^{n} k \binom{n}{k} p^k {(1 - p)}^{n - k} \\
+		& = \sum_{k = 1}^{n} \frac{k \cdot n!}{(n - k)! k!} p^k {(1 - p)}^{n - k} \\
+		& = \sum_{k = 1}^{n} \frac{n!}{(n - k)! (k - 1)!} p^k {(1 - p)}^{n - k} \\
+		& = \sum_{m = 0}^{n - 1} \frac{n!}{(n - m - 1)! m!} p^{m + 1} {(1 - p)}^{n - m - 1} \\
+		& = n p \sum_{m = 0}^{n - 1} \frac{(n - 1)!}{(n - m - 1)! m!} p^m {(1 - p)}^{n - m - 1} \\
+		& = n p \PP(y \in \supp Y) \\
+		& = n p
+	\end{align*}
+\end{example}
+\begin{example}[תוחלת של משתנה מקרי היפר־גאומטרי]
+	ניזכר בשאלה: בכד יש $a$ כדורים אדומים ו־$b$ כדורים שחורים ושולפים $k$ כדורים ללא החזרה לכד. \\*
+	$X$ משתנה מקרי שסופר את מהספר הכדורים האדומים. \\*
+	נגדיר $X_i$ המשתנה המקרי שבשליפה ה־$i$ יצא כדור אדום, ו־$X = \sum_{i = 1}^k X_i$.
+	נוכל להגדיר גם $\Omega = \{ (y_1, \dots, y_k) \mid i \ne j \implies y_i \ne y_j \}$, כאשר מסמנים את הכדורים האדומים ב־$\{1, \dots, a\}$ וכן את השחורים ב־$\{a + 1, \dots, b\}$.
+	אז
+	\[
+		\PP(X_i = 1)
+		= \PP(y_i \le a)
+		= \sum_{j = 1}^{a} \PP(y_i = j)
+		= \sum_{j = 1}^{a} \frac{1}{a + b}
+		= \frac{a}{a + b}
+	\]
+	ולכן $\EE(X) = \frac{k \cdot a}{a + b}$.
+\end{example}
+נעבור לבחינת דוגמה לשימוש בנוסחת התוחלת השלמה, אותה ראינו בהרצאה האחרונה.
+\begin{exercise}
+	מטילים קובייה הוגנת שוב ושוב עד שיוצא $1$. \\*
+	מה תוחלת סכום ערכי הקובייה?
+\end{exercise}
+\begin{solution}
+	נגדיר $X$ משתנה מקרי שסוכם את מספר סיבובי המשחק, לכן $X \sim Geo(\frac{1}{6})$. \\*
+	נגדיר גם $Y_i$ להיות תוצאת ההטלה ה־$i$, אם היא התקיימה. \\*
+	בנוסף $Y = \sum_{i = 1}^{\infty} Y_i$, הערך המעניין אותנו, סכום הקובייה בסוף המשחק.
+	\[
+		Y_i \mid X = n
+		\sim \begin{cases}
+			U(2, \dots, 6) & i < n \\
+			1 & i = n \\
+			0 & i > n
+		\end{cases}
+	\]
+	ולכן נשתמש בנוסחת התוחלת השלמה
+	\begin{align*}
+		\EE(Y)
+		& = \sum_{n = 1}^\infty \EE(Y \mid X = n) \cdot \PP(X = n) \\
+		& = \sum_{n = 1}^\infty (\sum_{i = 1}^n \EE(X_i \mid X = n)) \cdot \PP(X = n) \\
+		& = \sum_{n = 1}^\infty (\sum_{i = 1}^n 4 + 1) \cdot {(\frac{5}{6})}^{n - 1} \\
+		& = \frac{1}{6} \sum_{n = 1}^\infty (4n - 3) {(\frac{5}{6})}^{n - 1} \\
+		& = \frac{1}{6} (4 \sum_{n = 1}^\infty n {(\frac{5}{6})}^{n - 1} - 3 \sum_{n = 1}^\infty n {(\frac{5}{6})}^{n - 1}) \\
+		& = \frac{1}{6} (4 \cdot \frac{1}{{(\frac{1}{6})}^2} - 3 \cdot 6) \\
+		& = 21
+	\end{align*}
+\end{solution}
+
+\section{שיעור 14 --- 12.12.2024}
+\subsection{תוחלת --- המשך}
+נבחין כי מתקיימת הטענה הבאה, אך לא נוכיח אותה שכן אין בכך ערך לימודי:
+\begin{proposition}[נוסחת התוחלת השלמה הבת־מניה]
+	אם $X, Y$ משתנים מקריים בדידים, אז
+	\[
+		\EE(X) = \sum_{t \in \RR} \PP(Y = t) \EE(X \mid Y = t)
+	\]
+\end{proposition}
+נבחן תכונה נוספת.
+\begin{proposition}[תוחלת מכפלת משתנים מקריים בלתי־תלויים]
+	אם $X, Y$ משתנים מקריים בלתי־תלויים ובעלי תוחלת, אז
+	\[
+		\EE(X Y) = \EE(X) \EE(Y)
+	\]
+\end{proposition}
+נבחין שבשונה מלינאריות תוחלת, במקרה הזה אנו צריכים את חוסר־התלות.
+\begin{proof}
+	לפי נוסחת התוחלת השלמה
+	\[
+		\EE(XY) = \sum_{t \in \RR} \PP(Y = y) \EE(XY \mid Y = t)
+	\]
+	בהינתן $Y = t$ ההתפלגות של $Y$ מתרכזת כולה ב־$t$, כלומר
+	\[
+		\PP(Y = s \mid Y = t) = \begin{cases}
+			1 & s = t \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	לכן בהינתן $Y = t$ מתקבל $XY \overset{a.s.}{=} Xt$ ובהתאם
+	\[
+		XY \mid Y = t \overset{a.s.}{=} Xt \mid Y = t
+	\]
+	לכן
+	\[
+		\EE(XY \mid Y = t)
+		= \EE(Xt \mid Y = t)
+		= t \EE(X \mid Y = t)
+		= t \EE(X)
+	\]
+	ומשילוב השוויונות שמצאנו נובע
+	\[
+		\EE(XY)
+		= \sum_{t \in \RR} \PP(Y = y) t \EE(X)
+		= \EE(X) \EE(Y)
+	\]
+\end{proof}
+נעבור לדון במה בכלל המשמעות של תוחלת.
+עד כה מצאנו תכונות שלה, ואף הגדרות שקולות, אך מה המשמעות של התוחלת בהקשר הסתברותי?
+באיזה מובן עלינו להתחשב בתוחלת במקרה שבו אנו יודעים את ערכה, כשהיא חיובית?
+נעבור להליך שנותן לנו מידע בהסתברות מתוך מידע על תוחלות.
+\begin{theorem}[אי־שוויון מרקוב]
+	יהי $X$ משתנה מקרי אי־שלילי (דהינו $X \overset{a.s.}{\ge} 0$) ובעל תוחלת. \\*
+	אז לכל $a > 0$ מתקיים
+	\[
+		\PP(X \ge a) \le \frac{\EE(X)}{a}
+	\]
+\end{theorem}
+\begin{proof}
+	נבחן את החלוקה $\{X < 0\}, \{0 \le X < a\}, \{X \ge a\}$, זוהי חלוקה של $\Omega$, נסמן אותם גם ב־$A_0, A_1, A_2$ בהתאמה.
+	\[
+		\EE(X) = \overbrace{\EE(X 1_{A_0})}^{=0} + \EE(X 1_{A_1}) + \EE(X 1_{A_2})
+	\]
+	נוכל לקבל תוצאה דומה עם נוסחת התוחלת השלמה. \\*
+	המחובר השני הוא אי־שלילי מההגדרות שהנחנו, והמחובר השלישי מקיים
+	\[
+		\PP(X \ge a \mid X \ge a) = 1
+		\implies \EE(X \mid X \ge a) \ge \EE(a \mid X \ge a) = a
+	\]
+	ולכן חסום על־ידי $\PP(a \in X) a$.
+\end{proof}
+
+\subsection{שימושים של אי־שוויון מרקוב}
+\begin{example}
+	נניח ש־$X \sim Geo(\frac{1}{2})$, אז $\EE(X) = 2$, ובהתאם $\PP(X \ge 4) \le \frac{\EE(X)}{4} = \frac{2}{4} = \frac{1}{2}$. \\*
+	נוכל לחשב את ההסתברות עצמה על־ידי $\PP(X \ge 4) = \sum_{k = 4}^{\infty} \PP(X = k) = \sum_{k = 4}^{\infty} \frac{1}{2^k} = \frac{1}{8}$. \\*
+	קיבלנו שהחסם שנובע מאי־שוויון ברקוב לא מאוד מועיל לנו.
+
+	אם $Y = X - 1$ ואנו מחפשים את $Y \ge 0$ אז $\EE(Y) = 1$. \\*
+	במקרה זה $\PP(X \ge 4) = \PP(Y \ge 3) \le \frac{\EE(Y)}{3} = \frac{1}{3}$. \\*
+	אז קיבלנו חסם יותר טוב לערך, זאת אומרת שיש לנו דרך נוספת להשתמש באי־השוויון.
+\end{example}
+\begin{example}
+	אם $X \sim Po(\lambda)$ ואנו מחפשים את $\PP(X \ge 1)$. \\*
+	אנו כבר יודעים ש־$\EE(X) = \lambda$, ולכן $\PP(X \ge 1) \le \frac{\EE(X)}{1} = \lambda$. \\*
+	אם $\lambda \ge 1$ אז מצאנו שהחסם הוא 1, והוא לא ממש מועיל לנו. \\*
+	מצד שני $\PP(X \ge 1) = 1 - \PP(X = 0) = 1 - e^{-\lambda} \frac{\lambda^k}{k!} = 1 - e^{-\lambda}$. \\*
+	לכן $1 - e^{-\lambda} \le \lambda$ ו־$1 - \lambda \le e^{-\lambda}$.
+	באופן כללי ראינו שהחסם אכן די מדויק עבור מקרים רבים של ערכי $\lambda$.
+\end{example}
+\begin{example}
+	$n$ מכתבים מגיעים ל־$n$ תיבות דואר ובוחרים תמורה מקרית על $[n]$. \\*
+	נבחן את $X$ מספר נקודות השבת של התמורה.
+	\[
+		X = \sum_{i = 1}^{n} 1_{A_i}
+	\]
+	כאשר $A_i$ המאורע של נקודת שבת של התמורה ב־$i$, כלומר $\sigma(i) = i$. \\*
+	נחשב גם $\EE(X) = \sum_{i = 1}^{n} \EE(1_{A_i}) = \sum_{i = 1}^{n} \PP(A_i)$ ולכן $\PP(X \ge a) \le \frac{1}{a}$.
+\end{example}
+\begin{example}
+	נחזור לפרדוקס יום ההולדת, $X_i \sim U([n])$ בלתי־תלויים עבור $i \in [k]$, כאשר המשתנה המקרי מייצג את הסיכוי שלאדם ה־$i$ יש יום הולדת. \\*
+	$X$ הוא מספר ימי ההולדת המשותפים,
+	\[
+		X = \sum_{1 \le i < j \le k} 1_{\{X_i = X_j\}}
+	\]
+	ונוכל גם לכתוב
+	\[
+		\PP(X_i = X_j)
+		= \sum_{l = 1}^m \PP(X_i = l, X_j = l)
+		= \sum_{l = 1}^m \PP(X_i = l) \PP(X_j = l)
+		= \sum_{l = 1}^m \frac{1}{m} \cdot \frac{1}{m}
+		= \frac{1}{m}
+	\]
+	ונובע
+	\[
+		\EE(X)
+		= \sum_{1 \le i < j \le k} \PP(X_i = X_j)
+		= \binom{k}{2} \frac{1}{m}
+	\]
+	ולבסוף
+	\[
+		\PP(X \ge 1) \le \frac{\EE(X)}{1} = \binom{k}{2} \frac{1}{m}
+	\]
+	זוהי הכללה של חסם האיחוד.
+\end{example}
+\begin{example}
+	יהיו $A_1, \dots, A_N$ קבוצות, $|A_i| \ge n$ ו־$N < 2^{n - 1}$, אז קיימת קבוצה $B$ כך ש־$B \cap A_i \ne \emptyset$ ו־$\forall 1 \le i \le N, A_i \not\subseteq B$.
+
+	נגדיר $A = \bigcup_{i = 1}^N A_i$.
+	יהיו $X_a \sim Ber(\frac{1}{2})$ בלתי תלויים לכל $a \in A$ ונגדיר $B = \{ a \mid X_a = 1 \}$. \\*
+	נחשב את ההסתברות $\PP(A_i \subseteq B) = \PP(\forall a \in A_i, X_a = 1) = {(\frac{1}{2})}^{|A_i|} \le \frac{1}{2^n}$. \\*
+	מצד שני $\PP(A_i \cap B \ne \emptyset) = \PP(\forall a \in A_i, X_a = 0) = {(\frac{1}{2})}^{|A_i|} \le \frac{1}{2^n}$.
+	אז
+	\[
+		\PP(\exists 1 \le i \le N, A_i \subseteq B \lor A_i \cap B = \emptyset)
+		\le \sum_{i = 1}^{N} \PP(A_i \subseteq B) + \PP(A_i \cap B = \emptyset)
+		\le N \cdot (\frac{1}{2^n} + \frac{1}{2^n})
+		= \frac{N}{2^{n - 1}}
+		< 1
+	\]
+	ולכן קיימת $B$ כזאת.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
