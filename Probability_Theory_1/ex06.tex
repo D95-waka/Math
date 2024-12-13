@@ -163,36 +163,43 @@
 נראה ש־$X \sim Bin(n, p), Y \sim Bin(n, pq)$ ולכל $0 \le m \le n$ גם $Y \mid \{X = m\} \sim Bin(m, q)$.
 \begin{proof}
 	למעשה כבר ראינו בכיתה כי $X \sim Bin(n, p)$, נראה כי גם $Y \sim Bin(n, pq)$.
-	\[
+	\begin{align*}
 		\PP(Y_i = k)
 		= \PP(X_i Z_i = k)
-		= \begin{cases}
+		& = \begin{cases}
 			\PP(X_i = 1) \PP(Z_i = 1) & k = 1 \\
-			\PP(X_i = 0) \PP(Z_i = 0) & k = 0 \\
+			\PP(X_i = 1) \PP(Z_i = 0) + \PP(X_i = 0) \PP(Z_i = 1) + \PP(X_i = 0) \PP(Z_i = 0) & k = 0 \\
 			\PP(X_i = k) \PP(Z_i = k) & \text{else}
-		\end{cases}
-		= \begin{cases}
+		\end{cases} \\
+		& = \begin{cases}
 			pq & k = 1 \\
 			1 - pq & k = 0 \\
 			0 & \text{else}
 		\end{cases}
-	\]
-	כאשר המעבר האחרון נובע מהשלמה עבור $k = 1, k \notin \{0, 1\}$, לכן $Y_i \sim Ber(pq)$ ובהתאם $Y \sim Bin(n, pq)$. \\*
-	יהי $0 \le m \le n$ ונבחן את $Y \mid \{X = m\}$.
-	\begin{align*}
-		\PP(Y = k \mid \{X = m\})
-		& = \frac{\PP(Y = k, X = m)}{\PP(X = m)} \\
-		& = \frac{1}{\binom{n}{m} p^m {(1 - p)}^{n - m}} \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}} \PP(Y = k, X = m, X_1 = v_1, \dots, X_n = v_n) \\
-		& = \frac{1}{\binom{n}{m} p^m {(1 - p)}^{n - m}} \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}} \PP(Y = k, X_1 = v_1, \dots, X_n = v_n) \\
-		& = \frac{1}{\binom{n}{m} p^m {(1 - p)}^{n - m}} \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}} \sum_{\substack{u \in {\{0, 1\}}^n \\ \sum v_i u_i = k}} \PP(X_1 = v_1, \dots, X_n = v_n, Z_1 = u_1, \dots, Z_n = u_n) \\
-		& = \frac{1}{\binom{n}{m} p^m {(1 - p)}^{n - m}} \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}}
-		\sum_{\substack{u \in {\{0, 1\}}^n \\ \sum v_i u_i = k}} \PP(X_1 = v_1) \cdots \PP(X_n = v_n) \PP(Z_1 = u_1) \cdots \PP(Z_n = u_n) \\
-		& = \frac{1}{\binom{n}{m} p^m {(1 - p)}^{n - m}} (\binom{n}{m} p^m {(1 - p)}^{n - m}) \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}}
-		\sum_{\substack{u \in {\{0, 1\}}^n \\ \sum v_i u_i = k}} \PP(Z_1 = u_1) \cdots \PP(Z_n = u_n) \\
-		& = \sum_{\substack{v \in {\{0, 1\}}^n \\ \sum v_i = m}} \sum_{\substack{u \in {\{0, 1\}}^n \\ \sum v_i u_i = k}} \PP(Z_1 = u_1) \cdots \PP(Z_n = u_n) \\
-		& = \binom{m}{k} q^k {(1 - q)}^{m - k}
 	\end{align*}
-	ומצאנו את המבוקש.
+	כאשר המעבר האחרון נובע מהשלמה עבור $k = 1, k \notin \{0, 1\}$, לכן $Y_i \sim Ber(pq)$ ובהתאם $Y \sim Bin(n, pq)$. \\*
+	נוכיח ש־$Y \mid \{X = m\}$ באינדוקציה על $n$. \\*
+	נניח $n = 1$ ולכן
+	\begin{align*}
+		\PP(Y = k \mid X = m)
+		& = \PP(X_1 Z_1 = k \mid X_1 = m)
+		&& = \PP(m Z_1 = k, X_1 = m) / \PP(X_1 = m) \\
+		& = \PP(m Z_1 = k) \PP(X_1 = m) / \PP(X_1 = m)
+		&& = \PP(m Z_1 = k)
+	\end{align*}
+	אבל $k \in \{0, 1\}$ ולכן $\PP(Z_1 = k) = \binom{m}{k} q^k {(1 - q)}^{m - k}$ מחישוב ישיר ולכן הטענה תקפה עבור המקרה $n = 1$. \\*
+	נניח אם כך שהטענה נכונה עבור $1 < n \in \NN$, ונבדוק את המקרה $n$,
+	\begin{align*}
+		\PP(Y = k \mid X = m)
+		& = \PP(Y = k \mid X = m, X_1 = 0) \PP(X_1 = 0) + \PP(Y = k \mid X = m, X_1 = 1) \PP(X_1 = 1) \\
+		& = \PP(\sum_{i = 2}^n Y_i = k \mid \sum_{i = 2}^n X_i = m, X_1 = 0) \PP(X_1 = 0) \\
+		& \qquad + \PP(Z_1 + \sum_{i = 2}^n Y = k \mid \sum_{i = 2}^n X_i = m - 1, X_1 = 1) \PP(X_1 = 1) \\
+		& = \binom{m}{k} q^k {(1 - q)}^{m - k} (1 - p) + \PP(Z_1 = 0) \binom{m - 1}{k} q^k {(1 - q)}^{m - 1 - k} p \\
+		& \qquad + \PP(Z_1 = 1) \binom{m - 1}{k - 1} q^{k - 1} {(1 - q)}^{m - 1 - k + 1} p \\
+		& = \binom{m}{k} q^k {(1 - q)}^{m - k} (1 - p) + \binom{m}{k - 1} q^k {(1 - q)}^{m - k} p + \binom{m - 1}{k - 1} q^k {(1 - q)}^{m - k} p \\
+		& = \binom{m}{k} q^k {(1 - q)}^{m - k} (1 - p + p)
+	\end{align*}
+	והשלמנו את מהלך האינדוקציה, ולכן $Y \mid \{X = m\} \sim Bin(m, q)$.
 \end{proof}
 
 \subquestion{}

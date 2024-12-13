@@ -14,14 +14,12 @@
 
 יהי $p \in H(\kappa^+)$, נראה שקיים סל''ח $C \subseteq \kappa$ כך שלכל $\delta \in C$ קיים $M \prec H(\kappa^+)$ כך ש־$p \in M$ וגם $M \cap \kappa = \delta$.
 \begin{proof}
-	תהי נוסחה $\varphi(x, y_0, \dots, y_{m - 1})$ נוסחה כלשהי בשפת תורת הקבוצות. \\*
-	לכן מטענה מההרצאה קיימת פונקציית סקולם $F_\varphi : {H(\kappa^+)}^m \to H(\kappa^+)$. \\*
-	נגדיר סדרה $\langle G_n \mid n \in \omega\rangle$ בדומה להגדרה שהייתה בהרצאה לנוסחות כאלה, עבור כלל הנוסחות הסופיות $H(\kappa^+) \models \varphi$. \\*
-	יהי $\alpha < \kappa$ סודר, ונגדיר $R(\alpha) = \{ G_n(p, \gamma_0, \dots, \gamma_{m - 1}) \mid n < \omega, \gamma_0, \dots, \gamma_{m - 1} < \alpha\} \cap \kappa$. \\*
-	מההגדרה שנתנו ל־$R$ נובע ישירות כי $R(\alpha) \prec H(\kappa^+)$. \\*
-	נראה כי $R(\alpha) < \kappa$, זאת נוכל להוכיח באינדוקציה על $G_n$ ומבנה הנוסחה. \\*
-	יהי סל''ח $\delta < \kappa$ ונראה ש־$R(\delta) = \delta$. למעשה הנוסחה שמגדירה את החסימות מוכלת ב־$\langle G_n \rangle$ ולכן הטענה נכונה. \\*
-	ולכן $p$ מקיים את הנדרש.
+	מצאנו בהרצאה כי קבוצת הנוסחות של תורת הקבוצות היא בת־מניה, נגדיר לכל נוסחה $\varphi$ את פונקציית סקולם שלה $f_\varphi$ שמצאנו שקיימת (שימוש בבחירה). \\*
+	נבנה סדרה בת־מניה $\langle G_n \mid n < \omega \rangle$ של פונקציות סקולם סגורה להרכבה, נבחין כי היא אכן סגורה להרכבה כהוכחה באינדוקציה על מבנה הפסוק. \\*
+	נגדיר $S(\alpha) = \{G_n(\gamma_0, \dots, \gamma_{m - 1}, p) \mid n < \omega, \gamma_0, \dots, \gamma_{m - 1} < \alpha\}$ ונבחין כי לכל $\alpha < \kappa$ מתקיים $S(\gamma) \prec H(\kappa^+)$ ממשפט 6.3. \\*
+	נבחין כי $|S(\alpha)| \le \omega \times |\alpha| \le \kappa$ ולכן גם $|S(\alpha)| = |S(\alpha) \cap \kappa|$, לכן נגדיר $R(\alpha) = S(\alpha) \cap \kappa$ עדיין מגדיר תת־מודלים אלמנטריים. \\*
+	עוד נראה כי לכל $p \in R(\alpha)$ מהסגירות לנוסחות, ונגדיר. \\*
+	לבסוף נגדיר $h(\alpha) = \sup R(\alpha)$ וגם $C = \rng h$, ונקבל ש־$\sup C = \kappa$ וכן ש־$C$ סגורה, זאת ישירות מההגדרה, ולכן מצאנו כי זהו סל''ח המקיים את כל הנדרש.
 \end{proof}
 
 \question{}
@@ -30,17 +28,11 @@
 נראה גם שטענה זו לא בהכרח תתקיים עבור קבוצה בת־מניה של איברים.
 \begin{proof}
 	נניח ש־$a = \{a_0, \dots, a_{n - 1}\} \in M$.
-	נגדיר $\varphi(x, y) = x \in y$ ולכן $N \models \varphi(a, a_i)$ וזה נכון אם ורק אם $M \models \varphi(x, a_i)$, וזה מתקיים עבור $0 \le i < n$ ולכן מצאנו כי הטענה חלה.
+	נבחן את $\varphi(x, y) = x \in y$, ידוע ש־$N \models \varphi(a_i, a)$, ולכן בפרט $\exists x, \varphi(x, a)$ ומהשיכון הנתון גם $M \models \exists x, \varphi(x, a)$,
+	אבל בהתאם $N \models \varphi(x, a)$ ולכן $x = a_i$ עבור $0 \le i < n$, לכן $M \models a_i \in a$. נוכל להמשיך עתה בתהליך זה ולבנות $n$ נוסחות ובכך נשלים $M \models \forall i, a_i \in a$.
 
-	נניח עתה כי $a_0, \dots, a_{n - 1} \in M$.
-	נגדיר נוסחה
-	\[
-		\varphi(x, y_0, \dots, y_{n - 1})
-		= \left(\bigwedge_{i = 0}^{n - 1} y_i \in x\right) \land \forall z \in x (z = y_0 \lor \dots \lor z = y_1)
-	\]
-	נבחין כי היא אכן נוסחה סופית (גם אם לא נכתבה כך) וכן $N \models \varphi(a, a_0, \dots, a_{n - 1})$ ולכן $M \models \varphi(a, a_0, \dots, a_{n - 1})$ וקיבלנו ש־$a \in M$.
-
-	משאלה 1 נוכל להסיק כי עבור $\omega < \kappa$ קיים $M \prec H(\kappa^+)$ כך ש־$M \subseteq \omega$, ואז כמובן שהטענה לא נכונה.
+	נבחין כי תהליך זה בדיוק עלול להיכשל במקרים שאינם סופיים.
+	למעשה, אנו יודעים כי קיים מודל $|M| = \omega$ עבור $H(\kappa^+)$ ולכן אם נבחר את $\omega_1$ ונגדיר עם סעיף א' שהוא מוכל ב־$M$, נקבל סתירה ל־$|M| = \omega$.
 \end{proof}
 
 \question{}
@@ -50,7 +42,10 @@
 	עוד נגדיר $C$ הסל''ח שקיים עבור $p$ לפי שאלה 1, ויהי $\delta \in C \cap S$, אז קיים $M \prec H(\kappa^+)$ עבורו $p \in M$ וגם $M \cap \kappa = \delta \in S$.
 
 	נניח עתה כי לכל $p \in H(\kappa^+)$ קיים תת־מבנה אלמנטרי $M \prec H(\kappa^+)$ כך ש־$p \in M$ וגם $M \cap \kappa \in S$ ונראה ש־$S$ קבוצת שבת. \\*
-	עתה יהי $C \subseteq \kappa$ סל''ח, כמובן $C \in H(\kappa^+)$ ולכן אם $p \in C$ כלשהו, אז נובע מההנחה ש־$\exists M, p \in M,\ M \cap \kappa \in S \implies p \in S$.
+	יהי סל''ח $C \subseteq \kappa$ ויהי $\alpha \in C$ סודר גבולי שסגור ב־$C$. אז קיים בהתאם מודל $\alpha \in M \prec H(\kappa^+)$, נבנה סדרה לא חסומה ב־$M$ של $\alpha$ על־ידי הגדרת נוסחות מהצורה $\varphi(x, y) = x < y$. \\*
+	שימוש בפונקציות סקולם מתאימות ושימוש בתכונות ב־$H(\kappa^+)$ של $\alpha$ יניב לנו סדרה עולה לא חסומה ב־$M$ של סודרים, ובהתאם נוכל להסיק $M \cap p \cap C = M \cap C$ מקיים סגירות ולכן $M \cap \kappa \in C$. \\*
+	מצד שני $M \cap \kappa \in S$ ולכן בפרט $S \cap C \ne \emptyset$ ומצאנו כי $S$ אכן קבוצת שבת.
+
 \end{proof}
 
 \question{}
