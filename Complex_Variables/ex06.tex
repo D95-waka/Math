@@ -1,0 +1,144 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 06 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נחשב את האינטגרלים המסילתיים הנתונים.
+
+\subquestion{}
+\[
+	\int_\gamma (2z - 3\overline{z} + 1)\ dz
+\]
+עבור $\gamma = 3 \cos t + 2i \sin t$ ב־$t \in [0, 2\pi]$.
+\begin{solution}
+	נתחיל בחישוב הכרחי:
+	\[
+		\gamma'(t) = -3 \sin t + 2i \cos t
+	\]
+	ונעבור לחישוב האינטגרל
+	\begin{align*}
+		\int_\gamma (2z - 3\overline{z} + 1)\ dz
+		& = \int_0^{2\pi} (2(3 \cos t + 2i \sin t) - 3(3 \cos t - 2i \sin t) + 1)(-3 \sin t + 2i \cos t)\ dt \\
+		& = \int_0^{2\pi} (-3 \cos t + 10i \sin t + 1)(-3 \sin t + 2i \cos t)\ dt \\
+		& = \int_0^{2\pi} \frac{9}{2} \sin(2t) - 6 - 24i \sin^2 t - 10 \sin(2t) - 3 \sin t + 2i \cos t\ dt \\
+		& = \int_0^{2\pi} - 6 - 6 {(e^{it} - e^{-it})}^2\ dt \\
+		& = -6 \int_0^{2\pi} -1 + e^{2it} + e^{-2it}\ dt \\
+		& = -6 {\left[ -t - \frac{i}{2} e^{2it} + \frac{i}{2} e^{-2it}\right]}_0^{2\pi}
+	\end{align*}
+	כאשר במעבר האחרון השתמשנו באינטגרל של פונקציה טריגונומטרית אפס בתחום.
+\end{solution}
+
+\subquestion{}
+\[
+	\int_\gamma \cos(\re(z))\ dz
+\]
+עבור $\gamma(t) = i + e^{it}$ עבור $t \in [-\pi, \pi]$.
+\begin{solution}
+	נובע $\gamma'(t) = i e^{it}$ ונבחין כי $\cos(\cos(t)) = -\cos(\cos(t))$ והפונקציה הזו זוגית, לכן
+	\begin{align*}
+		\int_\gamma \cos(\re(z))\ dz
+		& = \int_{-\pi}^{\pi} \cos(\re(i + e^{it})) \cdot i e^{it}\ dt \\
+		& = \int_{-\pi}^{\pi} \cos(\cos(t)) \cdot i e^{it}\ dt \\
+		& = \int_{-\pi}^{\pi} \cos(\cos(t)) (i \cos t - \sin t)\ dt \\
+		& = i \int_{-\pi}^{\pi} \cos(\cos(t)) \cos t\ dt - \int_{-\pi}^{\pi} \cos(\cos(t)) \sin t\ dt \\
+		& = i \int_{-\pi}^{\pi} \cos(\cos(t)) \cos t\ dt - 0 \\
+		& = 2i \int_{0}^{\pi} \cos(\cos(t)) \cos t\ dt \\
+		& = 2i \int_{-\pi/2}^{\pi/2} \cos(\cos(u - \pi/2)) \cos(u - \pi/2)\ dt \\
+		& = 2i \int_{-\pi/2}^{\pi/2} \cos(\sin(u)) \sin(u)\ dt \\
+		& = 0
+	\end{align*}
+\end{solution}
+
+\subquestion{}
+\[
+	\int_\gamma {\left(\frac{\Log(z)}{z}\right)}^2\ dz
+\]
+עבור $\gamma = e^{-it}$ ב־ $t \in [-\frac{\pi}{2}, \frac{\pi}{2}]$.
+\begin{solution}
+	הפעם $\gamma'(t) = -i e^{-it}$ ולכן
+	\begin{align*}
+		\int_\gamma {\left(\frac{\Log(z)}{z}\right)}^2\ dz
+		& = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} {\left(\frac{\Log(e^{-it})}{e^{it}}\right)}^2 \cdot (-i e^{-it})\ dt \\
+		& = i \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} t^2 e^{-3it}\ dt \\
+		& = {\left[ t^2 \frac{e^{-3it}}{-3}\right]}_{-\frac{\pi}{2}}^{\frac{\pi}{2}} + \frac{2}{3} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} t e^{-3it}\ dt \\
+		& = \frac{1}{2} \cdot \frac{1}{-3} + {\left[ t \frac{e^{-3it}}{-3i}\right]}_{-\frac{\pi}{2}}^{\frac{\pi}{2}} + \frac{2}{9i} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} e^{-3it}\ dt \\
+		& = \frac{1}{6} + 0 + \frac{1}{27 \cdot 2}
+	\end{align*}
+	זאת בשל חישוב ישיר, והעובדה ש־$e^{-\frac{\pi}{6}i} - e^{-\frac{\pi}{6}i} = \sin(-\frac{\pi}{6}) = -\frac{1}{2}$.
+\end{solution}
+
+\question{}
+תהי $f : G \to \CC$ רציפה ותהי $\gamma : [a, b] \to G$ מסילה.
+
+\subquestion{}
+נסמן $M = \max_{t \in [a, b]} |f(\gamma(t))|$ ו־$L(\gamma)$ אורך המסילה $\gamma$. \\*
+נראה כי מתקיים
+\[
+	\left\lvert \int_\gamma f(z)\ dz\right\rvert \le M \cdot L(\gamma)
+\]
+\begin{proof}
+	\begin{align*}
+		\left\lvert \int_\gamma f(z)\ dz \right\rvert
+		& = \left\lvert \int_a^b f(\gamma(t)) \gamma'(t)\ dt \right\rvert \\
+		& \le \int_a^b \left\lvert f(\gamma(t)) \gamma'(t) \right\rvert\ dt \tag{1} \\
+		& = \int_a^b \left\lvert f(\gamma(t)) \right\rvert \cdot \left\lvert \gamma'(t) \right\rvert\ dt \\
+		& \le \int_a^b M \cdot \left\lvert \gamma'(t) \right\rvert\ dt \tag{2} \\
+		& = M \cdot \int_a^b \left\lvert \gamma'(t) \right\rvert\ dt \\
+		& = M \cdot L(\gamma)
+	\end{align*}
+	כאשר
+	\begin{enumerate}
+		\item טענה ששאבנו מאינטגרלים ממשיים מרובי משתנים, ההוכחה עבור המקרה המרוכב זהה לחלוטין.
+		\item מאינפי 3.
+	\end{enumerate}
+	ובכך הראינו כי אי־השוויון אכן חל.
+\end{proof}
+
+\subquestion{}
+נוכיח כי לכל פונקציה על, מונוטונית עולה וגזירה ברציפות למקוטעין $\mu : [c, d] \to [a, b]$ מתקיים
+\[
+	\int_\gamma f(z)\ dz
+	= \int_{\gamma \circ \mu} f(z)\ dz
+\]
+\begin{proof}
+	נבחין תחילה ש־$\mu$ היא פונקציה הפיכה מההגדרה שלה. \\*
+	נעבור לבחינת האינטגרל
+	\[
+		\int_{\gamma \circ \mu} f(z)\ dz
+		= \int_c^d f(\gamma(\mu(t))) \cdot (\gamma \circ \mu)'(t)\ dt
+		= \int_c^d f(\gamma(\mu(t))) \cdot \gamma'(\mu(t)) \cdot \mu'(t)\ dt
+	\]
+	אבל מכלל ההצבה האינטגרלי עבור $\mu^{-1}$ נובע
+	\[
+		\int_c^d f(\gamma(\mu(t))) \cdot \gamma'(\mu(t)) \cdot \mu'(t)\ dt
+		= \int_a^b f(\gamma(\mu(\mu^{-1}(t)))) \cdot \gamma'(\mu(\mu^{-1}(t)))\ dt
+		= \int_a^b f(\gamma(t)) \cdot \gamma'(t)\ dt
+		= \int_\gamma f(z)\ dz
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נניח ש־$f$ אנליטית ב־$G$ ונוכיח שמתקיים
+\[
+	\int_\gamma f'(z)\ dz
+	= f(\gamma(b)) - f(\gamma(a))
+\]
+\begin{proof}
+	נחלק את המסילה ל־$N$ תת־מסילות באורך שווה ולכן
+	\[
+		\int_\gamma f'(z)\ dz
+		= \sum_{i = 1}^N \int_{\gamma_i} f'(z)\ dz
+	\]
+	ובהתאם
+	\[
+		\left\lvert \int_\gamma f'(z)\ dz \right\rvert
+		\le \sum_{i = 1}^N \left\lvert  \int_{\gamma_i} f'(z)\ dz \right\rvert
+		\le N M_i L(\gamma_1)
+	\]
+\end{proof}
+
+\end{document}
