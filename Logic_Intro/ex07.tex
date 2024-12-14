@@ -1,0 +1,87 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 07 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+יהיו $mathcal{A, B}$ מבנים ל־$L$ ויהי איזומורפיזם $f : \mathcal{A} \to \mathcal{B}$ ושם עצם $t \in term_L$. \\*
+נוכיח שלכל השמה $\sigma : Var \to A$ מתקיים
+\[
+	f(t^\mathcal{A}(\sigma))
+	= t^\mathcal{B}(f \circ \sigma)
+\]
+\begin{proof}
+	נוכיח את הטענה באינדוקציה על שמות עצם. \\*
+	נניח כי $t \in const_L$, ולכן מהגדרה של איזומורפיזם ושל השמה על קבועים
+	\[
+		f(t^\mathcal{A}(\sigma))
+		= f(t^\mathcal{A})
+		= t^\mathcal{B}
+		= t^\mathcal{B}(f \circ \sigma)
+	\]
+	נניח ש־$t \in Var$ ולכן מאותן ההגדרות נובע
+	\[
+		f(t^\mathcal{A}(\sigma))
+		= f(\sigma(t))
+		= t^\mathcal{B}(f \circ \sigma)
+	\]
+	והשלמנו את בסיס האינדוקציה, נותר לבדוק את המהלך. \\*
+	יהי $n \in \NN$ ויהי $F \in Func_{L, n}$ סימן פונקציה $n$־מקומי, ונניח $t_0, \dots, t_{n - 1} \in term_L$ כך שהם מקיימים את טענת האינדוקציה, אז. \\*
+	נגדיר $t = F(t_0, \dots, t_{n - 1})$ ולכן מהגדרת איזומורפיזם, השמה עבור סימני פונקציה ויחד עם הנחת האינדוקציה נובע
+	\[
+		f(t^\mathcal{A}(\sigma))
+		= f(F^\mathcal{A}(t_0^\mathcal{A}(\sigma), \dots, t_{n - 1}^\mathcal{B}(\sigma)))
+		= F^\mathcal{B}(f(t_0^\mathcal{A}(\sigma)), \dots, f(t_{n - 1}^\mathcal{B}(\sigma)))
+		= F^\mathcal{B}(t_0^\mathcal{B}(f \circ \sigma), \dots, t_{n - 1}^\mathcal{B}(f \circ \sigma))
+		= t^\mathcal{B}(f \circ \sigma)
+	\]
+	והשלמנו את מהלך האינדוקציה.
+\end{proof}
+
+\question{}
+נניח ש־$L$ מכילה אינסוף סימני יחס חד־מקומיים ${\{P_n\}}_{n \in \NN}$. \\*
+יהי מבנה $\mathcal{A} = \langle A, I \rangle$ כך ש־$A = \{0\}$ ו־$P_n^\mathcal{A} = \emptyset$ לכל $n \in \NN$. \\*
+נוכיח שלכל פסוק $\varphi \in sent_L$ כך ש־$\mathcal{A} \models \varphi$ קיים מבנה $\mathcal{B}$ ל־$L$ כך ש־$\mathcal{B} \models \varphi$ וגם $\mathcal{A} \not\cong \mathcal{B}$.
+\begin{proof}
+	יהי פסוק $\varphi$ כזה, ונגדיר $X_p = \{P_n \mid P_n \in \varphi\}$, קבוצת סימני היחס אשר מופיעים ב־$\varphi$ (בסימון זה התייחסנו ל־$\varphi$ כסדרה). \\*
+	יהי $k \in \NN \setminus \{i \in \NN \mid P_i \in X_p\}$ כלשהו (הגדרה זו לא מצריכה בחירה). \\*
+	נגדיר מבנה חדש $\mathcal{B} = \langle A, J\rangle$ כך ש־$I = J$ מלבד $P_k^\mathcal{B} = A \times A$. \\*
+	נוכל להוכיח באינדוקציה על יחסים שמתקיים $\mathcal \models \varphi$, אבל עבור הפסוק $\phi = \forall x\ P_k(x)$ נקבל $\mathcal{A} \not\models \phi$ בעוד $\mathcal{B} \models \phi$ ולכן בפרט $\mathcal{A} \not\cong \mathcal{B}$.
+\end{proof}
+
+\question{}
+יהיו $\mathcal{A} \subseteq \mathcal{B}$ מבנים ל־$L$ ויהי $\psi$ פסוק ללא כמתים ו־$\varphi$ פסוק כך שעבור המשתנים $x_0, \dots, x_{k - 1} \in Var$ מתקיים $\varphi = \forall x_0, \dots, \forall x_{k - 1} \psi$.
+
+\subquestion{}
+נפריך את הטענה שאם $\mathcal{A} \models \varphi$ אז $\mathcal{B} \models \varphi$.
+\begin{solution}
+	נגדיר $L$ שפת השוויון ו־$A = \{0\}, B = \{0, 1\}$, ונגדיר גם $\psi(x, y) = x = y$, לכן $\varphi$ מתלכדת עם $\varphi_{\le 1}$ מהמטלה הקודמת. \\*
+	בהתאם נבחין כי $\mathcal{A} \models \varphi$ אבל $\mathcal{B} \not\models \varphi$, זאת שכן $\psi(0, 1)$ לא מתקיים.
+\end{solution}
+
+\subquestion{}
+נוכיח שאם $\mathcal{B} \models \varphi$ אז גם $\mathcal{A} \models \varphi$.
+\begin{proof}
+	לכל השמה $\sigma : Var \to A$, נובע מהשיכון הנתון ומהעובדה ש־$\psi$ חסר כמתים כי
+	\[
+		\mathcal{A} \models \psi^\mathcal{A}(\sigma)
+		\iff \mathcal{B} \models \psi^\mathcal{B}(\sigma)
+		\impliedby \mathcal{B} \models \varphi
+	\]
+	כאשר הגדרנו את $\sigma$ מחדש כהרחבת הטווח, וכאשר הגרירה האחרונה נובעת מבדיקת הצבה ישירה והגדרת הקיום. \\*
+	בהתאם מצאנו כי $\mathcal{A} \models \varphi$.
+\end{proof}
+
+\question{}
+תהי $S$ מחלקה של מבנים ל־$L$.
+
+\subquestion{}
+נניח ש־$\mathcal{A}$ מבנה ל־$L$. \\*
+נוכיח שמתקיים $\mathcal{A} \in Mod(Th(S))$ אם ורק אם $\forall \varphi \in Th(\mathcal{A}), \exists \mathcal{B} \in S, \mathcal{B} \models \varphi$.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
