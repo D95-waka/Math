@@ -128,17 +128,115 @@
 	= f(\gamma(b)) - f(\gamma(a))
 \]
 \begin{proof}
-	נחלק את המסילה ל־$N$ תת־מסילות באורך שווה ולכן
+	על־ידי שימוש באינטגרל רימן, באדיטיביות האינטגרל ובתכונה שהוכחנו בסעיף א', נוכל לשחזר את ההוכחה של אינפי 2 לנוסחה היסודית הכללית. \\*
+	בקצרה, נוכל לחלק את המסילה למספר הולך וגדל של תת־מסילות כך שנקודות הקצה הן היחידות שמשפיעות על גודל האינטגרל המלא, זאת תוך שימוש ברציפות הפונקציה ונגזרתה.
+\end{proof}
+
+\question{}
+\subquestion{}
+נמצא דוגמה לפונקציה אנליטית $f : G \to \CC$ ולשתי נקודות שונות $z_0, z_1 \in G$ כך שלכל $z \in G$ מתקיים
+\[
+	f'(z) \ne \frac{f(z_1) - f(z_0)}{z_1 - z_0}
+\]
+\begin{solution}
+	נגדיר $f(z) = e^z$ ולכן $f'(z) = e^z$, ובנוסף נגדיר $z_1 = 2\pi i, z_0 = 0$ ולכן
 	\[
-		\int_\gamma f'(z)\ dz
-		= \sum_{i = 1}^N \int_{\gamma_i} f'(z)\ dz
+		\frac{f(z_1) - f(z_0)}{z_1 - z_0} = \frac{1 - 1}{2\pi i - 0} = 0
 	\]
-	ובהתאם
+	אבל אנו יודעים כי $e^z \ne 0$ לכל $z \in \CC$, ולכן נוכל להסיק כי $f'(z) \ne 0$ גם כן.
+\end{solution}
+
+\subquestion{}
+תהי $f : G \to \CC$ פונקציה אנליטית ו־$z_0, z_1 \in G$ נקודות שונות כך ש־$[z_0, z_1] \subseteq G$. \\*
+נראה שמתקיים
+\[
+	\left\lvert \frac{f(z_1) - f(z_0)}{z_1 - z_0} \right\rvert \le \max_{z \in [z_0, z_1]} |f'(z)|
+\]
+\begin{proof}
+	נגדיר את המסילה $\gamma = [z_0, z_1]$, ולכן
 	\[
 		\left\lvert \int_\gamma f'(z)\ dz \right\rvert
-		\le \sum_{i = 1}^N \left\lvert  \int_{\gamma_i} f'(z)\ dz \right\rvert
-		\le N M_i L(\gamma_1)
+		= |f(\gamma(1)) - f(\gamma(0))|
+		= |f(z_1) - f(z_0)|
 	\]
+	מצד שני מ־ML נובע גם
+	\[
+		\left\lvert \int_\gamma f'(z)\ dz \right\rvert
+		\le L(\gamma) \cdot \max_{z \in [z_0, z_1]} |f'(z)|
+		= |z_1 - z_0| \cdot \max_{z \in [z_0, z_1]} |f'(z)|
+	\]
+	ולכן נובע משוויונות אלה
+	\[
+		|f(z_1) - f(z_0)|
+		\le |z_1 - z_0| \cdot \max_{z \in [z_0, z_1]} |f'(z)|
+		\iff
+		\left\lvert \frac{f(z_1) - f(z_0)}{z_1 - z_0} \right\rvert \le \max_{z \in [z_0, z_1]} |f'(z)|
+	\]
+	כמבוקש.
+\end{proof}
+
+\question{}
+יהיו $G, H \subseteq \CC$ תחומים ותהי $f : G \times H \to \CC$ פונקציה רציפה בשני משתנים. \\*
+נאמר ש־$f(z, w)$ אנליטית ב־$z$ אם הנגזרת החלקית $\frac{\partial f}{\partial z}(z_0, w) = \lim_{z \to z_0} \frac{f(z, w) - f(z_0, w)}{z - z_0}$ קיימת ורציפה בכל נקודה בתחום. \\*
+נגדיר עבור מסילה $\gamma : I \to H$ את הפונקציה $\varphi : G \to \CC$ על־ידי
+\[
+	\varphi(z) = \int_\gamma f(z, w)\ dw
+\]
+
+\subquestion{}
+נקבע $z_0 \in G$ ונגדיר את הפונקציה $F_{z_0} : G \times H \to \CC$ על־ידי
+\[
+	F_{z_0}(z, w) = \begin{cases}
+		\frac{f(z, w) - f(z_0, w)}{z - z_0} & z \ne z_0 \\
+		\frac{\partial f}{\partial z}(z_0, w) & z = z_0
+	\end{cases}
+\]
+נראה ש־$F_{z_0}$ רציפה כפונקציה בשני משתנים.
+\begin{proof}
+	בנקודות $z \ne z_0$ היא רציפה כהרכבת פונקציות רציפות, ולכן מספיק שנבדוק את המקרה $z = z_0$.
+	\[
+		\lim_{z \to z_0} F_{z_0}
+		= \lim_{z \to z_0} \frac{f(z, w) - f(z_0, w)}{z - z_0}
+		= \frac{\partial f}{\partial z}(z_0, w)  
+		= F_{z_0}(z_0)
+	\]
+	ולכן היא אכן רציפה.
+\end{proof}
+
+\subquestion{}
+נוכיח כי $\varphi$ אנליטית כך שמתקיים
+\[
+	\varphi'(z_0)
+	= \int_\gamma F_{z_0}(z_0, w)\ dw
+	= \int_\gamma \frac{\partial f}{\partial z}(z_0, w)\ dw
+\]
+\begin{proof}
+	נבדוק את הגדרת הנגזרת
+	\begin{align*}
+		\lim_{z \to z_0} \frac{\varphi(z) - \varphi(z_0)}{z - z_0}
+		& = \lim_{z \to z_0} \frac{\int_\gamma F_{z_0}(z, w)\ dw - \int_\gamma F_{z_0}(z_0, w)\ dw }{z - z_0} \\
+		& = \lim_{z \to z_0} \int_\gamma \frac{F_{z_0}(z, w) - F_{z_0}(z_0, w)}{z - z_0}\ dw \\
+		& = \lim_{z \to z_0} \int_\gamma F_{z_0}(z, w)\ dw \\
+		& = \int_\gamma \lim_{z \to z_0} F_{z_0}(z, w)\ dw \\
+		& = \int_\gamma F_{z_0}(z_0, w)\ dw \\
+		& = \int_\gamma \frac{\partial f}{\partial z}(z_0, w)\ dw
+	\end{align*}
+	כאשר כלל המעברים נובעים משוויונות נתונים וחוקי אינטגרלים מרובי משתנים שאנו כבר מכירים. \\*
+	בהתאם מרציפות האינטגרל והפונקציה $F_{z_0}$ נסיק כי $\varphi'$ אכן מוגדרת.
+\end{proof}
+
+\subquestion{}
+נסיק כי $\psi(z) = \int_0^{2\pi} \cos(z e^{it})\ dt$ אנליטית.
+\begin{proof}
+	נגדיר $f(z, w) = \frac{\cos(zw)}{iw}$ וגם $\gamma : [0, 2\pi] \to \CC$ ךכ ש־$t \mapsto e^{it}$ ולכן
+	\[
+		\varphi(z)
+		= \int_\gamma f(z, w)\ dw
+		= \int_0^{2\pi} f(z, e^{it}) ie^{it}\ dt
+		= \int_0^{2\pi} \frac{\cos(z e^{it})}{ie^{it}} ie^{it}\ dt
+		= \psi(z)
+	\]
+	ולכן מסעיף ב' נובע ש־$\psi$ אכן אנליטית.
 \end{proof}
 
 \end{document}
