@@ -52,23 +52,26 @@
 יהי $M \prec H(\kappa^+)$ כך ש־$M \cap \kappa = \delta \in \kappa$. \\*
 נוכיח שלכל $C \in M$ סל''ח ב־$\kappa$, מתקיים $\delta \in C$.
 \begin{proof}
-	נבחין כי $\delta \cap C = M \cap \kappa \cap C = M \cap C$, ונבחן את $\varphi(x, y) = \sup(x) = y$, אנו יודעים כי $\varphi(C, \kappa)$ מההגדרה של $C$. \\*
-	נשים לב כי אם $\kappa \in M$ אז $\kappa = \delta \in \delta$ בסתירה להנחה שלנו. \\*
-	אם $\sup(\delta \cap C) = \delta$ אז $\delta \in C$ כפי שרצינו ולכן נניח אחרת,
-	אבל אז בהכרח $\sup(\delta \cap C) < \delta$ שכן אם $\sup(\delta \cap C) > \delta$ זו תהיה סתירה לאקסיומת היסוד. \\*
-	בנוסף מהשוויון שמצאנו נובע $\sup(M \cap C) = \sup(\delta \cap C) < \delta$, דהינו $M \models \varphi(C, \alpha)$ עבור $\alpha < \delta$ כלשהו. \\*
-	אבל $M \models \varphi(C, \alpha) \iff H(\kappa^+) \models \varphi(C, \alpha)$, ו־$C$ סל''ח ולכן $\sup C = \kappa$, אז $\alpha = \kappa$ וקיבלנו סתירה להנחה, לכן $\delta \in C$.
+	נבחין כי $M \cap C = M \cap C \cap \kappa = C \cap \delta$ לכל $C \subseteq \kappa$. \\*
+	נניח ש־$\varphi(C) = \forall x \in \kappa, \exists y \in C, x < y < \kappa$ תכונת חוסר החסימות של סל''חים,
+	נבחין כי $\varphi^M = \forall x \in \delta, \exists y \in C \cap \delta x < y < \delta$. \\*
+	נניח ש־$C \in M$ סל''ח כזה, אז $H(\kappa^+) \models \varphi(C)$ ובהתאם גם $M \models \varphi$. \\*
+	בהתאם נקבל ש־$\sup(\delta \cap C) = \delta$ ולכן $\delta \in C$.
 \end{proof}
 
 \question{}
-תהי $S \subseteq \kappa$ קבוצת שבת ותהי $f : S \to \kappa$ פונקציה יורדת. \\*
+תהי $S \subseteq \kappa$ קבוצת שבת ותהי $f : S \to \kappa$ פונקציה דוחסת. \\*
 יהי $M \prec H(\kappa^+)$ כך ש־$M \cap \kappa = \delta \in S$ ו־$\{f, S\} \in M$. \\*
 נגדיר $f(\delta) = \gamma$, נוכיח ש־$X = \{ \alpha \in S \mid f(\alpha) = \gamma \}$ היא קבוצת שבת ותת־קבוצה של $\kappa$. \\*
 נסיק שהלמה של פודור חלה.
 \begin{proof}
-	אנו כבר יודעים מההגדרה ש־$X \subseteq \kappa$, ונניח בשלילה שהיא לא קבוצת שבת, לכן קיים $C \subseteq \kappa$ סל''ח, כך ש־$C \cap X = \emptyset$. \\*
-	ידוע ש־$M \cap \kappa = \delta \in S \subseteq \kappa \implies M \cap \kappa \in \kappa$ ולכן תנאי השאלה הקודמת חלים ומתקיים $\delta \in C$. \\*
-	$f(\delta) = \gamma$ ולכן $\delta \in X$ ובהתאם $X \cap \delta \ne \emptyset$ בסתירה להנחת השלילה.
+	משאלה 2 נובע ש־$f, S \in M$. \\*
+	בנוסף נבחין כי $\gamma = f(\delta) < \delta$ ולכן $\gamma \in \delta$, אז $\gamma \in M$. \\*
+	נגדיר $\varphi(x)$ הנוסחה שגורסת ש־$x$ סל''ח. \\*
+	מתקיים $H(\kappa^+) \models \forall C \in M (\varphi(C) \implies \exists \beta, C \cap S = \beta, f(\beta) = \gamma)$ לפי תוצאת טענת שאלה 4. \\*
+	$M \prec H(\kappa^+)$ ולכן $M \models \forall C (\varphi(C) \implies \exists \beta, C \cap S = \beta, f(\beta) = \gamma)$. \\*
+	אז מהגדרה גם $M \models \forall C, \varphi(C) \implies X \cap S \ne \emptyset$. \\*
+	לבסוף שוב מ־$M \prec H(\kappa^+)$ נובע $H(\kappa^+) \models \forall C, \varphi(C) \implies X \cap S \ne \emptyset$, דהינו $X \subseteq \kappa$ קבוצת שבת.
 \end{proof}
 
 \end{document}
