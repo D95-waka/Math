@@ -2750,5 +2750,170 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ולכן קיימת $B$ כזאת.
 \end{example}
 
+\section{שיעור 15 --- 17.12.2024}
+
+\subsection{נוסחה לתוחלות}
+נתחיל בנוסחה קטנה שתעזור לנו לפתח אינטואיציה, אך לא נשתמש בה רבות.
+\begin{proposition}[נוסחת הזנב לתוחלת]
+	אם $X$ משתנה מקרי שנתמך על־ידי $\NN \cup \{0\}$ אז
+	\[
+		\EE(X) = \sum_{n \in \NN} \PP(X \ge n)
+	\]
+\end{proposition}
+\begin{proof}
+	ממשפט פוביני לסכומים מרובים
+	\[
+		\EE(X)
+		= \sum_{n = 1}^\infty n \PP(X = n)
+		= \sum_{n = 1}^\infty \left( \sum_{k = 1}^n \PP(X = n) \right)
+		= \sum_{\substack{n, k \in \NN \\ k \le n}} \PP(X = n)
+		= \sum_{k = 1}^\infty \sum_{n = k}^\infty \PP(X = n)
+		= \sum_{k = 1}^\infty \PP(X \ge k)
+	\]
+\end{proof}
+
+\subsection{שונות}
+באנגלית Variance.
+אנו רוצים לשאול את השאלה כמה הסתברות רחוקה בעצם מהתוחלת, כך שנוכל לאפיין את שתי התכונות באופן מוצלח יותר אחת על־ידי השנייה.
+לדוגמה אם $\EE(X) = \EE(Y) = 5$ אבל $X = 5$ כמעט תמיד ומצד שני $\PP(Y = 5000000) = \frac{1}{10^6}$ ו־$\PP(Y = 0) = 1 - \frac{1}{10^6}$ בעלות תוחלת זהה אבל בבירור שונות בתכלית.
+\begin{definition}
+	$X$ משתנה מקרי בעל תוחלת $\mu = \EE(X)$, אז ה\textbf{שונות} של $X$ היא
+	\[
+		\var(X) = \EE({(X - \mu)}^2)
+	\]
+\end{definition}
+\begin{example}
+	במקרה שראינו זה עתה
+	\[
+		\var(X) = \EE({(X - 5)}^2) = 0
+	\]
+	בעוד שמתקיים
+	\[
+		\var(Y) = \EE({(Y - 5)}^2) = {(5000000 - 5)}^2 \cdot \frac{1}{10^6} + {(0 - 5)}^2 \cdot (1 - \frac{1}{10^6}) \approx 25000000
+	\]
+	כפי שאנו רואים, הפעם השונות מייצגת את ההבדל המשמעותי שבין שני המשתנים המקריים.
+\end{example}
+נוסיף הגדרה שלא נעסוק בה אך שרבים מאיתנו שמעו בעבר, והוא מושג סטיית התקן, מושג שמשמש רבות בסטטיסטיקה.
+\begin{definition}[סטיית תקן]
+	סטיית התקן של $X$ היא $\sigma(X) = \sqrt{\var(X)}$.
+\end{definition}
+נראה הגדרה נוספת לשונות שמשומשת אף היא, הגדרה זו שקולה להגדרה שראינו
+\begin{definition}[הגדרה שקולה לשונות]
+	נגדיר את השונות להיות
+	\[
+		\var(X) = \EE(X^2) - {(\EE(X))}^2
+	\]
+\end{definition}
+\begin{proof}[הוכחת השקילות]
+	נסמן $\mu = \EE(X)$ ולכן מתכונות התוחלת
+	\[
+		\EE({(X - \mu)}^2)
+		= \EE(X^2 - 2X\mu + \mu^2)
+		= \EE(X^2) - \EE(2X\mu) + \EE(\mu^2)
+		= \EE(X^2) - 2\mu \EE(X) + \mu^2
+		= \EE(X^2) - 2\mu^2 + \mu^2
+	\]
+	ומצאנו כי מתקיים השוויון שחיפשנו.
+\end{proof}
+\begin{proposition}[תכונות של שונות]
+	כלל התכונות הבאות מתקיימות עבור $X$ משתנה מקרי בעל תוחלת:
+	\begin{enumerate}
+		\item $\var(X) \ge 0$ ו־$\var(X) = 0$ אם $X$ קבוע כמעט תמיד. השונות היא חיובית ואם המשתנה המקרי קבוע, אז השינוי שהיא מייצגת הוא אפס סביב התוחלת, היא גם ההסתברות.
+		\item $\var(X) = \var(X + a)$ לכל $a \in \RR$. השונות לא מושפעת מהזהה, היא תכונה כללית.
+		\item $\var(aX) = a^2 \var(X)$. מתיחה של המשתנה המקרי מגדילה אפילו יותר את השונות, נבחין כי השונות מייצגת את הטווח סביב התוחלת, ונוכל להסתכל עליה כשטח של איזשהו רדיוס סביב התוחלת, ככה נקבל את הריבוע.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item ${(X - \mu)}^2 \ge 0$ ולכן גם $\EE({(X - \mu)}^2) \ge 0$. גם
+			\[
+				X - \mu \overset{a.s.}{=} 0 \iff {(X - \mu)}^2 \overset{a.s.}{=} 0 \iff \EE({(X - \mu)}^2) = 0
+			\]
+		\item נגדיר $Y = X + a$ ולכן $\EE(Y) = \mu + a$, ואז
+			\[
+				\var(Y) = \EE({(Y - (\mu + a))}^2) = \EE({((X + a) - (\mu + a))}^2) = \EE({(X - \mu)}^2) = \var(X)
+			\]
+		\item נגדיר $Y = aX$ ובהתאם $\EE(Y) = \EE(aX) = a \EE(X) = a \mu$, ולכן
+			\[
+				\var(Y) = \EE({(Y - a \mu)}^2) = \EE({(aX - a\mu)}^2) = a^2 \EE({(X - \mu)}^2) = a^2 \var(X)
+			\]
+	\end{enumerate}
+\end{proof}
+נבחין כי בעוד שאנו יודעים כי תוחלות הן לינאריות, זהו לא המקרה עבור שונות, ננסה לחשב שונות של סכום משתנים מקריים.
+נחשב את $\var(X + Y)$ עבור $\mu = \EE(X), \nu = \EE(Y)$, אז $\EE(X + Y) = \mu + \nu$. נעבור לחישוב השונות
+\begin{align*}
+	\var(X + Y)
+	& = \EE({((X + Y) - (\mu + \nu))}^2) \\
+	& = \EE({((X - \mu) + (Y - \nu))}^2) \\
+	& = \EE({(X - \mu)}^2 + 2 (X - \mu)(Y - \nu) + {(Y - \nu)}^2) \\
+	& = \EE({(X - \mu)}^2) + 2 \EE((X - \mu)(Y - \nu)) + \EE({(Y - \nu)}^2) \\
+\end{align*}
+ניתן שם לביטוי לחלק הביטוי שיצא לנו, ונגדיר
+\begin{definition}[שונות משותפת]
+	נגדיר
+	\[
+		Cov(X, Y) = \EE((X - \mu)(Y - \nu))
+	\]
+	עבור $\EE(X) = \mu, \EE(Y) = \nu$.
+\end{definition}
+כאשר $Cov$ הוא קיצור ל־Covariance, הוא בתורו קיצור למילה Cooperative Variance.
+ולכן נוכל לקבל
+\begin{conclusion}
+	עבור משתנים מקריים $X, Y$ בעלי תוחלת, מתקיים
+	\[
+		\var(X + Y) = \var(X) + 2 Cov(X, Y) + \var(Y)
+	\]
+\end{conclusion}
+\begin{proposition}
+	אם $X$ ו־$Y$ בלתי־תלויים ובעלי שונות, אז $Cov(X, Y) = 0$.
+\end{proposition}
+\begin{proof}
+	נראה בהמשך שאם ל־$X$ ול־$Y$ יש שונות אז $Cov(X, Y)$ מוגדר (כלומר הטור מתכנס בהחלט). \\*
+	נניח כרגע שזה נכון ולכן
+	\[
+		Cov(X, Y)
+		= \EE((X - \mu)(Y - \nu))
+		\overset{(1)}{=} \EE(X - \mu) \EE(Y - \nu)
+		= 0 \cdot 0
+		= 0
+	\]
+	כאשר
+	\begin{enumerate}
+		\item $X - \mu$ ו־$Y - \nu$ בלתי־תלויים, מאי־התלות של $X, Y$ עצמם.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	אם $X = c$ כמעט תמיד אז $\EE(X) = c$ ו־$\var(X) = 0$.
+\end{example}
+\begin{example}
+	נניח $X \sim Ber(p)$ ולכן $\var(X) = \EE(X^2) - {\EE(X)}^2 = p - p^2 = p(1 - p)$. \\*
+	אם $X \sim Ber(p)$ אז $1 - X \sim Ber(1 - p)$ ואז $\var(1 - X) = \var(-X) = {(-1)}^2 \var(X) = \var(X)$. \\*
+	זאת אומרת, לא מפתיע שהשונות היא סימטרית במקרה זה עבור שני המשתנים.
+\end{example}
+\begin{example}
+	אם $X \sim Bin(n, p)$, אז נוכל להשתמש ישירות בהגדרת השונות, אבל נשתמש בעובדה שמשתנה בינומי הוא סכום של משתנים ברנולי,
+	כלומר $X_i \sim Ber(p)$ בלתי־תלויים עבור $1 \le i \le n$ אז אם $X = \sum_{i = 1}^{n} X_i$ גם $X \sim Bin(n, p)$, ולכן
+	\[
+		\var(X)
+		= \var(\sum_{i = 1}^{n} X_i)
+		= \sum_{i = 1}^{n} \var(X_i)
+		= n p(1 - p)
+	\]
+\end{example}
+\begin{example}
+	נניח עתה $X \sim Poi(\lambda)$, ונחשב על־ידי ההגדרה השקולה והעובדה שאנו כבר יודעים ש־$\EE(X) = \lambda$:
+	\begin{align*}
+		\EE(X^2)
+		& = \sum_{k = 0}^{\infty} k^2 \PP(X = k) \\
+		& = \sum_{k = 1}^{\infty} k^2 \frac{e^{-\lambda} \lambda^k}{k!} \\
+		& = e^{-\lambda} \sum_{k = 1}^{\infty} \frac{k \lambda^k}{(k - 1)!} \\
+		& = e^{-\lambda} \sum_{k = 1}^{\infty} \frac{((k - 1) + 1) \lambda^k}{(k - 1)!} \\
+		& = e^{-\lambda} \sum_{k = 1}^{\infty} \frac{(k - 1) \lambda^k}{(k - 1)!} + e^{-\lambda} \sum_{k = 1}^{\infty} \frac{\lambda^k}{(k - 1)!} \\
+		& = e^{-\lambda} \lambda^2 \sum_{k = 2}^{\infty} \frac{\lambda^{k - 2}}{(k - 2)!} + e^{-\lambda} \lambda \sum_{k = 1}^{\infty} \frac{\lambda^{k - 1}}{(k - 1)!} \\
+		& = \lambda^2 + \lambda
+	\end{align*}
+	ולכן נסיק $\var(X) = \EE(X^2) - {\EE(X)}^2 = \lambda$.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
