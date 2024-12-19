@@ -2658,7 +2658,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 עד כה מצאנו תכונות שלה, ואף הגדרות שקולות, אך מה המשמעות של התוחלת בהקשר הסתברותי?
 באיזה מובן עלינו להתחשב בתוחלת במקרה שבו אנו יודעים את ערכה, כשהיא חיובית?
 נעבור להליך שנותן לנו מידע בהסתברות מתוך מידע על תוחלות.
-\begin{theorem}[אי־שוויון מרקוב]
+\begin{theorem}[אי־שוויון מרקוב]\label{markov_inequality}
 	יהי $X$ משתנה מקרי אי־שלילי (דהינו $X \overset{a.s.}{\ge} 0$) ובעל תוחלת. \\*
 	אז לכל $a > 0$ מתקיים
 	\[
@@ -2776,7 +2776,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 באנגלית Variance.
 אנו רוצים לשאול את השאלה כמה הסתברות רחוקה בעצם מהתוחלת, כך שנוכל לאפיין את שתי התכונות באופן מוצלח יותר אחת על־ידי השנייה.
 לדוגמה אם $\EE(X) = \EE(Y) = 5$ אבל $X = 5$ כמעט תמיד ומצד שני $\PP(Y = 5000000) = \frac{1}{10^6}$ ו־$\PP(Y = 0) = 1 - \frac{1}{10^6}$ בעלות תוחלת זהה אבל בבירור שונות בתכלית.
-\begin{definition}
+\begin{definition}[שונות]
 	$X$ משתנה מקרי בעל תוחלת $\mu = \EE(X)$, אז ה\textbf{שונות} של $X$ היא
 	\[
 		\var(X) = \EE({(X - \mu)}^2)
@@ -2852,26 +2852,26 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{definition}[שונות משותפת]
 	נגדיר
 	\[
-		Cov(X, Y) = \EE((X - \mu)(Y - \nu))
+		\cov(X, Y) = \EE((X - \mu)(Y - \nu))
 	\]
 	עבור $\EE(X) = \mu, \EE(Y) = \nu$.
 \end{definition}
-כאשר $Cov$ הוא קיצור ל־Covariance, הוא בתורו קיצור למילה Cooperative Variance.
+כאשר $\cov$ הוא קיצור ל־Covariance, הוא בתורו קיצור למילה Cooperative Variance.
 ולכן נוכל לקבל
 \begin{conclusion}
 	עבור משתנים מקריים $X, Y$ בעלי תוחלת, מתקיים
 	\[
-		\var(X + Y) = \var(X) + 2 Cov(X, Y) + \var(Y)
+		\var(X + Y) = \var(X) + 2 \cov(X, Y) + \var(Y)
 	\]
 \end{conclusion}
 \begin{proposition}
-	אם $X$ ו־$Y$ בלתי־תלויים ובעלי שונות, אז $Cov(X, Y) = 0$.
+	אם $X$ ו־$Y$ בלתי־תלויים ובעלי שונות, אז $\cov(X, Y) = 0$.
 \end{proposition}
 \begin{proof}
-	נראה בהמשך שאם ל־$X$ ול־$Y$ יש שונות אז $Cov(X, Y)$ מוגדר (כלומר הטור מתכנס בהחלט). \\*
+	נראה בהמשך שאם ל־$X$ ול־$Y$ יש שונות אז $\cov(X, Y)$ מוגדר (כלומר הטור מתכנס בהחלט). \\*
 	נניח כרגע שזה נכון ולכן
 	\[
-		Cov(X, Y)
+		\cov(X, Y)
 		= \EE((X - \mu)(Y - \nu))
 		\overset{(1)}{=} \EE(X - \mu) \EE(Y - \nu)
 		= 0 \cdot 0
@@ -2914,6 +2914,287 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{align*}
 	ולכן נסיק $\var(X) = \EE(X^2) - {\EE(X)}^2 = \lambda$.
 \end{example}
+
+\section{תרגול 8 --- 19.12.2024}
+\subsection{שימושים למשפט מרקוב}
+\begin{exercise}
+	מטילים מטבע מוטה עם הסתברות $p$ לעץ, 20 פעמים,
+	חסמו את ההסתברות שהרצף עץ עץ יצא פחות מפעמיים.
+\end{exercise}
+\begin{solution}
+	נגדיר $\Omega = {\{0, 1\}}^{20}$ וכן $X = 1_{\{\omega_i = \omega_{i + 1} = 1\}}$, וגם $X = \sum X_i$, אנו רוצים לחשב את $\PP(X \le 1)$. \\*
+	נבחין כי $X_i \sim Ber(p^2)$, וכן $\EE(X) = \sum \EE(X_i)  = 19 p^2$, שכן $0 \le X \le 19$.
+	\[
+		\PP(X \le 1)
+		= \PP(19 - X \ge 18)
+		\le \frac{\EE(19 - X)}{18}
+		= \frac{19 - 19p^2}{18}
+	\]
+\end{solution}
+
+\subsection{שאלות נבחרות בנושא שונות}
+נתחיל ונבחין ששונות היא תבנית בי־לינארית (תבנית ריבועית), ובשל כך היא מקיימת את הטענה שהיא אי־שלילית, היא אדישה להזזות קבועות ויש לה כיול ריבועי,
+\begin{example}
+	אם $X \sim U([6])$ משתנה מקרי להטלת קובייה הוגנת, אז $\EE(X) = 3 \frac{1}{2}$ וכן
+	\[
+		\var(X) = \frac{6^2 - 1}{12} = \frac{35}{12} \approx 3
+	\]
+	זאת־אומרת שהשונות באמת מתכתבת עם המרחק של הערכים מהתוחלת.
+\end{example}
+\begin{exercise}
+	יהי $X \sim Geo(q)$, חשבו את $\var(X)$.
+\end{exercise}
+\begin{solution}
+	אנו יודעים ש־$\EE(X) = \frac{1}{q}$. \\*
+	עוד אנו יודעים מאנליטיות $\frac{1}{1 - x}$ ופיתוח טיילור, מתקיים
+	\[
+		\sum_{n = 0}^{\infty} n (n - 1) x^{n - 2} = \frac{2}{{(1 - x)}^3}
+	\]
+	נשתמש בנוסחה זו ונובע
+	\[
+		\EE(X(X - 1))
+		= \sum_{n = 0}^{\infty} n (n - 1) q {(1 - q)}^{n - 1}
+		= q (1 - q) \sum_{n = 0}^{\infty} n (n - 1) {(1 - q)}^{n - 2}
+		= q (1 - q) \frac{2}{q^3}
+	\]
+	ולכן $\EE(X^2) = \frac{2(1 - q)}{q^2} + \frac{1}{q}$.
+	נעבור לחישוב השונות
+	\[
+		\var(X)
+		= \EE(X^2) - {\EE(X)}^2
+		= \frac{2(1 - q)}{q^2} + \frac{1}{q} - \frac{1}{q^2}
+		= \frac{2(1 - q) + q - 1}{q^2}
+		= \frac{1 - q}{q^2}
+	\]
+\end{solution}
+ניזכר בשונות משותפת, נבחין כי מבי־לינאריות השונות מתקיים
+\begin{align*}
+	\var(X + Y)
+	& = \cov(X + Y, X + Y) \\
+	& = \cov(X, X) + \cov(X, Y) + \cov(Y, X) + \cov(Y, Y) \\
+	& = \var(X) + \var(Y) + 2 \cov(X, Y)
+\end{align*}
+בהתאם גם
+\[
+	\var(X)
+	= \var(\sum_{i = 1}^{n} X_i)
+	= \sum_{i, j = 1}^{n} \cov(X_i, X_j)
+	= \sum_{i = 1}^{n} \cov(X_i) + 2 \sum_{1 = i < j = n} \cov(X_i, X_j)
+\]
+\begin{exercise}
+	חשבו את השונות ואת התוחלת של מספר נקודות השבת בתמורה מקרית על $\{1, \dots, n\}$.
+\end{exercise}
+\begin{solution}
+	נגדיר $X_i$ נקודת השבת במקום ה־$i$.
+	$X_i \sim Ber(\frac{1}{n})$ ו־$X = \sum X_i$.
+	בהתאם
+	\[
+		\EE(X) = n \frac{1}{n} = 1
+	\]
+	אם $i \ne j$ אז $\PP(X_i, X_j = 1) = \frac{1}{n} \cdot \frac{1}{n - 1} \ne \frac{1}{n^2} = \PP(X_i = 1) \PP(X_j = 1)$, כלומר אנו רואים כי משתנים אלה תלויים.
+	\[
+		\var(X_i) = \frac{1}{n} (1 - \frac{1}{n})
+	\]
+	וכן
+	\[
+		i \ne j
+		\implies \cov(X_i, X_j)
+		= \EE(X_i X_j) - \EE(X_i) \EE(X_j)
+		= \frac{1}{n} \cdot \frac{1}{n - 1} - \frac{1}{n^2}
+	\]
+	לכן
+	\begin{align*}
+		\var(X)
+		& = \sum_{i = 1}^{n} \frac{1}{n}(1 - \frac{1}{n}) + 2 \sum_{1 = i < j = n} (\frac{1}{n} \cdot \frac{1}{n - 1} - \frac{1}{n^2}) \\
+		& = (1 - \frac{1}{n}) + 2 \binom{n}{2} (\frac{1}{n(n - 1)} - \frac{1}{n^2}) \\
+		& = (1 - \frac{1}{n}) + 2 \frac{n!}{2! (n - 2)!} (\frac{1}{n(n - 1)} - \frac{1}{n^2}) \\
+		& = (1 - \frac{1}{n}) + \frac{n(n - 1)}{1} (\frac{1}{n(n - 1)} - \frac{1}{n^2}) \\
+		& = 1 - \frac{1}{n} + 1 - \frac{n - 1}{n} \\
+		& = 1
+	\end{align*}
+\end{solution}
+
+\section{שיעור 16 --- 19.12.2024}
+\subsection{שונות --- המשך}
+נרחיב את הטענה מההרצאה הקודמת.
+\begin{proposition}
+	עבור משתנים מקריים $X, Y$ בעלי תוחלת מתקיים
+	\[
+		\cov(X, Y)
+		= \EE((X - \EE(X))(Y - \EE(Y)))
+		= \EE(XY) - \EE(X) \EE(Y)
+	\]
+\end{proposition}
+\begin{proof}
+	\[
+		\EE((X - \EE(X))(Y - \EE(Y)))
+		= \EE(XY - \EE(X) Y - \EE(Y) X + \EE(X) \EE(Y))
+		= \EE(XY) - \EE(X) \EE(Y) - \EE(Y) \EE(X) + \EE(X) \EE(Y)
+	\]
+\end{proof}
+\begin{remark}
+	אם $X$ ו־$Y$ בלתי־תלויים אז $\cov(X, Y) = 0$.
+\end{remark}
+\begin{definition}[משתנים מקריים בלתי־מתואמים]
+	אם מתקיים $\cov(X, Y) = 0$ אז נאמר ש־$X$ ו־$Y$ \textbf{בלתי־מתואמים}.
+\end{definition}
+נבחין כי זהו תנאי הרבה יותר חלש מאי־תלות.
+\begin{proposition}[תכונות של שונות משותפת]
+	לכל שני משתנים מקריים $X, Y$ בעלי־תוחלת מתקיימות התכונות הבאת
+	\begin{enumerate}
+		\item $\cov(X, Y) = \cov(Y, X)$
+		\item $\cov(a + X, Y) = \cov(X, Y)$ 
+		\item $\cov(aX, Y) = a \cdot \cov(X, Y)$
+		\item $\var(X) = \cov(X, X)$
+		\item $\cov(X + Y, Z) = \cov(X, Z) + \cov(Y, Z)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	התכונה הראשונה טריוויאלית ונובעת מההגדרה, ולכן נוכיח את התכונה השנייה.
+	\[
+		\EE(((a + X) - \EE(a + X))(Y - \EE(Y)))
+		= \EE((X - \EE(X))(Y - \EE(Y)))
+	\]
+
+	נוכיח את התכונה החמישית.
+	\begin{align*}
+		\EE(((X + Y) - \EE(X + Y))(Z - \EE(Z)))
+		& = \EE(((X - \EE(X)) + (Y - \EE(Y)))(Z - \EE(Z))) \\
+		& = \EE((X - \EE(X))(Z - \EE(Z))) + \EE((Y - \EE(Y))(Z - \EE(Z)))
+	\end{align*}
+\end{proof}
+\begin{proposition}
+	נניח ש־$X_1, \dots, X_n$ משתנים מקריים בעלי תוחלת, אז
+	\[
+		\var(\sum_{i = 1}^{n} X_i)
+		= \sum_{i = 1}^{n} \var(X_i) + 2 \sum_{1 \le i < j \le n} \cov(X_i, Y_i)
+	\]
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\var(\sum_{i = 1}^{n} X_i)
+		& = \cov(\sum_{i = 1}^{n} X_i, \sum_{i = 1}^{n} X_i) \\
+		& = \sum_{i = 1}^n \cov(X_i, \sum_{i = 1}^{n} X_i) \\
+		& = \sum_{i = 1}^n \sum_{j = 1}^n \cov(X_i, X_j) \\
+		& = \sum_{i = 1}^{n} \var(X_i) + 2 \sum_{1 \le i < j \le n} \cov(X_i, Y_i)
+	\end{align*}
+\end{proof}
+\begin{example}
+	מטילים מטבע הוגן $n$ פעמים וסופרים את מספר ה־$HH$, נחשב את התוחלת ואת השונות.
+
+	נגדיר ${\{X_i\}}_{i = 1}^n$ משתנים מקריים $Ber(\frac{1}{2})$ בלתי־תלויים, ונגדיר $Y_i = X_i + X_{i + 1}$ עבור $i = 1, \dots, n - 1$.
+	נגדיר גם $Y = \sum_{i = 1}^{n - 1} Y_i$.
+	\[
+		\EE(Y_i) = \EE(X_i) \EE(X_{i + 1}) = \frac{1}{4},
+		\qquad
+		\EE(Y) = \sum_{i = 1}^{n - 1} \EE(Y_i) = \frac{n - 1}{4}
+	\]
+	וכן
+	\[
+		\var(Y)
+		= \var(\sum_{i = 1}^{n - 1} Y_i)
+		= \sum_{n = 1}^{n - 1} \var(Y_i) + 2 \sum_{1 \le i < j \le n - 1} \cov(Y_i, Y_j)
+	\]
+	ונעבור לחישוב אלה האחרונים.
+	\[
+		\var(Y_i) = \frac{3}{16}
+	\]
+	נבחן דוגמה ספציפית למקרה שהמשתנים שונים,
+	\[
+		\cov(Y_1, Y_7)
+		= \cov(X_1 X_2, X_7 X_8)
+	\]
+	לכל $i + 1 < j$ המשתנים $Y_i = X_i X_{i + 1}$ ו־$Y_j = X_j X_{j + 1}$ בלתי־תלויים (בתור פונקציות מעל משתנים מקריים בקבוצות זרות), לכן $\cov(Y_i, Y_j) = 0$. \\*
+	נשאר המקרה $j = i + 1$.
+	\[
+		\forall 1 \le i \le n - 2, \cov(Y_i, Y_{i + 1})
+		= \cov(X_i X_{i + 1}, X_{i + 1} X_{i + 2})
+		= \EE(X_i X_{i + 1}^2 X_{i + 2}) - \EE(Y_i)\EE(Y_{i + 1})
+		= \frac{1}{8} - \frac{1}{16}
+		= \frac{1}{16}
+	\]
+	לבסוף $\var(Y) = (n - 1) \frac{3}{16} + 2(n - 2) \frac{1}{16} = o(n)$.
+\end{example}
+ניזכר באי־שוויון מרקוב\ \ref{markov_inequality} ונגדיר אי־שוויון חדש
+\begin{theorem}[אי־שוויון צ'בישב]
+	נניח ש־$X$ משתנה מקרי בעל שונות (ולכן בעל תוחלת), אז
+	\[
+		\forall \lambda > 0,\ 
+		\PP(|X - \EE(X)| \ge \lambda) \le \frac{\var(X)}{\lambda^2}
+	\]
+\end{theorem}
+\begin{proof}
+	נשים לב ש־$\{ |X - \EE(X)| \ge \lambda \} = \{ {(X - \EE(X))}^2 \ge \lambda^2 \}$. \\*
+	נגדיר $Y = {(X - \EE(X))}^2$ ואז $0 \le Y$ וכן $\EE(Y) = \EE({(X - \EE(X))}^2) = \var(X)$, ולכן מ־\ref{markov_inequality}
+	\[
+		\PP(Y \ge \lambda^2) \le \frac{\var(X)}{\lambda^2}
+	\]
+\end{proof}
+\begin{example}
+	מטילים מטבע הוגן $10^6$ פעמים.
+	$X$ מספר העצים ואנו רוצים לדעת מה ההסתברות ש־$495000 < X < 505000$. אנו יודעים ש־$X \sim Bin(10^6, \frac{1}{2})$.
+	\begin{align*}
+		\PP(495000 < X < 505000)
+		& = 1 - \PP(X \le 495000 \lor X \ge 505000) \\
+		& = 1 - \PP(|X - 500000| \ge 5000) \\
+		& \ge \frac{\var(X)}{5000^2}
+	\end{align*}
+	אנו גם יודעים שמתקיים
+	\[
+		X = \sum_{i = 1}^{10^6} X_i
+		\implies
+		\var(X) = \sum_{i = 1}^{10^6} \var(X_i) = 10^6 \cdot \frac{1}{4}
+	\]
+	ולכן
+	\[
+		\PP(|X - 500000| \ge 5000)
+		\le \frac{\var(X)}{5000^2}
+		= \frac{10^6 \cdot \frac{1}{4}}{5000^2}
+		= \frac{1}{100}
+	\]
+	ולכן ההסתברות הזאת גדולה מ־$0.99$, זאת־אומרת שמצאנו חסם מאוד טוב למספר ההטלות שקיבלו עץ באופן יחסי.
+\end{example}
+\begin{example}
+	אם נחזור לדוגמה איתה פתחנו את ההרצאה, אז נוכל לקבוע
+	\[
+		\var(Y_n) < 100n
+		\qquad
+		\EE(Y_n) = \frac{n - 1}{4}
+	\]
+	אז
+	\[
+		\PP\left(\left\lvert\frac{Y_n}{\frac{n - 1}{4}} - 1\right\rvert \ge \epsilon\right)
+		\le \frac{\var(\frac{Y_n}{\frac{n - 1}{4}})}{\epsilon^2}
+		= \frac{\var(Y_n)}{\epsilon^2 {(\frac{n - 1}{4})}^2}
+		\le \frac{o(n)}{\frac{\epsilon^2}{16} {(n - 1)}^2}
+		= o(\frac{1}{n})
+	\]
+\end{example}
+\begin{theorem}[החוק החלש של המספרים הגדולים]
+	תהי $X_1, X_2, \dots$ סדרת משתנים מקריים בלתי־תלויים שווי התפלגות ובעלי תוחלת $\mu$. \\*
+	אם $Y_n = \frac{\sum_{i = 1}^{n} X_i}{n}$, אז לכל $\epsilon > 0$
+	\[
+		\PP(|Y_n - \mu| \ge \epsilon) \xrightarrow[n \to \infty]{} 0
+	\]
+\end{theorem}
+\begin{proof}
+	נוכיח בהנחת קיום שונות, כאשר ניתן להוכיח גם ללא הנחה זו.
+	\[
+		\EE(Y_n)
+		= \frac{\EE(\sum_{i = 1}^{n} X_i)}{n}
+		= \frac{\sum_{i = 1}^{n} \EE(X_i)}{n}
+		= \mu
+	\]
+	ולכן
+	\[
+		\PP(|Y_n - \mu|)
+		\le \frac{\var(Y_n)}{\epsilon^2}
+		= \frac{\var(\frac{\sum_{i = 1}^{n} X_i}{n})}{\epsilon^2}
+		= \frac{\var(\sum_{i = 1}^{n} X_i)}{n^2 \epsilon^2}
+		= \frac{n\var(X_1)}{n^2 \epsilon^2}
+		\xrightarrow[n \to \infty]{} 0
+	\]
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
