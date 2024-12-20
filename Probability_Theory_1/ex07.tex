@@ -21,7 +21,7 @@
 יהיו $X, Y$ משתנים מקריים בלתי־תלויים ובעלי תומך סופי.
 נסתור את הטענה שאם $\EE(|X - Y|) = 0$ אז $\PP(X = Y) = 1$.
 \begin{solution}
-	נניח ש־$X(\omega) = 1$ ו־$Y(\omega) = 2$ לכל $\omega \in \Omega$, אז $|X - Y| = 1$ לכל $\omega$ גם כן, בהתאם $\EE(|X - Y|) = 0$, אבל $\PP(X = Y) = 0$.
+	נגדיר $\Omega = \{-1, 1\}$ וכן $X(\omega) = \omega, Y(\omega) = -\omega$, לכן $\EE(|X - Y|) = 0$, אבל $\PP(X = Y) = 0 \ne 1$.
 \end{solution}
 
 \subquestion{}
@@ -41,13 +41,18 @@
 \subquestion{}
 נניח ש־$X$ משתנה מקרי כך ש־$X^2$ הוא בעל תוחלת, נוכיח שגם $X$ בעל תוחלת.
 \begin{solution}
-	נגדיר $S = \supp X$, אז
-	\[
+	מתקיים
+	\begin{align*}
 		\EE(X^2)
-		= \sum_{s \in S} s \PP(X^2 = s)
-		= \sum_{s \in S} s \PP(X = \sqrt{s})
-		= \sum_{s \in S} |s| \cdot |s \PP(X = s)|
-	\]
+		& = \sum_{s \in \RR_{\ge 0}} s \PP(X^2 = s) \\
+		& = \sum_{s \in \RR_{\ge 0}} \sqrt{s} \cdot \sqrt{s} \PP(X \in \{\sqrt{s}, -\sqrt{s}\}) \\
+		& = \sum_{s' \in \RR_{\ge 0}} s' \cdot s' \PP(X \in \{s', -s'\}) \\
+		& = \sum_{s' \in \RR_{\ge 0}} s' \cdot s' (\PP(X = s') + \PP(X = -s')) \\
+		& = \sum_{s' \in \RR_{\ge 0}} s' \cdot s' \PP(X = s') + \sum_{s' \in \RR_{\ge 0}} s' \cdot s' \PP(X = s') \\
+		& = \sum_{s' \in \RR_{\ge 0}} |s'| \cdot |s' \PP(X = s')| + \sum_{s' \in \RR_{< 0}} |s'| \cdot |s' \PP(X = s')| \\
+		& = \sum_{s' \in \RR} |s'| \cdot |s' \PP(X = s')| \\
+		& = \sum_{s \in \supp X} |s| \cdot |s \PP(X = s)|
+	\end{align*}
 	הוא טור מתכנס בהחלט, ולכן ממבחן התכנסות גם
 	\[
 		\sum_{s \in S} |s \PP(X = s)|
@@ -66,28 +71,28 @@
 \subquestion{}
 נסתור את הטענה כי קיים משתנה מקרי בדיד $X$ אי־שלילי בעל תוחלת סופית כך שמתקיים
 \[
-	\forall N \in \NN, \forall n \ge N, \PP(X \ge n) = \frac{\EE(X)}{n}
+	\exists N \in \NN, \forall n \ge N, \PP(X \ge n) = \frac{\EE(X)}{n}
 \]
 \begin{proof}
 	נניח בשלילה שאכן קיים משתנה מקרי $X$ כזה.
-	נובע אם כך עבור ההסתברות שלו
+	נובע אם כך עבור ההסתברות שלו עבור $n > N + 1$,
 	\[
 		\PP(X = n)
 		= \PP(X \ge n) - \PP(X \ge n - 1)
 		= \frac{\EE(X)}{n} - \frac{\EE(X)}{n - 1}
-		= \EE(X) \frac{1}{n(n + 1)}
+		= \EE(X) \frac{-1}{n(n - 1)}
 	\]
 	ולכן מהגדרת התוחלת
 	\[
 		\EE(X)
 		= \sum_{n \in \NN} n \PP(n)
-		= \sum_{n \in \NN} \EE(X) \frac{1}{n + 1}
+		= \sum_{n = 1}^{N} n \PP(X = n) + \sum_{n \in \NN} \EE(X) \frac{-1}{n - 1}
 	\]
-	דהינו
+	נסמן $C = \sum_{n = 1}^{N} n \PP(X = n)$ ונבחין כי $C \ge 0$ וסופי בפרט, אבל
 	\[
-		1 = \sum_{n = 1}^{\infty} \frac{1}{n + 1}
+		C = \EE(X) (1 + \sum_{n = N + 1}^{\infty} \frac{1}{n - 1})
 	\]
-	וזו כמובן סתירה אלא אם $\EE(X) = 0$. נעיר שמהנתון התומך הוא לא סופי, אחרת הטענה לא מתקיימת. \\*
+	וזו כמובן סתירה מהתבדרות הטור ההרמוני, לכן $\EE(X) = 0$. נעיר שמהנתון התומך הוא לא סופי, אחרת הטענה לא מתקיימת. \\*
 	נניח ש־$\EE(X) = 0$, לכן מהנתון התפלגות $X$ קבועה, ובהתאם לאינסופיות התומך היא 0 בלבד, אבל זאת סתירה להגדרת התפלגות, ולכן קיבלנו סתירה.
 \end{proof}
 
