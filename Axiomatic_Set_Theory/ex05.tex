@@ -1,0 +1,102 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 4 Answer Sheet --- Axiomatic Set Theory, 80650}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+Assuming ZF.\@
+
+\subquestion{}
+Assuming DC, We'll prove that a relation R of a set X is well founded if and only if there is no infinite sequence $\langle x_n \mid n < \omega \rangle \in X^\omega$ such that for all $n$, $x_{n + 1} R x_n$.
+\begin{proof}
+	We assume R is well founded.
+	Let us assume for contradiction that $\langle x_n \mid n < \omega \rangle$ is a sequence such that $\forall n \in \omega, x_{n + 1} R x_n$.
+	We define a subset $Y \subseteq X$ from the list by defining $x_n \in Y$ for all $n$. $R$ is well founded on $X$ therefore exists $y \in Y$ such that $\forall n, y R x_n \in Y$.
+	$y \in Y$ then exists $m \in \omega$, $y = x_m$, then in particular $x_{m + 1} R x_m$ in contradiction to $R$ being well founded.
+
+	In the opposite direction, let us assume there is no such sequence, we'll prove that $R$ is well founded as a relation over $X$. \\*
+	Let $Y \subseteq X$. If there is an item $y \in Y$ such that there is no $z \in Y$ such that $z R y$ then $R$ is well founded, so we assume otherwise.
+	For every element $y \in Y$ there is $z \in Y$ such that $z R y$ from out assumption, then by DC there is an infinite sequence $\langle y_n \mid n < \omega \rangle \in Y^\omega$ such that $y_{n + 1} R y_n$ for all $n$.
+	Pay attention that DC was used on the reverse relation of $R$ instead of $R$ directly.
+	From out initial assumption we get contradiction, then $R$ is indeed well founded.
+\end{proof}
+
+\subquestion{}
+We'll show that DC is equivalent to the following version of the L\"owenheim-Skolem theorem: \\*
+For every infinite structure $M$ over an countable language, there is a countable elementary substructure $M' \prec M$.
+\begin{proof}
+	Watch the recording to see what Yair says
+\end{proof}
+
+\question{}
+Assuming ZF, Let $A$ be a class. We'll use Lev\'y Reflection to conclude the following version of Lev\'y Reflection for $A$: \\*
+For every formula $\varphi$ with $n$ free variables, there is a closed unbounded class of ordinals $C_{A, \varphi}$ such that for every $\delta \in C_{A, \varphi}$ and $p_0, \dots, p_{n - 1} \in V_\delta \cap A$,
+\[
+	\langle A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})
+	\iff \langle V_\delta \cap A, \in \rangle \models \varphi(p_0, \dots, p_{n - 1})
+\]
+\begin{proof}
+	From Lev\'y Reflection there is $\alpha \in Ord$ such that,
+	\[
+		\forall a_0, \dots, a_{n - 1} \in V_\alpha, \varphi(a_0, \dots, a_{n - 1}) \iff V_\alpha \models \varphi(a_0, \dots, a_{n - 1})
+	\]
+	and there is a club $C_\varphi$ of such ordinals $\alpha$. It is clear that $C_{A, \varphi} \overset{def}{=} C_\varphi \cap A$ is a club as well, and let $\delta \in C_{A, \varphi}$. \\*
+	Assume $p_0, \dots, p_{n - 1} \in V_\delta \cap A$ and that $A \models \varphi(p_0, \dots, p_{n - 1})$, then $p_0, \dots, p_{n - 1} \in V_\delta$ and what
+
+
+	We can prove by induction on $A$ by defining $A = \{ \langle x_0, \dots, x_{m - 1} \rangle \in V \mid \psi(x_0, \dots, x_{m - 1}) \}$ and prove by induction on $\psi$. \\
+	For atomic formulas, we can deduce that $\psi \in \{ (x = x), (x = y), (x \in y), (x \in x) \}$ and therefore $A = V, \emptyset$ and by Lev\'y reflection the statement is true. \\
+	For $\psi_0, \psi_1$ we assume the statement is true, then $C_{A, \psi_0}, C_{A, \psi_1}$ exist fulfilling the statement,
+	then we can define $C_{A, \psi_0} \cap C_{A, \psi_1}$ for $\psi_0 \land \psi_1$, the statement holds for similar reasons for its holding in the proof of 7.4 (in lecture notes).
+	The same statement can be used for $\psi = \lnot \psi_0$. \\
+	We assume the statement is true for $\psi_0$ and define $\psi = \exists v, \psi_0$ in order to finish the induction process.
+	We can use the same argument from the proof of the theorem in its general form, as it requires only the existence of the clubs and their closeness.
+\end{proof}
+
+\question{}
+\begin{definition*}[Almost Universal class]
+	Let $A$ be a transitive class, we say that $A$ is almost universal if for every ordinal $\gamma$, $A \cap V_\gamma \in A$.
+\end{definition*}
+\begin{definition*}[$\Delta_0$-Separation]
+	A class $A$ will be called a model of $\Delta_0$-Separation if for every $a, p_0, \dots, p_{n - 1} \in A$ and a $\Delta_0$ formula $\varphi(x, y_0, \dots, y_{n - 1})$,
+	\[
+		b = \{ w \in a \mid \varphi(w, p_0, \dots, p_{n - 1})\} \in A
+	\]
+\end{definition*}
+Let $A$ be a transitive class which is almost universal, and let us assume that $A$ is a model of $\Delta_0$-Separation.
+
+\subquestion{}
+We will prove that $Ord \subseteq A$.
+\begin{proof}
+	We will prove the statement using induction over the ordinals. \\
+	As an induction basis, notice that $A \cap V_\emptyset = \emptyset \in A$. \\
+	Let us assume the statement is true for $\alpha$ and show that it is also true for $\alpha + 1$.
+	We know $\alpha + 1 \in V_{\alpha}$, and using $\Delta_0$-Separation on $V_{\alpha + 1}$ we can deduce from the induction hypothesis that $\{\alpha\} \in A$, and from transitivity $\alpha + 1 \in A$ as well. \\
+	Assume the statement is true for all $\beta < \alpha$ and prove it also true for $\alpha$.
+	$\beta \in V_\alpha \cap A$ for every $\beta < \alpha$, therefore we can use $\Delta_0$-Separation using localized version of formula representing an ordinal,
+	and conclude that $\alpha \in V_\alpha \cap A$, therefore $\alpha \in A$, completing the induction step.
+\end{proof}
+\begin{remark}
+	$A$ is a model of Extensionality, Foundation, Empty Set and Infinity.
+\end{remark}
+
+\subquestion{}
+We will show that $A$ is a model of Union and Power Set.
+\begin{proof}
+	Let $x \in A$ be a set, remember we defined $\bigcup x = \{ z \mid \exists y \in x, z \in y \}$, this formula is $\Delta_0$, then we can separate $\operatorname{trcl}(x)$ using it by the assumption of $\Delta_0$-Separation.
+	Therefore $A$ is a model of Union.
+
+	In a similar way, we defined $\mathcal{P}(x) = \{ y \mid y \subseteq x \}$, this is of course a $\Delta_0$ formula that can be used on the least cardinal $\operatorname{trcl}(x) < \kappa$.
+	Therefore $A$ is also a model of Power Set.
+\end{proof}
+
+\subquestion{}
+We'll prove that $A$ satisfies the Scheme of Replacement, and in particular Pairing and Separation.
+\begin{proof}
+	It seems to be the same exact thing with $\sup_{y \in x} \operatorname{trcl} y$ and another $\Delta_0$-Separation.
+\end{proof}
+
+\end{document}
