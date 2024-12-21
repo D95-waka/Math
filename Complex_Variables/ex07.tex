@@ -1,0 +1,262 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 07 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נחשב את האינטגרלים הבאים על־ידי שימוש במשפט קושי.
+
+\subquestion{}
+\[
+	J = \int_0^\infty \frac{1 - \cos(x)}{x^2}\ dx
+\]
+על־ידי שימוש בהרכבת המסילות
+\begin{align*}
+	& \gamma_1(t) = (1 - t) \epsilon + t r & t \in [0, 1] \\
+	& \gamma_2(t) = r e^{it} & t \in [0, \pi] \\
+	& \gamma_3(t) = (1 - t) (-r) + t (-\epsilon) & t \in [0, 1] \\
+	& \gamma_4(t) = \epsilon e^{i(\pi - t)} & t \in [0, \pi] \\
+\end{align*}
+\begin{solution}
+	נגדיר $f(z) = \frac{1 - e^{iz}}{z^2}$ ונבחין כי $J = \re(\int_0^\infty f)$. \\
+	לכל $\epsilon, r \in \RR$ האינטגרל מתאפס ממשפט קושי, אנו גם יודעים שהאינטגרל מתכנס מאינפי 2 ולכן נעבור לחישובו. \\
+	נבדוק את האינטגרל על $\gamma_2$:
+	\[
+		I_2 = \int_{\gamma_2} f(z)\ dz
+	\]
+	נבחין כי
+	\[
+		\max_{z \in \gamma_2} |f(z)|
+		= \max_{z \in \gamma_2} \left\lvert \frac{1 - e^{iz}}{z^2} \right\rvert
+		\le \max_{z \in \gamma_2} \frac{|1 - e^{iz}|}{r^2}
+		\le \frac{1 + 1 \cdot \max_{t \in [0, \pi]} e^{-\sin t}}{r^2}
+		= \frac{2}{r^2}
+	\]
+	ולכן מאי־שוויון ML,
+	\[
+		I_2 \le \frac{2}{r^2} \cdot \frac{2\pi r}{2} = \frac{2}{r}
+	\]
+	לכן $I_2 \to 0$. \\
+	נעבור לבחינת
+	\[
+		I_4 = \int_{\gamma_4} f(z)\ dz
+	\]
+	הפעם מקירוב לינארי כפי שראינו בהרצאה
+	\[
+		\int_{\gamma_4} f
+		= \int_{\gamma_4} \frac{1 - (1 + iz + o(|z|))}{z^2}\ dz
+		= -\int_0^\pi \frac{i e^{i(\pi - t)} + o(|\epsilon e^{i(\pi - t)})}{\epsilon e^{i(\pi - t)} \cdot \epsilon e^{i(\pi - t)}} (-i \epsilon) e^{i(\pi - t)}\ dt
+		= i \int_0^\pi \frac{i \epsilon e^{i(\pi - t)} + o(|\epsilon|)}{\epsilon e^{i(\pi - t)}}\ dt
+		\to -\pi
+	\]
+	נבחין כי גם
+	\[
+		I_1 = \int_{\gamma_1} f(z)\ dz
+		= \int_0^1 \frac{1 - e^{i(1 - t)\epsilon + itr}}{{((1 - t)\epsilon + tr)}^2}\ dt
+		= \int_\epsilon^r \frac{1 - e^{it}}{t^2}\ dt
+	\]
+	וכן
+	\[
+		I_3
+		= \int_{-r}^{-\epsilon} \frac{1 - e^{it}}{t^2}\ dt
+		= \int_{r}^{\epsilon} -\frac{1 - e^{-it}}{t^2}\ dt
+		= \int_{\epsilon}^r \frac{1 - e^{-it}}{t^2}\ dt
+	\]
+	ולכן
+	\[
+		I_1 + I_3
+		= 2 \re(\int_\epsilon^r \frac{1 - e^{it}}{t^2}\ dt)
+		= 2 \int_\epsilon^r \frac{1 - \cos t}{t^2}\ dt
+	\]
+	ונוכל להסיק $I_1 + I_3 \to 2 J$. \\
+	ממשפט קושי נוכל להסיק
+	\[
+		I_1 + I_2 + I_3 + I_4 = 0
+		\implies
+		-\pi + 2 J = 0
+	\]
+	ולכן $J = \frac{\pi}{2}$
+\end{solution}
+
+\subquestion{}
+נחשב את
+\[
+	J = \int_0^\infty \frac{x^{m - 1}}{x^n + 1}\ dx
+\]
+עבור $n > m$ טסעיים על־ידי שימוש במסילה הבאה
+\begin{align*}
+	& \gamma_1(t) = t & t \in [0, r] \\
+	& \gamma_2(t) = r e^{it} & t \in [0, \frac{2\pi}{n}] \\
+	& \gamma_3(t) = e^{i \frac{2\pi}{n}}(r - t) & t \in [0, r] \\
+	& \gamma_4(t) = e^{\frac{\pi i}{n}} + \epsilon e^{-it} & t \in [0, 2\pi]
+\end{align*}
+\begin{solution}
+	נגדיר
+	\[
+		f(z) = \frac{z^{m - 1}}{z^n + 1}
+	\]
+	ונבחין כי הפונקציה מוגדרת ורציפה בכל נקודה פרט ל־$z = e^{\frac{\pi i}{n}}$, לכן התחום הסגור שהמסילות מגדירות הוא תחום בו $f$ רציפה כך שהוא מקיים את תנאי משפט קושי המורחב (את תנאי רגל שמאל) ולכן הוא תקף. \\
+	כמובן מאינפי 2 האינטגרל המבוקש מתכנס ויש הצדקה לדבר על ערכו, ונגדיר
+	\[
+		I_1 = \int_{\gamma_1} f(z)\ dz, \quad
+		I_2 = \int_{\gamma_2} f(z)\ dz, \quad
+		I_3 = \int_{\gamma_3} f(z)\ dz, \quad
+		I_4 = \int_{\gamma_4} f(z)\ dz
+	\]
+	אז מהמשפט נקבל $I_1 + I_2 + I_3 + I_4 = 0$ לכל $\epsilon, r > 0$. \\
+	נעבור לבדיקת האינטגרלים הללו.
+	\[
+		I_1
+		= \int_0^r \frac{t^{m - 1}}{t^n + 1}\ dt
+		\to J
+	\]
+	וכן
+	\[
+		I_3
+		= \int_0^r \frac{e^{i \frac{2\pi (m - 1)}{n}} {(r - t)}^{m - 1}}{{(r - t)}^n + 1}\ dt
+		= e^{i \frac{2\pi (m - 1)}{n}} \int_0^r \frac{t^{m - 1}}{t^n + 1}\ dt
+		\to e^{i \frac{2\pi (m - 1)}{n}} J
+	\]
+	נחסום את $f$ ב־$\gamma_2$ ונקבל
+	\[
+		\sup_{t \in [0, \frac{2\pi}{n}]} |f(\gamma_2(t))|
+		\le \sup_{t \in [0, \frac{2\pi}{n}]} \frac{r^{m - 1}}{r^n + 1}
+		= \frac{r^{m - 1}}{r^n + 1}
+	\]
+	ולכן מאי־שוויון ML והנתון אודות $n > m$,
+	\[
+		I_2
+		\le \frac{r^{m - 1}}{r^n + 1} \cdot \frac{2\pi r}{n}
+		= \frac{r^m}{r^n + 1} \cdot \frac{2\pi}{n}
+		\to 0
+	\]
+	נעבור לחישוב $I_4$,
+	\[
+		I_4
+		= \int_{0}^{2\pi} \frac{{(e^{\frac{\pi i}{n}} + \epsilon e^{it})}^{m - 1}}{{(e^{\frac{\pi i}{n}} + \epsilon e^{it})}^n + 1}\ dt
+		= \int_{0}^{2\pi} \frac{e^{\frac{(m - 1) \pi i}{n}} + o(\epsilon)}{2 + o(\epsilon)}\ dt
+		\to \int_{0}^{2\pi} \frac{e^{\frac{(m - 1) \pi i}{n}}}{2}\ dt 
+		= \pi e^{\frac{(m - 1) \pi i}{n}}
+	\]
+	ולכן
+	\[
+		J + e^{i \frac{2\pi(m - 1)}{n}} J + 0 + \pi e^{i \frac{\pi(m - 1)}{n}} = 0
+	\]
+	ובפרט
+	\[
+		J + \cos(\frac{2\pi(m - 1)}{n}) J = - \pi \cos(\frac{\pi(m - 1)}{n})
+	\]
+	ולכן
+	\[
+		J = \frac{- \pi \cos(\frac{\pi(m - 1)}{n})}{1 + \cos(\frac{2\pi(m - 1)}{n})}
+	\]
+\end{solution}
+
+\question{}
+יהי $r > 0$ ו־$\gamma_r : [0, \pi] \to \CC$ על־ידי $\gamma_r(t) = r e^{it}$. \\
+אם $g : \overline{B}(0, r) \to \CC$ רציפה בכל תחומה ואנליטית ב־$B(0, r)$ אז נוכיח שמתקיים
+\[
+	\left\lvert \int_{\gamma_r} e^{i a z} g(z)\ dz \right\rvert \le M \cdot \frac{\pi}{a}
+\]
+עבור $M = \max_{t \in [0, \pi]} |g(\gamma_r(t))|$ לכל $a > 0$.
+\begin{proof}
+	נרצה להשתמש באי־שוויון ML, ולכן נחפש חסם לפונקציה הפנימית,
+	\begin{align*}
+		\sup_{0 \le t \le \pi} |e^{i a \gamma_r(t)} g(\gamma_r(t))|
+		& = \sup_{0 \le t \le \pi} |e^{i a r e^{it}}| \cdot |g(z)| \\
+		& \le M \sup_{0 \le t \le \pi} |e^{i a r (\cos t + i \sin t)}| \\
+		& = M \sup_{0 \le t \le \pi} |e^{i a r \cos t}| \cdot |e^{-ar \sin t}| \\
+		& = M \sup_{0 \le t \le \pi} e^{-ar \sin t} \\
+		& = \frac{M}{e^{ar}} \\
+		& \le \frac{M}{a r}
+	\end{align*}
+	וכן $L(\gamma_r) = \pi r$, ונובע
+	\[
+		M L(\gamma_r) \le M \cdot \frac{\pi r}{a r} = M \frac{\pi}{a}
+	\]
+	כפי שרצינו להראות.
+\end{proof}
+
+\question{}
+יהי $G \subseteq \CC$ תחום כוכבי. \\
+נוכיח כי לכל פונקציה אנליטית $f : G \to \CC$ קיימת פונקציה קדומה.
+\begin{proof}
+	תהי $z_0 \in G$ נקודה כך שלכל $z \in G$ גם $[z_0, z] \subseteq G$, קיימת כזו מהיות $G$ כוכבי. \\
+	נגדיר מסילה $\gamma_z(t) = z_0 (1 - t) + z t$ וכן את הפונקציה $F(z) = \int_{\gamma_z} f(w)\ dw$. \\
+	אנו רוצים להראות ש־$F$ רציפה וכן ש־$F' = f$. \\
+	תהי $z$ ותהי $z' \in B(z, \epsilon)$, אז ממשפט קושי למשולשים מתקיים
+	\[
+		|F(z) - F(z')| = \left\lvert \int_{[z', z]} f(w)\ dw \right\rvert \le M |z' - z| = M \epsilon
+	\]
+	עבור $M = \sup_{w \in [z, z']} f(w)$, אז גם
+	\[
+		\lim_{z' \to z} \frac{|F(z') - F(z) - f(z)(z' - z)|}{|z' - z|}
+		\le \lim_{z' \to z} \sup_{w \in [z, z']} f(w) - f(z)
+		= 0
+	\]
+	ומצאנו כי הפונקציה $F$ גזירה כך ש־$f$ נגזרתה.
+\end{proof}
+
+\question{}
+ץהי $f$ פונקציה הנתונה על־ידי טור חזקות מתכנס עם רדיוס התכנסות $r$ ונסמן
+\[
+	f(z) = \sum_{n = 0}^{\infty} a_n z^n
+\]
+
+\subquestion{}
+נוכיח כי רדיוס ההתכנסות של טור הנגזרות הנתון על־ידי
+\[
+	g(z) = \sum_{n = 1}^{\infty} n a_n z^{n - 1}
+\]
+הוא $r$.
+\begin{proof}
+	יהי $z \in B(0, r)$, אז $f(z)$ מוגדר ואף מתכנס בהחלט בנקודה זו, כלומר
+	\[
+		\sum_{n = 0}^{\infty} |a_n| \cdot {|z|}^n
+	\]
+	מוגדר אף הוא, זאת ראינו בתחילת הקורס. \\
+	נבחין שזהו טור ממשי ולכן נוכל לגזור אותו איבר איבר ויתקבל
+	\[
+		\sum_{n = 1}^{\infty} n |a_n| {|z|}^{n - 1}
+	\]
+	טור מתכנס, אבל זוהי התכנסות בהחלט של הטור אותו אנו מחפשים, לכן $g(z)$ מוגדר ומתכנס בהחלט לכל $z \in B(0, r)$, לכן רדיוס ההתכנסות של $g$ הוא $r$.
+\end{proof}
+
+\subquestion{}
+נוכיח שמתקיים
+\[
+	f(z) = f(0) + \int_{[0, z]} g(w)\ dw
+\]
+\begin{proof}
+	נבחין כי מהשאלה הקודמת והעובדה שכדור הוא תחום כוכבי קיימת $G$ פונקציה הולומורפית כך ש־$G' = g$, נבחין כי קיימת יחידה כזו כך שגם $G(0) = f(0)$, ונראה ש־$f = G$.
+	\[
+		\left\lvert f(0) + \int_{[0, z]} g(w)\ dw - f(z) \right\rvert
+		\le \left\lvert \int_{[0, z]} \sum_{n = 1}^{\infty} n a_n z^n\ dw - \sum_{n = 1}^{\infty} a_n z^n \right\rvert
+		\le \int_{[0, z]} |g(w)|\ dw
+	\]
+	יהי $N \in \NN$, אז נגדיר $f_N, g_N$ התחיליות של הטורים, כלומר $f_N \to f, g_N \to g$, ולכן
+	\[
+		\left\lvert f_N(z) - f(0) - \int_{[0, z]} g_N(w)\ dw \right\rvert
+		= \left\lvert \sum_{n = 1}^{N} a_n z^n - \int_{[0, z]} \sum_{n = 1}^{N} n a_n z^{n - 1}\ dw \right\rvert
+		= \left\lvert \sum_{n = 1}^{N} a_n z^n - \sum_{n = 1}^{N} \int_{[0, z]} n a_n z^{n - 1}\ dw \right\rvert
+		= 0
+	\]
+	כאשר המהלך האחרון נובע מאינטגרביליות פולינום שראינו כבר, ועתה נוכל להסיק גם
+	\[
+		\lim_{N \to \infty} |f(z) - f(0) - \int_{[0, z]} g(w)\ dw| = 0
+	\]
+	ולכן ממשפט התכנסות במידה שווה נסיק $f(z) = f(0) + \int_{[0, z]} g(w)\ dw$.
+\end{proof}
+
+\subquestion{}
+נוכיח ללא שימוש במשפט קושי שלכל מסילה סגורה $\gamma : I \to B(0, r)$ מתקיים
+\[
+	\int_\gamma g(z)\ dz = 0
+\]
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
