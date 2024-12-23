@@ -256,7 +256,82 @@
 	\int_\gamma g(z)\ dz = 0
 \]
 \begin{proof}
-	
+	יהי $N \in \NN$ ונגדיר חלוקה למסילה $\gamma$ על־ידי $[\gamma_0, \dots, \gamma_{n - 1}]$ כך ש־$\gamma = \gamma_0 + \cdots + \gamma_{n - 1}$. \\
+	עוד נגדיר
+	\[
+		I = \int_\gamma g(z)\ dz
+	\]
+	נסמן את נקודות הקצה של $\gamma_i$ ב־$a_i, b_i$ ונגדיר
+	\[
+		I_i = \int_{\gamma_i} g(z)\ dz + \int_{[0, a_i]} f(z)\ dz + \int_{[b_i, 0]} f(z)\ dz
+	\]
+	לבסוף נבחין כי
+	\[
+		I = I_1 + \cdots I_{n - 1}
+	\]
+	ישירות מהגדרה ומהעובדה ש־$a_{i + 1} = b_i$. \\
+	מתוצאת הסעיף הקודם נובע גם
+	\[
+		I_i = f(b_i) - f(a_i) + \int_{\gamma_i} g(z)\ dz
+	\]
+	ולכן מרציפות $f$ נובע ש־$N \to \infty$ גורר $I_i = \int_{\gamma_i} g(z)\ dz$. \\
+	כאשר $N$ מספיק קטן $I_i$ שואף לקירוב הפוליגונלי של $\gamma$ ולכן משפט קושי למשולשים (אותו אנו יכולים להוכיח מחדש) תקף ונובע ש־$I_i \to 0$,
+	ולכן $\int_{\gamma_i} g(z)\ dz \to 0$ לכל $0 \le i < n$ וכן $I \to 0$, כלומר $I = 0$ כמבוקש.
+\end{proof}
+
+\subquestion{}
+נשתמש בהגדרת הגבול ונוכיח כי $f$ אנליטית ב־$B(0, r)$ כך ש־$f' = g$.
+\begin{proof}
+	\begin{align*}
+		f'(z_0)
+		& = \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{\int_{[0, z_0]} g(w)\ dw - \int_{[0, z]} g(w)\ dw}{z - z_0} \\
+		& = \lim_{z \to z_0} \frac{\int_{[z, z_0]} g(w)\ dw}{z - z_0} \\
+		& = \lim_{z \to z_0} \int_{[z, z_0]} \frac{g(w)}{z - z_0}\ dw \\
+		& = \lim_{z \to z_0} \int_0^1 \frac{g(\gamma(t)) \cdot (z - z_0)}{z - z_0}\ dw \\
+		& = \lim_{z \to z_0} \int_0^1 g(\gamma(t))\ dt \\
+		& = \lim_{z \to z_0} g(z_0) - g(z - z_0) \\
+		& = g(z_0)
+	\end{align*}
+\end{proof}
+
+\question{}
+תהי $K \subseteq \CC$ קבוצה קמורה קומפקטית.
+
+\subquestion{}
+לכל $\delta > 0$ תהי הקבוצה $K_\delta = \{z \in \CC \mid d(z, K) < \delta\}$. \\
+נראה ש־$K_\delta$ קבוצה פתוחה וקמורה.
+\begin{proof}
+	תהי נקודה $z \in K$, אז ברור ש־$z \in K_\delta^\circ$ מהגדרה, ואילו $z \in K_\delta \setminus K$ אז קיימת $w \in K$ כך ש־$d(z, w) < \delta$, ולכן נוכל לבנות כדור פתוח עם $r < \delta - d(z, w)$ ונקבל שהנקודה פנימית. \\
+	נעבור להוכחת הקמירות.
+	תהינה שתי נקודות $z, z' \in K_\delta$, אז קיימות $w, w' \in K$ כך ש־$d(z, w), d(z', w') < \delta$. \\
+	מקמירות $K$ נסיק $[w, w'] \subseteq K$ ונרצה להראות שגם $[z, z'] \subseteq K_\delta$.
+	תהי $z (1 - t) + z' t$ כלשהי עבור $t \in [0, 1]$ ולכן
+	\begin{align*}
+		d(z (1 - t) + z' t, [w, w'])
+		& = \inf_{0 \le s \le 1} d(z (1 - t) + z' t, w (1 - s) + w' s) \\
+		& \le \inf_{0 \le s \le 1} |z (1 - t) + z' t - (w (1 - s) + w' s)| \\
+		& \le |(z - w) (1 - t) + (z' - w') t| \\
+		& \le |z - w| (1 - t) + |z' - w'| t \\
+		& < \delta (1 - t) + \delta t \\
+		& = \delta
+	\end{align*}
+	ומצאנו כי $K_\delta$ אכן קמורה.
+\end{proof}
+
+\subquestion{}
+נוכיח כי לכל קבוצה פתוחה $K \subseteq U \subseteq \CC$ קיים $\delta > 0$ כך ש־$K_\delta \subseteq U$.
+\begin{proof}
+	מידת לבג של השפה של $K$ היא אפס ולכן קיים $\epsilon$־כיסוי לשפה, ולכן נובע ישירות ש־$K_{\epsilon / 2} \subseteq U$ ממשפטים רלוונטיים שהוכחו באינפי 3.
+\end{proof}
+
+\subquestion{}
+נאמר שפונקציה $f : K \to \CC$ היא אנליטית אם קיימת קבוצה פתוחה $K \subseteq U \subseteq \CC$ ופונקציה אנליטית  $\tilde{f} : U \to \CC$ כך ש־$\tilde{f} \mid_K = f$. \\
+נסיק שלכל פונקציה $f$ כזאת ניתן לבחור $U$ כך של־$\tilde{f}$ תהיה קיימת פונקציה קדומה.
+\begin{proof}
+	ממשפט קושי לקבוצות קמורות אנו יודעים שקיימת קדומה $F : K \to \CC$ כך ש־$F' = f$. \\
+	עוד אנו יודעים ש־$F$ היא אנליטית ולכן ניתן לייצוג כטור חזקות בעל רדיוס התכנסות כלשהו המכסה את $K$, ונבחר מספר $\delta$ קטן מרדיוס זה, ולכן $\tilde{F} : K_\delta \to \CC$ רציפה ו־$\tilde{F} \mid_K = F$.
+	נגדיר $\tilde{f} = \tilde{F}'$ ולכן $\tilde{f} : K_\delta \to \CC$ ו־$\tilde{f} \mid_K = f$.
 \end{proof}
 
 \end{document}
