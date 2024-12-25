@@ -1,0 +1,152 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $L$ שפה לתחשיב יחסים, תהי $\varphi$ נוסחה ונניח ש־$x \in Var$.
+
+\subquestion{}
+נוכיח שלכל מבנה $\mathcal{A}$ ל־$L$ ולכל השמה $\sigma : Var \to A$ מתקיים $\mathcal{A} \models \varphi(\sigma)$, אם ורק אם לכל מבנה והשמה כאלה מתקיים $\mathcal{A} \models \forall x \varphi(\sigma)$.
+\begin{proof}
+	נניח את הכיוון הראשון, נקבע $\mathcal{A}$ כלשהו ונבחין כי $\mathcal{A} \models \varphi(\sigma)$ לכל הצבה $\sigma$ כזו.
+	לכן בפרט לכ הצבה, גם $\mathcal{A} \models \varphi(\sigma[x : a])$ לכל $a \in A$.
+	אבל במצב זה נבחין כי לכל $a \in A$ הטענה מתקיימת, כלומר $\mathcal{A} \models \forall x \varphi(\sigma)$, ומצאנו כי הטענה אכן חלה.
+
+	לכיוון ההפוך נקבע שוב $\mathcal{A}$ כזה המקיים את הטענה והפעם נקבל שאם $\mathcal{A} \models \forall x \varphi(\sigma)$ אז בפרט לכל $a \in A$ מתקיים $\mathcal{A} \models \varphi(\sigma[x : a])$.
+	נוכל אם כן לבנות כל $\sigma : Var \to A$ כך ש־$\mathcal{A} \models \varphi(\sigma)$.
+\end{proof}
+
+\subquestion{}
+נוכיח שלכל מבנה $\mathcal{A}$ ל־$L$ ולכל השמה $\sigma : Var \to A$ מתקיים $\mathcal{A} \models \varphi(\sigma)$ אם ורק אם לכל הכללה $\psi$ של $\varphi$ ולכל מבנה $\mathcal{A}$ ל־$L$ מתקיים $\mathcal{A} \models \psi$.
+\begin{proof}
+	נוכיח את הטענה באינדוקציה. \\
+	נבחין כי בסיס האינדוקציה הוא למעשה טענת הסעיף הקודם, ולכן נסיק שהיא אכן חלה. \\
+	נניח ש־$FV(\varphi) = \{ x_0, \dots, x_{n - 1} \}$ וכן ש־$\psi = \forall x_0 \dots \forall x_{n - 2} \varphi(x_0, \dots, x_{n - 1})$ ושהטענה חלה עבור פסוקים אלה, ונבחן את $\phi = \forall x_{n - 1} \psi(x_{n - 1})$.
+	אז מאותה הוכחה של סעיף א' נובע שהטענה מתקיימת עבור $\phi$ ביחס ל־$\psi$ ולכן השלמנו את מהלך האינדוקציה.
+\end{proof}
+
+\question{}
+תהי $L = \{ p_0, \dots, p_{n - 1} \}$ שפה לתחשיב פסוקים, $\alpha \in form_L$. \\
+תהי $L'$ שפה לתחשיב יחסים ו־$\varphi_0, \dots, \varphi_{n - 1} \in form_{L'}$. \\
+תהי $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}}$ נוסחה המתקבלת מהחלפת כל מופע של $p_i$ ב־$\varphi_i$ בו־זמנית.
+
+\subquestion{}
+נוכיח שזוהי אכן נוסחה.
+\begin{proof}
+	נוכיח באינדוקציה על מבנה הפסוק בתחשיב פסוקים. \\
+	עבור הבסיס נניח ש־$\alpha = p_i$ עבור $i \in [n]$, ולכן מההגדרה $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}} = \varphi_i$ וזוהי כמובן נוסחה. \\
+	נניח שהטענה מתקיימת עבור $\alpha$ ונבחן את $(\lnot \alpha)$. נניח $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}} = \psi$,
+	ולכן מההגדרה ${(\lnot \alpha)}_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}} = (\lnot \psi)$ וזוהי כמובן נוסחה. \\
+	באופן דומה אם $\alpha, \beta$ מקיימות את הטענה אז קיימות החלפות $\psi_0, \psi_1$ בהתאמה עבורן, וברור ש־$(\psi_0 \square \psi_1)$ נוסחה לכל $\square \in \mathcal{B}$,
+	אבל זוהי גם תוצאת ההחלפה של $(\alpha \square \beta)$, ולכן השלמנו את מהלך האינדוקציה והטענה אכן מתקיימת.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $\alpha$ טאוטולוגיה אז גם $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}}$ היא טאוטולוגיה כנוסחה ב־$L$.
+\begin{proof}
+	נבחין כי יש משמעות לשאילת שאלה זו בשל תוצאת הסעיף הקודם.
+	נניח ש־$f : form_L \to form_{L'}$ ההחלפה שהגדרנו קודם לכן, ונגדיר גם $g : form_{L'} \to form_{L_{prop}'}$ הבנייה שהגדרנו בהרצאה להחלפת נוסחות יסודיות.
+	נבחין ש־$g \circ f$ היא פונקציה $form_L \to form_{L_{prop}'}$ פונקציית החלפה בין שפות בתחשיב פסוקים המקיימות את טענת שאלה 1 במטלה 3, לכן הרכבה זו משמרת שקילות טאוטולוגית.
+	כלומר אם $\alpha$ טאוטולוגיה אז גם $(g \circ f)(\alpha)$ כפי שרצינו להראות.
+\end{proof}
+
+\subquestion{}
+נסיק שנוסחה בשפה לתחשיב יחסים היא טאוטולוגיה אם ורק אם היא מהצורה $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}}$ עבור טאוטולוגיה $\alpha$ ושפה כלשהי לתחשיב פסוקים $L'$.
+\begin{proof}
+	נבחין כי הכיוון השני הוא למעשה טענת הסעיף הקודם, לכן נניח ש־$\alpha$ היא טאוטולוגיה ונוכיח שהיא מהצורה המבוקשת.
+\end{proof}
+
+\question{}
+תהי שפה $L$ לתחשיב פסוקים ויהיו $\psi_0, \psi_1 \in form_L$, נוכיח שאם $\vdash \psi_0$ וגם $\vdash (\psi_0 \to \psi_1)$ אז $\vdash \psi_1$.
+\begin{proof}
+	TODO
+\end{proof}
+
+\question{}
+תהי $L$ שפה לתחשיב פסוקים ויהיו $\psi_0, \psi_1, \psi_2 \in form_L$, בסעיפים הבאים נכתוב עצי היסק במערכת ההיסק KEP עבור כל טענה.
+
+\subquestion{}
+$\psi_0 \vdash (\psi_0 \lor \psi_1)$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$(\psi_0 \lor \psi_1) \vdash (\psi_1 \lor \psi_0)$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$((\psi_0 \lor \psi_1) \lor \psi_2) \vdash (\psi_0 \lor (\psi_1 \lor \psi_2))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$((\psi_0 \land \psi_1) \land \psi_2) \vdash (\psi_0 \land (\psi_1 \land \psi_2))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$\vdash (((\psi_0 \lor \psi_1) \land \psi_2) \leftrightarrow ((\psi_0 \land \psi_2) \lor (\psi_1 \land \psi_2)))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$(\psi_0 \to \psi_1), (\psi_1 \to \psi_0) \vdash (\psi_0 \leftrightarrow \psi_1)$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$\vdash ((\psi_0 \land (\lnot \psi_0)) \to (\psi_1 \land (\lnot \psi_1)))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$\vdash (\psi_0 \to (\psi_1 \to \psi_0))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$\vdash (((\lnot \psi_0) \to (\lnot \psi_1)) \to (\psi_1 \to \psi_0))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\subquestion{}
+$\vdash ((\psi_0 \to (\psi_1 \to \psi_2)) \to ((\psi_0 \to \psi_1) \to (\psi_0 \to \psi_2)))$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\question{}
+נאמר שכלל היסק ניתן להשמטה אם לכ שפה $L$ לתחשיב פסוקים ולכל קבוצת פסוקים $\Sigma$ ופסוק $\varphi$ כך ש־$\Sigma \vdash \varphi$ קיים עץ היסק לטענה כך שהכלל אינו מופיע בה, לכל כלל בסעיפים הבאים נוכיח שהוא ניתן להשמטה.
+
+\subquestion{}
+$\frac{(A \to B), (\lnot B)}{(\lnot A)}$
+\begin{proof}
+	TODO
+\end{proof}
+
+\subquestion{}
+$\frac{(A \leftrightarrow B), A}{B}$
+\begin{proof}
+	TODO
+\end{proof}
+
+\subquestion{}
+$\frac{(A \leftrightarrow B), (\lnot B)}{(\lnot A)}$
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}

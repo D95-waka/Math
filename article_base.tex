@@ -24,6 +24,7 @@
 \setcounter{secnumdepth}{0}		% Remove default number tags from sections, this won't do well with theorems
 \AtBeginDocument{\setlength{\belowdisplayskip}{3pt}}
 \AtBeginDocument{\setlength{\abovedisplayskip}{3pt}}
+\graphicspath{ {../images/} }
 
 % operators
 \DeclareMathOperator\cis{cis}
@@ -62,9 +63,10 @@
 	\end{flalign*}
 }
 \newcommand{\maketitleprint}[0]{ \begin{center}
-	\begin{tikzpicture}[scale=3]
-		\duck[graduate=gray!20!black, tassel=red!70!black]
-	\end{tikzpicture}	
+	%\begin{tikzpicture}[scale=3]
+	%	\duck[graduate=gray!20!black, tassel=red!70!black]
+	%\end{tikzpicture}	
+	\includegraphics[width=6cm]{cover}
 \end{center}
 }
 
