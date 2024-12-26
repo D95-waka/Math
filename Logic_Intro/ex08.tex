@@ -56,13 +56,38 @@
 \subquestion{}
 נסיק שנוסחה בשפה לתחשיב יחסים היא טאוטולוגיה אם ורק אם היא מהצורה $\alpha_{\varphi_0, \dots, \varphi_{n - 1}}^{p_0, \dots, p_{n - 1}}$ עבור טאוטולוגיה $\alpha$ ושפה כלשהי לתחשיב פסוקים $L'$.
 \begin{proof}
-	נבחין כי הכיוון השני הוא למעשה טענת הסעיף הקודם, לכן נניח ש־$\alpha$ היא טאוטולוגיה ונוכיח שהיא מהצורה המבוקשת.
+	נניח את הכיוון הראשון ולכן משאלה 1 במטלה 3 נוכל להחליף את פסוקיה היסודיים בכל נוסחה תקינה על־פי המוגדר ונקבל נוסחה שהיא טאוטולוגיה מעל תחשיב פסוקים.
+
+	נקבל נוסחה שהיא תוצאת החלפה עבור של טאוטולוגיה נסיק מהסעיף הקודם את המבוקש.
 \end{proof}
 
 \question{}
 תהי שפה $L$ לתחשיב פסוקים ויהיו $\psi_0, \psi_1 \in form_L$, נוכיח שאם $\vdash \psi_0$ וגם $\vdash (\psi_0 \to \psi_1)$ אז $\vdash \psi_1$.
 \begin{proof}
-	TODO
+	נתון כי קיים עץ היסק עבור $\psi_0, (\psi_0 \to \psi_1)$, עץ זה הוא סופי ואנו יכולים לשרשר אותו לתוך עצים אחרים, אז נבנה את עץ ההיסק
+	\begin{enumerate}
+		\item $\lnot \psi_1$
+		\item פיצול למקרים על $\psi_0$
+			\begin{enumerate}
+				\item $\psi_0$
+				\item פיצול למקרים על $(\psi_0 \to \psi_1)$
+					\begin{enumerate}
+						\item $(\psi_0 \to \psi_1)$
+						\item $\psi_1$, כלל היסק לגרירה (מודוס פוננס) וסתירה
+					\end{enumerate}
+					\begin{enumerate}
+						\item $\lnot (\psi_0 \to \psi_1)$
+						\item חזרה על כלל העץ עבור $(\psi_0 \to \psi_1)$, למעשה כל מה שמופיע החל מפה יופיע כהמשכים של כלל העלים בעץ הזה, מטעמי נוחות לא נכתוב זאת כך
+						\item $(\psi_0 \to \psi_1)$ וסתירה
+					\end{enumerate}
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \psi_0$
+				\item חזרה על כלל העץ עבור $\psi_0$, למעשה כל מה שמופיע החל מפה יופיע כהמשכים של כלל העלים בעץ הזה, מטעמי נוחות לא נכתוב זאת כך
+				\item $\psi_0$ וסתירה
+			\end{enumerate}
+	\end{enumerate}
+	הגענו לסתירה בכל ענף ולכן עץ היסק זה מעיד על $\vdash \psi_1$.
 \end{proof}
 
 \question{}
@@ -71,31 +96,114 @@
 \subquestion{}
 $\psi_0 \vdash (\psi_0 \lor \psi_1)$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_0 \lor \psi_1)$
+		\item $\lnot \psi_0$, כללי איווי
+		\item $\psi_0$, הוספת הנחה, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $(\psi_0 \lor \psi_1) \vdash (\psi_1 \lor \psi_0)$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_1 \lor \psi_0)$
+		\item $\lnot \psi_0$, כללי איווי
+		\item $(\psi_0 \lor \psi_1)$, הוספת הנחה
+		\item $\psi_0$, כללי איווי וסתירה
+	\end{enumerate}
+	נבחין כי יכולנו גם לפצל למקרים על ערך $\psi_0$ ו־$\psi_1$ כדי לבנות עץ היסק שמתיישב יותר טוב עם הדרך שבה אנו מוכיחים.
 \end{solution}
 
 \subquestion{}
 $((\psi_0 \lor \psi_1) \lor \psi_2) \vdash (\psi_0 \lor (\psi_1 \lor \psi_2))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_0 \lor (\psi_1 \lor \psi_2))$
+		\item $\lnot (\psi_1 \lor \psi_2)$, כללי איווי
+		\item $\lnot \psi_2$, כללי איווי
+		\item $((\psi_0 \lor \psi_1) \lor \psi_2)$, הוספת הנחה
+		\item $\psi_2$, כללי איווי, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $((\psi_0 \land \psi_1) \land \psi_2) \vdash (\psi_0 \land (\psi_1 \land \psi_2))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_0 \land (\psi_1 \land \psi_2))$
+		\item $(\psi_0 \land \psi_1) \land \psi_2$, הוספת הנחה
+		\item $\psi_2$, כללי גימום
+		\item פיצול למקרים $\psi_0$
+			\begin{enumerate}
+				\item $\psi_0$
+				\item $\lnot (\psi_1 \land \psi_2)$, כללי גימום
+				\item פיצול למקרים $\psi_1$
+					\begin{enumerate}
+						\item $\psi_1$
+						\item $\lnot \psi_2$, כללי גימום וסתירה
+					\end{enumerate}
+					\begin{enumerate}
+						\item $\lnot \psi_1$
+						\item $(\psi_0 \land \psi_1)$ כללי גימום מ־2
+						\item $\psi_1$, כללי גימום, וסתירה
+					\end{enumerate}
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \psi_0$
+				\item $\psi_0 \land \psi_1$, כללי גימום מ־2
+				\item $\psi_0$, כללי גימום, סתירה
+			\end{enumerate}
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $\vdash (((\psi_0 \lor \psi_1) \land \psi_2) \leftrightarrow ((\psi_0 \land \psi_2) \lor (\psi_1 \land \psi_2)))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (((\psi_0 \lor \psi_1) \land \psi_2) \leftrightarrow ((\psi_0 \land \psi_2) \lor (\psi_1 \land \psi_2)))$.
+		\item פיצול למקרים $((\psi_0 \lor \psi_1) \land \psi_2)$
+			\begin{enumerate}
+				\item $((\psi_0 \lor \psi_1) \land \psi_2)$
+				\item $\psi_2$
+				\item $\lnot ((\psi_0 \land \psi_2) \lor (\psi_1 \land \psi_2))$, כללי גרירה דו־כיוונית
+				\item $\lnot (\psi_0 \land \psi_2)$
+				\item פיצול למקרים על $\psi_0$
+					\begin{enumerate}
+						\item $\psi_0$
+						\item $\lnot \psi_2$, כללי גימום, וסתירה
+					\end{enumerate}
+					\begin{enumerate}
+						\item $\lnot \psi_0$
+						\item $\psi_0 \lor \psi_1$, כללי גימום מ־a
+						\item $\psi_1$, כללי איווי
+						\item $\lnot (\psi_1 \land \psi_2)$, כללי איווי
+						\item $\lnot \psi_2$, כללי גימום, סתירה
+					\end{enumerate}
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot ((\psi_0 \lor \psi_1) \land \psi_2)$
+				\item $\lnot (\psi_0 \lor \psi_1)$, כללי גימום
+				\item $\lnot \psi_0$, כללי איווי
+				\item $(\psi_0 \land \psi_2) \lor (\psi_1 \land \psi_2)$, כללי גרירה דו־כיוונית
+				\item פיצול למקרים על $(\psi_0 \land \psi_2)$
+					\begin{enumerate}
+						\item $\psi_0 \land \psi_2$
+						\item $\psi_0$, כללי גימום, סתירה
+					\end{enumerate}
+					\begin{enumerate}
+						\item $\lnot (\psi_0 \land \psi_2)$
+						\item $\psi_1 \land \psi_2$, כללי איווי
+						\item $\psi_1$, כללי גימום
+						\item $\lnot \psi_1$, כללי איווי ל־b, וסתירה
+					\end{enumerate}
+			\end{enumerate}
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
