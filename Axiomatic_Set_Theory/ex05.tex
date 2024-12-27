@@ -28,7 +28,15 @@ Assuming DC, We'll prove that a relation R of a set X is well founded if and onl
 We'll show that DC is equivalent to the following version of the L\"owenheim-Skolem theorem: \\*
 For every infinite structure $M$ over an countable language, there is a countable elementary substructure $M' \prec M$.
 \begin{proof}
-	Watch the recording to see what Yair says
+	Assume DC\@, and let $M$ be a model over countable language.
+	If for every $x \in M$ there is $y \in M$ such that $M \models x \in y$, then by DC there is a well ordering over $M$ and it is possible to define Skol\'em functions over $M$,
+	using Tarski-Vaught criteria there is $M' \prec M$ which is countable.
+	If this is false, then there is a maximal element in $M$, and we can directly conclude that the required property is holding.
+
+	Assume that for every infinite structure $M$ over countable language, there is a countable elementary substructure $M' \prec M$.
+	Let $X$ be a set and $R \subseteq X^2$ such that for every $x \in X$, there is $y \in X$ such that $\langle x, y \rangle \in R$.
+	Define $M = \langle X, R \rangle$ a model, then $M' \prec M$ a countable model.
+	Define function $f : \NN \to M'$ such that $f(n) R^{M'} f(n + 1)$, then $\langle x_n \mid n < \omega \rangle$ defined by $x_n = f(0)$ exists, which is DC\@.
 \end{proof}
 
 \question{}
@@ -101,8 +109,12 @@ We'll prove that $A$ satisfies the Scheme of Replacement, and in particular Pair
 \begin{proof}
 	Let $F : A \to A$ class function and $x \in A$.
 	Let us define $B = \{ F(y) \mid y \in x \}$, we want to show that $B \in A$.
-	Define $\alpha$ as the least ordinal such that $B \subseteq V_\alpha$, then $A \models B \subseteq V_\alpha$ as well.
-	From Lev\'y Reflection theorem we conclude that there is a club $C_F$ such that for each $\delta \in C_F$, we take some $\beta \in C_F$ such that $\alpha < \beta$ then $V_\alpha^A \subseteq V_\beta^A$.
+	Define $\alpha$ as the least ordinal such that $B \subseteq V_\alpha$, we want to show that $A \models B \subseteq V_\alpha$.
+	From Lev\'y Reflection theorem we conclude that there is a club $C_F$ of ordinals fulfilling the theorem, in particular there is $\delta \in C_F$ such that $\alpha < \delta$, therefore $V_\alpha^A \subseteq V_\delta^A \in A$.
+	Of course $B \cap A \cap V_\delta = B \cap V_\delta = B$, then $V_\delta^A$ thinks that $B$ definable and exist (using $\Delta_0$-Separation), then $A$ is a model of Replacement.
+
+	We can conclude that Separation holds as well, as we can use $F = Id$ with replacement. \\
+	Pairing holds as well, using $2 = \{0, 1\}$ and the class function $1 \mapsto x, 2 \mapsto y$.
 \end{proof}
 
 \end{document}
