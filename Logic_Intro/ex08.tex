@@ -209,52 +209,142 @@ $\vdash (((\psi_0 \lor \psi_1) \land \psi_2) \leftrightarrow ((\psi_0 \land \psi
 \subquestion{}
 $(\psi_0 \to \psi_1), (\psi_1 \to \psi_0) \vdash (\psi_0 \leftrightarrow \psi_1)$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_0 \leftrightarrow \psi_1)$
+		\item פיצול למקרים על $\psi_0$
+			\begin{enumerate}
+				\item $\psi_0$
+				\item $\lnot \psi_1$, כללי גרירה דו־כיוונית
+				\item $\psi_0 \to \psi_1$, הוספת הנחה
+				\item $\psi_1$, כללי גרירה, סתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \psi_0$
+				\item $\psi_1$, כללי גרירה דו־כיוונית
+				\item $\psi_1 \to \psi_0$, הוספת הנחה
+				\item $\lnot \psi_1$, חוקי גרירה, סתירה
+			\end{enumerate}
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $\vdash ((\psi_0 \land (\lnot \psi_0)) \to (\psi_1 \land (\lnot \psi_1)))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot ((\psi_0 \land (\lnot \psi_0)) \to (\psi_1 \land (\lnot \psi_1)))$
+		\item $\psi_0 \land (\lnot \psi_0)$, חוקי גרירה
+		\item $\psi_0$, חוקי גימום
+		\item $\lnot \psi_0$, חוקי גימום, סתירה
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $\vdash (\psi_0 \to (\psi_1 \to \psi_0))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (\psi_0 \to (\psi_1 \to \psi_0))$
+		\item $\psi_0$, כללי גרירה
+		\item $\lnot (\psi_1 \to \psi_0)$, כללי גרירה ל־1
+		\item $\lnot \psi_0$, כללי גרירה, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $\vdash (((\lnot \psi_0) \to (\lnot \psi_1)) \to (\psi_1 \to \psi_0))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot (((\lnot \psi_0) \to (\lnot \psi_1)) \to (\psi_1 \to \psi_0))$
+		\item $(\lnot \psi_0) \to (\lnot \psi_1)$, כללי גרירה
+		\item $\lnot (\psi_1 \to \psi_0)$, כללי גרירה ל־1
+		\item $\psi_1$, כללי גרירה
+		\item $\lnot \psi_0$, כללי גרירה
+		\item $\lnot \psi_1$, כללי גרירה ל־2, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \subquestion{}
 $\vdash ((\psi_0 \to (\psi_1 \to \psi_2)) \to ((\psi_0 \to \psi_1) \to (\psi_0 \to \psi_2)))$.
 \begin{solution}
-	TODO
+	נבנה את עץ ההיסק המתאים.
+	\begin{enumerate}
+		\item $\lnot ((\psi_0 \to (\psi_1 \to \psi_2)) \to ((\psi_0 \to \psi_1) \to (\psi_0 \to \psi_2)))$
+		\item $\psi_0 \to (\psi_1 \to \psi_2)$, חוקי גרירה
+		\item $\lnot ((\psi_0 \to \psi_1) \to (\psi_0 \to \psi_2))$, חוקי גרירה ל־1
+		\item $\psi_0 \to \psi_1$, חוקי גרירה
+		\item $\lnot (\psi_0 \to \psi_2)$, חוקי גרירה
+		\item $\psi_0$, חוקי גרירה
+		\item $\lnot \psi_2$, חוקי גרירה
+		\item $\psi_1$, חוקי גרירה ל־4
+		\item $\psi_1 \to \psi_2$, חוקי גרירה ל־2
+		\item $\psi_2$, חוקי גרירה, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \question{}
-נאמר שכלל היסק ניתן להשמטה אם לכ שפה $L$ לתחשיב פסוקים ולכל קבוצת פסוקים $\Sigma$ ופסוק $\varphi$ כך ש־$\Sigma \vdash \varphi$ קיים עץ היסק לטענה כך שהכלל אינו מופיע בה, לכל כלל בסעיפים הבאים נוכיח שהוא ניתן להשמטה.
+נאמר שכלל היסק ניתן להשמטה אם כל שפה $L$ לתחשיב פסוקים ולכל קבוצת פסוקים $\Sigma$ ופסוק $\varphi$ כך ש־$\Sigma \vdash \varphi$ קיים עץ היסק לטענה כך שהכלל אינו מופיע בה, לכל כלל בסעיפים הבאים נוכיח שהוא ניתן להשמטה.
 
 \subquestion{}
 $\frac{(A \to B), (\lnot B)}{(\lnot A)}$
 \begin{proof}
-	TODO
+	כדי להראות שכלל היסק ניתן להשמטה די שנראה שבכל עץ בו הוא מופיע, ניתן לבנות עץ חדש ללא הכלל, כך שתוצאתו תמשיך להיות תקפה.
+	לשם כך אנו נניח שישנו עץ היסק בו יש שימוש בטענה זו, ועתה נבנה עץ שיחליף את העץ הזה ושמשתמש בכללי ההיסק הנתונים לנו כרגע
+	\begin{enumerate}
+		\item $A \to B$, כלל החזרה
+		\item חלוקה למקרים על $A$
+			\begin{enumerate}
+				\item $A$
+				\item $B$, כללי גרירה ל־1
+				\item $\lnot B$, כלל החזרה, וסתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot A$
+				\item נקודת ההחלפה השנייה
+			\end{enumerate}
+	\end{enumerate}
+	מצאנו עץ היסק שניתן להחליף את כלל ההיסק הרצוי בו, כך שהטענות נשארות ללא שינוי, נבחין שוב כי זוהי פעולת החלפה עבור עצים בינאריים, וכי היא תקפה, בסעיפים הבאים נשתמש באותה הטענה בדיוק, אך ללא הסבר זה
+	נקודת ההחלפה השנייה היא כלל חלקי העץ שמגעים אחרי ההיסק שהחלפנו, צלע זו תוחלף בו, וכך יתקבל עץ היסק מלא כך שאכן יש סתירה בעל ענף.
 \end{proof}
 
 \subquestion{}
 $\frac{(A \leftrightarrow B), A}{B}$
 \begin{proof}
-	TODO
+	נבנה את חלק עץ ההיסק להחלפה
+	\begin{enumerate}
+		\item $A \leftrightarrow B$, כלל החזרה
+		\item $A$, כלל החזרה
+		\item פיצול למקרים על $B$
+			\begin{enumerate}
+				\item $B$
+				\item נקודת ההחלפה השנייה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot B$
+				\item $\lnot A$, כללי הגרירה הדו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+	\end{enumerate}
 \end{proof}
 
 \subquestion{}
 $\frac{(A \leftrightarrow B), (\lnot B)}{(\lnot A)}$
 \begin{proof}
-	TODO
+	גם הפעם נבנה את עץ ההיסק המחליף
+	\begin{enumerate}
+		\item $A \leftrightarrow B$, כלל החזרה
+		\item $\lnot B$, כלל החזרה
+		\item פיצול למקרים על $A$
+			\begin{enumerate}
+				\item $A$
+				\item $B$, כללי גרירה דו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot A$
+				\item נקודת ההחלפה השנייה
+			\end{enumerate}
+	\end{enumerate}
 \end{proof}
 
 \end{document}
