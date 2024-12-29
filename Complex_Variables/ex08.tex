@@ -1,0 +1,254 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נמצא את פיתוחי הטיילור ואת רדיוסי ההתכנסות לפונקציות הנתונות.
+
+\subquestion{}
+\[
+	f(z) = \frac{1}{1 + \sqrt{1 - z}}
+\]
+סביב $z = 0$.
+\begin{solution}
+	מתקיים
+	\[
+		\frac{1}{1 - \sqrt{1 - z}}
+		= \frac{1 - \sqrt{1 - z}}{1 - (1 - z)}
+		= \frac{1 - \sqrt{1 - z}}{z}
+	\]
+	ועוד אנו יודעים כי
+	\[
+		1 - \sqrt{1 - z}
+		= 1 - {((-z) + 1)}^\frac{1}{2}
+		= 1 - \sum_{n = 0}^{\infty} \binom{\frac{1}{2}}{n} {(-z)}^n
+		= 1 + \sum_{n = 0}^{\infty} \binom{\frac{1}{2}}{n} {(-1)}^{n + 1} z^n
+		= \sum_{n = 1}^{\infty} \binom{\frac{1}{2}}{n} {(-1)}^{n + 1} z^n
+	\]
+	ולכן
+	\[
+		f(z)
+		= \frac{\sum_{n = 1}^{\infty} \binom{\frac{1}{2}}{n} {(-1)}^{n + 1} z^n}{z}
+		= \sum_{n = 1}^{\infty} \binom{\frac{1}{2}}{n} {(-1)}^{n + 1} \frac{z^n}{z}
+		= \sum_{n = 0}^{\infty} \binom{\frac{1}{2}}{n + 1} {(-1)}^n z^n
+	\]
+
+	נבחין כי הפונקציה רציפה ב־$B(0, 1)$, ולכן ממסקנה מהתרגול רדיוס ההתכנסות הוא $r = 1$.
+\end{solution}
+
+\subquestion{}
+\[
+	f(z) = \Log(z)
+\]
+סביב $z = -1 + i$.
+\begin{solution}
+	מתקיים
+	\[
+		\Log(z)
+		= \Log(-1 + i + (z + 1 - i)) - \Log(-1 + i) + \Log(-1 + i)
+		= \Log(1 + \frac{z + 1 - i}{-1 + i}) + \Log(-1 + i)
+	\]
+	ומפיתוח טיילור של לוגריתם נסיק
+	\[
+		f(z)
+		= \Log(-1 + i) + \sum_{n = 1}^{\infty} \frac{{(-1)}^{n - 1}}{n} {(\frac{z - (-1 + i)}{-1 + i})}^n
+		= \Log(-1 + i) + \sum_{n = 1}^{\infty} \frac{{(-1)}^{n - 1}}{n {(-1 + i)}^n} {(z - (-1 + i))}^n
+	\]
+
+	כמובן הלוגריתם המרוכב הולומורפי בכל $\CC \setminus \{ 0 \}$, ולכן $r = 1$.
+\end{solution}
+
+\subquestion{}
+\[
+	f(z) = \frac{z^2 + z - 1}{z^3 - z}
+\]
+סביב $z = i$.
+\begin{solution}
+	נבחין כי
+	\begin{align*}
+		f(z)
+		& = \frac{z^2 + z - 1}{z(z - 1)(z + 1)} \\
+		& = \frac{A}{z} + \frac{B}{z - 1} + \frac{C}{z + 1} \\
+		& = \frac{A(z^2 - 1) + B(z + z^2) + C(z^2 - z)}{z^3 - z} \\
+		& = \frac{z^2 (A + B + C) + z(B - C) - A}{z^3 - z}
+	\end{align*}
+	ולכן נובע $A = 1, B = \frac{1}{2}, C = -\frac{1}{2}$ וכן
+	\[
+		f(z)
+		= \frac{1}{z} + \frac{1}{2(z - 1)} - \frac{1}{2(z + 1)}
+		= \frac{1}{i} \cdot \frac{1}{1 - \frac{z - i}{-i}} + \frac{1}{2(-1 + i)} \cdot \frac{1}{1 - \frac{z - i}{1 - i}} - \frac{1}{2(1 + i)} \frac{1}{1 - \frac{z - i}{-1 - i}}
+	\]
+	ולכן מפיתוח טיילור של $\frac{1}{1 - z}$ נובע
+	\begin{align*}
+		f(z)
+		& = \frac{1}{i} \sum_{n = 0}^{\infty} {\left(\frac{z - i}{-i}\right)}^n + \frac{1}{2(-1 + i)} \sum_{n = 0}^{\infty} {\left(\frac{z - i}{1 - i}\right)}^n
+		- \frac{1}{2(1 + i)} \sum_{n = 0}^{\infty} {\left(\frac{z - i}{-1 - i}\right)}^n \\
+		& = \sum_{n = 0}^{\infty} \frac{1}{i} \frac{1}{{(-i)}^n} {(z - i)}^n + \sum_{n = 0}^{\infty} \frac{1}{2(-1 + i)} \frac{1}{{(1 - i)}^n} {(z - i)}^n
+		+ \sum_{n = 0}^{\infty} - \frac{1}{2(1 + i)} \frac{1}{{(-i - i)}^n} {(z - i)}^n \\
+		& = \sum_{n = 0}^{\infty} \left(\frac{1}{i} \frac{1}{{(-i)}^n} + \frac{1}{2(-1 + i)} \frac{1}{{(1 - i)}^n} - \frac{1}{2(1 + i)} \frac{1}{{(-i - i)}^n}\right) {(z - i)}^n \\
+	\end{align*}
+	הפונקציה כמובן אנליטית ב־$\CC \setminus \{0, 1, -1\}$ ולכן $r = 1$.
+\end{solution}
+
+\question{}
+הוכחת משפט מוררה.
+נוכיח שאם $f : G \to \CC$ רציפה כל שלכל משולש מלא $T \subseteq G$ מתקיים
+\[
+	\int_{\partial T} f(z)\ dz = 0
+\]
+אז $f$ אנליטית.
+\begin{proof}
+	נניח ללא הגבלת הכלליות ש־$G$ קמורה, ותהי $z_0 \in G$ כך ש־$[z_0, z] \subseteq G$ לכל $z \in G$.
+	נגדיר $F : G \to \CC$ על־ידי
+	\[
+		F(z) = \int_{[z_0, z]} f(w)\ dw
+	\]
+	פונקציה זו כמובן מוגדרת בכל נקודה בשל קמירות $G$.
+	תהי נקודה $z' \in G$ כך ש־$|z - z'| < \epsilon$, ולכן מתקיים מהגדרת הפונקציה שמתקיים
+	\[
+		F(z) - F(z') + \int_{[z, z']} f(w)\ dw = 0
+		\iff
+		F(z) - F(z') = \int_{[z', z]} f(w)\ dw
+	\]
+	ולכן מאי־שוויון ML
+	\[
+		0
+		\le \left\lvert \frac{F(z) - F(z') - f(z)}{z - z'} \right\rvert
+		\le \max_{t \in [z, z']} |f(t) - f(z)|
+		\xrightarrow[z' \to z]{} 0
+	\]
+	ולכן $F'(z) = f(z)$, ובפרט $F$ אנליטית ולכן ממשפט טיילור גזירה אינסוף פעמים, כלומר קיימת נגזרת ל־$f$ עצמה.
+\end{proof}
+
+\question{}
+הוכחת משפט ויירשטראס.
+נוכיח שאם ${\{f_n\}}_{n = 1}^\infty \subseteq C^1(G)$ כך שהסדרה מתכנסת במידה שווה מקומית ל־$f$, אז $f$ אנליטית.
+נראה שלכל $k \in \NN$ סדרת הנגזרות $(f_n^{(k)})$ מתכנסת במידה שווה מקומית ל־$f^{(k)}$.
+\begin{proof}
+	יהי משולש $T \subseteq G$,
+	\[
+		\left\lvert \int_{\partial T} f(z)\ dz - \int_{\partial T} f_n(z)\ dz \right\rvert
+		= \left\lvert \int_{\partial T} f(z) - f_n(z)\ dz \right\rvert
+		\le \int_{\partial T} |f(z) - f_n(z)|\ dz 
+		\xrightarrow[n \to \infty]{}
+		\int_{\partial T} |f(z) - f(z)|\ dz 
+		= 0
+	\]
+	אבל גם לכל $n \in \NN$ אנו יודעים שמתקיים
+	\[
+		\int_{\partial T} f_n(z)\ dz = 0
+	\]
+	ולכן נוכל להסיק
+	\[
+		\int_{\partial T} f(z)\ dz = 0
+	\]
+	לכן ממשפט מוררה $f$ אנליטית. \\
+	ממשפט טיילור ושוויון האינטגרלים נוכל להסיק שגם הנגזרות מתכנסות לכל סדר גזירה.
+\end{proof}
+
+\question{}
+תהי $f : \CC \to \CC$ פונקציה שלמה, נוכיח כי $f$ קבועה עבור התנאים הבאים.
+
+\subquestion{}
+$\re(f(z)) \le 0$ לכל $z \in \CC$.
+\begin{proof}
+	נגדיר $g(z) = e^z$ ולכן
+	\[
+		|(g \circ f)(z)|
+		= e^{\re(f(z))} |e^{i\im(f(z))}|
+		= e^{\re f(z)}
+		\le e^0
+		= 1
+	\]
+	ולכן ממשפט ליוביל $f \circ g$ היא פונקציה קבועה, ובהתאם גם $f$ עצמה קבועה (אחרת נקבל ש־$g$ קבועה וזו סתירה).
+\end{proof}
+
+\subquestion{}
+$|f(z)| \ne 1$ לכל $z \in \CC$.
+\begin{proof}
+	מרציפות כפונקציה דו־משתנית אנו יכולים להסיק ש־$|f| < 1$ או $|f| > 1$. \\
+	אם $|f(z)| < 1$ אז ממשפט ליוביל סיימנו, לכן נניח $|f(z)| > 1$ תמיד, ונגדיר $g(z) = \frac{1}{z}$, לכן $|g \circ f| < 1$ תמיד ונוכל להסיק ש־$f$ קבועה בהכרח.
+\end{proof}
+
+\subquestion{}
+$f(z) \notin (-\infty, 0]$ לכל $z \in \CC$. % chktex 9
+\begin{proof}
+	נגדיר $g(z) = z^i = e^{i \Log z}$, ולכן מהגדרת $f$ נוכל להסיק שמתקיים
+	\[
+		|g(f(z))|
+		= |e^{i \log|z| - \Arg(z)}|
+		= |e^{i \log|z|}| \cdot |e^{-\Arg(z)}|
+		\le 1 \cdot e^{\pi}
+	\]
+	ולכן נובע ש־$f$ קבועה.
+\end{proof}
+
+\subquestion{}
+$f(z) \notin [0, 1]$ לכל $z \in \CC$.
+\begin{proof}
+	במטלה 4 תרגיל 4 מצאנו שהעתקת מביוס נקבעת ביחידות על־ידי הנקודות $z_1 \to 0, z_2 \to 1, z_3 \to \infty$, נבחר את הנקודות $i, 0, \frac{1}{2}$ בהתאמה ונקבל את ההעתקה
+	\[
+		g(z)
+		= \frac{0 - \frac{1}{2}}{0 - i} \cdot \frac{z - i}{z - \frac{1}{2}}
+		= \frac{z - i}{2i z - i}
+	\]
+	מהגדרתה נוכל להסיק ש־$g \circ f$ חסומה על־ידי $|0 + i| = 1$ ולכן $f$ פונקציה קבועה.
+\end{proof}
+
+\question{}
+תהי $f : \overline{B}(z_0, r) \to \CC$ פונקציה רציפה בכל תחומה ואנליטית ב־$B(z_0, r)$. \\
+נגדיר את $R_k$ להיות שארית טור טיילור מסדר $k$ סביב $z = z_0$, דהינו
+\[
+	R_k(z)
+	= f(z) - \sum_{n = 0}^{k} \frac{f^{(n)}(z_0)}{n!} {(z - z_0)}^n
+	= \sum_{n = k + 1}^{\infty} \frac{f^{(n)}(z_0)}{n!} {(z - z_0)}^n
+\]
+
+\subquestion{}
+נוכיח כי לכל $z \in B(z_0, r)$ מתקיים
+\[
+	R_k(z)
+	= \frac{{(z - z_0)}^{k + 1}}{2\pi i} \int_{\partial B(z_0, r)} \frac{f(w)}{(w - z){(w - z_0)}^{k + 1}}\ dw
+\]
+\begin{proof}
+	מההגדרה של $R_k$,
+	\[
+		R_k(z)
+		= \sum_{n = k + 1}^{\infty} \frac{f^{(n)}(z_0)}{n!} {(z - z_0)}^n
+		= \sum_{n = 0}^{\infty} \frac{f^{(k + 1 + n)}(z_0)}{(k + 1 + n)!} {(z - z_0)}^{k + 1 + n}
+		= {(z - z_0)}^{k + 1} \sum_{n = 0}^{\infty} \frac{f^{(k + 1 + n)}(z_0)}{(k + 1 + n)!} {(z - z_0)}^n
+	\]
+	ממשפט טיילור נובע
+	\begin{align*}
+		& {(z - z_0)}^{k + 1} \sum_{n = 0}^{\infty} \frac{f^{(k + 1 + n)}(z_0)}{(k + 1 + n)!} {(z - z_0)}^n \\
+		= & {(z - z_0)}^{k + 1} \sum_{n = 0}^{\infty} \frac{(n + k + 1)!}{2\pi i} \int_{\partial B(z_0, r)} \frac{f(w)}{{(w - z_0)}^{k + n + 2}} \frac{1}{(k + 1 + n)!} {(z - z_0)}^n\ dw \\
+		= & \frac{{(z - z_0)}^{k + 1}}{2\pi i} \sum_{n = 0}^{\infty} \int_{\partial B(z_0, r)} \frac{f(w)}{{(w - z_0)}^{k + n + 2}} {(z - z_0)}^n\ dw \\
+		= & \frac{{(z - z_0)}^{k + 1}}{2\pi i} \int_{\partial B(z_0, r)} \frac{f(w)}{{(w - z_0)}^{k + 2}} \cdot \frac{1}{2 - z_0} \sum_{n = 0}^{\infty} \frac{{(z - z_0)}^n}{{(w - z_0)}^n}\ dw \\
+		\overset{(1)}{=} & \frac{{(z - z_0)}^{k + 1}}{2\pi i} \int_{\partial B(z_0, r)} \frac{f(w)}{{(w - z_0)}^{k + 1}} \cdot \frac{1}{w - z}\ dw
+	\end{align*}
+	כאשר $(1)$ נובע מהזהות $\frac{1}{w - z} = \frac{1}{w - z_0} \sum_{n = 0}^{\infty} {\left(\frac{z - z_0}{w - z_0}\right)}^n$ הידועה.
+\end{proof}
+
+\subquestion{}
+נסיק שמתקיים
+\[
+	|R_k(z)|
+	\le \left( \frac{r}{r - |z - z_0|} \cdot \max_{|w - z_0| = r} |f(w)| \right) {\left(\frac{|z - z_0|}{r}\right)}^{k + 1}
+\]
+\begin{proof}
+	\begin{align*}
+		|R_k(z)|
+		& = \left\lvert \frac{{(z - z_0)}^{k + 1}}{2\pi i} \int_{\partial B(z_0, r)} \frac{f(w)}{(w - z){(w - z_0)}^{k + 1}}\ dw \right\rvert \\
+		& = \frac{{|z - z_0|}^{k + 1}}{2\pi} \left\lvert \int_{\partial B(z_0, r)} \frac{f(w)}{(w - z){(w - z_0)}^{k + 1}}\ dw \right\rvert \\
+		& \overset{\text{ML}}{\le} \frac{{|z - z_0|}^{k + 1}}{2\pi} L(\partial B(z_0, r)) \cdot \max_{w \in \partial B(z_0, r)} \left\lvert \frac{f(w)}{(w - z){(w - z_0)}^{k + 1}} \right\rvert \\
+		& = {|z - z_0|}^{k + 1} r \cdot \max_{w \in \partial B(z_0, r)} \frac{|f(w)|}{|w - z| \cdot {|w - z_0|}^{k + 1}}  \\
+		& \le \left(r \cdot \max_{w \in \partial B(z_0, r)} \frac{|f(w)|}{|w - z_0 + z_0 - z|}\right) {\left(\frac{|z - z_0|}{r}\right)}^{k + 1} \\
+		& \le \left( \frac{r}{r - |z - z_0|} \cdot \max_{|w - z_0| = r} |f(w)| \right) {\left(\frac{|z - z_0|}{r}\right)}^{k + 1}
+	\end{align*}
+	ומצאנו כי אי־השוויון אכן מתקיים.
+\end{proof}
+
+\end{document} % chktex 17
