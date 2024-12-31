@@ -3196,5 +3196,140 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{proof}
 
+\section{שיעור 17 --- 31.12.2024}
+\subsection{בעיית אספן הקופונים}
+\begin{exercise}[אספן הקופונים]
+	יהי אספן קופונים אשר מקבל כל יום קופון כלשהו מבין מספר קופונים אפשריים, מה החסם שמעיד שהאספן השיג את כל הקופונים? 
+\end{exercise}
+\begin{solution}
+	נגדיר $X_1, \dots, X_m$ משתנים מקריים בלתי־תלויים המתפלגים אחיד $U([n])$, כלומר $m$ מספר סוגי הקופונים ו־$n$ מספר השליפות, ואנו רוצים לחסום את $\PP(\forall k \in [n], \exists i \in [m], X_i = k)$.
+	נבחן את המאורע המשלים, $\PP(\exists k \in [m], \forall i \in [n], X_i \ne k) = \PP(\bigcup_{k = 1}^n A_k)$ כאשר האיחוד איננו זר ו־$A_k = \forall i \in [m], X_i \ne k$, אפשר לחסום זאת עם חסם האיחוד,
+	\[
+		\PP(\bigcup_{k = 1}^n A_k)
+		\le \sum_{k = 1}^{n} \PP(A_k)
+		= \sum_{k = 1}^{n} {(1 - \frac{1}{n})}^m
+		= n {(1 - \frac{1}{n})}^m
+	\]
+	אנו רוצים להבין מתי הביטוי שהתקבל שואף ל־$0$, נשים לב שידוע כי $\forall x \in \RR, 1 + x \le e^x$, ולכן
+	\[
+		n {(1 - \frac{1}{n})}^m
+		\le n {(e^{-\frac{1}{n}})}^m
+		= n e^{-\frac{m}{n}}
+	\]
+	אז אם $m = \lceil cn \log n \rceil$ ו־$c > 1$ אז
+	\[
+		n e^{-\frac{m}{n}}
+		= n e^{-c \log n}
+		= n n^{-c}
+		= n^{1 - c}
+		\xrightarrow[n \to \infty]{} 0
+	\]
+	נבחין כי חסם האיחוד הוא מקרה פרטי של אי־שוויון מרקוב.
+	נעבור לחישוב של תוחלת ושונות של כמה קופונים האספן לא השיג,
+	נסמן ב־$Y$ את מספר הקופונים החסרים, וכן $Y = \sum_{k = 1}^{n} Y_n$ כאשר $Y_k = 1_{A_k}$.
+	מהחישובים שעשינו עד כה נוכל להסיק
+	\[
+		\EE(Y) = n {(1 - \frac{1}{n})}^m
+	\]
+	שכן מאי־שוויון מרקוב $\PP(Y \ge 1) \le \frac{\EE(Y)}{1}$.
+	נראה שבהצבה של $m$ שקטן ממה שמצאנו (יחד עם $c < 1$) חסמנו מלמעלה את $\PP(Y = 0)$. נעבור לחישוב השונות של $Y$,
+	\[
+		\var(Y_k)
+		= {(1 - \frac{1}{n})}^m (1 - {(1 - \frac{1}{n})}^m)
+		\le {(1 - \frac{1}{n})}^m
+		= \EE(Y_k)
+	\]
+	וכן
+	\begin{align*}
+		k \le l,
+		\cov(Y_k, Y_l)
+		& = \EE(Y_k \cdot Y_l) - \EE(Y_k) \EE(Y_l) \\
+		& = {(1 - \frac{2}{n})}^m - {(1 - \frac{1}{n})}^{2m} \\
+		& = {(1 - \frac{2}{n})}^m - {({(1 - \frac{1}{n})}^{2})}m \\
+		& = {(1 - \frac{2}{n})}^m - {({(1 - \frac{2}{n} + \frac{1}{n^2})}^{2})}m \\
+		& \le 0
+	\end{align*}
+	ולכן $\var(Y) \le n {(1 - \frac{1}{n})}^m = \EE(Y)$ (מחקנו את האיברים השליליים) ובהתאם
+	\[
+		\frac{\var(Y)}{{(\EE(Y))}^2}
+		\le \frac{1}{\EE(Y)}
+	\]
+	נשאר למצוא מתי $EE(Y) \to \infty$,
+	עבור $m = cn \log n$ כאשר $1 > c$ נובע
+	\[
+		\log(n {(1 - \frac{1}{n})}^m)
+		= \log(n) + m \log(1 + \frac{1}{n})
+		= \log(n) + cn \log(1 - \frac{1}{n}) \to \infty
+	\]
+	כאשר את המקרה $c = 1$ אין לנו היכולת להראות.
+\end{solution}
+
+\subsection{בין הסתברות ללינארית}
+\begin{proposition}
+	$X$ משתנה מקרי בעל שונות ו־$f(a) = \EE({(X - a)}^2)$, אז $f$ מקבלת מינימום ב־$a = \EE(X)$.
+\end{proposition}
+\begin{proof}
+	\[
+		f(a)
+		= \EE({(X - a)}^2)
+		= \EE(X^2 0 2a X + a^2)
+		= \EE(X^2) - 2a \EE(X) + a^2
+	\]
+	ולכן
+	\[
+		f'(a)
+		= -2 \EE(X) + 2a
+	\]
+	ונובע ש־$f'(\EE(X)) = 0$.
+\end{proof}
+אנו נתקלים בקושי של הקשר בין משתנים מקריים, תוחלת ושונות עם אלגברה לינארית.
+\begin{definition}[קבוצת כל המשתנים המקריים]
+	נגדיר את $L_2$ להיות קבוצת כל המשתנים המקריים (במרחב הסתברות כלשהו) בעלי שונות,
+	כאשר אנו מזהים משתנים מקריים ששווים כמעט תמיד.
+\end{definition}
+\begin{proposition}
+	$L_2$ הוא מרחב מכפחה פנימית עם $\langle X, Y \rangle = \EE(XY)$.
+\end{proposition}
+לפני שניגש להוכחה נבחן דוגמה שתבהיר לנו את הטענה.
+\begin{example}
+	נגדיר $\Omega = [n]$ עם הסתברות אחידה, אז אם $X$ משתנה מקרי אז $X : \Omega \to \Omega$, כלומר $L_2 = \RR^\Omega$.
+	מתקיים
+	\[
+		\langle X, Y \rangle
+		= \sum_{\omega \in \Omega} \PP(\{\omega\}) X(\omega) Y(\omega)
+		= \sum_{k = 1}^{n} \frac{1}{n} X(k) Y(k)
+	\]
+	וזו אכן מכפלה פנימית.
+\end{example}
+נעבור להוכחה.
+\begin{proof}
+	מהגדרת התוחלת של $\EE(XY)$ קל להוכיח כי $\langle aX, Y \rangle = a \langle X, Y \rangle$ וכן ש־$\langle X + Y, Z \rangle = \langle X, Z \rangle + \langle Y, Z \rangle$,
+	ואף $\EE(X^2) = \langle X, X \rangle \iff X = 0$.
+	אם מצטמצמים לתת־מרחב של המשתנים המקריים של $\EE(X) = 0$ אז $\langle X, Y \rangle = \cov(X, Y)$ ו־$\lVert X \rVert = \var(X)$.
+	נשים לב כי הפעולה של התוחלת היא פונקציה ולכן $\EE : L_2 \to \RR$ לינארית ונחשוב על $\RR$ כ־$K$ כאשר $K$ כל המשתנים המקריים הקבועים.
+	נזהה את התוחלת על־ידי הטלה אורתוגונלית. כלומר $\EE(X)$ אורתוגונלי ל־$X - \EE(X)$ וזה ברור כי $\langle X, X - \EE(X) \rangle = \EE((X - \EE(X)) \EE(X)) = 0$. \\
+	את ההוכחה הפורמלית נעשה עם משפט קושי־שוורץ.
+	לכל $X, Y \in L_2$, נראה
+	\[
+		|\EE(XY)|
+		\le \sqrt{\EE(X^2) \EE(Y^2)}
+	\]
+	נגדיר
+	\[
+		\overline{X} = \frac{X}{\sqrt{\EE(X^2)}},
+		\qquad
+		\overline{Y} = \frac{Y}{\sqrt{\EE(X^2)}}
+	\]
+	ואז $\EE(\overline{X}^2) = \EE(\overline{Y}^2) = 0$.
+	ניזכר שאם $X, Y$ אי־שליליים אז $0 \le XY \le \frac{X^2 + Y^2}{2}$ ונניח שהמשתנים המקריים שלנו אי־שליליים.
+	אז
+	\[
+		\EE(\overline{X} \overline{Y})
+		\le \EE(\frac{\overline{X}^2 + \overline{Y}^2}{2})
+		= \frac{1}{2}(\EE(\overline{X}^2) + \EE(\overline{Y}^2))
+		= 1
+	\]
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
