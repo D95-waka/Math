@@ -3331,5 +3331,314 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{proof}
 
+\section{תרגול 9 --- 2.1.2025}
+\subsection{תרגילים שונים בנושא שונות}
+\begin{example}
+	סופר שואל סטודנטים בקמפוס אם הם קראו ספר שלו או לא. \\
+	אחוז הסטודנטים שקראו את הספר הוא $q$.
+	אנו רוצים למצוא את $q$ על־ידי שאילת רק חלק מהסטודנטים. \\
+	נניח שדגמנו $n$ סטודנטים (מספר הסטודנטים הכללי לא ידוע), נסמן ב־$X$ את מספר הסטודנטים שענו שהם קראו.
+	נמצא כמה סטודנטים אנו צריכים לשאול כדי שיתקיים
+	\[
+		\PP(| \frac{X}{n} - q| \ge 0.1) < 0.05
+	\]
+	נניח ש־$X \sim Bin(n, q)$ (זוהי הנחה מסטטיסטיקה שלא נעסוק בה).
+	לכן
+	\[
+		\EE(X) = nq,
+		\EE(\frac{X}{n}) = q,
+		\var(X) = nq(1 - q) \le n \frac{1}{4}
+	\]
+	בהתאם
+	\[
+		\var(\frac{X}{n}) \le \frac{1}{4n}
+	\]
+	מאי־שוויון צ'בישב
+	\[
+		\PP(|\frac{X}{n} - q| \ge 0.1) <\frac{4n}{0.01} = \frac{25}{n} < \frac{5}{100}
+		\iff 500 < n
+	\]
+\end{example}
+\begin{exercise}
+	הזמן (בחודשים) עד שתנור חדש מתקלקל מתפלג $X$ עם תוחלת $\mu$ ושונות $\sigma^2$. \\
+	חברת ביטוח רוצה להציע אחריות לתנורים, היא חישבה שעל־מנת להרוויח היא צריכה שיחס מימושי הביטוח תהיה לכל היותר $p$. \\
+	כמה חודשי ביטוח על החברה להציע?
+\end{exercise}
+\begin{solution}
+	אנו מחפשים את $\PP(X < M) < p$ עבור $M$ מספר חודשים. נעשה שינוי ונכתוב $\{X < \mu - k\} \subseteq \{ |X - \mu| > k \}$.
+	מצ'בישב
+	\[
+		\PP(X < \mu - k)
+		\le \PP(|X - \mu| \ge k)
+		< \frac{\var(X)}{k^2}
+		= \frac{\sigma^2}{k^2}
+		< p
+	\]
+	ולכן
+	\[
+		k > \frac{\sigma}{\sqrt{p}}
+	\]
+	ועל החברה להציע ביטוח לכל היותר ל־$\mu - \frac{\sigma}{\sqrt{p}}$ חודשים.
+\end{solution}
+\begin{exercise}
+	מגרילים מטריצה $n \times n$ ממקדמים ב־$\ZZ_{/2}$ על־ידי זה שמגרילים מטבע בכל כניסה באופן בלתי תלוי. \\
+	חשבו את התוחלת והשונות של מספר תתי־המטריצות $2 \times 2$ מהצורה $\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$.
+\end{exercise}
+\begin{solution}
+	נסמן $X_{i, j}$ משתנה מקרי ברנולי לפי האם הכניסה ה־$i, j$ היא $1$ ו־$Y_{i, j}$ ברנולי של האם התת־מטריצה בגודל שתיים במקום ה־$i, j$ היא מטריצת יחידות כרצוי.
+	נבחין שמתקיים
+	\[
+		Y_{i, j} = X_{i, j} X_{i + 1, j} X_{i, j + 1} X_{i + 1, j + 1}
+	\]
+	נסמן
+	\[
+		Y = \sum_{1 \le i, j \le n - 1} Y_{i, j}
+	\]
+	ונעבור לחישוב הערכים,
+	\[
+		\EE(Y)
+		= {(n - 1)}^2 \frac{1}{2^2}
+	\]
+	וכן עבור השונות
+	\begin{align*}
+		\var(Y)
+		& = \cov(Y, Y) \\
+		& = \sum_{1 \le i, j \le n - 1} \cov(Y_{i, j}, Y_{i, j}) \\
+		& = \sum_{1 \le i, j \le n - 1} \var(Y_{i, j})
+		+ \sum_{\substack{1 \le i \le n - 1 \\ 1 \le j \le n - 2}} \cov(Y_{i, j}, Y_{i + 1, j})
+		+ \cdots
+		+ \sum_{1 \le j \le n - 2} \cov(Y_{i, j}, Y_{i + 1, j + 1})
+		+ \sum_{\substack{1 \le i, j \le n - 1 \\ |i - j| \ge 2}} 0
+	\end{align*}
+	ויש לנו שלושה סוגי חפיפה שנוספים אף הם ולא כתבנו, עתה נוכל לעבור לחישוב החלקים השונים ביתר קלות.
+	לדוגמה
+	\[
+		\cov(Y_{i, j}, Y_{i, j + 1})
+		= \EE(X_{i, j} X_{i + 1, j} X_{i, j + 1} X_{i + 1, j + 1} X_{i + 1, j + 1} X_{i + 2, j + 1} X_{i + 1, j + 2} X_{i + 2, j + 2}) - \EE(Y_{i, j}) \EE(Y_{i, j + 1})
+		= \frac{1}{2^6} - \frac{1}{2^8}
+	\]
+	ולכן
+	\[
+		\var(Y)
+		= {(n - 1)}^2 (\frac{1}{2^4} - \frac{1}{2^8})
+		+ 4(n - 1)(n - 2) (\frac{1}{2^6} - \frac{1}{2^8})
+		+ 4 {(n - 2)}^2 {(n - 1)}^2 (\frac{1}{2^7} - \frac{1}{2^8})
+	\]
+\end{solution}
+
+\section{שיעור 18 --- 2.1.2025}
+\subsection{מומנטים גבוהים}
+\begin{definition}[מומנט]
+	המומנט ה־$k$ של $X$ הוא $\EE(X^k)$.
+\end{definition}
+\begin{definition}[מומנט מרכזי]
+	המומנט המרכזי הוא $\EE({(X - \EE(X))}^k)$.
+\end{definition}
+\begin{proposition}[צ'בישב מוכלל]
+	\[
+		\PP(|X - \EE(X)| \ge \lambda) \le \frac{\EE({(X - \EE(X)))}^k}{\lambda^k}
+	\]
+	לכל $k$ זוגי.
+\end{proposition}
+ההוכחה מאוד דומה להוכחה של אי־השוויון במקרה הרגיל.
+\begin{example}
+	מטילים מטבע הוגן $n$ פעמים ואנו רוצים לחסום את ההסתברות שקיבלנו יותר מ $\frac{3}{4}n$ עצים. \\
+	מגדירים $X_1, \dots, X_n \sim Ber(\frac{1}{2})$ וכן $X = \sum_{i = 1}^n X_i$ ולכן
+	\[
+		\PP(X \ge \frac{3}{4}n)
+		\le \PP(|X - \frac{n}{2}| \ge \frac{n}{4})
+		\le \frac{\var(X)}{{(\frac{n}{4})}^2}
+	\]
+	אבל מ־$X \sim Bin$ נסיק
+	\[
+		\var(X) = \frac{n}{4}
+	\]
+	ולכן
+	\[
+		\frac{\var(X)}{{(\frac{n}{4})}^2}
+		= \frac{\frac{n}{4}}{{(\frac{n}{4})}^2}
+		= \frac{4}{n}
+	\]
+	ננסה להשתמש בנוסחה החדשה.
+	\[
+		\EE({(X - \frac{n}{2})}^4)
+		= \EE({(\sum_{i = 1}^{n}  (X_i - \frac{1}{2}))}^4)
+	\]
+	נגדיר $Y_i = X_i - \frac{1}{2}$ ולכן
+	\[
+		\EE({(X - \frac{n}{2})}^4)
+		= \EE({(\sum_{i = 1}^{n} Y_i)}^4)
+		= \EE(\sum_{i = 1}^{n} \sum_{j = 1}^{n} \sum_{k = 1}^{n} \sum_{l = 1}^{n} Y_i Y_j Y_k Y_l)
+		= \sum_{i = 1}^{n} \sum_{j = 1}^{n} \sum_{k = 1}^{n} \sum_{l = 1}^{n} \EE(Y_i Y_j Y_k Y_l)
+	\]
+	במצב הרגיל אנו יכולים לחלק למקרים עבור אינקסים זהים ושונים, הפעם יש לנו סוגי התלכדות שונים, נחשב לדוגמה את המקרה הזר, נניח ש$i, j, k, l$ שונים ולכן
+	\[
+		\EE(Y_i Y_j Y_k Y_l) = 0
+	\]
+	למעשה מספיק שאחד מהם יהיה שונה מכל השאר, לדוגמה $i \ne j, k, l$ אז
+	\[
+		\EE(Y_i Y_j Y_k Y_l)
+		= \EE(Y_i) \EE(Y_j Y_k Y_l)
+		= 0
+	\]
+	ולכן
+	\[
+		\EE({(X - \frac{n}{2})}^4)
+		= \sum_{i = 1}^{n} \EE(Y_i^4)
+		+ \binom{4}{2} \sum_{i = 1}^{n} \sum_{j = 1, j \ne i}^{n} \EE(Y_i^2) \EE(Y_j^2)
+		\le K n^2
+	\]
+	ומאי־שוויון צבישב המוכלל נקבל
+	\[
+		\PP(|X - \frac{n}{2}| \ge \frac{3n}{4})
+		\le o(\frac{1}{n^2})
+	\]
+	במקום לעבוד עם פולינומים נעבוד עם משתנים מערכיים על־ידי ההגדרה
+	\[
+		Z = 2^X
+	\]
+	ולכן גם $Z - 2^X = 2^{\sum_{i = 1}^{n} X_i} = \prod_{i = 1}^n 2^{X_i}$, נגדיר את מכפלות אלה כ־$Z_i$ ואז
+	\[
+		\PP(X \ge \frac{3n}{4})
+		= \PP(Z \ge 2^{\frac{3n}{4}})
+		\le \frac{\EE(Z)}{2^{\frac{3n}{4}}}
+		= \frac{\prod_{i = 1}^n \EE(Z_i)}{2^{\frac{3n}{4}}}
+	\]
+	וגם
+	\[
+		\EE(Z_i) = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot 2 = \frac{3}{2}
+	\]
+	ולכן
+	\[
+		\EE(Z) = {\left(\frac{3}{2}\right)}^n
+	\]
+	וכן
+	\[
+		\frac{\prod_{i = 1}^n \EE(Z_i)}{2^{\frac{3n}{4}}}
+		= \frac{\frac{3^n}{2^n}}{2^{\frac{3n}{4}}}
+		= {(\frac{\frac{3}{2}}{2^{\frac{3}{4}}})}^n
+		\xrightarrow[n \to \infty]{} 0
+	\]
+\end{example}
+\begin{definition}[פונקציה יוצרת מומנטים]
+	$X$ משתנה מקרי, אז הפונקציה יוצרת המומנטים שלו היא
+	\[
+		M_X(t) = \EE(e^{tX})
+	\]
+	והיא מוגדרת עבור חלק מערכי $t \in \RR$.
+\end{definition}
+\begin{proposition}[אי־שוויון צ'רנוף]
+	נניח $X$ משתנה מקרי ו־$\lambda \in \RR$ אז
+	\[
+		\PP(X \ge \lambda)
+		\le \frac{M_X(t)}{e^{t\lambda}}
+	\]
+	לכל $t > 0$ עבורו $M_X(t)$ מוגדרת.
+\end{proposition}
+\begin{proof}
+	\[
+		\PP(X \ge \lambda)
+		= \PP(e^{tX} \ge e^{t\lambda})
+		\le \frac{\EE(e^{tX})}{e^{t\lambda}}
+	\]
+\end{proof}
+\begin{proposition}
+	אם $X, Y$ בלתי־תלויים אז
+	\[
+		M_{X + Y}(t) = M_X(t) \cdot M_Y(t)
+	\]
+	לכל $t$ בתחום ההגדרה של $X, Y$.
+\end{proposition}
+\begin{proof}
+	\[
+		\EE(e^{t(X + Y)})
+		= \EE(e^{tX} \cdot e^{tY})
+		= \EE(e^{tX}) \EE(e^{tY})
+	\]
+\end{proof}
+\begin{example}
+	נניח ש־$X \sim Ber(p)$ אז
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= (1 - p) e^{t \cdot 0} + p e^{t \cdot 1}
+		= 1 + p(e^t - 1)
+	\]
+	ועל־ידי הטענה האחרונה אם $X \sim Bin(n, p)$ אז
+	\[
+		M_X(t)
+		= {(1 + p(e^t - 1))}^n
+	\]
+\end{example}
+\begin{example}
+	נניח ש־$X \sim Poi(\lambda)$ אז
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \sum_{k = 0}^{\infty} e^{tk} e^{-\lambda} \frac{\lambda^k}{k!}
+		= e^{-\lambda} \sum_{k = 0}^{\infty} \frac{{(\lambda \cdot e^t)}^k}{k!}
+		= e^{-\lambda} e^{e^t \lambda}
+		= e^{\lambda(e^t - 1)}
+	\]
+\end{example}
+\begin{remark}
+	אם ניקח $X_n \sim Bin(n, \frac{\lambda}{n})$ אז $M_{X_n}(t) = {(1 + \frac{\lambda(e^t - 1)}{n})}^n \xrightarrow[n \to \infty]{} e^{\lambda(e^t - 1)} = M_X(t)$.
+\end{remark}
+\begin{example}
+	נניח ש־$X \sim Geo(p)$ אז
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \sum_{k = 1}^{\infty} e^{tk} {(1 - p)}^{k - 1} p
+		= p e^t \sum_{k = 1}^{\infty} {(e^t (1 - p))}^{k - 1}
+		= \frac{p e^t}{1 - e^t(1 - p)}
+	\]
+	וזה מוגדר רק כאשר $e^t(1 - p) < 1$.
+\end{example}
+\begin{theorem}[אי־שוויון הופדינג]
+	יהיו $X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים כך ש־$\EE(X_i) = 0$, ו־$|X_i| \le 1$ כמעט תמיד,
+	\[
+		\PP(\sum_{i = 1}^{n} X_i \ge \lambda)
+		\le e^{-\frac{\lambda^2}{2n}}
+	\]
+\end{theorem}
+את ההוכחה נראה בהרצאה הבאה, אבל כן נראה דוגמה
+\begin{example}
+	מטילים $n = 10^6$ מטבעות הוגנים באופן בלתי־תלוי,
+	\[
+		0.99 \le \PP(495000 \le X \le 505000)
+	\]
+	ונמצא חסם נוסף להסתברות זו.
+	נגדיר $Y_i = 2(X_i - \frac{1}{2})$ כדי למרכז אותם, ואז
+	\[
+		\EE(Y_i) = 0,
+		|Y_i| \le 1
+	\]
+	אז אפשר להשתמש באי־שוויון הופדינג על $Y = \sum_{i = 1}^{n} Y_i$.
+	\[
+		\PP(Y \ge \lambda)
+		\le e^{-\frac{\lambda^2}{2n}}
+	\]
+	רוצים לחסום את $|X - \frac{n}{2}| \ge 5000$ אז
+	\[
+		Y
+		= \sum_{i = 1}^{n} Y_i
+		= \sum_{i = 1}^{n} 2X_i - 1
+		= 2X - n
+		= 2 (X - \frac{n}{2})
+	\]
+	ולכן במקרה של $Y$ אנו מחפשים את
+	\[
+		|Y| \ge 10000
+	\]
+	ועתה נוכל מטעמי סימטריה לבחון רק את המקרה החיובי,
+	\[
+		\PP(|X - \frac{n}{2}| \ge 5000)
+		\le 2 \PP(Y \ge 10000)
+		\le e^{\frac{10000^2}{2n}}
+		= e^{-50}
+	\]
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
