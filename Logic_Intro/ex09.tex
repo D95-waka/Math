@@ -1,0 +1,93 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+קבוצת פסוקים $\Sigma$ תיקרא קבוצת הינטיקה אם היא מקיימת את התנאים הבאים לכל שני פסוקים $\alpha, \beta$ בשפה.
+\begin{enumerate}
+	\item אם $P$ פסוק יסודי אז לא יתכן שגם $P$ וגם $\lnot P$ שייכים ל־$\Sigma$.
+	\item אם $\lnot (\lnot \alpha) \in \Sigma$ אז גם $\alpha \in \Sigma$.
+	\item אם $\alpha \land \beta \in \Sigma$ אז $\alpha, \beta \in \Sigma$ ואם $\lnot (\alpha \land \beta) \in \Sigma$ אז או $\lnot \alpha$ או $\lnot \beta$ ב־$\Sigma$.
+	\item אם $\alpha \lor \beta \in \Sigma$ אז או $\alpha \in \Sigma$ או $\beta \in \Sigma$, אם $\lnot (\alpha \lor \beta) \in \Sigma$ אז $\lnot \alpha, \lnot \beta \in \Sigma$.
+	\item אם $\alpha \to \beta \in \Sigma$ אז או $\lnot \alpha$ או $\beta$ ב־$\Sigma$, ואם $\lnot (\alpha \to \beta) \in \Sigma$ אז $\alpha, \lnot \beta \in \Sigma$.
+	\item אם $\alpha \leftrightarrow \beta \in \Sigma$ אז או $\alpha, \beta \in \Sigma$ או $\lnot \alpha, \lnot \beta \in \Sigma$,
+		אם $\lnot (\alpha \leftrightarrow \beta) \in \Sigma$ אז או $\alpha, \lnot \beta \in \Sigma$ או $\lnot \alpha, \beta \in \Sigma$.
+\end{enumerate}
+נוכיח שאם $\Sigma$ קבוצת הינטיקה אז $\Sigma$ ספיקה.
+\begin{proof}
+	נגדיר $v : L \to \{ \TT, \FF \}$ על־ידי $v(P) = \TT \iff P \in \Sigma$. \\
+	נגדיר $\xi = \forall \varphi (((\varphi \in \Sigma) \implies \bar{v}(\varphi) = \TT) \land ((\lnot \varphi) \in \Sigma \implies \bar{v}(\varphi) = \FF))$, ונוכיח את $\xi$ באינדוקציה על מבנה הפסוק. \\
+	לפני שנתחיל נעיר ש־$\xi$ הוא טענה שנכתבה בשפה לוגית מטעמי נוחות, ואנו מתייחסים אליה כטענה ולא כאל נוסחה. \\
+	עבור בסיס האינדוקציה יהי $P \in L$ פסוק יסודי, אם $P \in \Sigma$ אז מהגדרה נובע $\bar{v}(P) = \TT$ כמבוקש, ואילו $\lnot P \in \Sigma$ אז $\bar{v}(\lnot P) = V_\lnot(v(P)) = \TT \implies \bar{v}(P) = \FF$.
+	נעיר שמתנאי 1 לקבוצות הינטיקה נובע שהמהלך שביצענו מוגדר ולכן השלמנו אם כך את בסיס האינדוקציה ולכן נעבור להוכיח את המהלך.
+	נניח ש־$\alpha, \beta$ מקיימים את $\xi$ כהנחה אינדוקטיבית.
+	\begin{itemize}
+		\item אם $\varphi = \lnot \alpha$ אז אם $\varphi \in \Sigma$ אז $\lnot \alpha \in \Sigma$ ותנאי האינדוקציה חל, נובע $\bar{v}(\alpha) = \FF$, ולכן $\bar{v}(\varphi) = V_\lnot(\bar{v}(\alpha)) = \TT$. \\
+			אם $\lnot \varphi \in \Sigma$ אז $\lnot (\lnot \alpha) \in \Sigma$ ולכן מ־1 גם $\alpha \in \Sigma$ ומהנחת האינדוקציה $\bar{v}(\alpha) = \TT$, בהתאם $\bar{v}(\varphi) = V_\lnot(\bar{v}(\alpha)) = \FF$.
+		\item אם $\varphi = \alpha \land \beta$ אז אם $\varphi \in \Sigma$ אז מ־3 גם $\alpha, \beta \in \Sigma$ ולכן $\bar{v}(\alpha) = \bar{v}(\beta) = \TT$ ולכן בהכרח $\bar{v}(\varphi) = \TT$. \\
+			אם $\lnot \varphi \in \Sigma$ אז מ־3 וללא הגבלת הכלליות גם $\lnot \alpha \in \Sigma$ ולכן $\bar{v}(\alpha) = \FF$ מהנחת האינדוקציה, בהתאם גם $\bar{v}(\varphi) = \FF$. \\
+			נבחין כי למעשה יכולנו לסיים את ההוכחה כאן על־ידי שימוש בקבוצת כמתים שלמה של $\land, \lnot$, ניתן אף להוכיח שכלל תנאי קבוצת הינטיקה נובעים משלושת התנאים הראשונים,
+			אך נוכיח את מהלך האינדוקציה עבור כלל $\mathcal{B}$ מטעמי פורמליות.
+		\item אם $\varphi = \alpha \lor \beta$ אז אם $\varphi \in \Sigma$ אז ללא הגבלת הכלליות גם $\alpha \in \Sigma$ ולכן נובע $\bar{v}(\varphi) = \TT$. \\
+			אם $\lnot \varphi \in \Sigma$ אז מ־4 גם $\lnot \alpha, \lnot \beta \in \Sigma$ ולכן נובע $\bar{v}(\varphi) = V_\lor(\bar{v}(\alpha), \bar{v}(\beta)) = \FF$.
+		\item אם $\varphi = \alpha \to \beta$ אז אם $\varphi \in \Sigma$ אז מ־5 וללא הגבלת הכלליות גם $\lnot \alpha \in \Sigma$ ולכן נובע $\bar{v}(\varphi) = \TT$. \\
+			אם $\lnot \varphi \in \Sigma$ אז נובע $\alpha, \lnot \beta \in \Sigma$ וכן שוב מכללי הערכת אמת נובע $\bar{v}(\varphi) = \FF$.
+		\item אם $\varphi = \alpha \leftrightarrow \beta$ אז אם $\varphi \in \Sigma$ אז באופן דומה נפצל למקרים על תנאי 6 מתקבל בהכרח ש־$\bar{v}(\varphi) = \TT$. \\
+			אם $\lnot \varphi \in \Sigma$ אז ללא הגבלת הכלליות $\alpha, \lnot \beta \in \Sigma$ ונובע בהכרח $\bar{v}(\varphi) = \FF$.
+	\end{itemize}
+	השלמנו את מהלך האינדוקציה ולכן $\xi$ מתקיים.
+\end{proof}
+
+\question{}
+\subquestion[2]
+קבוצת פסוקים $\Sigma$ תיקרא עקבית עבור $H$ אם אין פסוק $\alpha$ עבורו $\Sigma \vdash^H \alpha$ וגם $\Sigma \vdash^H \lnot \alpha$. \\
+נוכיח שאם $\Sigma$ אינה עקבית עבור $H$ אז לכל פסוק $\beta$ מתקיים $\Sigma \vdash^H \beta$.
+\begin{proof}
+	TODO
+\end{proof}
+
+\question{}
+תהי שפה $L$ לתחשיב יחסים ותהי $\varphi \in form_L$.
+
+\subquestion{}
+נוכיח שמתקיים $\exists x \varphi \vdash \lnot (\forall x (\lnot \varphi))$.
+\begin{proof}
+	נבנה עץ היסק ב־KE להוכחת הטענה.
+	\begin{enumerate}
+		\item $\lnot (\lnot (\forall x (\lnot \varphi)))$
+		\item $\forall x (\lnot \varphi)$, כללי שלילה
+		\item $\exists x \varphi$, הוספת הנחה
+		\item $\varphi^x_c$, כללי קיים, הוספת עד $c$
+		\item $\lnot \varphi^x_c$, כללי לכל, הצבה ל־2, וסתירה
+	\end{enumerate}
+	נבחין כי במהלך האחרון הסתמכנו על הזהות ${(\lnot \varphi)}^x_c = \lnot \varphi^x_c$ אשר הוכחנו שמתקיימת בתרגילים קודמים. \\
+	מעץ ההיסק שמצאנו אכן מתקיים $\exists x \varphi \vdash \lnot (\forall x (\lnot \varphi))$.
+\end{proof}
+
+\subquestion{}
+נוכיח שמתקיים $\forall x \varphi \vdash \lnot (\exists x (\lnot \varphi))$.
+\begin{proof}
+	כמו בסעיף הקודם נבנה עץ היסק ב־KE עבור הטענה.
+	\begin{enumerate}
+		\item $\lnot (\lnot (\exists x (\lnot \varphi)))$
+		\item $\exists x (\lnot \varphi)$, כללי שלילה
+		\item $\varphi_c^x$, כללי קיים, הוספת עד $c$
+		\item $\forall x \varphi$, הוספת הנחה
+		\item $\varphi_c^x$, כללי לכל, הצבה, וסתירה
+	\end{enumerate}
+	ומצאנו כי קיים עץ היסק מתאים לטענה.
+\end{proof}
+
+\question{}
+תהי $\varphi$ נוסחה, $t$ שם עצם קבוע, $x$ משתנה, $c$ ו־$d$ סימני קבוע ב־$L_{P, f}$.
+
+\subquestion{}
+נוכיח שמתקיים ${(\varphi_t^x)}_d^c = {(\varphi_d^c)}_{t_d^c}^x$.
+\begin{proof}
+	צריך להשתמש בזה ש־$t$ שם עצם קבוע.
+\end{proof}
+
+\end{document}
