@@ -10,7 +10,7 @@
 Let $\lambda$ be an infinite cardinal.
 A $(\lambda^+, \lambda)$-Ulam matric is a collection of sets $\langle A_{\alpha, \rho} \mid \alpha < \lambda^+, \rho < \lambda \rangle$ such that,
 \begin{enumerate}
-	\item For every $\alpha < \beta < \lambda^+$ and $\rho < \lambda$, $A_{\alpha, \rho} \cap A_{\beta, \rho} \ne \emptyset$.
+	\item For every $\alpha < \beta < \lambda^+$ and $\rho < \lambda$, $A_{\alpha, \rho} \cap A_{\beta, \rho} = \emptyset$.
 	\item For every $\alpha < \lambda^+$, $|\lambda^+ \setminus (\bigcup_\rho A_{\alpha, \rho})| \le \lambda$.
 \end{enumerate}
 
@@ -45,8 +45,14 @@ Let $\kappa$ be the least cardinal such that there is a $\sigma$-additive, non-t
 We will prove that $\kappa$ is not a successor cardinal.
 \begin{proof}
 	Let us assume for contradiction that $\kappa$ is indeed a successor cardinal such that $\lambda^+ = \kappa$. \\
-	By the last part there is a $(\lambda^+, \lambda)$-Ulam matrix for this specified $\lambda$. \\
+	By the last part there is a $(\lambda^+, \lambda)$-Ulam matrix, A, for this specified $\lambda$. \\
 	Fixing $\alpha < \lambda^+$, we will find $\rho < \lambda$ such that $\mu(A_{\alpha, \rho}) > 0$.
+	We know that $|\kappa \setminus \bigcup_\rho A_{\alpha, \rho}| \le \lambda$,
+	then the assumption that all these elements of $A$ fulfilling $A_{\alpha, \rho} \le \lambda$ would lead to contradiction, as their union would be $< \kappa$.
+	Then there is an element $A_{\alpha, \rho} > \lambda$ for every $\alpha < \kappa$, for each for these $\mu(A_{\alpha, \rho}) > 0$ as $\mu$ is non-atomic.
+	Let $\gamma = \{ \rho < \lambda \mid \alpha < \kappa, \mu(A_{\alpha, \rho}) > 0 \}$, then define $B_\alpha = \bigcup_{\rho \in \gamma} A_{\alpha, \rho}$.
+	$B_\alpha \cap B_\beta = \emptyset$ for every $\alpha < \beta < \kappa$ as deducted from Ulam matrix, and then by $\sigma$-additivity of $\mu$ we get contradiction to $\mu(\bigcup B_\alpha) \le 1$.
+	By the contradiction it is followed that there is no such $\lambda$, meaning $\kappa$ is not a successor cardinal.
 \end{proof}
 
 \question{}
@@ -59,7 +65,19 @@ Let $\kappa$ be an uncountable regular cardinal such that there is non-principle
 Such an $\mathcal{F}$ is called non-trivial $\sigma$-saturated $\kappa$-complete filter on $\kappa$. \\
 We will show that either there is a $\kappa$-complete ultrafilter on $\kappa$ or $\kappa \le 2^{\aleph_0}$ and $\kappa$ is a limit cardinal.
 \begin{proof}
-	TODO
+	Let $\Ff^+ = \{X \subseteq \kappa \mid \kappa \setminus X \notin \Ff\}$, This set represent the elements of $\Ff$ which are non zero in a sense, a positive subset of the filter.
+
+	Let us assume that for every $B \subseteq A$, $B \in \Ff^+$ or $A \setminus B \in \Ff^+$, this is in a sense the atomic case, in which there is a set that acts as an atom.
+	We will show that in this case there is a $\kappa$-complete ultrafilter on $\kappa$.
+	Let us define $A$ an atom of $\Ff^+$, from the assumption we made it is clear that there is an atom, such can be constructed by intersecting decreasing series of sets that are all in $\Ff^+$.
+	Define $\Uu = \{ x \in \Ff^+ \mid A \subseteq x \}$, this is an ultrafilter which is $\kappa$-complete as required\footnote{Jech T. Set Theory. 2003, 1, 77.}
+
+	Assuming the contrary of our initial assumption, it is directly follows that for every $A \in \Ff^+$ there is $B \subseteq A$ such that $B, A \setminus B \in \Ff^+$.
+	This is case is in a sense non-atomic, as for each positive-measure set there is a split of disjoint positive-measure subsets.
+
+	\textbf{Self Note}:
+	We will construct a binary tree of $2^{\aleph_0}$ of level wise disjoint sets such that their measure is positive. After $\omega_1$ splits it will be a contradiction that the measure is positive,
+	forcing the size of $\kappa$ to be less than $2^{\aleph_0}$.
 \end{proof}
 
 \end{document}
