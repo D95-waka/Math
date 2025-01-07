@@ -3366,7 +3366,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{exercise}
 \begin{solution}
 	אנו מחפשים את $\PP(X < M) < p$ עבור $M$ מספר חודשים. נעשה שינוי ונכתוב $\{X < \mu - k\} \subseteq \{ |X - \mu| > k \}$.
-	מצ'בישב
+	צ'בישב
 	\[
 		\PP(X < \mu - k)
 		\le \PP(|X - \mu| \ge k)
@@ -3542,7 +3542,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		\le \frac{\EE(e^{tX})}{e^{t\lambda}}
 	\]
 \end{proof}
-\begin{proposition}
+\begin{proposition}[כפליות פונקציה יוצרת מומנטים]
 	אם $X, Y$ בלתי־תלויים אז
 	\[
 		M_{X + Y}(t) = M_X(t) \cdot M_Y(t)
@@ -3595,8 +3595,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 	וזה מוגדר רק כאשר $e^t(1 - p) < 1$.
 \end{example}
-\begin{theorem}[אי־שוויון הופדינג]
-	יהיו $X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים כך ש־$\EE(X_i) = 0$, ו־$|X_i| \le 1$ כמעט תמיד,
+\begin{theorem}[אי־שוויון הופדינג]\label{hofding_inequality_theorem}
+	יהיו $X_1, \dots, X_n$ משתנים מקריים בלתי־תלויים כך ש־$\EE(X_i) = 0$, ו־$|X_i| \le 1$ כמעט תמיד, אז
 	\[
 		\PP(\sum_{i = 1}^{n} X_i \ge \lambda)
 		\le e^{-\frac{\lambda^2}{2n}}
@@ -3639,6 +3639,163 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		= e^{-50}
 	\]
 \end{example}
+
+\section{שיעור 19 --- 7.1.2024}
+\subsection{פונקציה יוצרת מומנטים --- המשך}
+בהרצאה הקודמת ראינו את אי־שוויון הופדינג\ \ref{hofding_inequality_theorem}, אי־שוויון שימושי במיוחד עבור חסמים, עתה נראה את ההוכחה שלו ודוגמות נוספות.
+\begin{example}
+	אם $X_i \sim U(\{-1, 1\})$ מקיימים את תנאי \ \ref{hofding_inequality_theorem}. \\
+	מאי־שוויון צ'בישב נקבל את החסם
+	\[
+		\PP(| \sum_{i = 1}^{n} X_i | \ge \lambda)
+		\le \frac{\var(\sum_{i = 1}^{n} X_i)}{\lambda^2}
+		= \frac{n}{\lambda^2}
+	\]
+	בזמן שמאי־שוויון הופדינג נובע
+	\[
+		\PP(| \sum_{i = 1}^{n} X_i | \ge \lambda)
+		\le 2 \exp(- \frac{\lambda^2}{2n})
+	\]
+\end{example}
+נראה עתה למה שנצטרך להוכחת אי־השוויון.
+\begin{lemma}[הלמה של הופדינג]
+	אם $X$ משתמה מקרי כך ש־$\EE(X) = 0$ ו־$|X| \le 1$ אז
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		\le e^{\frac{t^2}{2}}
+	\]
+	לכל $t \in \RR$.
+\end{lemma}
+\begin{proof}
+	יהי $t \in \RR$.
+	נגדיר את הפונקציה הקווית $L(x) = \frac{e^t - e^{-t}}{2} x + \frac{e^t + e^{-t}}{2}$ על־ידי שימוש בשיפוע על גרף הפונקציה $e^{tX}$. \\
+	לכל $x \in [-1, 1]$ נובע $e^{tx} \le L(x)$.
+	עבור $X$ שמקיים $|X| \le 1$ מתקיים $e^{tX} \le L(X)$.
+	לכן מתכונות התוחלת נובע $\EE(e^{tX}) \le \EE(L(X))$.
+	נותר אם כן לחשב את הערך האחרון,
+	\[
+		\EE(L(X))
+		= \EE(\frac{e^t - e^{-t}}{2} X + \frac{e^t + e^{-t}}{2})
+		= \frac{e^t - e^{-t}}{2} \EE(X) + \frac{e^t + e^{-t}}{2}
+		= \frac{e^t + e^{-t}}{2}
+	\]
+	ומצאנו חסם, אך לא האחד שרצינו, נמשיך ונראה כי החסם המבוקש מתקיים אף הוא.
+	מפיתוח טיילור נקבל
+	\[
+		\frac{e^t + e^{-t}}{2}
+		= \frac{1}{2} \left(\sum_{k = 0}^{\infty} \frac{t^k}{k!} + \sum_{k = 0}^{\infty} \frac{{(-t)}^k}{k!} \right)
+		= \frac{1}{2} \left(\sum_{k = 0}^{\infty} \frac{t^k + {(-t)}^k}{k!}\right)
+		= \frac{1}{2} \left(\sum_{l = 0}^{\infty} \frac{t^{2l}}{(2l)!}\right)
+	\]
+	מהצד השני
+	\[
+		e^{\frac{t^2}{2}}
+		= \sum_{l = 0}^{\infty} \frac{{\left(\frac{t^2}{2}\right)}^l}{l!}
+		= \sum_{l = 0}^{\infty} \frac{t^{2l}}{2^l l!}
+	\]
+	אבל לכל $l \ge 0$ מתקיים
+	\[
+		2^l l! = 2l (2l - 2) \cdots 2 \le 2 l (2l - 1) \cdots 1 = (2l)!
+	\]
+	ולכן מצאנו את החסם הרצוי בדיוק.
+\end{proof}
+נעבור להוכחת אי־השוויון\ \ref{hofding_inequality_theorem}.
+\begin{proof}
+	לפי הלמה לכל $i$,
+	\[
+		M_{X_i}(t) \le e^{\frac{t^2}{2}}
+	\]
+	אנו גם יודעים ש־$X_i$ בלתי־תלויים ולפי כפליות
+	\[
+		M_{\sum_{i = 1}^{n} X_i}(t)
+		= \prod_{i = 1}^n M_{X_i}(t)
+		\le {(e^{\frac{t^2}{2}})}^n
+		= e^{\frac{nt^2}{2}}
+	\]
+	ולכן לפי צ'רנוף
+	\[
+		\PP(\sum_{i = 1}^{n} X_i \ge \lambda)
+		\le \frac{M_{\sum_{i = 1}^{n} X_i}(t)}{e^{\lambda t}}
+		\le e^{\frac{nt^2}{2} - \lambda t}
+	\]
+	נמצא את הערך הקן ביותר עבור חסם זה על־ידי מציאת ערך קטן ביותר לביטוי $\frac{n t^2}{2} - \lambda t$, נגזור את הביטוי ונקבל $nt - \lambda$ ולכן נבחר $t = \frac{\lambda}{n}$ ונקבל
+	\[
+		e^{\frac{n {(\frac{\lambda}{n})}^2}{2} - \lambda \frac{\lambda}{n}}
+		= e^{\frac{\lambda^2}{2n} - 2 \frac{1}{2}\frac{\lambda^2}{n}}
+		= e^{-\frac{\lambda^2}{2n}}
+	\]
+	כפי שרצינו להראות.
+\end{proof}
+\begin{example}
+	$X_i \sim U([6])$ עבור $i \in [100]$ ונרצה לחשב את ההסתברות שממוצע מאה ההטלות הוא לפחות 4.
+	\[
+		\PP(\frac{\sum_{i = 1}^{100} X_i}{100} \ge 4)
+	\]
+	נמרכז את המשתנים המקריים על־ידי הגדרת $Y_i = \frac{X_i - \frac{7}{2}}{\frac{5}{2}}$ כדי לעמוד בדרישות אי־השוויון\ \ref{hofding_inequality_theorem}. \\
+	מההגדרה אכן $\EE(Y_i) = 0$ וגם $|Y_i| \le 1$.
+	לכן נובע מאי־שוויון הופדינג
+	\[
+		\PP(\sum_{i = 1}^{100} Y_i \ge \lambda)
+		\le e^{- \frac{\lambda^2}{100}}
+	\]
+	ואנו רוצים למצוא את ערך $\lambda$ המתאים כדי לתרגם את אי־השוויון הזה לאחד ששואל על $\frac{\sum_{i = 1}^{100} X_i}{100} \ge 4$.
+	מהצבה
+	\[
+		X_i = \frac{5}{2} Y_i + \frac{7}{2}
+	\]
+	ולכן
+	\[
+		\frac{\sum_{i = 1}^{100} \frac{5}{2} Y_i + \frac{7}{2}}{100} \ge 4
+		\iff
+		\frac{\frac{5}{2} \sum_{i = 1}^{100} Y_i}{100} + \frac{7}{2} \ge 4
+		\iff
+		\frac{5}{2} \sum_{i = 1}^{100} Y_i \ge 50
+		\iff
+		\sum_{i = 1}^{100} Y_i \ge 20
+	\]
+	ולכן נקבל
+	\[
+		\PP(\frac{\sum_{i = 1}^{100} X_i}{100} \ge 4)
+		\le e^{- \frac{20^2}{200}}
+		= e^{-2}
+	\]
+\end{example}
+לבסוף נעיר הערה על השם פונקציה יוצרת מומנטים, הסיבה שאנו קוראים לה ככה הוא שהנגזרות שלה הם המומנטים, כלומר $\EE(X^2)$ יהיה ערך הנגזרת השנייה של $M_X(t)$ וכן הלאה, כך נראה עתה.
+\begin{proposition}
+	אם $M_X(t)$ מוגדרת בסביבת $0$ אז היא חלקה בסביבת $0$ ונגזרותיה הן המומנטים של $X$.
+\end{proposition}
+\begin{proof}[הוכחה במקרה של תומך סופי]
+	\[
+		M_X(t)
+		= \sum_{s \in \supp X} e^{ts} \PP(X = s)
+	\]
+	ולכן
+	\[
+		M_X'(t)
+		= \sum_{s \in \supp X} s e^{ts} \PP(X = s)
+	\]
+	ובאופן כללי
+	\[
+		M_X^{(k)}(t)
+		= \sum_{s \in \supp X} s^k e^{ts} \PP(X = s)
+	\]
+	ולכן
+	\[
+		M_X^{(k)}(0)
+		= \sum_{s \in \supp X} s^k \PP(X = s)
+		= \EE(X^k)
+	\]
+\end{proof}
+
+\subsection{מבוא למרחבי הסתברות רציפים}
+ניזכר שהגדרנו $(\Omega, \mathcal{F}, \PP)$ עבור מרחב הסתברות, אבל לא דיברנו על המשמעות של $\mathcal{F}$ כדי להבין מה היכולות האמיתיות של ההגדרה שלנו.
+ננסה עתה להגדיר מרחב הסתברות לא בדיד בצורה נאיבית. למען הפשטות נבחן את $\Omega = [0, 1]$.
+אנו רוצים ש־$\PP([0, \frac{1}{2}]) = \frac{1}{2}$ וכן ש־$\PP([\frac{1}{2}, 1]) = \frac{1}{2}$ אבל אז נובע ישירות ש־$\PP(\{\frac{1}{2}\}) = 0$.
+ככלל נגדיר ש־$\PP([a, b]) = b - a$.
+אבל בהגדרה זו אנו נתקלים בפרדוקס בשם בנך־טרסקי.
+אפשר לחלק את כדור היחידה ב־$\RR^3$ למספר סופי של חלקים זרים ולהזיז ולסובב את החלקים ולהרכיב מהם שני כדורי יחידה.
+כדי לא להיתקל בפרדוקס הזה אנו הולכים להשתמש במידה ולהגביל את $\mathcal{F}$.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
