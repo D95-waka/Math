@@ -1,0 +1,65 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 6 Answer Sheet --- Axiomatic Set Theory, 80650}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+Let $\lambda$ be an infinite cardinal.
+A $(\lambda^+, \lambda)$-Ulam matric is a collection of sets $\langle A_{\alpha, \rho} \mid \alpha < \lambda^+, \rho < \lambda \rangle$ such that,
+\begin{enumerate}
+	\item For every $\alpha < \beta < \lambda^+$ and $\rho < \lambda$, $A_{\alpha, \rho} \cap A_{\beta, \rho} \ne \emptyset$.
+	\item For every $\alpha < \lambda^+$, $|\lambda^+ \setminus (\bigcup_\rho A_{\alpha, \rho})| \le \lambda$.
+\end{enumerate}
+
+\subquestion{}
+We will show that for every infinite $\lambda$, a $(\lambda^+, \lambda)$-Ulam matrix exists.
+\begin{proof}
+	Let us define for each $0 < \xi < \lambda^+$ a surjection $f_\xi : \lambda \to \xi$ by $f_\xi(x) = x$ if $x < \xi$ and to arbitrary value otherwise. \\
+	Define $A_{\alpha, \rho} = \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \}$, and we will show that this definition is fulfilling Ulam matrix definition. \\
+	Let $\alpha < \beta < \lambda^+$ and let us fix $\rho < \lambda$, then
+	\[
+		A_{\alpha, \rho} \cap A_{\beta, \rho}
+		= \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \} \cap \{ \xi < \lambda^+ \mid f_\xi(\rho) = \beta \}
+		= \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha = \beta \}
+		= \emptyset
+	\]
+	Let us fix $\alpha < \lambda^+$, then
+	\[
+		\left\lvert \lambda^+ \setminus \left(\bigcup_\rho A_{\alpha, \rho}\right) \right\rvert
+		= \left\lvert \lambda^+ \setminus \left(\bigcup_\rho \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \} \right) \right\rvert
+		= \left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid f_\xi(\lambda) \ni \alpha \} \right\rvert
+	\]
+	But for each $\alpha$, $f_{\alpha + 1}(\alpha) = \alpha$ we can deduce
+	\[
+		\left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid f_\xi(\lambda) \ni \alpha \} \right\rvert
+		\left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid \alpha + 1 < \lambda^+ \} \right\rvert
+		\le \lambda
+	\]
+\end{proof}
+
+\subquestion{}
+Let $\kappa$ be the least cardinal such that there is a $\sigma$-additive, non-trivial, non-atomic measure $\mu$ with $\dom \mu = \mathcal{P}(\kappa)$. \\
+We will prove that $\kappa$ is not a successor cardinal.
+\begin{proof}
+	Let us assume for contradiction that $\kappa$ is indeed a successor cardinal such that $\lambda^+ = \kappa$. \\
+	By the last part there is a $(\lambda^+, \lambda)$-Ulam matrix for this specified $\lambda$. \\
+	Fixing $\alpha < \lambda^+$, we will find $\rho < \lambda$ such that $\mu(A_{\alpha, \rho}) > 0$.
+\end{proof}
+
+\question{}
+Let $\kappa$ be an uncountable regular cardinal such that there is non-principle filter $\mathcal{F} \subseteq \mathcal{P}(\kappa)$ with the following properties,
+\begin{enumerate}
+	\item For every $\langle x_\alpha \in \mathcal{F} \mid \alpha < \kappa \rangle$ also $\bigcap_{\alpha < \kappa} x_\alpha \in \mathcal{F}$.
+	\item For every collection $\{ X_\alpha \mid \alpha < \omega_1 \} \subseteq \mathcal{P}(\kappa)$ such that $\forall \alpha, \kappa \setminus X_\alpha \notin \mathcal{F}$,
+		there are $\alpha < \beta$ such that $X_\alpha \cap X_\beta \ne \emptyset$.
+\end{enumerate}
+Such an $\mathcal{F}$ is called non-trivial $\sigma$-saturated $\kappa$-complete filter on $\kappa$. \\
+We will show that either there is a $\kappa$-complete ultrafilter on $\kappa$ or $\kappa \le 2^{\aleph_0}$ and $\kappa$ is a limit cardinal.
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
