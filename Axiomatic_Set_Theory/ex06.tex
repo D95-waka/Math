@@ -74,10 +74,15 @@ We will show that either there is a $\kappa$-complete ultrafilter on $\kappa$ or
 
 	Assuming the contrary of our initial assumption, it is directly follows that for every $A \in \Ff^+$ there is $B \subseteq A$ such that $B, A \setminus B \in \Ff^+$.
 	This is case is in a sense non-atomic, as for each positive-measure set there is a split of disjoint positive-measure subsets.
-
-	\textbf{Self Note}:
-	We will construct a binary tree of $2^{\aleph_0}$ of level wise disjoint sets such that their measure is positive. After $\omega_1$ splits it will be a contradiction that the measure is positive,
-	forcing the size of $\kappa$ to be less than $2^{\aleph_0}$.
+	Let us define a left centered standard binary tree $\langle T, f \rangle$ such that $f : 2^{\omega_1} \to \Ff^+$, defined by $f(\langle \rangle) = \kappa$ and for each $t \in \dom f$,
+	if $f(t) = A$, from the assumption there is $B \subseteq A$ satisfying the noted property, then we define $f(t \frown \langle 0 \rangle) = B, f(t \frown \langle 1 \rangle) = A \setminus B$.
+	Let us define $\operatorname{level}_\alpha(\langle T, f \rangle) = \{ f(t) \mid \operatorname{len}(t) = \alpha$, and $M = \operatorname{level}_{\omega_1}$.
+	We know that $|\RR| \le \omega_1$, then by the non-atomic property of $\mu$ we conclude that $\mu(f(t)) > 0$ for all $t \in \dom f$, but then $\sum M = \infty$ and in particular larger than $1$.
+	This is of course a contradiction to the implicit assumption that $\kappa > \omega_1$, then we conclude directly $\kappa \le 2^{\aleph_0}$.
+	%
+	%\textbf{Self Note}:
+	%We will construct a binary tree of $2^{\aleph_0}$ of level wise disjoint sets such that their measure is positive. After $\omega_1$ splits it will be a contradiction that the measure is positive,
+	%forcing the size of $\kappa$ to be less than $2^{\aleph_0}$.
 \end{proof}
 
 \end{document}
