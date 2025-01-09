@@ -17,42 +17,46 @@ A $(\lambda^+, \lambda)$-Ulam matric is a collection of sets $\langle A_{\alpha,
 \subquestion{}
 We will show that for every infinite $\lambda$, a $(\lambda^+, \lambda)$-Ulam matrix exists.
 \begin{proof}
-	Let us define for each $0 < \xi < \lambda^+$ a surjection $f_\xi : \lambda \to \xi$ by $f_\xi(x) = x$ if $x < \xi$ and to arbitrary value otherwise. \\
-	Define $A_{\alpha, \rho} = \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \}$, and we will show that this definition is fulfilling Ulam matrix definition. \\
-	Let $\alpha < \beta < \lambda^+$ and let us fix $\rho < \lambda$, then
+	Let us define for each $0 < \xi < \lambda^+$ a surjection $f_\xi : \lambda \to \xi$ by mapping $f_\xi(x) = x$ if $x < \xi$ and into an arbitrary unique (as per $\xi$) value $< \xi$ otherwise.
+	We define a matrix $A_{\alpha, \rho} = \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \}$ and want to show that the definition of $A$ fulfills Ulam matrix definition as depicted earlier.
+	Let $\alpha < \beta < \lambda^+$ as well let us fix $\rho < \lambda$, therefore
 	\[
 		A_{\alpha, \rho} \cap A_{\beta, \rho}
 		= \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \} \cap \{ \xi < \lambda^+ \mid f_\xi(\rho) = \beta \}
-		= \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha = \beta \}
+		= \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha, f_\xi(\rho) = \beta \}
 		= \emptyset
 	\]
+	Pay attention that the last step follows directly from the fact we fixed $\rho$ and that $f_\xi$ is a function. \\
 	Let us fix $\alpha < \lambda^+$, then
 	\[
-		\left\lvert \lambda^+ \setminus \left(\bigcup_\rho A_{\alpha, \rho}\right) \right\rvert
-		= \left\lvert \lambda^+ \setminus \left(\bigcup_\rho \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \} \right) \right\rvert
+		\left\lvert \lambda^+ \setminus \left(\bigcup_{\rho < \lambda} A_{\alpha, \rho}\right) \right\rvert
+		= \left\lvert \lambda^+ \setminus \left(\bigcup_{\rho < \lambda} \{ \xi < \lambda^+ \mid f_\xi(\rho) = \alpha \} \right) \right\rvert
 		= \left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid f_\xi(\lambda) \ni \alpha \} \right\rvert
 	\]
-	But for each $\alpha$, $f_{\alpha + 1}(\alpha) = \alpha$ we can deduce
+	when $f_\xi(\lambda) = \im f_\xi = \xi$ as $f_\xi$ is surjective.
+	Then
 	\[
-		\left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid f_\xi(\lambda) \ni \alpha \} \right\rvert
-		\left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid \alpha + 1 < \lambda^+ \} \right\rvert
+		\left\lvert \lambda^+ \setminus \{ \xi < \lambda^+ \mid \alpha < \xi \} \right\rvert
+		|\lambda^+ \setminus \{ \xi \mid \alpha < \xi < \lambda^+ \}|
 		\le \lambda
 	\]
+	As for every choice of $\alpha < \lambda^+$ the cardinality of $\alpha$ is at most $\lambda$.
 \end{proof}
 
 \subquestion{}
-Let $\kappa$ be the least cardinal such that there is a $\sigma$-additive, non-trivial, non-atomic measure $\mu$ with $\dom \mu = \mathcal{P}(\kappa)$. \\
+Let $\kappa$ be the least cardinal such that there is a $\sigma$-additive, non-trivial, non-atomic measure $\mu$ with $\dom \mu = \Pp(\kappa)$. \\
 We will prove that $\kappa$ is not a successor cardinal.
 \begin{proof}
-	Let us assume for contradiction that $\kappa$ is indeed a successor cardinal such that $\lambda^+ = \kappa$. \\
-	By the last part there is a $(\lambda^+, \lambda)$-Ulam matrix, A, for this specified $\lambda$. \\
-	Fixing $\alpha < \lambda^+$, we will find $\rho < \lambda$ such that $\mu(A_{\alpha, \rho}) > 0$.
-	We know that $|\kappa \setminus \bigcup_\rho A_{\alpha, \rho}| \le \lambda$,
-	then the assumption that all these elements of $A$ fulfilling $A_{\alpha, \rho} \le \lambda$ would lead to contradiction, as their union would be $< \kappa$.
-	Then there is an element $A_{\alpha, \rho} > \lambda$ for every $\alpha < \kappa$, for each for these $\mu(A_{\alpha, \rho}) > 0$ as $\mu$ is non-atomic.
-	Let $\gamma = \{ \rho < \lambda \mid \alpha < \kappa, \mu(A_{\alpha, \rho}) > 0 \}$, then define $B_\alpha = \bigcup_{\rho \in \gamma} A_{\alpha, \rho}$.
-	$B_\alpha \cap B_\beta = \emptyset$ for every $\alpha < \beta < \kappa$ as deducted from Ulam matrix, and then by $\sigma$-additivity of $\mu$ we get contradiction to $\mu(\bigcup B_\alpha) \le 1$.
-	By the contradiction it is followed that there is no such $\lambda$, meaning $\kappa$ is not a successor cardinal.
+	Let us assume in order to prove by contradiction that $\kappa$ is indeed a successor cardinal such that $\lambda^+ = \kappa$.
+	By the last proposition, there is a $(\lambda^+, \lambda)$-Ulam matrix, namely $A$, for the specified $\lambda$.
+	Fixing $\alpha < \lambda^+$, we will show that there is $\rho < \lambda$ such that $\mu(A_{\alpha, \rho}) > 0$. \\
+	It is known that $|\kappa \setminus \bigcup_\rho A_{\alpha, \rho}| \le \lambda$,
+	then the assumption that all these elements of $A$ fulfilling $A_{\alpha, \rho} \le \lambda$ would lead to contradiction as their union would be $< \kappa$.
+	Then there is an element $A_{\alpha, \rho} > \lambda$ for every $\alpha < \kappa$. For each of these, $\mu(A_{\alpha, \rho}) > 0$, as $\mu$ is non-atomic (and the elements are \textit{big} in relation to $\kappa$).
+	Let $\gamma = \{ \rho < \lambda \mid \alpha < \kappa, \mu(A_{\alpha, \rho}) > 0 \}$ in order to define $B_\alpha = \bigcup_{\rho \in \gamma} A_{\alpha, \rho}$.
+	From its definition, $B_\alpha \cap B_\beta = \emptyset$ for every $\alpha < \beta < \kappa$, as deducted from Ulam matrix properties,
+	and then by $\sigma$-additivity of $\mu$ we get contradiction to $\mu(\bigcup B_\alpha) \le 1$.
+	From the contradiction it is followed that there is no such $\lambda$, meaning $\kappa$ is not a successor cardinal.
 \end{proof}
 
 \question{}
@@ -65,24 +69,27 @@ Let $\kappa$ be an uncountable regular cardinal such that there is non-principle
 Such an $\mathcal{F}$ is called non-trivial $\sigma$-saturated $\kappa$-complete filter on $\kappa$. \\
 We will show that either there is a $\kappa$-complete ultrafilter on $\kappa$ or $\kappa \le 2^{\aleph_0}$ and $\kappa$ is a limit cardinal.
 \begin{proof}
-	Let $\Ff^+ = \{X \subseteq \kappa \mid \kappa \setminus X \notin \Ff\}$, This set represent the elements of $\Ff$ which are non zero in a sense, a positive subset of the filter.
+	Let $\Ff^+ = \{X \subseteq \kappa \mid \kappa \setminus X \notin \Ff\}$, This set represents the elements of $\Ff$ which are \textit{non zero} in a sense, a positive subset of the filter.
 
 	Let us assume that for every $B \subseteq A$, $B \in \Ff^+$ or $A \setminus B \in \Ff^+$, this is in a sense the atomic case, in which there is a set that acts as an atom.
 	We will show that in this case there is a $\kappa$-complete ultrafilter on $\kappa$.
-	Let us define $A$ an atom of $\Ff^+$, from the assumption we made it is clear that there is an atom, such can be constructed by intersecting decreasing series of sets that are all in $\Ff^+$.
-	Define $\Uu = \{ x \in \Ff^+ \mid A \subseteq x \}$, this is an ultrafilter which is $\kappa$-complete as required\footnote{Jech T. Set Theory. 2003, 1, 77.}
+	We will construct a sequence $\langle x_\alpha \in \Ff^+ \mid \alpha < \kappa \rangle \subseteq \Pp(\kappa)$ by taking such list of decreasing ordinals and using the defined property about inclusion in $\Ff^+$.
+	By $\kappa$-completeness of $\Ff$ the intersection, $A$, of the stated sequence is in $\Ff$ and in particular from the assumption we made $A \in \Ff^+$.
+	We define $\Uu = \{ x \in \Ff^+ \mid A \subseteq x \}$, this is an principal ultrafilter which is $\kappa$-complete as required\footnote{Jech T. Set Theory. 2003, 1, 77.}
+	In details, we found a set which fulfills the definition of an atom, and by defining a measure using this atom, we get $\kappa$-complete ultrafilter, this property carries from $\Ff$ $\kappa$-completeness.
 
-	Assuming the contrary of our initial assumption, it is directly follows that for every $A \in \Ff^+$ there is $B \subseteq A$ such that $B, A \setminus B \in \Ff^+$.
+	Assuming the contrary of our initial assumption, it directly follows that for every $A \in \Ff^+$ there is $B \subseteq A$ such that $B, A \setminus B \in \Ff^+$
+	(There is also the case that $B, A \setminus B \notin \Ff^+$, which lead to contradiction to the definition of $\Ff$ as a filter).
 	This is case is in a sense non-atomic, as for each positive-measure set there is a split of disjoint positive-measure subsets.
 	Let us define a left centered standard binary tree $\langle T, f \rangle$ such that $f : 2^{\omega_1} \to \Ff^+$, defined by $f(\langle \rangle) = \kappa$ and for each $t \in \dom f$,
-	if $f(t) = A$, from the assumption there is $B \subseteq A$ satisfying the noted property, then we define $f(t \frown \langle 0 \rangle) = B, f(t \frown \langle 1 \rangle) = A \setminus B$.
-	Let us define $\operatorname{level}_\alpha(\langle T, f \rangle) = \{ f(t) \mid \operatorname{len}(t) = \alpha$, and $M = \operatorname{level}_{\omega_1}$.
-	We know that $|\RR| \le \omega_1$, then by the non-atomic property of $\mu$ we conclude that $\mu(f(t)) > 0$ for all $t \in \dom f$, but then $\sum M = \infty$ and in particular larger than $1$.
-	This is of course a contradiction to the implicit assumption that $\kappa > \omega_1$, then we conclude directly $\kappa \le 2^{\aleph_0}$.
-	%
-	%\textbf{Self Note}:
-	%We will construct a binary tree of $2^{\aleph_0}$ of level wise disjoint sets such that their measure is positive. After $\omega_1$ splits it will be a contradiction that the measure is positive,
-	%forcing the size of $\kappa$ to be less than $2^{\aleph_0}$.
+	if $f(t) = A$, from the assumption there is $B \subseteq A$ satisfying our assumption, then we define $f(t \frown \langle 0 \rangle) = B, f(t \frown \langle 1 \rangle) = A \setminus B$.
+	From our definition, for every $t \in 2^{\omega_1}$, $f(t \frown \langle 0 \rangle) \cap f(t \frown \langle 1 \rangle) = \emptyset$ and $f(t \frown \langle 0 \rangle) \cup f(t \frown \langle 1 \rangle) = f(t)$.
+	Let $M = \{ f(t) \mid t \in 2^{\omega} \}$, then $|M| = 2^{\aleph_0}$ and by $\sigma$-saturation there are $m, m' \in M$ such that $m \cap m' \ne \emptyset$, which is a contradiction.
+	Therefore we assume $M \cap \Ff^+ = \emptyset$ (the process to get a contradiction can be done for each branch to obtain this claim).
+	But $\bigcup M = \kappa$, then we can conclude that $\kappa \le 2^{\aleph_0}$ as well. \\
+	We want to show that $\kappa$ is a limit cardinal, to do that we will use the conclusion of question 1.
+	To fulfill the propositions requirements it is needed to define a measure which is $\sigma$-additive, non-trivial and non-atomic.
+	We can use the principal measure of $\Ff$ (Which requires extending it to ultrafilter, which in turn requires AC) to obtain such a measure.
 \end{proof}
 
 \end{document}
