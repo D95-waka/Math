@@ -670,7 +670,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \begin{notation}
 	נסמן $A_\infty = \bigcup_{n \in \NN} A_n$.
 \end{notation}
-\begin{theorem}[משפט רציפות פונקציית ההסתברות]
+\begin{theorem}[משפט רציפות פונקציית ההסתברות]\label{probability_continuous_probability_function_theorem}
 	אם ${\{A_n\}}_{n = 1}^\infty$ סדרת מאורעות עולה אז
 	\[
 		\PP(A_\infty) = \lim_{n \to \infty} \PP(A_n)
@@ -3796,6 +3796,377 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 אבל בהגדרה זו אנו נתקלים בפרדוקס בשם בנך־טרסקי.
 אפשר לחלק את כדור היחידה ב־$\RR^3$ למספר סופי של חלקים זרים ולהזיז ולסובב את החלקים ולהרכיב מהם שני כדורי יחידה.
 כדי לא להיתקל בפרדוקס הזה אנו הולכים להשתמש במידה ולהגביל את $\mathcal{F}$.
+
+\section{תרגול 10 --- 9.1.2025}
+\subsection{פונקציות יוצרות מומנטים}
+ניזכר כי המומנט ה־$k$ של $X$ הוא $\EE(X^k)$.
+\begin{example}
+	נניח ש־$X \sim Ber(p)$, אז $\forall t \in \RR$,
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \sum_{x \in \supp X} e^{tx} \PP(X = x)
+		= e^0 \PP(X = 0) + e^t \PP(X = 1)
+		= (1 - p) + p e^t
+	\]
+\end{example}
+\begin{example}
+	נניח ש־$X \sim Bin(n, p)$, אז נשתמש בקשר להתפלגות ברנולי ונקבל
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \EE(e^{t \sum X_i})
+		= \EE(\prod_{i = 1}^n e^{t X_i})
+		= \prod_{i = 1}^n M_{X_i}(t)
+		= {((1 - p) + p e^t)}^n
+	\]
+\end{example}
+\begin{example}
+	נגיד ש־$X \sim \zeta(2)$ אם $\supp X = \NN$ וכן
+	\[
+		\PP(X = n)
+		= \frac{1}{c n^2}
+	\]
+	כאשר
+	\[
+		c = \sum \frac{1}{n^2} = \frac{\pi^2}{6}
+	\]
+	ולכן
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \sum_{n = 1}^{\infty} \frac{e^{tn}}{c n^2}
+		< \infty
+		\iff
+		t \le 0
+	\]
+	אז $\sum \frac{1}{n} \sim \EE(X)$ ולכן $X$ חסר תוחלת.
+\end{example}
+\begin{remark}
+	נראה סימון נוסף למה שכבר ראינו על מומנטים,
+	\[
+		\left. \frac{\partial^k M_X(t)}{\partial^k t} \right\lvert_{t = 0} = \EE(X^k)
+	\]
+\end{remark}
+
+\subsection{אי־שוויון צ'רנוף}
+\begin{example}
+	נניח ש־$X \sim Poi(\lambda)$ ואנו רוצים לחסום את $\PP(|X - \lambda| > \lambda)$. \\
+	נתחיל בחסימה על־ידי צ'בישב, נובע
+	\[
+		\PP(|X - \lambda| > \lambda)
+		< \frac{\var(X)}{\lambda^2}
+		= \frac{1}{\lambda}
+	\]
+	ועתה נשתמש באי־שוויון צ'רנוף,
+	\[
+		\{ |X - \lambda| > \lambda \}
+		= \{ X - \lambda > \lambda \} \cup \overbrace{\{X - \lambda < - \lambda \}}^{= 0}
+	\]
+	ולכן
+	\[
+		\PP(|X - \lambda| > \lambda)
+		= \PP(X > 2 \lambda)
+		< M_\lambda(t) e^{-t 2\lambda}
+		= e^{\lambda(e^t - 1)} e^{-t2\lambda}
+		= \exp(\lambda e^t - \lambda - 2 \lambda t)
+	\]
+	נגזור את $f(t) = \lambda e^t - \lambda - 2 \lambda t$ כדי למצוא את החסם היעיל ביותר,
+	\[
+		f'(t)
+		= \lambda e^t - 2 \lambda
+		= 0
+		\iff
+		t = \log 2
+	\]
+	בנוסף
+	\[
+		f''(t) = \lambda e^t > 0
+	\]
+	ולכן זוהי נקודת מינימום, וקיבלנו מאי־השוויון את החסם
+	\[
+		\PP(|X - \lambda| > \lambda)
+		< \exp(\lambda e^{\log 2} - \lambda - 2 \lambda \log 2)
+		= \exp (2\lambda - \lambda - 2 \lambda \log 2)
+		= \frac{e^\lambda}{e^{\log 2 \cdot 2 \lambda}}
+		= {\left(\frac{e}{4}\right)}^\lambda
+	\]
+	זהו כמובן חסם הרבה יותר הדוק, ואחד שנותן לנו מידע נוסף על התנהגות ההתפלגות.
+\end{example}
+\begin{exercise}
+	מטילים מטבע הוגן $n$ פעמים באופן בלתי־תלוי.
+	נגדיר את $X$ להיות מספר הפעמים שיצא הרצף $1, 1$.
+	חסמו את $\PP(X < \frac{n - 1}{4} - c)$ לכל $c > 0$.
+\end{exercise}
+\begin{solution}
+	$X \sim ber(\frac{1}{4})$ שכן $X$ מציין שיצא $1, 1$ בהטלות $i, i + 1$, כאשר $X = \sum_{i = 1}^{n - 1} X_i$. \\
+	נגדיר $Y_i = \frac{1}{4} - X_i$ כדי למרכז ולהתמודד עם הכיוון של אי־השוויון שאנו מחפשים. \\
+	נחשב ונקבל ש־$\supp Y_i = \{\frac{1}{4}, - \frac{3}{4} \} \subseteq [-1, 1]$ כפי שאנו רוצים.
+	\begin{align*}
+		\PP(X < \frac{n - 1}{3} - c)
+		& = \PP( \sum X_i < \frac{n - 1}{4} - c) \\
+		& = \PP(\sum(\frac{1}{4} - Y_i) < \frac{n - 1}{4} - c) \\
+		& = \PP(\frac{n - 1}{4} - \sum Y_i < \frac{n - 1}{4} - c) \\
+		& = \PP(\sum Y_i > c)
+	\end{align*}
+	ולכן נותר לחשב את $\PP(\sum Y_i > c)$, אבל בין המשתנים הללו יש תלות (שלא כמו $X_i$), כדי להשתמש באי־שוויון צ'רנוף עלינו להתמודד עם בעיה זו.
+	לשם כך נגדיר שני סכומים נפרדים,
+	\[
+		S_1 = \sum_{\substack{i = 1 \\ i \equiv 0 \mod 2}}^{n - 1} Y_i,
+		\qquad
+		S_2 = \sum_{\substack{i = 1 \\ i \equiv 1 \mod 2}}^{n - 1} Y_i
+	\]
+	עדיין יש תלות בין $S_1$ ו־$S_2$, אז נשתמש בעובדה ש־$\{S_1, S_2\} \subseteq \{ S_1 > \frac{c}{2} \} \cup \{ S_2 > \frac{c}{2} \}$, לכן מאי־שוויון הופדינג,
+	\[
+		\PP(\sum Y_i > c)
+		= \PP(S_1 + S_2 > c)
+		\le \PP(S_1 > \frac{c}{2}) + \PP(S_2 > \frac{c}{2})
+		< \begin{cases}
+			2\exp(\frac{- {(\frac{c}{2})}^2}{n - 1}) & n - 1 \equiv 0 \mod 2 \\
+			\exp(\frac{- {(\frac{c}{2})}^2}{n - 2}) + \exp(\frac{- {(\frac{c}{2})}^2}{n}) & n - 1 \equiv 1 \mod 2
+		\end{cases}
+	\]
+\end{solution}
+
+\section{שיעור 20 --- 9.1.2025}
+\subsection{משתנים מקריים לא בדידים}
+לפני שאנחנו מתחילים לעבוד עם משתנים כאלה, חשוב שנבין קודם איפה הם בכלל מופיעים, ומה המשמעות שלהם.
+במקרים בדידים ראינו מספר גדול מאוד של דוגמות לשאלות הסתברותיות על מקרים סופיים או בדידים, ועתה נראה דוגמות עבור המקרים הלא בדידים.
+ככלל, נדבר פה על מקרים שבהם יש לנו שאלות שהרזולוציה שלהן היא לא טבעית, כשלדוגמה ראשונה נוכל לדבר על משקלים, אלו הם מספרים שתנים שניתנים לדיוק כרצוננו, ואנו יכולים לדבר על התפלגות המשקל של אדם ברזולוציות שונות.
+המשמעות היא שמשתנה מקרי לא בדיד הוא משתנה מקרי שכשנמדוד אותו בכל אמת מידה נקבל התפלגות יחסית לאמת המידה, כך לדוגמה נוכל למדוד משקל בקילוגרמים, בגרמים, במיקרוגרמים וכן הלאה, בכל פעם נקבל אמות מידה מדויקות יותר ויותר.
+לכן הפעם במקום לשאול למה שווה משתנה מקרי, נשאל את השאלה מתי המשתנה המקרי נמצא בתחומי קטע מסוים, אך במקום זה נתאר את המקרים שבהם המשתנה המקרי נמצא בקרן, מתוך היכולת לחשב התפלגות בקטעים על־ידי חיסור קרניים.
+\begin{definition}[פונקציית התפלגות צוברת]
+	$X$ משתנה מקרי.
+	פונקציית ההתפלגות המצטברת של $X$,
+	\[
+		F_X : \RR \to [0, 1],
+		\qquad
+		F_X(a) = \PP(X \le a)
+	\]
+	מייצגת את ההתפלגות של קרניים כפי שרצינו.
+\end{definition}
+\begin{remark}
+	$F_X$ תלויה רק בהתפלגות $X$.
+\end{remark}
+נעבור לתכונות פונקציות מעין אלה.
+\begin{proposition}[תכונות של פונקציית התפלגות מצטברת]
+	אם $X$ משתנה מקרי אז
+	\begin{enumerate}
+		\item $F_X$ מונוטונית עולה (במובן החלש), $\forall a < b, F_X(a) \le F_X(b)$
+		\item $\lim_{a \to \infty} F_X(a) = 1$ וכן $\lim_{a \to -\infty} F_X(a) = 0$
+		\item $F_X$ רציפה מימין, $\lim_{a \to b^+} F_X(a) = F_x(b)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	נוכיח את כלל התכונות.
+	\begin{enumerate}
+		\item $\forall a < b, F_X(a) = \PP(X \le a) \le \PP(X \le b) = F_X(b)$
+		\item $\lim_{a \to \infty} F_X(a) = \lim_{n \to \infty} F_X(n) = \lim_{n \to \infty} \PP(X \le n)$,
+			עברנו מהמקרה הרציף לגבול בדיד, ואז נקבל סדרה עולה של מאורעות מכילים ואז המסקנה נובעת ממשפט\ \ref{probability_continuous_probability_function_theorem},
+			\[
+				\lim_{n \to \infty} \PP(X \le n)
+				= \PP(\Omega)
+				= 1
+			\]
+			באופן דומה גם
+			\[
+				\lim_{a \to -\infty} F_X(a)
+				= \lim_{n \to -\infty} F_X(a)
+				= \lim_{n \to -\infty} \PP(X \le -n)
+				= \PP(\emptyset)
+				= 0
+			\]
+		\item נשתמש בעובדה שפונקציה מונוטונית וחסומה היא בעלת גבול, ולכן
+			\[
+				\lim_{a \to b^+} F_X(a)
+				= \lim_{n \to \infty} F_X(b + \frac{1}{n})
+				= \lim_{n \to \infty} \PP(X \le b + \frac{1}{n})
+			\]
+			ומרציפות פונקציית ההסתברות ביטוי זה שווה ל־$\PP(X \le b) = F_X(b)$.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	נניח ש־$X \sim Ber(p)$ ונבין את התנהגות $F_X$. \\
+	כאשר $a < 0$ אז $F_X(a) = 0$, כאשר $0 \le a < 1$ אז $F_X(a) = 1 - p$ ולבסוף בשאר התחום $F_X(a) = 1$.
+\end{example}
+\begin{proposition}
+	אם $X$ משתנה מקרי, אז $\PP(X = a) = F_X(a) - \lim_{b \to a^-} F_X(b)$.
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		F_X(a) - \lim_{b \to a^-} F_X(b)
+		& = F_X(a) - \lim_{n \to \infty} F_X(a - \frac{1}{n}) \\
+		& = \lim_{n \to \infty} F_X(a) - F_X(a - \frac{1}{n}) \\
+		& = \lim_{n \to \infty} \PP(X \le a) - \PP(X \le a - \frac{1}{n}) \\
+		& = \lim_{n \to \infty} \PP(a - \frac{1}{n} < X \le a) \\
+		& \overset{(1)}{=} \PP(X = a)
+	\end{align*}
+	כאשר $(1)$ נובע מ־\ref{probability_continuous_probability_function_theorem}
+\end{proof}
+\begin{proposition}
+	אם $X, Y$ משתנים מקריים כך ש־$F_X = F_Y$ אז $X \overset{d}{=} Y$, כלומר המשתנים שווי התפלגות.
+\end{proposition}
+\begin{proof}[הוכחה (עבור משתנים מקריים בדידים)]
+	הראינו שניתן לחשב את $\PP(X = a)$ מתוך $F_X$.
+\end{proof}
+את ההוכחה למקרה הכללי לא נוכל להראות בקורס זה שכן היא מתבססת על תורת המידה.
+\begin{proposition}
+	אם $F$ מקיימת את שלוש התכונות שראינו זה עתה, אז קיים משתנה מקרי $X$ (על מרחב כלשהו) כך ש־$F \equiv F_X$.
+\end{proposition}
+גם את הטענה הזו לא נוכל להוכיח בתחומי קורס זה.
+טענה זו כמובן חזקה במיוחד, שכן היא מספקת אפיון מלא למשתנים מקריים על־ידי הפונקציות המצטברות שלהם.
+\begin{definition}[משתנה מקרי רציף]
+	משתנה מקרי $X$ הוא \textbf{רציף} אם $F_X$ רציפה. \\
+	טענה זו שקולה למקרה ש־$\PP(X = a) = 0$ לכל $a$.
+\end{definition}
+הגדרה זו היא הגדרה בעייתית במקצת, היא לא מתכתבת עם ההגדרה הנפוצה בספרות המתמטית, והגדרנו אותה כך לצורך היכולת להבין בין כמה מקרים שנראה בקרוב.
+\begin{example}
+	קיים משתנה מקרי $X$ עבורו $F_X$ מוגדרת על־ידי
+	\[
+		F_X(a) = \begin{cases}
+			0 & a \le 0 \\
+			a & 0 < a \le 1 \\
+			1 & 1 < a
+		\end{cases}
+	\]
+	עבור $X$ זה מתקיים $\PP(X \in [a, b]) = b - a$ לכל $0 \le a \le b \le 1$.
+	זאת שכן
+	\[
+		\PP(X \in [a, b])
+		= \PP(a \le X \le b)
+		= \PP(X \le b) - \PP(X < a)
+		\overset{(1)}{=} \PP(X \le b) - \PP(X \le a)
+		= F_X(b) - F_X(a)
+		= b - a
+	\]
+	כאשר $(1)$ נובע מרציפות.
+\end{example}
+הפונקציה שראינו זה עתה היא פונקציה רציפה, ולכן היא אינטגרל של איזושהי פונקציה אחרת, רעיון זה נותן לנו השראה להגדרה נוספת ושימושית מאוד,
+\begin{definition}[משתנה מקרי רציף בהחלט]
+	משתנה מקרי נקרא \textbf{רציף בהחלט} אם קיימת פונקציה $f_X : \RR \to [0, \infty)$ אינטגרבילית כך שמתקיים
+	\[
+		F_X(a) = \int_{-\infty}^a f_X(s)\ ds
+	\]
+\end{definition}
+פונקציה $f_X$ כזו היא למעשה המקבילה של פונקציית ההסתברות הבדידה $p(\omega)$ שראינו כבר, והיא מספקת אפיון נוסף להתנהגות ההתפלגות.
+\begin{remark}
+	רציפות בהחלט גוררת רציפות, זאת שכן האינטגרל של פונקציה הוא פונקציה רציפה.
+\end{remark}
+\begin{definition}[פונקציית הצפיפות]
+	ל־$f_X$ קוראים פונקציית ה\textbf{צפיפות} של $X$.
+\end{definition}
+\begin{example}
+	בדוגמה שראינו קודם מתקיים
+	\[
+		f_X(s) = \begin{cases}
+			1 & 0 \le s \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+\end{example}
+\begin{proposition}
+	אם $f : \RR \to [0, \infty)$ מקיימת
+	\[
+		\int_{-\infty}^\infty f(s)\ ds = 1
+	\]
+	אז קיים משתנה מקרי $X$ (על מרחב כלשהו) עבורו $f$ היא פונקציית צפיפות.
+\end{proposition}
+\begin{proof}
+	נגדיר
+	\[
+		F(a) = \int_{-\infty}^a f(s)\ ds
+	\]
+	ונראה ששלוש התכונות הדרושות מתקיימות, כך שהטענה חלה.
+\end{proof}
+נראה טענה שמקבילה אף יותר את פונקציית הצפיפות לפונקציית ההסתברות הבדידה,
+\begin{proposition}
+	נניח ש־$X$ משתנה מקרי עם צפיפות $f_X$ אז $\PP(a \le X \le b) = \int_a^b f_X(s)\ ds$.
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\PP(a \le X \le b)
+		& = \PP(X \le b) - \PP(X < a) \\
+		& = \PP(X \le b) - \PP(X \le a) \\
+		& = F_X(b) - F_X(a) \\
+		& = \int_{-\infty}^b f_X(s)\ ds - \int_{-\infty}^a f_X(s)\ ds \\
+		& = \int_a^b f_X(s)\ ds
+	\end{align*}
+\end{proof}
+נבחן עתה מספר התפלגויות חשובות.
+\begin{definition}[התפלגות רציפה אחידה]
+	$X$ מתפלג אחיד על $[a, b]$, ונסמן $X \sim Unif([a, b])$, אם
+	\[
+		f_X(s) = \begin{cases}
+			\frac{1}{b - a} & a \le s \le b \\
+			0 & \text{else}
+		\end{cases}
+	\]
+\end{definition}
+\begin{definition}[התפלגות מעריכית]
+	$X$ מתפלג מעריכית אם פרמטר $\lambda$, ונסמן $X \sim Exp(\lambda)$, אם
+	\[
+		f_X(s) = \begin{cases}
+			\lambda e^{-\lambda s} & 0 \le s \\
+			0 & s < 0
+		\end{cases}
+	\]
+\end{definition}
+נצטרך להראות שהגדרה זו בכלל תקפה על־ידי בדיקת האינטגרל לפי התנאי שמצאנו קודם,
+\[
+	\int_{-\infty}^\infty f_X(s)\ ds
+	= \int_0^\infty \lambda e^{-\lambda s}\ ds
+	= -e^{\lambda s} \mid_{s = 0}^{s = \infty}
+	= 0 - (-1)
+	= 1
+\]
+\begin{definition}[התפלגות נורמלית סטנדרטית]
+	$X$ מתפלג נורמלי סטנדרטי, אם
+	\[
+		f_X(s) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{s^2}{2}}
+	\]
+\end{definition}
+כאשר ראינו באינפי 3 את ערך אינטגרל זה ובהתאם את ההצדקה להגדרה זו.
+\begin{example}
+	נניח ש־$X \sim Exp(\lambda)$, ואנו רוצים למצוא $a$ עבורו $\PP(X \le a) = \frac{1}{2}$, ערך זה נקרא גם חציון.
+	\[
+		\int_{-\infty}^{\infty} f_X(s)\ ds
+		= \int_{0}^{\infty} \lambda e^{-\lambda s}\ ds
+		= -e^{-\lambda a} - (-e^0)
+		= 1 - e^{-\lambda a}
+		= \frac{1}{2}
+		\implies -\lambda a = - \ln 2
+	\]
+	ולכן $a = \frac{\ln 2}{\lambda}$.
+\end{example}
+\begin{example}
+	נניח ש־$X \sim Unif([0, 1])$ ואנו רוצים למצוא צפיפות של $Y = X^2$. \\
+	נחשב את $F_Y$ ונגזור,
+	\[
+		F_Y(a)
+		= \PP(Y \le a)
+		= \PP(X^2 \le a)
+		= \PP(-\sqrt{a} \le X \le \sqrt{a})
+		= \int_{-\sqrt{a}}^{\sqrt{a}} f_X(s)\ ds
+		= \int_0^{\sqrt{a}} 1\ ds
+		= \sqrt{a}
+	\]
+	ולכן
+	\[
+		F_Y(a) = \begin{cases}
+			1 & a \ge 1 \\
+			\sqrt{a} & 0 \le a \le 1 \\
+			0 & a \le 0
+		\end{cases}
+	\]
+	אם נבחר $f_Y = F_y'$ נקבל צפיפות עבור $Y$,
+	\[
+		f_Y(a)
+		= \begin{cases}
+			\frac{1}{2 \sqrt{a}} & 0 \le a \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
