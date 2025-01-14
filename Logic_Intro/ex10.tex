@@ -153,8 +153,8 @@
 
 \subquestion{}
 יהי $\Gg = \langle V, E \rangle$ גרף.
-נגדיר $\forall v, u \in V, S_{v, u} = \{ \langle v_0, \dots, v_{n - 1} \rangle \mid v_0 = v, v_{n - 1} = u, \langle v_0, \dots, v_{n - 1} \rangle \in V^n, n < \omega \}$, \\
-וכן $d(v, u) = \inf_{s \in S_{v, u}} |s|$.
+נגדיר $\forall v, u \in V, S_{v, u} = \{ \langle v_0, \dots, v_{n - 1} \rangle \mid v_0 = v, v_{n - 1} = u, \langle v_0, \dots, v_{n - 1} \rangle \in V^n, n < \delta \}$, \\
+בשאלה זו נניח $\delta = \omega$, וכן $d(v, u) = \inf_{s \in S_{v, u}} |s|$ ונסמן $d(v, u) = \infty$ אם $S_{u, v} = \emptyset$.
 נגדיר את הקוטר של $\Gg$ להיות $D(\Gg) = \min \{ n \mid \forall v, u \in V, d(v, u) \le n \}$. \\
 תהי $L = \{ E \}$ עבור $E$ סימן יחס דו־מקומי, ונוכיח שלכל $n < \omega$ קיים פסוק $\varphi_{D > n}$ כך ש־$\Gg \models \varphi_{D > n} \iff D(\Gg) > n$.
 \begin{proof}
@@ -172,5 +172,26 @@
 
 \subquestion{}
 נסיק מהסעיף הקודם שאין פסוק $\varphi$ ב־$L$ כך ש־$\Gg \models \varphi \iff D(\Gg) < \infty$.
+\begin{proof}
+	נניח בשלילה שקיים $\varphi$ פסוק כך ש־$\Gg \models \varphi \iff D(\Gg) < \infty$, ונגדיר $\Sigma = \{ \varphi \} \cup \{ \varphi_{D < n} \mid n < \omega \}$.
+	לכל $\Psi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$, נגדיר $\Gg = \langle [n + 1], \{ \{n, n + 1\} \mid n < n + 1 \} \rangle$ גרף כך ש־$D(\Gg) = n + 1$ עבור $n = \sup \{ n \mid \varphi_{D > n} \in \Pi \}$.
+	בהתאם $\Gg \models \Pi$, שהרי המסלול בין $0$ ו־$n$ הוא באורך של $n$ לכל הפחות. בפרט $\Gg \models \varphi$ שכן הוא סופי.
+	כמו בסעיף א' נובע ממשפט הקומפקטיות שקיים $\Gg \models \Sigma$, אבל בהתאם נובע עבור ה־$n$ שהגדרנו ש־$n = \omega$, כלומר $D(\Gg) = \infty$, ולכן $\Gg \not\models \varphi$ בסתירה ל־$\Gg \models \Sigma \ni \varphi$.
+\end{proof}
+
+\question{}
+נוכיח שאין פסוק ב־$L = \{ E \}$ שהגדרנו בשאלה 4 כך שגרף $\Gg$ מקיים $\Gg \models \varphi \iff \forall u, v \in V, d(u, v) < \infty$.
+\begin{proof}
+	אנסה לפתור את השאלה בדרך שאיננה חלק מהחומר ואשמח לביקורת,
+	נניח ש־$\kappa$ מונה קומפקטי חזק (strongly compact) ונניח עתה שאנו עובדים מעל $\Ll_{\kappa, \kappa}(L)$, ונגדיר את השאלה מחדש.
+	נגדיר $\Gg \models \varphi \iff \forall u, v \in V, d(u, v) < \kappa$.
+	בשאלה זו נניח $\delta = \kappa$, כלומר אנו מגדירים מסלולים באופן מורחב. \\
+	נגדיר את הפסוק $\varphi_\alpha = \exists u, v (\exists_{i < \alpha} v_i ((\bigwedge_{i < j < \alpha} \lnot (v_i = v_j)) \land (\bigwedge_{i + 1 < \alpha} E(v_i, v_{i + 1}))))$ לכל $\alpha < \kappa$. \\
+	נגדיר $\Sigma_\alpha = \{ \varphi \} \cup \{ \varphi_\beta \mid n < \beta \}$,
+	ולכן אם נגדיר $\Gg_\alpha = \langle \alpha + 1; \{ \{ v_\gamma, v_{\gamma + 1} \} \mid \gamma < \alpha \} \rangle$ ינבע $\Gg_\alpha \models \Sigma_\alpha$ לכל $\alpha < \kappa$.
+	מהקומפקטיות החזקה של $\kappa$ חל על קבוצה זו ולכן הקבוצה $\Sigma_\lambda$ ספיקה ומסופקת על־ידי $\Gg_\kappa$, אבל $\Gg_\omega \models \varphi_\kappa$, בסתירה ל־$\varphi$.
+
+	במקרה הפרטי של $\kappa = \omega$ נקבל את השאלה המקורית, ושם נשתמש במשפט הקומפקטיות כדי לקבל את מבוקשנו.
+\end{proof}
 
 \end{document}
