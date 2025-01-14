@@ -4171,5 +4171,174 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 
+\section{שיעור 21 --- 14.1.2025}
+\subsection{מעבר לעולם הרציף}
+\begin{definition}[תוחלת רציפה]
+	$X$ משתנה מקרי רציף בעל פונקציית צפיפות $f_X$ אז
+	\[
+		\EE(X)
+		= \int_{-\infty}^{\infty} s f_X(s)\ ds
+	\]
+	ונבחין שעל האינטגרל להתכנס בהחלט כדי שנוכל לומר שהתוחלת מתכנסת.
+\end{definition}
+נבחין שבעולם של תורת המידה הגדרה זו, יחד עם ההגדרה הבדידה, הן מקרים פרטיים של הגדרה רחבה יותר. לא נראה אותה במסגרת הקורס.
+\begin{proposition}
+	אם $Y = g(X)$ אז
+	\[
+		\EE(Y)
+		= \int_{-\infty}^{\infty} g(s) f_X(s)\ ds
+	\]
+	טענה זו נכונה גם כאשר $Y$ לא רציף בהחלט (רציף).
+\end{proposition}
+כל התכונות שראינו עד היום על תוחלות, שונות, שונות משותפת וכן הלאה שראינו למשתנים מקריים בדידים נכונים גם עברו המקרה הרציף.
+כולל אי־שוויון מרקוב, אי־שוויון צ'בישב, אי־שוויון הופדינג ואף צ'רנוף.
+\begin{example}
+	$X \sim Unif([0, 1])$, אז $f_X(s) = \begin{cases}
+		1 & 0 \le s \le 1 \\
+		0 & \text{else}
+	\end{cases}$, ולכן
+	\[
+		\EE(X)
+		= \int_{-\infty}^{\infty} s f_X(s)\ ds
+		= \int_0^1 s\ ds
+		\left. \frac{s^2}{2} \right\rvert_{s = 0}^{s = 1}
+		= \frac{1}{2}
+	\]
+	וכן גם
+	\[
+		\EE(X^2)
+		= \int_{-\infty}^{\infty} s^2 f_X(s)\ ds
+		= \int_0^1 s^2\ ds
+		= \left. \frac{s^3}{3} \right\rvert_{s = 0}^{s = 1}
+		= \frac{1}{3}
+	\]
+	ונסיק
+	\[
+		\var(X)
+		= \EE(X^2) - {\EE(X)}^2
+		= \frac{1}{3} - \frac{1}{2^2}
+		= \frac{1}{12}
+	\]
+	באופן דומה כאשר $t \ne 0$ אז,
+	\[
+		M_X(t)
+		= \EE(e^{tX})
+		= \int_{-\infty}^{\infty} e^{ts} f_X(s)\ ds
+		= \int_0^1 e^{ts}\ ds
+		= \left. \frac{e^{ts}}{t} \right\rvert_{s = 0}^{s = 1}
+		= \frac{e^t - 1}{t}
+	\]
+	וכן $t = 0$ גורר ש־$M_X(t) = 1$.
+\end{example}
+
+\subsection{צפיפות משותפת}
+\begin{definition}[וקטור מקרי רציף]
+	$(X, Y)$ וקטור מקרי עם צפיפות $f_{X Y}$ אם
+	\[
+		\PP((X, Y) \in D)
+		= \int_D f_{X Y}(s, t)\ dt\ ds
+	\]
+\end{definition}
+וניזכר במשפט פוביני שיאפשר לנו לחשב את האינטגרלים הללו:
+\begin{theorem}[משפט פוביני]
+	תהי $f : D \to \RR$ עבור $D [a, b] \times [c, d] \subseteq \RR^2$ אז
+	\[
+		\int_D f(s, t)\ ds\ dt
+		= \int_a^b \left( \int_c^d f(s, t)\ dt \right)\ ds
+		= \int_c^d \left( \int_a^b f(s, t)\ ds \right)\ dt
+	\]
+\end{theorem}
+אם $D$ היא קטע מורכב יותר, לדוגמה מהצורה $D = \{ (x, y) \in \RR^2 \mid a \le x \le b, c(x) \le b \le d(x)$ עבור פונקציות $c, d : [a, b] \to \RR$ מתאימות, אז נוכל לחשב
+\[
+	\int_D f(x, y)\ ds\ dt
+	= \int_a^b \int_{c(s)}^{d(s)} f(s, t)\ dt\ ds
+\]
+\begin{example}
+	נגדיר
+	\[
+		f_{X Y}(s, t)
+		= \begin{cases}
+			6s & 0 \le s, 0 \le t, s + t \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	ונרצה לראות אם היא מגדירה פונקציית צפיפות,
+	\[
+		\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f_{X Y}(s, t)\ dt\ ds
+		= \int_0^1 \int_0^{1 - t} 6s\ ds\ dt
+		= \int_0^1 \left. 3s^2 \right\rvert_{s = 0}^{s = 1 - t}\ dt
+		= \int_0^1 3{(1 - t)}^2\ dt
+		= \left. - {(1 - t)}^3 \right\rvert_{t = 0}^{t = 1}
+		= 0 - {(-1)}^3
+		= 1
+	\]
+	והתנאי ההכרחי לפונקציית צפיפות אכן מתקיים, וזוהי אכן פונקציית צפיפות.
+\end{example}
+\begin{remark}
+	התוחלת של וקטור מקרי באופן מאוד דומה תהיה
+	\[
+		\EE(g(X, Y))
+		= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(s, t) f_{X Y}(s, t)\ dt\ dt
+	\]
+\end{remark}
+\begin{proposition}[צפיפות שולית]
+	אם $X$ ו־$Y$ הם משתנים מקריים רציפים בעלי צפיפות משותפת $f_{X Y}$, אז
+	\[
+		f_X(s)
+		= \int_{-\infty}^{\infty} f_{X Y}(s, t)\ dt
+	\]
+\end{proposition}
+\begin{proof}
+	\[
+		\PP(X \le a)
+		= \int_{-\infty}^a \int_{-\infty}^{\infty} f_{X Y}(s, t)\ ds\ dt
+	\]
+	אבל מההגדרה יש התכנסות ולכן יש הצדקה להגדרה
+	\[
+		f_X(s)
+		= \int_{-\infty}^{\infty} f_{X Y}(s, t)\ dt
+	\]
+	ומתקבל
+	\[
+		\PP(X \le a)
+		= \int_{-\infty}^a f_X(s)\ ds
+	\]
+	כפי שרצינו.
+\end{proof}
+\begin{definition}[חוסר תלות במשתנים מקריים רציפים]
+	$X$ ו־$Y$ בלתי־תלויים אם
+	\[
+		\PP(X \in S, Y \in T) = \PP(X \in S) \PP(Y \in T)
+	\]
+\end{definition}
+זוהי ההגדרה המלאה גם עבור המקרה הבדיד, אך כמו במקרה הבדיד ישנה הגדרה שקולה שתהיה לנו לעזר,
+\begin{definition}[הגדרה שקולה לאי־תלות משתנים מקריים רציפים]
+	אם $X$ ו־$Y$ משתנים מקריים רציפים בעלי צפיפות משותפת $f_{X Y}$ המקיימת
+	\[
+		f_{X Y}(s, t) = f_X(s) f_Y(t)
+	\]
+	אז $X$ ו־$Y$ בלתי־תלויים.
+\end{definition}
+\begin{example}
+	נגדיר
+	\[
+		f_{X Y}(s, t)
+		= \begin{cases}
+			1 & 0 \le s, t \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	אז
+	\[
+		f_X(s)
+		= \int_{-\infty}^{\infty} f_{X Y}(s, t)
+		= \begin{cases}
+			\int_{0}^{1} 1\ dt = 1 & 0 \le s \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	ומצאנו שאכן תכונת חוסר התלות חלה.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
