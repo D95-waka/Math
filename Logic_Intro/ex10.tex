@@ -1,0 +1,176 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+ניזכר בהוכחה מהתרגול, ובפרט בענף $b$ מההוכחה האחרונה.
+
+\subquestion{}
+נוכיח ש־$b$ הוא קבוצת הינטיקה הכוללת את $\Sigma \cup \{ \lnot \varphi \}$.
+\begin{proof}
+	נתון לנו כי $\Pi$ חסכונית, וכן מהגדרת $f$ והענף $b$ אנו יודעים (הוכח בתרגול) שלכל $\psi \in \Pi \implies \psi \in b$, ולכן נשתמש בתכונות קבוצה חסכונית כדי להוכיח ש־$b$ קבוצת הינטיקה.
+	כהערה, בתרגיל הקודם מספרנו את התכונות של קבוצת הינטיקה לצורך קריאות ההוכחה, מספור זה הוא לפי הסדר בו התנאים מופיעים בתרגיל הקודם.
+	\begin{enumerate}
+		\item אם $P$ פסוק יסודי אז מהגדרת הרקורסיה אין סתירה בענף ולכן $\lnot P \notin b$.
+		\item אם $\psi_1 \land \psi_2 \in \Pi$ אז מהגדרת חסכונית $\psi_1, \psi_2 \in \Pi$, באופן דומה אם $\lnot (\psi_1 \land \psi_2) \in \Pi$ אז שלילת אחד הפסוקים ב־$\Pi$, ואנו עומדים בהגדרה של קבוצת הינטיקה לגימום.
+		\item אם $\psi_1 \lor \psi_2 \in \Pi$ אז מהעובדה שבענף אין סתירות נובע ש־$\psi_1 \in b$ או $\psi_2 \in b$ כפי שרצינו.
+			אם $\lnot (\psi_1 \lor \psi_2) \in \Pi$ אז $\psi_1 \lor \psi_2 \in \Pi$ ולכן בשל החוסר בסתירות $\lnot \psi_1 \in b$ ואנו עומדים בהגדרה.
+		\item אם $\psi_1 \to \psi_2 \in \Pi$ אז $\psi_1 \in \Pi$ ולכן גם $\psi_1 \in b$, אם $\lnot (\psi_1 \to \psi_2) \in \Pi$ אז $\psi_1 \to \psi_2 \in \Pi$ ומחוסר הסתירות ב־$b$ גם $\psi_1, \lnot \psi_2 \in b$.
+		\item אם $\psi_1 \leftrightarrow \psi_2 \in \Pi$ אז $\psi_1, \psi_2, \lnot \psi_1, \lnot \psi_2 \in \Pi$ ומחוסר הסתירות $\psi_1, \psi_2 \in b$ או $\lnot \psi_1, \lnot \psi_2 \in b$ בהתאם להגדרה.
+			אם שלילת הגרירה הדו־כיוונית ב־$\Pi$ אז באופן דומה נקבל את התנאי עבור $\psi_1, \lnot \psi_2$ או $\lnot \psi_1, \psi_2$
+			אם שלילת הגרירה הדו־כיוונית ב־$\Pi$ אז באופן דומה נקבל את התנאי עבור $\psi_1, \lnot \psi_2$ או $\lnot \psi_1, \psi_2$.
+	\end{enumerate}
+	בהתאם מצאנו כי כל התנאים של קבוצת הינטיקה נובעים מההגדרה של קבוצה חסכונית יחד עם העובדה ש־$b$ ענף ללא סתירות (שאם לא כן הוא לא הייתה הצדקה להגדרתו). \\
+	נבחין ש־$\lnot \varphi \in b$ מההגדרה של הענף, וכן בתרגול הנחנו $\sigma \cup \{ \lnot \varphi \} \subseteq \Pi$ ולכן כמובן $\Sigma \subseteq b$.
+\end{proof}
+
+\subquestion{}
+נסיק שלכל $\Pi$ חסכונית, $\varphi$ ו־$\Sigma$, כך ש־$\Sigma \cup \{ \varphi \} \subseteq \Pi$ ו־$\Sigma \models \varphi$ קיים עץ היסק של $\varphi$ מ־$\Sigma$ המכיל רק פסוקים מ־$\Pi$.
+\begin{proof}
+	נשתמש בהוכחה מהתרגול ונקבל שאו שיש עץ היסק סופי המקיים את התנאי המבוקש, או שבעץ היסק זה יש ענף אינסופי $b$ כפי שתואר בתרגול. \\
+	ענף זה כפי שראינו זה עתה הוא קבוצת הינטיקה ולכן לפי שאלה 1 של המטלה הקודמת הוא ספיק, כלומר קיים $v : L \to \{ \TT, \FF \}$ כך ש־$\forall \psi \in b, \bar{v}(\psi) = \TT$.
+	אבל $\varphi$ הערכת אמת שמספקת את $\Sigma$, ונתון שבמקרה זה $\bar{v}(\varphi) = \TT$, אבל $\lnot \varphi \in b$ ולכן גם $\bar{v}(\lnot \varphi) = \TT$, כלומר הגענו לסתירה, וענף זה בהכרח מכיל סתירה. \\
+	בשל הופעת הפסוק נוכל בפרט לקבל סתירה לאינסופיות, כלומר קיבלנו עץ היסק שבו יש סתירה בכל ענף וגם כל ענף הוא סופי כפי שרצינו.
+\end{proof}
+
+\question{}
+תהי $L$ שפה לתחשיב יחסים.
+
+\subquestion{}
+נראה שאם $\varphi$ פסוק אז לכל משתנה $x$ מתקיים $\forall x \varphi \vdash \varphi$.
+\begin{proof}
+	נבחין ש־$x$ איננו משתנה חופשי ב־$\varphi$ שכן $\varphi$ פסוק, לכן נוכל לקבוע ש־$\varphi_t^x = \varphi$ לכל $t \in \operatorname{term}_L$. \\
+	בהתאם נוכל לבנות את עץ ההיסק הבא
+	\begin{enumerate}
+		\item $\lnot \varphi$
+		\item $\forall x \varphi$, הוספת הנחה
+		\item $\varphi_c^x$, הצבה עבור קבוע כלשהו $c$
+		\item $\varphi$, כלל החזרה, שימוש בזהות שמצאנו זה עתה, וסתירה
+	\end{enumerate}
+	ולכן $\forall x \varphi \vdash \varphi$.
+\end{proof}
+
+\subquestion{}
+נניח ש־$L'$ שפה המתקבלת מ־$L$ על־ידי הוספת סימני קבוע מכמות כלשהי $\le \omega$. \\
+נניח ש־$\Sigma$ תורה ב־$L$ וש־$\varphi$ פסוק ב־$L$.
+נסמן $\Sigma \vdash_{L'} \varphi$ כאשר יש עץ היסק של $\varphi$ מ־$\Sigma$ ב־$L'$. \\
+נראה שאם $\Sigma \vdash_{L'} \varphi$ אז $\Sigma \vdash_L \varphi$.
+\begin{proof}
+	נניח שבעץ ההיסק שמעיד על $\Sigma \vdash_{L'} \varphi$ ישנה הופעה של קבוצת הפסוקים $C = \{ c_i \mid i \le \alpha < \omega \} \subseteq \operatorname{const}_{L'} \setminus \operatorname{const}_L$. \\
+	נבחין כי מסופיות הפסוק ועץ ההיסק, $|C| < \omega$, ולכן נוכל לבצע תהליך אינדוקטיבי על־ידי שימוש במשפט ההכללה על־ידי פסוקים ולהסיק שגם $\Sigma \vdash_{L'} \forall c_1 \dots \forall c_\alpha \varphi$.
+	מהמשפט $c_i$ לא מופיע בעץ ההיסק המעיד על כך לכל $i \le \alpha$, ולכן עץ היסק זה מעיד גם על $\Sigma \vdash_L \forall c_1 \dots \forall c_\alpha \varphi$.
+	נוכל אם כן להשתמש בסעיף א' כדי לבצע עוד תהליך אינדוקטיבי שיניב לנו את הטענה $\Sigma \vdash_L \varphi$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $\Sigma$ עקבית כתורה ב־$L$ אז היא עקבית כתורה ב־$L'$.
+\begin{proof}
+	אילו נניח ש־$\Sigma$ לא עקבית כתורה ב־$L'$ אז $\Sigma \vdash_{L'} \perp$.
+	אבל מסעיף ב' נובע ישירות ש־$\Sigma \vdash_L \perp$ בסתירה לעקביות $\Sigma$ תחת $L$.
+\end{proof}
+
+\question{}
+תהי $\Sigma$ קבוצת פסוקים ב־$L$. \\
+נגדיר $E \subseteq \operatorname{form}_L^2$ על־ידי
+\[
+	\alpha E \beta \iff \Sigma \vdash \alpha \leftrightarrow \beta
+\]
+נראה ש־$E$ יחס שקילות.
+\begin{proof}
+	נבחן את כלל התכונות של יחס שקילות.
+
+	עבור רפלקסיביות, נבנה את עץ ההיסק הבא
+	\begin{enumerate}
+		\item $\lnot (\alpha \leftrightarrow \alpha)$
+		\item פיצול למקרים על $\alpha$
+			\begin{enumerate}
+				\item $\alpha$
+				\item $\lnot \alpha$, כללי גרירה דו־כיוונית מ־1, וסתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \alpha$
+				\item $\alpha$, כללי גרירה דו־כיוונית מ־1, וסתירה
+			\end{enumerate}
+	\end{enumerate}
+	ולכן $\vdash \alpha \leftrightarrow \alpha$ ובפרט $\Sigma \vdash \alpha \leftrightarrow \alpha$ ואכן $\forall \alpha \in \operatorname{form}_L, \alpha E \alpha$.
+
+	עבור סימטריה נניח ש־$\alpha, \beta \in \dom E$ כך ש־$\alpha E \beta$, לכן $\Sigma \vdash \alpha \leftrightarrow \beta$. \\
+	בנוסף נבנה עץ היסק ל־$\Sigma \cup \{ \alpha \leftrightarrow \beta \} \vdash \beta \leftrightarrow \alpha$:
+	\begin{enumerate}
+		\item $\lnot (\beta \leftrightarrow \alpha)$
+		\item $\alpha \leftrightarrow \beta$, הוספת הנחה
+		\item פיצול למקרים על $\alpha$
+			\begin{enumerate}
+				\item $\alpha$
+				\item $\beta$, חוקי גרירה דו־כיוונית ל־2
+				\item $\lnot \beta$, חוקי גרירה דו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \alpha$
+				\item $\lnot \beta$, חוקי גרירה דו־כיוונית ל־2
+				\item $\beta$, חוקי גרירה דו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+	\end{enumerate}
+	ולכן מטרנזיטיביות ההיסק נובע $\Sigma \vdash \beta \leftrightarrow \alpha$ וכן $\alpha E \beta \implies \beta E \alpha$.
+
+	עבור טרנזיטיביות נניח ש־$\alpha E \beta, \beta E \gamma$ ונראה ש־$\Sigma \cup \{ \alpha \leftrightarrow \beta, \beta \leftrightarrow \gamma \} \vdash \alpha \leftrightarrow \gamma$,
+	\begin{enumerate}
+		\item $\lnot (\alpha \leftrightarrow \gamma)$
+		\item $\alpha \leftrightarrow \beta$, הוספת הנחה
+		\item $\beta \leftrightarrow \gamma$, הוספת הנחה
+		\item פיצול למקרים על $\alpha$
+			\begin{enumerate}
+				\item $\alpha$
+				\item $\beta$, כללי גרירה דו־כיוונית ל־2
+				\item $\gamma$, כללי גרירה דו־כיוונית ל־3
+				\item $\lnot \gamma$, כללי גרירה דו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+			\begin{enumerate}
+				\item $\lnot \alpha$
+				\item $\lnot \beta$, כללי גרירה דו־כיוונית ל־2
+				\item $\lnot \gamma$, כללי גרירה דו־כיוונית ל־3
+				\item $\gamma$, כללי גרירה דו־כיוונית ל־1, וסתירה
+			\end{enumerate}
+	\end{enumerate}
+	ולכן מטרנזיטיביות ההיסק $\Sigma \vdash \alpha \leftrightarrow \gamma$ וכן $\alpha E \gamma$ כפי רצינו להראות, ו־$E$ אכן יחס שקילות.
+\end{proof}
+
+\question{}
+\subquestion{}
+נוכיח שאין פסוק ב־$L_=$ כך ש־$\Aa$ מבנה ל־$L_=$ מספקת אותו אם ורק אם היא סופית.
+\begin{proof}
+	נניח בשלילה שקיים פסוק $\varphi$ כך ש־$\Aa \models \varphi \iff |A| < \omega$. \\
+	ניזכר ב־$\varphi_{\ge n}$ שהגדרנו במטלות הקודמות ומקיים $\Aa \models \varphi_{\ge n} \iff |A| \ge n$,
+	ונגדיר $\Sigma = \{ \varphi \} \cup \{ \varphi_{\ge n} \mid n < \omega \}$.
+	עתה נראה ש־$\Sigma$ ספיקה סופית. תהי $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$ ו־$n = \sup \{ n < \omega \mid \varphi_{\ge n} \in \Pi$, אז $\Bb = \langle [n + 1]; = \rangle$ מודל כך ש־$\Bb \models \Pi$ לפי בדיקה.
+	בנוסף $\Bb$ מודל סופי ולכן $\Bb \models \varphi$.
+	אז $\Sigma$ ספיקה סופית ולכן ממשפט הקומפקטיות ספיקה, לכן קיים מודל $\Aa \models \Sigma$, אבל $|A| \ge n$ לכל $n < \omega$, לכן $|A| \ge \omega$ ובפרט $\Aa \not\models \varphi$ בסתירה ל־$\Aa \models \varphi$.
+	לכן לא קיים פסוק $\varphi$ כזה.
+\end{proof}
+
+\subquestion{}
+יהי $\Gg = \langle V, E \rangle$ גרף.
+נגדיר $\forall v, u \in V, S_{v, u} = \{ \langle v_0, \dots, v_{n - 1} \rangle \mid v_0 = v, v_{n - 1} = u, \langle v_0, \dots, v_{n - 1} \rangle \in V^n, n < \omega \}$, \\
+וכן $d(v, u) = \inf_{s \in S_{v, u}} |s|$.
+נגדיר את הקוטר של $\Gg$ להיות $D(\Gg) = \min \{ n \mid \forall v, u \in V, d(v, u) \le n \}$. \\
+תהי $L = \{ E \}$ עבור $E$ סימן יחס דו־מקומי, ונוכיח שלכל $n < \omega$ קיים פסוק $\varphi_{D > n}$ כך ש־$\Gg \models \varphi_{D > n} \iff D(\Gg) > n$.
+\begin{proof}
+	נגדיר
+	\[
+		\varphi_{D > n}
+		= \lnot (\forall v \forall u (\exists v_0 \dots \exists v_{n - 1} (v = v_0 \land u = v_{n - 1} \land E(v_0, v_1) \land \cdots \land E(v_{n - 2}, v_{n - 1}))))
+	\]
+	ונראה שאכן $\Gg \models \varphi_{D > n} \iff D(\Gg) > n$.
+
+	נניח ש־$\Gg \models \varphi_{D > n}$ ולכן מהגדרת הפסוק נובע ישירות שקיימים שני קודקודים ב־$V$ כך שאין ביניהם מסלול באורך $n$, ולכן אין ביניהם גם מסלול קטן מ־$n$ (אחרת היינו יכולים להגדיל אותו באופן טריוויאלי).
+	לכן לפי ההגדרה $D(\Gg) > n$. \\
+	מהכיוון השני אם נניח ש־$D(\Gg) > n$ אז $d(v, u) > n$ לכל $v, u \in V$, ובפרט לא קיים מסלול באורך $n$ בין קודקודים אלה, וזהו תוכן הפסוק במדויק.
+\end{proof}
+
+\subquestion{}
+נסיק מהסעיף הקודם שאין פסוק $\varphi$ ב־$L$ כך ש־$\Gg \models \varphi \iff D(\Gg) < \infty$.
+
+\end{document}
