@@ -1,0 +1,62 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 7 Answer Sheet --- Axiomatic Set Theory, 80650}
+
+\DeclareMathOperator{\crit}{crit}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+We will assume ZFC unless stated otherwise.
+
+Let $j : V \to M$ be a non-trivial elementary embedding such that $\crit j = \kappa$, where $M$ is transitive.
+Let $\Uu = \Uu_j = \{ X \subseteq \kappa \mid \kappa \in j(X) \}$, we know that $\Uu$ is a $\kappa$-complete ultrafilter on $\kappa$.
+
+\subquestion{}
+We will show that for every $A \in \Uu$ and regressive function $f : A \to \kappa$ there is $B \subseteq A, B \in \Uu$, such that $\rng(f \restriction B) = \{ \gamma \}$ for some $\gamma < \kappa$.
+\begin{proof}
+	Assumption that $A = \kappa$ will result in contradiction to $f$ being regressive, then $|\dom f| < \kappa$.
+	$\forall x \in A, f(x) < x$ then $\sup{x \in A} f(x) < \kappa$. Then we will notate $\mu = |\im f|$, we can assume $\mu < \kappa$. \\
+	We will imitate Fodor's lemmas proof. \\
+	If there is $\gamma < \kappa$ such that the conditions are met then the proof is done, then we will assume there is no such set $B$. \\
+	For every $\gamma < \kappa$ we define $B_\gamma = f^{-1}(\{\gamma\})$, $B_\gamma \notin \Uu$ then $U_\gamma = \kappa \setminus B_\gamma \in \Uu$ and disjoint from $B_\gamma$.
+	We then use $\Uu$'s $\kappa$-completeness to deduce that for $U = \bigcap_{\gamma < \mu} U_\gamma$, $U \in \Uu$.
+	Then $A \cap U \in \Uu$ as well, and in particular $A \cap U \ne \emptyset$, let $\alpha \in A \cap U$.
+	$f(\alpha) = \gamma < \alpha$ for certain $\gamma$, but then $\alpha \in B_\alpha$, meaning $\alpha \notin U$, a contradiction.
+\end{proof}
+
+\subquestion{}
+We notate $\operatorname{Ma}(x) \iff x$ is Mahlo cardinal. \\
+We will show that $\{ \alpha \mid \operatorname{Ma}(x) \} \in \Uu$.
+\begin{proof}
+	Let $A = \{\alpha \le \kappa \mid \operatorname{Ma}(\alpha) \}$, from a theorem $\kappa \in A$. \\
+	It follows that $j(A) = \{ \alpha \le j(\kappa) \mid M \models \operatorname{Ma}(\alpha) \}$, but $\kappa < j(\kappa)$ and $\kappa$ is definable and therefore $\kappa \in M$ and $M \models \operatorname{Ma}(\kappa)$.
+	We can assume then $\kappa \in j(A)$, this is of course implies that $A \in \Uu$ as we wanted to show.
+\end{proof}
+
+\subquestion{}
+Let $S \subseteq \kappa$ be stationary set.
+We define $\varphi_s(x, y) \iff x$ is stationary in $y$. \\
+We will prove that $A = \{\alpha \subseteq \kappa \mid \varphi_s(S \cap \alpha, \alpha) \} \in \Uu$.
+\begin{proof}
+	$V \models \varphi_s(S, \kappa) \iff M \models \varphi_s(j(S), j(\kappa))$ as $j$ is elementary embedding and $\varphi_s$ is first order (I carefully hope).
+	Also $j(A) = \{ \alpha \le j(\kappa) \mid M \models \varphi(j(S \cap \alpha), j(\alpha)) \}$, but $\kappa \le j(\kappa)$, and $j(S \cap \kappa) = j(S)$ then by the last statement $\kappa \in j(A)$ as intended.
+\end{proof}
+
+\question{}
+Let $\kappa$ be a measurable cardinal and let $\Uu$ be a non-principle $\kappa$-complete normal ultrafilter on $\kappa$. \\
+Let $j$ be the elementary embedding derived from the ultrapower by $\Uu$ and let $\Vv = \{ X \subseteq \kappa \mid \kappa \in j(X) \}$. \\
+We will show that $\Vv = \Uu$.
+\begin{proof}
+	$\{ i \mid id(i) > c_\alpha(i) \} = \kappa \setminus \alpha \in \Uu$ then by Łoś theorem $[id] \ge \kappa$.
+	In similar way $\{ i \mid id(i) < c_\alpha(i) \} = \kappa \in \Uu$ then $[id] \le \kappa$, in particular $[id] = \kappa$.
+	For $g : \kappa \to \kappa$ regressive is follows that $g(x) < x = id(x)$ then $\{ i \mid g(i) < id(i) \} = \kappa \in \Uu$ implies $[g] < [id] = \kappa$.
+	From normality $\{ i \mid g(i) = c_\gamma(i) \} \in \Uu$, then $[g] = \gamma$.
+	The idea is to assume there is $x \in \Vv$, meaning $\kappa \in j(x)$, this is equivalent to $\{ i \mid id(i) < g(i) \} \in \Uu$.
+	We know that $\kappa \le [id]$ then $\{ i \mid g(i) < id(i) \}$ and this is normal then there is $\gamma < \kappa$ such that $\{ i \mid g(i) = \gamma \} \in \Uu$ then $[g] = \gamma$ but this does not make sense.
+	It gives us $\kappa = [id]$ then $\kappa \in j(x) \iff \{ i \mid id(i) < f(i) \} \in \Uu$
+\end{proof}
+
+\end{document}
