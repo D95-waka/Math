@@ -50,13 +50,34 @@ Let $\kappa$ be a measurable cardinal and let $\Uu$ be a non-principle $\kappa$-
 Let $j$ be the elementary embedding derived from the ultrapower by $\Uu$ and let $\Vv = \{ X \subseteq \kappa \mid \kappa \in j(X) \}$. \\
 We will show that $\Vv = \Uu$.
 \begin{proof}
-	$\{ i \mid id(i) > c_\alpha(i) \} = \kappa \setminus \alpha \in \Uu$ then by Łoś theorem $[id] \ge \kappa$.
-	In similar way $\{ i \mid id(i) < c_\alpha(i) \} = \kappa \in \Uu$ then $[id] \le \kappa$, in particular $[id] = \kappa$.
-	For $g : \kappa \to \kappa$ regressive is follows that $g(x) < x = id(x)$ then $\{ i \mid g(i) < id(i) \} = \kappa \in \Uu$ implies $[g] < [id] = \kappa$.
-	From normality $\{ i \mid g(i) = c_\gamma(i) \} \in \Uu$, then $[g] = \gamma$.
-	The idea is to assume there is $x \in \Vv$, meaning $\kappa \in j(x)$, this is equivalent to $\{ i \mid id(i) < g(i) \} \in \Uu$.
-	We know that $\kappa \le [id]$ then $\{ i \mid g(i) < id(i) \}$ and this is normal then there is $\gamma < \kappa$ such that $\{ i \mid g(i) = \gamma \} \in \Uu$ then $[g] = \gamma$ but this does not make sense.
-	It gives us $\kappa = [id]$ then $\kappa \in j(x) \iff \{ i \mid id(i) < f(i) \} \in \Uu$
+	We define $M = V^\kappa / \Uu$ and $j : V \to M$.
+	We proved during a lecture that $\kappa^M \le [id] < j(\kappa)$ by
+	\[
+		\forall \alpha < \kappa, \{ i \mid c_\alpha(i) \le id(i) \} = \kappa \setminus \alpha \in \Uu
+	\]
+	and
+	\[
+		\{ i < \kappa \mid id(i) < j(\kappa) \} = \kappa \in \Uu
+	\]
+	We assume that $\kappa^M < [id]$ then there is $g : \kappa \to \kappa$ such that $[g] = \kappa^M$, it follows that $[g] < [id]$, by Łoś $\{ i \mid g(i) < id(i) = i \} \in \Uu$.
+	$\Uu$ is normal, therefore by the last statement $g$ is regressive, then there is $\gamma < \kappa$ such that $\{ i \mid g(i) = \gamma = c_\gamma(i) \} \in \Uu \iff [g] = \gamma^M$.
+	This is a contradiction to $[g] = \kappa^M$, we can deduce that $\kappa^M = [id]$.
+
+	Note: this statement is already true due to the lecture.
+	We will show that for every $X \subseteq \kappa$, $j(X) = c_X$.
+	For every $\alpha \in X$, $\alpha \in Ord$ and therefore definable, then $j(\alpha) = [c_\alpha]$.
+	$\forall \alpha \in X, \{ i \mid c_\alpha(i) \in j(X)(i) \} \in \Uu \implies \forall i < \kappa, X \subseteq j(X)(i)$, then by the definition of $[f]$ as the least ranked functions, we can assume $j(X) = c_X$.
+
+	As a result,
+	\begin{align*}
+		X \in \Vv
+		\iff \kappa^M \in j(X)
+		\iff [id] \in c_X
+		\iff \{ i \mid id(i) \in c_X(i) \} \in \Uu
+		\iff \{ i \mid i \in X \} \in \Uu
+		\iff X \in \Uu
+	\end{align*}
+	Then $\Uu = \Vv$ as intended.
 \end{proof}
 
 \end{document}
