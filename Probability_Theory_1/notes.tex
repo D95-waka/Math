@@ -4458,5 +4458,184 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 
+\section{שיעור 22 --- 16.1.2025}
+\subsection{אי־תלות  במשתנים מקריים רציפים}
+בשיעור הקודם דיברנו ואפיינו אי־תלות משתנים מקריים רציפים, נראה עתה דוגמה למקרים כאלה.
+\begin{example}
+	נניח ש־$X, Y \sim Exp(1)$ בלתי־תלויים ונרצה לחשב את $\PP(Y \ge 2X)$.
+	נובע מההגדרה של התפלגות מעריכית,
+	\[
+		f_{X Y}(s, t)
+		= f_X(s) f_Y(t)
+		= \begin{cases}
+			e^{-s - t} & t, s \ge 0 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	נעבור לחישוב ההתפלגות שאנו מחפשים,
+	\[
+		\PP(Y \ge 2X)
+		= \int_{0}^{\infty} \int_{2s}^{\infty} e^{-s - t}\ dt\ ds
+		= \int_{0}^{\infty} e^{-s} \int_{2s}^{\infty} e^{-t}\ dt\ ds
+	\]
+	וכן
+	\[
+		e^{-s} \int_{2s}^{\infty} e^{-t}\ dt
+		= \left. -e^{-t} \right\rvert_{t = 2s}^{t = \infty}
+		= 0 - (-e^{-2s})
+		= e^{-2s}
+	\]
+	ובהתאם
+	\[
+		\int_{0}^{\infty} e^{-s} \int_{2s}^{\infty} e^{-t}\ dt\ ds
+		= \int_{0}^{\infty} e^{-s} e^{-2s}\ ds
+		= \int_{0}^{\infty} e^{-3s}\ ds
+		= \left. -\frac{1}{3} e^{-3s} \right\rvert_{s = 0}^{s = \infty}
+		= -\frac{1}{3}(0 - 1)
+		= \frac{1}{3}
+	\]
+\end{example}
+
+\subsection{התפלגות נורמלית}
+\begin{proposition}[נוסחת הקונבולוציה]
+	אם $X$ ו־$Y$ בעלי צפיפות $f_X$ ו־$f_Y$ בלתי־תלויים בהתאמה אז למשתנה המקרי $Z = X + Y$ יש צפיפות
+	\[
+		f_Z(t)
+		= \int_{-\infty}^{\infty} f_X(s) f_Y(t - s)\ ds
+	\]
+	ניזכר שבמקרה הבדיד,
+	\[
+		\PP(Z = t)
+		= \sum_{s \in \RR} \PP(X = s) \PP(Y = t - s)
+	\]
+\end{proposition}
+את הטענה הזו לא נוכל להוכיח למקרה הרציף.
+\begin{theorem}[משפט הגבול המרכזי]
+	אם $\{ X_i \mid i < \NN \}$ משתנים מקריים בלתי־תלויים שווי־התפלגות עם $\EE(X_i) = 0, \var(X_i) = 1$ לכל $i \in \NN$ ונגדיר
+	\[
+		Z_n = \frac{\sum_{i = 1}^{n} X_i}{\sqrt{n}}
+	\]
+	(אז $\EE(Z_n) = 0, \var(Z_n) = 1$)
+	אז
+	\[
+		\PP(Z_n \le a) \xrightarrow[n \to \infty]{} \int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}} e^{-\frac{s^2}{2}}\ ds
+	\]
+	כלומר התפלגות זו שווה עבור $\PP(Z \le a)$ עבור $Z \sim N(0, 1)$
+\end{theorem}
+הכוונה היא שהמשפט הוא המרכזי, לא הגבול.
+נראה את ההגדרה המלאה להתפלגות נורמלית,
+\begin{definition}[התפלגות נורמלית]
+	$Z \sim N(\mu, \sigma^2)$ אם הצפיפות שלו מקיימת
+	\[
+		f_Z(s) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{{(s - \mu)}^2}{2\sigma^2}\right)
+	\]
+	כאשר $N(0, 1)$ נקראת ההתפלגות הנורמלית הסטנדרטית. \\
+	אם $\mu$ משתנה, אז נקבל הזזה של ההתפלגות, אם נשנה את $\sigma^2$ אז נשנה את השונות, הרדיוס, הריווח של ההתפלגות.
+\end{definition}
+\begin{example}
+	נניח ש־$a > 0$ וש־$b \in \RR$, נניח ש־$X \sim N(0, 1)$ ו־$Y = aX + b$, אנו יודעים שמתקיים
+	\[
+		f_X(s)
+		= \frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})
+	\]
+	ונרצה לחשב את $f_Y(t)$,
+	\[
+		F_Y(t)
+		= \PP(Y \le t)
+		= \PP(aX + b \le t)
+		= \PP(X \le \frac{t - b}{a})
+		= \int_{-\infty}^{\frac{t - b}{a}} \frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})\ ds
+		= F_X(\frac{t - b}{a})
+	\]
+	אבל
+	\[
+		F_Y'(t)
+		= F_X'\left(\frac{t - b}{a}\right) \cdot \frac{1}{a}
+		= \frac{1}{\sqrt{2\pi a^2}} \exp\left(- \frac{{(t - b)}^2}{2a^2}\right)
+	\]
+\end{example}
+\begin{example}
+	נחשב את התוחלת של התפלגות נורמלית, נשתמש באי־זוגיות ונקבל,
+	\[
+		\EE(X)
+		= \int_{-\infty}^{\infty} s \frac{1}{\sqrt{2 \pi}} \exp\left(- \frac{s^2}{2}\right)\ ds
+		= 0
+	\]
+	באופן דומה על־ידי אינטגרציה בחלקים נובע
+	\[
+		\var(X)
+		= \EE(X^2)
+		= \int_{-\infty}^{\infty} s^2 \frac{1}{\sqrt{2\pi}} \exp\left(- \frac{s^2}{2}\right)\ ds
+		= 1
+	\]
+\end{example}
+\begin{conclusion}
+	אם $Y \sim N(\mu, \sigma^2)$ אז $\EE(Y) = \mu$ ו־$\var(Y) = \sigma^2$.
+\end{conclusion}
+\begin{proposition}
+	אם $X_i \sim N(\mu_i, \sigma_i^2)$ עבור $i \in [2]$ כך שהם בלתי־תלויים, אז
+	\[
+		X_1 + X_2
+		\sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)
+	\]
+\end{proposition}
+ההוכחה מושארת כתרגיל ומופיעה בספר.
+
+\subsection{התפלגות סדרת התפלגויות}
+נדבר על התכנסות בהתפלגות של משתנים מקריים, נבחין שהשם מוזר קצת כי הוא קופץ מעל המשתנים המקריים ועובר ישר למשתנים המקריים, זאת שכן במקרים אלה הם לא מעניינים אותנו באופן ישיר.
+\begin{definition}
+	${\{X_i\}}_{i \in \NN}$ סדרת משתנים מקריים, $Z$ משתנה מקרי רציף. \\
+	נאמר ש־$X_n \xrightarrow{d} Z$ ($X_n$ מתכנסת בהתפלגות ל־$Z$) אם לכל $a \in \RR$,
+	\[
+		F_{X_n}(a) \xrightarrow[n \to \infty]{} F_Z(a)
+	\]
+\end{definition}
+\begin{example}
+	נניח ש־$X_n \sim U([n])$ אז אם $Y_n = \frac{X_n}{n}$ אז $Y_n \xrightarrow{d} Z$ כאשר $Z \sim([0, 1])$. \\
+	נבחין שמההגדרה $Y_n \sim U(\{\frac{1}{n}, \frac{2}{n}, \dots, \frac{n}{n}\})$.
+	נגדיר
+	\[
+		f_Z(s)
+		= \begin{cases}
+			1 & 0 \le s \le 1 \\
+			0 & \text{else}
+		\end{cases},
+		\qquad
+		F_Z(a)
+		= \begin{cases}
+			0 & a \le 0 \\
+			a & 0 \le a \le 1 \\
+			1 & \text{else}
+		\end{cases}
+	\]
+	אם $a \le 0$ אז $F_Y(a) = 0 \to F_Z(a) = 0$.
+	אם $a \ge 1$ אז $F_Y(a) = 1 \to F_Z(a) = 1$.
+	אם $0 < a < 1$ אז
+	\[
+		F_{Y_n}(a)
+		= \PP(Y_n \le a)
+		= \PP(X_n \le n \cdot a)
+		\le \frac{\lceil n - a \rceil}{n} \to a
+	\]
+\end{example}
+נעבור לבחון את הקשר שבין התפלגות גאומטרית ומעריכית.
+\begin{example}
+	נניח ש־$X_n \sim Geo(\frac{\lambda}{n})$ עבור $\lambda > 0$.
+	עבור $a > 0$,
+	\begin{align*}
+		F_{Y_n}(a)
+		& = \PP(Y_n \le a) \\
+		& = \PP(X_n \le na) \\
+		& = 1 - \PP(X_n > nk) \\
+		& = 1 - \sum_{k = \lfloor nk \rfloor + 1}^{\infty} \PP(X_n = k) \\
+		& = 1 - \sum_{k = \lfloor nk \rfloor + 1}^{\infty} {(1 - \frac{\lambda}{n})}^{k - 1} \frac{\lambda}{n} \\
+		& = 1 - {(1 - \frac{\lambda}{n})}^{k - 1} \frac{\lambda}{n} \sum_{l = 1}^{\infty} {(1 - \frac{\lambda}{n})}^l \\
+		& = 1 - {(1 - \frac{\lambda}{n})}^{\lfloor na \rfloor} \\
+		& = 1 - {({(1 - \frac{\lambda}{n})}^n)}^{\lfloor a \rfloor} \\
+		& \to 1 - e^{-\lambda a}
+	\end{align*}
+	זאת אומרת ש־$F_Z(a) = 1 - e^{-\lambda a}$ ו־$Z \sim Exp(\lambda)$.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
