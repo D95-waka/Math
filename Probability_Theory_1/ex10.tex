@@ -1,0 +1,185 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- תורת ההסתברות (1), 80420}
+% chktex-file 44
+
+\DeclareMathOperator{\Supp}{Supp}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+יהי $X$ משתנה מקרי שהמומנט ה־$k$ שלו קיים וסופי. \\
+נוכיח שלכל $c > 0$ מתקיים
+\[
+	\PP(|X - \EE(X)| \ge c)
+	\le \frac{\EE({\left\lvert X - \EE(X)\right\rvert}^k)}{c^k}
+\]
+\begin{proof}
+	נבחין כי הקבוצות הבאות שקולות,
+	\[
+		\{ |X - \EE(X)| \ge c \}
+		= \{ {|X - \EE(X)|}^k \ge c^k \}
+	\]
+	ולכן מאי־שוויון מרקוב והעובדה שנתון כי המומנט ה־$k$ של $X$ מוגדר,
+	\[
+		\PP(|X - \EE(X)| \ge c)
+		\PP({|X - \EE(X)|}^k \ge c^k)
+		\le \frac{\EE({|X - \EE(X)|}^k)}{c^k}
+	\]
+\end{proof}
+
+\question{}
+נחשב את הפונקציה יוצרת המומנטים של $U([k])$ ונקבע את תחום הגדרתה.
+\begin{solution}
+	נניח ש־$X \sim U([k])$ ולכן עלינו למצוא את $M_X(t)$ לכל $t \in \RR$ או להראות ש־$M_X(t)$ לא מוגדר.
+	\begin{align*}
+		M_X(t)
+		& = \EE(e^{t X}) \\
+		& = \sum_{s \in \supp e^{t X}} s \PP(e^{t X} = s) \\
+		& = \sum_{s \in \{ e^{tn} \mid n \in [k]\}} s \PP(e^{t X} = s) \\
+		& = \sum_{n = 1}^{k} e^{tn} \PP(e^{tX} = e^{tn}) \\
+		& = \sum_{n = 1}^{k} e^{tn} \frac{1}{k} \\
+		& = \frac{1}{k} \cdot e^t \frac{e^{tk} - 1}{e^t - 1} \\
+		& = \frac{e^{t(k + 1)} - e^t}{k(e^t - 1)}
+	\end{align*}
+	ולכן $M_X(t) = \frac{e^{t(k + 1)} - e^t}{k(e^t - 1)}$, אבל מצאנו בחישוב שלכל $t \ne 0$ הביטוי מוגדר, ולכן $M_X(t) : \ZZ \setminus \{ 0 \} \to \RR$.
+\end{solution}
+
+\question{}
+יהי $X$ משתנה מקרי עם פונקציה יוצרת מומנטים $M_X(t) = at + b$ עבור $a, b \in \RR$. \\
+נמצא את ערכי $a, b$ ואת התפלגות $X$.
+\begin{solution}
+	נתחיל בהצבה,
+	\[
+		M_X(0)
+		= \EE(e^{0X})
+		= \EE(1)
+		= 1
+		= a \cdot 0 + b
+	\]
+	ולכן $b = 1$.
+	עוד אנו יודעים ש־$M_X'(0) = \EE(X)$ אבל $M_X'(t) = a$ ולכן $\EE(X) = a$, וכן $\EE(X^2) = M_X''(0) = 0$ ולכן
+	\[
+		\var(X)
+		= \EE(X^2) - {\EE(X)}^2
+		= 0 - a^2
+	\]
+	ומאי־שליליות השונות נובע ש־$a = 0$ בלבד, כלומר $M_X(t) = 1$ וכן $\EE(X) = 0, \var(X) = 0$, כלומר $X = 0$.
+\end{solution}
+
+\question{}
+יהי $X \sim Poi(\lambda)$,
+נראה שלכל $c > 1$ מתקיים
+\[
+	\PP(X \ge c \lambda)
+	\le \frac{e^{c\lambda - \lambda}}{c^{c\lambda}}
+\]
+\begin{proof}
+	בהרצאה מצאנו שמתקיים $M_X(t) = e^{\lambda(e^t - 1)}$, לכן מאי־שוויון צ'רנוף לכל $t > 0$,
+	\[
+		\PP(X \ge c \lambda)
+		\le \frac{M_X(t)}{e^{t c \lambda}}
+		= \frac{e^{c\lambda (e^t - 1)}}{e^{t c \lambda}}
+	\]
+	לכן בפרט כאשר $t = \log c$ מתקיים,
+	\[
+		\PP(X \ge c \lambda)
+		\le \frac{e^{\lambda (e^{\log c} - 1)}}{e^{\log(c) c \lambda}}
+		= \frac{e^{\lambda c - \lambda}}{c^{c \lambda}}
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\question{}
+יהי $n \in \NN$ ונגדיר טבלה בגודל $n \times n$, נעבור על כל צלע בטבלה ונמחק אותה בהסתברות $\frac{1}{2}$ באופן בלתי־תלוי. \\
+יהי $X$ מספר הריבועים שלא נמחקה אף צלע שלהם, נוכיח על־ידי שימוש באי־שוויון הופדינג שלכל $c > 0$,
+\[
+	\PP(X \ge \frac{n^2}{16} + cn) \le 2 e^{-\frac{c^2}{4}}
+\]
+\begin{proof}
+	נגדיר $Y_{i, j} \sim Ber(\frac{1}{2})$ האם הצלע ה־$i, j$ קיימת (מטעמי סימטריה מותר לנו לבחור כן). \\
+	נגדיר גם $X_{i, j} = Y_{i, j} \cdot Y_{i + 1, j} \cdot Y_{i, j + 1} \cdot Y_{i + 1, j + 1} \sim Ber(\frac{1}{16})$ המייצג שהריבוע ה־$i, j$ קיים. \\
+	לבסוף גם $X = \sum_{1 \le i, j \le n} X_{i, j}$. \\
+	נניח שהצלעות של הטבלה הן בלתי־תלויות, דהינו הטבלה מהצורה:
+	\begin{center}
+		\begin{tabular}{||c || c || c ||}
+			\hline\hline
+			A & B & C \\
+			\hline\hline
+			A & B & C \\
+			\hline\hline
+			A & B & C \\
+			\hline\hline
+		\end{tabular}
+	\end{center}
+	נבחין שמתקיים
+	\[
+		\EE(Y_{i, j}) = \frac{1}{4}
+	\]
+	ולכן
+	\[
+		\EE(X_{i, j})
+		= \EE(Y_{i, j}) \cdot \EE(Y_{i + 1, j}) \cdot \EE(Y_{i, j + 1}) \cdot \EE(Y_{i + 1, j + 1})
+		= \frac{1}{16}
+	\]
+	ובהתאם
+	\[
+		\EE(X)
+		= \sum_{1 \le i, j \le n} X_{i, j}
+		= \frac{n^2}{16}
+	\]
+	וכמובן גם מההגדרה לכל $1 \le i, j \le n$ גם $|X_{i, j}| \le 1$, אז תנאי אי־שוויון הופדינג חלים ומתקיים
+	\[
+		\PP(X - \frac{n^2}{16} \ge cn)
+		\PP(X \ge cn + \frac{n^2}{16})
+		\le e^{-\frac{c^2 n^2}{2 n^2}}
+		\le 2e^{-\frac{c^2}{4}}
+	\]
+	כפי שרצינו להראות.
+\end{proof}
+
+\question{}
+שיכור עומד על ציר המספרים, בכל יום הוא צועד צעד אחד שמאלה בהסתברות $p$ או שני צעדים ימינה בהסתברות $1 - p$, באופן בלתי־תלוי בימים הקודמים. \\
+נוכיח שההסתברות שהשיכור נמצא בראשית ביום ה־$3n$ דועכת מעריכית לכל $p \ne \frac{2}{3}$.
+\begin{proof}
+	נגדיר $X_n$ המשתנה המקרי המייצג כמה זז השיכור ביום ה־$n$, כלומק
+	\[
+		\PP(X_n = s)
+		= \begin{cases}
+			p & s = 1 \\
+			1 - p & s = -2
+		\end{cases}
+	\]
+	וכן נגדיר $Y_n = \sum_{i = 1}^{n} X_n$, סך המרחק שזז השיכור לאורך $n$ ימים.
+	נבחין ש־$\frac{X_n + 2}{3} \sim Ber(p)$, ולכן $\frac{Y_n + 2n}{3} \sim Bin(n, p)$.
+	לכן גם $Y_{3n} + 2n \sim Bin(n, p)$ ונובע
+	\[
+		\EE(Y_{3n})
+		= 3np + 2n
+		= n(3p + 2)
+	\]
+	נחשב
+	\[
+		\PP(Y_{3n} = 0)
+		= 1 - \PP(Y_{3n} \ge 1) - \PP(Y_{3n} \le -1)
+	\]
+	וכן
+	\[
+		\PP(Y_{3n} \ge 1)
+		= \PP\left(\frac{Y_{3n}}{\EE(Y_{3n})} - 1 \ge \frac{1}{\EE(Y_{3n})} - 1\right)
+		\le \exp\left(- \frac{{\left(\frac{1}{n(3p + 2)} - 1\right)}^2}{2n}\right)
+		\le \exp\left(- \frac{{\left(n(3p + 2) - 1\right)}^2}{2n {(n(3p + 2))}^2}\right)
+		= o(e^{-n})
+	\]
+	ובאופן דומה,
+	\[
+		\PP(Y_{3n} \le -1)
+		= \PP(-Y_{3n} \ge 1)
+		= \PP\left(\frac{-Y_{3n}}{\EE(Y_{3n})} - 1 \ge \frac{1}{\EE(Y_{3n})} - 1\right)
+		= o(e^{-n})
+	\]
+	ומצאנו שאסימפטוטית יש דעיכה מעריכית לעמידה על הראשית, אלא אם $2n = 3$, אז אי־השוויון איננו מוגדר והתוחלת היא 0 תמיד.
+\end{proof}
+
+\end{document}
