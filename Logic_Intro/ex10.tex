@@ -18,7 +18,7 @@
 		\item אם $\psi_1 \land \psi_2 \in \Pi$ אז מהגדרת חסכונית $\psi_1, \psi_2 \in \Pi$, באופן דומה אם $\lnot (\psi_1 \land \psi_2) \in \Pi$ אז שלילת אחד הפסוקים ב־$\Pi$, ואנו עומדים בהגדרה של קבוצת הינטיקה לגימום.
 		\item אם $\psi_1 \lor \psi_2 \in \Pi$ אז מהעובדה שבענף אין סתירות נובע ש־$\psi_1 \in b$ או $\psi_2 \in b$ כפי שרצינו.
 			אם $\lnot (\psi_1 \lor \psi_2) \in \Pi$ אז $\psi_1 \lor \psi_2 \in \Pi$ ולכן בשל החוסר בסתירות $\lnot \psi_1 \in b$ ואנו עומדים בהגדרה.
-		\item אם $\psi_1 \to \psi_2 \in \Pi$ אז $\psi_1 \in \Pi$ ולכן גם $\psi_1 \in b$, אם $\lnot (\psi_1 \to \psi_2) \in \Pi$ אז $\psi_1 \to \psi_2 \in \Pi$ ומחוסר הסתירות ב־$b$ גם $\psi_1, \lnot \psi_2 \in b$.
+		\item אם $\psi_1 \to \psi_2 \in \Pi$ אז $\psi_1 \in \Pi$ ולכן גם $\psi_2 \in b$, אם $\lnot (\psi_1 \to \psi_2) \in \Pi$ אז $\psi_1 \to \psi_2 \in \Pi$ ומחוסר הסתירות ב־$b$ גם $\psi_1, \lnot \psi_2 \in b$.
 		\item אם $\psi_1 \leftrightarrow \psi_2 \in \Pi$ אז $\psi_1, \psi_2, \lnot \psi_1, \lnot \psi_2 \in \Pi$ ומחוסר הסתירות $\psi_1, \psi_2 \in b$ או $\lnot \psi_1, \lnot \psi_2 \in b$ בהתאם להגדרה.
 			אם שלילת הגרירה הדו־כיוונית ב־$\Pi$ אז באופן דומה נקבל את התנאי עבור $\psi_1, \lnot \psi_2$ או $\lnot \psi_1, \psi_2$
 			אם שלילת הגרירה הדו־כיוונית ב־$\Pi$ אז באופן דומה נקבל את התנאי עבור $\psi_1, \lnot \psi_2$ או $\lnot \psi_1, \psi_2$.
@@ -60,6 +60,7 @@
 נראה שאם $\Sigma \vdash_{L'} \varphi$ אז $\Sigma \vdash_L \varphi$.
 \begin{proof}
 	נניח שבעץ ההיסק שמעיד על $\Sigma \vdash_{L'} \varphi$ ישנה הופעה של קבוצת הפסוקים $C = \{ c_i \mid i \le \alpha < \omega \} \subseteq \operatorname{const}_{L'} \setminus \operatorname{const}_L$. \\
+	נעיר ש־$C$ קבוצה סופית, אחרת עץ ההיסק עצמו לא סופי בסתירה להגדרתו.
 	נבחין כי מסופיות הפסוק ועץ ההיסק, $|C| < \omega$, ולכן נוכל לבצע תהליך אינדוקטיבי על־ידי שימוש במשפט ההכללה על־ידי פסוקים ולהסיק שגם $\Sigma \vdash_{L'} \forall c_1 \dots \forall c_\alpha \varphi$.
 	מהמשפט $c_i$ לא מופיע בעץ ההיסק המעיד על כך לכל $i \le \alpha$, ולכן עץ היסק זה מעיד גם על $\Sigma \vdash_L \forall c_1 \dots \forall c_\alpha \varphi$.
 	נוכל אם כן להשתמש בסעיף א' כדי לבצע עוד תהליך אינדוקטיבי שיניב לנו את הטענה $\Sigma \vdash_L \varphi$ כפי שרצינו.
@@ -145,7 +146,7 @@
 	נניח בשלילה שקיים פסוק $\varphi$ כך ש־$\Aa \models \varphi \iff |A| < \omega$. \\
 	ניזכר ב־$\varphi_{\ge n}$ שהגדרנו במטלות הקודמות ומקיים $\Aa \models \varphi_{\ge n} \iff |A| \ge n$,
 	ונגדיר $\Sigma = \{ \varphi \} \cup \{ \varphi_{\ge n} \mid n < \omega \}$.
-	עתה נראה ש־$\Sigma$ ספיקה סופית. תהי $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$ ו־$n = \sup \{ n < \omega \mid \varphi_{\ge n} \in \Pi$, אז $\Bb = \langle [n + 1]; = \rangle$ מודל כך ש־$\Bb \models \Pi$ לפי בדיקה.
+	עתה נראה ש־$\Sigma$ ספיקה סופית. תהי $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$ ו־$n = \sup \{ n < \omega \mid \varphi_{\ge n} \in \Pi \}$, אז $\Bb = \langle [n + 1]; = \rangle$ מודל כך ש־$\Bb \models \Pi$ לפי בדיקה.
 	בנוסף $\Bb$ מודל סופי ולכן $\Bb \models \varphi$.
 	אז $\Sigma$ ספיקה סופית ולכן ממשפט הקומפקטיות ספיקה, לכן קיים מודל $\Aa \models \Sigma$, אבל $|A| \ge n$ לכל $n < \omega$, לכן $|A| \ge \omega$ ובפרט $\Aa \not\models \varphi$ בסתירה ל־$\Aa \models \varphi$.
 	לכן לא קיים פסוק $\varphi$ כזה.
@@ -174,7 +175,7 @@
 נסיק מהסעיף הקודם שאין פסוק $\varphi$ ב־$L$ כך ש־$\Gg \models \varphi \iff D(\Gg) < \infty$.
 \begin{proof}
 	נניח בשלילה שקיים $\varphi$ פסוק כך ש־$\Gg \models \varphi \iff D(\Gg) < \infty$, ונגדיר $\Sigma = \{ \varphi \} \cup \{ \varphi_{D < n} \mid n < \omega \}$.
-	לכל $\Psi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$, נגדיר $\Gg = \langle [n + 1], \{ \{n, n + 1\} \mid n < n + 1 \} \rangle$ גרף כך ש־$D(\Gg) = n + 1$ עבור $n = \sup \{ n \mid \varphi_{D > n} \in \Pi \}$.
+	לכל $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$, נגדיר $\Gg = \langle [n + 1], \{ \{i, i + 1\} \mid i < n + 1 \} \rangle$ גרף כך ש־$D(\Gg) = n + 1$ עבור $n = \sup \{ n \mid \varphi_{D > n} \in \Pi \}$.
 	בהתאם $\Gg \models \Pi$, שהרי המסלול בין $0$ ו־$n$ הוא באורך של $n$ לכל הפחות. בפרט $\Gg \models \varphi$ שכן הוא סופי.
 	כמו בסעיף א' נובע ממשפט הקומפקטיות שקיים $\Gg \models \Sigma$, אבל בהתאם נובע עבור ה־$n$ שהגדרנו ש־$n = \omega$, כלומר $D(\Gg) = \infty$, ולכן $\Gg \not\models \varphi$ בסתירה ל־$\Gg \models \Sigma \ni \varphi$.
 \end{proof}
@@ -186,8 +187,8 @@
 	לכל $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$ נגדיר $n = \max\{ n \mid \varphi_{D > n} \in \Pi \}$, ובהתאם נגדיר $\Gg_n = \langle [n + 1], \{ \{n, n + 1\} \mid n \in [n] \}\rangle$.
 	נבחין ש־$\Gg_n \models \varphi_{D > m}$ לכל $m < n$, וכן כמובן מהסופיות וההנחה $\Gg_n \models \varphi$, לכן $\Gg_n \models \Pi$.
 	כל $\Pi$ ספיקה ולכן $\Sigma$ ספיקה סופית ולכן מקומפקטיות ספיקה, לכן יהי $\Gg \models \Sigma$.
-	כל פסוק $\varphi_{D > n}$ מסופק על־ידי שני קודקודים כלשהם, ונבחר $v, u = \sup_{v, u \in V} d(u, v)$, אבל אנו יודעים שלכל $n \in \omega$ מתקיים $n < d(u, v)$, לכן נוכל להסיק $d(u, v) = \omega$ בסתירה ל־$\Gg \models \varphi$.
-	לכן נוכל להסיק שאין פסוק $\varphi$ כזה.
+	אנו יודעים ש־$\Gg \models \varphi$ ולכן יהיו $u, v \in V$ כך שמרחקם מקסימלי, נבחין שלכל $n < \omega$ גם $\Gg \models \varphi_{D > n}$ ולכן מהגדרתם $d(u, v) > n$, לכן נוכל להסיק $d(u, v) = \sup n = \omega$.
+	זוהי כמובן סתירה לסופיות כלל המסלולים, לכן נוכל להסיק שאין פסוק $\varphi$ כזה.
 
 	אנסה לפתור את השאלה בדרך שאיננה חלק מהחומר ואשמח לביקורת,
 	נניח ש־$\kappa$ מונה קומפקטי חזק (strongly compact) ונניח עתה שאנו עובדים מעל $\Ll_{\kappa, \kappa}(L)$, ונגדיר את השאלה מחדש.
