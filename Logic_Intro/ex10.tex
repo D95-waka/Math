@@ -182,6 +182,13 @@
 \question{}
 נוכיח שאין פסוק ב־$L = \{ E \}$ שהגדרנו בשאלה 4 כך שגרף $\Gg$ מקיים $\Gg \models \varphi \iff \forall u, v \in V, d(u, v) < \infty$.
 \begin{proof}
+	נניח בשלילה שיש פסוק כזה, $\varphi$, ונגדיר את קבוצת הפסוקים, $\Sigma = \{ \varphi \} \cup \{ \varphi_{D > n} \mid n < \omega \}$.
+	לכל $\Pi \subseteq \Sigma$ כך ש־$|\Pi| < \omega$ נגדיר $n = \max\{ n \mid \varphi_{D > n} \in \Pi \}$, ובהתאם נגדיר $\Gg_n = \langle [n + 1], \{ \{n, n + 1\} \mid n \in [n] \}\rangle$.
+	נבחין ש־$\Gg_n \models \varphi_{D > m}$ לכל $m < n$, וכן כמובן מהסופיות וההנחה $\Gg_n \models \varphi$, לכן $\Gg_n \models \Pi$.
+	כל $\Pi$ ספיקה ולכן $\Sigma$ ספיקה סופית ולכן מקומפקטיות ספיקה, לכן יהי $\Gg \models \Sigma$.
+	כל פסוק $\varphi_{D > n}$ מסופק על־ידי שני קודקודים כלשהם, ונבחר $v, u = \sup_{v, u \in V} d(u, v)$, אבל אנו יודעים שלכל $n \in \omega$ מתקיים $n < d(u, v)$, לכן נוכל להסיק $d(u, v) = \omega$ בסתירה ל־$\Gg \models \varphi$.
+	לכן נוכל להסיק שאין פסוק $\varphi$ כזה.
+
 	אנסה לפתור את השאלה בדרך שאיננה חלק מהחומר ואשמח לביקורת,
 	נניח ש־$\kappa$ מונה קומפקטי חזק (strongly compact) ונניח עתה שאנו עובדים מעל $\Ll_{\kappa, \kappa}(L)$, ונגדיר את השאלה מחדש.
 	נגדיר $\Gg \models \varphi \iff \forall u, v \in V, d(u, v) < \kappa$.
@@ -189,8 +196,7 @@
 	נגדיר את הפסוק $\varphi_\alpha = \exists u, v (\exists_{i < \alpha} v_i ((\bigwedge_{i < j < \alpha} \lnot (v_i = v_j)) \land (\bigwedge_{i + 1 < \alpha} E(v_i, v_{i + 1}))))$ לכל $\alpha < \kappa$. \\
 	נגדיר $\Sigma_\alpha = \{ \varphi \} \cup \{ \varphi_\beta \mid n < \beta \}$,
 	ולכן אם נגדיר $\Gg_\alpha = \langle \alpha + 1; \{ \{ v_\gamma, v_{\gamma + 1} \} \mid \gamma < \alpha \} \rangle$ ינבע $\Gg_\alpha \models \Sigma_\alpha$ לכל $\alpha < \kappa$.
-	מהקומפקטיות החזקה של $\kappa$ חל על קבוצה זו ולכן הקבוצה $\Sigma_\lambda$ ספיקה ומסופקת על־ידי $\Gg_\kappa$, אבל $\Gg_\omega \models \varphi_\kappa$, בסתירה ל־$\varphi$.
-
+	מהקומפקטיות החזקה של $\kappa$ חל על קבוצה זו ולכן הקבוצה $\Sigma_\lambda$ ספיקה ומסופקת על־ידי $\Gg_\kappa$, אבל $\Gg_\omega \models \varphi_\kappa$, בסתירה ל־$\varphi$. \\
 	במקרה הפרטי של $\kappa = \omega$ נקבל את השאלה המקורית, ושם נשתמש במשפט הקומפקטיות כדי לקבל את מבוקשנו.
 \end{proof}
 
