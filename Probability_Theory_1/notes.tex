@@ -4340,5 +4340,123 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ומצאנו שאכן תכונת חוסר התלות חלה.
 \end{example}
 
+\section{תרגול 11 --- 16.1.2025}
+\subsection{משתנים מקריים רציפים בהחלט}
+\begin{exercise}
+	יהי $X$ משתנה מקרי רציף בהחלט עם פונקציית צפיפות
+	\[
+		f_X(t) = \begin{cases}
+			c(2t - t^2) & t \in [0, 2] \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	חשבו את $c$ וחשבו את ההתפלגות המצטברת.
+\end{exercise}
+\begin{solution}
+	נשתמש בתנאי ההכרחי לפונקציית צפיפות,
+	\[
+		1
+		= \PP(X \in \RR)
+		= \int_{-\infty}^{\infty} f_X(t)\ dt
+		= \int_{0}^{2} c (2t - t^2)\ dt
+		= \left. c (t^2 - \frac{1}{3} t^3) \right\rvert_{t = 0}^{t = 2}
+		= c \cdot \frac{4}{3}
+	\]
+	ולכן $c = \frac{3}{4}$ בלבד.
+	
+	נעבור לחישוב פונקציית ההתפלגות המצטברת,
+	\[
+		F_X(s)
+		= \PP(X \le s)
+		= \int_{-\infty}^{s} f_X(t)\ dt
+	\]
+	כשאר $s \in [0, 2]$,
+	\[
+		F_X(s)
+		= \int_{0}^{s} \frac{3}{4} (2t - t^2)\ dt
+		= \frac{3}{4} (s^2 - \frac{1}{3} s^3)
+	\]
+	אם $s < 0$ אז $F_X(s) = 0$ ואם $s > 2$ אז $F_X(s) = 1$.
+\end{solution}
+\begin{example}
+	נניח ש־$X \sim Exp(\lambda)$, אז
+	\[
+		F_X(t)
+		= \int_{-\infty}^{t} f_X(x)\ dx
+		= \int_{0}^{t} \lambda e^{-\lambda x}\ dx
+		= \left. -e^{-\lambda x} \right\rvert_{x = 0}^{x = t}
+		= 1 - e^{-\lambda t}
+	\]
+\end{example}
+\begin{example}
+	זמן שיחת טלפון ממוצעת מתפלגת מעריכית $\lambda = \frac{1}{10}$, מה ההסתברות ששיחה נמשכה יותר מעשר דקות? \\
+	אנו מחפשים את $\PP(X > 10) = 1 - \PP(X \le 10) = 1 - 1 - e^{-\frac{1}{10} \cdot 10} = e^{-1}$. \\
+	נניח שהשיחה נמשכה יותר מ־10 דקות ונחשב את ההסתברות שהיא נמשכה יותר מ־20 דקות,
+	\[
+		\PP(X > 20 \mid X > 10)
+		= \frac{\PP(X > 20, X > 10)}{\PP(X > 10)}
+		= \frac{e^{-2}}{e^{-1}}
+		= e^{-1}
+	\]
+	אנו רוצים לבדוק אם תכונת חוסר הזיכרון חלה על התפלגות זו, נבדוק.
+	\[
+		\PP(X > s + t \mid X > t)
+		= \frac{e^{-\lambda(s + t)}}{e^{-\lambda t}}
+		= e^{-\lambda s}
+		= \PP(X > s)
+	\]
+\end{example}
+\begin{example}
+	נגדיר $Y = [x]$ וכן $X \sim Exp(\lambda)$, אז $\supp Y = \NN \cup \{ 0 \}$,
+	\[
+		\PP(Y = n)
+		= \PP([x] = n)
+		= \PP(n \le X \le n + 1)
+		= \int_{n}^{n + 1} \lambda e^{-\lambda t}\ dt
+		= e^{-\lambda n} - e^{-\lambda (n + 1)}
+		= e^{-\lambda n} (1 - e^{-\lambda}) - 1
+		\sim Geo(1 - e^{-\lambda})
+	\]
+	משתנה מקרי גאומטרי ומשתנה מקרי מעריכי הם אם כך בעלי קשר, לא במקרה שניהם בעלי ההתפלגויות חסרות הזיכרון היחידות.
+\end{example}
+\begin{exercise}
+	נניח ש־$X \sim Exp(\lambda)$ ונגדיר $Z = \log X$, חשבו את ההתפלגות של $Z$.
+\end{exercise}
+\begin{solution}
+	יהי $t \in \RR$, אז
+	\[
+		F_X(t)
+		= \PP(Z < t)
+		= \PP(\log X < t)
+		= \PP(X < e^t)
+		= F_X(e^t)
+		= 1 - e^{-\lambda e^t}
+	\]
+	וכן נחשב את פונקציית הצפיפות, $ f_X(t) = F_X'(t) = e^{-\lambda e^t} \cdot \lambda e^t$.
+\end{solution}
+\begin{example}
+	נחשב את התוחלת של $X \sim Exp(\lambda)$,
+	\[
+		\EE(X)
+		= \int_{-\infty}^{\infty} t f_X(t)\ dt
+		= \int_{0}^{\infty} t \lambda e^{-\lambda t}\ dt
+		= \frac{1}{\lambda} \int_{0}^{\infty} u e^{-u}\ du
+		= \frac{1}{\lambda} ({\left( - u e^{-u} \right)}_{u = 0}^{u = \infty} + \int_{0}^{\infty} e^{-u}\ du)
+		= \frac{1}{\lambda} (0 + (1 - 0))
+		= \frac{1}{\lambda}
+	\]
+	באופן דומה גם
+	\[
+		\EE(X^2)
+		= \int_{0}^{\infty} t^2 e^{-\lambda t}\ dt
+		= \frac{1}{\lambda^2} \int_{0}^{\infty} u^2 e^{-u}\ du
+		= \frac{1}{\lambda^2} ({\left(-u^2 e^{-u}\right)}_{u = 0}^{u = \infty} + 2 \int_{0}^{\infty} u e^{-u}\ duoo)
+		= \frac{2}{\lambda^2}
+		\implies
+		\var(X)
+		= \frac{1}{\lambda^2}
+	\]
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
