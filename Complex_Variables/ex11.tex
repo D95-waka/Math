@@ -1,0 +1,438 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נחשב את האינטגרלים הבאים באמצעות משפט השארית.
+
+\subquestion{}
+$I = \int_0^\infty \frac{\log x}{x^n + 1}\ dx$ לכל $n \ge 2$ טבעי.
+\begin{solution}
+	נגדיר
+	\[
+		f(z) = \frac{\log z}{z^n + 1}
+	\]
+	כאשר $\log$ הוא הענף המוגדר בתחום שנציין בהמשך (בתחום זה אכן יש ענף מוגדר).
+	נבחין שמתקיים
+	\[
+		z^n + 1 = 0
+		\iff
+		z = \exp(\frac{\pi i}{n} + \frac{2\pi k}{n}), k \in \{0, \dots, n - 1\}
+	\]
+	לכן בפרט יש סינגולריות קוטב מסדר $1$ ב־$z = \exp(\frac{\pi i}{n})$. \\
+	נגדיר את המסילות הבאות:
+	\begin{align*}
+		& \gamma_1(t) = t & t \in [\epsilon, r] \\
+		& \gamma_2(t) = r e^{it} & t \in [0, \frac{2\pi}{n}] \\
+		& \gamma_3(t) = t e^{\frac{2\pi i}{n}} & t \in [r, \epsilon] \\
+		& \gamma_4(t) = \epsilon e^{\frac{2\pi i}{n} - it} & t \in [0, \frac{2\pi}{n}] \\
+	\end{align*}
+	התחום המוגדר על־ידי גבולות אלה לכל $\epsilon, r > 0$ הוא תחום טוב (בעל שפה סופית וחסום) ומחורר בנקודה היחידה $z = e^{\frac{\pi i}{n}}$.
+	מההגדרה
+	\[
+		\int_{\gamma_1} f(z)\ dz \xrightarrow[\epsilon \to 0]{r \to \infty} I
+	\]
+	מאי־שוויון ML נובע,
+	\[
+		\int_{\gamma_2} f(z)\ dz
+		= \int_0^{\frac{2\pi}{n}} \frac{\log(re^{it})}{r^n e^{int} + 1}\ dt
+		\le \frac{2\pi r}{n} \log r \cdot \frac{1}{r^n + 1}
+		\xrightarrow[r \to \infty]{} 0
+	\]
+	מבדיקה ישירה ותוצאת שאלה 1 סעיף ב' של מטלה 7 נובע,
+	\[
+		\int_{\gamma_3} f(z)\ dz
+		= \int_r^\epsilon f(t e^{\frac{2\pi i}{n}}) e^{\frac{2\pi i}{n}}\ dt
+		= e^{\frac{2\pi i}{n}} \int_r^\epsilon \frac{\log(t) + \frac{2\pi i}{n}}{t^n + 1}\ dt
+		= e^{\frac{2\pi i}{n}} (I - \frac{\pi}{2})
+	\]
+	ולבסוף נבחין שגם
+	\[
+		\int_{\gamma_4} f(z)\ dz
+		\le \frac{2\pi \epsilon}{n} \cdot \frac{e^\epsilon}{\epsilon^n + 1}
+		\xrightarrow{\epsilon \to 0} 0
+	\]
+	ולכן נובע ממשפט השארית וטענה לחישוב שאריות קוטב פשוט,
+	\[
+		\int_{\partial G} f(z)\ dz
+		= I + e^{\frac{\pi i}{n}} (I - \frac{\pi}{2})
+		= I (1 + e^{\frac{\pi i}{n}}) - \frac{\pi}{2} e^{\frac{\pi i}{n}}
+		= 2\pi i \operatorname{res}_f(e^{\frac{\pi i}{n}})
+		= 2\pi i \left. \frac{\log z}{n z^{n - 1}} \right\rvert_{z = e^{\frac{\pi i}{n}}}
+		= 2 \frac{\pi^2}{n^2} e^{\frac{\pi i}{n}}
+	\]
+	ובפרט נובע
+	\[
+		I (1 + e^{\frac{\pi i}{n}})
+		= 2 \frac{\pi^2}{n^2} e^{\frac{\pi i}{n}} + \frac{\pi}{2} e^{\frac{\pi i}{n}}
+	\]
+	ומחילוץ הערך הממשי נקבל
+	\[
+		I (1 + \cos(\frac{\pi}{n}))
+		= \cos(\frac{\pi}{n}) (2 \frac{\pi^2}{n^2} + \frac{\pi}{2})
+	\]
+	ולכן
+	\[
+		\int_0^\infty \frac{\log x}{x^n + 1}\ dx
+		= \frac{\cos(\frac{\pi}{n}) (2 \frac{\pi^2}{n^2} + \frac{\pi}{2})}{1 + \cos(\frac{\pi}{n})}
+	\]
+\end{solution}
+
+\subquestion{}
+עבור כל $a, b \in \RR$,
+\[
+	I = \int_{0}^{\infty} \frac{\cos x}{(x^2 + a^2)(x^2 + b^2)}
+\]
+\begin{solution}
+	נגדיר
+	\[
+		f(z)
+		= \frac{e^z}{(z^2 + a^2)(z^2 + b^2)}
+	\]
+	ולכן $I = \re(\int_{0}^{\infty} f(z)\ dz)$.
+	נבחין כי אם $a = 0$ או $b = 0$ אז מאינפי 2 האינטגרל לא מתכנס ולכן נניח $a, b \ne 0$. \\
+	עוד נבחין ש־$f$ היא פונקציה זוגית ולכן,
+	\[
+		2I
+		= \int_{-\infty}^{\infty} f(x)\ dx
+	\]
+	ונחשב אינטגרל זה במקום. 
+	עוד נבחין שמתקיים
+	\[
+		\lim_{x \to \pm\infty} x f(x)
+		= 0
+	\]
+	בשל חסימות המונה וגודל המכנה, לכן $f(x) = o(|\frac{1}{x}|)$ ומטענה מהכיתה נובע שאם $Z$ קבוצת הסינגולריות של $f$, אז
+	\[
+		2I
+		= 2\pi i \sum_{z \in Z, \im z > 0} \operatorname{res}_f(z)
+	\]
+	אבל אנו גם יודעים ש־$Z = \{\pm ai, \pm bi \}$, לכן נניח בלי הגבלת הכלליות $a, b > 0$ ונקבל שהנקודות הקריטיות לחישוב האינטגרל הן $ai, bi$ בלבד, את ההנחה הזו מותר לנו לעשות בשל סימטריית הסינגולריות, במקרה שלילה נבחר $-a, -b$.
+	אילו $a \ne b$, אז נובע שהסינגולריות היא קוטב מסדר 1 בשתי הנקודות, נחשב,
+	\[
+		\operatorname{res}_f(ai)
+		= \left. \frac{e^z}{2z (2z^2 + a^2 + b^2)} \right\rvert_{z = ai}
+		= \frac{e^{ai}}{2ai (b^2 - a^2)}
+	\]
+	ולכן באופן דומה גם
+	\[
+		\operatorname{res}_f(bi)
+		= \frac{e^{bi}}{2bi (a^2 - b^2)}
+	\]
+	ובהתאם נובע
+	\begin{multline*}
+		I
+		= \re\left(\pi i \left(\frac{e^{ai}}{2ai (b^2 - a^2)} + \frac{e^{ai}}{2bi (a^2 - b^2)}\right)\right) \\
+		= \re\left(\pi \left(\frac{e^{ai}}{2a (b^2 - a^2)} + \frac{e^{ai}}{2b (a^2 - b^2)}\right)\right)
+		= \pi \left(\frac{\cos(a)}{2a (b^2 - a^2)} + \frac{\cos(b)}{2b (a^2 - b^2)}\right)
+	\end{multline*}
+	כעת נניח ש־$a = b$, ולכן קיימת סינגולריות יחידה מסדר 2 ב־$ai$, ונחשב את השארית,
+	\[
+		\operatorname{res}_f(ai)
+		= \lim_{z \to ai} \frac{d}{dz} \frac{e^z {(z - ai)}^2}{{(z^2 + a^2)}^2}
+		= \lim_{z \to ai} \frac{d}{dz} \frac{e^z}{{(z + ai)}^2}
+		= \lim_{z \to ai} \frac{e^z {(z + ai)}^2 - e^z 2 (z + ai)}{{(z + ai)}^4}
+		= \frac{e^{ai} (-a^2 - ai)}{4 a^4}
+	\]
+	ולכן
+	\[
+		I
+		= \re\left( \pi i \frac{e^{ai} (-a^2 - ai)}{4 a^4} \right)
+		= \re\left( \pi \frac{e^{ai} (-a^2i + a)}{4 a^4} \right)
+		= \pi \frac{\cos(a)}{4 a^3} 
+	\]
+\end{solution}
+
+\subquestion{}
+\[
+	I = \int_{0}^{\infty} \frac{\sin^3 x}{x^3}\ dx
+\]
+\begin{solution}
+	נבחין שהאינטגרל הנתון מתכנס ישירות מהזהות $\lim_{x \to 0} \frac{\sin x}{x} = 1$ וממבחני התכנסות.
+	נבחין שמתקיים,
+	\begin{align*}
+		\sin^3(x)
+		& = \im\left(i \frac{{(e^{ix} - e^{-ix})}^3}{{(2i)}^3}\right) \\
+		& = \im\left(i \frac{e^{3ix} - 3e^{2ix - ix} + 3e^{ix - 2 ix} - e^{-3ix}}{-8i}\right) \\
+		& = \im\left(\frac{e^{3ix} - 3e^{ix} + 3e^{-ix} - e^{-3ix} + 2\cos(3x) - 6\cos(x)}{-8}\right) \\
+		& = \im\left(\frac{e^{3ix} - 3e^{ix} + 3e^{-ix} - e^{-3ix} + e^{3ix} + e^{-3ix} - 3e^{ix} - 3e^{-ix}}{-8}\right) \\
+		& = \im\left(\frac{e^{3ix} - 3e^{ix}}{-4}\right) \\
+		& = \im\left(\frac{(1 - e^{3ix}) - 3(1 - e^{ix})}{4}\right) \\
+	\end{align*}
+	ולכן נגדיר
+	\[
+		f(z)
+		= \frac{(1 - e^{3iz}) - 3(1 - e^{iz})}{4z^3}
+	\]
+	ונובע
+	\[
+		I = \im\left(\int_0^\infty f(z)\ dz\right)
+	\]
+	נבחין ש־$f$ בעלת סינגולריות סליקה ב־$z = 0$ ולכן נתייחס אליה כאל ההשלמה האנליטית שלה בנקודה זו.
+	נרצה אם כך לחשב את ערך האינטגרל, לכן נגדיר תחום טוב אשר שפתו מוגדרת על־ידי
+	\begin{align*}
+		& \gamma_1(t) = t && t \in [0, r] \\
+		& \gamma_2(t) = r e^{it} && t \in [0, \frac{\pi}{2}] \\
+		& \gamma_3(t) = it && t \in [r, 0] \\
+	\end{align*}
+	לכל $r > 0$.
+	מאנליטיות $f$ נובע
+	\[
+		\im\left( \int_{\gamma_1} f(z)\ dz + \int_{\gamma_2} f(z)\ dz + \int_{\gamma_3} f(z)\ dz \right) = 0
+	\]
+	ונעבור לחישוב האינטגרלים.
+	\[
+		\im \int_{\gamma_1} f(z)\ dz
+		\xrightarrow{r \to \infty} I
+	\]
+	נבחין כי אין חלק מדומה לאינטגרל הבא,
+	\[
+		\im \int_{\gamma_3} f(z)\ dz
+		= \int_{r}^{0} \frac{1 - e^{-3t} - 3(1 - e^{-t})}{-it^3} \cdot i\ dt
+		= 0
+	\]
+	אנו יודעים שמתקיים $e^z = 1 + z + \frac{z^2}{2} + o(z^3)$ ולכן נובע
+	\[
+		f(z)
+		= \frac{-2 - 1 - 3iz - \frac{{(3iz)}^2}{2} + 1 + iz + \frac{{(iz)}^2}{2} + o(z^3)}{4z^3}
+		= \frac{3z^2 + o(z^3)}{4z^3}
+		= \frac{3}{4} \frac{1}{z} + o(\frac{1}{r})
+	\]
+	ולכן
+	\[
+		\int_{\gamma_2} f(z)\ dz
+		= \int_0^{\pi/2} (\frac{3}{4} \frac{1}{r e^{it}} + \frac{o(r^3)}{r^3}) \cdot ire^{it}
+		= \frac{3i}{4} \int_0^{\pi/2} 1 + \frac{o(\frac{1}{r})}{\frac{1}{r}}\ dt
+		= \frac{3i}{4} \cdot (0 - \pi/2) + o(\frac{1}{r})/r
+		\xrightarrow{r \to \infty} -\frac{3\pi i}{8}
+	\]
+	ולכן מאיחוד השוויונות שמצאנו נובע
+	\[
+		\im\left( \int_{\gamma_1} f(z)\ dz + \int_{\gamma_2} f(z)\ dz + \int_{\gamma_3} f(z)\ dz \right)
+		= \im \left( 0 + iI - \frac{3\pi i}{8} \right)
+		\implies I = \frac{3\pi}{8}
+	\]
+\end{solution}
+
+\question{}
+\subquestion{}
+תהי $\frac{p(z)}{q(z)}$ פונקציה רציונלית, כך ש־$p, q \in \CC[z]$ פולינומים כך ש־$\deg q \ge \deg p + 2$. \\
+נסמן $Z \subseteq \CC$ את קבוצת השורשים של $q$ ונניח ש־$Z \cap \RR = \emptyset$.
+נוכיח שמתקיים
+\[
+	\int_{-\infty}^{\infty} \frac{p(x)}{q(x)}\ dx
+	= 2\pi i \sum_{a \in Z \cap H} \operatorname{res}_{p/q}(a)
+\]
+כאשר $H = \{ z \in \CC \mid \im z > 0 \}$.
+\begin{proof}
+	נגדיר $G = \{ z \in \overline{B}(0, r) \mid \re z \ge 0 \}$ לכל $r > 0$, זהו כמובן תחום טוב, וכן $\partial G = \gamma_1 + \gamma_2$, כאשר
+	\begin{align*}
+		& \gamma_1(t) = t, && t \in [-r, r] \\
+		& \gamma_2(t) = r e^{it}, && t \in [0, \pi]
+	\end{align*}
+	נגדיר $d = \deg q - \deg p$, לכן $d \ge 2$, עבור $r$ מספיק גדול נובע $\frac{p}{q} = o(\frac{1}{r^d})$ ולכן מ־ML,
+	\[
+		\int_{\gamma_2} \frac{p(z)}{q(z)}\ dz
+		\le \pi r \cdot \max_{z \in \gamma_2} \frac{p(z)}{q(z)}
+		= \pi r^{1 - d} \cdot \frac{o(\frac{1}{r^d})}{\frac{1}{r^d}}
+		\xrightarrow{r \to \infty} 0
+	\]
+	ונסיק ממשפט השארית (תוך ההנחה שבחרנו $r$ כך ש־$Z \cap \partial G = \emptyset$),
+	\[
+		\int_{\partial G} \frac{p(z)}{q(z)}\ dz
+		= \int_{-r}^r \frac{p(z)}{q(z)}\ dz
+		= 2\pi i \sum_{a \in Z \cap G} \operatorname{res}_{p/q}(a)
+	\]
+	אבל $G \xrightarrow{r \to \infty} H$ ולכן
+	\[
+		\int_{-\infty}^{\infty} \frac{p(x)}{q(x)}\ dx
+		= 2\pi i \sum_{a \in Z \cap H} \operatorname{res}_{p/q}(a)
+	\]
+\end{proof}
+
+\subquestion{}
+נסיק דרך נוספת לחישוב האינטגרל
+\[
+	\int_0^\infty \frac{x^2}{x^4 + 1}
+\]
+שהוצג בתרגיל 7.
+\begin{solution}
+	נגדיר $p(z) = z^2, q(z) = z^4 + 1$ ולכן $\deg q \ge \deg p + 2$ וכן $p, q \in \CC[z]$.
+	נבחין ש־$z^4 + 1 = 0 \iff z = e^{\frac{\pi i + 2\pi i k}{4}}$ ל־$k \in \{0, \dots, 3\}$, לכן
+	\[
+		Z = \{ e^{\frac{\pi i + 2\pi i k}{4}} \mid k \in \{0, \dots, 3\} \}
+	\]
+	בפרט $Z \cap \RR = \emptyset$, ולכן תנאי הסעיף הקודם חלים ונסיק
+	\begin{align*}
+		\int_{-\infty}^{\infty} \frac{p(x)}{q(x)}\ dx
+		& = 2\pi i \sum_{a \in Z \cap H} \operatorname{res}_{p/q}(a) \\
+		& = 2\pi i (\operatorname{res}_{p/q}(e^{\frac{\pi i}{4}}) + \operatorname{res}_{p/q}(e^{\frac{3 \pi i}{4}})) \\
+		& = 2\pi i \left({\left( \frac{z^2}{4z^3} \right)}_{z = e^{\frac{\pi i}{4}}} + {\left( \frac{z^2}{4z^3} \right)}_{z = e^{\frac{3 \pi i}{4}}}\right) \\
+		& = 2\pi i \left(\frac{1}{4e^{\frac{\pi i}{4}}} + \frac{1}{4e^{\frac{3 \pi i}{4}}} \right)
+	\end{align*}
+	נבחין ש־$\frac{p(x)}{q(x)}$ היא פונקציה סימטרית מעל הממשיים, ולכן
+	\[
+		\int_0^{\infty} \frac{p(x)}{q(x)}\ dx
+		= \pi i \left(\frac{1}{4e^{\frac{\pi i}{4}}} + \frac{1}{4e^{\frac{3 \pi i}{4}}} \right)
+	\]
+\end{solution}
+
+\subquestion{}
+נוכיח שמתקיים
+\[
+	\int_{-\infty}^{\infty} \frac{1}{{(x^2 + 1)}^{n + 1}}\ dx
+	= \frac{(2n - 1)!!}{(2n)!!} \cdot \pi
+\]
+לכל $n \in \NN$.
+\begin{proof}
+	נגדיר $p(z) = 1, q(z) = {(z^2 + 1)}^{n + 1}$ ולכן תנאי סעיף א' חלים ועלינו לחשב את השארית בכל נקודות הסינגולריות.
+	ישנה סינגולריות קוטב מסדר $n + 1$ בנקודות $z = \pm i$, אבל רק $z = i \in H$ ולכן מספיק שנחשב את ערך השארית בה.
+	מטענה אודות ערך שארית בקוטב נקבל שעלינו לחשב את,
+	\begin{align*}
+		\operatorname{res}_{p/q}(i)
+		& = \frac{1}{(n - 1 + 1)!} \lim_{z \to i} \frac{d^{n - 1 + 1}}{dz^{n - 1 + 1}} \left({(z - i)}^{n + 1} \frac{1}{{(z^2 + 1)}^{n + 1}}\right) \\
+		& = \frac{1}{n!} \lim_{z \to i} \frac{d^n}{dz^n} {(z + i)}^{-n - 1} \\
+		& = \frac{(-n - 1) \cdots (-2n)}{n!} \lim_{z \to i} {(z + i)}^{-2n - 1} \\
+		& = \frac{{(-1)}^n (n + 1) \cdots 2n}{n! 2^{2n + 1} \cdot {(-1)}^n \cdot i} \\
+		& = -\frac{i}{2} \frac{\frac{(2n)!}{n! 2^n}}{n! \cdot 2^n}
+	\end{align*}
+	נבחין שמהגדרת עצרת כפולה נובע $(2n)!! = n! 2^n$, ולכן
+	\[
+		-\frac{i}{2} \frac{\frac{(2n)!}{n! 2^n}}{n! \cdot 2^n}
+		= -\frac{i}{2} \frac{\frac{(2n)!}{(2n)!!}}{(2n)!!}
+	\]
+	אנו גם יודעים ש־$(2n)! = (2n)!! \cdot (2n - 1)!! $ מבדיקה ישירה של ההגדרה, לכן
+	\[
+		\operatorname{res}_{p/q}(i)
+		= -\frac{i}{2} \frac{(2n - 1)!!}{(2n)!!}
+	\]
+	ולבסוף מסעיף א',
+	\[
+		\int_{-\infty}^{\infty} \frac{1}{{(x^2 + 1)}^{n + 1}}
+		= 2 \pi i \cdot (-1) \frac{i}{2} \frac{(2n - 1)!!}{(2n)!!}
+		= \frac{(2n - 1)!!}{(2n)!!}
+	\]
+\end{proof}
+
+\question{}
+תהי
+\[
+	f(z) = \Log\left(\frac{z}{z - 1}\right)
+\]
+
+\subquestion{}
+נראה ש־$f$ מוגדרת בתחום $\CC \setminus [0, 1]$.
+\begin{proof}
+	נבחין ש־$\Log$ מוגדר ב־$\CC \setminus \{ 0 \}$ ולכן מספיק שנבדוק מתי $\frac{z}{z - 1} \ne 0$.
+	כמובן $\frac{z}{z - 1} = 0 \iff z = 0$, וכן $z - 1 = 0 \iff z = 1$, כלור בתחום $\CC \setminus [0, 1]$ הפונקציה $f$ מוגדרת וסופית.
+\end{proof}
+
+\subquestion{}
+נחשב את האינטגרל
+\[
+	\int_{|z| = 4} f(z)\ dz
+\]
+\begin{solution}
+	ממשפט השארית באינסוף נובע
+	\[
+		\int_{|z| = 4} f(z)\ dz
+		= 2\pi i \cdot \operatorname{res}_f(\infty)
+	\]
+	נגדיר
+	\[
+		F(z)
+		= -\frac{f(\frac{1}{z})}{z^2}
+		= -\frac{\Log(\frac{\frac{1}{z}}{\frac{1}{z} - 1})}{z^2}
+		= -\frac{1}{z^2} \Log\left(\frac{1}{1 - z}\right)
+	\]
+	אנו יודעים ש־$\frac{1}{1 - z} = 1 + z + o(z^2)$ וכן ש־$\Log(1 + z + o(z^2)) = z + o(z^2)$, ולכן $c_{-1} = -1$ עבור הסדרה המגדירה את טור לורן של $F$.
+	בהתאם $\operatorname{res}_F(0) = -1$ ולכן ממשפט השארית באינסוף גם
+	\[
+		\int_{|z| = 4} f(z)\ dz
+		= 2\pi i \operatorname{res}_f(\infty)
+		= 2\pi i \operatorname{res}_F(0)
+		= -2\pi i
+	\]
+\end{solution}
+
+\question{}
+יהי $u \in \CC$ ונגדיר
+\[
+	f(z)
+	= \frac{\pi \cot(\pi z)}{{(z + u)}^2}
+\]
+עבור $\cot(z) = \frac{\cos(z)}{\sin(z)}$.
+
+\subquestion{}
+נסמן ב־$C_N$ לכל $N \in \NN$ את המסילה המקיפה את הריבוע ${[-N - \frac{1}{2}, N + \frac{1}{2}]}^2$ נגד כיוון השעון. \\
+נראה שמתקיים
+\[
+	\lim_{N \to \infty} \int_{C_N} f(z)\ dz
+	= 0
+\]
+\begin{proof}
+	כתוצאה ממטלה 3 נבחין שלכל $z \in \CC, |\im z| \ge 1$ מתקיים $|\cot z| \le 1$, כלומר הפונקציה חסומה.
+	בנוסף $\cot(\pi n + \frac{1}{2}) = 0$ ולכן הפונקציה חסומה גם בסביבות אלה בריבוע.
+	לכל $N$ מספיק גדול ביחס ל־$u$ (כלומר ש־$u$ פנימית לריבוע),
+	\[
+		\int_{C_N} f(z)\ dz
+		\le 4(N + \frac{1}{2}) \cdot \max_{z \in C_N} f(z)
+		\le 4(N + \frac{1}{2}) \cdot \frac{\pi \cdot 1}{N^2}
+		\xrightarrow{N \to \infty} 0
+	\]
+	ולכן נוכל להסיק שערך האינטגרל שואף לאפס כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נשתמש במשפט השארית כדי להראות שלכל $u \in \CC \setminus \ZZ$ מתקיים,
+\[
+	\sum_{n = -\infty}^{\infty} \frac{1}{{(n + u)}^2}
+	= \frac{\pi^2}{\sin^2(\pi u)}
+\]
+\begin{proof}
+	נבחין של־$f$ סינגולריות בקבוצה $\{ -u \} \cup \{ n \in \ZZ \mid |n| \le N \}$ לכל $C_N$, ולכן נובע ממשפט השארית בתחום זה
+	\[
+		\int_{C_N} f(z)\ dz
+		= 2\pi i \operatorname{res}_f(u) + 2\pi i \sum_{n = -N}^{N} \operatorname{res}_f(n)
+		= 0
+		\iff
+		-\operatorname{res}_f(u) = \sum_{n = -N}^{N} \operatorname{res}_f(n)
+	\]
+	כל סינגולריות של $f$ היא קוטב מסדר 1 לפי זהויות על סינוס, ונקבל
+	\[
+		\operatorname{res}_f(n)
+		= \left. \frac{\frac{\pi \cos(\pi z)}{{(z + u)}^2}}{\pi \cos(\pi z)} \right\rvert_{z = n}
+		= \frac{\frac{\pi \cos(\pi n)}{{(n + u)}^2}}{\pi \cos(\pi n)}
+		= \frac{1}{{(n + u)}^2}
+	\]
+	ב־$z = -u$ יש סינגולריות מסדר 2 ולכן
+	\[
+		\operatorname{res}_f(-u)
+		= \lim_{z \to -u} \frac{d}{dz} \frac{\pi \cot(\pi z) {(z + u)}^2}{{(z + u)}^2}
+		= \lim_{z \to -u} \frac{d}{dz} \pi \cot(\pi z)
+		= \frac{-\pi}{\sin^2(-\pi u)}
+		= \frac{-\pi}{\sin^2(\pi u)}
+	\]
+	ולכן מהשוויון ממשפט השארית נובע
+	\[
+		\sum_{n = -\infty}^{\infty} \frac{1}{{(n + u)}^2}
+		= \frac{\pi^2}{\sin^2(\pi u)}
+	\]
+\end{proof}
+
+\subquestion{}
+נשתמש במשפט השארית כדי להראות שעבור $u = 0$ מתקיים
+\[
+	\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+\]
+\begin{proof}
+	מהסעיף הקודם נובע שעבור $u$ בסביבה של $0$ מתקיים,
+	\[
+		TODO
+	\]
+\end{proof}
+
+\end{document} % chktex 17
