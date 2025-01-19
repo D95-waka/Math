@@ -431,8 +431,29 @@ $I = \int_0^\infty \frac{\log x}{x^n + 1}\ dx$ לכל $n \ge 2$ טבעי.
 \begin{proof}
 	מהסעיף הקודם נובע שעבור $u$ בסביבה של $0$ מתקיים,
 	\[
-		TODO
+		\frac{1}{u^2} + \sum_{n \in \ZZ \setminus \{ 0 \}} \frac{1}{{(n + u)}^2}
+		= \frac{\pi^2}{\sin^2(\pi u)}
+		\iff
+		\sum_{n \in \ZZ \setminus \{ 0 \}} \frac{1}{{(n + u)}^2}
+		= \frac{\pi^2}{\sin^2(\pi u)} - \frac{1}{u^2}
+		= \frac{\pi^2 u^2 - \sin^2(\pi u)}{u^2 \sin^2(\pi u)}
 	\]
+	ממבחן התכנסות אנו יודעים שהביטוי השמאלי מתכנס כאשר $u \to 0$ לביטוי
+	\[
+		2 \sum_{n = 1}^{\infty} \frac{1}{n^2}
+	\]
+	ונותר לבדוק את הביטוי הימני, נבחין שמתקיים $\sin^2(\pi u) = \pi^2 u^2 - \frac{\pi^4}{3} u^4 + o(u^5)$ ולכן,
+	\[
+		\frac{\pi^2 u^2 - \sin^2(\pi u)}{u^2 \sin^2(\pi u)}
+		= \frac{\pi^2 u^2 - \pi^2 u^2 + \frac{\pi^4}{3} u^4 + o(u^5)}{\pi^2 u^4 + o(u^5)}
+		\xrightarrow{u \to 0} \frac{\pi^2}{3}
+	\]
+	ונובע ישירות
+	\[
+		2 \sum_{n = 1}^{\infty} \frac{1}{n^2}
+		= \frac{\pi^2}{3}
+	\]
+	כפי שרצינו.
 \end{proof}
 
 \end{document} % chktex 17
