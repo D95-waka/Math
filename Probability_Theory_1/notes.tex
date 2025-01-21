@@ -4510,7 +4510,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{proposition}
 את הטענה הזו לא נוכל להוכיח למקרה הרציף.
-\begin{theorem}[משפט הגבול המרכזי]
+\begin{theorem}[משפט הגבול המרכזי]\label{central_limit_theorem}
 	אם $\{ X_i \mid i < \NN \}$ משתנים מקריים בלתי־תלויים שווי־התפלגות עם $\EE(X_i) = 0, \var(X_i) = 1$ לכל $i \in \NN$ ונגדיר
 	\[
 		Z_n = \frac{\sum_{i = 1}^{n} X_i}{\sqrt{n}}
@@ -4636,6 +4636,157 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{align*}
 	זאת אומרת ש־$F_Z(a) = 1 - e^{-\lambda a}$ ו־$Z \sim Exp(\lambda)$.
 \end{example}
+
+\section{שיעור 23 --- 21.1.2025}
+\subsection{התכנסות משתנים מקריים}
+\begin{proposition}
+	$X_n$ סדרת משתנים מקריים כך ש־$\EE(X_n) = 0$ לכל $n \in \NN$, ו־$\var(X_n) \xrightarrow{n \to \infty} 0$, אז $X_n \xrightarrow{d} 0$.
+\end{proposition}
+\begin{proof}
+	תרגיל, כאשר זוהי תוצאה של צ'בישב.
+\end{proof}
+\begin{proposition}
+	אם $X_n$ משתנים מקריים בדידים הנתמכים על $\NN$, ו־$X$ גם נתמך על הטבעיים,
+	אז $X_n \xrightarrow{d} X$ אם ורק אם $\PP(X_n = k) \xrightarrow{n \to \infty} \PP(X = k)$ לכל $k \in \NN$.
+\end{proposition}
+הראינו שאם $X_n \sim Bin(n, \frac{\lambda}{n})$ ו־$X \sim Poi(\lambda)$ אז מתקיימת הטענה ו־$X_n \xrightarrow{d} X$.
+\begin{proof}
+	נניח ש־$\supp X = \NN$.
+	עבור $k < a < k + 1$ צריך לבדוק שמתקיים $F_{X_k}(a) = \PP(X_n \le a) = \sum_{i = 1}^{k} \PP(X_n = i)$,
+	ושבאותו אופן $F_X(a) = \sum_{i = 1}^{k} \PP(X = i)$, לכן צריך להראות שלכל $k$,
+	$\sum_{i = 1}^{k} \PP(X_n = i) \xrightarrow{n \to \infty} \sum_{i = 1}^{k} \PP(X = i)$ אם ורק אם $\PP(X_n = i) \xrightarrow{n \to \infty} \PP(X = i)$.
+
+	הכיוון השני מיידי, ולכן נעבור להוכחת הכיוון הראשון, באינדוקציה על $k$.
+	עבור $k = 1$ הטענה נובעת מיד, ואז נניח שהטענה נכונה עבור $k \in \NN$ ונבדוק את $k + 1$,
+	אנו כבר יודעים שמתקיים
+	\[
+		\sum_{i = 1}^{k} \PP(X_n = i) + \PP(X_n = k + 1)
+		\xrightarrow{m \to \infty} \sum_{i = 1}^{k} \PP(X = i) + \PP(X = k + 1)
+	\]
+
+	נראה הוכחה פשוטה אף יותר,
+	\[
+		\sum_{i = 1}^{k + 1} \PP(X_n = i) - \sum_{i = 1}^{k} \PP(X_n = i)
+		\xrightarrow{n \to \infty}
+		\sum_{i = 1}^{k + 1} \PP(X = i) - \sum_{i = 1}^{k} \PP(X = i)
+	\]
+	אבל למעשה מכאן נובע ישירות $\PP(X_n = k + 1) \to \PP(X = k + 1)$.
+\end{proof}
+ניזכר במשפט\ \ref{central_limit_theorem} ונראה לו דוגמה.
+\begin{example}
+	נניח $X_n \sim U([\sigma])$ בלתי־תלויים ואנו רוצים להעריך את
+	\[
+		\PP(3500 \le \sum_{i = 1}^{1000} X_i \le 3700)
+	\]
+
+	נתחיל בנרמול, נגדיר $Y_i = \frac{X_i - \frac{7}{2}}{\sqrt{\frac{35}{12}}}$, לכן נובע $\EE(Y_i) = 0, \var(Y_i) = 1$.
+	נציין שגם $X_i = \sqrt{\frac{35}{12}} Y_i + \frac{7}{2}$, ובהתאם
+	\begin{align*}
+		\PP(3500 \le \sqrt{\frac{35}{12}} \sum_{i = 1}^{1000} Y_i + 3500 \le 3700)
+		& = \PP(0 \le \sqrt{\frac{35}{12}} \sum_{i = 1}^{1000} Y_i \le 200) \\
+		& = \PP(0 \le \sum_{i = 1}^{1000} Y_i \le \sqrt{\frac{12}{35}} 200) \\
+		& = \PP(0 \le \frac{1}{\sqrt{1000}} \sum_{i = 1}^{1000} Y_i \le \frac{200}{\sqrt{\frac{35}{12}} \sqrt{1000}}) \\
+		& \approx \int_0^1 \frac{1}{\sqrt{2 \pi}} e^{-\frac{s^2}{2}}\ ds
+	\end{align*}
+\end{example}
+\begin{example}
+	נרצה לחשב את הגבול של $e^{-n} \sum_{k = 0}^{n} \frac{n^k}{k!}$.
+	נוכל כמובן להשתמש בטור טיילור ולנסות לחשב את הערך הזה ישירות, אך נראה דרך נוספת.
+	למעשה שאלה זו שקולה לחלוטין ל־$\PP(X \le n)$ עבור $X \sim Poi(n)$.
+	ניזכר שגם אם $X \sim Poi(\lambda_1)$ וכן $Y \sim Poi(\lambda_2)$ אז $X + Y \sim Poi(\lambda_1 + \lambda_2)$ אז נסיק שאם $X_i \sim Poi(1)$ עבור $1 \le i \le n$ נקבל
+	\[
+		Poi(n) \sim \sum_{i = 1}^{n} X_i
+	\]
+	ולכן נוכל לנסח מחדש את השאלה כגבול $\PP(\sum_{i = 1}^{n} X_i \le n)$ עבור $X_i$ בלתי־תלויים המתפלגים פואסונית $1$.
+	נבחין שגם $\EE(X_i) = 1$ ולכן ערך זה שקול לערך
+	\[
+		\PP(\sum_{i = 1}^{n} (X_i - 1) \le 0)
+	\]
+	נגדיר $Y_i = X_i - 1$ בלתי־תלויים כך ש־$\EE(Y_i) = 0$ ו־$\var(Y_i) = 1$.
+	אז ממשפט הגבול המרכזי נסיק
+	\[
+		\PP(\sum_{i = 1}^{n} (X_i - 1) \le 0)
+		= \PP(\frac{\sum_{i = 1}^{n} (X_i - 1)}{\sqrt{n}} \le 0)
+		\to \PP(Z \le 0)
+		= \frac{1}{2}
+	\]
+\end{example}
+
+\subsection{סדרות של מאורעות}
+נעבור לדבר על העולם של סדרות של מאורעות, במטרה לאפיין את ההתנהגות של המאורעות האלה ולבנות כלים שיאפשרו לנו לשאול שאלות מוכללות על הסדרות, נעבור עוד רגע להגדיר שאלות כאלה באופן פורמלי ומדויק.
+\begin{definition}[מאורעות מיוחדים עבור סדרת מאורעות]
+	תהי ${\{A_n\}}_{n = 1}^\infty$ סדרת מאורעות. \\
+	נגדיר
+	\[
+		\limsup_{n \to \infty} A_n = \{ A_n \text{ infinitely often} \} = \bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty A_k
+		= \{ \omega \in \Omega \mid \forall n \in \NN, \exists k \ge n, \omega \in A_k \}
+	\]
+	עבור המאורע שקורה בסדרה אינסוף פעמים.
+	כלומר המקרה שאינסוף פעמים הם התרחשו, לדוגמה שאינסוף פעמים מטבע נפל על עץ.
+
+	נגדיר גם
+	\[
+		\liminf_{n \to \infty} A_n
+		= \{ A_n \text{ eventually} \}
+		= \bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k
+		= \{ \omega \in \Omega \mid \exists n \in \NN, \forall k \ge n, \omega \in A_k \}
+	\]
+	עבור מאורע שיקרה מתישהו.
+\end{definition}
+נסתכל על משתנים מקריים שמייצגים את המאורעות האלה, במטרה לנסות להבין את ההגדרות האלה.
+\begin{exercise}
+	נגדיר $1_{A_n}$, המשתנה המקרי המציין, אז נובע
+	\[
+		1_{\limsup_{n \to \infty} A_n}
+		= \limsup_{n \to \infty} 1_{A_n}
+	\]
+	ובאופן דומה
+	\[
+		1_{\liminf_{n \to \infty} A_n}
+		= \liminf_{n \to \infty} 1_{A_n}
+	\]
+\end{exercise}
+\begin{remark}
+	מדה־מורגן נובע
+	\[
+		\limsup_{n \to \infty} A_n^C
+		= {(\liminf_{n \to \infty} A_n)}^C
+	\]
+\end{remark}
+
+\begin{lemma}[הלמה של פאטו]
+	עבור סדרה מאורעות $\{ A_n \}$ מתקיים,
+	\[
+		\PP(\liminf_{n \to \infty} A_n)
+		\le 
+		\liminf_{n \to \infty} \PP(A_n)
+	\]
+	וכן באופן דומה,
+	\[
+		\PP(\limsup_{n \to \infty} A_n)
+		\ge 
+		\limsup_{n \to \infty} \PP(A_n)
+	\]
+\end{lemma}
+\begin{proof}
+	נוכיח את אחד מהחסמים ואת השני נקבל מההערה.
+	\[
+		\PP(\liminf_{n \to \infty} A_n)
+		= \PP( \bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k)
+	\]
+	ולכן נגדיר $B_n = \bigcap_{k = n}^\infty A_k$.
+	זוהי כמובן סדרה עולה, זאת שכן ככל שאנו מתקדמים בסדרה אנו חותכים, כלומר $A_n \cap B_{n + 1} = B_n$.
+	לכן נובע מ־\ref{probability_continuous_probability_function_theorem} כי
+	\[
+		\PP(\bigcup_{n = 1}^\infty B_n)
+		= \lim_{n \to \infty} \PP(B_n)
+		\le \liminf_{n \to \infty} \PP(A_n)
+	\]
+	כאשר המעבר האחרון נובע מהתכנסות הגבול והגבול התחתון.
+\end{proof}
+\begin{lemma}[הלמה הראשונה של בורל־קנטלי]
+	אם $\{A_n\}$ סדרת מאורעות ומתקיים $\sum_{n = 1}^{\infty} \PP(A_n) < \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 0$.
+\end{lemma}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
