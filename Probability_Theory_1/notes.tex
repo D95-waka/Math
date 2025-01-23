@@ -4583,7 +4583,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 
 \subsection{התפלגות סדרת התפלגויות}
 נדבר על התכנסות בהתפלגות של משתנים מקריים, נבחין שהשם מוזר קצת כי הוא קופץ מעל המשתנים המקריים ועובר ישר למשתנים המקריים, זאת שכן במקרים אלה הם לא מעניינים אותנו באופן ישיר.
-\begin{definition}
+\begin{definition}[התכנסות משתנים מקריים בהתפלגות]\label{convergence_in_distribution}
 	${\{X_i\}}_{i \in \NN}$ סדרת משתנים מקריים, $Z$ משתנה מקרי רציף. \\
 	נאמר ש־$X_n \xrightarrow{d} Z$ ($X_n$ מתכנסת בהתפלגות ל־$Z$) אם לכל $a \in \RR$,
 	\[
@@ -4784,9 +4784,6 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 	כאשר המעבר האחרון נובע מהתכנסות הגבול והגבול התחתון.
 \end{proof}
-\begin{lemma}[הלמה הראשונה של בורל־קנטלי]
-	אם $\{A_n\}$ סדרת מאורעות ומתקיים $\sum_{n = 1}^{\infty} \PP(A_n) < \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 0$.
-\end{lemma}
 
 \section{תרגול 12 --- 23.1.2025}
 \subsection{צפיפות משותפת}
@@ -4892,6 +4889,151 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	נסיק אם כך ש־$\cov(Y_i, Y_{i + 1}) = \frac{1}{12} - \frac{1}{16} = \frac{1}{48}$.
 	קיבלנו ש־$\var(Y) = (n - 1) \frac{7}{144} + 2(n - 2) \frac{1}{48}$.
 \end{solution}
+
+\section{שיעור 24 --- 23.1.2025}
+\subsection{סדרות מאורעות --- המשך}
+\begin{example}
+	נניח ש־$\PP(A_n) = \frac{1}{2}$ בלתי־תלויים.
+	אז
+	\[
+		\PP(\bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k)
+		= \lim_{n \to \infty} \PP(\bigcap_{k = n}^\infty A_k)
+		= 0
+		\le \liminf_{n \to \infty} \PP(A_n)
+		= \frac{1}{2}
+	\]
+	כלומר הלמה של פאטו לא מועילה לנו במיוחד במקרה זה.
+	באופן דומה
+	\[
+		\PP(\limsup_{n \to \infty} A_n)
+		= 1 \ge \limsup_{n \to \infty} \PP(A_n)
+		= \frac{1}{2}
+	\]
+	נניח שכל $A_n$ זהים, $\forall n, A_n = A_1$.
+\end{example}
+\begin{lemma}[הלמה הראשונה של בורל־קנטלי]
+	אם $\{A_n\}$ סדרת מאורעות ומתקיים $\sum_{n = 1}^{\infty} \PP(A_n) < \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 0$.
+\end{lemma}
+נבחן לא הוכחה רשמית, אבל את הרעיון שלה, נסתכל על $X = \sum_{n = 1}^{\infty} 1_{A_n}$, א
+\[
+	\EE(X)
+	= \sum_{n = 1}^{\infty} \PP(A_n) < \infty
+\]
+וכן
+\[
+	\PP(\limsup_{n \to \infty} A_n)
+	= \PP(X = \infty)
+	\le \frac{\EE(X)}{\infty}
+	= 0
+\]
+ועתה נעבור להוכחה אמיתית.
+\begin{proof}
+	\[
+		\PP(\limsup_{n \to \infty} A_n)
+		= \PP(\bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty A_k)
+		= \lim_{n \to \infty} \PP(\bigcup_{k = n}^\infty A_k)
+		\le \lim_{n \to \infty} \sum_{k = n}^{\infty} \PP(A_k)
+		= 0
+	\]
+	כאשר אי־השוויון נובע מחסם האיחוד, והשוויון האחרון נובע מהנתון $\sum_{n = 1}^{\infty} \PP(A_n) < \infty$.
+\end{proof}
+נרצה למצוא גרסה הפוכה ללמה, אך ניסיון להפוך את התנאים יוביל לטענה שאיננה נכונה, במקום זאת נראה את הלמה הבאה,
+\begin{lemma}[הלמה השנייה של בורל־קנטלי]
+	אם $A_n$ סדרת מאורעות בלתי־תלויים ו־$\sum_{n = 1}^{\infty} \PP(A_n) = \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 1$.
+\end{lemma}
+\begin{proof}
+	אנו רוצים לחסום מלמטה ולכן נשתמש במשלים, נרצה למצוא את איפוס המשלים, לכן,
+	\[
+		\PP(\liminf_{n \to \infty} A_n^C)
+		= \PP(\bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k^C)
+		= \lim_{n \to \infty} \PP(\bigcap_{k = n}^\infty A_k^C)
+	\]
+	אבל לכל $N \in \NN$,
+	\[
+		\PP(\bigcap_{k = n}^\infty A_k^C)
+		\ge \PP(\bigcap_{k = n}^N A_k^C)
+		= \prod_{k = n}^N (1 - \PP(A_k))
+		\le \prod_{k = n}^N e^{-\PP(A_k)}
+		= e^{-\sum_{k = n}^N \PP(A_k)}
+		\xrightarrow{N \to \infty} 0
+	\]
+\end{proof}
+\begin{example}
+	אם $A_n$ בלתי־תלויים ו־$\PP(A_n) = p_n$ אז
+	\[
+		\PP(\limsup_{n \to \infty} A_n) = 0 \iff \sum_{n = 1}^{\infty} p_n < \infty
+	\]
+	וכן
+	\[
+		\PP(\limsup_{n \to \infty} A_n) = 1 \iff \sum_{n = 1}^{\infty} p_n = \infty
+	\]
+	נגדיר $B_n = A_n \cap A_{n + 1}$, אם $\sum_{n = 1}^{\infty} p_n p_{n + 1} < \infty$ אז $\PP(\limsup_{n \to \infty} B_n) = 0$.
+	אם $\sum_{n = 1}^{\infty} p_n p_{n + 1} = \infty$ אז $\PP(\limsup_{n \to \infty} B_n) = 1$.
+	אם ${\{ B_{2n} \}}_{n \in \NN}$ בלתי־תלויים ו־$\sum_{n \in 2\NN} p_n p_{n + 1} = \infty$ או $\sum_{n \in 2\NN + 1} p_n p_{n + 1} = \infty$, \\
+	אז $\PP(\limsup_{n \to \infty} B_{2n}) = 1$ או $\PP(\limsup_{n \to \infty} B_{2n + 1}) = 1$.
+\end{example}
+\begin{example}
+	נגדיר $X_n \sim Unif(\{-1, 1\})$ וכן $Y_n = \sum_{k = 1}^{n} X_k$.
+	מצאנו בתרגיל שמתקיים $\PP(Y_{3n} = 0) \le e^{-cn}$ עבור איזשהו $c > 0$.
+	נסיק אם כך,
+	\[
+		\sum_{n = 1}^{\infty} \PP(Y_n = 0) < \infty
+	\]
+	ומהלמה הראשונה נובע $\PP(\limsup_{n \to \infty} \{ Y_n = 0 \}) = 0$.
+	זה נכון אם ורק אם $\PP(\exists n \forall k \ge n Y_k \ne 0) = 1$.
+\end{example}
+
+\subsection{התכנסות של סדרות משתנים מקריים}
+בהגדרה\ \ref{convergence_in_distribution} דיברנו על התכנסות של משתנים מקריים בהקשר ההתפלגות שלהם, עתה נראה התכנסות במובן חזק יותר.
+\begin{definition}[התכנסות סדרת משתנים מקריים כמעט תמיד]
+	נאמר ש־$X_n \xrightarrow{a.s.} X$ אם
+	\[
+		\PP(\{ \omega \in \Omega \mid X_n(\omega) \to X(\omega) \}) = 1
+	\]
+\end{definition}
+נבחן דוגמה למקרה זה.
+\begin{example}
+	נבחר $X_n = 1_{A_n}$ עבור $A_n$ בלתי־תלויים.
+	נגדיר גם $\PP(A_n) = p_n$, כך ש־$p_n \le \frac{1}{2}$ לכל $n \in \NN$.
+	באילו תנאים $X_m \xrightarrow{a.s.} X$ ולאיזה $X$?
+	מתי בסדרה $1_{A_n}(\omega)$ יש $0$ החל ממקום מסוים?
+	זהו למעשה ${(\limsup_{n \to \infty} A_n)}^C$.
+	אם $\sum_{n = 1}^{\infty} p_n < \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 0$ ולכן $X_m \xrightarrow{a.s.} 0$.
+	אם $\sum p_n = \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 1$ ואז $X_n$ לא מתכנסת כמעט תמיד.
+\end{example}
+\begin{theorem}[החוק החזק של המספרים הגדולים]
+	אם $X_n$ משתנים מקריים בלתי־תלויים שווי־התפלגות עם $\EE(X_n) = \mu$ אז
+	\[
+		\frac{\sum_{i = 1}^{n} X_i}{n} \xrightarrow{a.s.} \mu
+	\]
+\end{theorem}
+\begin{proof} (תחת ההנחה $|X_n| \le M$ כמעט תמיד)
+	יהי $\epsilon > 0$,
+	נרצה לבדוק את ההסתברויות,
+	\[
+		\PP(\frac{\sum_{i = 1}^{n} X_i}{n} \ge \mu + \epsilon),
+		\qquad
+		\PP(\frac{\sum_{i = 1}^{n} X_i}{n} \le \mu - \epsilon)
+	\]
+	אבל קיבלנו ששני אלה חסומים על־ידי $e^{-cn}$.
+	על־ידי שימוש בטענה זו,
+	\[
+		\{ \frac{\sum_{i = 1}^{n} X_i}{n} \to \mu \}
+		= \{ \forall k \in \NN, \exists n_0, \forall n \ge N, \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} \right\rvert < \frac{1}{k} \}
+	\]
+	ואנו רוצים להראות שלכל $k$ שנבחר מתקיים $\PP(\exists N \forall n \ge N \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} \right\rvert < \frac{1}{k}) = 1$.
+	באופן שקול
+	\[
+		\PP(\bigcup_{N = 1}^\infty \bigcap_{n = N}^\infty A_k^n) = 1
+		\iff
+		\PP(\limsup_{n \to \infty} {(A_k^n)}^C) \overset{(1)}{=} 0
+	\]
+	כאשר $(1)$ נובע מהלמה הראשונה.
+\end{proof}
+\begin{conclusion}
+	אם $X_n$ בלתי־תלויים שווי־התפלגות עם תוחלת $\EE(X_n) = \mu \ne 0$ אז $Y_n = \sum_{i = 1}^{n} X_i$ הוא הילוך חולף.
+	זאת שכן מהחוק החזק $\frac{Y_n}{n} \to \mu \ne 0$.
+\end{conclusion}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
