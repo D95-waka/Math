@@ -1,0 +1,57 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 8 Answer Sheet --- Axiomatic Set Theory, 80650}
+
+\DeclareMathOperator{\crit}{crit}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+\begin{definition}
+	Let $X$ be a set. A tree $T$ is set such that,
+	\begin{enumerate}
+		\item For every $\eta \in T$, $\eta$ is a function from an ordinal $\alpha$ to $X$.
+		\item If $\eta \in T$ and $\dom \eta = \alpha > \beta$ then $\eta \restriction \beta \in T$.
+	\end{enumerate}
+	If $X = 2$ then we say that $T$ is binary tree. \\
+	The height of $T$ is the least ordinal $\alpha$ such that $\forall \eta \in T, \dom \eta < \alpha$.
+	We define $\operatorname{Lev}(\eta) = \dom \eta$ (the level of $\eta$), and we denote $T_\alpha = \{\eta \in T \mid \operatorname{Lev}(\eta) = \alpha\}$.
+	For $\eta, \eta' \in T$ we define $\eta \le_T \eta'$ if $\eta = \eta' \restriction \dom \eta$.
+\end{definition}
+\begin{definition}
+	Let $\kappa$ be a regular cardinal, we say that a tree $T$ is a $\kappa$-tree if the height of $T$ is $\kappa$ and for every $\alpha < \kappa$, $|T_\alpha| < \kappa$.
+\end{definition}
+\begin{definition}
+	Let $T$ be a tree of height $\alpha$.
+	A function $b : \alpha \to X$ is a cofinal branch in $T$ if for every $\beta < \alpha$, $b \restriction \beta \in T$.
+	We would also use the term cofinal branch for the set $\{ b \restriction \beta \mid \beta < \alpha \}$.
+\end{definition}
+
+Let $\kappa$ be an infinite regular cardinal.
+Let $T$ be a binary $\kappa$-tree.
+
+We will prove that there is $T' \subseteq T$ of height $\kappa$ such that for every $\alpha < \beta < \kappa$ and $x \in T'$ with $\operatorname{Lev}(x) = \alpha$,
+there is $y \in T'$ with $\operatorname{Lev}(y) = \beta$ and $x \le_T y$.
+\begin{proof}
+	The assumption that this condition isn't met at all will lead to $T$ being of height less than $\kappa$, then there are such elements in $T$.
+	Why can't we just take an arbitrary $\kappa$ branch, this would create some linear order of order $\kappa$ and would satisfy the proposition.
+\end{proof}
+
+\question{}
+We will show that every binary $\omega$-tree has a cofinal branch.
+\begin{proof}
+	It is direct by the definition of height of a tree.
+	From the last question, we can assume $T' \subseteq T$ fulfills the property of arbitrary elements, then we will define recursively the function $b : \omega \to X$ by the following,
+	\begin{enumerate}
+		\item $b(0) = \eta(0)$, when $\eta$ is any branch $\in T$ (the root of ordered tree is unique).
+		\item For every $0 \le n < \omega$, let $b \restriction n + 1 = x$ when $x \in T', \operatorname{Lev}(x) = n + 1$ such that $b \restriction n \le_T x$, given by the last question.
+	\end{enumerate}
+	This recursive definition ensures us that for every $\alpha < \omega$, indeed $b \restriction \alpha \in T' \subseteq T$, as desired.
+\end{proof}
+
+\question{}
+We will prove that if there is some cardinal $\mu$ such that $\mu^+ < \kappa$ and $|T_\alpha| \le \mu$ for all $\alpha$, then $T$ has a cofinal branch.
+
+\end{document}
