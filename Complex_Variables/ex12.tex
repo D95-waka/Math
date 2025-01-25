@@ -1,0 +1,139 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 12 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $f : U_a^* \to \CC$ אנליטית עם קוטב מסדר $m \ge 1$ ב־$z = a$. \\
+נראה שקיימים $\epsilon, r > 0$ כך שלכל $|w| > r$ קיימים בדיוק $m$ פתרונות למשוואה $f(z) = w$ ב־$B^*(a, \epsilon)$.
+\begin{proof}
+	נגדיר $g(z) = f(z) {(z - a)}^m$, לכן $g \in Hol(U_a)$.
+	הסדר של $z = a$ הוא $m$ ולכן מהגרסה המקומית של משפט רושה נובע שקיימים $\epsilon, r$ עבורם לכל $w \in B^*(g(a), r)$ יש בדיוק $m$ פתרונות למשוואה $g(z) = w$.
+\end{proof}
+
+\question{}
+נמצא כמה פתרונות כולל ריבוי יש למשוואות הבאות בתחומים הנתונים.
+
+\subquestion{}
+$z^7 - 5z^4 + z^2 - 2 = 0$ ב־$B(0, 1)$.
+\begin{solution}
+	נגדיר $f(z) = z^7 - 5z^4 + z^4 - 2$ וגם $g(z) = z^7 - 5z^4$ ונבחין כי אם $|z| = 1$ אז,
+	\[
+		|f(z) - g(z)|
+		\le |z^2| + |2|
+		= 3
+		\le |z^4| \cdot |z^2 - 5|
+	\]
+	ולכן ממשפט רושה בכדור $B(0, 1)$ אותו מספר אפסים לשתי הפונקציות, וכן
+	\[
+		g(z) = 0
+		\iff z = 0, z^3 - 5 = 0
+	\]
+	אפס הוא שורש מריבוי 4, וכן ישנם שלושה שורשים שלא בתחום, לכן יש ארבעה שורשים ל־$f$ בתחום.
+\end{solution}
+
+\subquestion{}
+$z^5 + 2z^3 - z^2 + z - \alpha = 0$ בתחום $\{ z \in \CC \mid \re z > 0 \}$, עבור $\alpha \in \RR$.
+\begin{solution}
+	נגדיר ריבועים שצלעם התחתונה מונחת על ציר ה־$x$ כך שגודל צלעם $r$ והם ממורכזים. \\
+	נגדיר $f(z) = z^5 + 2z^3 - z^2 + z - \alpha$. \\
+	נגדיר $g(z) = z^5 + 2z^3$ ונקבל שלכל $r$ מספיק גדול $|f(z) - g(z)| < |g(z)|$ על שפת הריבוע, ובהתאם משפט רושה חל ונובע שמספר השורשים בריבוע הוא $5$ שורשים לרבות ריבוי.
+	מתוך שורשים אלה שלושה הם על הראשית והשניים הנותרים הם על הציר הממשי, ולכן יש בתחום אפס שורשים.
+	נסיק אם כך שכאשר $r \to \infty$ אז מספר הפתרונות של המשוואה נשאר אפס.
+\end{solution}
+
+\subquestion{}
+$e^z = 3z^n$ בחצי המישור $\{ z \in \CC \mid \re z < 1 \}$ עבור $n \in \NN$.
+\begin{solution}
+	נגדיר $f(z) = e^z - 3z^n$ ונחקור את שורשיה. \\
+	נבחין שבמעגל היחידה מתקיים
+	\[
+		|f(z) + 3z^n|
+		= |e^z|
+		\le e
+		\le 3
+		= |-3z^n|
+	\]
+	ולכן לפונקציה אותה כמות שורשים כמו ל־$-3z^n$, אך לזו האחרונה שורש מריבוי $n$ באפס בלבד.
+	נעבור לבחון ריבועים $[1 - 2r, 1] \times [-r, r]$.
+	בריבועים אלה,
+	\[
+		|f(z) + 3z^n|
+		= |e^z|
+		\le 1
+		\le |r|
+		\le |-3z^n|
+	\]
+	ולכן גם בתחום זה הריבוי הוא זהה, ונוכל להסיק שכאשר $r \to \infty$ מספר השורשים נשאר $n$.
+\end{solution}
+
+\question{}
+תהי $f : G \to \CC$ פונקציה אנליטית, ויהי $z_0 \in G$ כך ש־$f'(z_0) \ne 0$. \\
+נראה שקיים $r > 0$ כך ש־$\overline{B}(z_0, r) \subseteq G$ ו־$f \mid_{B(z_0, r)}$ הפיכה עם הופכית הנתונה על־ידי
+\[
+	{f \mid_{B(z_0, r)}}^{-1}(w)
+	= \frac{1}{2\pi i} \int_{\partial B(z_0, r)} \frac{z f'(z)}{f(z) - w}\ dz
+\]
+\begin{proof}
+	נוכל להסיק ש־$f(z_0) \ne 0$, אחרת היינו יכולים להסיק ש־$f$ קבועה.
+	משפט הפונקציה הפוכה חל ולכן קיים $r > 0$ כך ש־$f$ הפיכה ב־$B(z_0, r) \subseteq G$.
+	ממשפט קושי נובע
+	\[
+		{f \mid_{B(z_0, r)}}^{-1}(w)
+		= \frac{1}{2\pi i} \int_{\partial B(z_0, r)} \frac{{f \mid_{B(z_0, r)}}^{-1}(z)}{z - w}\ dz
+	\]
+	נשתמש במשפט ההצבה עם $z \rightarrow f \mid_{B(z_0, r)}(z)$ וכן $dz \rightarrow f \mid_{B(z_0, r)}(z)' dz$ ונקבל
+	\[
+		{f \mid_{B(z_0, r)}}^{-1}(w)
+		= \frac{1}{2\pi i} \int_{\partial B(z_0, r)} \frac{{f \mid_{B(z_0, r)}}^{-1}(f \mid_{B(z_0, r)}(z))}{f \mid_{B(z_0, r)}(z) - w} \cdot f \mid_{B(z_0, r)}(z)'\ dz
+		= \frac{1}{2\pi i} \int_{\partial B(z_0, r)} \frac{{f \mid_{B(z_0, r)}}^{-1}(z)}{z - w}\ dz
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\question{}
+נוכיח את משפט שוורץ־פיק על חצי המישור העליון $H$. \\
+תהי $f : H \to H$ אנליטית לא קבועה, נראה שאי־השוויונות הבאים מתקיימים,
+\begin{itemize}
+	\item $\left\lvert \frac{f(z_2) - f(z_1)}{f(z_2) - \overline{f(z_1)}} \right\rvert \le \left\lvert \frac{z_2 - z_1}{z_2 - \overline{z_1}} \right\rvert$ לכל $z_1, z_2 \in H$.
+	\item $|f'(z)| \le \frac{\im f(z)}{\im z}$ לכל $z \in H$.
+\end{itemize}
+נראה בנוסף שאם יש שוויון בנקודה מסוימת באחד מאי־השוויונות לעיל אז $f(z) = \frac{az + b}{cz + d}$ עבור $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in SL_2(\RR)$.
+\begin{proof}
+	ניזכר ב־$\varphi(z) = \frac{z - i}{z + i}$ העתקה המעבירה את $H$ ל־$D$, ונקבל ש־$\varphi \circ f$ מקיימת את משפט שוורץ־פיק.
+	לכן מתקיים,
+	\[
+		\left\lvert \frac{\varphi(f(z_2)) - \varphi(f(z_1))}{1 - \varphi(f(z_1)) \overline{\varphi(f(z_2))}} \right\rvert
+		\le \left\lvert \frac{\varphi(z_2) - \varphi(z_1)}{1 - \varphi(z_1) \overline{\varphi(z_2)}} \right\rvert
+	\]
+	מחישוב ישיר של $\varphi$ מתקבל,
+	\[
+		\left\lvert \frac{f(z_2) - f(z_1)}{f(z_2) - \overline{f(z_1)}} \right\rvert
+		= \left\lvert \frac{\frac{f(z_2) - i}{f(z_2) + i} - \frac{f(z_1) - i}{f(z_1) + i}}{1 - \frac{f(z_1) - i}{f(z_1) + i} \frac{{(\overline{f(z_2)} + i)}^2}{(f(z_2) - i)(\overline{f(z_2)} + i)}} \right\rvert
+		\le \left\lvert \frac{\varphi(z_2) - \varphi(z_1)}{1 - \varphi(z_2) \overline{\varphi(z_1)}} \right\rvert
+		= \left\lvert \frac{\frac{f(z_2) - i}{f(z_2) + i} - \frac{f(z_1) - i}{f(z_1) + i}}{1 - \frac{f(z_1) - i}{f(z_1) + i} \frac{{(\overline{f(z_2)} + i)}^2}{(f(z_2) - i)(\overline{f(z_2)} + i)}} \right\rvert
+		= \left\lvert \frac{z_2 - z_1}{z_2 - \overline{z_1}} \right\rvert
+	\]
+	באופן דומה נקבל מהמשפט עבור $\varphi \circ f$ שמתקיים,
+	\[
+		|(\varphi \circ f)'(z)| \le \frac{1 - {|\varphi(f(z))|}^2}{1 - {|z|}^2}
+	\]
+	נבחין כי $\varphi'(z) = \frac{2i}{{(z + i)}^2}$ ולכן,
+	\[
+		\left\lvert \varphi'(f(z)) f'(z) \right\rvert
+		= \left\lvert \frac{-2i}{{(f(z) + i)}^2} f'(z) \right\rvert
+		\le \frac{1 - {|\varphi(f(z))|}^2}{1 - {|\varphi(z)|}^2}
+		= \frac{1 - \left\lvert \frac{{(f(z) - i)}^2}{{(f(z) + i)}^2} \right\rvert}{1 - \left\lvert \frac{{(z - i)}^2}{{(z + i)}^2} \right\rvert}
+	\]
+	ולכן,
+	\begin{align*}
+		\left\lvert 2 f'(z) \right\rvert
+		& \le |{(z + i)}^2| \frac{{|(f(z) + i)}^2| - |{(f(z) - i)}^2| }{|{(z + i)}^2| - |{(z - i)}^2| } \\
+		& = |{(z + i)}^2| \frac{\re^2(f(z) + i) + \im^2(f(z) + i) - \re^2(f(z) - i) - \im^2(f(z) - i)}{|{(z + i)}^2| - |{(z - i)}^2| } \\
+		& = |{(z + i)}^2| \frac{2 \im f(z)}{2 \im z}
+	\end{align*}
+\end{proof}
+
+\end{document} % chktex 17
