@@ -1,0 +1,181 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- תורת ההסתברות (1), 80420}
+% chktex-file 44
+
+\DeclareMathOperator{\Supp}{Supp}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+יהי $X$ משתנה מקרי בדיד כך ש־$\supp X = \QQ$. \\
+נראה של־$X$ אין פונקציית צפיפות ושלמרות זאת פונקציית ההסתברות המצטברת של $X$ עולה ממש.
+\begin{proof}
+	נבחין כי משיקולי עוצמות אכן קיים משתנה מקרי כזה, לדוגמה נבחר $Y \sim Geo(p)$ ו־$f : \NN \to \QQ$ המעידה על $|\NN| = |\QQ|$, ונגדיר $X = f(Y)$.
+
+	אילו נניח בשלילה ש־$X$ היא פונקציה רציפה נובע שאם $\PP(X = q) > 0$ עבור $q \in \QQ$ כלשהו, אז קיימת סביבה של $q$ בה ההסתברות היא חיובית ממש וחסומה, ולכן $\PP(|X - q| < \epsilon) = \infty$ בסתירה להגדרה של $X$.
+	נסיק אם כך ש־$X$ לא רציפה, כלומר פונקציית ההסתברות המצטברת של $X$ לא רציפה, ואין אף קטע בה שבו יש צפיפות.
+	למרות זאת, מתקיים $\PP(X = q) > 0$ עבור כל $q \in \QQ$, ולכן פונקציית ההסתברות המצטברת של $X$ עולה ממש.
+\end{proof}
+
+\question{}
+יהי $X \sim Unif([0, 1])$.
+נחשב את פונקציית ההתפלגות המצטברת ופונקציית הצפיפות של המשתנה המקרי $Y = \sin(2\pi X)$.
+\begin{solution}
+	נרצה לחשב את $\PP(Y \le t)$ לכל $t \in [-1, 1]$.
+	נבחין ש־$t = Y \iff 2\pi X = \arcsin(t), 2\pi X = \pi - \arcsin(t)$, ובהתאם לתחומי חיוביות נוכל להסיק ש־$\{ \sin(2\pi X) \le t \} = \{ 2\pi X \le \arcsin t \} \cup \{ \pi - \arcsin t \le 2\pi X \}$.
+	זהו כמובן איחוד זר ולכן,
+	\begin{align*}
+		F_Y(t)
+		& = \PP(Y \le t) \\
+		& = \PP(0 \le 2\pi X \le \arcsin t) + \PP(\pi - \arcsin t \le 2\pi X \le 2\pi) \\
+		& = \frac{\arcsin t - 0}{2\pi} + \frac{\pi + \arcsin t}{2\pi} \\
+		& = \frac{1}{2} + \frac{1}{\pi} \arcsin t
+	\end{align*}
+	ומצאנו את פונקציית ההתפלגות המצטברת של $Y$, נותר לגזור ולקבל את הצפיפות,
+	\[
+		f_Y(t)
+		= F_Y'(t)
+		= \frac{1}{\pi} \frac{1}{\sqrt{1 - t^2}}
+	\]
+\end{solution}
+
+\question{}
+יהי $X \sim Unif([3, 7])$.
+נחשב את פונקציית ההתפלגות המצטברת ואת פונקציית הצפיפות של המשתנה המקרי $Y = X^2$.
+\begin{solution}
+	נרצה לחשב את $\PP(Y \le t) = \PP(X^2 \le t)$, מחיוביות התחום נסיק שביטוי זה שווה ל־$\PP(X \le \sqrt{t})$.
+	אנו גם יודעים ש־$f_X(t) = \frac{1}{4}$ עבור $3 \le t \le 7$, לכן גם $F_X(t) = \frac{1}{4}(t - 3)$ עבור $3 \le t \le 7$, ונובע $F_Y(t) = F_X(\sqrt{t}) = \frac{1}{4}(\sqrt{t} - 3)$ עבור $9 \le t \le 49$.
+	בהתאם לזה נקבל $f_Y(t) = F_Y'(t) = \frac{1}{8\sqrt{t}}$ עבור $9 \le t \le 49$.
+	עבור כל ערך אחר נקבל $f_Y(t) = 0$.
+\end{solution}
+
+\question{}
+יהי $X$ משתנה מקרי רציף בהחלט ויהי $\alpha > 1$, נתון כי
+\[
+	F_X(t)
+	= \begin{cases}
+		0 & t < 0 \\
+		{(1 + t)}^\alpha - 1 & 0 \le t < \beta \\
+		1 & t \ge \beta
+	\end{cases}
+\]
+נמצא את $\beta$ ונחשב את $f_X$.
+\begin{solution}
+	משילוב המונוטוניות של פונקציית ההתפלגות המצטברת והרציפות של $F_X$ הנובעת מהרציפות בהחלט של $X$ נובע
+	\[
+		\lim_{t \to \beta} F_X(t)
+		= 1
+		= {(1 + t)}^\alpha - 1
+		\iff {(t + 1)}^\alpha = 2
+		\iff t = 2^{1/\alpha} - 1
+	\]
+	ולכן בהכרח $\beta =  2^{1/\alpha} - 1$.
+	בהתאם נחשב את פונקציית הצפיפות,
+	\[
+		f_X(t)
+		= \begin{cases}
+			\alpha {(1 + t)}^{\alpha - 1} & 0 \le t < 2^{1/\alpha} - 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+\end{solution}
+
+\question{}
+יהי $X \sim Exp(\lambda)$.
+
+\subquestion{}
+נחשב את הפונקציה יוצרת המומנטים של $X$.
+\begin{solution}
+	ניזכר תחילה ש־$f_X(t) = \lambda e^{-\lambda t}$ לכל $t \ge 0$.
+	נעבור עתה לחישוב,
+	\[
+		M_X(t)
+		= \int_0^{\infty} e^{ts} f_X(s)\ ds
+		= \int_0^{\infty} e^{ts} \lambda e^{-\lambda s}\ ds
+		= \lambda \int_0^{\infty} e^{(t - \lambda) s}\ ds
+		= \lambda \left. \frac{1}{t - \lambda} e^{(t - \lambda) s} \right\rvert_{s = 0}^{s = \infty}
+		= \begin{cases}
+			\frac{\lambda}{t - \lambda} (1 - 0) & t < \lambda \\
+			\infty & t \ge \lambda
+		\end{cases}
+	\]
+	כלומר $M_X(t) = \frac{\lambda}{t - \lambda}$ עבור $t < \lambda$, ולא מוגדר עבור $t \ge \lambda$.
+\end{solution}
+
+\subquestion{}
+נראה ש־$X$ חסר זיכרון, כלומר
+\[
+	\PP(X > s + t \mid X > s)
+	= \PP(X > t)
+\]
+לכל $s, t > 0$.
+\begin{proof}
+	נבחין תחילה שמתקיים לכל $s > 0$,
+	\[
+		F_X(s)
+		\int_{0}^{s} f_X(t)\ dt
+		= \int_{0}^{s} \lambda e^{-\lambda t}\ dt
+		= \left. -e^{-\lambda t} \right\rvert_{t = 0}^{t = s}
+		= 1 - e^{-\lambda s}
+	\]
+	ולכן
+	\begin{align*}
+		\PP(X > s + t \mid X > s)
+		& = \frac{\PP(X > s + t, X > s)}{\PP(X > s)}
+		&& = \frac{\PP(X > s + t)}{\PP(X > s)} \\
+		& = \frac{1 - \PP(X \le s + t)}{1 - \PP(X \le s)}
+		&& = \frac{1 - (1 - e^{-\lambda (s + t)})}{1 - (1 - e^{-\lambda s})} \\
+		& = 1 - (1 - e^{-\lambda t})
+		&& = 1 - \PP(X \le t) \\
+		& = \PP(X > t)
+	\end{align*}
+\end{proof}
+
+\subquestion{}
+נראה שאם $X$ הוא משתנה מקרי המקיים $F_X(t) = 0$ עבור $t \le 0$ ומקיים את תכונת חוסר הזיכרון, אז $X \sim Exp(\lambda)$ עבור $\lambda > 0$ כלשהו.
+\begin{proof}
+	\[
+		\PP(X \le 2s)
+		= \PP(X \le s + s)
+		= 1 - \PP(X > s + s)
+		= 1 - \PP(X > s) \PP(X > s)
+	\]
+	ולכן $\PP(X > 2s) = {\PP(X > s)}^2$.
+	נוכל באינדוקציה להראות שלכל $n \in \NN$ מתקיים $\PP(X > ns) = {\PP(X > s)}^n$.
+	ניתן לראות כי גם,
+	\[
+		\PP(X > s)
+		= \PP(X > \frac{1}{2} s) \PP(X > \frac{1}{2} s)
+	\]
+	ולכן אפשר להראות במהלך אינדוקטיבי שגם $\PP(X > \frac{1}{n} s) = {\PP(X > s)}^{\frac{1}{n}}$ לכל $n \in \NN$.
+	על־ידי שימוש בשתי הטענות האחרונות ובשלמות הממשיים נקבל שמתקיים $\PP(X > t s) = {\PP(X > s)}^t$ לכל $t > 0$.
+	נסמן $C = \PP(X > 1)$, ולכן בהתאם עבור $s = 1$ נקבל $\PP(X \le t) = 1 - \PP(X > t \cdot 1) = 1 - e^{\log(C) t}$.
+	כמובן $C < 0$ מהיותו תוצאת פונקציית הסתברות.
+\end{proof}
+
+\question{}
+יהי $X$ משתנה מקרי בעל פונקציית צפיפות $f_X(t) = 2t \cdot 1_{[0, 1]}(t)$. \\
+נחשב את התוחלת והשונות של $X$.
+\begin{solution}
+	נתחיל בחישוב התוחלת,
+	\[
+		\EE(X)
+		= \int_{-\infty}^{\infty} t f_X(t)\ dt
+		= \int_{0}^{1} 2t^2\ dt
+		= \left. \frac{2}{3} t^3 \right\rvert_{t = 0}^{t = 1}
+		= \frac{2}{3}
+	\]
+	עתה נחשב את  $\EE(X^2)$,
+	\[
+		\EE(X^2)
+		= \int_{-\infty}^{\infty} t^2 f_X(t)\ dt
+		= \int_{0}^{1} 2t^3\ dt
+		= \left. \frac{2}{4} t^4 \right\rvert_{t = 0}^{t = 1}
+		= \frac{1}{2}
+	\]
+	ולכן $\var(X) = \EE(X^2) - {\EE(X)}^2 = \frac{1}{2} - \frac{4}{9} = \frac{1}{18}$.
+\end{solution}
+
+\end{document}
