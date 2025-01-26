@@ -9,8 +9,9 @@
 תהי $f : U_a^* \to \CC$ אנליטית עם קוטב מסדר $m \ge 1$ ב־$z = a$. \\
 נראה שקיימים $\epsilon, r > 0$ כך שלכל $|w| > r$ קיימים בדיוק $m$ פתרונות למשוואה $f(z) = w$ ב־$B^*(a, \epsilon)$.
 \begin{proof}
-	נגדיר $g(z) = f(z) {(z - a)}^m$, לכן $g \in Hol(U_a)$.
-	הסדר של $z = a$ הוא $m$ ולכן מהגרסה המקומית של משפט רושה נובע שקיימים $\epsilon, r$ עבורם לכל $w \in B^*(g(a), r)$ יש בדיוק $m$ פתרונות למשוואה $g(z) = w$.
+	נגדיר $g(z) = \frac{1}{f(z)}$ ונבחין שמתקיים $g(a) = 0$ וכן ש־$\operatorname{ord}_a(g) = m$.
+	לכן מהגרסה המקומית של משפט רושה קיימים $\epsilon, \delta > 0$ כך שלכל $w \in B(g(a), \delta)$ קיימים בדיוק $m$ פתרונות למשוואה $g(z) = w$ ב־$B(a, \epsilon)$.
+	נבחין כי $g(z) = w \iff f(z) = \frac{1}{w}$ ולכן קיבלנו את הטענה עבור $r = \frac{1}{\delta}$ ו־$\epsilon$.
 \end{proof}
 
 \question{}
@@ -134,6 +135,58 @@ $e^z = 3z^n$ בחצי המישור $\{ z \in \CC \mid \re z < 1 \}$ עבור $n 
 		& = |{(z + i)}^2| \frac{\re^2(f(z) + i) + \im^2(f(z) + i) - \re^2(f(z) - i) - \im^2(f(z) - i)}{|{(z + i)}^2| - |{(z - i)}^2| } \\
 		& = |{(z + i)}^2| \frac{2 \im f(z)}{2 \im z}
 	\end{align*}
+	ועל־ידי הצבה של $z = \varphi^{-1}(z')$ נקבל את המבוקש.
+
+	במקרה בו יש שוויון אז נקבל ש־$\varphi \circ f \circ \varphi^{-1}$ היא חד־חד ערכית, ואף שמתקיים
+	\[
+		\varphi(f(\varphi^{-1}(z)))
+		= \lambda \frac{z - a}{1 - z \overline{a}}
+		\iff f(\varphi^{-1}(z))
+		= -i \frac{\lambda \frac{z - a}{1 - z \overline{a}} + 1}{\lambda \frac{z - a}{1 - z \overline{a}} - 1}
+		= -i \frac{(\lambda - \overline{a}) z - \lambda a + 1}{(\lambda + \overline{a})z - \lambda a - 1}
+	\]
+	ולכן בהתאם,
+	\[
+		f(z)
+		= -i \frac{(\lambda - \overline{a}) \frac{z - i}{z + i} - \lambda a + 1}{(\lambda + \overline{a}) \frac{z - i}{z + i} - \lambda a - 1}
+		= -i \frac{(\lambda - \overline{a}) (z - i) - (\lambda a + 1)(z + i)}{(\lambda + \overline{a}) (z - i) - (\lambda a - 1)(z + i)}
+	\]
+	ולאחר צמצום ושימוש בתכונה $|\lambda| = 1$ נקבל שזוהי אכן העתקת מביוס הנוצאת על ידי מטריצה מ־$SL_2(\RR)$.
+\end{proof}
+
+\question{}
+תהי $f : \overline{D} \to \overline{D}$ פונקציה הרציפה ב־$\overline{D}$ ואנליטית ב־$D$ כך ש־$f(\partial D) \subseteq \partial D$.
+
+\subquestion{}
+נוכיח שאם $f$ אינה קבועה אז יש לה שורש.
+\begin{proof}
+	נניח ש־$f$ לא קבועה.
+	%אם לפונקציה אין שורשים אז מתקיים $0 < |f(z)|$ לכל $z \in D$.
+	אילו $f$ לא חד־חד ערכית ב־$D$ אז יש שתי נקודות $z_0, z_1 \in D$ כך שמשוורץ־פיק מתקיים,
+	\[
+		\frac{|f(z_1) - f(z_0)|}{|1 - \overline{f(z_1)} f(z_0)|} \le |z_1 - z_0| = 0
+	\]
+	ולכן בפרט $f(z_1) = f(z_0)$, ומצאנו שיש ל־$f$ שורש.
+	נניח אם כן ש־$f$ חד־חד ערכית, ולכן מטענה מהכיתה נובע,
+	\[
+		f(z) = \lambda \frac{z - a}{1 - z \overline{a}}
+	\]
+	כאשר $a \in D$, ולכן $f(a) = 0$ וסיימנו.
+\end{proof}
+
+\subquestion{}
+עבור $a \in D$ נגדיר $B_a : \overline{D} \to \overline{D}$ המוגדרת על־ידי $B_a(z) = \frac{a - z}{1 - \overline{a} z}$. \\
+נוכיח שמתקיים,
+\[
+	f(z) = \lambda \prod_{k = 1}^n {B_{a_k}(z)}^{m_k}
+\]
+כאשר $a_1, \dots, a_n \in D$ הם האפסים של $f$ עם הריבויים $m_1, \dots, m_n$ ו־$|\lambda| = 1$.
+\begin{proof}
+	נוכיח באינדוקציה על כמות האפסים (לרבות ריבוי) ב־$f$. \\
+	נניח שאין ל־$f$ אפסים, אז אם נניח בשלילה ש־$f$ לא קבועה נקבל סתירה מסעיף א', לכן $f$ קבועה. מהעובדה ש־$|f(z)| = 1$ לכל $|z| = 1$ נסיק ש־$f(z) = \lambda$ עבור $|\lambda| = 1$.
+	נניח שהטענה נכונה עבור $n$ ונניח של־$f$ יש $n + 1$ אפסים.
+	נניח ש־$z_0 \in D$ מקיים $f(z_0) = 0$, לכן $\frac{f(z) (1 - \overline{a} z)}{a - z_0}$ היא חלוקה של $f$ באוטומורפיזם ומשמרת חד־חד ערכיות, בנוסף היא $\overline{D} \to \overline{D}$ ומחוסרת אפס אחד לרבות ריבוי,
+	לכן מהנחת האינדוקציה מקיימת את הרצוי ונובע שאכן $f$ ניתנת להצגה בצורה המבוקשת.
 \end{proof}
 
 \end{document} % chktex 17
