@@ -1,0 +1,18 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 12 --- מבוא ללוגיקה, 80423}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question[4]{}
+נפריך את הטענה,
+נקבע $c \in \NN$ כלשהו.
+נבחן את $T_c = \{ \varphi_{\ge n} \mid n < c \}$.
+נבחין ש־$\langle [c + 1], = \rangle \models T_c, \varphi_{\ge c + 1}$, וכן ש־$\langle [c], = \rangle \models T_C, \lnot \varphi_{\ge n + 1}$, וזו סתירה לשלמות של $T_c$.
+נוכיח ש־$T_c$ היא $\aleph_0$־קטגורית.
+יהיו מודלים $\Aa, \Bb \models T_c$ כך ש־$|A| = |B| = \aleph_0$.
+משוויון העוצמות נובע שקיימת $f : A \to B$ חד־חד ערכית ועל.
+נובע אם כך ש־$\forall a, a', a = a' \iff f(a) = f(a')$, אבל מהגדרת השוויון גם $a =^\Aa a' \iff f(a) =^\Bb f(a')$, לכן $f : \Aa \to \Bb$ איזומורפיזם ובהתאם $T_c$ היא $\aleph_0$־קטגורית.
+
+\end{document}
