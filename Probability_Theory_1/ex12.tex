@@ -1,0 +1,302 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 12 --- תורת ההסתברות (1), 80420}
+
+\DeclareMathOperator{\Supp}{Supp}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נראה שאם $X \sim Exp(\lambda), Y \sim Exp(\mu)$ משתנים מקריים בלתי־תלויים אז גם $Z = \min\{ X, Y \}$ מתפלג מעריכית.
+\begin{proof}
+	נבחן את ההתפלגות המצטברת של $Z$,
+	\begin{align*}
+		\PP(Z \le t)
+		& = 1 - \PP(Z > t) \\
+		& = 1 - \PP(X > t, Y > t) \\
+		& = 1 - \PP(X > t) \PP(Y > t) \\
+		& = 1 - (1 - \PP(X \le t))(1 - \PP(Y \le t)) \\
+		& = F_X(t) + F_Y(t) - F_X(t) F_Y(t)
+	\end{align*}
+	אבל נתונה התפלגות מעריכית ולכן $F_X(t) = 1 - e^{-\lambda t}$ ו־$F_Y(t) = 1 - e^{-\mu t}$ ולכן
+	\[
+		\PP(Z \le t)
+		= 1 - e^{-\lambda t} + 1 - e^{-\mu t} - 1 + e^{-\lambda t} + e^{-\mu t} - e^{-(\lambda + \mu)t}
+		= 1 - e^{-(\lambda + \mu)t}
+	\]
+	ובהתאם $F_Z'(t) = 1 - (\lambda + \mu)e^{-(\lambda + \mu)t}$ ולכן $Z \sim Exp(\lambda + \mu)$.
+\end{proof}
+
+\question{}
+שומר מפטרל לאורך גדר באורך $l$ ומיקומו מתפלג אחיד לאורכה.
+גנב מגיע לנקודה בגדר, מיקומה מתפלג אחיד ובלתי־תלוי במיקום השומר.
+נחשב את פונקציית הצפיפות של המרחק ביניהם.
+\begin{solution}
+	נגדיר $X \sim Unif([0, l])$ את מיקום השומר ו־$Y \sim Unif([0, l])$ את מיקום הגנב.
+	נגדיר גם $Z = |X - Y|$ המרחק שלהם.
+	נבחין כי $\{ Z \le t \} = \{ |X - Y| \le t \} = \{ -t \le X - Y \le t \} = \{X - Y \le t\} \setminus \{X - Y \le -t\}$ כאשר המעבר האחרון נובע מרציפות בהחלט.
+	לכן מספיק שנחשב את $\PP(X - Y \le t) = \PP(X \le Y + t)$,
+	כאשר $t$ חיובי מתקיים,
+	\begin{align*}
+		\iint_{x \le y + t} f_{X, Y}(x, y) 1_{[0, l]}(x) 1_{[0, l]}(y) \ dx\ dy
+		& = \iint_{x \le y + t} \frac{1}{l^2} 1_{[0, l]}(x) 1_{[0, l]}(y) \ dx\ dy \\
+		& = \int_0^l \int_0^{\min\{y + t, l\}} \frac{1}{l^2} \ dx\ dy \\
+		& = \int_0^{l - t} \int_0^{y + t} \frac{1}{l^2} \ dx\ dy + \int_{l - t}^l \int_0^{l} \frac{1}{l^2} \ dx\ dy \\
+		& = \frac{1}{l^2} \left( \int_0^{l - t} y + t\ dy + \int_{l - t}^l l\ dy \right) \\
+		& = \frac{1}{l^2} \left(\frac{1}{2} {(l - t)}^2 + (l - t) t + l t \right) \\
+		& = \frac{1}{l^2} (\frac{1}{2} l^2 - \frac{1}{2} t^2 + lt) \\
+		& = \frac{1}{2} - \frac{t^2}{2l^2} + \frac{t}{l}
+	\end{align*}
+	וכאשר נבחן את $-t$ נובע באופן דומה,
+	\begin{align*}
+		\iint_{x \le y - t} \frac{1}{l^2} 1_{[0, l]}(x) 1_{[0, l]}(y) \ dx\ dy
+		& = \int_t^{l} \int_0^{y - t} \frac{1}{l^2} \ dx\ dy + \int_{0}^{l - t} \int_0^{0} \frac{1}{l^2} \ dx\ dy \\
+		& = \int_t^{l} \int_0^{y - t} \frac{1}{l^2} \ dx\ dy \\
+		& = \frac{1}{l^2} \left( \int_t^{l} y - t\ dy \right) \\
+		& = \frac{1}{l^2} \left(\frac{1}{2} l^2 - \frac{1}{2} t^2 - l t + t^2 \right) \\
+		& = \frac{1}{2} + \frac{t^2}{2 l^2} - \frac{t}{l}
+	\end{align*}
+	ונסיק $\PP(|X - Y| \le t) = \PP(X - Y \le t) - \PP(X - Y \le -t) = \frac{t^2}{l^2}$.
+	כלומר $F_Z(t) = \frac{t^2}{l^2}$ ולכן $f_Z(t) = \frac{2t}{l^2}$.
+\end{solution}
+
+\question{}
+יהיו $X, Y$ משתנים מקריים בעלי צפיפות משותפת
+\[
+	f_{X, Y}(x, y)
+	= c e^{-2y - x} 1_{(0, \infty)}(x) 1_{(0, \infty)}(y)
+\]
+
+\subquestion{}
+נמצא את $c$.
+\begin{solution}
+	ידוע כי $\int_{\RR^2} f_{X, Y} = 1$, וכן,
+	\[
+		\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f_{X, Y}(x, y) \ dx\ dy
+		\int_{0}^{\infty} \int_{0}^{\infty} c e^{-2y - x} \ dx\ dy
+		= c \left( \int_{0}^{\infty} e^{-2y} \ dy \right) \left( \int_{0}^{\infty} e^{-x} \ dx \right)
+		= c (0 - (-\frac{1}{2})) (0 - (-1))
+	\]
+	ולכן בהכרח $c = 2$.
+\end{solution}
+
+\subquestion{}
+נבדוק האם $X, Y$ משתנים מקריים בלתי־תלויים.
+\begin{solution}
+	נרצה לבדוק האם $f_{X, Y}(x, y) = f_X(x) f_Y(y)$,
+	לשם כך נשתמש בנוסחה לחישוב צפיפות מצפיפות משותפת,
+	\[
+		f_X(s)
+		= \int_{-\infty}^{\infty} f_{X, Y}(s, t) \ dt
+		= 2 e^{-s} \int_{0}^{\infty} e^{-2t} \ dt
+		= 2 e^{-s} \left( 0 + \frac{1}{2} \right) 
+		= e^{-s}
+	\]
+	וכן,
+	\[
+		f_Y(t)
+		= \int_{-\infty}^{\infty} f_{X, Y}(s, t) \ ds
+		= 2 e^{-2t} \int_{0}^{\infty} e^{-s} \ ds
+		= 2 e^{-2t} \left( 0 + 1 \right)
+		= 2 e^{-2t}
+	\]
+	ונעבור לבדיקה,
+	\[
+		f_X(s) f_Y(t)
+		= e^{-s} 2 e^{-2t}
+		= f_{X, Y}(s, t)
+	\]
+	ולכן $X, Y$ משתנים מקריים בלתי־תלויים.
+\end{solution}
+
+\subquestion{}
+נחשב את ההסתברות למאורע $\{1 < X\} \cap \{Y < 1\}$.
+\begin{solution}
+	\begin{align*}
+		\PP(\{1 < X\} \cap \{Y < 1\})
+		& = \PP(1 < X, Y < 1) \\
+		& = \PP(1 < X) \PP(Y < 1) \\
+		& = \left( \int_{1}^{\infty} e^{-s} \ ds \right) \left( \int_{0}^{1} 2 e^{-2t} \ dt \right) \\
+		& = (0 + e^{-1}) (-e^{-2} + 1) \\
+		& = e^{-1} - e^{-3}
+	\end{align*}
+\end{solution}
+
+\subquestion{}
+נחשב את ההסתברות למאורע $\{X < Y\}$.
+\begin{solution}
+	\begin{align*}
+		\PP(X < Y)
+		& = \iint_{\{ x, y \in \RR^2 \mid x < y \}} f_{X, Y}(x, y)\ dx\ dy \\
+		& = \int_{-\infty}^{\infty} \int_{-\infty}^{y} f_{X, Y}(x, y)\ dx\ dy \\
+		& = 2 \int_0^{\infty} e^{-2y} \int_0^{y} e^{-x}\ dx\ dy \\
+		& = 2 \int_0^{\infty} e^{-2y} \left. (-e^{-x}) \right\rvert_{x = 0}^{x = y}\ dy \\
+		& = 2 \int_0^{\infty} e^{-2y} - e^{-3y}\ dy \\
+		& = \left. 2 \left(-\frac{1}{2} e^{-2y} + \frac{1}{3} e^{-3y} \right) \right\rvert_{y = 0}^{y = \infty} \\
+		& = 2 (0 - (-\frac{1}{2} + \frac{1}{3})) \\
+		& = \frac{1}{3}
+	\end{align*}
+	ולכן נובע $\PP(X < Y) = \frac{1}{3}$.
+\end{solution}
+
+\question{}
+יהיו $X, Y, Z$ משתנים מקריים בלתי־תלויים שווי־התפלגות בעלי התפלגות $Unif([0, 1])$.
+נחשב את $\PP(X \ge YZ)$.
+\begin{solution}
+	\begin{align*}
+		\PP(X \ge YZ)
+		& = \iiint_{\{ x, y, z \in \RR^3 \mid x \ge yz \}} f_{X, Y, Z}(x, y, z)\ dx\ dy\ dz \\
+		& = \iiint_{\{ x, y, z \in \RR^3 \mid x \ge yz \}} f_X(x) f_Y(y) f_Z(z)\ dx\ dy\ dz \\
+		& = \iiint_{\{ x, y, z \in \RR^3 \mid x \ge yz \}} 1_{[0, 1]}(x) 1_{[0, 1]}(y) 1_{[0, 1]}(z)\ dx\ dy\ dz \\
+		& = \int_0^1 \int_0^1 \int_{yz}^1 1\ dx\ dy\ dz \\
+		& = \int_0^1 \int_0^1 1 - yz\ dy\ dz \\
+		& = \int_0^1 1 - \frac{1}{2} z\ dz \\
+		& = 1 - \frac{1}{4}
+	\end{align*}
+	ולכן $\PP(X \ge YZ) = \frac{3}{4}$.
+\end{solution}
+
+\question{}
+נשתמש במשפט פוביני כדי להראות שאם $X$ משתנה מקרי אי־שלילי בעל צפיפות ובעל תוחלת סופית אז $\EE(X) = \int_0^\infty (1 - F_X(t))\ dt$.
+\begin{proof}
+	נשחזר את הוכחת נוסחת הזנב לחישוב תוחלת שראינו בהרצאה עבור המקרה הרציף,
+	\[
+		\EE(X)
+		= \int_0^{\infty} t f_X(t)\ dt
+		= \int_0^{\infty} \int_{0}^{t} f_X(t)\ dt
+		= \iint_{\{ t, s \in \RR^2 \mid 0 \le s \le t \}} f_X(t)\ dt\ ds
+		= \int_0^{\infty} \int_{t}^{\infty} f_X(t)\ ds\ dt
+		= \int_0^{\infty} 1 - F_X(t)\ dt
+	\]
+	כאשר הצדקת כלל המעברים זהה להצדקה בהוכחה המקורית כך שמשפט פוביני לטורים מוחלף במשפט פוביני לאינטגרלים.
+\end{proof}
+
+\question{}
+יהי $n \in \NN$ ויהיו $X_i \sim Exp(1)$ בלתי־תלויים עבור $i \in [n]$.
+נסמן $Y_i = X_i X_{i + 1}$ וכן $Y = \sum_{i = 1}^{n - 1} Y_i$.
+נחשב את התוחלת והשונות של $Y$.
+\begin{solution}
+	נתחיל ונבחין שמתקיים $\EE(Y_i) = \EE(X_i X_{i + 1}) = \EE(X_i) \EE(X_{i + 1}) = 1$.
+	לכן נובע ישירות ש־$\EE(Y) = \EE(\sum_{i = 1}^{n - 1} Y_i) = \sum_{i = 1}^{n - 1} \EE(Y_i) = n - 1$.
+	נעבור לחישוב השונות, נבחין ש־$\cov(Y_i, Y_i) = \EE(Y_i^2) - {\EE(Y_i)}^2 = \EE(X_i^2) \EE(X_{i + 1}^2) - {\EE(X_i)}^2 {\EE(X_{i + 1})}^2 = 4 - 1 = 3$.
+	נמשיך ונחשב, $\cov(Y_i, Y_{i + 1}) = \cov(X_i X_{i + 1}, X_{i + 1} X_{i + 2}) = \EE(X_i X_{i + 1}^2 X_{i + 2}) - \EE(X_i X_{i + 1}) \EE(X_{i + 1} X_{i + 2}) = \EE(X_i) \EE(X_{i + 1}^2) \EE(X_{i + 2}) - \EE(X_i) \EE(X_{i + 1}) \EE(X_{i + 1}) \EE(X_{i + 2}) = 1 \cdot 4 \cdot 1 - 1 \cdot 1 \cdot 1 \cdot 1 = 3$.
+	לכל $i, j$ כך ש־$i + 1 < j$ המשתנים הם בלתי־תלויים ולכן $\cov(Y_i, Y_j) = 0$.
+	לבסוף נובע,
+	\[
+		\var(Y)
+		= \var(\sum_{i = 1}^{n - 1} Y_i)
+		= \sum_{i = 1}^{n - 1} \var(Y_i) + 2 \sum_{i = 1}^{n - 2} \cov(Y_i, Y_{i + 1}) + 0
+		= 3(n - 1) + 2 \cdot 3(n - 2)
+		= 9n - 9
+	\]
+\end{solution}
+
+\question{}
+יהי $C \in \RR$ קבוע ונגדיר $A = \{ (x, y) \in \RR^2 \mid x, y \ge 0, x + y \le 1\}$,
+יהיו שני משתנים מקריים $X, Y$ כך שמתקיים
+\[
+	f_{X, Y}(x, y)
+	= x 1_A(x, y) C
+\]
+
+\subquestion{}
+נחשב את $C$.
+\begin{solution}
+	נבחין שמתקיים,
+	\begin{align*}
+		\iint_{\RR^2} f_{X, Y}(x, y) \ dx\ dy
+		& = \iint_A x C \ dx\ dy \\
+		& = \int_0^1 \int_0^{1 - y} x C \ dx\ dy \\
+		& = C \int_0^1 \left. \frac{x^2}{2} \right\rvert_{x = 0}^{x = 1 - y}\ dy \\
+		& = C \frac{1}{2} \int_0^1 {(1 - y)}^2\ dy \\
+		& = C \frac{1}{2} \cdot \left. \left( -\frac{1}{3} \right) {(1 - y)}^3 \right\rvert_{y = 0}^{y = 1} \\
+		& = \frac{C}{6} (0 + 1)
+	\end{align*}
+	מתכונת פונקציית הציפות נובע $1 = \frac{C}{6}$ ולכן בהכרח $C = 6$.
+\end{solution}
+
+\subquestion{}
+נחשב את ההתפלגות השולית $f_X(t)$ ואת $f_Y(t)$.
+\begin{solution}
+	עבור $0 \le t \le 1$ מתקיים,
+	\[
+		f_X(t)
+		= \int_{-\infty}^{\infty} f_{X, Y}(t, y) \ dy
+		= 6t \int_{-\infty}^{\infty} 1_A(t, y)\ dy
+		= 6t \int_0^{1 - t} 1\ dy
+		= 6t (1 - t)
+	\]
+	ולכן
+	\[
+		f_X(t)
+		= \begin{cases}
+			6t (1 - t) & 0 \le t \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+	באופן דומה עבור $0 \le t \le 1$ מתקיים,
+	\[
+		f_Y(t)
+		= \int_{-\infty}^{\infty} f_{X, Y}(x, t) \ dx
+		= 6 \int_{-\infty}^{\infty} x 1_A(x, t)\ dx
+		= 6 \int_0^{1 - t} x\ dx
+		= 6 \cdot \left. \frac{x^2}{2} \right\rvert_{x = 0}^{x = 1 - t}
+		= 3 {(1 - t)}^2
+	\]
+	ולכן,
+	\[
+		f_Y(t)
+		= \begin{cases}
+			3 {(1 - t)}^2 & 0 \le t \le 1 \\
+			0 & \text{else}
+		\end{cases}
+	\]
+\end{solution}
+
+\subquestion{}
+נבדוק אם $X$ ו־$Y$ תלויים.
+\begin{solution}
+	בתחום ${[0, 1]}^2$ מתקיים,
+	\[
+		f_{X, Y}(x, y)
+		= 6x \cdot 1_A(x, y)
+		\ne 18x (1 - x) {(1 - y)}^2
+		= f_X(x) f_Y(y)
+	\]
+	ולכן נסיק ש־$X$ ו־$Y$ אינם בלתי־תלויים.
+\end{solution}
+
+\subquestion{}
+נחשב את $\PP(X < Y)$.
+\begin{solution}
+	\begin{align*}
+		\PP(X < Y)
+		& = \iint_{\{ x, y \in \RR^2 \mid x < y \}} f_{X, Y}(x, y)\ dx\ dy \\
+		& = 6 \int_0^{\frac{1}{2}} x \int_x^{1 - x} 1\ dy\ dx \\
+		& = 6 \int_0^{\frac{1}{2}} x (1 - x - x)\ dx \\
+		& = 6 \int_0^{\frac{1}{2}} x - 2x^2\ dx \\
+		& = 6 \left. \left( \frac{x^2}{2} - \frac{2x^3}{3} \right) \right\rvert_{x = 0}^{x = \frac{1}{2}} \\
+		& = 6 \left( \frac{1}{8} - \frac{1}{12} \right) \\
+	\end{align*}
+	ולכן נובע $\PP(X < Y) = \frac{1}{4}$.
+\end{solution}
+
+\subquestion{}
+נחשב את פונקציית הצפיפות של $Z = X + Y$.
+\begin{solution}
+	\begin{align*}
+		F_Z(t)
+		& = \PP(Z \le t) \\
+		& = \PP(X + Y \le t) \\
+		& = \iint_{\{ x, y \in \RR^2 \mid x + y \le t \}} f_{X, Y}(x, y)\ dx\ dy \\
+		& = 6 \int_0^t \int_0^{t - x} x\ dy\ dx \\
+		& = 6 \int_0^t tx - x^2\ dx \\
+		& = 6 \left. \left( \frac{tx^2}{2} - \frac{x^3}{3} \right) \right\rvert_{x = 0}^{x = t} \\
+		& = 6 \left( \frac{t^3}{2} - \frac{t^3}{3} \right) \\
+		& = t^3
+	\end{align*}
+	ולכן $f_Z(t) = F_Z'(t) = 3t^2$ כאשר $0 \le t \le 1$, כאשר אחרת $f_Z(t) = 0$.
+\end{solution}
+
+\end{document}
