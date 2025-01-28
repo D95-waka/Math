@@ -53,5 +53,36 @@ We will show that every binary $\omega$-tree has a cofinal branch.
 
 \question{}
 We will prove that if there is some cardinal $\mu$ such that $\mu^+ < \kappa$ and $|T_\alpha| \le \mu$ for all $\alpha$, then $T$ has a cofinal branch.
+\begin{proof}
+	Let us assume there is such a cardinal.
+	We assume for contradiction that there is no cofinal branch, meaning that for every branch $b$, there is $\alpha < \kappa$ such that $\dom b < \alpha$.
+	From the other hand, if there are no branches of height $\alpha$, we get contradiction to the height of $T$, then there is at least one branch.
+
+	We somehow use the fact that there $|T_\alpha| = 2^\alpha$, this is derived from the fact that $T$ is binary, and if there are not such many branches that reach this level, then there is cofinal branch.
+	For each level there has to be lot of branches so they could be cut off afterwards in the right way to not be cofinal.
+	We know that there are at least $\mu^+$ levels above $\mu$, each of these ends before $\kappa$, then we look at $T_\mu$,
+	we get that $|T_\mu| \ge \mu^+$ so there will be enough branches which are not cofinal, and this is contradiction.
+\end{proof}
+
+\question{}
+Let us assume that there is a cardinal $\mu < \kappa$ and a function $f : T \to \mu$ such that for all $x, y \in T$, if $x <_T y$ then $f(x) \ne f(y)$. \\
+We will prove that there is no cofinal branch in $T$.
+\begin{proof}
+	Let us assume that $b : \kappa \to X$ is a cofinal branch of $T$.
+	By transitivity we get that $f(b \restriction \alpha) \ne f(b \restriction \beta)$ for all $\alpha < \beta < \kappa$.
+	We can deduce that $X = f '' \{ b \restriction \alpha \mid \alpha < \kappa \}$ is a set of cardinality of $\kappa$, in contradiction to $X \subseteq \rng f = \mu < \kappa$.
+\end{proof}
+
+\question{}
+Let $\kappa$ be a measurable cardinal. \\
+We will prove that every $\kappa$-tree has a cofinal branch.
+\begin{proof}
+	If $\kappa \le 2^{\aleph_0}$ then we already know that every $\kappa$-tree has cofinal branch.
+	We assume that $2^{\aleph_0} < \kappa$, then the measure is $\kappa$-complete and we can assume that $\kappa$ is inaccessible (strong?).
+
+	By the inaccessibility and $\kappa$ being regular we can deduce there is no mapping from $\alpha < \kappa$ to $|T_\alpha|$ such that $|T_\alpha| = \kappa$.
+	Then there is an ordinal $\mu$, by the inaccessibility of $\kappa$, such that $|T_\alpha| \le \mu$ for all $\alpha < \kappa$.
+	Then we can use the previous question to deduce that there is a cofinal branch in $T$.
+\end{proof}
 
 \end{document}
