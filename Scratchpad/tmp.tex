@@ -1,24 +1,37 @@
 \input{../article_base.tex}
 
+\usepackage{luacolor}
+\usepackage[explicit]{titlesec}
+\usepackage[soul]{lua-ul}
+
+\definecolor{flamingo}{RGB}{255,204,229}
+\definecolor{armadilo}{RGB}{242,232,145}
+\definecolor{whale}{RGB}{107,196,235}
+
+\titleformat{\section}
+	{\Large\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=flamingo,top=0.4ex,height=1ex]{#1}}
+
+\titleformat{\subsection}
+	{\large\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=armadilo,top=0.4ex,height=1ex]{#1}}
+
+\titleformat{\subsubsection}
+	{\normalsize\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=whale,top=0.4ex,height=1ex]{#1}}
+
 \begin{document}
 
-ענו על השאלות הבאות לפי הסדר.
-\begin{enumerate}
-	\item צבעים הם תחום מורכב ומשונה, ואין בכוונתנו לאפיין את הדרך שבה הם עובדים.
-		אבל צבע מונוכרומטי, קרי צבע שהוא בין שחור ללבן, הוא פשוט הרבה יותר.
-		אפיינו דרך לשמור מידע על צבע בין שחור ללבן בעזרת מחשב (ספציפית בקוד של שפת c).
-	\item עתה כשיש לנו את היכולת להגדיר צבע בודד, נרצה להשתמש ביכולת זו כדי לייצג תמונה שלמה במחשב.
-		אפיינו דרך לשמור תמונה שלמה על־ידי שימוש בסעיף הקודם.
-	\item איך נוכל לנצל את הדרך שמצאנו לייצוג תמונה כדי לייצג וידאו?
-	\item יש לנו תמונה, עתה נרצה לשמור אותה לקובץ, איך נוכל לעשות זאת?
-		אפיינו את מבנה הקובץ, האם הוא יהיה בינארי או טקסטואלי?
-	\item קיבלנו תמונה הפוכה (מסובבת ב־180 מעלות), השתמשו במבנה התמונה שקיבלתם כדי לאפיין מנגנון שמסובב תמונות.
-	\item כל גרפיקאי ששווה את לחמו יודע לשנות את החדות של תמונה,
-		אפיינו בבקשה אלגוריתם שמשתמש בתמונה שלכם כדי לשפר את חדות התמונה. \\
-		\textbf{רמז:} נבחין שככל שצבע חזק יותר, ככה הוא צריך להיות חזק לאחר האלגוריתם אף יותר.
-	\item נרצה להיות מסוגלים לטשטש את התמונה, מצאו אלגוריתם שעושה זאת, מה שם הפעולה המתמטית המתאימה?
-	\item איך נוכל לייצג תמונה עם צבע? \\
-		\textbf{רמז:} קראו על RGB\@.
-\end{enumerate}
+\section{כותרת ראשית}
+\subsection{כותרת משנית}
+% In order to fix this warning, load hyprref before titlesec.
+\subsubsection{תת־כותרת}
+טקסט
 
 \end{document}
