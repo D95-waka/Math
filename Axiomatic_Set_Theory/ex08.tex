@@ -35,42 +35,63 @@ Let $T$ be a binary $\kappa$-tree.
 We will prove that there is $T' \subseteq T$ of height $\kappa$ such that for every $\alpha < \beta < \kappa$ and $x \in T'$ with $\operatorname{Lev}(x) = \alpha$,
 there is $y \in T'$ with $\operatorname{Lev}(y) = \beta$ and $x \le_T y$.
 \begin{proof}
-	The assumption that this condition isn't met at all will lead to $T$ being of height less than $\kappa$, then there are such elements in $T$.
-	Why can't we just take an arbitrary $\kappa$ branch, this would create some linear order of order $\kappa$ and would satisfy the proposition.
+	Let us define $T_0 = \{ x \in T \mid \forall \operatorname{Lev}(x) < \alpha < \kappa, \exists y \in T, y \in T_\alpha, x \le_T y \}$.
+	If $T_0$ is a $\kappa$-tree then it satisfies the required property, then we will show it is indeed a tree of height $\kappa$.
+
+	For every $x \in T_0$, $x \in T$, hence is a map from an ordinal to $X$.
+	Assume $y \in T_0$, and let $x = y \restriction \beta$ for $\beta < \kappa$.
+	For every $\beta < \gamma < \kappa$ there is $x \le_T y \le_T z$ such that the given property is satisfied.
+	We assume $\alpha < \gamma < \beta$, then $y \restriction \gamma \in T_\gamma$ as $y \in T$.
+	We can conclude $x \in T_0$, meaning $T_0$ satisfies definition, namely $T_0$ is a tree.
+
+	We move to proving $T_0$ is of height $\kappa$.
+	For certain $x \in T_0$ for every $\dom x < \alpha$ there is $y_\alpha \in T_0$ such that $\dom y_\alpha = \alpha$ for evert such ordinal, then $\sup_{\alpha < \kappa} y_\alpha = \kappa$ as intended.
+	The claim is not about $T'$ being $\kappa$-tree (I hope), but we know that each level of $T_0$ must be bounded by the equivalent level in $T$, meaning it is bounded by $\kappa$.
+
+	Lastly, we will check if $T_0$ in not empty, fulfilling our claims stated above.
+	By the definition of $T$, if we select $\alpha = 0$, by the height of $T$ the statement is indeed true, indicating $\emptyset \in T_0$.
+
+	We showed that there is such $T' = T_0$.
 \end{proof}
 
 \question{}
 We will show that every binary $\omega$-tree has a cofinal branch.
 \begin{proof}
-	It is direct by the definition of height of a tree.
 	From the last question, we can assume $T' \subseteq T$ fulfills the property of arbitrary elements, then we will define recursively the function $b : \omega \to X$ by the following,
 	\begin{enumerate}
 		\item $b(0) = \eta(0)$, when $\eta$ is any branch $\in T$ (the root of ordered tree is unique).
-		\item For every $0 \le n < \omega$, let $b \restriction n + 1 = x$ when $x \in T', \operatorname{Lev}(x) = n + 1$ such that $b \restriction n \le_T x$, given by the last question.
+		\item If $b \restriction n$ is already set, then $b(n) \in T_n$ such that $b(n - 1) \le_T b(n)$, there exists such in $T'$.
 	\end{enumerate}
-	This recursive definition ensures us that for every $\alpha < \omega$, indeed $b \restriction \alpha \in T' \subseteq T$, as desired.
+	The result is indeed $b : \omega \to X$ such that $b \restriction n \in T' \subseteq T$ for all $n < \omega$,
+	meaning $b$ is cofinal branch of $T$ as desired.
 \end{proof}
 
 \question{}
 We will prove that if there is some cardinal $\mu$ such that $\mu^+ < \kappa$ and $|T_\alpha| \le \mu$ for all $\alpha$, then $T$ has a cofinal branch.
 \begin{proof}
-	Let us assume there is such a cardinal.
-	We assume for contradiction that there is no cofinal branch, meaning that for every branch $b$, there is $\alpha < \kappa$ such that $\dom b < \alpha$.
-	From the other hand, if there are no branches of height $\alpha$, we get contradiction to the height of $T$, then there is at least one branch.
-
-	We somehow use the fact that there $|T_\alpha| = 2^\alpha$, this is derived from the fact that $T$ is binary, and if there are not such many branches that reach this level, then there is cofinal branch.
-	For each level there has to be lot of branches so they could be cut off afterwards in the right way to not be cofinal.
-	We know that there are at least $\mu^+$ levels above $\mu$, each of these ends before $\kappa$, then we look at $T_\mu$,
-	we get that $|T_\mu| \ge \mu^+$ so there will be enough branches which are not cofinal, and this is contradiction.
+	We assume such $\mu$ exists, as well without loss of generality the arbitrary height of branches is fulfilled.
+	For each $x \in T$ such that $\alpha = \operatorname{Lev}(x)$, we let $\beta_x$ be the largest ordinal such that there is no other $y \in T_\alpha$ such that $y \restriction \beta_x = x \restriction \beta_x$.
+	In other words, we get the highest level in which $x$ is the only continuation (as of branch) of some branch of that level.
+	For each level $\alpha$ we define $f(\alpha) = \sup_{x \in T_\alpha} \beta_x$, $f$ mapping each level to the least level below it such that there is uniquely-extendable branch between the levels.
+	Let $\dom f = S = \{ \alpha < \kappa \mid \mu^+ < \alpha \}$, then $S$ is stationary in $\kappa$, and $f : S \to \kappa$.
+	By the definition, $f(\alpha) \le \alpha$.
+	For every $x \in T_\alpha$ for $\alpha \in S$, we know that $|T_\alpha| \le \mu$, then there cannot be more than $\mu$ levels such that there are more continuations to the restricted branch of $x$,
+	but $\operatorname{cf} \alpha \ge \mu^+$, meaning the set of such levels is bounded by $\beta < \mu^+$, in particular $\beta_x < \alpha$, then $f(\alpha) < \alpha$, namely $f$ is regressive.
+	By Fodors lemma there is $T \subseteq S$ stationary in $\kappa$ such that $\forall x \in T, f(x) = \gamma$ for $\gamma < \kappa$.
+	For some arbitrary $\alpha \in T$, let $x \in T_\alpha$ be a branch for which $\beta_x = \gamma$.
+	For each $\alpha \in T$, we can conclude $\beta_x = \gamma$.
+	$T$ is stationary therefore unbounded in $\kappa$, then for every $\delta < \kappa$, there is $\delta < \delta' \in T$.
+	For this $\delta'$ there is a branch $x \le_T y \in T_{\delta'}$ by the arbitrary height claim, and $\beta_y = \gamma$ as well.
+	We can define then $b : \kappa \to X$ by setting $b \restriction \delta = y$ for each $\delta < \kappa$, therefore $b$ is a cofinal branch of $T$.
 \end{proof}
 
 \question{}
 Let us assume that there is a cardinal $\mu < \kappa$ and a function $f : T \to \mu$ such that for all $x, y \in T$, if $x <_T y$ then $f(x) \ne f(y)$. \\
 We will prove that there is no cofinal branch in $T$.
 \begin{proof}
-	Let us assume that $b : \kappa \to X$ is a cofinal branch of $T$.
-	By transitivity we get that $f(b \restriction \alpha) \ne f(b \restriction \beta)$ for all $\alpha < \beta < \kappa$.
-	We can deduce that $X = f '' \{ b \restriction \alpha \mid \alpha < \kappa \}$ is a set of cardinality of $\kappa$, in contradiction to $X \subseteq \rng f = \mu < \kappa$.
+	We assume by contradiction that $b : \kappa \to X$ is a cofinal branch of $T$.
+	By transitivity of $<_T$ it follows that $f(b \restriction \alpha) \ne f(b \restriction \beta)$ for all $\alpha < \beta < \kappa$.
+	We can deduce that for $X = f '' \{ b \restriction \alpha \mid \alpha < \kappa \}$, $|X| = \kappa$, in contradiction to $X \subseteq \rng f = \mu < \kappa$.
 \end{proof}
 
 \question{}
