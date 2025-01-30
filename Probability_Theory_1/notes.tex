@@ -5165,5 +5165,206 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	לכן גם לא מתכנס כמעט תמיד.
 \end{example}
 
+\section{שיעור 25 --- 30.1.2025}
+\subsection{התכנסויות של סדרות משתנים מקריים}
+ניזכר שראינו שלושה סוגים של התכנסויות, התכנסות כמעט תמיד,\ \ref{almost_surely_convergence},
+את הסוג השני נגדיר עתה,
+\begin{definition}[התכנסות בהסתברות]
+	תהי סדרת משתנים מקריים $X_n$, אז נאמר ש־$X_n \xrightarrow{P} X$, או שסדרת המשתנים המקריים מתכנסת בהסתברות ל־$X$, אם,
+	\[
+		\forall \epsilon > 0,
+		\PP(|X_n - X| > \epsilon) \xrightarrow{n \to \infty} 0
+	\]
+\end{definition}
+הסוג השלישי הוא התכנסות בהתפלגות,\ \ref{convergence_in_distribution}.
+\begin{example}
+	נניח ש־${(X_n)}_{n = 1}^\infty$ בלתי־תלויים בעלי תוחלת $\mu$ ושונות $\sigma^2$. \\
+	מהחוק החזק של המספרים הגדולים נובע $\frac{\sum{i = 1}^n X_i}{n} \xrightarrow{a.s.} \mu$. \\
+	החוק החלש גורר ש־$\frac{\sum_{i = 1}^{n} X_i}{n} \xrightarrow{P} \mu$. \\
+	משפט הגבול המרכזי גורר ש־$\frac{\left( \sum_{i = 1}^{n} X_i \right) - n\mu}{\sqrt{n} \sigma} \xrightarrow{d} Z$,
+	כאשר $Z \sim N(0, 1)$.
+\end{example}
+\begin{theorem}[יחס סוגי ההתכנסות]
+	אם $X_n \xrightarrow{a.s.} X$ אז $X_n \xrightarrow{P} X$,
+	אם $X_n \xrightarrow{P} X$ אז $X_n \xrightarrow{d} X$,
+	כאשר הכיוון ההפוך איננו נכון.
+
+	אם $X_n \xrightarrow{d} C$ עבור משתנה מקרי קבוע $C$, אז $X_n \xrightarrow{P} C$ (אבל לא מעבר).
+\end{theorem}
+\begin{proof}[הוכחת גרירה של כמעט תמיד להסתברות]
+	יהי $\epsilon > 0$.
+	נבחין כי $\lim_{n \to \infty} X_n = X$ אז קיים $k \in \NN$ כך שלכל $n > k$, $|X_n - X| < \epsilon$.
+	לכן
+	\[
+		\{ \lim_{n \to \infty} X_n = X \}
+		\subseteq \bigcup_{k = 1}^\infty \bigcap_{n = k}^\infty \{ |X_n - X| < \epsilon \}
+		= \liminf_{n \to \infty} \{ |X_n - X| \le \epsilon \}
+	\]
+	ממונוטוניות נובע,
+	\[
+		1 \overset{(1)}{=}
+		\PP(\{ \lim_{n \to \infty} X_n = X \})
+		\le \PP(\liminf_{n \to \infty} \{ |X_n - X| \le \epsilon \})
+		\overset{(2)}{=} \liminf_{n \to \infty} \PP(|X_n - X| \le \epsilon)
+	\]
+	כאשר
+	\begin{enumerate}
+		\item $X_n \xrightarrow{a.s.} X$
+		\item הלמה של פאטו
+	\end{enumerate}
+	ולכן $\lim_{n \to \infty} \PP(|X_n - X| \ge \epsilon) = 0$.
+\end{proof}
+\begin{example}
+	נראה שאכן לא בהכרח $X_n \xrightarrow{P} X$ מעיד ש־$X_n \xrightarrow{a.s.} X$.
+	גם כאן וגם בדוגמה הטובה יותר מהתרגול $X$ הוא קבוע.
+	תהי ${(Y_n)}_{n = 1}^\infty$ בלתי־תלויים כך ש־$Y_n \sim Geo(\frac{1}{2})$, ונסמן $X_n = \frac{Y_n}{\log_2 n}$, ונגדיר $X = 0$. \\
+	נראה ש־$X_n \xrightarrow{P} X$,
+	יהי $\epsilon > 0$,
+	\[
+		\PP(|X_n - X| > \epsilon)
+		= \PP(Y_n > \epsilon \log_2 n)
+		= {\left(\frac{1}{2}\right)}^{\lfloor \epsilon \log_2 n \rfloor}
+		\xrightarrow{n \to \infty} 0
+	\]
+	כאשר המהלך האחרון נובע מהתפלגות גאומטרית ישירות. \\
+	נעבור להראות שלא מתקיים $X_n \xrightarrow{a.s.} X$.
+	נטען ש־$X_n > 1$ אינסוף פעמים בהסתרות 1,
+	\[
+		\PP(X_n > 1)
+		= \frac{1}{2^{\lfloor \log_2 n \rfloor}}
+		\ge \frac{1}{2^{\log_2 n}}
+		= \frac{1}{n}
+	\]
+	ולכן
+	\[
+		\sum_{n = 1}^{\infty} \PP(X_n > 1) = \infty
+	\]
+	ומהלמה השנייה של בורל־קנטלי נובע $\PP(\bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty X_n > 1) = 1$,
+	לכן $\PP(\lim_{n \to \infty} X_n = X) = 0 \ne 1$.
+\end{example}
+נעבור לחלק הבא של הוכחת המשפט.
+\begin{proof}[הוכחת הסתברות גורר בהתפלגות]
+	תהי $t$ נקודת רציפות של $F_X$, לכל $n \in \NN$ ולכל $\epsilon > 0$ נרצה להראות שמתקיים
+	\[
+		F_X(t - \epsilon) - \PP(|X_n - X| > \epsilon)
+		\le F_X(t)
+		\le F_X(t + \epsilon) + \PP(|X_n - X| > \epsilon)
+	\]
+	עבור החלק הראשון של אי־השוויון,
+	\begin{align*}
+		F_X(t)
+		& = \PP(X_n \le t) \\
+		& = \PP(X_n \le t, X \le t + \epsilon) + \PP(X_n \le t, X > t + \epsilon) \\
+		& \le \PP(X \le t + \epsilon) + \PP(|X_n - X| > \epsilon) \\
+		& = F_X(t + \epsilon) + \PP(|X_n - X| > \epsilon)
+	\end{align*}
+	ממונוטוניות והסתברות שלמה.
+	עבור החלק השני של אי־השוויון,
+	\begin{align*}
+		F_X(t - \epsilon)
+		& = \PP(X \le t - \epsilon) \\
+		& = \PP(X \le t - \epsilon, X_n \le t) + \PP(X \le t - \epsilon, X_n > t) \\
+		& \le \PP(X_n \le t) + \PP(|X_n - X| > \epsilon) \\
+		& = F_X(t) - \PP(|X_n - X| > \epsilon)
+	\end{align*}
+	ולכן נובע ש־$F_X(t) \ge F_X(t - \epsilon) - \PP(|X_n - X| > \epsilon)$.
+	מצאנו אי־שוויונות החוסמים את $F_X(t)$ ולכן כאשר $n \to \infty$ נובע
+	\[
+		F_X(t - \epsilon)
+		\le \liminf_{n \to \infty} F_{X_n}(t)
+		\le \limsup_{n \to \infty} F_{X_n}(t)
+		\le F_X(t + \epsilon)
+	\]
+	וכאשר $\epsilon \to 0$ ובשימוש ברציפות של $t$ ב־$F_X$ נובע ש־$\lim_{n \to \infty} F_{X_n}(t) = F_X(t)$.
+\end{proof}
+נראה עתה דוגמה למקרה שיש התכנסות בהתפלגות אבל לא בהסתברות.
+הסיבה הטכנית היא שייתכן ש־$X_n$ ו־$X$ לא מוגדרים על אותו מרחב הסתברות.
+\begin{example}
+	נניח ש־$X_n, X$ כולם בלתי־תלויים ומתפלגים $Unif([0, 1])$, אז $X_n \xrightarrow{d} X$ שכן $F_{X_n}(t) = F_X(t)$ לכל $t$,
+	אבל $\PP(|X_n - X| > \frac{1}{4}) \ge \PP(X_n \le \frac{1}{2}, X \ge \frac{3}{4}) = \frac{1}{8} \not\to 0$.
+\end{example}
+\begin{proposition}
+	אם $X = C$ משתנה מקרי קבוע ו־$X_n \xrightarrow{d} C$ אז $X_n \xrightarrow{P} C$.
+\end{proposition}
+\begin{proof}
+	יהי $\epsilon > 0$,
+	\[
+		\PP(|X_n - X| \le \epsilon)
+		= \PP(X_n \le C + \epsilon) - \PP(X_n < C - \epsilon)
+		\ge \PP(X_n \le C + \epsilon) - \PP(X_n \le C - \epsilon)
+		= F_{X_n}(C + \epsilon) - F_{X_n}(C - \epsilon)
+	\]
+	אבל $F_X(t) = F_C(t) = \begin{cases}
+		0 & t < C \\
+		1 & t \ge C
+	\end{cases}$
+	לכן שגם $C + \epsilon$ וגם $C - \epsilon$ נקודות רציפות של $F_X$,
+	ולכן
+	\[
+		\PP(|X_n - X| \le \epsilon)
+		\ge F_{X_n}(C + \epsilon) - F_{X_n}(C - \epsilon)
+		\xrightarrow{n \to \infty} F_X(C + \epsilon) - F_X(C - \epsilon)
+		= 1 - 0
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\subsection{תכונות של התכנסות}
+\begin{proposition}
+	הטענות הבאות נכונות עבור התכנסות כמעט תמיד,
+	\begin{enumerate}
+		\item אם $X_n \xrightarrow{a.s.} X$ וכן $Y_n \xrightarrow{a.s.} Y$ אז $X_n + Y_n \xrightarrow{a.s.} X + Y$
+		\item אם $X_n \xrightarrow{a.s.} X$ ו־$f \in C(\RR)$ אז $f(X_n) \xrightarrow{a.s.} f(X)$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item מתקיים
+			\[
+				\{ \lim_{n \to \infty} X_n + Y_n = X + Y \}
+				\supseteq \{ \lim_{n \to \infty} X_n = X \} \cap \{ \lim_{n \to \infty} Y_n = Y \}
+			\]
+			צריך להוכיח שמתקיים $\PP(\lim_{n \to \infty} X_n = X, \lim_{n \to \infty} Y_n = Y) = 1$,
+			נראה שמתקיים
+			\begin{align*}
+				\PP({\{ \lim_{n \to \infty} X_n = X \} \cap \{ \lim_{n \to \infty} Y_n = Y \}}^C)
+				& = \PP({\{ \lim_{n \to \infty} X_n = X \}}^C \cup {\{ \lim_{n \to \infty} Y_n = Y \}}^C) \\
+				& \le \PP({\{ \lim_{n \to \infty} X_n = X \}}^C) + \PP({\{ \lim_{n \to \infty} Y_n = Y \}}^C) \\
+				& = 0 + 0
+			\end{align*}
+		\item $\{ \lim_{n \to \infty} f(X_n) = f(X) \} \supseteq \{ \lim_{n \to \infty} X_n = X \}$ ולכן
+			\[
+				\PP(\lim_{n \to \infty} f(X_n) = f(X))
+				\ge \PP(\lim_{n \to \infty} X_n = X)
+				= 1
+			\]
+			וסיימנו.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	נניח ש־${(X_n)}_{n = 1}^\infty$ בלתי־תלויים ומתפלגים $Unif([0, 1])$, נראה שמתקיים
+	\[
+		{(X_1 \cdots X_n)}^{\frac{1}{n}}
+		\xrightarrow{a.s.} \frac{1}{e}
+	\]
+	נבחין כי ${(X_1 \cdots X_n)}^{\frac{1}{n}} = {(e^{\log X_1} \cdots e^{\log X_n})}^{\frac{1}{n}} = \exp(\frac{1}{n} \sum_{i = 1}^{n} \log X_i)$,
+	אם מתקיים $\frac{1}{n} \sum_{i = 1}^{n} \log X_i \xrightarrow{a.s.} -1$ אז מהטענה שהוכחנו עתה הטענה נובעת.
+	נוכיח ש־$-\log X_i \sim Exp(1)$,
+	\[
+		\PP(-\log X_i > t)
+		= \PP(X_i < e^{-t})
+		= e^{-t}
+	\]
+	זאת שכן $X_i \sim U([0, 1])$ ולכן,
+	\[
+		\EE(\log X_i) = -1
+	\]
+	ומהחוק החזק נובע
+	\[
+		\frac{1}{n} \sum_{i = 1}^{n} \log X_i
+		\xrightarrow{a.s.} -1
+	\]
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
