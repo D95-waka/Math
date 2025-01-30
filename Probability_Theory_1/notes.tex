@@ -4122,7 +4122,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	= 0 - (-1)
 	= 1
 \]
-\begin{definition}[התפלגות נורמלית סטנדרטית]
+\begin{definition}[התפלגות נורמלית סטנדרטית]\label{standard_normal_distribution}
 	$X$ מתפלג נורמלי סטנדרטי, אם
 	\[
 		f_X(s) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{s^2}{2}}
@@ -4983,7 +4983,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	זה נכון אם ורק אם $\PP(\exists n \forall k \ge n Y_k \ne 0) = 1$.
 \end{example}
 
-\subsection{התכנסות של סדרות משתנים מקריים}
+\subsection{התכנסות של סדרות משתנים מקריים}\label{almost_surely_convergence}
 בהגדרה\ \ref{convergence_in_distribution} דיברנו על התכנסות של משתנים מקריים בהקשר ההתפלגות שלהם, עתה נראה התכנסות במובן חזק יותר.
 \begin{definition}[התכנסות סדרת משתנים מקריים כמעט תמיד]
 	נאמר ש־$X_n \xrightarrow{a.s.} X$ אם
@@ -5034,6 +5034,136 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אם $X_n$ בלתי־תלויים שווי־התפלגות עם תוחלת $\EE(X_n) = \mu \ne 0$ אז $Y_n = \sum_{i = 1}^{n} X_i$ הוא הילוך חולף.
 	זאת שכן מהחוק החזק $\frac{Y_n}{n} \to \mu \ne 0$.
 \end{conclusion}
+
+\section{תרגול 13 --- 30.1.2025}
+\subsection{המשפט הגדול המרכזי}
+נדבר על התפלגות נורמלית סטנדרטית,\ \ref{standard_normal_distribution}, ונתחיל בסימון,
+\begin{notation}
+	אם $X \sim N(0, 1)$, אז נסמן $\Phi(t) = F_X(t)$.
+\end{notation}
+נבהיר שמשפט הגבול המרכזי,\ \ref{central_limit_theorem}, הוא משפט מרכזי שמסביר למה התפלגות נורמלית מופיעה בכל כך הרבה מקומות.
+המשפט למעשה גורס שתקנון של התפלגויות ישאף להתנהג כמו התפלגות נורמלית.
+נעבור לדוגמה,
+\begin{exercise}
+	מטילים $n$ קוביות הוגנות באופן בלתי־תלוי.
+	העריכו את ההסתברות שסכום הקוביות נמצא בטווח $I = [\frac{7}{2}n - \sqrt{n}, \frac{7}{2} + \sqrt{n}]$.
+\end{exercise}
+\begin{solution}
+	נגדיר $X_i \sim U([6])$ וכן $X = \sum X$, אז
+	\[
+		\EE(X_i) = \frac{7}{2},
+		\quad
+		\sigma^2 = \var(X_i) = \frac{35}{12}
+	\]
+	נגדיר $Y_i = \frac{X_i - \frac{7}{2}}{\sigma}$.
+	$Y_i$ עומדים בתנאי משפט הגבול המרכזי ולכן אם $n \to \infty$ אז
+	\[
+		\frac{\sum Y_i}{\sqrt{n}} \xrightarrow{d} N(0, 1)
+	\]
+	אנו רוצים להעריך את $\PP(X \in I) = \PP(-\frac{\sqrt{n}}{\sigma} \le \sum Y_i \le \frac{\sqrt{n}}{\sigma})$.
+	ממשפט הגבול המרכזי נוכל להסיק,
+	\[
+		\PP(X \in I)
+		= \PP(\frac{-1}{\sigma} \le \frac{\sum Y_i}{\sqrt{n}} \le \frac{1}{\sigma})
+		\approx \Phi(\frac{1}{\sigma}) - \Phi(\frac{-1}{\sigma})
+		\approx 0.44
+	\]
+\end{solution}
+נעבור לדוגמה שהופיעה במבחן של אמיר,
+\begin{exercise}
+	נניח ש־$X \sim Poi(10000)$,
+	תנו הערכה ל־$\PP(X \le 9800)$. \\
+	\textbf{רמז:} תנו הערכתכם בצורת אינטגרל.
+\end{exercise}
+\begin{solution}
+	נגדיר $X_i \sim Poi(1)$ אז אנו יודעים ש־$\sum_{i = 1}^{10000} X_i \overset{d}{=} X$.
+	אנו יודעים גם ש־$\EE(X_i) = 1$ וכן ש־$\var(X_i) = 1$ ולכן נגדיר $Y_i = X_i - 1$.
+	מ־\ref{central_limit_theorem} וההנחה ש־$n = 10000$ מספיק גדול נסיק,
+	\[
+		\frac{\sum Y_i}{\sqrt{10000}}
+		\overset{d}{\approx} N(0, 1)
+	\]
+	לכן
+	\[
+		\PP(X \le 9800)
+		= \PP(\sum X_i \le 9800)
+		= \PP(\frac{\sum Y_i}{100} \le -2)
+		= \Phi(-2)
+		= \frac{1}{\sqrt{2\pi}} - \int_{-\infty}^{-2} \exp(\frac{-t^2}{2})\ dt
+		\approx 0.0228
+	\]
+\end{solution}
+
+\subsection{התכנסויות}
+נדבר על התכנסות\ \ref{almost_surely_convergence}, התכנסות שמאוד מזכירה את ההתכנסות של אינפי.
+יש סוג שני של התכנסות,
+\[
+	X_n \xrightarrow{P} X \implies \forall \epsilon > 0, \lim_{n \to \infty} \PP(|X_n - X| < \epsilon) = 1
+\]
+לעומתה יש את ההתכנסות\ \ref{convergence_in_distribution}, היא מדברת על התכנסות נקודתית באופן נאיבי.
+כל התכנסות גוררת את הבאות אחריה, אך לא הפוך. נשתכנע בזה עכשיו. \\
+נסכם ונגיד שהתכנסות כמעט תמיד גוררת התכנסות בהסתברות גוררת התכנסות בהתפלגות.
+\begin{example}
+	נניח ש־$X_n \sim Ber(\frac{1}{2})$.
+	בוודאי שסדרה זו מתכנסת בהתפלגות ל־$Ber(\frac{1}{2})$.
+
+	נראה שהיא לא מתכנסת בהסתברות (הגרסה השנייה),
+	\[
+		\PP(|X_n - X_m| \ge \epsilon)
+		\le \PP(|X_n - X_m| \ge \frac{\epsilon}{2}) + \PP(|X_m - X| \ge \frac{\epsilon}{2})
+	\]
+	לכל $\epsilon$ קטן כרצוננו.
+	מהצד השני עבור $\epsilon < 1$,
+	\[
+		\PP(|X_n - X_m| \ge \epsilon)
+		= \PP(X_n = 0, X_m = 1) + \PP(X_n = 1, X_m = 0)
+		= \frac{1}{4} + \frac{1}{4} = \frac{1}{2}
+	\]
+	על־ידי שימוש באי־תלות, וזו כמובן סתירה, בשורה הראשונה הראינו שההסתברות קטנה כרצוננו, ואז הצלחנו לחסום אותה על־ידי $\frac{1}{2}$.
+\end{example}
+\begin{example}
+	\begin{align*}
+		\{ \lim_{n \to \infty} X_n = X \}
+		& = \{ \omega \in \Omega \mid \forall \epsilon \exists N \forall n > N, |X_n(\omega) - X(\omega)| < \epsilon \} \\
+		& = \bigcap_{\epsilon > 0} \bigcup_{N} A_{N, \epsilon} = \{ \omega \in \Omega \mid \forall n > N, |X_n(\omega) - X(\omega)| < \epsilon \} \\
+		& = \liminf_{n \to \infty} A_{N, \epsilon}
+	\end{align*}
+	ובהתאם
+	\[
+		\PP(\liminf_{n \to \infty} A_{N, \epsilon}) = 1 \iff X_n \xrightarrow{a.s.} X
+	\]
+	וכן,
+	\[
+		\liminf_{n \to \infty} \PP(A_{N, \epsilon}) = 1 \iff X_i \xrightarrow{P} X
+	\]
+	זוהי הלמה של פאטו.
+\end{example}
+\begin{example}
+	נרצה למצוא $(X_n)$ מתכנסת בהסתברות ולא מתכנסת כמעט תמיד. \\
+	נגדיר $X_n$ בלתי־תלויים עם התפלגות,
+	\[
+		\PP(X_n = n) = \frac{1}{n},
+		\qquad
+		\PP(X_n = 0) = 1 - \frac{1}{n}
+	\]
+	ולכן עבור $\epsilon > 0$,
+	\[
+		\PP(X_n > \epsilon) \to \frac{1}{n} \to 0
+	\]
+	ולכן $X_n \xrightarrow{D} 0$, כלומר הסדרה מתכנסת בהסתברות למשתנה המקרי הקבוע $0$.
+
+	נגדיר $B_{n, \epsilon} = \{ X_n > \epsilon \}$ ולכן $\PP(B_{n, \epsilon}) = \frac{1}{n}$ ובהתאם $\sum_{n = 1}^{\infty} \PP(B_{n, \epsilon}) = \infty$.
+	מהלמה השנייה של בורל־קנטלי נסיק,
+	\[
+		\PP(\limsup_{n \to \infty} B_{n, \epsilon}) = 1
+	\]
+	ולכן גם
+	\[
+		\PP(\limsup_{n \to \infty} B_{n, \epsilon}^C) = 0
+	\]
+	ונובע ש־$X_n$ לא מתכנס כמעט תמיד למשתנה מקרי קבוע $0$.
+	לכן גם לא מתכנס כמעט תמיד.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
