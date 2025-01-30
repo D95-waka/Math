@@ -1,68 +1,45 @@
 \input{../article_base.tex}
 
-\usepackage{listings, luacolor, fontspec}
+\usepackage{luacolor}
+\usepackage[explicit]{titlesec}
+\usepackage[soul]{lua-ul}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{peach}{RGB}{246, 196, 187}
+\definecolor{teal}{RGB}{205, 234, 229}
+\definecolor{lime}{RGB}{217, 233, 210}
+\definecolor{yello}{RGB}{252, 241, 188}
 
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\fontspec{Iosevka Nerd Font Mono}\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-	basicstyle=\fontspec{Iosevka Nerd Font Mono}\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
+\titleformat{\section}
+	{\Large\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=peach,top=0.4ex,height=1ex]{#1}}
 
-\lstset{style=mystyle}
+\titleformat{\subsection}
+	{\large\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=teal,top=0.4ex,height=1ex]{#1}}
+
+\titleformat{\subsubsection}
+	{\normalsize\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=lime,top=0.4ex,height=1ex]{#1}}
+
+\titleformat{\paragraph}
+	{\normalsize\bfseries\rmfamily\color{black}}
+	{1}
+	{0pt}
+	{\underLine[color=yello,top=0.4ex,height=1ex]{#1}}
 
 \begin{document}
 
-הנה קוד:
-\begin{otherlanguage}{english}
-	\begin{lstlisting}[language=Python]
-import numpy as np
-    
-def incmatrix(genl1,genl2):
-    m = len(genl1)
-    n = len(genl2)
-    M = None #to become the incidence matrix
-    VT = np.zeros((n*m,1), int)  #dummy variable
-    
-    #compute the bitwise xor matrix
-    M1 = bitxormatrix(genl1)
-    M2 = np.triu(bitxormatrix(genl2),1) 
-
-    for i in range(m-1):
-        for j in range(i+1, m):
-            [r,c] = np.where(M2 == M1[i,j])
-            for k in range(len(r)):
-                VT[(i)*n + r[k]] = 1;
-                VT[(i)*n + c[k]] = 1;
-                VT[(j)*n + r[k]] = 1;
-                VT[(j)*n + c[k]] = 1;
-                
-                if M is None:
-                    M = np.copy(VT)
-                else:
-                    M = np.concatenate((M, VT), 1)
-                
-                VT = np.zeros((n*m,1), int)
-    
-    return M
-	\end{lstlisting}
-\end{otherlanguage}
+\section{שאלה}
+\subsection{סעיף}
+% In order to fix this warning, load hyprref before titlesec.
+\subsubsection{תת־סעיף}
+\paragraph{חלק}
+טקסט
 
 \end{document}
