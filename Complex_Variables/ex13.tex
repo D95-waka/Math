@@ -1,0 +1,176 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 13 --- פונקציות מרוכבות, 80519}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $\gamma : [0, 2\pi] \to \CC$ המוגדרת על־ידי $\gamma(t) = e^{4it} - 7e^{3it} + 2e^{it} + 6$. \\
+נחשב את $\operatorname{Ind}_\gamma(3)$.
+\begin{solution}
+	מתכונות אינדקס ליפוף נובע,
+	\[
+		\operatorname{Ind}_\gamma(3)
+		= \operatorname{Ind}_{\gamma - 3}(0)
+	\]
+	אבל אם מגדירים $f(z) = z^4 - 7z^3 + 2z + 3$ מקבלים מתכונות גם,
+	\[
+		\operatorname{Ind}_{\gamma - 3}(0)
+		= \operatorname{Ind}_{f \circ e^{it}}(0)
+		= \frac{1}{2\pi i} \Delta_\gamma f
+	\]
+	ומעקרון הארגומנט,
+	\[
+		\frac{1}{2\pi i} \Delta_\gamma f
+		= |Z_f \cap D|
+	\]
+	כאשר $Z_f = \{ z \in \CC \mid f(z) = 0 \}$ ו־$D = \overline{B}(0, 1)$.
+	נבחין כי עבור $z \in \partial D$,
+	\[
+		|f(z) + 7z^3|
+		\le |z^4| + 2 |z| + 3
+		= 6
+		< 7
+		= |-7z^3|
+	\]
+	ולכן ממשפט רושה ל־$f$ אותו מספר אפסים כמו ל־$-2z^3$, כלומר שלושה אפסים בדיוק, כלומר
+	\[
+		\operatorname{Ind}_{\gamma - 3}(0)
+		= 3
+	\]
+\end{solution}
+
+\question{}
+תהי $\gamma : I \to \CC$ מסילה סגורה.
+
+\subquestion{}
+נוכיח כי ל־$\CC \setminus \gamma(I)$ יש רכיב קשירות יחיד לא חסום.
+\begin{proof}
+	נניח בשלילה שישנם לפחות שני רכיבי קשירות לא חסומים, $\Omega_1, \Omega_2$, נבחין כי מהגדרת מסילה סגורה קיים $r_0 > 0$ כך ש־$\CC \setminus B(0, r_0) = (\Omega_1 \setminus B(0, r_0)) \uplus (\Omega_2 \setminus B(0, r_0))$.
+	יהי $r > r_0$, נראה ש־$\partial B(0, r) = (\partial B(0, r) \cap \Omega_1) \uplus (\partial B(0, r) \cap \Omega_2)$, ואם אחד משני התחומים ריק אז נובע שהתחום השני חסום בסתירה, לכן שניהם לא ריקים.
+	נבחר $z_r \in \overline{(\partial B(0, r) \cap \Omega_1)} \cap \overline{(\partial B(0, r) \cap \Omega_2)}$, נבחין כי זו אכן קבוצה לא ריקה מהעובדה ששתי הקבוצות לא ריקות.
+	נגדיר סדרה ${\{z_n\}}_{n = 1}^\infty \subseteq \CC$ על־ידי $z_n = z_r$ כך ש־$r = n$.
+	הנקודות המחלקות את התחומים שייכות ל־$\gamma(I)$, כלומר ${\{z_n\}}_{n = 1}^\infty \subseteq \gamma(I)$, וכן $|z_n| = n$ לכל $n \in \NN$, לכן קבוצת הנקודות הזו לא חסומה, וזוהי כמובן סתירה לסגירות $\gamma$.
+	נסיק אם כך שאין שני רכיבי קשירות שונים לא חסומים.
+\end{proof}
+
+\subquestion{}
+נראה שהפונקציה $\operatorname{Ind}_\gamma : \CC \setminus \gamma(I) \to \ZZ$ רציפה ומתאפסת ברכיב הקשירות הלא חסום.
+\begin{proof}
+	תהי $z \in \CC \setminus \gamma(I)$, לכל $\epsilon > 0$ כך ש־$B(z, \epsilon) \subseteq \CC \setminus \gamma(I)$, אם $w \in B(z, \epsilon)$ אז,
+	\begin{align*}
+		|\operatorname{Ind}_\gamma(z) - \operatorname{Ind}_\gamma(w)|
+		& = \left\lvert \frac{1}{2\pi i} \left( \int_\gamma \frac{1}{\zeta - z}\ d\zeta - \int_\gamma \frac{1}{\zeta - w}\ d\zeta \right) \right\rvert \\
+		& = \frac{1}{2\pi} \left\lvert \int_\gamma \frac{w - z}{(\zeta - z)(\zeta - w)}\ d\zeta \right\rvert \\
+		& \le \frac{\epsilon}{2\pi} L(\gamma) \cdot \max_{\zeta \in \gamma} \left\lvert \frac{1}{(\zeta - z)(\zeta - w)} \right\rvert
+	\end{align*}
+	נבחין שכאשר $z \to w$ נקבל $\max_{\zeta \in \gamma} \left\lvert \frac{1}{(\zeta - z)(\zeta - w)} \right\rvert \to \max_{\zeta \in \gamma} \left\lvert \frac{1}{{(\zeta - z)}^2} \right\rvert$, כלומר ביטוי קבוע. \\
+	גם $L(\gamma)$ קבוע ולכן $|\operatorname{Ind}_\gamma(z) - \operatorname{Ind}_\gamma(w)| \xrightarrow{\epsilon \to 0} 0$, כלומר $\operatorname{Ind}_\gamma$ רציפה.
+
+	נראה גם שברכיב הקשירות הלא חסום הפונקציה מתאפסת.
+	מצאנו בסעיף הקודם כי רכיב הקשירות איננו חסום, ומרציפות נובע שבאותו רכיב קשירות ערך הפונקציה (שתמונתה איננה רציפה) הוא קבוע, כלומר לכל $r > r_0$ עבור $r_0$ החוסם את $\gamma(I)$ נובע,
+	\[
+		|\operatorname{Ind}_\gamma(z)|
+		= \left\lvert \frac{1}{2\pi i} \int_\gamma \frac{1}{\zeta - z}\ d\zeta \right\rvert
+		\le \frac{L(\gamma)}{2\pi} \max_{\zeta \in \gamma} \left\lvert \frac{1}{\zeta - z} \right\rvert
+		= \frac{L(\gamma)}{2\pi} (r - r_0)
+		\xrightarrow{r \to \infty} 0
+	\]
+	אבל מרציפות $\operatorname{Ind}_\gamma$ ומתמונתה (שאיננה רציפה) נובע שלכל $z, w \in \Omega_i$ כאשר $\Omega_i$ רכיב קשירות כלשהו,
+	\[
+		\operatorname{Ind}_\gamma(z) = \operatorname{Ind}_\gamma(w)
+	\]
+	ומצאנו שקיים $r > r_0$ עבורו $\operatorname{Ind}_\gamma(z) < 1$ לכל $z \in \CC \setminus B(0, r)$, ולכן $\operatorname{Ind}_\gamma(z) = 0$ לכל $z \in \CC \Omega_j$ רכיב הקשירות הלא חסום.
+\end{proof}
+
+\question{}
+תהי $f : \overline{D} \to \RR$ פונקציה רציפה ב־$\overline{D}$ והרמונית ב־$D$.
+
+\subquestion{}
+נוכיח שאם $u \ge 0$ על $\partial D$ אז $u \ge 0$ ב־$D$.
+\begin{proof}
+	מתכונת הערך הממוצע נובע,
+	\[
+		u(z)
+		= \frac{1}{2\pi} \int_0^{2\pi} u(e^{it})\ dt
+		\ge 0
+	\]
+	זאת שכן $u(e^{it}) \ge 0$ לכל $t \in [0, 2\pi]$.
+\end{proof}
+
+\subquestion{}
+נוכיח את אי־שוויון Harnack,
+נניח ש־$u \ge 0$, ונראה שלכל $z \in D$ מתקיים,
+\[
+	\frac{1 - |z|}{1 + |z|} u(0) \le u(z) \le \frac{1 + |z|}{1 - |z|} u(0)
+\]
+\begin{proof}
+	נבחין כי המשפט על גרעין פואסון חל ולכן
+	\[
+		u(z)
+		= (P_D u)(z)
+		= \frac{1}{2\pi} \int_0^{2\pi} \frac{1 - |z|^2}{{|e^{it} - z|}^2} u(e^{it})\ dt
+	\]
+	ולכן בפרט $u(0) = \frac{1}{2\pi} \int_0^{2\pi} u(e^{it})\ dt$.
+	מאי־שוויון המשולש נובע,
+	\[
+		u(z)
+		\le \frac{1}{2\pi} \int_0^{2\pi} \frac{(1 - |z|)(1 + |z|)}{{(|e^{it}| - |z|)}^2} u(e^{it})\ dt
+		= \frac{1}{2\pi} \int_0^{2\pi} \frac{1 + |z|}{1 - |z|} u(e^{it})\ dt
+		= \frac{1}{2\pi} \frac{1 + |z|}{1 - |z|} \int_0^{2\pi} u(e^{it})\ dt
+		= \frac{1 + |z|}{1 - |z|}
+	\]
+	מהצד השני מתקיים,
+	\[
+		u(z)
+		\ge \frac{1}{2\pi} \int_0^{2\pi} \frac{(1 - |z|)(1 + |z|)}{{(|e^{it}| + |z|)}^2} u(e^{it})\ dt
+		\ge \frac{1}{2\pi} \int_0^{2\pi} \frac{1 - |z|}{1 + |z|} u(e^{it})\ dt
+		= \frac{1 - |z|}{1 + |z|}
+	\]
+	ומצאנו את שני חלקי אי־השוויון.
+\end{proof}
+
+\question{}
+נחשב את האינטגרל הבא בעזרת  נוסחת ינסן,
+\[
+	\int_0^{2\pi} \log(9 + 16 \sin^2 t)\ dt
+\]
+\begin{solution}
+	נגדיר $f(z) = 4z^2 - 1$, נבדוק שזוהי פונקציה הרמונית.
+	\[
+		\frac{\partial^2 f}{\partial z \partial \overline{z}}
+		= \frac{\partial}{\partial z} 0
+		= 0
+	\]
+	ולכן $f$ היא הרמונית ב־$D$ ומקיימת את נוסחת ינסן,
+	\[
+		\log |f(0)|
+		= \sum_{k = 1}^{n} m_k \log |a_k| + \frac{1}{2\pi} \int_0^{2\pi} \log |f(e^{it})|\ dt
+	\]
+	כאשר $a_1, \dots, a_n$ הם האפסים של $f$ ב־$D$ עם ריבויים $m_1, \dots, m_n$.
+	נובע גם $\log |f(0)| = \log |-1| = 0$, ונבחין כי גם $z = \pm \frac{1}{2}$ האפסים היחידים של $f$, כלומר $a_1 = \frac{1}{2}$ ו־$m_1 = 1$, וכן גם $a_2 = -\frac{1}{2}$ ו־$m_2 = 1$.
+	נציב ונקבל,
+	\[
+		0 = \log \left\lvert \frac{1}{2} \right\rvert + \log \left\lvert -\frac{1}{2} \right\rvert + \frac{1}{2\pi} \int_0^{2\pi} \log |4e^{2it} - 1|\ dt
+	\]
+	כלומר,
+	\[
+		\int_0^{2\pi} \log |4 e^{2it} - 1|\ dt = 2\pi \log 4
+	\]
+	נבחין כי גם,
+	\begin{align*}
+		& {|4 e^{2it} - 1|}^2
+		&& = {(4 \cos(2t) - 1)}^2 + {(4\sin(2t))}^2 \\
+		& = 16 \cos^2(2t) - 8 \cos(2t) + 1 + 16 \sin^2(2t)
+		&& = -8 \cos(2t) + 17 \\
+		& = -8 (1 - 2\sin^2 t) + 17
+		&& = 16 \sin^2 t + 9
+	\end{align*}
+	ונובע,
+	\[
+		\int_0^{2\pi} \log(9 + 16\sin^2 t)\ dt = 8\pi \log 2
+	\]
+\end{solution}
+
+\end{document} % chktex 17
