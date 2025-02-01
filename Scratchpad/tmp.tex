@@ -1,45 +1,49 @@
 \input{../article_base.tex}
 
-\usepackage{luacolor}
-\usepackage[explicit]{titlesec}
-\usepackage[soul]{lua-ul}
-
-\definecolor{peach}{RGB}{246, 196, 187}
-\definecolor{teal}{RGB}{205, 234, 229}
-\definecolor{lime}{RGB}{217, 233, 210}
-\definecolor{yello}{RGB}{252, 241, 188}
-
-\titleformat{\section}
-	{\Large\bfseries\rmfamily\color{black}}
-	{1}
-	{0pt}
-	{\underLine[color=peach,top=0.4ex,height=1ex]{#1}}
-
-\titleformat{\subsection}
-	{\large\bfseries\rmfamily\color{black}}
-	{1}
-	{0pt}
-	{\underLine[color=teal,top=0.4ex,height=1ex]{#1}}
-
-\titleformat{\subsubsection}
-	{\normalsize\bfseries\rmfamily\color{black}}
-	{1}
-	{0pt}
-	{\underLine[color=lime,top=0.4ex,height=1ex]{#1}}
-
-\titleformat{\paragraph}
-	{\normalsize\bfseries\rmfamily\color{black}}
-	{1}
-	{0pt}
-	{\underLine[color=yello,top=0.4ex,height=1ex]{#1}}
-
 \begin{document}
 
-\section{שאלה}
-\subsection{סעיף}
-% In order to fix this warning, load hyprref before titlesec.
-\subsubsection{תת־סעיף}
-\paragraph{חלק}
-טקסט
+\question{}
+\subquestion[3]{}
+נניח כי ישנן $X$ דבורים, כאשר $X_a$ הן ג'ו והשאר, קרי $X_b = X - X_b$, הן בטהובן.
+עוד ידוע לנו שכמות הדבש הנוצרת ביום היא $\frac{X_a}{2} + \ln(X_b^2 + 1)$.
+נגדיר אם כן $g : \RR_{\ge 0}^2 \to \RR_{\ge 0}$ על־ידי,
+\[
+	g(x, y)
+	= \frac{x}{2} + \ln(y^2 + 1)
+\]
+פונקציה המייצגת את כמות הדבש הנוצרת ביום כתלות בכמות סוגי הדבורים.
+נתון כי $g(x, y) = C$ עבור $C = 200000$.
+נבחין כי גם,
+\[
+	\nabla g = (\frac{1}{2}, \frac{2y}{y^2 + 1})
+\]
+נגדיר $f(x, y) = x + y$ כמות הדבורים הכוללת, ונרצה למצוא את ערכי הקיצון שלה תחת האילוץ $g = C$, נבחין כי גם,
+\[
+	\nabla f = (1, 1)
+\]
+לכן משיטת כופלי לגרנז' נובע,
+\[
+	(1, 1) = \lambda (\frac{1}{2}, \frac{2y}{y^2 + 1})
+\]
+בפרט $1 = \lambda \cdot \frac{1}{2} \iff \lambda = 2$ ומשוויון האגף השני,
+\[
+	1 = 2 \cdot \frac{2y}{y^2 + 1}
+	\iff y^2 - 4y + 1 = 0
+	\iff y = 2 \pm \sqrt{3}
+\]
+ומהשוויון $g = C$ נסיק,
+\[
+	x = 2(C - \ln(7 \pm 4 \sqrt{3}))
+\]
+כלומר מצאנו שהנקודות $(2(C - \ln(7 \pm 4 \sqrt{3})), 2 \pm \sqrt{3})$ הן נקודות קיצון בתחום.
+נחשב ונקבל שגם
+\[
+	f(2(C - \ln(7 + 4 \sqrt{3})), 2 + \sqrt{3}) 
+	\approx 399998.32,
+	\qquad
+	f(2(C - \ln(7 - 4 \sqrt{3})), 2 - \sqrt{3})
+	\approx 400000.12
+\]
+ולכן $(2(C - \ln(7 + 4 \sqrt{3})), 2 + \sqrt{3})$ מינימום ונובע $X_a \approx 399999.86, X_b \approx 0.26$.
 
 \end{document}
