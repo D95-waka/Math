@@ -1,8 +1,12 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 % packages
 \usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, tikzducks, hyperref, ifthen}
-\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry} % set page margins
+\ifcsname c@kobocompile\endcsname
+	\usepackage[a5paper, total={1072pt, 1448pt}, margin=10pt, includeheadfoot]{geometry} % set page margins
+\else
+	\usepackage[a4paper, margin=50pt, includeheadfoot]{geometry}
+\fi
 \usepackage[shortlabels]{enumitem}
 \usepackage[skip=3pt, indent=0pt]{parskip}
 
