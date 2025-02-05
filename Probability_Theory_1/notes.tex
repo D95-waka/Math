@@ -3662,7 +3662,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{example}
 נראה עתה למה שנצטרך להוכחת אי־השוויון.
 \begin{lemma}[הלמה של הופדינג]
-	אם $X$ משתמה מקרי כך ש־$\EE(X) = 0$ ו־$|X| \le 1$ אז
+	אם $X$ משתנה מקרי כך ש־$\EE(X) = 0$ ו־$|X| \le 1$ אז
 	\[
 		M_X(t)
 		= \EE(e^{tX})
@@ -5365,6 +5365,46 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		\xrightarrow{a.s.} -1
 	\]
 \end{example}
+
+\section{סיכום תוצאות}
+
+\subsection{התפלגויות בדידות}
+\begin{otherlanguage}{english}
+	\begin{center}
+		\begin{tabular}{c | c c c c c c} % chktex 44
+			$X \sim$ & Parameters & $\supp X$ & $\PP(X = s)$ & $\EE(X)$ & $\var(X)$ & $M_X(t)$ \\
+			\hline % chktex 44
+			$U([n])$ & $n \in \NN$ & $[n]$ & $\frac{1}{n}$ & $\frac{n + 1}{2}$ & $\frac{n^2 - 1}{12}$ & $\frac{e^{nt} - e^{2t}}{n(1 - e^t)}$ \\
+			\hline % chktex 44
+			$Ber(p)$ & $0 \le p \le 1$ & $\{0, 1\}$ & $\tiny\begin{cases} p & s = 1 \\ 1 - p & s = 0 \end{cases}$ & $p$ & $p(1 - p)$ & $p e^t + (1 - p)$ \\
+			\hline % chktex 44
+			$Bin(n, p)$  & $n \in \NN, 0 \le p \le 1$ & $\NN \cup \{0\}$ & $\binom{n}{s} {(1 - p)}^{n - s} p^s$ & $np$ & $np(1 - p)$ & ${(pe^t + (1 - p))}^n$ \\
+			\hline % chktex 44
+			$Geo(p)$ & $0 \le p \le 1$ & $\NN$ & ${(1 - p)}^{s - 1} p$ & $\frac{1}{p}$ & $\frac{1 - p}{p^2}$ & $\frac{p e^t}{1 - (1 - p) e^t}$ \\
+			\hline % chktex 44
+			$Poi(\lambda)$ & $0 < \lambda$ & $\NN \cup \{0\}$ & $e^{-\lambda} \frac{\lambda^s}{s!}$ & $\lambda$ & $\lambda$ & $\exp(\lambda(e^t - 1))$ \\
+		\end{tabular}
+	\end{center}
+\end{otherlanguage}
+
+\subsection{התפלגויות רציפות}
+\begin{otherlanguage}{english}
+	\begin{center}
+		\begin{tabular}{c | c c c c c c c} % chktex 44
+			$X \sim$ & Parameters & $\supp X$ & $f_X(s)$ & $F_X(s)$ & $\EE(X)$ & $\var(X)$ & $M_X(t)$ \\
+			\hline % chktex 44
+			$Unif([a, b])$ & $a \le b$ & $s \in [a, b]$ & $\tiny\begin{cases} \frac{1}{b - a} & s \in [a, b] \\ 0 & \text{else} \end{cases}$ & $\tiny\begin{cases} 0
+						   & s < a \\ \frac{s - a}{b - a} & a \le s < b \\ 1 & s > b \end{cases}$
+						   & $\frac{a + b}{2}$ & $\frac{{(b - a)}^2}{12}$ & $\tiny\begin{cases} \frac{e^{tb} - e^{ta}}{t(b - a)} & t \ne 0 \\ 1 & t = 0 \end{cases}$ \\
+			\hline % chktex 44
+			$Exp(\lambda)$ & $\lambda > 0$ & $0 \le s$ & $-\lambda e^{\lambda s}$ & $1 - e^{-\lambda}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ & $\frac{\lambda}{\lambda - t}$ \\
+			\hline % chktex 44
+			$N(0, 1)$ & --- & $\RR$ & $\frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})$ & $\Phi(s)$ & $0$ & $1$ & --- \\
+			\hline % chktex 44
+			$N(\mu, \sigma^2)$ & $\sigma^2 \ge 0$ & $\RR$ & $\frac{1}{\sqrt{2 \pi \sigma^2}} \exp(-\frac{{(s - \mu)}^2}{2 \sigma^2})$ & $\Phi(\frac{s - \mu}{\sigma})$ & $\mu$ & $\sigma^2$ & ---
+		\end{tabular}
+	\end{center}
+\end{otherlanguage}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
