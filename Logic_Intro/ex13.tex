@@ -135,7 +135,23 @@
 	לכן בפרט $\varphi(n) \vdash \varphi(2n)$ בכמות קטנה (נוכל לעשות זאת עם שישה קודקודים בלבד), נוכל אם כן לקבל את $T \vdash \varphi(2)$ ואת $\varphi(2) \vdash \varphi(4)$ וכן הלאה $n$ פעמים בכמות קטנה של קודקודים בכל פעם.
 	בהתאם נקבל לאחר $2^{10}$ מהלכים כאלה גם את $T \vdash \varphi(e_{10})$, כאשר לעץ זה יהיו סדר גודל של אלפי קודקודים בלבד (למעשה כ־6000).
 
-	לא הצלחתי למצוא חסם יותר טוב.
+	נגדיר $\psi(y) = \forall x (P(x) \rightarrow P(x \cdot y))$, נבחין כי $\psi(n), \psi(m) \vdash \psi(nm)$ בשישה קודקודים באופן דומה.
+	נבחן את $\psi$ עם הגבלה, כלומר $\psi'(y) = \forall x (x \in \{ d_n \mid n < 10 \}) \rightarrow (P(x) \rightarrow P(x \cdot y))$, כאשר,
+	\[
+		d_n
+		= \begin{cases}
+			1 + 1 & n = 0 \\
+			d_{n - 1} + d_{n - 1} & n > 0
+		\end{cases}
+	\]
+	נבחין כי את $T \vdash \psi'(2)$ אנו יכולים להוכיח די בקלות עם עץ ההיסק הבא,
+	\begin{enumerate}
+		\item $\lnot \psi'(2)$
+		\item $c \in \{ d_n \mid n < 10 \}$, $P(c)$, $P(c + c)$, הוספת עד
+		\item $c = d_{10}$, הנחה שאיננה בהכרח נכונה, אך הנחה זו תגרור את עץ ההיסק הארוך ביותר, לכן נניח אותה
+		\item $\varphi(d_{9})$, הדבקת עץ ההיסק הרלוונטי
+		\item $P(d_{10})$, שימוש בכללי ההיסק, וסתירה
+	\end{enumerate}
 \end{solution}
 
 \end{document}
