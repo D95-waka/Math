@@ -3190,7 +3190,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 	ולכן
 	\[
-		\PP(|Y_n - \mu|)
+		\PP(|Y_n - \mu| \ge \epsilon)
 		\le \frac{\var(Y_n)}{\epsilon^2}
 		= \frac{\var(\frac{\sum_{i = 1}^{n} X_i}{n})}{\epsilon^2}
 		= \frac{\var(\sum_{i = 1}^{n} X_i)}{n^2 \epsilon^2}
@@ -4615,7 +4615,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		F_{Y_n}(a)
 		= \PP(Y_n \le a)
 		= \PP(X_n \le n \cdot a)
-		\le \frac{\lceil n - a \rceil}{n} \to a
+		\le \frac{\lceil n \cdot a \rceil}{n}
+		\xrightarrow{n \to \infty} a
 	\]
 \end{example}
 נעבור לבחון את הקשר שבין התפלגות גאומטרית ומעריכית.
@@ -5019,9 +5020,9 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	על־ידי שימוש בטענה זו,
 	\[
 		\{ \frac{\sum_{i = 1}^{n} X_i}{n} \to \mu \}
-		= \{ \forall k \in \NN, \exists n_0, \forall n \ge N, \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} \right\rvert < \frac{1}{k} \}
+		= \{ \forall k \in \NN, \exists N, \forall n \ge N, \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} - \mu \right\rvert < \frac{1}{k} \}
 	\]
-	ואנו רוצים להראות שלכל $k$ שנבחר מתקיים $\PP(\exists N \forall n \ge N \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} \right\rvert < \frac{1}{k}) = 1$.
+	ואנו רוצים להראות שלכל $k$ שנבחר מתקיים $\PP(\exists N \forall n \ge N \left\lvert \frac{\sum_{i = 1}^{n} X_i}{n} - \mu \right\rvert < \frac{1}{k}) = 1$.
 	באופן שקול
 	\[
 		\PP(\bigcup_{N = 1}^\infty \bigcap_{n = N}^\infty A_k^n) = 1
